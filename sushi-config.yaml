@@ -56,7 +56,16 @@ pages:
   index.md:
     title: Start
   requirements.md:
-    title: Die "ELGA e-Medikation"
+    title: Die "e-Medikation"
+  actors.md:
+    title: Akteure
+  anwendungsfaelle.md:
+    title: Überblick Anwendungsfälle
+    UC_DiMe_01.md:
+      title: UC_DiMe_01 - Medikationsplan lesen
+    UC_DiMe_02.md:
+      title: UC_DiMe_02 - Medikationsplan schreiben
+
 #   implementation.xml:
 #   examples.xml:
 #     title: Examples Overview
@@ -88,8 +97,13 @@ pages:
 menu:
   Start: index.html
   Inhalt: toc.html
-  Die "ELGA e-Medikation": requirements.html
+  Die "e-Medikation": requirements.html
+  Akteure: actors.html
   FHIR Artefakte: artifacts.html
+  Anwendungsfälle:
+    Überblick & Sunshine Case: anwendungsfaelle.html
+    UC_DiMe_01 - Medikationsplan lesen 🔄: UC_DiMe_01.html
+    UC_DiMe_02 - Medikationsplan schreiben ✅: UC_DiMe_02.html
   #Home: index.html
   #Artifacts: artifacts.html
 
