@@ -61,10 +61,10 @@ pages:
     title: Akteure
   anwendungsfaelle.md:
     title: Überblick Anwendungsfälle
-    UC_DiMe_01.md:
-      title: UC_DiMe_01 - Medikationsplan lesen
-    UC_DiMe_02.md:
-      title: UC_DiMe_02 - Medikationsplan schreiben
+    UC_DiMe_04.md:
+      title: UC_DiMe_04 - Medikationsplan lesen
+    UC_DiMe_05.md:
+      title: UC_DiMe_05 - Medikationsplan schreiben
 
 #   implementation.xml:
 #   examples.xml:
@@ -102,8 +102,8 @@ menu:
   FHIR Artefakte: artifacts.html
   Anwendungsfälle:
     Überblick & Sunshine Case: anwendungsfaelle.html
-    UC_DiMe_01 - Medikationsplan lesen 🔄: UC_DiMe_01.html
-    UC_DiMe_02 - Medikationsplan schreiben ✅: UC_DiMe_02.html
+    UC_DiMe_04 - Medikationsplan lesen: UC_DiMe_04.html
+    UC_DiMe_05 - Medikationsplan schreiben: UC_DiMe_05.html
   #Home: index.html
   #Artifacts: artifacts.html
 

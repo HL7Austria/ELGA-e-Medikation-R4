@@ -1,0 +1,85 @@
+{% include styleheader.md %}
+
+## Anwendungsfall 5: UC_DiMe_05 Medikationsplan schreiben
+
+### Akteure
+
+- Behandelnde GDA:
+    - Ärzte/Arztinnen (in Krankenanstalten und im niedergelassenen Bereich, mit und ohne Hausapotheke)
+- ELGA-Teilnehmer:innen bzw. Vertretung, Obmudsstelle (nur im Zusammenhang mit Löschen von Medikationsplaneinträgen in Ausübung der Teilnehmerrechte, siehe UC_DiMe_03)
+
+### Beschreibung
+
+Der behandelnde **GDA** kann, z.B. aufgrund einer Therapieanpassung, einen oder mehrere bestehende Medikationsplaneinträge ändern (Dosierangaben, Start/Enddatum, stornieren/beenden/pausieren, Indikationsangaben) oder neue Medikationsplaneinträge hinzufügen.
+
+Optional kann der GDA Einträge aus der „Zusätzlich erfolgte Abgaben“-Liste (ohne Medikationsplanbezug) in den Medikationsplan übernehmen (d.h. einen neuen Eintrag erstellen).
+
+Weiters kann der GDA die Reihenfolge der Medikationsplaneinträge im Medikationsplan festlegen. Dies geschieht in der Praxis insbesondere, um eine fachlich sinnvolle Gruppierung von Medikamenten vorzunehmen und dient der Übersichtlichkeit.
+
+Im Anschluss wird der gesamte bestehende Medikationsplan durch eine neue, geänderte Version ersetzt. Dabei nimmt der GDA die vorbestehenden Einträge lediglich zur Kenntnis, d.h. er verantwortet nur die Verträglichkeit der neu hinzugefügten Medikation mit der bestehenden.
+
+
+###	Abläufe
+#### Standardablauf
+1. Vor dem Scheiben eines Medikationsplans muss sichergestellt sein, dass die aktuelle Version gelesen wird (siehe UCUC_DiMe_05_1)
+2. Anwender ändert/ergänzt Medikationsplaneinträge 
+
+
+
+ trägt mindestens alle verpflichtend auszufüllenden Datenfelder für den Medikationsplan ein (sofern noch nicht vorhanden)
+
+### Sub-Use Cases
+#### UC_DiMe_05_1 Medikationsplan lesen um zu schreiben
+1. Vor dem Scheiben eines Medikationsplans muss sichergestellt sein, dass die aktuelle Version gelesen wird. 
+    - Server zählt Versionsnummer+Datum hoch (Hashwert ...)
+2. Anwender trägt mindestens alle verpflichtend auszufüllenden Datenfelder für den Medikationsplan ein (sofern noch nicht vorhanden)
+3. Im Anschluss wird der gesamte bestehende Medikationsplan durch eine neue, geänderte Version ersetzt. Dabei nimmt der GDA die vorbestehenden Einträge lediglich zur Kenntnis, d.h. er verantwortet nur die Verträglichkeit der neu hinzugefügten Medikation mit der bestehenden.
+
+
+#### UC_DiMe_05_2 Medikationsplaneintrag editieren (Hinweis für Versicherten, Hinweis für Mitbehandler, Indikation und Dosierangaben)
+Vorbedingung UC_DiMe_05_1
+2. Anwender ändert/ergänzt Medikationsplaneinträge 
+ trägt mindestens alle verpflichtend auszufüllenden Datenfelder für den Medikationsplan ein (sofern noch nicht vorhanden)
+
+ Der behandelnde **GDA** kann, z.B. aufgrund einer Therapieanpassung, einen oder mehrere bestehende Medikationsplaneinträge ändern (Dosierangaben, Start/Enddatum, stornieren/beenden/pausieren, Indikationsangaben) oder neue Medikationsplaneinträge hinzufügen.
+
+
+#### UC_DiMe_05_3 Medikationsplaneintrag pausieren / aktivieren / beenden
+
+
+#### UC_DiMe_05_4 Medikationsplaneintrag stornieren
+
+
+#### UC_DiMe_05_5 Medikationsplaneintrag nachtragen (Einträge aus „Zusätzlich erfolgte Abgaben“ (ohne Medikationsplanbezug))
+Optional kann der GDA Einträge aus der „Zusätzlich erfolgte Abgaben“-Liste (ohne Medikationsplanbezug) in den Medikationsplan übernehmen (d.h. einen neuen Eintrag erstellen).
+
+#### UC_DiMe_05_5 Medikationsplaneintrag reihen 
+Weiters kann der GDA die Reihenfolge der Medikationsplaneinträge im Medikationsplan festlegen. Dies geschieht in der Praxis insbesondere, um eine fachlich sinnvolle Gruppierung von Medikamenten vorzunehmen und dient der Übersichtlichkeit.
+
+
+
+
+
+
+### Auslöser
+- Ausgwählte Medikationsplaneinträge sollen geändert werden
+- Neue Medikationsplaneinträge hinzugefügt werden
+
+### Vorbedingungen
+- Akteur ist authentifiziert und autorisiert
+- Ärzt:in hat einen Behandlungsbezug und ist berechtigt lesend und schreibend auf die e-Medikation der ELGA-Teilnehmerin/des ELGA-Teilnehmers zuzugreifen
+
+
+###	Nachbedingungen/Ergebnis
+- Ein neuer Medikationsplan wurde erfasst oder ein bestehender Medikationsplan bzw. einzelne Einträge davon wurden korrigiert
+- Zugriff wurde protokolliert
+
+### Beispiel
+
+### Technische Hinweise
+
+### Relevante Profile
+
+### Relevante Invarianten
+
+### Mögliche Notifications
