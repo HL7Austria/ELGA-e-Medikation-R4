@@ -13,16 +13,20 @@
 
 ### Beschreibung
 
-**Patienten und behandlende GDA** können den Medikationsplan einsehen, um sich einen möglichst vollständigen Überblick zu allen verordneten Arzneimitteln und der zugehörigen Einnahmeninformation, ersichtlich in den Medikationsplaneinträgen, zu verschaffen.
-</br>
+**Patienten und behandlende GDA** können den Medikationsplan einsehen, um sich einen möglichst vollständigen Überblick zu allen verordneten Arzneimitteln und der zugehörigen Einnahmeninformation, ersichtlich in den Medikationsplaneinträgen, zu verschaffen.<br>
 
-**Ärzte/Arztinnen** dient der Medikationsplan der Planung und Verordnung von Arzneimittelanwendungen bzw. der Überprüfung, ob eine Anpassungen der bestehenden Medikation erforderlich ist (siehe UC_DiMe_05 Medikationsplan schreiben).
 
-Sowohl **Ärzt:innen und berechtigte Pflegepersonen** (?) in Pflegeeinrichtungen bzw. der mobilen Pflege können aus bestehenden Medikationsplaneinträgen geplante Abgaben (Rezepte) erstellen (siehe UC_DiMe_07).</br>
+**Ärzte/Arztinnen** dient der Medikationsplan der Planung und Verordnung von Arzneimittelanwendungen bzw. der Überprüfung, ob eine Anpassungen der bestehenden Medikation erforderlich ist (siehe UC_DiMe_05 Medikationsplan schreiben).<br>
 
-In der **Apotheke** kann vor einer Abgabe (basierend auf einer geplanten Abgabe, siehe UC_DiMe_06), mithilfe des Medikationsplans eine Medikationsanamnese durchgeführt werden bzw. der Medikationsstatus oder die Medikationshistorie erhoben werden. </br>
 
-Die Einsicht in geplante und durchgeführte Abgaben mit und ohne Medikationsplanbezug soll die Vollständigkeit der Information zur Medikation gewährleisten (siehe UC_DiMe_06, UC_DiMe_07, UC_DiMe_08).
+Sowohl **Ärzt:innen und berechtigte Pflegepersonen** in Pflegeeinrichtungen bzw. der mobilen Pflege können aus bestehenden Medikationsplaneinträgen geplante Abgaben (Rezepte) erstellen (siehe UC_DiMe_07).<br>
+
+
+In der **Apotheke** kann vor einer Abgabe (basierend auf einer geplanten Abgabe, siehe UC_DiMe_06), mithilfe des Medikationsplans eine Medikationsanamnese durchgeführt werden bzw. der Medikationsstatus oder die Medikationshistorie erhoben werden.
+<br>
+
+Die Einsicht in geplante und durchgeführte Abgaben mit und ohne Medikationsplanbezug soll die Vollständigkeit der Information zur Medikation gewährleisten (siehe UC_DiMe_06, UC_DiMe_07, UC_DiMe_08).<br>
+
 
 
 **Der Medikationsplan enthält:**
@@ -34,9 +38,13 @@ Die Einsicht in geplante und durchgeführte Abgaben mit und ohne Medikationsplan
     - Zugehörige geplante Abgaben
     - Zugehörige durchgeführte Abgaben (inkl. Abgaben von Substitutionen durch andere Arzneimittel(/“aut idem“) und „Leerabgaben“) Leerabgaben sind notwendig, um im Abgabeprozess im Zusammenspiel mit dem Einlösen eines Rezepts abzubilden, dass diese geplante Abgabe auch in Zukunft nicht mehr bedient werden wird.
 
-- Einsicht in die „Zusätzlich erfolgte Abgaben“-Liste (Abgaben ohne zugehörigen Medikationsplaneintrag). Sie enthält:
+
+- Einsicht in die „Zusätzlich erfolgte Abgaben“-Liste (Abgaben ohne zugehörigen Medikationsplaneintrag). 
+    
+    Sie enthält:
     - alle Abgaben, ohne zugehörigen Medikationsplaneintrag, die seit der letzten Version des Medikationsplans neu hinzugekommen sind bzw.
     - mit der letzten Version des Medikationsplans in der Liste beibehalten worden sind.
+
 
 - Einsicht in die Vorversionen aller Medikationspläne (durch neue ersetzte Medikationspläne oder Medikationspläne mit Status ungültig)
     - Die Vorversionen enthalten keine „Zusätzlich erfolgte Abgaben“-Liste (keine Abgaben ohne zugehörigen Medikationsplaneintrag)
@@ -45,7 +53,7 @@ Die Einsicht in geplante und durchgeführte Abgaben mit und ohne Medikationsplan
 ###	Abläufe
 #### Standardablauf
 
-1. Der Anwender wählt die Option Medikationsplan in der e-Medikation aus
+1. Der Anwender wählt die Option Medikationsplan in der e-Medikation aus <br>
 
 2. Primärsystem bzw. Portal ruft den Medikationsplan von der Zentralen Anwendung e-Medikation ab und bereitet ihn für die Anzeige auf:
     - filtert Medikationsplaneinträge heraus, die inzwischen zeitlich abgelaufen sind

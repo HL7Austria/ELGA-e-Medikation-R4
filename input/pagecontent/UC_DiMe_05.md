@@ -46,9 +46,7 @@ Vorbedingung UC_DiMe_05_1
 
 #### UC_DiMe_05_3 Medikationsplaneintrag pausieren / aktivieren / beenden
 
-
 #### UC_DiMe_05_4 Medikationsplaneintrag stornieren
-
 
 #### UC_DiMe_05_5 Medikationsplaneintrag nachtragen (Einträge aus „Zusätzlich erfolgte Abgaben“ (ohne Medikationsplanbezug))
 Optional kann der GDA Einträge aus der „Zusätzlich erfolgte Abgaben“-Liste (ohne Medikationsplanbezug) in den Medikationsplan übernehmen (d.h. einen neuen Eintrag erstellen).

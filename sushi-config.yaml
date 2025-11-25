@@ -5,9 +5,9 @@
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 id: hl7.at.fhir.elga.emed.r4
 canonical: https://fhir.hl7.at/elga/emed/r4
-name: e-Medikation (R4)
-# title: Example Title
-# description: Example Implementation Guide for getting started with SUSHI
+name: ELGA-e-Medikation-R4
+title: ELGA e-Medikation (R4)
+description: The FHIR® implementation guide ELGA e-Medikation (R4)
 status: draft # draft | active | retired | unknown
 version: 0.1.1
 fhirVersion: 4.0.1 # https://www.hl7.org/fhir/valueset-FHIR-version.html
@@ -65,6 +65,8 @@ pages:
       title: UC_DiMe_04 - Medikationsplan lesen
     UC_DiMe_05.md:
       title: UC_DiMe_05 - Medikationsplan schreiben
+    mapping.md:
+      title: Mappings
 
 #   implementation.xml:
 #   examples.xml:
@@ -104,6 +106,7 @@ menu:
     Überblick & Sunshine Case: anwendungsfaelle.html
     UC_DiMe_04 - Medikationsplan lesen: UC_DiMe_04.html
     UC_DiMe_05 - Medikationsplan schreiben: UC_DiMe_05.html
+  Mapping: mapping.html
   #Home: index.html
   #Artifacts: artifacts.html
 
