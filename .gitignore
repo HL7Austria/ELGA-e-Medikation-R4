@@ -5,9 +5,3 @@ Thumbs.db
 /output
 /temp
 /template
-/python-mapper/__pycache__
-/.vscode
-.github/
-_build.bat
-_gencontinuous.bat
-_gencontinuous.sh
