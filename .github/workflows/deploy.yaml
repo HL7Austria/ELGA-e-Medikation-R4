@@ -55,7 +55,7 @@ jobs:
       run: |
         sudo apt-get install jekyll
 
-        - name: Setup Graphviz
+    - name: Setup Graphviz
       uses: ts-graphviz/setup-graphviz@v2
 
     - name: Download IG Publisher
