@@ -55,15 +55,7 @@ jobs:
       run: |
         sudo apt-get install jekyll
 
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.13'
-
-    - name: Install dependencies
-      run: python -m pip install --upgrade pip lxml python-dateutil
-
-    - name: Setup Graphviz
+        - name: Setup Graphviz
       uses: ts-graphviz/setup-graphviz@v2
 
     - name: Download IG Publisher
@@ -78,18 +70,7 @@ jobs:
       run: |
         mkdir input-cache
         mv publisher.jar ./input-cache/publisher.jar
-        java -jar -Dfile.encoding=UTF-8 -Xmx10g -Xms10g ./input-cache/publisher.jar -ig ig.ini
-
-    - name: Transform Bundles
-      run: python python-mapper/transform.py
-
-    - name: Move vidi files
-      run: |
-        cp ./vidi/Bundle*.html ./output/
-        cp ./vidi/favicon.ico ./output/
-        cp -r ./vidi/scripts ./output/
-        cp -r ./vidi/styles ./output/
-        cp -r ./vidi/assets/* ./output/assets/
+        java -Djava.awt.headless=true -jar -Dfile.encoding=UTF-8 -Xmx10g -Xms10g ./input-cache/publisher.jar -ig ig.ini
 
     - name: Move index file
       run: |
