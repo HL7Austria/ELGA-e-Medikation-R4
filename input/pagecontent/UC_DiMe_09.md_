@@ -1,6 +1,6 @@
 {% include styleheader.md %}
 
-## Anwendungsfall 4: UC_DiMe_04 Medikationsplan lesen
+## Anwendungsfall 7: Geplante und durchgeführte Abgaben lesen (UC_DiMe_07)
 
 ### Akteure
 
@@ -12,6 +12,11 @@
     - Pflegeeinrichtung, Mobile Pflege
 
 ### Beschreibung
+
+
+Die Einsicht in geplante und durchgeführte Abgaben mit und ohne Medikationsplanbezug soll die Vollständigkeit der Information zur Medikation gewährleisten (siehe UC_DiMe_07_Geplante und durchgeführte Abgaben lesen)
+
+-----
 
 **Patienten und behandlende GDA** können den Medikationsplan einsehen, um sich einen möglichst vollständigen Überblick zu allen verordneten Arzneimitteln und der zugehörigen Einnahmeninformation, ersichtlich in den Medikationsplaneinträgen, zu verschaffen.<br>
 

@@ -1,76 +1,84 @@
 {% include styleheader.md %}
 
-## Anwendungsfall 5: UC_DiMe_05 Medikationsplan schreiben
-
-### Akteure
-
-- Behandelnde GDA:
-    - Ärzte/Arztinnen (in Krankenanstalten und im niedergelassenen Bereich, mit und ohne Hausapotheke)
-- ELGA-Teilnehmer:innen bzw. Vertretung, Obmudsstelle (nur im Zusammenhang mit Löschen von Medikationsplaneinträgen in Ausübung der Teilnehmerrechte, siehe UC_DiMe_03)
+## UC_DiMe_05 Medikationsplan lesen
 
 ### Beschreibung
 
-Der behandelnde **GDA** kann, z.B. aufgrund einer Therapieanpassung, einen oder mehrere bestehende Medikationsplaneinträge ändern (Dosierangaben, Start/Enddatum, stornieren/beenden/pausieren, Indikationsangaben) oder neue Medikationsplaneinträge hinzufügen.
-
-Optional kann der GDA Einträge aus der „Zusätzlich erfolgte Abgaben“-Liste (ohne Medikationsplanbezug) in den Medikationsplan übernehmen (d.h. einen neuen Eintrag erstellen).
-
-Weiters kann der GDA die Reihenfolge der Medikationsplaneinträge im Medikationsplan festlegen. Dies geschieht in der Praxis insbesondere, um eine fachlich sinnvolle Gruppierung von Medikamenten vorzunehmen und dient der Übersichtlichkeit.
-
-Im Anschluss wird der gesamte bestehende Medikationsplan durch eine neue, geänderte Version ersetzt. Dabei nimmt der GDA die vorbestehenden Einträge lediglich zur Kenntnis, d.h. er verantwortet nur die Verträglichkeit der neu hinzugefügten Medikation mit der bestehenden.
+**Patienten und behandelnde GDA** können den Medikationsplan einsehen, um sich einen möglichst vollständigen Überblick zu allen verordneten, aktuell einzunehmenden Arzneimitteln und der zugehörigen Einnahmeninformationen zu verschaffen.<br>
 
 
-###	Abläufe
-#### Standardablauf
-1. Vor dem Scheiben eines Medikationsplans muss sichergestellt sein, dass die aktuelle Version gelesen wird (siehe UCUC_DiMe_05_1)
-2. Anwender ändert/ergänzt Medikationsplaneinträge 
+**Inhalt des Medikationsplans**
+- Der Medikationsplan besteht aus einzelnen Medikationsplaneinträgen 
+- Angezeigt wird immer die zuletzt gespeicherte Version des Medikationsplans:
+  - Medikamente deren Einnahmezeitraum abgelaufen ist, werden per Default ausgeblendet 
+  - zusätzliche Gesamtansicht: alle initial enthaltenen Einträge sind sichtbar, auch wenn diese bereits abgelaufen sind
+  - noch offen: Hinweise nach erfolgten Löschungen von Medikationsplaneinträgen durch ELGA-Teilnehmer
+  - frühere Gesamtversionen des Medikationsplans sind über die Versionshistorie einsehbar
+- Einträge können von GDA in eine bestimmte Reihenfolge gebracht werden, z.B. zur fachlich sinnvollen Gruppierung und besseren Übersicht
+    - Lesende Systeme können diese Reihenfolge nutzen, dürfen aber bei Bedarf eine andere Reihung vornehmen
+- Einzelne Einträgen können Korrekturvermerke (inkl. Freitext) enthalten und müssen dem:der Benutzer:in angezeigt werden, (z.B. bei Signatur- oder Dosisänderungen vgl. UC_DiMe_06 Medikationsplan schreiben)
+- Je Medikationsplaneintrag werden folgende Information dargestellt:
+    - Verantwortlicher GDA
+    - Einnahmeinformation
+    - Zugehörige geplante Abgaben
+    - Zugehörige durchgeführte Abgaben 
+      - inkl. Abgaben von Substitutionen durch andere Arzneimittel(/“aut idem“) und 
+      - „Leerabgaben“. (Leerabgaben kennzeichnen, dass eine ursprünglich geplante Abgabe künftig nicht mehr bedient werden wird)
+      - noch offen: abgelaufene Rezepte
+- Fachlich kann es sinnvoll sein, zusätzlich zum aktuellen Medikationsplan auch Abgaben darzustellen, die nicht auf den aktuellen Medikationsplan referenzieren (z.B. OTC-Abgaben oder Abgaben bei fehlender ELGA-Anbindung verschreibender GDA), die seit der letzten Version des Medikationsplans neu hinzugekommen sind; dadurch erhält der GDA ein möglichst vollständiges Bild der tatsächlichen Medikation
+- Filter- und Suchfunktionen können hilfreich sein (v.a. bei Medikationsplänen, die viele Einträge enthalten)
+
+**Ansicht von Vorversionen**
+- Alle Vorversionen des Medikationsplans können eingesehen werden
+  - Vorversionen können in chronologischer Reihenfolge dargestellt werden (absteigend nach Erstellungsdatum)
+  - Sofern eine gesamte Version eines Medikationsplans von einem:r ELGA-Teilnehmer:in gelöscht wurde, wird diese nicht mehr in der Historie angezeigt; dies gilt genauso für die zuletzt erfasste Version
+  - noch offen: Hinweise nach erfolgten Löschungen von Medikationsplanen durch ELGA-Teilnehmer
+- Die Ansicht einer Vorversion unterscheidet sich in ihrer Darstellungsform nicht von der zuletzt erfassten Ansicht des Medikationsplans, mit der Ausnahme, dass abgelaufene Medikamente nicht ausgeblendet werden.
+•	Sofern der Medikationsplan eines:einer Patient:in häufigen Anpassungen unterliegt, kann es sinnvoll sein, eine Ansicht zu ermöglichen, die den Zustand des Medikationsplans zu einem bestimmten Zeitpunkt in der Vergangenheit ausgibt
+
+**Export des Medikationsplans**
+
+Der Medikationsplan soll für ELGA-Teilnehmer:innen im ELGA-Portal sowohl 
+- als PDF zum Ausdruck bzw. zur Darstellung in der Druckansicht als auch
+- als strukturierte, maschinenlesbare Daten im FHIR-Format bereitgestellt werden.
+  
+Der Medikationsplan soll für GDA im jeweiligen Client-System 
+- als PDF zum Ausdruck bzw. zur Darstellung in der Druckansicht verfügbar sein.
+Für den PDF-Export stellt die ELGA GmbH ein Softwaremodul zur Verfügung, welches in den jeweiligen Softwaresystemen eingebunden werden kann. Dieses "FHIR2PDF" Softwaremodul stellt die Funktionen zur Verfügung, um den Medikationsplan als PDF zu exportieren. Das exportierte PDF unter Nutzung des "FHIR2PDF" stellt ein signiertes Dokument dar.
+
+**Eigene Ansicht vs. Verwendung des e-Medikation Stylesheets**
+Zur Anzeige des Medikationsplans wird von der ELGA GmbH ein Stylesheet angeboten, welches in den jeweiligen Softwaresystemen eingebunden werden kann. 
+- Dieses "e-Medikation Stylesheet" stellt alle notwendigen/vorhanden Informationen dar - Daten zur Person, aktuelle und vergangene Medikationsplaneinträge, geplante und durchgeführte Abgaben, etc.
+Neben der Verwendung des e-Medikation Stylesheets kann auch eine eigene Ansicht des Medikationsplans in den Softwaresystemen umgesetzt werden.
+
+offen: [für Clientsysteme] Abgleich mit lokal gespeicherter Dauermedikation und Anzeige von Delta zum zuletzt importieren Datenstand des Medikationsplans
 
 
+### Akteure
 
- trägt mindestens alle verpflichtend auszufüllenden Datenfelder für den Medikationsplan ein (sofern noch nicht vorhanden)
-
-### Sub-Use Cases
-#### UC_DiMe_05_1 Medikationsplan lesen um zu schreiben
-1. Vor dem Scheiben eines Medikationsplans muss sichergestellt sein, dass die aktuelle Version gelesen wird. 
-    - Server zählt Versionsnummer+Datum hoch (Hashwert ...)
-2. Anwender trägt mindestens alle verpflichtend auszufüllenden Datenfelder für den Medikationsplan ein (sofern noch nicht vorhanden)
-3. Im Anschluss wird der gesamte bestehende Medikationsplan durch eine neue, geänderte Version ersetzt. Dabei nimmt der GDA die vorbestehenden Einträge lediglich zur Kenntnis, d.h. er verantwortet nur die Verträglichkeit der neu hinzugefügten Medikation mit der bestehenden.
-
-
-#### UC_DiMe_05_2 Medikationsplaneintrag editieren (Hinweis für Versicherten, Hinweis für Mitbehandler, Indikation und Dosierangaben)
-Vorbedingung UC_DiMe_05_1
-2. Anwender ändert/ergänzt Medikationsplaneinträge 
- trägt mindestens alle verpflichtend auszufüllenden Datenfelder für den Medikationsplan ein (sofern noch nicht vorhanden)
-
- Der behandelnde **GDA** kann, z.B. aufgrund einer Therapieanpassung, einen oder mehrere bestehende Medikationsplaneinträge ändern (Dosierangaben, Start/Enddatum, stornieren/beenden/pausieren, Indikationsangaben) oder neue Medikationsplaneinträge hinzufügen.
-
-
-#### UC_DiMe_05_3 Medikationsplaneintrag pausieren / aktivieren / beenden
-
-#### UC_DiMe_05_4 Medikationsplaneintrag stornieren
-
-#### UC_DiMe_05_5 Medikationsplaneintrag nachtragen (Einträge aus „Zusätzlich erfolgte Abgaben“ (ohne Medikationsplanbezug))
-Optional kann der GDA Einträge aus der „Zusätzlich erfolgte Abgaben“-Liste (ohne Medikationsplanbezug) in den Medikationsplan übernehmen (d.h. einen neuen Eintrag erstellen).
-
-#### UC_DiMe_05_5 Medikationsplaneintrag reihen 
-Weiters kann der GDA die Reihenfolge der Medikationsplaneinträge im Medikationsplan festlegen. Dies geschieht in der Praxis insbesondere, um eine fachlich sinnvolle Gruppierung von Medikamenten vorzunehmen und dient der Übersichtlichkeit.
-
-
-
-
-
-
+- ELGA-Teilnehmer:in bzw. Vertretung
+- Obmudsstelle
+- Behandelnde GDA:
+    - Ärzte/Arztinnen (in Krankenanstalten und im niedergelassenen Bereich, mit und ohne Hausapotheke)
+    - Apotheke
+    - Pflegeeinrichtung, Mobile Pflege
+  
 ### Auslöser
-- Ausgwählte Medikationsplaneinträge sollen geändert werden
-- Neue Medikationsplaneinträge hinzugefügt werden
+- Der Medikationsplan einer/eines ELGA-Teilnehmer:in wird zur Ansicht aufgerufen
 
 ### Vorbedingungen
 - Akteur ist authentifiziert und autorisiert
-- Ärzt:in hat einen Behandlungsbezug und ist berechtigt lesend und schreibend auf die e-Medikation der ELGA-Teilnehmerin/des ELGA-Teilnehmers zuzugreifen
-
+- GDA hat einen Behandlungsbezug und ist berechtigt lesend auf die e-Medikation der ELGA-Teilnehmerin/des ELGA-Teilnehmers zuzugreifen
 
 ###	Nachbedingungen/Ergebnis
-- Ein neuer Medikationsplan wurde erfasst oder ein bestehender Medikationsplan bzw. einzelne Einträge davon wurden korrigiert
+- Der Medikationsplan der ELGA-Teilnehmerin/des ELGA-Teilnehmers wird angezeigt
 - Zugriff wurde protokolliert
+  
+###	Abläufe
+#### Standardablauf
+
+1. Der Anwender wählt die Option Medikationsplan in der e-Medikation aus <br>
+2. Primärsystem bzw. Portal ruft den Medikationsplan von der Zentralen Anwendung e-Medikation ab und bereitet ihn für die Anzeige auf
 
 ### Beispiel
 

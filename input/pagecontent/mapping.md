@@ -9,37 +9,37 @@ EHDS Medication Prescription model allows multiple items prescribed on one presc
   
 |**CDA element**|**FHIR Path R5**|**FHIR Path R4**|
 |---|---|---|
-|EHDSMedicationPrescription.header.identifier|MedicationRequest.identifier or .groupIdentifier|MedicationRequest.identifier or .groupIdentifier|  
-|EHDSMedicationPrescription.header.authorship.author|MedicationRequest.requester|MedicationRequest.requester|  
-|EHDSMedicationPrescription.header.authorship.datetime|MedicationRequest.authoredOn|MedicationRequest.authoredOn|  
-|EHDSMedicationPrescription.header.subject|MedicationRequest.subject|MedicationRequest.subject|  
-|EHDSMedicationPrescription.header.validFrom|MedicationRequest.dispenseRequest.validityPeriod.start|MedicationRequest.dispenseRequest.validityPeriod.start|  
-|EHDSMedicationPrescription.header.validUntil|MedicationRequest.dispenseRequest.validityPeriod.end|MedicationRequest.dispenseRequest.validityPeriod.end|  
-|EHDSMedicationPrescription.header.recorder|MedicationRequest.recorder|MedicationRequest.recorder|  
-|EHDSMedicationPrescription.header.recordingDate|MedicationRequest.eventhistory.recorded|MedicationRequest.eventhistory.recorded|  
-|EHDSMedicationPrescription.header.status|MedicationRequest.status or RequestOrchestration.status (for multi-item)|MedicationRequest.status or RequestGroup.status (for multi-item)|  
-|EHDSMedicationPrescription.header.statusReason[x]|MedicationRequest.statusReason|MedicationRequest.statusReason|   
-|EHDSMedicationPrescription.comment|MedicationRequest.note.text, RequestOrchestration.note.text|MedicationRequest.note.text, RequestGroup.note.text|  
-|EHDSMedicationPrescription.prescriptionItem|MedicationRequest|MedicationRequest|  
-|EHDSMedicationPrescription.prescriptionItem.identifier|MedicationRequest.identifier|MedicationRequest.identifier|  
-|EHDSMedicationPrescription.prescriptionItem.category|MedicationRequest.category|MedicationRequest.category|  
-|EHDSMedicationPrescription.prescriptionItem.status|MedicationRequest.status|MedicationRequest.status|  
-|EHDSMedicationPrescription.prescriptionItem.statusReason[x]|MedicationRequest.statusReason|MedicationRequest.statusReason|  
-|EHDSMedicationPrescription.prescriptionItem.medication|MedicationRequest.medication|MedicationRequest.medication[x]|  
-|EHDSMedicationPrescription.prescriptionItem.indication[x]|MedicationRequest.reason|MedicationRequest.reasonCode or .reasonReference|  
-|EHDSMedicationPrescription.prescriptionItem.indicationText|MedicationRequest.reason.concept.text|MedicationRequest.reasonCode.text|  
-|EHDSMedicationPrescription.prescriptionItem.prescriptionIntent|MedicationRequest.reason|MedicationRequest.reason|  
-|EHDSMedicationPrescription.prescriptionItem.treatmentPeriod|MedicationRequest.effectiveDosePeriod|MedicationRequest.extension:effectiveDosePeriod|  
-|EHDSMedicationPrescription.prescriptionItem.quantityPrescribed|MedicationRequest.dispenseRequest.extension: prescribedQuantity|MedicationRequest.dispenseRequest.extension: prescribedQuantity|  
-|EHDSMedicationPrescription.prescriptionItem.dosageInstructions|MedicationRequest.dosageInstruction|MedicationRequest.dosageInstruction|  
-|EHDSMedicationPrescription.prescriptionItem.preparationInstructions|MedicationRequest.dispenseRequest.dispenserInstruction||  
-|EHDSMedicationPrescription.prescriptionItem.substitution|MedicationRequest.substitution|MedicationRequest.substitution|  
-|EHDSMedicationPrescription.prescriptionItem.substitution.allowed[x]|MedicationRequest.substitution.allowed[x]|MedicationRequest.substitution.allowed[x]|  
-|EHDSMedicationPrescription.prescriptionItem.substitution.reason[x]|MedicationRequest.substitution.reason|MedicationRequest.substitution.reason|  
-|EHDSMedicationPrescription.prescriptionItem.repeatsAllowed|MedicationRequest.dispenseRequest.numberOfRepeatsAllowed|MedicationRequest.dispenseRequest.numberOfRepeatsAllowed|  
-|EHDSMedicationPrescription.prescriptionItem.minimumDispenseInterval|MedicationRequest.dispenseRequest.dispenseInterval|MedicationRequest.dispenseRequest.dispenseInterval|  
-|EHDSMedicationPrescription.prescriptionItem.offLabel|MedicationRequest.extension:offLabelUse|MedicationRequest.extension:offLabelUse|  
-|EHDSMedicationPrescription.prescriptionItem.comment|MedicationRequest.note.text|MedicationRequest.note.text|  
+|substanceAdministration.header.identifier|MedicationRequest.identifier or .groupIdentifier|MedicationRequest.identifier or .groupIdentifier|  
+|substanceAdministration.header.authorship.author|MedicationRequest.requester|MedicationRequest.requester|  
+|substanceAdministration.header.authorship.datetime|MedicationRequest.authoredOn|MedicationRequest.authoredOn|  
+|substanceAdministration.header.subject|MedicationRequest.subject|MedicationRequest.subject|  
+|substanceAdministration.header.validFrom|MedicationRequest.dispenseRequest.validityPeriod.start|MedicationRequest.dispenseRequest.validityPeriod.start|  
+|substanceAdministration.header.validUntil|MedicationRequest.dispenseRequest.validityPeriod.end|MedicationRequest.dispenseRequest.validityPeriod.end|  
+|substanceAdministration.header.recorder|MedicationRequest.recorder|MedicationRequest.recorder|  
+|substanceAdministration.header.recordingDate|MedicationRequest.eventhistory.recorded|MedicationRequest.eventhistory.recorded|  
+|substanceAdministration.header.status|MedicationRequest.status or RequestOrchestration.status (for multi-item)|MedicationRequest.status or RequestGroup.status (for multi-item)|  
+|substanceAdministration.header.statusReason[x]|MedicationRequest.statusReason|MedicationRequest.statusReason|   
+|substanceAdministration.comment|MedicationRequest.note.text, RequestOrchestration.note.text|MedicationRequest.note.text, RequestGroup.note.text|  
+|substanceAdministration.prescriptionItem|MedicationRequest|MedicationRequest|  
+|substanceAdministration.prescriptionItem.identifier|MedicationRequest.identifier|MedicationRequest.identifier|  
+|substanceAdministration.prescriptionItem.category|MedicationRequest.category|MedicationRequest.category|  
+|substanceAdministration.prescriptionItem.status|MedicationRequest.status|MedicationRequest.status|  
+|substanceAdministration.prescriptionItem.statusReason[x]|MedicationRequest.statusReason|MedicationRequest.statusReason|  
+|substanceAdministration.prescriptionItem.medication|MedicationRequest.medication|MedicationRequest.medication[x]|  
+|substanceAdministration.prescriptionItem.indication[x]|MedicationRequest.reason|MedicationRequest.reasonCode or .reasonReference|  
+|substanceAdministration.prescriptionItem.indicationText|MedicationRequest.reason.concept.text|MedicationRequest.reasonCode.text|  
+|substanceAdministration.prescriptionItem.prescriptionIntent|MedicationRequest.reason|MedicationRequest.reason|  
+|substanceAdministration.prescriptionItem.treatmentPeriod|MedicationRequest.effectiveDosePeriod|MedicationRequest.extension:effectiveDosePeriod|  
+|substanceAdministration.prescriptionItem.quantityPrescribed|MedicationRequest.dispenseRequest.extension: prescribedQuantity|MedicationRequest.dispenseRequest.extension: prescribedQuantity|  
+|substanceAdministration.prescriptionItem.dosageInstructions|MedicationRequest.dosageInstruction|MedicationRequest.dosageInstruction|  
+|substanceAdministration.prescriptionItem.preparationInstructions|MedicationRequest.dispenseRequest.dispenserInstruction||  
+|substanceAdministration.prescriptionItem.substitution|MedicationRequest.substitution|MedicationRequest.substitution|  
+|substanceAdministration.prescriptionItem.substitution.allowed[x]|MedicationRequest.substitution.allowed[x]|MedicationRequest.substitution.allowed[x]|  
+|substanceAdministration.prescriptionItem.substitution.reason[x]|MedicationRequest.substitution.reason|MedicationRequest.substitution.reason|  
+|substanceAdministration.prescriptionItem.repeatsAllowed|MedicationRequest.dispenseRequest.numberOfRepeatsAllowed|MedicationRequest.dispenseRequest.numberOfRepeatsAllowed|  
+|substanceAdministration.prescriptionItem.minimumDispenseInterval|MedicationRequest.dispenseRequest.dispenseInterval|MedicationRequest.dispenseRequest.dispenseInterval|  
+|substanceAdministration.prescriptionItem.offLabel|MedicationRequest.extension:offLabelUse|MedicationRequest.extension:offLabelUse|  
+|substanceAdministration.prescriptionItem.comment|MedicationRequest.note.text|MedicationRequest.note.text|  
 {:.table-bordered .table-striped .thead-light}
 
 #### Medication  
