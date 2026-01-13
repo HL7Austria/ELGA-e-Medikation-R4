@@ -1,6 +1,6 @@
-Instance: AtApsExampleMedicationDispense01
-InstanceOf: AtApsMedicationDispense
-Title: "AtApsMedicationDispense-Beispiel"
+Instance: AtEmedExampleMedicationDispense01
+InstanceOf: AtEmedMedicationDispense
+Title: "AtEmedMedicationDispense-Beispiel"
 Description: "Medication Dispense"
 Usage: #example
 * status = #completed

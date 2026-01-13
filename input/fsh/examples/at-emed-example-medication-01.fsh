@@ -1,6 +1,6 @@
-Instance: AtApsExampleMedication01
-InstanceOf: AtApsMedication
-Title: "AtApsMedication-Beispiel"
+Instance: AtEmedMedicationExample01
+InstanceOf: AtEmedMedication
+Title: "AtEmedMedication-Beispiel"
 Description: "Medication"
 Usage: #example
 * code = http://www.whocc.no/atc#C09AA05 "Ramipril"

@@ -29,10 +29,17 @@ contact:
 # package id and the value is the version (or dev/current). For advanced
 # use cases, the value can be an object with keys for id, uri, and version.
 
+
 dependencies:
-  hl7.fhir.uv.ips: current
-  hl7.fhir.uv.ipa: 1.1.0
+  hl7.fhir.eu.mpd: 0.1.0-ballot
   hl7.at.fhir.core.r4: 2.0.0
+  ihe.pharm.mpd.r4: 1.0.0-comment-2
+  hl7.fhir.eu.extensions.r4: 0.1.1-ballot
+  hl7.fhir.eu.base: 0.1.0-ballot
+  hl7.at.fhir.elga.aps.r4:
+    uri: https://github.com/HL7Austria/<repo>/tree/main/package
+    version: current
+
 
 #   hl7.fhir.us.core: 3.1.0
 #   hl7.fhir.us.mcode:

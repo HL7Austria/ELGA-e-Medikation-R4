@@ -1,6 +1,6 @@
-Instance: AtApsExampleMedicationRequest01
-InstanceOf: AtApsMedicationRequest
-Title: "AtApsMedicationRequest-Beispiel"
+Instance: AtEmedExampleMedicationRequest01
+InstanceOf: AtEmedMedicationRequest
+Title: "AtEmedMedicationRequest-Beispiel"
 Description: "Medication Request"
 Usage: #example
 * status = #active
