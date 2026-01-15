@@ -33,12 +33,10 @@ contact:
 dependencies:
   hl7.fhir.eu.mpd: 0.1.0-ballot
   hl7.at.fhir.core.r4: 2.0.0
-  ihe.pharm.mpd.r4: 1.0.0-comment-2
-  hl7.fhir.eu.extensions.r4: 0.1.1-ballot
-  hl7.fhir.eu.base: 0.1.0-ballot
-  hl7.at.fhir.elga.aps.r4:
-    uri: https://github.com/HL7Austria/<repo>/tree/main/package
-    version: current
+  # ihe.pharm.mpd.r4: 1.0.0-comment-2
+  # hl7.fhir.eu.extensions.r4: 0.1.1-ballot
+  # hl7.fhir.eu.base: 0.1.0-ballot
+  hl7.at.fhir.elga.aps.r4: current
 
 
 #   hl7.fhir.us.core: 3.1.0
@@ -61,17 +59,26 @@ dependencies:
 #
 pages:
   index.md:
-    title: Start
+    title: "Start"
   requirements.md:
-    title: Die "e-Medikation"
+    title: "Die 'e-Medikation'"
   actors.md:
-    title: Akteure
+    title: "Akteure"
   anwendungsfaelle.md:
-    title: Überblick Anwendungsfälle
-    UC_DiMe_05.md:
-      title: UC_DiMe_05 - Medikationsplan lesen
-    # UC_DiMe_06.md:
-    #   title: UC_DiMe_06 - Medikationsplan schreiben
+    title: "Überblick Anwendungsfälle"
+    UC_eMed_05.md:
+      title: "UC_eMed_05 - Medikationsplan lesen"
+    UC_eMed_06.md:
+      title: "UC_eMed_06 - Medikationsplan schreiben"
+    UC_eMed_07.md:
+      title: "UC_eMed_07 - Geplante und durchgeführte Abgaben lesen"
+    UC_eMed_08.md:
+      title: "UC_eMed_08 - Geplante Abgabe schreiben"
+    UC_eMed_09.md:
+      title: "UC_eMed_09 - Durchgeführte Abgabe schreiben"
+
+
+
     mapping.md:
       title: Mappings
 
@@ -110,12 +117,13 @@ menu:
   Akteure: actors.html
   FHIR Artefakte: artifacts.html
   Anwendungsfälle:
-    Überblick & Sunshine Case: anwendungsfaelle.html
-    UC_DiMe_05 - Medikationsplan lesen: UC_DiMe_05.html
-    # UC_DiMe_06 - Medikationsplan schreiben: UC_DiMe_06.html
+    "Überblick": anwendungsfaelle.html
+    "UC_eMed_05 Medikationsplan lesen": UC_eMed_05.html
+    "UC_eMed_06 Medikationsplan schreiben": UC_eMed_06.html
+    "UC_eMed_07 Geplante und durchgeführte Abgaben lesen": UC_eMed_07.html
+    "UC_eMed_08 Geplante Abgabe schreiben": UC_eMed_08.html
+    "UC_eMed_09 Durchgeführte Abgabe schreiben": UC_eMed_09.html
   Mapping: mapping.html
-  #Home: index.html
-  #Artifacts: artifacts.html
 
 # ╭───────────────────────────Less Common Implementation Guide Properties──────────────────────────╮
 # │  Uncomment the properties below to configure additional properties on the ImplementationGuide  │

@@ -1,12 +1,8 @@
 Profile: AtEmedMedicationDispense
-Parent: MedicationDispenseEuMpd
+Parent: MedicationDispense
 Id: at-emed-medicationdispense
-Title: "ELGA e-Medikation MedicationDispense"
-Description: "TODO"
+Title: "ELGA e-Medikation Abgabe"
+Description: "Abgabe"
 
 
-// NIK R5 Spec:
-
-//* identifier 1..1
-//* identifier ^short = " MedicationRequest ID = {eMed-ID}_{locally assigned ID} |  Verordnungs ID = {eMed-ID}_{lokal vergebene ID}"
-
+// MedicationDispenseEuMpd ergänzen
