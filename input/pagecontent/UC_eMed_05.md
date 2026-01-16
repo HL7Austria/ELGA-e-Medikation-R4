@@ -1,6 +1,6 @@
 {% include styleheader.md %}
 
-## Anwendungsfall UC_DiMe_05: Medikationsplan lesen (UC_DiMe_05)
+<!-- Anwendungsfall UC_eMed_05: Medikationsplan lesen -->
 
 ### Beschreibung
 
