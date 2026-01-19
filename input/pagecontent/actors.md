@@ -1,7 +1,3 @@
-<script type="module">
-  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-</script>
-
 ### Akteure im niedergelassenen Bereich {#actor-GDA_NGLA}
 
 - Arzt
@@ -47,7 +43,7 @@ Die GDA-Software muss sicherstellen, dass eine eindeutige Identifizierung des ä
 
 ### ELGA-Teilnehmer {#actor-TEILN}
 
-- Patient
+- Bürger
 - Vertreter
     - ELGA-Ombudsstelle
     - Vollmachtnehmer
@@ -61,5 +57,7 @@ Die GDA-Software muss sicherstellen, dass eine eindeutige Identifizierung des ä
 
 <br>
 <br>
-[![overview](usecases_e_med4.drawio.png){: style="width: 100%"}](usecases_e_med4.drawio.png)
+<!-- [![overview](usecases_e_med4.drawio.png){: style="width: 100%"}](usecases_e_med4.drawio.png) -->
+
+![diagram](usecases_e_med4.drawio.png)
 <br clear="all"/>
