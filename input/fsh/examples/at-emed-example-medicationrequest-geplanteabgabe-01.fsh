@@ -6,16 +6,17 @@ Title: "AtEmedMedicationRequestGeplanteAbgabe-Beispiel"
 Description: "AtEmedMedicationRequestGeplanteAbgabe-Beispiel"
 Usage: #example
 
-* meta.profile = "http://hl7.eu/fhir/mpd/StructureDefinition/MedicationRequest-eu-mpd"
-* identifier.value = "100-1/3"
+//* meta.profile = "http://hl7.eu/fhir/mpd/StructureDefinition/MedicationRequest-eu-mpd"
+* meta.profile = "https://fhir.hl7.at/elga/emed/r4/StructureDefinition/at-emed-medicationrequest-geplanteAbgabe"
+* identifier.value = "WYE82A2G8EEW-4711"
 * status = #active
-* intent = #option
-* medicationCodeableConcept = $sct#376255008 "Thalidomide 50 mg oral capsule"
+* intent = #order
+* medicationCodeableConcept = $cs-asp-liste#2443061 "EBETREXAT TBL 10MG"
 * subject = Reference(Patient/AtEmedExamplePatient01)
 * authoredOn = "2024-10-03"
-* requester = Reference(PractitionerRole/doctor1)
+* requester = Reference(Practitioner/AtEmedExamplePractitioner01)
 * reasonCode = $sct#109989006 "Multiple myeloma"
-* groupIdentifier.value = "100"
+* groupIdentifier.value = "WYE82A2G8EE1"
 * dosageInstruction.timing.repeat.boundsDuration = 42 'd' "day"
 * dosageInstruction.timing.repeat.frequency = 1
 * dosageInstruction.timing.repeat.period = 1
@@ -26,9 +27,11 @@ Usage: #example
 * dispenseRequest.validityPeriod.end = "2024-12-03"
 * dispenseRequest.numberOfRepeatsAllowed = 1
 * dispenseRequest.quantity = 168 http://snomed.info/sct#732936001 "Tablet"
+* basedOn = Reference(Medication/AtEmedExampleMedicationRequestPlaneintrag01) "Planeintrag"
 
-// * status = #active
-// * intent = #order
+
+
+
 // * medicationReference = Reference(Medication/AtApsExampleMedication01) "Ramipril 5mg Kapseln"
 // * subject = Reference(Patient/HL7ATCorePatientExample01) "Max Mustermann"
 // * authoredOn = "2024-10-14T10:00:00+01:00"
