@@ -6,7 +6,7 @@ Description: "**Beschreibung:** Bildet eine geplante Abgabe eines Arzneimittels 
 Sie enthält das verordnete Arzneimittel und dessen Dosierung und spielgelt die Inhalte des e-Rezepts wider. 
 Geplante Abgaben dienen somit der Nachvollziehbarkeit der rezeptierten Arzneimittel in der e-Medikation.
 Als groupIdentifier dient die Geplante-Abgabe-ID (früher eMED-ID), die auch im e-Rezept mitgeführt wird.
-Werden mehrere Arzneimittel gleichzeitig verordnet, so wird für jedes Arzneimittel eine geplante Abgabe mit demselben groupIdentifier erstellt (bildet 'Rezept-Klammer')."
+Werden mehrere Arzneimittel gleichzeitig verordnet, wird für jedes Arzneimittel eine geplante Abgabe mit demselben groupIdentifier erstellt (bildet 'Rezept-Klammer')."
 * . ^short = "Geplante Abgabe eines Arzneimittels aus dem Medikationsplan."
 
 // Vorgaben APS ***************************
@@ -104,44 +104,52 @@ Werden mehrere Arzneimittel gleichzeitig verordnet, so wird für jedes Arzneimit
 * requester only Reference(HL7ATCorePractitioner or HL7ATCorePractitionerRole or HL7ATCoreOrganization)
 * requester ^short = "Der Arzt oder die Ärztin, die die geplante Abgabe erstellt hat und für den Inhalt verantwortlich ist."
 
+* performer 0..0 
+* performer ^short = "Keine Verwendung in der geplanten Abgabe."
 
+* performerType 0..0
+* performerType ^short = "Keine Verwendung in der geplanten Abgabe."
 
-// * performer 0..1 Reference(http://hl7.org/fhir/StructureDefinition/Practitioner or http://hl7.org/fhir/StructureDefinition/PractitionerRole or http://hl7.org/fhir/StructureDefinition/Organization or http://hl7.org/fhir/StructureDefinition/Patient or http://hl7.org/fhir/StructureDefinition/Device or http://hl7.org/fhir/StructureDefinition/RelatedPerson or http://hl7.org/fhir/StructureDefinition/CareTeam) "Intended performer of administration" "The specified desired performer of the medication treatment (e.g. the performer of the medication administration)."
-// * performerType 0..1 SU CodeableConcept "Desired kind of performer of the medication administration" "Indicates the type of performer of the administration of the medication."
-// * performerType from http://hl7.org/fhir/ValueSet/performer-role (example)
-// * performerType ^comment = "If specified without indicating a performer, this indicates that the performer must be of the specified type. If specified with a performer then it indicates the requirements of the performer if the designated performer is not available."
-// * performerType ^binding.extension.url = "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"
-// * performerType ^binding.extension.valueString = "MedicationRequestPerformerType"
-// * performerType ^binding.description = "Identifies the type of individual that is desired to administer the medication."
-// * recorder 0..1 Reference(http://hl7.org/fhir/StructureDefinition/Practitioner or http://hl7.org/fhir/StructureDefinition/PractitionerRole) "Person who entered the request" "The person who entered the order on behalf of another individual for example in the case of a verbal or a telephone order."
-// * reasonCode 0..* CodeableConcept "Reason or indication for ordering or not ordering the medication" "The reason or the indication for ordering or not ordering the medication."
-// * reasonCode from http://hl7.org/fhir/ValueSet/condition-code (example)
-// * reasonCode ^comment = "This could be a diagnosis code. If a full condition record exists or additional detail is needed, use reasonReference."
-// * reasonCode ^binding.extension.url = "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"
-// * reasonCode ^binding.extension.valueString = "MedicationRequestReason"
-// * reasonCode ^binding.description = "A coded concept indicating why the medication was ordered."
-// * reasonReference 0..* Reference(http://hl7.org/fhir/StructureDefinition/Condition or http://hl7.org/fhir/StructureDefinition/Observation) "Condition or observation that supports why the prescription is being written" "Condition or observation that supports why the medication was ordered."
-// * reasonReference ^comment = "This is a reference to a condition or observation that is the reason for the medication order.  If only a code exists, use reasonCode."
-// * instantiatesCanonical 0..* SU canonical "Instantiates FHIR protocol or definition" "The URL pointing to a protocol, guideline, orderset, or other definition that is adhered to in whole or in part by this MedicationRequest."
-// * instantiatesUri 0..* SU uri "Instantiates external protocol or definition" "The URL pointing to an externally maintained protocol, guideline, orderset or other definition that is adhered to in whole or in part by this MedicationRequest."
+* recorder 0..0
+* recorder ^short = "Keine Verwendung in der geplanten Abgabe."
+
+* performerType 0..0
+* performerType ^short = "Keine Verwendung in der geplanten Abgabe."
+
+* reasonCode 0..*
+* reasonCode ^short = "Grund für die Verordnung des Arzneimittels. Annahme: Keine Verwendung in der geplanten Abgabe, reasonReference ausreichend."
+
+* reasonReference 0..* MS
+* reasonReference ^short = "Grund für die Verordnung des Arzneimittels (Referenz). Verwendung erst, wenn e-Diagnose referenzierbar ist."
+
+* instantiatesCanonical 0..0 
+* instantiatesCanonical ^short = "Keine Verwendung in der geplanten Abgabe."
+
+* instantiatesUri 0..0 
+* instantiatesUri ^short = "Keine Verwendung in der geplanten Abgabe."
 
 * basedOn 1..1
 * basedOn only Reference(AtEmedMedicationRequestPlaneintrag)
-* basedOn ^short = "Der zugrundeliegende Medikationsplaneintrag, auf dem diese geplante Abgabe basiert."
+* basedOn ^short = "Referenz auf den zugrundeliegenden Medikationsplaneintrag, auf dem diese geplante Abgabe basiert."
 
-// * groupIdentifier 0..1 SU Identifier "Composite request this is part of" "A shared identifier common to all requests that were authorized more or less simultaneously by a single author, representing the identifier of the requisition or prescription."
-// * groupIdentifier ^requirements = "Requests are linked either by a \"basedOn\" relationship (i.e. one request is fulfilling another) or by having a common requisition. Requests that are part of the same requisition are generally treated independently from the perspective of changing their state or maintaining them after initial creation."
-// * courseOfTherapyType 0..1 CodeableConcept "Overall pattern of medication administration" "The description of the overall patte3rn of the administration of the medication to the patient."
-// * courseOfTherapyType from http://hl7.org/fhir/ValueSet/medicationrequest-course-of-therapy (example)
-// * courseOfTherapyType ^comment = "This attribute should not be confused with the protocol of the medication."
-// * courseOfTherapyType ^binding.extension.url = "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"
-// * courseOfTherapyType ^binding.extension.valueString = "MedicationRequestCourseOfTherapy"
-// * courseOfTherapyType ^binding.description = "Identifies the overall pattern of medication administratio."
-// * insurance 0..* Reference(http://hl7.org/fhir/StructureDefinition/Coverage or http://hl7.org/fhir/StructureDefinition/ClaimResponse) "Associated insurance coverage" "Insurance plans, coverage extensions, pre-authorizations and/or pre-determinations that may be required for delivering the requested service."
-// * note 0..* Annotation "Information about the prescription" "Extra information about the prescription that could not be conveyed by the other attributes."
-// * dosageInstruction 0..* Dosage "How the medication should be taken" "Indicates how the medication is to be used by the patient."
-// * dosageInstruction ^comment = "There are examples where a medication request may include the option of an oral dose or an Intravenous or Intramuscular dose.  For example, \"Ondansetron 8mg orally or IV twice a day as needed for nausea\" or \"Compazine® (prochlorperazine) 5-10mg PO or 25mg PR bid prn nausea or vomiting\".  In these cases, two medication requests would be created that could be grouped together.  The decision on which dose and route of administration to use is based on the patient's condition at the time the dose is needed."
-// * dispenseRequest 0..1 BackboneElement "Medication supply authorization" "Indicates the specific details for the dispense or medication supply part of a medication request (also known as a Medication Prescription or Medication Order).  Note that this information is not always sent with the order.  There may be in some settings (e.g. hospitals) institutional or system support for completing the dispense details in the pharmacy department."
+* groupIdentifier 0..1 
+* groupIdentifier ^short = "Als groupIdentifier dient die Geplante-Abgabe-ID (früher eMED-ID), die auch im e-Rezept mitgeführt wird. Werden von einem:r Arzt:Ärtztin mehrere Arzneimittel gleichzeitig verordnet, wird für jedes Arzneimittel eine geplante Abgabe mit demselben groupIdentifier erstellt (bildet 'Rezept-Klammer')."
+
+* courseOfTherapyType 0..0 
+* courseOfTherapyType ^short = "Gesamtmuster der Medikamentengabe (z.B. saisonal). Evtl. im Planeintrag (dosageInstruction), paused soll im Status dokumentiert werden."
+
+* insurance 0..0
+* insurance ^short = "Keine Verwendung in der geplanten Abgabe."
+
+* note 0..* 
+* insurance ^short = "Zusätzliche Informationen zur geplanten Abgabe, die durch die anderen Attribute nicht abgebildet werden konnten. Dzt. unklar, ob erforderlich."
+
+* dosageInstruction 0..* 
+* dosageInstruction ^short = "Anweisungen zur Einnahme/Verabreichung des Arzneimittels."
+
+
+* dosageInstruction ^comment = "There are examples where a medication request may include the option of an oral dose or an Intravenous or Intramuscular dose.  For example, \"Ondansetron 8mg orally or IV twice a day as needed for nausea\" or \"Compazine® (prochlorperazine) 5-10mg PO or 25mg PR bid prn nausea or vomiting\".  In these cases, two medication requests would be created that could be grouped together.  The decision on which dose and route of administration to use is based on the patient's condition at the time the dose is needed."
+// * dispenseRequest 0..1 BackboneElement^^ "Medication supply authorization" "Indicates the specific details for the dispense or medication supply part of a medication request (also known as a Medication Prescription or Medication Order).  Note that this information is not always sent with the order.  There may be in some settings (e.g. hospitals) institutional or system support for completing the dispense details in the pharmacy department."
 // * dispenseRequest.initialFill 0..1 BackboneElement "First fill details" "Indicates the quantity or duration for the first dispense of the medication."
 // * dispenseRequest.initialFill ^comment = "If populating this element, either the quantity or the duration must be included."
 // * dispenseRequest.initialFill.quantity 0..1 http://hl7.org/fhir/StructureDefinition/SimpleQuantity "First fill quantity" "The amount or quantity to provide as part of the first dispense."

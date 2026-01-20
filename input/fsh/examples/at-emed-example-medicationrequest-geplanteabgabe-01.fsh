@@ -17,6 +17,10 @@ Usage: #example
 * requester = Reference(Practitioner/AtEmedExamplePractitioner01)
 * reasonCode = $sct#109989006 "Multiple myeloma"
 * groupIdentifier.value = "WYE82A2G8EE1"
+//* courseOfTherapyType = $sct#394577000 "Continuous therapy"
+//* courseOfTherapyType = #continuous "Continuous long term therapy"
+* note.text = "Zusätzliche Informationen zur geplanten Abgabe."
+
 * dosageInstruction.timing.repeat.boundsDuration = 42 'd' "day"
 * dosageInstruction.timing.repeat.frequency = 1
 * dosageInstruction.timing.repeat.period = 1
