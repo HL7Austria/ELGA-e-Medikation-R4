@@ -1,56 +1,113 @@
 {% include styleheader.md %}
+<style>
+.hinweisbox {
+  border: 1px solid #156082;
+  background: #dae8f8;
+  padding: 8px 12px;
+  border-radius: 4px;
+  margin: 8px 0;
+}
+</style>
+
 ### Der e-Medikationsplan
 
-#### Inhalt des Medikationsplans
+#### Inhalt des Medikationsplans (UC_eMed_05_H01)
+Der Medikationsplan kann gelesen werden: 
+* Der Medikationsplan besteht aus einzelnen Einträgen 
+* Der Medikationsplan wird in der zuletzt erfassten Version angezeigt:
+  * Ist der Einnahmezeitraum eines Medikaments abgelaufen, wird der Eintrag ausgeblendet 
+    * in der Versionshistorie kann die Version inkl. der abgelaufenen Einträge eingesehen werden 
+    * Von ELGA-Teilnehmer:innen gelöschte Einträge werden in der Medikationsplanansicht nicht mehr angezeigt 
 
-* Der Medikationsplan besteht aus einzelnen Medikationsplaneinträgen 
-* Angezeigt wird immer die zuletzt gespeicherte Version des Medikationsplans:
-  - Medikamente deren Einnahmezeitraum abgelaufen ist, werden per Default ausgeblendet 
-  - zusätzliche Gesamtansicht: alle initial enthaltenen Einträge sind sichtbar, auch wenn diese bereits abgelaufen sind
-  - noch offen: Hinweise nach erfolgten Löschungen von Medikationsplaneinträgen durch ELGA-Teilnehmer
-  - frühere Gesamtversionen des Medikationsplans sind über die Versionshistorie einsehbar
-- Einträge können von GDA in eine bestimmte Reihenfolge gebracht werden, z.B. zur fachlich sinnvollen Gruppierung und besseren Übersicht
-    - Lesende Systeme können diese Reihenfolge nutzen, dürfen aber bei Bedarf eine andere Reihung vornehmen
-- Einzelne Einträgen können Korrekturvermerke (inkl. Freitext) enthalten und müssen dem:der Benutzer:in angezeigt werden, (z.B. bei Signatur- oder Dosisänderungen vgl. UC_DiMe_06 Medikationsplan schreiben)
-  
-- **Je Medikationsplaneintrag werden folgende Information dargestellt**:
-    - Verantwortlicher GDA
-    - Einnahmeinformation
-    - Zugehörige geplante Abgaben
-    - Zugehörige durchgeführte Abgaben 
-      - inkl. Abgaben von Substitutionen durch andere Arzneimittel und 
-      - „Leerabgaben“. (Leerabgaben kennzeichnen, dass eine ursprünglich geplante Abgabe künftig nicht mehr bedient werden wird)
-      - noch offen: abgelaufene Rezepte
-- Fachlich kann es sinnvoll sein, zusätzlich zum aktuellen Medikationsplan auch Abgaben darzustellen, die nicht auf den aktuellen Medikationsplan referenzieren (z.B. OTC-Abgaben oder Abgaben bei fehlender ELGA-Anbindung verschreibender GDA), die seit der letzten Version des Medikationsplans neu hinzugekommen sind; dadurch erhält der GDA ein möglichst vollständiges Bild der tatsächlichen Medikation
-- Filter- und Suchfunktionen können hilfreich sein (v.a. bei Medikationsplänen, die viele Einträge enthalten)
+* Die Einträge des Medikationsplans enthalten eine durch den GDA festgelegte Reihenfolge, z.B. zur fachlich sinnvollen Gruppierung und besseren Übersicht 
 
-#### Ansicht von Vorversionen
+<div class="hinweisbox">
+  <b>Hinweis:</b> 
+  Reihenfolge von Medikationsplaneinträgen im Client-System: <br>
 
-- Alle Vorversionen des Medikationsplans können eingesehen werden
-  - Vorversionen können in chronologischer Reihenfolge dargestellt werden (absteigend nach Erstellungsdatum)
-  - Sofern eine gesamte Version eines Medikationsplans von einem:r ELGA-Teilnehmer:in gelöscht wurde, wird diese nicht mehr in der Historie angezeigt; dies gilt genauso für die zuletzt erfasste Version
-  - noch offen: Hinweise nach erfolgten Löschungen von Medikationsplanen durch ELGA-Teilnehmer
-- Die Ansicht einer Vorversion unterscheidet sich in ihrer Darstellungsform nicht von der zuletzt erfassten Ansicht des Medikationsplans, mit der Ausnahme, dass abgelaufene Medikamente nicht ausgeblendet werden.
-•	Sofern der Medikationsplan eines:einer Patient:in häufigen Anpassungen unterliegt, kann es sinnvoll sein, eine Ansicht zu ermöglichen, die den Zustand des Medikationsplans zu einem bestimmten Zeitpunkt in der Vergangenheit ausgibt
+  Lesende Systeme können die durch die zentrale Anwendung gelieferte Reihenfolge der Medikationsplaneinträge nutzen und bei Bedarf eine andere Reihung vornehmen 
+</div>
 
-#### Export des Medikationsplans
+* Einzelne Einträge können Korrekturvermerke (inkl. Freitext) enthalten und müssen dem:der Benutzer:in angezeigt werden 
 
-Der Medikationsplan soll für ELGA-Teilnehmer:innen im ELGA-Portal sowohl 
-- als PDF zum Ausdruck bzw. zur Darstellung in der Druckansicht als auch
-- als strukturierte, maschinenlesbare Daten im FHIR-Format bereitgestellt werden.
-  
-Der Medikationsplan soll für GDA im jeweiligen Client-System 
-* als PDF zum Ausdruck bzw. zur Darstellung in der Druckansicht verfügbar sein.
-* Softwaremodul für PDF-Export zur Einbindung im Client-System
-
-#### Eigene Ansicht vs. Verwendung des e-Medikation Stylesheets
-
-Die Anzeige des Medikationsplans kann via Stylesheet erfolgen, welches in den jeweiligen Softwaresystemen eingebunden werden kann. 
-- Dieses "e-Medikation Stylesheet" stellt alle notwendigen/vorhanden Informationen dar - Daten zur Person, aktuelle und vergangene Medikationsplaneinträge, geplante und durchgeführte Abgaben, etc.
-Neben der Verwendung des e-Medikation Stylesheets kann auch eine eigene Ansicht des Medikationsplans in den Softwaresystemen umgesetzt werden.
+<div class="hinweisbox">
+  <b>Hinweis:</b> 
+  Möglichkeiten für die Darstellung eines Korrekturvermerks im Client-System: <br>
+  <ul>
+    <li>Overlay mit korrigierter Angabe </li>
+    <li>Ausgrauen der bisherigen Angabe</li>
+    <li>Durchstreichen der bisherigen Angabe  </li>
+    <li>etc. </li>
+  </ul>
+</div>
 
 
-### Medikationsplan erfassen
+<div class="hinweisbox">
+  <b>Hinweis:</b> 
+  Möglichkeiten zur Darstellung des Medikationsplans im Client-System:<br>
+  Zu einzelnen Medikationsplaneinträgen können folgende Informationen zu geplanten und durchgeführten Abgaben angezeigt werden: 
+  <ul>
+    <li>zugehörige geplante Abgaben</li>
+    <li>zugehörige durchgeführte Abgaben
+      <ul>
+        <li>für Patient:innen ist insbesondere die Anzeige des zuletzt abgegebenen Präparats je Eintrag relevant, da dieses aktuell eingenommen werden soll</li>
+        <li>Abgaben von Substitutionen</li>
+        <li>Leerabgaben (Leerabgaben kennzeichnen, dass eine ursprünglich geplante Abgabe künftig nicht mehr bedient werden wird)</li>
+      </ul>
+    </li>
+    <li>Fachlich kann es sinnvoll sein, zusätzlich zum zuletzt erstellten Medikationsplan auch Abgaben darzustellen, die nicht auf den zuletzt erstellten Medikationsplan referenzieren (z.B. OTC-Abgaben oder Abgaben verschreibender GDA ohne ELGA-Anbindung)
+      <ul>
+        <li>relevant sind dabei nur die zusätzlich abgegebenen Medikamente innerhalb des Zeitraums von der Erstellung der Medikationsplanversion bis zur Erstellung der nachfolgenden Medikationsplanversion</li>
+        <li>GDA erhalten dadurch ein möglichst vollständiges Bild der tatsächlichen Medikation</li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+
+#### Ansicht von Vorversionen (UC_eMed_05_H02)
+
+Alle erfassten Vorversionen des Medikationsplans (in der Vergangenheit von GDA erfasst) können eingesehen werden 
+* Sofern eine gesamte Version eines Medikationsplans von einem:r ELGA-Teilnehmer:in gelöscht wurde, wird diese nicht mehr in der Historie angezeigt (dies gilt genauso für die zuletzt erfasste Version) 
+
+<div class="hinweisbox">
+  <b>Hinweis:</b> 
+  Darstellung der Vorversionen im Client-System: <br>
+  Vorversionen können in chronologischer Reihenfolge dargestellt werden (absteigend nach Erstellungsdatum; „jüngster“ Medikationsplan zuerst) 
+</div>
+
+* Die Ansicht einer Vorversion unterscheidet sich in ihrer Darstellungsform nicht von der zuletzt erfassten Ansicht des Medikationsplans 
+  * In einer Vorversion werden abgelaufene Medikamente zur Nachvollziehbarkeit immer angezeigt und nicht ausgeblendet	 
+
+#### Export des Medikationsplans (UC_eMed_05_H03)
+
+Folgende Exportformate stehen für Benutzer:innen zur Verfügung: 
+* ELGA-Teilnehmer:in: 
+  * PDF zum Ausdrucken bzw. zur Darstellung in der Druckansicht 
+  * Strukturierter Datendownload (FHIR) 
+* GDA:
+  * PDF zum Ausdrucken bzw. zur Darstellung in der Druckansicht 
+
+<div class="hinweisbox">
+  <b>Hinweis:</b> 
+  Softwaremodul für PDF-Export zur Einbindung im Client-System:<br>
+  Für den PDF-Export stellt die ELGA GmbH ein Softwaremodul zur Verfügung, welches in den jeweiligen Softwaresystemen eingebunden werden kann. Dieses "FHIR2PDF"-Softwaremodul stellt die Funktionen zur Verfügung, um den Medikationsplan als PDF zu exportieren. Das exportierte PDF unter Nutzung des "FHIR2PDF" stellt ein signiertes Dokument dar.
+</div>
+
+#### Eigene Ansicht vs. Verwendung des e-Medikation Stylesheets (UC_eMed_05_H04)
+
+Zur Anzeige des Medikationsplans wird von der ELGA GmbH ein Stylesheet angeboten, welches in den jeweiligen Softwaresystemen eingebunden werden kann.  
+* Dieses "e-Medikation Stylesheet" stellt alle notwendigen/vorhanden Informationen dar - Daten zur Person, aktuelle und vergangene Medikationsplaneinträge, geplante und durchgeführte Abgaben, etc. 
+
+Neben der Verwendung des e-Medikation Stylesheets kann auch eine eigene Ansicht des Medikationsplans in den Softwaresystemen umgesetzt werden. 
+
+<div class="hinweisbox">
+  <b>Hinweis:</b> 
+  Darstellung des Deltas zum zuletzt importierten Datenstand im Client-System: <br> 
+  Für Client-Systeme kann es sinnvoll sein, eine Ansicht für GDA zu schaffen, aus der hervorgeht, welche Änderungen am Medikationsplan des:der ELGA-Teilnehmer:in seit dem letzten Behandlungskontakt vorgenommen wurden. Durch einen Abgleich der lokal gespeicherten Dauermedikation mit den gelieferten Medikationsdaten aus der zentralen Anwendung kann dem:der Benutzer:in das Delta übersichtlich dargestellt werden. 
+</div>
+
+### Medikationsplan erfassen (UC_eMed_06_H01)
 
 Ein Medikationsplan besteht aus ein oder mehreren Medikationsplaneinträgen. Jeder Medikationsplaneintrag beinhaltet ein verordnetes Medikament samt Einnahmeinformation, das von der:dem ELGA-Teilnehmer:in aktuell eingenommen werden soll. Zudem enthält der Eintrag die Information, welche:r Ärztin:Arzt diesen medizinisch verantwortet. 
 
@@ -62,46 +119,92 @@ Ein Medikationsplan beinhaltet u.a. folgende Informationen:
 * Hinweise 
 * Indikation 
 
+<div class="hinweisbox">
+    <b>Hinweis:</b> 
+    Die nachfolgenden Informationen betreffen die Implementierung des Medikationsplans im jeweiligen Client-System: <br>       
+    Ein Medikationsplan wird <b>initial erstellt</b> (es existieren noch keine Vorversionen): <br>                
+    <ul>
+        <li>Neue Einträge hinzufügen:
+            <ul>
+                <li>Manuelles Erfassen neuer Einträge mittels Angabe aller erforderlichen Informationen </li>
+                <li>(optional) Übernahme einer durchgeführten Abgabe ohne zugehörige geplante Abgabe, wobei die Daten vor der Speicherung des Medikationsplaneintrages nochmals verändert werden können </li> 
+            </ul>
+        </li>
+    </ul>                
+    Ein bereits <b>bestehender</b> Medikationsplan (zuletzt erfasste Medikationsplanversion) wird als Basis für das Erfassen eines neuen Medikationsplans verwendet: <br> 
+    <ul>
+        <li>Neue Einträge hinzufügen:
+            <ul>
+                <li>Manuelles Erfassen neuer Einträge mittels Angabe aller erforderlichen Informationen</li>
+                <li>(optional) Übernahme einer durchgeführten Abgabe ohne zugehöriger geplanten Abgabe, wobei die Daten vor der Speicherung des Medikationsplaneintrages nochmals verändert werden können
+                    Bestehende Einträge beibehalten und ggf. verändern</li>
+            </ul>
+        </li>
+        <li>Bestehende Einträge beibehalten und ggf. verändern:
+            <ul>
+                <li>Beibehalten von bestehenden* Einträgen der zuletzt erfassten Medikationsplanversion inklusiver aller enthaltenen Korrekturvermerke**, wobei die Daten vor der Speicherung des Medikationsplaneintrages nochmals verändert werden können </li>
+                * Es können nur sichtbare Einträge übernommen werden
+                    ** enthaltene Korrekturvermerke sollen bei der Erfassung eines neuen Medikationsplans zunächst durch den GDA aufgelöst und in der neuen Version berichtigt werden
+            </ul>
+        </li>
+        <li>Bestehende Einträge entfernen:
+            <ul>
+                <li>Der GDA kann bereits bestehende Medikationsplan-Einträge entfernen, im Sinne eines Absetzens bzw. nicht Weiterverordnen in der nächsten Version des Medikationsplans</li>
+                <li>Beim Erfassen einer neuen Medikationsplanversion stehen die abgelaufenen/befristeten Einträge nicht mehr zur Verfügung </li>
+                <li>(tbd) Medikationsplan leeren: Soll der neue Medikationsplan keine Medikationsplan-Einträge mehr enthalten – sprich der:die ELGA-Teilnehmer:in soll derzeit keine Medikation mehr einnehmen – muss ein „leerer“ Medikationsplan geschrieben/gespeichert werden. Das bedeutet, dass alle bisherigen Medikamente aus dem Medikationsplan zu entfernen sind (ggf. sind diese bereits abgelaufen und stehen damit für die neue Version des Medikationsplans schon nicht mehr zur Verfügung). </li>
+                * es können nur sichtbare Einträge übernommen werden, vgl. UC_eMed_06_Medikationsplan lesen
+            </ul>
+        </li>
+        <li>Reihenfolge:
+            <ul>
+                <li>Die Reihenfolge* der Medikationsplan-Einträge kann definiert/geändert werden. Dies impliziert keine medizinische Verantwortungsübernahme für den jeweiligen umsortierten Eintrag selbst.  </li>
+                <li>(tbd) aus fachlicher Sicht ist es nicht relevant, ob eine Umsortierung eine neue Version des Medikationsplans erfasst oder nicht; mitgeloggt soll diese Änderung dennoch werden 
+                    <ul>
+                        <li>für die Speicherung einer neuen Reihenfolge wird technisch eine neue Medikationsplanversion benötigt (Änderung der Reihenfolge hat inhaltliche Auswirkungen)</li>
+                        <li>soll es möglich sein, dass ein anderer GDA die Reihenfolge nachträglich ändert, obwohl der Medikationsplan nicht von diesem GDA verantwortet wird? </li>
+                        <li>ggf. reicht es aus, wenn die Reihenfolge nur einmalig beim Erfassen einer neuen Medikationsplanversion definiert werden kann </li>
+                    </ul>
+                </li>
+                * die durch die zentrale Anwendung gelieferte Reihenfolge der Medikationsplaneinträge kann wiedergegeben werden oder bei Bedarf kann eine eigene Reihung vorgenommen werden
+            </ul>
+        </li>
+        <li>Duplikatsprüfung (?)
+            <ul>
+                <li>sofern sich am Medikationsplan inhaltlich nichts zur Vorversion verändert hat, wird die Speicherung abgelehnt
+                    <ul> 
+                        <li>veränderte Reihenfolge erzeugt eine neue Version (soll das nachträglich durch andere GDA überhaupt möglich sein oder nur beim Erstellen/Verantworten einer neuen Version – s. oben?) </li>
+                        <li>eigene Einträge entfernen und in gleicher Form wieder hinzufügen</li> 
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>                          
+</div>
 
-Die nachfolgenden Informationen betreffen die Implementierung des Medikationsplans im jeweiligen Client-System. 
 
-* Ein Medikationsplan wird initial erstellt (es existieren noch keine Vorversionen): 
-  * Neue Einträge hinzufügen:
-    * Manuelles Erfassen neuer Einträge mittels Angabe aller erforderlichen Informationen 
-    * (optional) Übernahme einer durchgeführten Abgabe ohne zugehörige geplante Abgabe, wobei die Daten vor der Speicherung des Medikationsplaneintrages nochmals verändert werden können 
+### Medikationsplan: Medikationsplaneinträge bearbeiten (UC_eMed_06_H02)
 
-* Ein bereits bestehender Medikationsplan (zuletzt erfasste Medikationsplanversion) wird als Basis für das Erfassen eines neuen Medikationsplans verwendet: 
-  *  Neue Einträge hinzufügen:
-     *  Manuelles Erfassen neuer Einträge mittels Angabe aller erforderlichen Informationen
-     *  (optional) Übernahme einer durchgeführten Abgabe ohne zugehöriger geplanten Abgabe, wobei die Daten vor der Speicherung des Medikationsplaneintrages nochmals verändert werden können
-  *  Bestehende Einträge beibehalten und ggf. verändern 
-     *  Beibehalten von bestehenden Einträgen der zuletzt erfassten Medikationsplanversion inklusiver aller enthaltenen Korrekturvermerke, wobei die Daten vor der Speicherung des Medikationsplaneintrages nochmals verändert werden können 
-        *  es können nur sichtbare Einträge übernommen werden, siehe UC_eMed_06_Medikationsplan lesen
-        *  enthaltene Korrekturvermerke sollen bei der Erfassung eines neuen Medikationsplans zunächst durch den GDA aufgelöst und in der neuen Version berichtigt werden 
+* Medikationsplaneinträge, die von einem GDA selbst erfasst wurden, können nachträglich von diesem GDA überarbeitet werden
 
-* Bestehende Einträge entfernen 
-  * Der GDA kann bereits bestehende Medikationsplan-Einträge entfernen, im Sinne eines Absetzens bzw. nicht Weiterverordnen in der nächsten Version des Medikationsplans 
-    * betrifft nur sichtbare Einträge, siehe UC_eMed_06_Medikationsplan lesen
-  * Beim Erfassen einer neuen Medikationsplanversion stehen die abgelaufenen/befristeten Einträge nicht mehr zur Verfügung
-  * (tbd) Medikationsplan leeren: Soll der neue Medikationsplan keine Medikationsplan-Einträge mehr enthalten – sprich der:die Bürger:in soll derzeit keine Medikation mehr einnehmen – muss ein „leerer“ Medikationsplan geschrieben/gespeichert werden. Das bedeutet, dass alle bisherigen Medikamente aus dem Medikationsplan zu entfernen sind (ggf. sind diese bereits abgelaufen und stehen damit für die neue Version des Medikationsplans schon nicht mehr zur Verfügung). 
+<div class="hinweisbox">
+<b>Hinweis:</b> 
+Hinweis zur Änderung fremderfasster Abgabeneinträge:<br>
+ofern fremderfasste Einträge korrigiert werden müssen, ist dies über einen Korrekturvermerk möglich, vgl. H03 
+</div>
 
-* Reihenfolge 
-  * Die Reihenfolge der Medikationsplan-Einträge kann definiert/geändert werden. Dies impliziert keine medizinische Verantwortungsübernahme für den jeweiligen umsortierten Eintrag selbst. 
-    * die durch die zentrale Anwendung gelieferte Reihenfolge der Medikationsplaneinträge kann genutzt werden oder bei Bedarf kann eine andere Reihung vorgenommen werden 
-  * (tbd) aus fachlicher Sicht ist es nicht relevant, ob eine Umsortierung eine neue Version des Medikationsplans erfasst oder nicht; mitgeloggt soll diese Änderung dennoch werden 
-    * für die Speicherung einer neuen Reihenfolge wird technisch eine neue Medikationsplanversion benötigt (Änderung der Reihenfolge hat inhaltliche Auswirkungen) 
-    * soll es möglich sein, dass ein anderer GDA die Reihenfolge nachträglich ändert, obwohl der Medikationsplan nicht von diesem GDA verantwortet wird? 
-    * ggf. reicht es aus, wenn die Reihenfolge nur einmalig beim Erfassen einer neuen Medikationsplanversion definiert werden kann 
+* Zur Nachvollziehbarkeit erfolgt jede Bearbeitung von durchgeführten Abgaben über eine Versionierung 
+  * Vorversionen werden nicht gelöscht, sondern als solche markiert 
 
-*Duplikatsprüfung (?) 
-    * sofern sich am Medikationsplan inhaltlich nichts zur Vorversion verändert hat, wird die Speicherung abgelehnt 
-      * veränderte Reihenfolge erzeugt eine neue Version (soll das nachträglich durch andere GDA überhaupt möglich sein oder nur beim Erstellen/Verantworten einer neuen Version – s. oben?) 
-      * eigene Einträge entfernen und in gleicher Form wieder hinzufügen 
-
-### Medikationsplan: Korrekturvermerk setzen
+### Medikationsplan: Korrekturvermerk setzen (UC_eMed_06_H03)
 
 * Der GDA kann Medikationspläne nachträglich mittels Korrekturvermerk korrigieren, sofern ein oder mehrere Einträge fehlerhaft sind. 
-**Wenn sich die Medikation ändert (Medikament absetzen, Änderung der Einnahmeanordnung, etc.), ist dies über eine neue Version abzubilden und nicht als Korrekturvermerk.**  
+
+<div class="hinweisbox">
+<b>Hinweis:</b> 
+Hinweis zur Änderung der Medikation:<br>
+Wenn sich die Medikation ändert (Medikament absetzen, Änderung der Einnahmeanordnung, etc.), ist dies über eine neue Version abzubilden und nicht als Korrekturvermerk.   
+</div>
+
 * Ein Korrekturvermerk beinhaltet folgende Aspekte:
   * Im Falle einer Korrektur auf Einzeleintragsebene: 
     * zu korrigierender Medikationsplaneintrag wird als inkorrekt markiert 
@@ -110,7 +213,23 @@ Die nachfolgenden Informationen betreffen die Implementierung des Medikationspla
     * es wird ein Freitext-Kommentar als Hinweis auf die fehlende Angabe erfasst 
   * es besteht die Möglichkeit bereits korrigierte Medikationsplaneinträge mit einem weiteren Korrekturvermerk zu versehen. Dabei wird der jeweilige Korrekturvermerk als inkorrekt markiert. 
  
-#### Medikationsplan: Gesetzliche Speicherfristen 
+#### Medikationsplan: Löschen von Einträgen im Medikationsplan bzw. einer Medikationsplan-Version (UC_eMed_06_H04)
+
+ELGA-Teilnehmer:innen können folgende Löschungen durchführen: 
+* Unwiderrufliches Löschen einzelner Einträge aus dem Medikationsplan 
+  * das Löschen aller Einträge eines Medikationsplans führt zu einem leeren Medikationsplan (im Rahmen der Selbstbestimmung trotzdem zulässig) 
+  * Autor der Löschung ist der:die ELGA-Teilnehmer:in bzw. die Fachanwendung, die Verantwortung über den gesamten Medikationsplan inkl. der gelöschten Einträge trägt von diesem Zeitpunkt an nicht mehr der Verfasser des Plans (GDA)
+* Unwiderrufliches Löschen vollständiger Medikationsplanversionen 
+
+Ein reines „Verbergen“ einzelner Medikamente wäre nicht ausreichend, da beim Aktualisieren eines Medikationsplans durch GDA die ausgeblendeten Einträge nicht mehr aufscheinen würden und damit effektiv als gelöscht gelten. Das unwiderrufliche Löschen ist daher die einzige klare und nachhaltige Lösung; ein Ausblenden ist funktional ohnehin mit einer Löschung gleichzusetzen.​ 
+
+<div class="hinweisbox">
+<b>Hinweis:</b> 
+Hinweis zu medizinischen Risiken am Client System anzeigen:<br>
+Beim Löschen von relevanten Medikationsdaten wird eigenverantwortlich ein Risiko einer Schlechtbehandlung durch den GDA eingegangen, das aufgrund der Informationsverknappung entsteht.    
+</div> 
+
+#### Medikationsplan: Gesetzliche Speicherfristen (UC_eMed_06_H05)
 
 Medikationspläne werden nach Ablauf der gesetzlichen Speicherfrist gelöscht: 
 * 120 Jahre nach Geburt 
@@ -170,7 +289,7 @@ Die Anzeige des Medikationsplans kann via Stylesheet erfolgen, welches in den je
 Dieses "e-Medikation Stylesheet" stellt alle notwendigen/vorhanden Informationen dar - Daten zur Person, aktuelle und vergangene Medikationsplaneinträge, geplante und durchgeführte Abgaben, etc. 
 Neben der Verwendung des e-Medikation Stylesheets kann auch eine eigene Ansicht der geplanten/durchgeführten Abgaben in den Softwaresystemen umgesetzt werden. 
 
-#### Geplante Abgabe erfassen
+#### Geplante Abgabe erfassen (UC_eMed_08_H01)
 
 Es können geplante Abgaben zu einem bestehenden Medikationsplaneintrag erfassen werden: 
 * je Medikationsplaneintrag können mehrere geplante Abgaben bestehen 
@@ -184,7 +303,7 @@ Eine geplante Abgabe beinhaltet u.a. folgende Informationen:
 * Hinweise 
 * Indikation 
 
-#### Geplante Abgabe bearbeiten 
+#### Geplante Abgabe bearbeiten (UC_eMed_08_H02)
 
 Geplante Abgaben, die von einem GDA erfasst wurden, können nachträglich von diesem GDA überarbeitet werden.
   * Hinweis zur Änderung fremderfasster Abgabeneinträge:
@@ -193,7 +312,7 @@ Geplante Abgaben, die von einem GDA erfasst wurden, können nachträglich von di
 Zur Nachvollziehbarkeit erfolgt jede Bearbeitung von geplanten Abgaben über eine Versionierung 
 * Vorversionen werden nicht gelöscht, sondern als solche markiert 
 
-#### Geplante Abgabe: Korrekturvermerk setzen 
+#### Geplante Abgabe: Korrekturvermerk setzen (UC_eMed_08_H03)
 
 Der GDA kann geplante Abgaben nachträglich mittels Korrekturvermerk korrigieren, sofern diese fehlerhaft sind. 
   * Hinweis zur Änderung selbsterfasster Abgabeneinträge: Sofern selbst erfasste Einträge korrigiert werden müssen, ist dies über eine erneute Bearbeitung der geplanten Abgabe möglich 
@@ -201,9 +320,15 @@ Der GDA kann geplante Abgaben nachträglich mittels Korrekturvermerk korrigieren
 Ein Korrekturvermerk beinhaltet folgende Aspekte:  
 * zu korrigierende geplante Abgabe wird als inkorrekt markiert 
 * es wird ein Freitext-Kommentar als Begründung zur inkorrekten geplanten Abgabe erfasst 
-* es besteht die Möglichkeit bereits korrigierte geplante Abgaben mit einem weiteren Korrekturvermerk zu versehen. Dabei wird der jeweilige Korrekturvermerk als inkorrekt markiert. 
+* es besteht die Möglichkeit bereits korrigierte geplante Abgaben mit einem weiteren Korrekturvermerk zu versehen. Dabei wird der jeweilige Korrekturvermerk als inkorrekt markiert.
 
-#### Daten für die Rezeptierung
+#### Verfügbarkeit von geplanten Abgaben (UC_eMed_08_H04)
+
+ELGA-Teilnehmer:innen können die Verfügbarkeit von geplanten Abgaben wie folgt steuern: 
+* Unwiderrufliches Löschen eines Abgabeeintrags zu einer geplanten Medikamentenabgabe über das ELGA-Portal 
+* Ausblenden (Sperren) eines Abgabeeintrags für alle Gesundheitsdiensteanbieter mit der Option, später die Sichtbarkeit wiederherzustellen 
+
+#### Daten für die Rezeptierung (UC_eMed_08_H05)
 
 Allgemeine Information zur Rezeptierung: 
 
@@ -219,12 +344,12 @@ Rezeptieren aus dem Medikationsplan im Client-System:
   * Andererseits muss seitens der Software-Integration sichergestellt sein, dass vor jedem Rezeptieren der Medikationsplan aktualisiert und in seiner (neuen) Gesamtheit zur Kenntnis genommen wurde. 
 * Bei Teil Opt-out e-Medikation bzw. ELGA Opt-out muss das Rezeptieren auch ohne vorgelagerten Medikationsplaneintrag möglich sein.  
 
-#### Gesetzliche Speicherfristen von geplanten Abgabe
+#### Gesetzliche Speicherfristen von geplanten Abgabe (UC_eMed_08_H06)
 
 Geplante Abgaben werden nach Ablauf der gesetzlichen Speicherfrist (5 Jahre) gelöscht. 
 
 
-#### Durchgeführte Abgabe erfassen 
+#### Durchgeführte Abgabe erfassen (UC_eMed_09_H01)
 
 Es können durchgeführte Abgaben zu einer geplanten Abgabe (sofern vorhanden) erfassen werden: 
 * je geplanter Abgabe kann es mehrere durchgeführte Abgaben geben (z.B. Privatrezepte)
@@ -242,18 +367,34 @@ Eine durchgeführte Abgabe beinhaltet u.a. folgende Informationen:
 * Hinweise
 * Indikation  
 
-#### Durchgeführte Abgabe bearbeiten
+#### Durchgeführte Abgabe bearbeiten (UC_eMed_09_H02)
 
 Durchgeführte Abgaben, die von einem GDA erfasst wurden, können nachträglich von diesem GDA überarbeitet werden 
 * Hinweis zur Änderung fremderfasster Abgabeneinträge: Sofern fremderfasste Einträge korrigiert werden müssen, ist dies über einen Korrekturvermerk möglich
+* Zur Nachvollziehbarkeit erfolgt jede Bearbeitung von durchgeführten Abgaben über eine Versionierung 
+  * Vorversionen werden nicht gelöscht, sondern als solche markiert 
 
-Ein Korrekturvermerk beinhaltet folgende Aspekte:  
-* zu korrigierende durchgeführte Abgabe wird als inkorrekt markiert 
-* es wird ein Freitext-Kommentar als Begründung zur inkorrekten durchgeführten Abgabe erfasst 
-* es besteht die Möglichkeit bereits korrigierte durchgeführte Abgaben mit einem weiteren Korrekturvermerk zu versehen. Dabei wird der jeweilige Korrekturvermerk als inkorrekt markiert. 
 
-#### Zuordnung von durchgeführter zu geplanter Abgabe
+#### Durchgeführte Abgabe: Korrekturvermerk setzen (UC_eMed_09_H03)
 
+* Der GDA kann fremderfasste durchgeführte Abgaben nachträglich mittels Korrekturvermerk korrigieren, sofern diese fehlerhaft sind. 
+* Hinweis zur Änderung selbst erfasster Abgabeneinträge:
+  * Sofern selbst erfasste Einträge korrigiert werden müssen, ist dies über eine erneute Bearbeitung der durchgeführten Abgabe möglich, vgl. UC_eMed_09_H02 
+
+* Ein Korrekturvermerk beinhaltet folgende Aspekte:  
+  * zu korrigierende durchgeführte Abgabe wird als inkorrekt markiert 
+  * es wird ein Freitext-Kommentar als Begründung zur inkorrekten durchgeführten Abgabe erfasst 
+  * es besteht die Möglichkeit bereits korrigierte durchgeführte Abgaben mit einem weiteren Korrekturvermerk zu versehen. Dabei wird der jeweilige Korrekturvermerk als inkorrekt markiert. 
+
+#### Verfügbarkeit von geplanten Abgaben (UC_eMed_09_H04)
+
+ELGA-Teilnehmer:innen können die Verfügbarkeit von durchgeführten Abgaben wie folgt steuern: 
+* Unwiderrufliches Löschen eines Abgabeeintrags zu einer durchgeführten Medikamentenabgabe über das ELGA-Portal 
+* Ausblenden (Sperren) eines Abgabeeintrags für alle Gesundheitsdiensteanbieter mit der Option, später die Sichtbarkeit wiederherzustellen 
+
+#### Zuordnung von durchgeführter zu geplanter Abgabe (UC_eMed_09_H05)
+
+* Sofern in einer Apotheke der QR-Code auf einem Papierrezept gescannt wird, welches der:die ELGA-Teilnehmer vorlegt, bzw. die ID vom e-Rezept abgelesen wird, erhält der GDA Lesezugriff auf die zugehörige geplante Abgabe 
 * Beim Speichern der durchgeführten Abgabe soll eine Zuordnung zur geplanten Abgabe sichergestellt werden (anhand der eindeutigen ID der geplanten Abgabe; Transport über das (e)-Rezept), siehe UC_eMed_08 Geplante Abgabe schreiben 
 * Ist keine geplante Abgabe vorhanden, muss zur Dokumentation einer durchgeführten Abgabe eine Kontaktbestätigung vorliegen bzw. ausgelöst werden 
 
@@ -264,7 +405,7 @@ Ein Korrekturvermerk beinhaltet folgende Aspekte:
 
 #### Abgabe ohne ELGA-Kontaktbestätigung 
 
-Das Speichern einer durchgeführten Abgabe kann auch ohne ELGA-Kontaktbestätigung erfolgen, wenn diese als geplante Abgabe (eindeutige ID) in der e-Medikation gespeichert wurde. Damit wird in den Apotheken ermöglicht, dass keine zusätzliche Identifizierungsmaßnahme des:der Bürger:in notwendig ist, wodurch der administrative Aufwand in Apotheken reduziert und Datenvollständigkeit gewährleistet wird.   
+Das Speichern einer durchgeführten Abgabe kann auch ohne ELGA-Kontaktbestätigung erfolgen, wenn diese als geplante Abgabe (eindeutige ID) in der e-Medikation gespeichert wurde. Damit wird in den Apotheken ermöglicht, dass keine zusätzliche Identifizierungsmaßnahme des:der ELGA-Teilnehmer:in notwendig ist, wodurch der administrative Aufwand in Apotheken reduziert und Datenvollständigkeit gewährleistet wird.   
 
 
 #### Gesetzliche Speicherfristen von durchgeführten Abgaben

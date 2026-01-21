@@ -4,35 +4,38 @@
 
 ### Beschreibung
 
-GDA sollen in den Medikationsplan von Bürger:innen mit Behandlungsbezug einsehen können, um sich einen Überblick zu allen verordneten Medikamenten und der zugehörigen Einnahmeninformation zu verschaffen. 
+GDA sollen in den Medikationsplan von ELGA-Teilnehmer:innen mit Behandlungsbezug einsehen können, um sich einen Überblick zu allen verordneten Medikamenten und der zugehörigen Einnahmeninformation zu verschaffen. 
 <br>
-Bürger sollen ihren Medikationsplan einsehen können, um sich mit der vorgesehenen Einnahmeanordnung vertraut zu machen.<br><br>
-Details zu Inhalten des Medikationsplans, siehe "[Die e-Medikation](requirements.html)"
+Ein:e ELGA-Teilnehmer:in soll ihren Medikationsplan einsehen können, um sich mit der vorgesehenen Einnahmeanordnung vertraut zu machen.<br><br>
+Details zu Inhalten des Medikationsplans, siehe "[Die e-Medikation: UC_eMed_05_H01 bis UC_eMed_05_H04](requirements.html)"
 
 
 ### Akteure
 
 * GDA 
-* Bürger:in 
+* ELGA-Teilnehmer:in 
 * Vertretung 
 * OBST 
   
 ### Auslöser
-* Der Medikationsplan eines:einer Bürger:in soll zur Ansicht aufgerufen werden 
+* Der Medikationsplan eines:einer ELGA-Teilnehmer:in soll zur Ansicht aufgerufen werden 
 
 ### Vorbedingungen
 * Benutzer:in ist authentifiziert und autorisiert 
-* Bürger:in ist eindeutig identifiziert 
+* ELGA-Teilnehmer:in ist eindeutig identifiziert 
 
 ###	Nachbedingungen/Ergebnis
-* Der Medikationsplan des:der Bürger:in wird angezeigt 
+* Der Medikationsplan des:der ELGA-Teilnehmer:in wird angezeigt 
 * Zugriff wird protokolliert 
   
 ###	Abläufe
 #### Standardablauf
 
-* Benutzer:in ruft den Medikationsplan auf 
-* Der Medikationsplan des:der Bürger:in wird angezeigt 
+1. Benutzer:in ruft den Medikationsplan auf 
+2. Der Medikationsplan des:der ELGA-Teilnehmer:in wird angezeigt 
+
+#### Alternativabläufe 
+Keine
 
 ### Sub-Usecases
 

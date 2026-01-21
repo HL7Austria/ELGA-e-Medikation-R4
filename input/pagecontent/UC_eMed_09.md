@@ -4,22 +4,26 @@
 
 ### Beschreibung
 
-GDA (Apotheke) sollen eine durchgeführte Abgabe für eine:n Bürger:in erfassen oder korrigieren können, um diese zum Zweck der medizinischen Dokumentation festzuhalten.  
+GDA (Apotheke) sollen eine durchgeführte Abgabe für eine:n ELGA-Teilnehmer:in erfassen oder korrigieren können, um diese zum Zweck der medizinischen Dokumentation festzuhalten.  <br>
+Ein:e ELGA-Teilnehmer:in soll einzelne Abgabeneinträge unwiderruflich löschen können. 
 <br><br>
 Details zu "Die e-Abgabe" (ab Kapitel Durchgeführte Abgaben erfassen), siehe "[Die e-Medikation](requirements.html)"
 
 ### Akteure
 
 * GDA (Apotheke, inkl. Hausapotheke)  
+* ELGA-Teilnehmer:in 
+* Vertretung 
+* OBST 
 
 ### Auslöser
 
-* Benutzer:in möchte die Abgabe eines Medikaments an eine:n Bürger:in dokumentieren  
+* Benutzer:in möchte die Abgabe eines Medikaments an eine:n ELGA-Teilnehmer:in dokumentieren  
 
 ### Vorbediungungen
 
 * Benutzer:in ist authentifiziert und autorisiert 
-* Bürger:in ist eindeutig identifiziert 
+* ELGA-Teilnehmer:in ist eindeutig identifiziert 
 
 ### Nachbedingungen/Ergebnis 
 
@@ -27,23 +31,29 @@ Details zu "Die e-Abgabe" (ab Kapitel Durchgeführte Abgaben erfassen), siehe "[
 * Zugriff wird protokolliert
 
 ###	Abläufe
-#### Standardablauf
-* Benutzer:in startet das Erfassen einer durchgeführten Abgabe mit Bezug zu einer geplanten Abgabe (sofern vorhanden) 
-* Benutzer:in gibt alle erforderlichen Daten zum Erfassen der durchgeführten Abgabe ein 
-* Benutzer:in speichert die Eingaben 
+#### Standardablauf: Durchgeführte Abgabe erfassen
+1. Benutzer:in startet das Erfassen einer durchgeführten Abgabe mit Bezug zu einer geplanten Abgabe (sofern vorhanden) 
+2. Benutzer:in gibt alle erforderlichen Daten zum Erfassen der durchgeführten Abgabe ein 
+3. Benutzer:in speichert die Eingaben 
 
 #### Alternativabläufe 
 ##### Alternativablauf 01: selbst erfasste, durchgeführte Abgabe bearbeiten  
 
-* Benutzer:in ruft eine bestehende, selbst erfasste durchgeführte Abgabe auf 
-* Benutzer:in verändert zuvor erfasste Angaben 
-* Benutzer:in speichert die Änderungen ab  
+1. Benutzer:in ruft eine bestehende, selbst erfasste durchgeführte Abgabe auf 
+2. Benutzer:in verändert zuvor erfasste Angaben 
+3. Benutzer:in speichert die Änderungen ab  
  
 ##### Alternativablauf  02: durchgeführte Abgabe korrigieren (Korrekturvermerk) 
 
-* Benutzer:in ruft eine bestehende durchgeführte Abgabe auf 
-* Benutzer:in markiert die durchgeführte Abgabe als inkorrekt 
-* Benutzer:in ergänzt einen Kommentar zu den Hintergründen der Korrektur 
+1. Benutzer:in ruft eine bestehende durchgeführte Abgabe auf 
+2. Benutzer:in markiert die durchgeführte Abgabe als inkorrekt 
+3. Benutzer:in ergänzt einen Kommentar zu den Hintergründen der Korrektur 
+
+#### Alternativablauf 03: durchgeführte Abgabe löschen 
+
+1. ELGA-Teilnehmer:in ruft die Liste der durchgeführten Abgaben auf 
+2. ELGA-Teilnehmer:in entfernt eine beliebige durchgeführte Abgabe aus der Abgabenliste 
+3. ELGA-Teilnehmer:in speichert die Änderungen ab 
 
 ###	Abgrenzungen 
 
