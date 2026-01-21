@@ -12,14 +12,13 @@ Werden mehrere Arzneimittel gleichzeitig verordnet, wird für jedes Arzneimittel
 // Vorgaben APS ***************************
 // impose Profile APS 
 // * ^extension[$imposeProfile].valueCanonical = Canonical(AtApsMedicationRequest)
-// * medication[x] only CodeableConcept or Reference(AtApsMedication)
-// * subject only Reference(AtApsPatient)
 // Ende Vorgaben APS ***************************
 
 
 // Vorgaben MPD ***************************
+// Abhängigkeiten zu anderen IGS sind zu diskutieren
 // * insert MedicationRequestEpCommon
-// * medication[x] only CodeableConcept or Reference(AtEmedMedication) //MedicationEuMpd)
+// * medication[x] only CodeableConcept or Reference(MedicationEuMpd) //AtEmedMedication
 // * reasonCode ^short = "Reason or indication for this prescription"
 //   * ^binding.extension[0].url = "http://hl7.org/fhir/tools/StructureDefinition/additional-binding"
 //   * ^binding.extension[0].extension[0].url = "purpose"
@@ -37,24 +36,62 @@ Werden mehrere Arzneimittel gleichzeitig verordnet, wird für jedes Arzneimittel
 
 // * extension contains $medicationrequest-rendereddosageinstruction-r5 named renderedDosageInstruction 0..1
 // * extension[renderedDosageInstruction] ^short = "Full representation of the dosage instructions"
+
+
+// RuleSet: MedicationRequestEpCommon
+
+// * extension contains $ihe-ext-medicationrequest-offlabeluse named offLabelUse 0..1 
+// * extension[offLabelUse] ^short = "Indicates that the prescriber has knowingly prescribed the medication for an indication, age group, dosage, or route of administration that is not approved by the regulatory agencies and is not mentioned in the prescribing information for the product." 
+// * identifier 
+//   * ^short = "Prescription/prescribed item ID"
+//   * ^comment = "It is the prescription ID if the presciption includes only one prescribed item"
+// * status ^short = "Current state of the order"
+// //* intent = $medicationrequest-intent#order 
+// * subject only Reference( PatientEuCore )
+// * authoredOn 1..
+// * requester 1..
+// * groupIdentifier 
+//   * ^short = "Prescription this is part of. Not needed if a presciption includes only one prescribed item."
+// * dosageInstruction ^short = "How the medication should be taken."
+//   * timing ^short = "Administration schedule"
+//     * repeat
+//       * duration ^short = "Duration of the treatment"
+//       * frequency ^short = "Frequency times per period"
+//       * period ^short = "Duration of time over which repetitions are to occur"
+//       * periodUnit  ^short = "Unit of the period (e.g. day)"
+//     * code ^short = "A code for the timing schedule."
+//   * route ^short = "Route of administration"
+//   * text ^short = "Free text dosage instructions"
+//   * doseAndRate.doseQuantity ^short = "Amount of medication per dose"
+// * dispenseRequest
+//   * extension contains $ihe-ext-medicationrequest-prescribedquantity named prescribedQuantity 0..1
+//   * extension[prescribedQuantity] ^short = "Overall amount of product prescribed, independent from the number of repeats."
+//   * extension[prescribedQuantity] ^definition = "When Medication resource implies a pack size, prescribedQuantity should convey number of packages. When the Medication does not imply an amount, overall amount could be in tablets or millilitres."
+
+
 // Ende Vorgaben MPD ***************************
 
-
+// Obligations für alle MS Elemente!, kein 0..0 nötig
 // MedicationRequest 
-* identifier 1..* MS
-* identifier ^short = "Geplante-Abgabe-ID (früher eMed-ID), bildet 'Rezept-Klammer' bei mehreren gleichzeitig ausgestellten geplanten Abgaben."
+* identifier 1..* MS  
+* identifier ^short = "MedicationRequest identifier = {eMed-ID}_{locally assigned ID}  Setzt sich zusammen aus groupIdentifier (Rezept-Klammer) und individueller Identifikation der geplanten Abgabe."
 
+// evt. noch einschränken: unknown, draft entfernen
 * status ^short = "Status der geplanten Abgabe (im Standardfall active oder complete): active | on-hold | cancelled | completed | entered-in-error | stopped | draft | unknown" 
-* statusReason 0..0 
 
+//Ansatz hinterfragen ob 0..0, ob nichtsinnvoller die verpflichtenden Elemente mit Obligations festzulegen sind / MS
+* statusReason 0..0 
 * statusReason ^short = "Grund für den aktuellen Status: https://hl7.org/fhir/R4/valueset-medicationrequest-status-reason.html. Keine Verwendung in der geplanten Abgabe."
 
 * intent 1..1 MS
 * intent = #order 
 * intent ^short = "Die Geplante Abgabe stellt eine Anforderung und Ermächtigung zum Handeln durch den Antragsteller dar, daher ist intent immer \"order\"."
 
-* category 0..0
-* category ^short = "Art der Medikamentenanforderung (z.B. ambulante oder stationäre Einnahme oder Verabreichung)"
+// Kategorie damit geplante Abgabe von Medikationsplaneintrag unterschieden werden kann, da beide "order" TODO
+// Codesystem und ValueSet zu definieren -> im IG, siehe Moped
+//* category 1..1 MS
+//* category.coding = #code -> VS codes definieren
+* category ^short = "Kategorie damit geplante Abgabe von Medikationsplaneintrag unterschieden werden kann"
 
 * priority 0..0
 * priority ^short = "Priorität der geplanten Abgabe: routine | urgent | asap | stat. Keine Verwendung in der geplanten Abgabe."
@@ -66,17 +103,16 @@ Werden mehrere Arzneimittel gleichzeitig verordnet, wird für jedes Arzneimittel
 * reported[x] ^short = "Keine Verwendung in der geplanten Abgabe."
 
 // --- Medication Choice: Code (PZN) ODER Medication-Resource ---
-* medication[x] 1..1 MS
-* medication[x] only CodeableConcept or Reference(AtEmedMedication)
-
+* medication[x] 1..1 MS  //Obligation auf obersten Ebenen, Rendering prüfen
+* medication[x] only CodeableConcept or Reference(AtEmedMedication)  //Obligation auf obersten Ebenen
 // CodeableConcept-Variante (ASP-Liste, PZN)
-* medicationCodeableConcept 0..1 MS
+* medicationCodeableConcept 0..1 MS  //Obligation auf obersten Ebenen
 * medicationCodeableConcept from $cs-asp-liste (required)
 * medicationCodeableConcept ^short = "Angabe mittels Pharmazentralnummer (PZN) aus der ASP-Liste."
-* medicationCodeableConcept.coding 1..1
+* medicationCodeableConcept.coding 1.. // evtl.zusätzlich ausländische Codes o.ä. zulassen
 * medicationCodeableConcept.coding.system 1..1
 * medicationCodeableConcept.coding.code 1..1
-* medicationCodeableConcept.coding.display 1..1 MS
+* medicationCodeableConcept.coding.display 1..1   // wie funktioniert das mit Übersetzungen?
 
 // Reference-Variante für magistrale/Infusionen
 * medicationReference 0..1 MS
@@ -100,7 +136,7 @@ Werden mehrere Arzneimittel gleichzeitig verordnet, wird für jedes Arzneimittel
 * authoredOn ^short = "Datum der Ausstellung der geplanten Abgabe."
 
 // -- Requester ---
-* requester 1..1 MS
+* requester 1..1 MS  // zu hinterfragen, ob HL7ATCorePractitionerRole + organization nötig 
 * requester only Reference(HL7ATCorePractitioner or HL7ATCorePractitionerRole or HL7ATCoreOrganization)
 * requester ^short = "Der Arzt oder die Ärztin, die die geplante Abgabe erstellt hat und für den Inhalt verantwortlich ist."
 
@@ -117,10 +153,10 @@ Werden mehrere Arzneimittel gleichzeitig verordnet, wird für jedes Arzneimittel
 * performerType ^short = "Keine Verwendung in der geplanten Abgabe."
 
 * reasonCode 0..*
-* reasonCode ^short = "Grund für die Verordnung des Arzneimittels. Annahme: Keine Verwendung in der geplanten Abgabe, reasonReference ausreichend."
+* reasonCode ^short = "Grund für die Verordnung des Arzneimittels. Entweder Code oder Referenz (evtl. Invariante)."
 
 * reasonReference 0..* MS
-* reasonReference ^short = "Grund für die Verordnung des Arzneimittels (Referenz). Verwendung erst, wenn e-Diagnose referenzierbar ist."
+* reasonReference ^short = "Grund für die Verordnung des Arzneimittels. Entweder Code oder Referenz (evtl. Invariante)."
 
 * instantiatesCanonical 0..0 
 * instantiatesCanonical ^short = "Keine Verwendung in der geplanten Abgabe."
@@ -132,7 +168,7 @@ Werden mehrere Arzneimittel gleichzeitig verordnet, wird für jedes Arzneimittel
 * basedOn only Reference(AtEmedMedicationRequestPlaneintrag)
 * basedOn ^short = "Referenz auf den zugrundeliegenden Medikationsplaneintrag, auf dem diese geplante Abgabe basiert."
 
-* groupIdentifier 0..1 
+* groupIdentifier 1..1 MS 
 * groupIdentifier ^short = "Als groupIdentifier dient die Geplante-Abgabe-ID (früher eMED-ID), die auch im e-Rezept mitgeführt wird. Werden von einem:r Arzt:Ärtztin mehrere Arzneimittel gleichzeitig verordnet, wird für jedes Arzneimittel eine geplante Abgabe mit demselben groupIdentifier erstellt (bildet 'Rezept-Klammer')."
 
 * courseOfTherapyType 0..0 
@@ -190,6 +226,7 @@ Werden mehrere Arzneimittel gleichzeitig verordnet, wird für jedes Arzneimittel
 
 
 // --- XOR-Invariant: genau eines von beiden ---
+// https://hl7.org/fhirpath/N1/
 Invariant: med-1
 Description: "Für die geplante Abgabe muss entweder CodeableConcept (PZN) oder Reference(Medication) angegeben werden – aber genau eins."
 Expression: "medicationCodeableConcept.exists() xor medicationReference.exists()"
