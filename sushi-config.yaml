@@ -61,7 +61,7 @@ pages:
   index.md:
     title: "Start"
   requirements.md:
-    title: "Die 'e-Medikation'"
+    title: "Die \"e-Medikation\""
   actors.md:
     title: "Akteure"
   anwendungsfaelle.md:
