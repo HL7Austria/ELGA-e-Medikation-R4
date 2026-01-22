@@ -189,7 +189,7 @@ Ein Medikationsplan beinhaltet u.a. folgende Informationen:
 <div class="hinweisbox">
 ℹ️   
 Hinweis zur Änderung fremderfasster Abgabeneinträge:<br>
-ofern fremderfasste Einträge korrigiert werden müssen, ist dies über einen Korrekturvermerk möglich, vgl. H03 
+Sofern fremderfasste Einträge korrigiert werden müssen, ist dies über einen Korrekturvermerk möglich, vgl. H03. 
 </div>
 
 * Zur Nachvollziehbarkeit erfolgt jede Bearbeitung von durchgeführten Abgaben über eine Versionierung 
