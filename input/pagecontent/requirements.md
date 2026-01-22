@@ -236,26 +236,35 @@ Medikationspläne werden nach Ablauf der gesetzlichen Speicherfrist gelöscht:
 * 30 Jahre nach Sterbedatum 
 
 ### Die e-Abgabe
-#### Anzeige geplanter Abgaben
+#### Anzeige geplanter Abgaben (UC_eMed_07_H01)
 
 Die geplanten Abgaben können gelesen werden: 
 * Inhalte der geplanten Abgaben, siehe UC_eMed_08 Geplante Abgabe schreiben 
-* Geplante Abgaben können Korrekturvermerke enthalten 
+* Geplante Abgaben können Korrekturvermerke enthalten, siehe UC_eMed_07_H03 
 * Ausgeblendete geplante Abgaben werden in der Abgabenübersicht nicht angezeigt 
 * Geplante Abgaben stehen nach einer unwiderruflichen Löschung nicht mehr zur Verfügung
 
+<div class="hinweisbox">
+  <b>Hinweis:</b> 
+  Möglichkeiten zur Darstellung der geplanten Abgaben im Client-System:<br>
+  <ul>
+    <li> Zu den einzelnen Einträgen der geplanten Abgaben können folgende Informationen ergänzend dargestellt werden: 
+      <ul>
+        <li>zugehöriger Medikationsplan bzw. Medikationsplaneintrag </li>
+        <li>zugehörige durchgeführte Abgaben </li>
+          <ul>
+            <li>inkl. Abgaben von Substitutionen durch andere Arzneimittel und „Leerabgaben“ 
+    (Leerabgaben sind notwendig, um im Abgabeprozess im Zusammenspiel mit dem Einlösen eines Rezepts abzubilden, dass diese geplante Abgabe auch in Zukunft nicht mehr bedient werden wird.)</li>
+          </ul>
+        <li>abgelaufener Gültigkeitszeitraum einer geplanten Abgabe </li>
+        <li>abgelaufene Rezepte (?) </li>
+      </ul>
+    </li>
+    <li>Filter- und Suchfunktionen können hilfreich sein (v.a. bei Abgabenlisten, die viele Einträge enthalten) </li>
+  <ul>
+</div>
 
-Möglichkeiten zur Darstellung der geplanten Abgaben im Client-System: 
-* Zu den einzelnen Einträgen der geplanten Abgaben können folgende Informationen ergänzend dargestellt werden:  
-  * zugehöriger Medikationsplan bzw. Medikationsplaneintrag 
-  * zugehörige durchgeführte Abgaben 
-    * inkl. Abgaben von Substitutionen durch andere Arzneimittel und „Leerabgaben“ 
-  (Leerabgaben sind notwendig, um im Abgabeprozess im Zusammenspiel mit dem Einlösen eines Rezepts abzubilden, dass diese geplante Abgabe auch in Zukunft nicht mehr bedient werden wird.)
-  * abgelaufene Rezepte (?) 
-
-* Filter- und Suchfunktionen können hilfreich sein (v.a. bei Abgabenlisten, die viele Einträge enthalten) 
-
-#### Anzeige durchgeführter Abgaben
+#### Anzeige durchgeführter Abgaben (UC_eMed_07_H02)
 
 Die durchgeführten Abgaben können gelesen werden: 
 * Inhalte der durchgeführten Abgaben, siehe UC_eMed_09 Durchgeführte Abgabe schreiben 
@@ -263,30 +272,53 @@ Die durchgeführten Abgaben können gelesen werden:
 * Ausgeblendete durchgeführte Abgaben werden in der Abgabenübersicht nicht angezeigt 
 * Durchgeführte Abgaben stehen nach einer unwiderruflichen Löschung nicht mehr zur Verfügung 
 
-Möglichkeiten zur Darstellung der durchgeführten Abgaben im Client-System 
-* Zu den einzelnen Einträgen der durchgeführten Abgaben können folgende Informationen ergänzend dargestellt werden (sofern vorhanden):  
-  * zugehöriger Medikationsplan bzw. Medikationsplaneintrag 
-  * zugehörige geplante Abgabe 
-* Filter- und Suchfunktionen können hilfreich sein (v.a. bei Abgabenlisten, die viele Einträge enthalten) 
+<div class="hinweisbox">
+  <b>Hinweis:</b> 
+  Möglichkeiten zur Darstellung der geplanten Abgaben im Client-System:<br>
+  <ul>
+    <li> Zu den einzelnen Einträgen der durchgeführten Abgaben können folgende Informationen ergänzend dargestellt werden (sofern vorhanden):  
+      <ul>
+        <li>zugehöriger Medikationsplan bzw. Medikationsplaneintrag </li>
+        <li>zugehörige geplante Abgabe </li>    
+      </ul>
+    </li>
+    <li>Filter- und Suchfunktionen können hilfreich sein (v.a. bei Abgabenlisten, die viele Einträge enthalten) </li>
+  <ul>
+</div>
 
-#### Anzeige korrigierter Abgaben (Korrekturvermerk)
+
+
+#### Anzeige korrigierter Abgaben (Korrekturvermerk) (UC_eMed_07_H03)
 
 Einzelne geplante bzw. durchgeführte Abgaben können Korrekturvermerke (inkl. Freitext) enthalten und müssen dem:der Benutzer:in angezeigt werden. 
 
-Möglichkeiten für die Darstellung eines Korrekturvermerks am Client System, siehe UC_eMed_05 Medikationsplan lesen. 
+<div class="hinweisbox">
+  <b>Hinweis:</b> 
+  Möglichkeiten zur Darstellung der geplanten Abgaben im Client-System:<br>
+  siehe UC_eMed_05 Medikationsplan lesen 
+</div>
 
-#### Export der geplanten und durchgeführten Abgaben
+#### Export der geplanten und durchgeführten Abgaben (UC_eMed_07_H04)
 
 Folgende Exportformate stehen für Benutzer:innen zur Verfügung: 
+ELGA-Teilnehmer:innen:
   * PDF zum Ausdrucken bzw. zur Darstellung in der Druckansicht 
   * Strukturierter Datendownload (FHIR) 
-  * Softwaremodul für PDF-Export zur Einbindung im Client-System
+GDA:
+  * PDF zum Ausdrucken bzw. zur Darstellung in der Druckansicht 
+
+<div class="hinweisbox">
+  <b>Hinweis:</b> 
+  Für den PDF-Export stellt die ELGA GmbH ein Softwaremodul zur Verfügung, welches in den jeweiligen Softwaresystemen eingebunden werden kann. Dieses "FHIR2PDF"-Softwaremodul stellt die Funktionen zur Verfügung, um die geplanten/durchgeführten Abgaben als PDF zu exportieren. Das exportierte PDF unter Nutzung des "FHIR2PDF" stellt ein signiertes Dokument dar. 
+</div>
 
 
-##### Eigene Ansicht vs. Verwendung des e-Medikation Stylesheets 
+#### Eigene Ansicht vs. Verwendung des e-Medikation Stylesheets (UC_eMed_07_H05)
 
-Die Anzeige des Medikationsplans kann via Stylesheet erfolgen, welches in den jeweiligen Softwaresystemen eingebunden werden kann. 
-Dieses "e-Medikation Stylesheet" stellt alle notwendigen/vorhanden Informationen dar - Daten zur Person, aktuelle und vergangene Medikationsplaneinträge, geplante und durchgeführte Abgaben, etc. 
+Zur Anzeige der geplanten und durchgeführten Abgaben wird von der ELGA GmbH ein Stylesheet angeboten, welches in den jeweiligen Softwaresystemen eingebunden werden kann.  
+
+* Dieses "e-Medikation Stylesheet" stellt alle notwendigen/vorhanden Informationen dar - Daten zur Person, aktuelle und vergangene Medikationsplaneinträge, geplante und durchgeführte Abgaben, etc. 
+
 Neben der Verwendung des e-Medikation Stylesheets kann auch eine eigene Ansicht der geplanten/durchgeführten Abgaben in den Softwaresystemen umgesetzt werden. 
 
 #### Geplante Abgabe erfassen (UC_eMed_08_H01)
@@ -305,17 +337,26 @@ Eine geplante Abgabe beinhaltet u.a. folgende Informationen:
 
 #### Geplante Abgabe bearbeiten (UC_eMed_08_H02)
 
-Geplante Abgaben, die von einem GDA erfasst wurden, können nachträglich von diesem GDA überarbeitet werden.
-  * Hinweis zur Änderung fremderfasster Abgabeneinträge:
-  Sofern fremderfasste Einträge korrigiert werden müssen, ist dies über einen Korrekturvermerk möglich  
+* Geplante Abgaben, die von einem GDA erfasst wurden, können nachträglich von diesem GDA überarbeitet werden.
 
-Zur Nachvollziehbarkeit erfolgt jede Bearbeitung von geplanten Abgaben über eine Versionierung 
-* Vorversionen werden nicht gelöscht, sondern als solche markiert 
+<div class="hinweisbox">
+  <b>Hinweis:</b> 
+  Hinweis zur Änderung fremderfasster Abgabeneinträge:<br> 
+  Sofern fremderfasste Einträge korrigiert werden müssen, ist dies über einen Korrekturvermerk möglich, vgl. H03
+</div>
+
+* Zur Nachvollziehbarkeit erfolgt jede Bearbeitung von geplanten Abgaben über eine Versionierung 
+  * Vorversionen werden nicht gelöscht, sondern als solche markiert 
 
 #### Geplante Abgabe: Korrekturvermerk setzen (UC_eMed_08_H03)
 
-Der GDA kann geplante Abgaben nachträglich mittels Korrekturvermerk korrigieren, sofern diese fehlerhaft sind. 
-  * Hinweis zur Änderung selbsterfasster Abgabeneinträge: Sofern selbst erfasste Einträge korrigiert werden müssen, ist dies über eine erneute Bearbeitung der geplanten Abgabe möglich 
+* Der GDA kann geplante Abgaben nachträglich mittels Korrekturvermerk korrigieren, sofern diese fehlerhaft sind. 
+
+<div class="hinweisbox">
+  <b>Hinweis:</b> 
+  Hinweis zur Änderung selbsterfasster Abgabeneinträge: <br> 
+  Sofern selbst erfasste Einträge korrigiert werden müssen, ist dies über eine erneute Bearbeitung der geplanten Abgabe möglich, vgl. H02  
+</div>
 
 Ein Korrekturvermerk beinhaltet folgende Aspekte:  
 * zu korrigierende geplante Abgabe wird als inkorrekt markiert 
@@ -330,19 +371,26 @@ ELGA-Teilnehmer:innen können die Verfügbarkeit von geplanten Abgaben wie folgt
 
 #### Daten für die Rezeptierung (UC_eMed_08_H05)
 
-Allgemeine Information zur Rezeptierung: 
+<div class="hinweisbox">
+  <b>Hinweis:</b> 
+  Allgemeine Information zur Rezeptierung: <br>
+  <ul>
+    <li>Abgaben in Apotheken erfolgen auf Basis von Rezepten (e-Rezept, Papierrezept). Rezepte dienen der Logistik und Abrechnung. In der e-Medikation werden Informationen über geplante Abgaben zur Verfügung gestellt, um diese zum Zweck der medizinischen Dokumentation festzuhalten. Ein Eintrag einer geplanten Abgabe in der e-Medikation ermächtigt NICHT zur Abgabe eines Medikaments in einer Apotheke.</li>
+    <li>Sollen auf Basis des aktuellen Medikationsplans Rezepte ausgestellt werden, muss in der e-Medikation parallel zum Rezeptiervorgang je Medikationsplaneintrag (mindestens) eine geplante Abgabe angelegt werden. Medikationsplaneinträge können mehrfach rezeptiert werden, daher auch zu mehrfachen geplanten Abgaben führen. </li>
+    <li>Eine einzelne geplante Abgabe weist eine eindeutige ID auf. Diese ID wird während des Rezeptiervorgangs bei der e-Medikation abgefragt und über das Rezept/e-Rezept transportiert. So kann später die durchgeführte Abgabe mit der geplanten Abgabe verknüpft werden.</li>
+    <li>Eine geplante Abgabe kann ein oder mehrere Medikamente beinhalten, dadurch fungiert die Geplante-Abgabe-ID auch als Gruppen-Identifikator für alle enthaltenen verordneten Medikamente. Die Geplante-Abgabe-ID wird auf einem Papierrezept als QR-Code abgedruckt und ist ebenso auf dem e-Rezept zu finden. Über das Einreichen der ID erhält ein GDA Zugriff auf die Inhalte der geplanten Abgabe</li>
+  <ul>
+</div>
 
-* Abgaben in Apotheken erfolgen auf Basis von Rezepten (e-Rezept, Papierrezept). Rezepte dienen der Logistik und Abrechnung. In der e-Medikation werden Informationen über geplante Abgaben zur Verfügung gestellt, um diese zum Zweck der medizinischen Dokumentation festzuhalten. Ein Eintrag einer geplanten Abgabe in der e-Medikation ermächtigt NICHT zur Abgabe eines Medikaments in einer Apotheke.  
-
-* Sollen auf Basis des aktuellen Medikationsplans Rezepte ausgestellt werden, muss in der e-Medikation parallel zum Rezeptiervorgang je Medikationsplaneintrag (mindestens) eine geplante Abgabe angelegt werden. Medikationsplaneinträge können mehrfach rezeptiert werden, daher auch zu mehrfachen geplanten Abgaben führen.  
-
-* Eine einzelne geplante Abgabe weist eine eindeutige ID auf. Diese ID wird während des Rezeptiervorgangs bei der e-Medikation abgefragt und über das Rezept/e-Rezept transportiert. So kann später die durchgeführte Abgabe mit der geplanten Abgabe verknüpft werden. 
-
-Rezeptieren aus dem Medikationsplan im Client-System: 
-* Notwendigerweise setzt jedes Rezeptieren (Verschreiben) auch einen Eintrag im Medikationsplan voraus (fachliches Verordnen). 
-  * Daher sollte es einerseits möglich sein, aus dem Medikationsplan ohne Zusatzaufwand ein Rezept zu generieren. 
-  * Andererseits muss seitens der Software-Integration sichergestellt sein, dass vor jedem Rezeptieren der Medikationsplan aktualisiert und in seiner (neuen) Gesamtheit zur Kenntnis genommen wurde. 
-* Bei Teil Opt-out e-Medikation bzw. ELGA Opt-out muss das Rezeptieren auch ohne vorgelagerten Medikationsplaneintrag möglich sein.  
+<div class="hinweisbox">
+  <b>Hinweis:</b> 
+  Rezeptieren aus dem Medikationsplan im Client-System:  <br>
+  <ul>
+    <li>Notwendigerweise setzt jedes Rezeptieren (Verschreiben) auch einen Eintrag im Medikationsplan voraus (fachliches Verordnen). Daher sollte es einerseits möglich sein, aus dem Medikationsplan ohne Zusatzaufwand ein Rezept zu generieren. </li>
+    <li>Andererseits muss seitens der Software-Integration sichergestellt sein, dass vor jedem Rezeptieren der Medikationsplan aktualisiert und in seiner (neuen) Gesamtheit zur Kenntnis genommen wurde. </li>
+    <li>Bei Teil Opt-out e-Medikation bzw. ELGA Opt-out muss das Rezeptieren auch ohne vorgelagerten Medikationsplaneintrag möglich sein</li>
+  <ul>
+</div> 
 
 #### Gesetzliche Speicherfristen von geplanten Abgabe (UC_eMed_08_H06)
 
@@ -369,8 +417,14 @@ Eine durchgeführte Abgabe beinhaltet u.a. folgende Informationen:
 
 #### Durchgeführte Abgabe bearbeiten (UC_eMed_09_H02)
 
-Durchgeführte Abgaben, die von einem GDA erfasst wurden, können nachträglich von diesem GDA überarbeitet werden 
-* Hinweis zur Änderung fremderfasster Abgabeneinträge: Sofern fremderfasste Einträge korrigiert werden müssen, ist dies über einen Korrekturvermerk möglich
+* Durchgeführte Abgaben, die von einem GDA erfasst wurden, können nachträglich von diesem GDA überarbeitet werden 
+
+<div class="hinweisbox">
+  <b>Hinweis:</b> 
+  Hinweis zur Änderung fremderfasster Abgabeneinträge:  <br>
+  Sofern fremderfasste Einträge korrigiert werden müssen, ist dies über einen Korrekturvermerk möglich, vgl. H03 
+</div> 
+
 * Zur Nachvollziehbarkeit erfolgt jede Bearbeitung von durchgeführten Abgaben über eine Versionierung 
   * Vorversionen werden nicht gelöscht, sondern als solche markiert 
 
@@ -378,8 +432,12 @@ Durchgeführte Abgaben, die von einem GDA erfasst wurden, können nachträglich 
 #### Durchgeführte Abgabe: Korrekturvermerk setzen (UC_eMed_09_H03)
 
 * Der GDA kann fremderfasste durchgeführte Abgaben nachträglich mittels Korrekturvermerk korrigieren, sofern diese fehlerhaft sind. 
-* Hinweis zur Änderung selbst erfasster Abgabeneinträge:
-  * Sofern selbst erfasste Einträge korrigiert werden müssen, ist dies über eine erneute Bearbeitung der durchgeführten Abgabe möglich, vgl. UC_eMed_09_H02 
+
+<div class="hinweisbox">
+  <b>Hinweis:</b> 
+  Hinweis zur Änderung selbst erfasster Abgabeneinträge:<br>
+  Sofern selbst erfasste Einträge korrigiert werden müssen, ist dies über eine erneute Bearbeitung der durchgeführten Abgabe möglich, vgl. UC_eMed_09_H02 
+</div> 
 
 * Ein Korrekturvermerk beinhaltet folgende Aspekte:  
   * zu korrigierende durchgeführte Abgabe wird als inkorrekt markiert 
@@ -396,18 +454,18 @@ ELGA-Teilnehmer:innen können die Verfügbarkeit von durchgeführten Abgaben wie
 
 * Sofern in einer Apotheke der QR-Code auf einem Papierrezept gescannt wird, welches der:die ELGA-Teilnehmer vorlegt, bzw. die ID vom e-Rezept abgelesen wird, erhält der GDA Lesezugriff auf die zugehörige geplante Abgabe 
 * Beim Speichern der durchgeführten Abgabe soll eine Zuordnung zur geplanten Abgabe sichergestellt werden (anhand der eindeutigen ID der geplanten Abgabe; Transport über das (e)-Rezept), siehe UC_eMed_08 Geplante Abgabe schreiben 
-* Ist keine geplante Abgabe vorhanden, muss zur Dokumentation einer durchgeführten Abgabe eine Kontaktbestätigung vorliegen bzw. ausgelöst werden 
+* Ist keine geplante Abgabe vorhanden, muss zur Dokumentation einer durchgeführten Abgabe eine Kontaktbestätigung vorliegen bzw. ausgelöst werden, vgl. H06
 
-#### Substitution 
+#### Substitution (UC_eMed_09_H06)
 
 * Bei der Abgabe eines von der geplanten Abgabe abweichenden Präparats sind alle Informationen der IST-Abgabe (vgl. UC_eMed_08 Geplante Abgabe schreiben) mit einer Verknüpfung zur ursprünglich geplanten SOLL-Abgabe zu speichern. 
 * Signatur und Einnahmezeitraum müssen nur im Zusammenhang mit einer Substitution gespeichert werden. 
 
-#### Abgabe ohne ELGA-Kontaktbestätigung 
+#### Abgabe ohne ELGA-Kontaktbestätigung (UC_eMed_09_H07)
 
 Das Speichern einer durchgeführten Abgabe kann auch ohne ELGA-Kontaktbestätigung erfolgen, wenn diese als geplante Abgabe (eindeutige ID) in der e-Medikation gespeichert wurde. Damit wird in den Apotheken ermöglicht, dass keine zusätzliche Identifizierungsmaßnahme des:der ELGA-Teilnehmer:in notwendig ist, wodurch der administrative Aufwand in Apotheken reduziert und Datenvollständigkeit gewährleistet wird.   
 
 
-#### Gesetzliche Speicherfristen von durchgeführten Abgaben
+#### Gesetzliche Speicherfristen von durchgeführten Abgaben (UC_eMed_09_H08)
 
 Durchgeführte Abgaben werden nach Ablauf der gesetzlichen Speicherfrist (5 Jahre) gelöscht. 
