@@ -1,20 +1,18 @@
-Alias: $sct = http://snomed.info/sct
-
-Instance: AtEmedExampleMedicationRequestPlaneintrag01
+Instance: AtEmedExamplePlaneintrag01
 InstanceOf: AtEmedMedicationRequestPlaneintrag
-Title: "AtEmedMedicationRequestPlaneintrag-Beispiel"
-Description: "AtEmedMedicationRequestPlaneintrag-Beispiel"
+Title: "Example Planeintrag 1"
+Description: "Example Planeintrag 1"
 Usage: #example
 
 * meta.profile = "http://hl7.eu/fhir/mpd/StructureDefinition/MedicationRequest-eu-mpd"
 * identifier.value = "100-1/3"
 * status = #active
 * intent = #option
-* medicationCodeableConcept = $sct#376255008 "Thalidomide 50 mg oral capsule"
+* medicationCodeableConcept = $cs-sct#376255008 "Thalidomide 50 mg oral capsule"
 * subject = Reference(Patient/AtEmedExamplePatient01)
 * authoredOn = "2024-10-03"
 * requester = Reference(PractitionerRole/doctor1)
-* reasonCode = $sct#109989006 "Multiple myeloma"
+* reasonCode = $cs-sct#109989006 "Multiple myeloma"
 * groupIdentifier.value = "100"
 * dosageInstruction.timing.repeat.boundsDuration = 42 'd' "day"
 * dosageInstruction.timing.repeat.frequency = 1

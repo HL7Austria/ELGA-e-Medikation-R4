@@ -87,10 +87,10 @@ Werden mehrere Arzneimittel gleichzeitig verordnet, wird für jedes Arzneimittel
 * intent = #order 
 * intent ^short = "Die Geplante Abgabe stellt eine Anforderung und Ermächtigung zum Handeln durch den Antragsteller dar, daher ist intent immer \"order\"."
 
-// Kategorie damit geplante Abgabe von Medikationsplaneintrag unterschieden werden kann, da beide "order" TODO
-// Codesystem und ValueSet zu definieren -> im IG, siehe Moped
-//* category 1..1 MS
-//* category.coding = #code -> VS codes definieren
+// Kategorie damit geplante Abgabe von Medikationsplaneintrag unterschieden werden kann, da beide "order" 
+* category 1..1 MS
+* category from MedicationRequestCategoryVS (required)
+* category.coding = #2 "Geplante Abgabe"
 * category ^short = "Kategorie damit geplante Abgabe von Medikationsplaneintrag unterschieden werden kann"
 
 * priority 0..0
@@ -114,7 +114,7 @@ Werden mehrere Arzneimittel gleichzeitig verordnet, wird für jedes Arzneimittel
 * medicationCodeableConcept.coding.code 1..1
 * medicationCodeableConcept.coding.display 1..1   // wie funktioniert das mit Übersetzungen?
 
-// Reference-Variante für magistrale/Infusionen
+// Reference-Variante für magistrale Zubereitung/Infusionen
 * medicationReference 0..1 MS
 * medicationReference only Reference(AtEmedMedication)
 * medicationReference ^short = "Bei magistralen Anwendungen oder Infusionen ohne PZN."
@@ -159,10 +159,10 @@ Werden mehrere Arzneimittel gleichzeitig verordnet, wird für jedes Arzneimittel
 * reasonReference ^short = "Grund für die Verordnung des Arzneimittels. Entweder Code oder Referenz (evtl. Invariante)."
 
 * instantiatesCanonical 0..0 
-* instantiatesCanonical ^short = "Keine Verwendung in der geplanten Abgabe."
+* instantiatesCanonical ^short = "URL, die auf ein Protokoll, eine Richtlinie, einen Auftragssatz oder eine andere Definition verweist, die von diesem MedicationRequest ganz oder teilweise eingehalten wird. Keine Verwendung in der geplanten Abgabe."
 
 * instantiatesUri 0..0 
-* instantiatesUri ^short = "Keine Verwendung in der geplanten Abgabe."
+* instantiatesUri ^short = "URL, die auf ein extern gepflegtes Protokoll, eine Richtlinie, einen Auftragssatz oder eine andere Definition verweist, die von dieser Medikamentenanforderung ganz oder teilweise eingehalten wird. Keine Verwendung in der geplanten Abgabe."
 
 * basedOn 1..1
 * basedOn only Reference(AtEmedMedicationRequestPlaneintrag)
@@ -178,13 +178,14 @@ Werden mehrere Arzneimittel gleichzeitig verordnet, wird für jedes Arzneimittel
 * insurance ^short = "Keine Verwendung in der geplanten Abgabe."
 
 * note 0..* 
-* insurance ^short = "Zusätzliche Informationen zur geplanten Abgabe, die durch die anderen Attribute nicht abgebildet werden konnten. Dzt. unklar, ob erforderlich."
+* insurance ^short = "Zusätzliche Informationen zur geplanten Abgabe, die durch die anderen Attribute nicht abgebildet werden konnten. -> Dzt. unklar, ob erforderlich, evtl einschränken"
 
 * dosageInstruction 0..* 
-* dosageInstruction ^short = "Anweisungen zur Einnahme/Verabreichung des Arzneimittels."
+* dosageInstruction ^short = "Anweisungen zur Einnahme/Verabreichung des Arzneimittels. TODO"
 
+* dispenseRequest 0..1 
+* dispenseRequest ^short = "Details zur geplanten Abgabe des Arzneimittels. Zu klären."
 
-* dosageInstruction ^comment = "There are examples where a medication request may include the option of an oral dose or an Intravenous or Intramuscular dose.  For example, \"Ondansetron 8mg orally or IV twice a day as needed for nausea\" or \"Compazine® (prochlorperazine) 5-10mg PO or 25mg PR bid prn nausea or vomiting\".  In these cases, two medication requests would be created that could be grouped together.  The decision on which dose and route of administration to use is based on the patient's condition at the time the dose is needed."
 // * dispenseRequest 0..1 BackboneElement^^ "Medication supply authorization" "Indicates the specific details for the dispense or medication supply part of a medication request (also known as a Medication Prescription or Medication Order).  Note that this information is not always sent with the order.  There may be in some settings (e.g. hospitals) institutional or system support for completing the dispense details in the pharmacy department."
 // * dispenseRequest.initialFill 0..1 BackboneElement "First fill details" "Indicates the quantity or duration for the first dispense of the medication."
 // * dispenseRequest.initialFill ^comment = "If populating this element, either the quantity or the duration must be included."
@@ -200,6 +201,10 @@ Werden mehrere Arzneimittel gleichzeitig verordnet, wird für jedes Arzneimittel
 // * dispenseRequest.expectedSupplyDuration 0..1 Duration "Number of days supply per dispense" "Identifies the period time over which the supplied product is expected to be used, or the length of time the dispense is expected to last."
 // * dispenseRequest.expectedSupplyDuration ^comment = "In some situations, this attribute may be used instead of quantity to identify the amount supplied by how long it is expected to last, rather than the physical quantity issued, e.g. 90 days supply of medication (based on an ordered dosage). When possible, it is always better to specify quantity, as this tends to be more precise. expectedSupplyDuration will always be an estimate that can be influenced by external factors."
 // * dispenseRequest.performer 0..1 Reference(http://hl7.org/fhir/StructureDefinition/Organization) "Intended dispenser" "Indicates the intended dispensing Organization specified by the prescriber."
+
+* substitution 0..1
+* substitution ^short = "Gibt an, ob eine Substitution Teil der Abgabe sein kann / sollte / nicht sein darf. Dieser Block erläutert die Absicht des verschreibenden Arztes. Wenn nichts angegeben ist, kann eine Substitution vorgenommen werden. -> Eher keine Verwendung in der geplanten Abgabe, Dokumentation über Substitution erfolg in der Dispenses-Resource."
+
 // * substitution 0..1 BackboneElement "Any restrictions on medication substitution" "Indicates whether or not substitution can or should be part of the dispense. In some cases, substitution must happen, in other cases substitution must not happen. This block explains the prescriber's intent. If nothing is specified substitution may be done."
 // * substitution.allowed[x] 1..1 boolean or CodeableConcept "Whether substitution is allowed or not" "True if the prescriber allows a different drug to be dispensed from what was prescribed."
 // * substitution.allowed[x] from http://terminology.hl7.org/ValueSet/v3-ActSubstanceAdminSubstitutionCode (example)
@@ -212,18 +217,15 @@ Werden mehrere Arzneimittel gleichzeitig verordnet, wird für jedes Arzneimittel
 // * substitution.reason ^binding.extension.url = "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"
 // * substitution.reason ^binding.extension.valueString = "MedicationIntendedSubstitutionReason"
 // * substitution.reason ^binding.description = "A coded concept describing the reason that a different medication should (or should not) be substituted from what was prescribed."
-// * priorPrescription 0..1 Reference(http://hl7.org/fhir/StructureDefinition/MedicationRequest) "An order/prescription that is being replaced" "A link to a resource representing an earlier order related order or prescription."
-* priorPrescription ^short = "Im Falle einer Änderung wird auf die ersetzte Verordnungen/MedicationRequests verwiesen."
-// * detectedIssue 0..* Reference(http://hl7.org/fhir/StructureDefinition/DetectedIssue) "Clinical Issue with action" "Indicates an actual or potential clinical issue with or between one or more active or proposed clinical actions for a patient; e.g. Drug-drug interaction, duplicate therapy, dosage alert etc."
-// * detectedIssue ^comment = "This element can include a detected issue that has been identified either by a decision support system or by a clinician and may include information on the steps that were taken to address the issue."
-// * detectedIssue ^alias[0] = "Contraindication"
-// * detectedIssue ^alias[+] = "Drug Utilization Review (DUR)"
-// * detectedIssue ^alias[+] = "Alert"
-// * eventHistory 0..* Reference(http://hl7.org/fhir/StructureDefinition/Provenance) "A list of events of interest in the lifecycle" "Links to Provenance records for past versions of this resource or fulfilling request or event resources that identify key state transitions or updates that are likely to be relevant to a user looking at the current version of the resource."
-// * eventHistory ^comment = "This might not include provenances for all versions of the request – only those deemed “relevant” or important. This SHALL NOT include the provenance associated with this current version of the resource. (If that provenance is deemed to be a “relevant” change, it will need to be added as part of a later update. Until then, it can be queried directly as the provenance that points to this version using _revinclude All Provenances should have some historical version of this Request as their subject.)."
 
+* priorPrescription 0..1 
+* priorPrescription ^short = "Im Falle einer Änderung wird auf die ersetzte geplante Abgabe verwiesen."
 
+* detectedIssue 0..0
+* detectedIssue ^short = "Bezeichnet ein tatsächliches / potenzielles klinisches Problem mit oder zwischen aktiven / vorgeschlagenen klinischen Maßnahmen für einen Patienten, z. B. Wechselwirkungen zwischen Medikamenten, doppelte Therapie, Dosierungswarnung usw. -> Keine Verwendung in der geplanten Abgabe"
 
+* eventHistory 0..0
+* eventHistory ^short = "Bezeichnet eine Liste von Provenance-Ressourcen, die verschiedene relevante Versionen dieser Ressource dokumentieren. -> Keine Verwendung in der geplanten Abgabe."
 
 // --- XOR-Invariant: genau eines von beiden ---
 // https://hl7.org/fhirpath/N1/

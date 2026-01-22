@@ -1,9 +1,7 @@
-Alias: $sct = http://snomed.info/sct
-
-Instance: AtEmedExampleMedicationRequestGeplanteAbgabe01
+Instance: AtEmedExampleGeplanteAbgabe01
 InstanceOf: AtEmedMedicationRequestGeplanteAbgabe
-Title: "AtEmedMedicationRequestGeplanteAbgabe-Beispiel"
-Description: "AtEmedMedicationRequestGeplanteAbgabe-Beispiel"
+Title: "Example Geplante Abgabe 1"
+Description: "Example Geplante Abgabe 1"
 Usage: #example
 
 //* meta.profile = "http://hl7.eu/fhir/mpd/StructureDefinition/MedicationRequest-eu-mpd"
@@ -11,6 +9,7 @@ Usage: #example
 * identifier.value = "WYE82A2G8EEW-4711"
 * status = #active
 * intent = #order
+* category.coding = #2 "Geplante Abgabe"
 * medicationCodeableConcept = $cs-asp-liste#2443061 "EBETREXAT TBL 10MG"
 * subject = Reference(Patient/AtEmedExamplePatient01)
 * authoredOn = "2024-10-03"
@@ -19,7 +18,7 @@ Usage: #example
 * groupIdentifier.value = "WYE82A2G8EE1"
 //* courseOfTherapyType = $sct#394577000 "Continuous therapy"
 //* courseOfTherapyType = #continuous "Continuous long term therapy"
-* note.text = "Zusätzliche Informationen zur geplanten Abgabe."
+* note.text = "Freitext Informationen zur geplanten Abgabe."
 
 * dosageInstruction.timing.repeat.boundsDuration = 42 'd' "day"
 * dosageInstruction.timing.repeat.frequency = 1
@@ -32,8 +31,6 @@ Usage: #example
 * dispenseRequest.numberOfRepeatsAllowed = 1
 * dispenseRequest.quantity = 168 http://snomed.info/sct#732936001 "Tablet"
 * basedOn = Reference(Medication/AtEmedExampleMedicationRequestPlaneintrag01) "Planeintrag"
-
-
 
 
 // * medicationReference = Reference(Medication/AtApsExampleMedication01) "Ramipril 5mg Kapseln"

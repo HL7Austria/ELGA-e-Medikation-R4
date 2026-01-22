@@ -1,10 +1,10 @@
 Alias: $sct = http://snomed.info/sct
 Alias: $changetype = http://nehta.gov.au/codes/medications/changetype
 
-Instance: AtEmedExampleListMedikationsplan01
+Instance: AtEmedExampleMedikationsplan01
 InstanceOf: AtEmedListMedikationsplan
-Title: "AtEmedListMedikationsplan-Beispiel"
-Description: "AtEmedListMedikationsplan-Beispiel"
+Title: "Example Medikationsplan 1"
+Description: "Example Medikationsplan 1"
 Usage: #example
 * status = #current
 * mode = #changes
