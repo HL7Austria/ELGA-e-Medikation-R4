@@ -1,7 +1,7 @@
-Instance: AtEmedExampleMedicationDispense01
+Instance: AtEmedExampleDurchgefuehrteAbgabe01
 InstanceOf: AtEmedMedicationDispense
-Title: "AtEmedExampleMedicationDispense-Beispiel01"
-Description: "Medication Dispense"
+Title: "Beispiel Durchgeführte Abgabe 1"
+Description: "Beispiel Durchgeführte Abgabe 1"
 Usage: #example
 // * status = #completed
 // * medicationReference = Reference(Medication/AtApsExampleMedication01) "Ramipril 5mg Kapseln"

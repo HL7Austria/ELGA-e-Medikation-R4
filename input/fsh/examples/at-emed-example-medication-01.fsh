@@ -4,8 +4,8 @@ Alias: $sct = http://snomed.info/sct
 
 Instance: AtEmedExampleMedicationCefuroxime
 InstanceOf: AtEmedMedication
-Title: "AtEmedMedication-Beispiel"
-Description: "AtEmedMedication-Beispiel"
+Title: "Beispiel Medication Cefuroxime"
+Description: "Beispiel Medication Cefuroxime"
 Usage: #example
 // * code = http://www.whocc.no/atc#C09AA05 "Ramipril"
 // * code.text = "Ramipril 5mg Kapseln"

@@ -1,0 +1,7 @@
+Instance: AtEmedExampleBundleTxMedikationsplan01
+InstanceOf: AtEmedBundleTxMedikationsplan
+Title: "Beispiel eines Transaction Bundles Medikationsplan 1"
+Description: "Beispiel eines Transaction Bundles Medikationsplan 1"
+Usage: #example
+
+* type = #transaction

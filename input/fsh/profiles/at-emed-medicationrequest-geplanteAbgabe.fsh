@@ -152,7 +152,7 @@ Werden mehrere Arzneimittel gleichzeitig verordnet, wird für jedes Arzneimittel
 * performerType 0..0
 * performerType ^short = "Keine Verwendung in der geplanten Abgabe."
 
-* reasonCode 0..*
+* reasonCode 0..* MS
 * reasonCode ^short = "Grund für die Verordnung des Arzneimittels. Entweder Code oder Referenz (evtl. Invariante)."
 
 * reasonReference 0..* MS
@@ -178,45 +178,30 @@ Werden mehrere Arzneimittel gleichzeitig verordnet, wird für jedes Arzneimittel
 * insurance ^short = "Keine Verwendung in der geplanten Abgabe."
 
 * note 0..* 
-* insurance ^short = "Zusätzliche Informationen zur geplanten Abgabe, die durch die anderen Attribute nicht abgebildet werden konnten. -> Dzt. unklar, ob erforderlich, evtl einschränken"
+* note ^short = "Zusätzliche Informationen zur geplanten Abgabe, die durch die anderen Attribute nicht abgebildet werden konnten. -> Dzt. unklar, ob erforderlich, evtl einschränken"
 
 * dosageInstruction 0..* 
-* dosageInstruction ^short = "Anweisungen zur Einnahme/Verabreichung des Arzneimittels. TODO"
+* dosageInstruction ^short = "Anweisungen zur Einnahme/Verabreichung des Arzneimittels."
+
+* dosageInstruction.patientInstruction ^short = "Anweisungen für den Patienten"
+* dosageInstruction.timing.repeat.frequency ^short = "Wiederholungen innerhalb der Dauer"
+* dosageInstruction.timing.repeat.period ^short = "Zeitraum, über den Wiederholungen erfolgen sollen"
+* dosageInstruction.timing.repeat.periodUnit ^short = "Zeiteinheit: s | min | h | d | wk | mo | a  (UCUM)"
+* dosageInstruction.timing.repeat.when from http://hl7.org/fhir/ValueSet/event-timing
+* dosageInstruction.timing.repeat.when ^short = "Code für den Zeitraum des Auftretens (z.B. nach dem Frühstück) https://hl7.org/fhir/R4/valueset-event-timing.html"
+* dosageInstruction.asNeeded[x] ^short = "Bedarfsmedikation"
+
+* dosageInstruction.doseAndRate.rate[x] 0..0
+* dosageInstruction.doseAndRate.rate[x] ^short = "Verabreichte Medikamentendosis. Keine Verwendung in der geplanten Abgabe. Zu prüfen"
+
+// * effectiveDosePeriod ^short = "Period over which the medication is to be taken | Zeitraum, über den das Medikament eingenommen werden soll"
 
 * dispenseRequest 0..1 
-* dispenseRequest ^short = "Details zur geplanten Abgabe des Arzneimittels. Zu klären."
-
-// * dispenseRequest 0..1 BackboneElement^^ "Medication supply authorization" "Indicates the specific details for the dispense or medication supply part of a medication request (also known as a Medication Prescription or Medication Order).  Note that this information is not always sent with the order.  There may be in some settings (e.g. hospitals) institutional or system support for completing the dispense details in the pharmacy department."
-// * dispenseRequest.initialFill 0..1 BackboneElement "First fill details" "Indicates the quantity or duration for the first dispense of the medication."
-// * dispenseRequest.initialFill ^comment = "If populating this element, either the quantity or the duration must be included."
-// * dispenseRequest.initialFill.quantity 0..1 http://hl7.org/fhir/StructureDefinition/SimpleQuantity "First fill quantity" "The amount or quantity to provide as part of the first dispense."
-// * dispenseRequest.initialFill.duration 0..1 Duration "First fill duration" "The length of time that the first dispense is expected to last."
-// * dispenseRequest.dispenseInterval 0..1 Duration "Minimum period of time between dispenses" "The minimum period of time that must occur between dispenses of the medication."
-// * dispenseRequest.validityPeriod 0..1 Period "Time period supply is authorized for" "This indicates the validity period of a prescription (stale dating the Prescription)."
-// * dispenseRequest.validityPeriod ^comment = "It reflects the prescribers' perspective for the validity of the prescription. Dispenses must not be made against the prescription outside of this period. The lower-bound of the Dispensing Window signifies the earliest date that the prescription can be filled for the first time. If an upper-bound is not specified then the Prescription is open-ended or will default to a stale-date based on regulations."
-// * dispenseRequest.validityPeriod ^requirements = "Indicates when the Prescription becomes valid, and when it ceases to be a dispensable Prescription."
-// * dispenseRequest.numberOfRepeatsAllowed 0..1 unsignedInt "Number of refills authorized" "An integer indicating the number of times, in addition to the original dispense, (aka refills or repeats) that the patient can receive the prescribed medication. Usage Notes: This integer does not include the original order dispense. This means that if an order indicates dispense 30 tablets plus \"3 repeats\", then the order can be dispensed a total of 4 times and the patient can receive a total of 120 tablets.  A prescriber may explicitly say that zero refills are permitted after the initial dispense."
-// * dispenseRequest.numberOfRepeatsAllowed ^comment = "If displaying \"number of authorized fills\", add 1 to this number."
-// * dispenseRequest.quantity 0..1 http://hl7.org/fhir/StructureDefinition/SimpleQuantity "Amount of medication to supply per dispense" "The amount that is to be dispensed for one fill."
-// * dispenseRequest.expectedSupplyDuration 0..1 Duration "Number of days supply per dispense" "Identifies the period time over which the supplied product is expected to be used, or the length of time the dispense is expected to last."
-// * dispenseRequest.expectedSupplyDuration ^comment = "In some situations, this attribute may be used instead of quantity to identify the amount supplied by how long it is expected to last, rather than the physical quantity issued, e.g. 90 days supply of medication (based on an ordered dosage). When possible, it is always better to specify quantity, as this tends to be more precise. expectedSupplyDuration will always be an estimate that can be influenced by external factors."
-// * dispenseRequest.performer 0..1 Reference(http://hl7.org/fhir/StructureDefinition/Organization) "Intended dispenser" "Indicates the intended dispensing Organization specified by the prescriber."
+* dispenseRequest ^short = "Details zur geplanten Abgabe des Arzneimittels."
+* dispenseRequest.numberOfRepeatsAllowed ^short = "Anzahl der möglichen Einlösungen."
 
 * substitution 0..1
 * substitution ^short = "Gibt an, ob eine Substitution Teil der Abgabe sein kann / sollte / nicht sein darf. Dieser Block erläutert die Absicht des verschreibenden Arztes. Wenn nichts angegeben ist, kann eine Substitution vorgenommen werden. -> Eher keine Verwendung in der geplanten Abgabe, Dokumentation über Substitution erfolg in der Dispenses-Resource."
-
-// * substitution 0..1 BackboneElement "Any restrictions on medication substitution" "Indicates whether or not substitution can or should be part of the dispense. In some cases, substitution must happen, in other cases substitution must not happen. This block explains the prescriber's intent. If nothing is specified substitution may be done."
-// * substitution.allowed[x] 1..1 boolean or CodeableConcept "Whether substitution is allowed or not" "True if the prescriber allows a different drug to be dispensed from what was prescribed."
-// * substitution.allowed[x] from http://terminology.hl7.org/ValueSet/v3-ActSubstanceAdminSubstitutionCode (example)
-// * substitution.allowed[x] ^comment = "This element is labeled as a modifier because whether substitution is allow or not, it cannot be ignored."
-// * substitution.allowed[x] ^binding.extension.url = "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"
-// * substitution.allowed[x] ^binding.extension.valueString = "MedicationRequestSubstitution"
-// * substitution.allowed[x] ^binding.description = "Identifies the type of substitution allowed."
-// * substitution.reason 0..1 CodeableConcept "Why should (not) substitution be made" "Indicates the reason for the substitution, or why substitution must or must not be performed."
-// * substitution.reason from http://terminology.hl7.org/ValueSet/v3-SubstanceAdminSubstitutionReason (example)
-// * substitution.reason ^binding.extension.url = "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"
-// * substitution.reason ^binding.extension.valueString = "MedicationIntendedSubstitutionReason"
-// * substitution.reason ^binding.description = "A coded concept describing the reason that a different medication should (or should not) be substituted from what was prescribed."
 
 * priorPrescription 0..1 
 * priorPrescription ^short = "Im Falle einer Änderung wird auf die ersetzte geplante Abgabe verwiesen."
@@ -233,31 +218,6 @@ Invariant: med-1
 Description: "Für die geplante Abgabe muss entweder CodeableConcept (PZN) oder Reference(Medication) angegeben werden – aber genau eins."
 Expression: "medicationCodeableConcept.exists() xor medicationReference.exists()"
 Severity: #error
-
-
-
-// NIK R5 Spec:
-
-// * note ^short = "CDA eMed v2: ZINFO || not machine readable Information about the MedicationRequests | nicht maschinenlesbare Informationen über die Verordnung"
-// * effectiveDosePeriod ^short = "Period over which the medication is to be taken | Zeitraum, über den das Medikament eingenommen werden soll"
-// * dosageInstruction ^short = "One or more specific instructions for how the medication should be taken | Eine oder mehrere spezifische Anweisungen für die Einnahme des Medikaments"
-// * dosageInstruction.patientInstruction ^short = "CDA eMed v2: ALTEIN || Patient or consumer oriented instructions | Patienten- oder verbraucherorientierte Anweisungen"
-// * dosageInstruction.timing.repeat.frequency ^short = "Repetitions within the period | Wiederholungen innerhalb der Dauer"
-// * dosageInstruction.timing.repeat.period ^short = "A defined period with its duration to which the frequency applies | Ein bestimmter Zeitraum mit seiner Dauer, für den die Wiederholungen gelten"
-// * dosageInstruction.timing.repeat.periodUnit ^short = "Unit of period | Einheit zur Dauer"
-// * dosageInstruction.timing.repeat.when from http://hl7.org/fhir/ValueSet/event-timing
-// * dosageInstruction.timing.repeat.when ^short = "Code for time period of occurrence | Code für die Eintrittszeitspanne"
-// * dosageInstruction.asNeeded ^short = "Take 'as needed' | Bedarfsmedikation"
-
-// * dosageInstruction.doseAndRate.doseQuantity.value ^short = "Quantity per intake | Menge pro Einnahme"
-// * dosageInstruction.doseAndRate.doseQuantity.unit ^short = "Unit for quantity per intake | Einheit zur Menge pro Einnahme"
-// //* dosageInstruction.doseAndRate.doseQuantity.code from $DoseForm (extensible)
-// * dosageInstruction.doseAndRate.rate[x] ^short = "Do not use any rate element for repetitions, period or any other time related information. Use timing instead. | Verwenden Sie für Wiederholungen, Perioden oder andere zeitbezogene Informationen keine der rate-Elemente. Verwenden Sie stattdessen timing."
-// * dosageInstruction.doseAndRate.rateRatio 0..0
-// * dosageInstruction.doseAndRate.rateRange 0..0
-// * dosageInstruction.doseAndRate.rateQuantity 0..0
-
-// * dispenseRequest.numberOfRepeatsAllowed ^short = "	Number of refills authorized | Anzahl der genehmigten Einlösungen"
 
 
 
