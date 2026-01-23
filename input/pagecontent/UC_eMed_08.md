@@ -18,7 +18,7 @@ Details zu "Die e-Abgabe" (ab Kapitel Geplante Abgaben erfassen), siehe "[Die e-
 
 ### Auslöser
 
-* Benutzer:in möchte auf Basis eines Medikationsplaneintrags eine geplante Abgabe erfassen oder korrigieren  
+* GDA möchte auf Basis eines Medikationsplaneintrags eine geplante Abgabe erfassen oder korrigieren  
 
 ### Vorbediungungen
 
@@ -27,7 +27,7 @@ Details zu "Die e-Abgabe" (ab Kapitel Geplante Abgaben erfassen), siehe "[Die e-
 
 ### Nachbedingungen/Ergebnis 
 
-* Die geplante Abgabe wurde zu einem Medikationsplaneintrag erfasst oder korrigiert  
+* Die geplante Abgabe wurde ausgehend von einem Medikationsplaneintrag erfasst oder korrigiert  
 * Zugriff wird protokolliert
 
 ###	Abläufe

@@ -17,9 +17,9 @@ Details zu "Medikationsplan erfassen", siehe "[Die e-Medikation](requirements.ht
 
 * GDA möchte einen Medikationsplan für eine:n ELGA-Teilnehmer:in erfassen oder korrigieren 
 
-### Vorbediungungen
+### Vorbedingungen
 
-* GDA ist authentifiziert und autorisiert 
+* Benutzer:in ist authentifiziert und autorisiert 
 * ELGA-Teilnehmer:in ist eindeutig identifiziert 
 
 ### Nachbedingungen/Ergebnis 

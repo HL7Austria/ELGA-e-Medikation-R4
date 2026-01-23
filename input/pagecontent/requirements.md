@@ -256,7 +256,6 @@ Die geplanten Abgaben können gelesen werden:
           </ul>
         </li>
         <li>abgelaufener Gültigkeitszeitraum einer geplanten Abgabe </li>
-        <li>abgelaufene Rezepte (?) </li>
       </ul>
     </li>
     <li>Filter- und Suchfunktionen können hilfreich sein (v.a. bei Abgabenlisten, die viele Einträge enthalten) </li>
