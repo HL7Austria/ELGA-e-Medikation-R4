@@ -2,6 +2,11 @@
 Alias: $imposeProfile = http://hl7.org/fhir/StructureDefinition/structuredefinition-imposeProfile
 //Alias: $dependencies = http://hl7.org/fhir/StructureDefinition/structuredefinition-dependencies
 
+// R5 extensions
+// Alias: $extension-MedicationRequest.effectiveDosePeriod = http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationRequest.effectiveDosePeriod
+// Alias: $extension-MedicationRequest.renderedDosageInstruction = http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationRequest.renderedDosageInstruction
+
+
 // code systems
 // general
 Alias: $cs-loinc = http://loinc.org
