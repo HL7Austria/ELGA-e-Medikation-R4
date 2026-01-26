@@ -1,8 +1,14 @@
+// Alias: $rendered = http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationRequest.renderedDosageInstruction
+// Alias: $effective = http://hl7.org/fhir/StructureDefinition/medicationrequest-effectivedoseperiod-r5
+// Alias: $extension-MedicationRequest.effectiveDosePeriod = http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationRequest.effectiveDosePeriod
+// Alias: $extension-MedicationRequest.renderedDosageInstruction = http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationRequest.renderedDosageInstruction
+
+
 Profile: AtEmedMedicationRequestPlaneintrag
 Parent: MedicationRequest
 Id: at-emed-medicationrequest-planeintrag
 Title: "ELGA e-Medikation Planeintrag"
-Description: "**Beschreibung:** Bildet einen Eintrag eines Medikationsplans eines ELGA Teilnehmers ab. 
+Description: "**Beschreibung:** Bildet einen Medikationsplaneintrag im Medikationsplan eines ELGA Teilnehmers ab. 
 Er enthält genau ein Arzneimittel und dessen Dosierung.
 Kann in weiterer Folge dazu dienen, eine geplante Abgabe zu erstellen (AtEmedMedicationRequestGeplanteAbgabe)."
 
@@ -15,12 +21,17 @@ Kann in weiterer Folge dazu dienen, eine geplante Abgabe zu erstellen (AtEmedMed
 // zu überprüfen - siehe geplane Abgabe
 // Ende Vorgaben MPD ***************************
 
+// R5 Backport Extensions *******************
+// siehe geplante Abgabe
+// Ende R5 Backport Extensions *******************
 
-* identifier 0..* 
+
+
+* identifier 0..*  // 1..1 MS ?
 * identifier ^short = "Zu prüfen, ob/wie in Medikationsplaneintrag verwendet. Geplante Abgabe-ID (e-Med-ID) steht jedenfalls erst zum Zeitpunkt der Erstellung einer geplanten Abgabe (Rezeptierung) zur Verfügung."
 
 // evt. noch einschränken: unknown, draft entfernen
-* status ^short = "Status des Medikationsplaneintrags (im Standardfall active oder complete): active | on-hold | cancelled | completed | entered-in-error | stopped | draft | unknown" 
+* status ^short = "Status des Medikationsplaneintrags (im Standardfall active oder complete): active | on-hold | cancelled | completed | entered-in-error | stopped | draft | unknown -> entfernen: draft, unknown" 
 
 * statusReason 0..1 
 * statusReason ^short = "Grund für den aktuellen Status des Medikationsplaneintrags: https://hl7.org/fhir/R4/valueset-medicationrequest-status-reason.html. Verwendung prüfen."
@@ -33,6 +44,9 @@ Kann in weiterer Folge dazu dienen, eine geplante Abgabe zu erstellen (AtEmedMed
 * category 1..1 MS
 * category from MedicationRequestCategoryVS (required)
 * category.coding = #1 "Medikationsplaneintrag"
+//* category.coding.code = #1 "
+// * category.coding.display = "Medikationsplaneintrag"
+// * category.coding.system = "http://hl7.org/fhir/medicationrequest-category"    // derzeit nur lokal
 * category ^short = "Kategorie damit Instanz einer geplanten Abgabe von Medikationsplaneintrag unterschieden werden kann"
 
 * priority 0..0
@@ -95,7 +109,12 @@ Kann in weiterer Folge dazu dienen, eine geplante Abgabe zu erstellen (AtEmedMed
 * performerType ^short = "Keine Verwendung in der geplanten Abgabe."
 
 * reasonCode 0..* MS
+//* reasonCode from $cs-sct (required)
 * reasonCode ^short = "Grund für die Verordnung des Arzneimittels. Entweder Code oder Referenz (evtl. Invariante)."
+* reasonCode.coding 1..*
+* reasonCode.coding.system 1..1 
+* reasonCode.coding.code 1..1
+* reasonCode.coding.display 1..1
 
 * reasonReference 0..* MS
 * reasonReference ^short = "Grund für die Verordnung des Arzneimittels. Entweder Code oder Referenz (evtl. Invariante)."
@@ -114,7 +133,7 @@ Kann in weiterer Folge dazu dienen, eine geplante Abgabe zu erstellen (AtEmedMed
 * groupIdentifier ^short = "Keine Verwendung im Medikationsplaneintrag. Erst bei der geplanten Abgabe (Rezepterstellung) relevant."
 
 * courseOfTherapyType 0..1 
-* courseOfTherapyType ^short = "Gesamtmuster der Medikamentengabe (z.B. saisonal). Evtl. im Medikationsplaneintrag (dosageInstruction), paused soll im Status dokumentiert werden."
+* courseOfTherapyType ^short = "Gesamtmuster der Medikamentengabe (z.B. saisonal). Verwendung im Medikationsplaneintrag prüfen (dosageInstruction), paused soll im Status dokumentiert werden."
 
 * insurance 0..0
 * insurance ^short = "Keine Verwendung im Medikationsplaneintrag."
@@ -154,10 +173,16 @@ Kann in weiterer Folge dazu dienen, eine geplante Abgabe zu erstellen (AtEmedMed
 * eventHistory 0..0
 * eventHistory ^short = "Bezeichnet eine Liste von Provenance-Ressourcen, die verschiedene relevante Versionen dieser Ressource dokumentieren. Verwendung im Medikationsplaneintrag zu prüfen."
 
-// // --- XOR-Invariant: genau eines von beiden ---
-// // https://hl7.org/fhirpath/N1/
+// --- XOR-Invariant: genau eines von beiden ---
+// https://hl7.org/fhirpath/N1/
 // Invariant: med-1
 // Description: "Für die geplante Abgabe muss entweder CodeableConcept (PZN) oder Reference(Medication) angegeben werden – aber genau eins."
 // Expression: "medicationCodeableConcept.exists() xor medicationReference.exists()"
 // Severity: #error
+
+// Invariant: epa-datetime
+// Description: "dateTime muss mindestens aus Tag, Monat und Jahr bestehen"
+// * severity = #error
+// * expression = "toString().matches('^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\\\.[0-9]+)?(Z|(\\\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?$')"
+
 

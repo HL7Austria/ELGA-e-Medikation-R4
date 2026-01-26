@@ -1,13 +1,18 @@
+// Alias: $rendered = http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationRequest.renderedDosageInstruction
+// Alias: $effective = http://hl7.org/fhir/StructureDefinition/medicationrequest-effectivedoseperiod-r5
+// Alias: $extension-MedicationRequest.effectiveDosePeriod = http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationRequest.effectiveDosePeriod
+// Alias: $extension-MedicationRequest.renderedDosageInstruction = http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationRequest.renderedDosageInstruction
+
+
 Profile: AtEmedMedicationRequestGeplanteAbgabe
 Parent: MedicationRequest
 Id: at-emed-medicationrequest-geplanteAbgabe
 Title: "ELGA e-Medikation Geplante Abgabe"
 Description: "**Beschreibung:** Bildet eine geplante Abgabe eines Arzneimittels aus dem zugrundeliegenden Medikationsplaneintrag des ELGA-Teilnehmers ab.
-Sie enthält das verordnete Arzneimittel und dessen Dosierung und spielgelt die Inhalte des e-Rezepts wider. 
-Geplante Abgaben dienen somit der Nachvollziehbarkeit der rezeptierten Arzneimittel in der e-Medikation.
+Sie enthält das verordnete Arzneimittel und dessen Dosierung und spielgelt die Inhalte des e-Rezepts wider. Geplante Abgaben dienen somit der Nachvollziehbarkeit der rezeptierten Arzneimittel in der e-Medikation.
 Als groupIdentifier dient die Geplante-Abgabe-ID (früher eMED-ID), die auch im e-Rezept mitgeführt wird.
-Werden mehrere Arzneimittel gleichzeitig verordnet, wird für jedes Arzneimittel eine geplante Abgabe mit demselben groupIdentifier erstellt (bildet 'Rezept-Klammer')."
-* . ^short = "Geplante Abgabe eines Arzneimittels aus dem Medikationsplan."
+Werden mehrere Arzneimittel gleichzeitig verordnet, wird für jedes Arzneimittel eine geplante Abgabe mit demselben groupIdentifier erstellt (bildet 'Rezept-Klammer'). Verwendet R5 Backport Extensions."
+* . ^short = "Geplante Abgabe eines Arzneimittels aus dem Medikationsplan. Verwendet R5 Backport Extensions."
 
 // Vorgaben APS ***************************
 // impose Profile APS 
@@ -71,15 +76,30 @@ Werden mehrere Arzneimittel gleichzeitig verordnet, wird für jedes Arzneimittel
 
 // Ende Vorgaben MPD ***************************
 
+
+// R5 Backport Extensions  -> https://gemspec.gematik.de/ig/fhir/epa-medication/1.3.0/StructureDefinition-emp-medication-request.profile.json.html
+
+// * extension contains
+//     $extension-MedicationRequest.effectiveDosePeriod named effectiveDosePeriod 0..1 MS and
+//     $extension-MedicationRequest.renderedDosageInstruction named renderedDosageInstruction 0..1 MS and
+
+//* extension[effectiveDosePeriod] ^short = "Zeitraum, in dem die Medikation eingenommen werden soll."
+//* extension[effectiveDosePeriod] ^definition = "Zeitraum, über den die Medikation eingenommen werden soll. Wenn mehrere dosageInstruction-Zeilen vorhanden sind (z. B. bei einer ausschleichenden Dosierung), entspricht dieser Zeitraum dem frühesten Startdatum und dem spätesten Enddatum der dosageInstructions."
+// * extension[renderedDosageInstruction].extension[text].valueMarkdown 0..1
+// * extension[renderedDosageInstruction].extension[language].valueCode 0..1
+// * extension[effectiveDosePeriod].valuePeriod 0..1
+// * extension[effectiveDosePeriod].value[x].start obeys epa-datetime
+// * extension[effectiveDosePeriod].value[x].end obeys epa-datetime
+
+
 // Obligations für alle MS Elemente!, kein 0..0 nötig
 // MedicationRequest 
 * identifier 1..* MS  
 * identifier ^short = "MedicationRequest identifier = {eMed-ID}_{locally assigned ID}  Setzt sich zusammen aus groupIdentifier (Rezept-Klammer) und individueller Identifikation der geplanten Abgabe."
 
-// evt. noch einschränken: unknown, draft entfernen
-* status ^short = "Status der geplanten Abgabe (im Standardfall active oder complete): active | on-hold | cancelled | completed | entered-in-error | stopped | draft | unknown" 
+// evt. noch einschränken: unknown, draft entfernen  
+* status ^short = "Status der geplanten Abgabe (im Standardfall active oder complete): active | on-hold | cancelled | completed | entered-in-error | stopped | draft | unknown -> entfernen: draft, unknown"
 
-//Ansatz hinterfragen ob 0..0, ob nichtsinnvoller die verpflichtenden Elemente mit Obligations festzulegen sind / MS
 * statusReason 0..0 
 * statusReason ^short = "Grund für den aktuellen Status: https://hl7.org/fhir/R4/valueset-medicationrequest-status-reason.html. Keine Verwendung in der geplanten Abgabe."
 
@@ -91,7 +111,10 @@ Werden mehrere Arzneimittel gleichzeitig verordnet, wird für jedes Arzneimittel
 * category 1..1 MS
 * category from MedicationRequestCategoryVS (required)
 * category.coding = #2 "Geplante Abgabe"
-* category ^short = "Kategorie damit geplante Abgabe von Medikationsplaneintrag unterschieden werden kann"
+// * category.coding.code = #2 
+// * category.coding.display = "Geplante Abgabe"
+// * category.coding.system = "http://hl7.org/fhir/medicationrequest-category"    // derzeit nur lokal
+* category ^short = "Kategorie damit geplante Abgabe von Medikationsplaneintrag unterschieden werden kann."
 
 * priority 0..0
 * priority ^short = "Priorität der geplanten Abgabe: routine | urgent | asap | stat. Keine Verwendung in der geplanten Abgabe."
@@ -153,7 +176,12 @@ Werden mehrere Arzneimittel gleichzeitig verordnet, wird für jedes Arzneimittel
 * performerType ^short = "Keine Verwendung in der geplanten Abgabe."
 
 * reasonCode 0..* MS
+//* reasonCode from $cs-sct (required)
 * reasonCode ^short = "Grund für die Verordnung des Arzneimittels. Entweder Code oder Referenz (evtl. Invariante)."
+* reasonCode.coding 1..*
+* reasonCode.coding.system 1..1 
+* reasonCode.coding.code 1..1
+* reasonCode.coding.display 1..1
 
 * reasonReference 0..* MS
 * reasonReference ^short = "Grund für die Verordnung des Arzneimittels. Entweder Code oder Referenz (evtl. Invariante)."
@@ -219,6 +247,9 @@ Description: "Für die geplante Abgabe muss entweder CodeableConcept (PZN) oder 
 Expression: "medicationCodeableConcept.exists() xor medicationReference.exists()"
 Severity: #error
 
-
+// Invariant: epa-datetime
+// Description: "dateTime muss mindestens aus Tag, Monat und Jahr bestehen"
+// * severity = #error
+// * expression = "toString().matches('^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\\\.[0-9]+)?(Z|(\\\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?$')"
 
 
