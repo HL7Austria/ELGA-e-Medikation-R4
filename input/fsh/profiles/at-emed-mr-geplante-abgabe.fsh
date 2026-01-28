@@ -143,13 +143,12 @@ Werden mehrere Arzneimittel gleichzeitig verordnet, wird für jedes Arzneimittel
 * medication[x] only CodeableConcept or Reference(AtEmedMedication)  //Obligation auf obersten Ebenen
 // CodeableConcept-Variante (ASP-Liste, PZN)
 * medicationCodeableConcept 0..1 MS  //Obligation auf obersten Ebenen
-* medicationCodeableConcept from $cs-asp-liste (required)
+* medicationCodeableConcept from $cs-asp-liste (required)  // gem. CDA code: Pharmazentralnummer (OID 1.2.40.0.34.4.16), Zulassungsnummer (OID 1.2.40.0.34.4.17), Package Reference Number der AGES (OID 1.2.40.0.34.4.26), (in Vorbereitung) PCID der EMA (OID 1.2.40.0.34.4.27)
 * medicationCodeableConcept ^short = "Angabe mittels Pharmazentralnummer (PZN) aus der ASP-Liste."
-* medicationCodeableConcept.coding 1.. // evtl.zusätzlich ausländische Codes o.ä. zulassen
-* medicationCodeableConcept.coding.system 1..1
-* medicationCodeableConcept.coding.code 1..1
-* medicationCodeableConcept.coding.display 1..1   // wie funktioniert das mit Übersetzungen?
-
+* medicationCodeableConcept.coding 1.. // zusätzlich ausländische Codes o.ä. zulassen
+// * medicationCodeableConcept.coding.system 1..
+// * medicationCodeableConcept.coding.code 1..
+// * medicationCodeableConcept.coding.display 1..   // Übersetzungen?
 // Reference-Variante für magistrale Zubereitung/Infusionen
 * medicationReference 0..1 MS
 * medicationReference only Reference(AtEmedMedication)

@@ -6,7 +6,7 @@ Description: "**Beschreibung:** Bildet einen Medikationsplaneintrag im Medikatio
 Er enthält genau ein Arzneimittel und dessen Dosierung.
 Kann in weiterer Folge dazu dienen, eine geplante Abgabe zu erstellen (AtEmedMRGeplanteAbgabe)."
 
-
+// Extensions
 * extension contains $medicationRequest-effectiveDosePeriod-r5 named effectiveDosePeriod 0..1
 * extension[effectiveDosePeriod] ^short = "Period over which the medication should be taken."
 * extension[effectiveDosePeriod] ^definition = "Period over which the medication should be taken. Where there are multiple dosageInstruction lines (for example, tapering doses), this is the earliest date and the latest end date of the dosageInstructions."
@@ -14,9 +14,10 @@ Kann in weiterer Folge dazu dienen, eine geplante Abgabe zu erstellen (AtEmedMRG
 * extension contains $medicationrequest-rendereddosageinstruction-r5 named renderedDosageInstruction 0..1
 * extension[renderedDosageInstruction] ^short = "Full representation of the dosage instructions"
 
-//Fachlich zu klären, ob verwendet -> IHE extension und keine Backport Extension
+//Fachlich zu klären, ob verwendet -> hier IHE extension statt Backport Extension
 * extension contains $ihe-ext-medicationrequest-offlabeluse named offLabelUse 0..1 
 * extension[offLabelUse] ^short = "Indicates that the prescriber has knowingly prescribed the medication for an indication, age group, dosage, or route of administration that is not approved by the regulatory agencies and is not mentioned in the prescribing information for the product." 
+
 
 
 * identifier 0..*  // 1..1 MS ?
@@ -44,7 +45,8 @@ Kann in weiterer Folge dazu dienen, eine geplante Abgabe zu erstellen (AtEmedMRG
 * priority 0..0
 * priority ^short = "Priorität des Medikationsplaneintrag: routine | urgent | asap | stat. Keine Verwendung in Medikationsplaneintrag."
 
-* doNotPerform 0..1
+// z.B. Wenn bestimmtes Medikment nicht verordnet werden darf ? 
+* doNotPerform 0..1 MS
 * doNotPerform ^short = "Gibt an, ob der Medikationsplaneintrag die Verordnung einer Medikation (und somit die Erstellung einer geplanten Abgabe) untersagt ist. Verwendung prüfen."
 
 * reported[x] 0..0
@@ -55,18 +57,19 @@ Kann in weiterer Folge dazu dienen, eine geplante Abgabe zu erstellen (AtEmedMRG
 * medication[x] only CodeableConcept or Reference(AtEmedMedication)  //Obligation auf obersten Ebenen
 // CodeableConcept-Variante (ASP-Liste, PZN)
 * medicationCodeableConcept 0..1 MS  //Obligation auf obersten Ebenen
-* medicationCodeableConcept from $cs-asp-liste (required)
+* medicationCodeableConcept from $cs-asp-liste (required)   // gem. CDA code: Pharmazentralnummer (OID 1.2.40.0.34.4.16), Zulassungsnummer (OID 1.2.40.0.34.4.17), Package Reference Number der AGES (OID 1.2.40.0.34.4.26), (in Vorbereitung) PCID der EMA (OID 1.2.40.0.34.4.27)
 * medicationCodeableConcept ^short = "Angabe mittels Pharmazentralnummer (PZN) aus der ASP-Liste."
-* medicationCodeableConcept.coding 1.. // evtl.zusätzlich ausländische Codes o.ä. zulassen
-* medicationCodeableConcept.coding.system 1..1
-* medicationCodeableConcept.coding.code 1..1
-* medicationCodeableConcept.coding.display 1..1   // wie funktioniert das mit Übersetzungen?
+* medicationCodeableConcept.coding 1.. // zusätzlich ausländische Codes o.ä. zulassen
+// * medicationCodeableConcept.coding.system 1..
+// * medicationCodeableConcept.coding.code 1..
+// * medicationCodeableConcept.coding.display 1..   // Übersetzungen?
 
 // Reference-Variante für magistrale Zubereitung/Infusionen
 * medicationReference 0..1 MS
 * medicationReference only Reference(AtEmedMedication)
 * medicationReference ^short = "Bei magistralen Anwendungen oder Infusionen ohne PZN."
 * obeys med-1
+
 
 // --- Subject ---
 * subject only Reference(HL7ATCorePatient) 
@@ -104,9 +107,9 @@ Kann in weiterer Folge dazu dienen, eine geplante Abgabe zu erstellen (AtEmedMRG
 //* reasonCode from $cs-sct (required)
 * reasonCode ^short = "Grund für die Verordnung des Arzneimittels. Entweder Code oder Referenz (evtl. Invariante)."
 * reasonCode.coding 1..*
-* reasonCode.coding.system 1..1 
-* reasonCode.coding.code 1..1
-* reasonCode.coding.display 1..1
+// * reasonCode.coding.system 1..1 
+// * reasonCode.coding.code 1..1
+// * reasonCode.coding.display 1..1
 
 * reasonReference 0..* MS
 * reasonReference ^short = "Grund für die Verordnung des Arzneimittels. Entweder Code oder Referenz (evtl. Invariante)."
@@ -117,14 +120,15 @@ Kann in weiterer Folge dazu dienen, eine geplante Abgabe zu erstellen (AtEmedMRG
 * instantiatesUri 0..0 
 * instantiatesUri ^short = "URL, die auf ein extern gepflegtes Protokoll, eine Richtlinie, einen Auftragssatz oder eine andere Definition verweist, die von dieser Medikamentenanforderung ganz oder teilweise eingehalten wird. Verwendung im Medikationsplaneintrag zu prüfen."
 
-* basedOn 0..1 
-* basedOn only Reference(AtEmedMRPlaneintrag)
-* basedOn ^short = "Referenz auf einen zugrundeliegenden Medikationsplaneintrag. Verwendung im Medikationsplaneintrag zu prüfen: Bsp. nach einer Änderung; evtl. priorPrescription."
+* basedOn 0..0 
+//* basedOn only Reference(AtEmedMRPlaneintrag)
+* basedOn ^short = "Verwendung im Medikationsplaneintrag zu prüfen. Nach einer Änderung kann mit priorPrescription auf die Vorversion referenziert werden.
+Sinnvoll wäre evtl. Referenz auf Medikationsplan (List), ist aber mit basedOn nicht möglich."
 
 * groupIdentifier 0..0 
 * groupIdentifier ^short = "Keine Verwendung im Medikationsplaneintrag. Erst bei der geplanten Abgabe (Rezepterstellung) relevant."
 
-* courseOfTherapyType 0..1 
+* courseOfTherapyType 0..1 MS
 * courseOfTherapyType ^short = "Gesamtmuster der Medikamentengabe (z.B. saisonal). Verwendung im Medikationsplaneintrag prüfen (dosageInstruction), paused soll im Status dokumentiert werden."
 
 * insurance 0..0
@@ -153,11 +157,11 @@ Kann in weiterer Folge dazu dienen, eine geplante Abgabe zu erstellen (AtEmedMRG
 * dispenseRequest ^short = "Details zur geplanten Abgabe des Arzneimittels im Medikationsplan. Zu klären."
 * dispenseRequest.numberOfRepeatsAllowed ^short = "Anzahl der möglichen Einlösungen."
 
-* substitution 0..1
-* substitution ^short = "Gibt an, ob eine Substitution Teil der Abgabe sein kann / sollte / nicht sein darf. Dieser Block erläutert die Absicht des Arztes, der den Medikationsplaneintrag erstellt. Wenn nichts angegeben ist, kann eine Substitution vorgenommen werden. -> Zu prüfen ob Verwendung im Medikationsplaneintrag, Dokumentation über Substitution erfolg in der Dispenses-Resource."
+* substitution 0..0
+* substitution ^short = "Gibt an, ob eine Substitution Teil der Abgabe sein kann / sollte / nicht sein darf. Dieser Block erläutert die Absicht des Arztes, der den Medikationsplaneintrag erstellt. Wenn nichts angegeben ist, kann eine Substitution vorgenommen werden. -> Zu prüfen ob Verwendung im Medikationsplaneintrag, Dokumentation über Substitution erfolg in der Dispense-Resource."
 
 * priorPrescription 0..1 
-* priorPrescription ^short = "Im Falle einer Änderung wird auf den ersetzten Medikationsplaneintrag verwiesen."
+* priorPrescription ^short = "Im Falle einer Änderung wird auf den ersetzten Medikationsplaneintrag verwiesen. Unterscheidung zu basedOn ?"
 
 * detectedIssue 0..0
 * detectedIssue ^short = "Bezeichnet ein tatsächliches / potenzielles klinisches Problem mit oder zwischen aktiven / vorgeschlagenen klinischen Maßnahmen für einen Patienten, z. B. Wechselwirkungen zwischen Medikamenten, doppelte Therapie, Dosierungswarnung usw. Verwendung im Medikationsplaneintrag zu prüfen."
@@ -168,7 +172,7 @@ Kann in weiterer Folge dazu dienen, eine geplante Abgabe zu erstellen (AtEmedMRG
 // --- XOR-Invariant: genau eines von beiden ---
 // https://hl7.org/fhirpath/N1/
 // Invariant: med-1
-// Description: "Für die geplante Abgabe muss entweder CodeableConcept (PZN) oder Reference(Medication) angegeben werden – aber genau eins."
+// Description: "Für die geplante Abgabe muss entweder CodeableConcept (PZN) oder Reference(Medication) angegeben werden – aber genau eines."
 // Expression: "medicationCodeableConcept.exists() xor medicationReference.exists()"
 // Severity: #error
 
