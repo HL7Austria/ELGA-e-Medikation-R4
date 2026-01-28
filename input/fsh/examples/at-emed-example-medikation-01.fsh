@@ -1,6 +1,6 @@
 Alias: $atc = http://www.whocc.no/atc
 Alias: $standardterms = http://standardterms.edqm.eu
-Alias: $sct = http://snomed.info/sct
+
 
 Instance: ExampleMedicationCefuroxime
 InstanceOf: AtEmedMedication
@@ -27,7 +27,7 @@ Usage: #example
 * extension.url = "https://profiles.ihe.net/PHARM/MPD/StructureDefinition/ihe-ext-medication-classification"
 * extension.valueCodeableConcept = $atc#J01DC02 "cefuroxime"
 * form = $standardterms#50053000 "Powder for solution for injection or infusion"
-* ingredient.itemCodeableConcept = $sct#372833007 "Cefuroxime"
+* ingredient.itemCodeableConcept = $cs-sct#372833007 "Cefuroxime"
 * ingredient.isActive = true
 * ingredient.strength.numerator = 1500 'mg' "milligram"
 * ingredient.strength.denominator = 1 http://standardterms.edqm.eu#15060000 "Vial"
