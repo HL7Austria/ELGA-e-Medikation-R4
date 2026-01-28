@@ -150,7 +150,7 @@ Ein Medikationsplan beinhaltet u.a. folgende Informationen:
                 <li>Der GDA kann bereits bestehende Medikationsplan-Einträge entfernen, im Sinne eines Absetzens bzw. nicht Weiterverordnen in der nächsten Version des Medikationsplans</li>
                 <li>Beim Erfassen einer neuen Medikationsplanversion stehen die abgelaufenen/befristeten Einträge nicht mehr zur Verfügung </li>
                 <li>(tbd) Medikationsplan leeren: Soll der neue Medikationsplan keine Medikationsplan-Einträge mehr enthalten – sprich der:die ELGA-Teilnehmer:in soll derzeit keine Medikation mehr einnehmen – muss ein „leerer“ Medikationsplan geschrieben/gespeichert werden. Das bedeutet, dass alle bisherigen Medikamente aus dem Medikationsplan zu entfernen sind (ggf. sind diese bereits abgelaufen und stehen damit für die neue Version des Medikationsplans schon nicht mehr zur Verfügung). </li>
-                * es können nur sichtbare Einträge übernommen werden, vgl. UC_eMed_06_Medikationsplan lesen
+                * es können nur sichtbare Einträge übernommen werden, vgl. UC_eMed_06_Medikationsplan schreiben
             </ul>
         </li>
         <li>Reihenfolge:
