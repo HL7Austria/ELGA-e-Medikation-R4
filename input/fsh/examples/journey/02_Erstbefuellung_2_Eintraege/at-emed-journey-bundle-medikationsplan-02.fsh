@@ -4,9 +4,8 @@ Title: "Example Bundle Collection Medikationsplan 02"
 Description: "Example Bundle vom Typ Collection Medikationsplan 02"
 Usage: #example
 
-// * identifier.system = "http://system-to-be-defined.com"
-// * identifier.value = "63fef90a-be11-4ddf-aece-d77da15c4f20"
-* identifier = "123"
+* identifier.system = "urn:ietf:rfc:3982"
+* identifier.value = "63fef90a-be11-4ddf-aece-d77da15c4f20"
 
 * type = #collection
 
