@@ -41,6 +41,7 @@ Description: "**Beschreibung:** Bildet den Medikationsplan eines ELGA Teilnehmer
 * note ^short = "Freitextliche Anmerkungen zum Medikationsplan."
 
 // --- Entries ---
+* entry 0..* MS
 
 * entry.flag 1..1 MS
 * entry.flag from http://hl7.org/fhir/ValueSet/list-item-flag
@@ -52,7 +53,6 @@ Description: "**Beschreibung:** Bildet den Medikationsplan eines ELGA Teilnehmer
 * entry.date 0..1 MS
 * entry.date ^short = "Datum der Aufnahme des Medikationsplaneintrags in den Medikationsplan. Fachlich zu klären."
 
-* entry 0..* MS
 * entry.item 1..1 MS
 * entry.item only Reference(AtEmedMRPlaneintrag)
 * entry.item ^short = "Referenz auf einen Medikationsplaneintrag."
