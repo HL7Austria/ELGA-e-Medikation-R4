@@ -1,5 +1,5 @@
 Instance: AtEmedExampleDurchgefuehrteAbgabe01
-InstanceOf: AtEmedMedicationDispense
+InstanceOf: AtEmedMDDurchgefuehrteAbgabe
 Title: "Beispiel Durchgeführte Abgabe 1"
 Description: "Beispiel Durchgeführte Abgabe 1"
 Usage: #example
@@ -23,7 +23,7 @@ Usage: #example
 * meta.profile = "http://hl7.eu/fhir/mpd/StructureDefinition/MedicationDispense-eu-mpd"
 * status = #completed
 * medicationReference = Reference(Medication/01C-Cefuroxime1500Branded) "Cefuroxime MIP 1500 mg, powder for solution for injection/infusion. N10."
-* subject = Reference(Patient/AtEmedExamplePatient01)
+* subject = Reference(AtEmedExamplePatient01)
 * performer.actor = Reference(PractitionerRole/pharmacist1)
 * authorizingPrescription = Reference(MedicationRequest/400C-prescription-cefuroxime-singleline)
 * quantity = 1 '1'

@@ -1,7 +1,7 @@
-Instance: AtEmedExamplePlaneintrag01
-InstanceOf: AtEmedMedicationRequestPlaneintrag
-Title: "Beispiel Medikationsplaneintrag 1"
-Description: "Beispiel Medikationsplaneintrag 1"
+Instance: AtEmedExampleGeplanteAbgabe01
+InstanceOf: AtEmedMRGeplanteAbgabe
+Title: "Beispiel Geplante Abgabe 1"
+Description: "Beispiel Geplante Abgabe 1"
 Usage: #example
 
 // R5 Backports
@@ -12,14 +12,15 @@ Usage: #example
 
 
 //* meta.profile = "http://hl7.eu/fhir/mpd/StructureDefinition/MedicationRequest-eu-mpd"
-//* meta.profile = "https://fhir.hl7.at/elga/emed/r4/StructureDefinition/at-emed-medicationrequest-geplanteAbgabe"
-* identifier.value = "4711"
+//* meta.profile = "https://fhir.hl7.at/elga/emed/r4/StructureDefinition/at-emed-mr-geplante-abgabe"
+* identifier.value = "WYE82A2G8EEW-4711"
 * status = #active
 * intent = #order
-* category.coding = #1 "Medikationsplaneintrag"
+
+* category.coding = #2 "Geplante Abgabe"
 //* category.coding.system = "http://hl7.org/fhir/medicationrequest-category" 
 //* category.coding.code = #2
-//* category.coding.display = "Medikationsplaneintrag"
+//* category.coding.display = "Geplante Abgabe"
 
 //* medicationReference = Reference(Medication/AtApsExampleMedication01) "Magistrale Zubereitung"
 // * medicationCodeableConcept.coding.code = $cs-asp-liste#2443061 
@@ -27,18 +28,18 @@ Usage: #example
 // * medicationCodeableConcept.coding.system = $cs-asp-liste
 * medicationCodeableConcept = $cs-asp-liste#2443061 "EBETREXAT TBL 10MG"
 
-* subject = Reference(Patient/AtEmedExamplePatient01)
+* subject = Reference(AtEmedExamplePatient01)
 
 * authoredOn = "2024-10-03"
 
-* requester = Reference(Practitioner/AtEmedExamplePractitioner01)
+* requester = Reference(AtEmedExamplePractitioner01)
 
 * reasonCode = $cs-sct#59621000 "Essentielle Hypertonie"
 //* reasonCode.text = "Hypertonie"
 
-// * groupIdentifier.value = "WYE82A2G8EE1"  // nicht im Medikationsplaneintrag
+* groupIdentifier.value = "WYE82A2G8EE1"
 
-* note.text = "Freitext Informationen zum Medikationsplaneintrag."
+* note.text = "Freitext Informationen zur geplanten Abgabe."
 
 
 * dosageInstruction.text = "1 Kapsel täglich morgens"

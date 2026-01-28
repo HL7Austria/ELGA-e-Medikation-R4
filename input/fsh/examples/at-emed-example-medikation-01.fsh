@@ -2,7 +2,7 @@ Alias: $atc = http://www.whocc.no/atc
 Alias: $standardterms = http://standardterms.edqm.eu
 Alias: $sct = http://snomed.info/sct
 
-Instance: AtEmedExampleMedicationCefuroxime
+Instance: ExampleMedicationCefuroxime
 InstanceOf: AtEmedMedication
 Title: "Beispiel Medication Cefuroxime"
 Description: "Beispiel Medication Cefuroxime"

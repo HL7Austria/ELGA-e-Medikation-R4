@@ -1,26 +1,21 @@
-Instance: AtEmedExampleGeplanteAbgabe01
-InstanceOf: AtEmedMedicationRequestGeplanteAbgabe
-Title: "Beispiel Geplante Abgabe 1"
-Description: "Beispiel Geplante Abgabe 1"
-Usage: #example
+Instance: AtEmedJourneyMrPlaneintrag02
+InstanceOf: AtEmedMRPlaneintrag   
+Title: "Example Medikationsplaneintrag 02"
+Description: "Example Medikationsplaneintrag 02"
 
 // R5 Backports
-// * extension[renderedDosageInstruction].extension[text].valueMarkdown = "1 Kapsel täglich morgens"
-// * extension[renderedDosageInstruction].extension[language].valueCode = #de
-// * extension[effectiveDosePeriod].valuePeriod.start = "2024-10-03"
-// * extension[effectiveDosePeriod].valuePeriod.end = "2024-11-02"
+* extension[effectiveDosePeriod].valuePeriod.start = "2024-10-03"
+* extension[effectiveDosePeriod].valuePeriod.end = "2024-11-02"
+* extension[renderedDosageInstruction].valueMarkdown = "1 Kapsel täglich morgens"
 
-
-//* meta.profile = "http://hl7.eu/fhir/mpd/StructureDefinition/MedicationRequest-eu-mpd"
-//* meta.profile = "https://fhir.hl7.at/elga/emed/r4/StructureDefinition/at-emed-medicationrequest-geplanteAbgabe"
-* identifier.value = "WYE82A2G8EEW-4711"
+//* meta[+].profile = "http://hl7.eu/fhir/mpd/StructureDefinition/MedicationRequest-eu-mpd"
+* identifier.value = "4711"
 * status = #active
 * intent = #order
-
-* category.coding = #2 "Geplante Abgabe"
+* category.coding = #1 "Medikationsplaneintrag"
 //* category.coding.system = "http://hl7.org/fhir/medicationrequest-category" 
 //* category.coding.code = #2
-//* category.coding.display = "Geplante Abgabe"
+//* category.coding.display = "Medikationsplaneintrag"
 
 //* medicationReference = Reference(Medication/AtApsExampleMedication01) "Magistrale Zubereitung"
 // * medicationCodeableConcept.coding.code = $cs-asp-liste#2443061 
@@ -28,18 +23,18 @@ Usage: #example
 // * medicationCodeableConcept.coding.system = $cs-asp-liste
 * medicationCodeableConcept = $cs-asp-liste#2443061 "EBETREXAT TBL 10MG"
 
-* subject = Reference(Patient/AtEmedExamplePatient01)
+* subject = Reference(AtEmedExamplePatient01)
 
 * authoredOn = "2024-10-03"
 
-* requester = Reference(Practitioner/AtEmedExamplePractitioner01)
+* requester = Reference(AtEmedExamplePractitioner01)
 
 * reasonCode = $cs-sct#59621000 "Essentielle Hypertonie"
 //* reasonCode.text = "Hypertonie"
 
-* groupIdentifier.value = "WYE82A2G8EE1"
+// * groupIdentifier.value = "WYE82A2G8EE1"  // nicht im Medikationsplaneintrag
 
-* note.text = "Freitext Informationen zur geplanten Abgabe."
+* note.text = "Freitext Informationen zum Medikationsplaneintrag."
 
 
 * dosageInstruction.text = "1 Kapsel täglich morgens"
