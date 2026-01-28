@@ -17,7 +17,7 @@ Usage: #example
 * status = #active
 * intent = #order
 
-* category.coding = #2 "Geplante Abgabe"
+* category.coding = http://hl7.org/fhir/medicationrequest-category#2 "Geplante Abgabe"
 //* category.coding.system = "http://hl7.org/fhir/medicationrequest-category" 
 //* category.coding.code = #2
 //* category.coding.display = "Geplante Abgabe"
@@ -25,7 +25,7 @@ Usage: #example
 //* medicationReference = Reference(Medication/AtApsExampleMedication01) "Magistrale Zubereitung"
 // * medicationCodeableConcept.coding.code = $cs-asp-liste#2443061 
 // * medicationCodeableConcept.coding.display = "EBETREXAT TBL 10MG"
-// * medicationCodeableConcept.coding.system = $cs-asp-liste
+// * medicationCodeableConcept.coding.system = $cs-asp-liste 
 * medicationCodeableConcept = $cs-asp-liste#2443061 "EBETREXAT TBL 10MG"
 
 * subject = Reference(AtEmedExamplePatient01)
