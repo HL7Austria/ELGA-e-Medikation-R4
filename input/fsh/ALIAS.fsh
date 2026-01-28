@@ -12,8 +12,12 @@ Alias: $cs-loinc = http://loinc.org
 Alias: $cs-sct = http://snomed.info/sct
 // medication
 Alias: $cs-asp-liste = https://termgit.elga.gv.at/CodeSystem/asp-liste
+Alias: $cs-atc = https://termgit.elga.gv.at/CodeSystem/atc-deutsch-wido
+
 // FHIR
 Alias: $cs-event-timing = http://hl7.org/fhir/event-timing
+
+Alias: $cs-hl7-at-organizationtype = https://termgit.elga.gv.at/ValueSet/hl7-at-organizationtype
 
 // terminology.hl7.org
 // Alias: $cs-v3-MaritalStatus = http://terminology.hl7.org/CodeSystem/v3-MaritalStatus
