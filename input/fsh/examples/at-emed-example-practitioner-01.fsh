@@ -1,11 +1,10 @@
 Instance: AtEmedExamplePractitioner01
 InstanceOf: HL7ATCorePractitioner
-Title: "HL7ATCorePractitioner"
-Description: "Beispiel eines behandelnden Arztes"
+Title: "Beispiel Ärztin 01"
+Description: "Beispiel einer behandelnden Ärztin 01"
 Usage: #example
 
-* meta.profile = "http://hl7.at/fhir/HL7ATCoreProfiles/4.0.1/StructureDefinition/at-core-practitioner"
-* id = "at-emed-example-practitioner-01"
+//* meta.profile = "http://hl7.at/fhir/HL7ATCoreProfiles/4.0.1/StructureDefinition/at-core-practitioner"
 * identifier[0].system = "urn:ietf:rfc:3986"
 * identifier[=].value = "urn:oid:1.2.40.0.34.99.4613.4"
 * identifier[=].assigner.display = "Bundesministerium für Gesundheit"
