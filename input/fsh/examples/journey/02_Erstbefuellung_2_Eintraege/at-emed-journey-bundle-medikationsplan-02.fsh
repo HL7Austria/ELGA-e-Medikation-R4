@@ -15,5 +15,5 @@ Usage: #example
 * entry[Medikationsplan].resource = AtEmedJourneyListMedikationsplan02 
 
 // Medikationsplaneinträge
-* entry[Medikationsplaneintrag].resource = AtEmedJourneyMrPlaneintrag0201
-* entry[Medikationsplaneintrag].resource = AtEmedJourneyMrPlaneintrag0202
+* entry[Medikationsplaneintrag][+].resource = AtEmedJourneyMrPlaneintrag0201
+* entry[Medikationsplaneintrag][+].resource = AtEmedJourneyMrPlaneintrag0202
