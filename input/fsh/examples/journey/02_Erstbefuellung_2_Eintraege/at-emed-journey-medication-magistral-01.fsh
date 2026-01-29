@@ -14,31 +14,31 @@ Usage: #example
 
 * form.coding = https://termgit.elga.gv.at/CodeSystem/medikationdarreichungsform#100000073713 "Salbe"
 
-* ingredient[+].itemReference = Reference(AtEmedJourneySubstanceHydrocortison) "Hydrocortison"
-* ingredient[=].strength.numerator.value = 1
-* ingredient[=].strength.numerator.unit = "%"
-* ingredient[=].strength.denominator.value = 100
-* ingredient[=].strength.denominator.unit = "g"
-* ingredient[+].itemReference = Reference(AtEmedJourneySubstanceClotrimazol) "Clotrimazol"
-* ingredient[=].strength.numerator.value = 1
-* ingredient[=].strength.numerator.unit = "%"
-* ingredient[=].strength.denominator.value = 100
-* ingredient[=].strength.denominator.unit = "g"
-// * ingredient[+].itemCodeableConcept.text = "Salbengrundlage"
-// * ingredient[=].isActive = false
-// * ingredient[=].strength.numerator.value = 98
-// * ingredient[=].strength.numerator.unit = "g"
+// * ingredient[+].itemReference = Reference(AtEmedJourneySubstanceHydrocortison) "Hydrocortison"
+// * ingredient[=].strength.numerator.value = 1
+// * ingredient[=].strength.numerator.unit = "%"
 // * ingredient[=].strength.denominator.value = 100
 // * ingredient[=].strength.denominator.unit = "g"
+// * ingredient[+].itemReference = Reference(AtEmedJourneySubstanceClotrimazol) "Clotrimazol"
+// * ingredient[=].strength.numerator.value = 1
+// * ingredient[=].strength.numerator.unit = "%"
+// * ingredient[=].strength.denominator.value = 100
+// * ingredient[=].strength.denominator.unit = "g"
+// // * ingredient[+].itemCodeableConcept.text = "Salbengrundlage"
+// // * ingredient[=].isActive = false
+// // * ingredient[=].strength.numerator.value = 98
+// // * ingredient[=].strength.numerator.unit = "g"
+// // * ingredient[=].strength.denominator.value = 100
+// // * ingredient[=].strength.denominator.unit = "g"
 
 
 // nicht möglich: vorgabe entsprechend aps medication profil: ingredient.item[x] only Reference(http://hl7.org/fhir/StructureDefinition/Substance or AtEmedMedication)
-// * ingredient[+].itemCodeableConcept.coding = $cs-atc#A01AC03 "Hydrocortison"
-// * ingredient[=].strength.numerator = 1 '%' "%"
-// * ingredient[=].strength.denominator = 100 'g' "g"
-// * ingredient[+].itemCodeableConcept.coding = $cs-atc#A01AB18 "Clotrimazol"
-// * ingredient[=].strength.numerator = 1 '%' "%"
-// * ingredient[=].strength.denominator = 100 'g' "g"
+* ingredient[+].itemCodeableConcept = $cs-atc#A01AC03 "Hydrocortison"
+* ingredient[=].strength.numerator = 1 '%' "%"
+* ingredient[=].strength.denominator = 100 'g' "g"
+* ingredient[+].itemCodeableConcept = $cs-atc#A01AB18 "Clotrimazol"
+* ingredient[=].strength.numerator = 1 '%' "%"
+* ingredient[=].strength.denominator = 100 'g' "g"
 // * ingredient[+].itemCodeableConcept.text = "Salbengrundlage"
 // * ingredient[=].isActive = false
 // * ingredient[=].strength.numerator.value = 98
