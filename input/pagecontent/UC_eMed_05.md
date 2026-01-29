@@ -37,14 +37,118 @@ Details zu Inhalten des Medikationsplans, siehe "[Die e-Medikation: UC_eMed_05_H
 #### Alternativabläufe 
 Keine
 
-### Sub-Usecases
+### Relevante ILF (Implementierungsleitfäden) + deren User Storys 
 
-### Beispiel
+#### Beispiel
 
-### Technische Hinweise
+#### Technische Hinweise
 
-### Relevante Profile
+#### Relevante Profile
 
-### Relevante Invarianten
+#### Relevante Invarianten
 
-### Mögliche Notifications
+#### Mögliche Notifications
+
+### Abgrenzungen 
+Keine.
+
+### User Interface Beschreibungen 
+Mockup folgt.
+
+### Hinweise 
+
+### Inhalt des Medikationsplans (UC_eMed_05_H01)
+Der Medikationsplan kann gelesen werden: 
+* Der Medikationsplan besteht aus einzelnen Einträgen 
+* Der Medikationsplan wird in der zuletzt erfassten Version angezeigt:
+  * Ist der Einnahmezeitraum eines Medikaments abgelaufen, wird der Eintrag ausgeblendet 
+    * in der Versionshistorie kann die Version inkl. der abgelaufenen Einträge eingesehen werden 
+    * Von ELGA-Teilnehmer:innen gelöschte Einträge werden in der Medikationsplanansicht nicht mehr angezeigt 
+
+* Die Einträge des Medikationsplans enthalten eine durch den GDA festgelegte Reihenfolge, z.B. zur fachlich sinnvollen Gruppierung und besseren Übersicht 
+
+<div class="hinweisbox">
+  ℹ️   
+  Reihenfolge von Medikationsplaneinträgen im Client-System: <br>
+
+  Lesende Systeme können die durch die zentrale Anwendung gelieferte Reihenfolge der Medikationsplaneinträge nutzen und bei Bedarf eine andere Reihung vornehmen 
+</div>
+
+* Einzelne Einträge können Korrekturvermerke (inkl. Freitext) enthalten und müssen dem:der Benutzer:in angezeigt werden 
+
+<div class="hinweisbox">
+  ℹ️   
+  Möglichkeiten für die Darstellung eines Korrekturvermerks im Client-System: <br>
+  <ul>
+    <li>Overlay mit korrigierter Angabe </li>
+    <li>Ausgrauen der bisherigen Angabe</li>
+    <li>Durchstreichen der bisherigen Angabe  </li>
+    <li>etc. </li>
+  </ul>
+</div>
+
+
+<div class="hinweisbox">
+  ℹ️   
+  Möglichkeiten zur Darstellung des Medikationsplans im Client-System:<br>
+  Zu einzelnen Medikationsplaneinträgen können folgende Informationen zu geplanten und durchgeführten Abgaben angezeigt werden: 
+  <ul>
+    <li>zugehörige geplante Abgaben</li>
+    <li>zugehörige durchgeführte Abgaben
+      <ul>
+        <li>für Patient:innen ist insbesondere die Anzeige des zuletzt abgegebenen Präparats je Eintrag relevant, da dieses aktuell eingenommen werden soll</li>
+        <li>Abgaben von Substitutionen</li>
+        <li>Leerabgaben (Leerabgaben kennzeichnen, dass eine ursprünglich geplante Abgabe künftig nicht mehr bedient werden wird)</li>
+      </ul>
+    </li>
+    <li>Fachlich kann es sinnvoll sein, zusätzlich zum zuletzt erstellten Medikationsplan auch Abgaben darzustellen, die nicht auf den zuletzt erstellten Medikationsplan referenzieren (z.B. OTC-Abgaben oder Abgaben verschreibender GDA ohne ELGA-Anbindung)
+      <ul>
+        <li>relevant sind dabei nur die zusätzlich abgegebenen Medikamente innerhalb des Zeitraums von der Erstellung der Medikationsplanversion bis zur Erstellung der nachfolgenden Medikationsplanversion</li>
+        <li>GDA erhalten dadurch ein möglichst vollständiges Bild der tatsächlichen Medikation</li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+
+### Ansicht von Vorversionen (UC_eMed_05_H02)
+
+Alle erfassten Vorversionen des Medikationsplans (in der Vergangenheit von GDA erfasst) können eingesehen werden 
+* Sofern eine gesamte Version eines Medikationsplans von einem:r ELGA-Teilnehmer:in gelöscht wurde, wird diese nicht mehr in der Historie angezeigt (dies gilt genauso für die zuletzt erfasste Version) 
+
+<div class="hinweisbox">
+  ℹ️   
+  Darstellung der Vorversionen im Client-System: <br>
+  Vorversionen können in chronologischer Reihenfolge dargestellt werden (absteigend nach Erstellungsdatum; „jüngster“ Medikationsplan zuerst) 
+</div>
+
+* Die Ansicht einer Vorversion unterscheidet sich in ihrer Darstellungsform nicht von der zuletzt erfassten Ansicht des Medikationsplans 
+  * In einer Vorversion werden abgelaufene Medikamente zur Nachvollziehbarkeit immer angezeigt und nicht ausgeblendet	 
+
+### Export des Medikationsplans (UC_eMed_05_H03)
+
+Folgende Exportformate stehen für Benutzer:innen zur Verfügung: 
+* ELGA-Teilnehmer:in: 
+  * PDF zum Ausdrucken bzw. zur Darstellung in der Druckansicht 
+  * Strukturierter Datendownload (FHIR) 
+* GDA:
+  * PDF zum Ausdrucken bzw. zur Darstellung in der Druckansicht 
+
+<div class="hinweisbox">
+  ℹ️   
+  Softwaremodul für PDF-Export zur Einbindung im Client-System:<br>
+  Für den PDF-Export stellt die ELGA GmbH ein Softwaremodul zur Verfügung, welches in den jeweiligen Softwaresystemen eingebunden werden kann. Dieses "FHIR2PDF"-Softwaremodul stellt die Funktionen zur Verfügung, um den Medikationsplan als PDF zu exportieren. Das exportierte PDF unter Nutzung des "FHIR2PDF" stellt ein signiertes Dokument dar.
+</div>
+
+### Medikationsplans: Eigene Ansicht vs. Verwendung des e-Medikation Stylesheets (UC_eMed_05_H04)
+
+Zur Anzeige des Medikationsplans wird von der ELGA GmbH ein Stylesheet angeboten, welches in den jeweiligen Softwaresystemen eingebunden werden kann.  
+* Dieses "e-Medikation Stylesheet" stellt alle notwendigen/vorhanden Informationen dar - Daten zur Person, aktuelle und vergangene Medikationsplaneinträge, geplante und durchgeführte Abgaben, etc. 
+
+Neben der Verwendung des e-Medikation Stylesheets kann auch eine eigene Ansicht des Medikationsplans in den Softwaresystemen umgesetzt werden. 
+
+<div class="hinweisbox">
+  ℹ️   
+  Darstellung des Deltas zum zuletzt importierten Datenstand im Client-System: <br> 
+  Für Client-Systeme kann es sinnvoll sein, eine Ansicht für GDA zu schaffen, aus der hervorgeht, welche Änderungen am Medikationsplan des:der ELGA-Teilnehmer:in seit dem letzten Behandlungskontakt vorgenommen wurden. Durch einen Abgleich der lokal gespeicherten Dauermedikation mit den gelieferten Medikationsdaten aus der zentralen Anwendung kann dem:der Benutzer:in das Delta übersichtlich dargestellt werden. 
+</div>

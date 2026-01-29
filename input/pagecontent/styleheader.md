@@ -59,6 +59,14 @@ width: 100%;}
   z-index: 4;
 }
 
+.hinweisbox {
+  border: 1px solid #156082;
+  background: #dae8f8;
+  padding: 8px 12px;
+  border-radius: 4px;
+  margin: 8px 0;
+}
+
 </style>
 
 <script type="module"> import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';</script>
