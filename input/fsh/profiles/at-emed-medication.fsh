@@ -5,12 +5,12 @@ Title: "ELGA e-Medikation Medication"
 Description: "Bildet ein Arzneimittel ab, das nicht über eine PZN verfügt (z.B. magistrale Zubereitungen)."
 
 
-* identifier 0..*
+* identifier 0..*  // hier zulassungsnummer statt im code
 * identifier ^short = "Eindeutiger Identifikator für das Arzneimittel. Verwendung für magistrale Zubereitungen prüfen."
 
-// Wenn PZN vorhanden, dann im MedicationRequest angeben. Haben magistrale Zubereitungen einen code?
+// Wenn PZN vorhanden, dann im MedicationRequest angeben. Haben magistrale Zubereitungen einen code? PZN verbieten? dann hätte sie schon im medicationrequest angegeben werden müssen
 // gem. CDA code: Pharmazentralnummer (OID 1.2.40.0.34.4.16), Zulassungsnummer (OID 1.2.40.0.34.4.17), Package Reference Number der AGES (OID 1.2.40.0.34.4.26), (in Vorbereitung, bitte noch nicht verwenden) PCID der EMA (OID 1.2.40.0.34.4.27)
-* code 0..1
+* code 0..1  // verbieten
 * code ^short = "Code des Arzneimittels. Verwendung für magistrale Zubereitungen prüfen."
 
 * status 0..1
