@@ -25,7 +25,7 @@ Description: "Bildet ein Arzneimittel ab, das nicht über eine PZN verfügt (z.B
 * amount 0..1
 * amount ^short = "Die Gesamtmenge des Arzneimittels in der Verpackung."
 
-* ingredient.item[x] only Reference(http://hl7.org/fhir/StructureDefinition/Substance or AtEmedMedication)
+* ingredient.item[x] only CodeableConcept or Reference(http://hl7.org/fhir/StructureDefinition/Substance or AtEmedMedication)
 * manufacturer only Reference(HL7ATCoreOrganization)
 
 * batch 0..1
