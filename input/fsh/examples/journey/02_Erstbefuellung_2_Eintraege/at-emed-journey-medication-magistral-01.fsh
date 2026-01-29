@@ -1,19 +1,12 @@
-
-Alias: $standardterms = http://standardterms.edqm.eu
-
-
-Instance: ExampleMedicationMagistral01
+Instance: AtEmedJourneyMedicationMagistral02
 InstanceOf: AtEmedMedication
-Title: "Beispiel Medication Magistral 01"
-Description: "Beispiel Medication - Magistrale Zubereitung - Inotyol Salbe mit Canesten Creme, 2x täglich"
+Title: "Beispiel Journey 02: Magistrale Zubereitung"
+Description: "**Beschreibung:** Beispiel einer magistralen Zubereitung (Medication) - Salbe."
 Usage: #example
 
 * status = #active
-
 * manufacturer = Reference(AtEmedExampleOrganizationApo01) "Amadeus Apotheke"
-
 * form.coding = https://termgit.elga.gv.at/CodeSystem/medikationdarreichungsform#100000073713 "Salbe"
-
 
 // CodeableConcept
 * ingredient[+].itemCodeableConcept = $cs-atc#A01AC03 "Hydrocortison"
@@ -46,7 +39,6 @@ Usage: #example
 // * ingredient[=].strength.numerator.unit = "g"
 // * ingredient[=].strength.denominator.value = 100
 // * ingredient[=].strength.denominator.unit = "g"
-
 
 * batch.lotNumber = "MAG-2026-001"
 * batch.expirationDate = "2027-01-01"

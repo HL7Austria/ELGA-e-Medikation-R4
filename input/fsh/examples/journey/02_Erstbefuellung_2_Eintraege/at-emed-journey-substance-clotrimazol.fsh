@@ -2,8 +2,8 @@ Alias: $substance-category = http://terminology.hl7.org/CodeSystem/substance-cat
 
 Instance: AtEmedJourneySubstanceClotrimazol
 InstanceOf: Substance   
-Title: "Example Substance Clotrimazol"
-Description: "Example Substance Clotrimazol"
+Title: "Beispiel Journey 02: Substance Clotrimazol"
+Description: "**Beschreibung:** Beispiel einer Substance Clotrimazol."
 Usage: #example
 
 * status = #active

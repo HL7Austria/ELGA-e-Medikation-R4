@@ -1,10 +1,10 @@
 Profile: AtEmedMRPlaneintrag
 Parent: MedicationRequest
 Id: at-emed-mr-planeintrag
-Title: "ELGA e-Medikation Planeintrag"
-Description: "**Beschreibung:** Bildet einen Medikationsplaneintrag im Medikationsplan eines ELGA Teilnehmers ab. 
+Title: "ELGA e-Med Planeintrag"
+Description: "**Beschreibung:** Bildet einen Medikationsplaneintrag im Medikationsplan eines ELGA Teilnehmers ab (\"MedicationRequest\"-Ressource).
 Er enthält genau ein Arzneimittel und dessen Dosierung.
-Kann in weiterer Folge dazu dienen, eine geplante Abgabe zu erstellen (AtEmedMRGeplanteAbgabe)."
+Kann in weiterer Folge dazu dienen, eine geplante Abgabe zu erstellen. Verwendet R5 Backport Extensions."
 
 // Extensions
 * extension contains $medicationRequest-effectiveDosePeriod-r5 named effectiveDosePeriod 0..1

@@ -1,80 +1,12 @@
-// Alias: $rendered = http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationRequest.renderedDosageInstruction
-// Alias: $effective = http://hl7.org/fhir/StructureDefinition/medicationrequest-effectivedoseperiod-r5
-// Alias: $extension-MedicationRequest.effectiveDosePeriod = http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationRequest.effectiveDosePeriod
-// Alias: $extension-MedicationRequest.renderedDosageInstruction = http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationRequest.renderedDosageInstruction
-
-
 Profile: AtEmedMRGeplanteAbgabe
 Parent: MedicationRequest
 Id: at-emed-mr-geplante-abgabe
-Title: "ELGA e-Medikation Geplante Abgabe"
-Description: "**Beschreibung:** Bildet eine geplante Abgabe eines Arzneimittels aus dem zugrundeliegenden Medikationsplaneintrag des ELGA-Teilnehmers ab.
+Title: "ELGA e-Med Geplante Abgabe"
+Description: "**Beschreibung:** Bildet eine geplante Abgabe eines Arzneimittels aus dem zugrundeliegenden Medikationsplaneintrag des ELGA-Teilnehmers ab (\"MedicationRequest\"-Ressource).
 Sie enthält das verordnete Arzneimittel und dessen Dosierung und spielgelt die Inhalte des e-Rezepts wider. Geplante Abgaben dienen somit der Nachvollziehbarkeit der rezeptierten Arzneimittel in der e-Medikation.
 Als groupIdentifier dient die Geplante-Abgabe-ID (früher eMED-ID), die auch im e-Rezept mitgeführt wird.
 Werden mehrere Arzneimittel gleichzeitig verordnet, wird für jedes Arzneimittel eine geplante Abgabe mit demselben groupIdentifier erstellt (bildet 'Rezept-Klammer'). Verwendet R5 Backport Extensions."
 * . ^short = "Geplante Abgabe eines Arzneimittels aus dem Medikationsplan. Verwendet R5 Backport Extensions."
-
-// Vorgaben APS ***************************
-// impose Profile APS 
-// * ^extension[$imposeProfile].valueCanonical = Canonical(AtApsMedicationRequest)
-// Ende Vorgaben APS ***************************
-
-
-// Vorgaben MPD ***************************
-// Abhängigkeiten zu anderen IGS sind zu diskutieren
-// * insert MedicationRequestEpCommon
-// * medication[x] only CodeableConcept or Reference(MedicationEuMpd) //AtEmedMedication
-// * reasonCode ^short = "Reason or indication for this prescription"
-//   * ^binding.extension[0].url = "http://hl7.org/fhir/tools/StructureDefinition/additional-binding"
-//   * ^binding.extension[0].extension[0].url = "purpose"
-//   * ^binding.extension[=].extension[=].valueCode = #candidate
-//   * ^binding.extension[=].extension[+].url = "valueSet"
-//   * ^binding.extension[=].extension[=].valueCanonical = $eHDSIIllnessandDisorder
-//   * ^binding.extension[=].extension[+].url = "documentation"
-//   * ^binding.extension[=].extension[=].valueMarkdown = """MyHealth@EU crossborder value set for diagnoses. Based on WHO ICD 10."""
-
-// * reasonReference ^short = "Condition or observation that supports this prescription"
-
-// * extension contains $medicationRequest-effectiveDosePeriod-r5 named effectiveDosePeriod 0..1
-// * extension[effectiveDosePeriod] ^short = "Period over which the medication should be taken."
-// * extension[effectiveDosePeriod] ^definition = "Period over which the medication should be taken. Where there are multiple dosageInstruction lines (for example, tapering doses), this is the earliest date and the latest end date of the dosageInstructions."
-
-// * extension contains $medicationrequest-rendereddosageinstruction-r5 named renderedDosageInstruction 0..1
-// * extension[renderedDosageInstruction] ^short = "Full representation of the dosage instructions"
-
-
-// RuleSet: MedicationRequestEpCommon
-
-// * extension contains $ihe-ext-medicationrequest-offlabeluse named offLabelUse 0..1 
-// * extension[offLabelUse] ^short = "Indicates that the prescriber has knowingly prescribed the medication for an indication, age group, dosage, or route of administration that is not approved by the regulatory agencies and is not mentioned in the prescribing information for the product." 
-// * identifier 
-//   * ^short = "Prescription/prescribed item ID"
-//   * ^comment = "It is the prescription ID if the presciption includes only one prescribed item"
-// * status ^short = "Current state of the order"
-// //* intent = $medicationrequest-intent#order 
-// * subject only Reference( PatientEuCore )
-// * authoredOn 1..
-// * requester 1..
-// * groupIdentifier 
-//   * ^short = "Prescription this is part of. Not needed if a presciption includes only one prescribed item."
-// * dosageInstruction ^short = "How the medication should be taken."
-//   * timing ^short = "Administration schedule"
-//     * repeat
-//       * duration ^short = "Duration of the treatment"
-//       * frequency ^short = "Frequency times per period"
-//       * period ^short = "Duration of time over which repetitions are to occur"
-//       * periodUnit  ^short = "Unit of the period (e.g. day)"
-//     * code ^short = "A code for the timing schedule."
-//   * route ^short = "Route of administration"
-//   * text ^short = "Free text dosage instructions"
-//   * doseAndRate.doseQuantity ^short = "Amount of medication per dose"
-// * dispenseRequest
-//   * extension contains $ihe-ext-medicationrequest-prescribedquantity named prescribedQuantity 0..1
-//   * extension[prescribedQuantity] ^short = "Overall amount of product prescribed, independent from the number of repeats."
-//   * extension[prescribedQuantity] ^definition = "When Medication resource implies a pack size, prescribedQuantity should convey number of packages. When the Medication does not imply an amount, overall amount could be in tablets or millilitres."
-
-
-// Ende Vorgaben MPD ***************************
 
 
 // R5 Backport Extensions  -> https://gemspec.gematik.de/ig/fhir/epa-medication/1.3.0/StructureDefinition-emp-medication-request.profile.json.html

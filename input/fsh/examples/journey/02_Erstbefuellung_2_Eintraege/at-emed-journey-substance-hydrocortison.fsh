@@ -2,8 +2,8 @@ Alias: $substance-category = http://terminology.hl7.org/CodeSystem/substance-cat
 
 Instance: AtEmedJourneySubstanceHydrocortison
 InstanceOf: Substance   
-Title: "Example Substance Hydrocortison"
-Description: "Example Substance Hydrocortison"
+Title: "Beispiel Journey 02: Substance Hydrocortison"
+Description: "**Beschreibung:** Beispiel einer Substance Hydrocortison."
 Usage: #example
 
 * status = #active

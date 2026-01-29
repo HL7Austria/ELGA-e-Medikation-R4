@@ -1,8 +1,8 @@
 Profile: AtEmedMDDurchgefuehrteAbgabe
 Parent: MedicationDispense
 Id: at-emed-md-durchgefuehrte-abgabe
-Title: "ELGA e-Medikation Durchgeführte Abgabe"
-Description: "ELGA e-Medikation Durchgeführte Abgabe"
+Title: "ELGA e-Med Durchgeführte Abgabe"
+Description: "**Beschreibung:** ELGA e-Med Durchgeführte Abgabe (\"List\"-MedicationDispense) - noch anzupassen"
 
 
-// MedicationDispenseEuMpd ergänzen
+// MedicationDispense ergänzen

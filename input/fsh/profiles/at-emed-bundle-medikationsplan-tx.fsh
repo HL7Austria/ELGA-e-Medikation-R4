@@ -1,21 +1,19 @@
-Profile: AtEmedBundleMedikationsplan
+Profile: AtEmedBundleMedikationsplanTx
 Parent: Bundle
-Id: at-emed-bundle-medikationsplan
-Title: "ELGA e-Medikation Bundle vom Typ Collection Medikationsplan"
-Description: "**Beschreibung:** ELGA e-Medikation Bundle vom Typ Collection zur Speicherung und Auslieferung eines Medikationsplans mit Medikationsplaneinträgen. 
-Beinhaltet:
-- Medikationsplan 1..1 (List)
-- Medikationsplaneinträge 0..* (MedicationRequest)
+Id: at-emed-bundle-tx-medikationsplan
+Title: "ELGA e-Med Medikationsplan Transaction Bundle"
+Description: "**Beschreibung:** Das Bundle vom Typ Transaction dient dem schreibenden Zugriff auf den ELGA Medikationsplan bestehend aus: 
+- 1..1 List: Liste der Medikationsplaneinträge und deren Änderungsstatus
+- 0..* MedicationRequests: Medikationsplaneinträge 
 "
 
-* identifier 0..1
+* identifier 0..1 // 1..1 MS
 * identifier ^short = "Persistenter Identifikator für das Bundle."
 
 * type 1..1
-* type = #collection
-* type ^short = "Art des Bundles. Für Medikationspläne immer 'collection'."
-
-// TODO: prüfen 
+* type = #transaction
+* type ^short = "Art des Bundles. Für schreibenden Zugriff immer Typ \"transaction\"."
+ 
 * timestamp 1..1
 * timestamp ^short = "Zeitpunkt der Erstellung des Bundles. Verwendung prüfen."
 
@@ -23,10 +21,11 @@ Beinhaltet:
 * link ^short = "Verweise auf weiterführende Informationen zum Bundle. Verwendung prüfen." 
 
 // Slicing legt fest, welche Entries erlaubt sind
-* entry ^slicing.discriminator[+].type = #type   //anhand welchem Pfad und Eigenschaft unterschieden wird
+// Unterscheidung der Slices anhand von Pfad und Typ 
+* entry ^slicing.discriminator[+].type = #type   
 * entry ^slicing.discriminator[=].path = "resource"
-* entry ^slicing.rules = #closed  // nur list und medicationrequest erlaubt
-* entry ^slicing.ordered = true  //wir wollen zuerst Liste
+* entry ^slicing.rules = #closed  // als Entries sind nur list und medicationrequest erlaubt
+* entry ^slicing.ordered = true  // erstes Entry soll die Liste sein
 
 * entry contains 
     Medikationsplan 1..1 and    

@@ -1,8 +1,8 @@
 Profile: AtEmedMedication
 Parent: Medication
 Id: at-emed-medication
-Title: "ELGA e-Medikation Medication"
-Description: "Bildet ein Arzneimittel ab, das nicht über eine PZN verfügt (z.B. magistrale Zubereitungen)."
+Title: "ELGA e-Med Medikation"
+Description: "**Beschreibung:** Bildet ein Arzneimittel ab, das nicht über eine PZN verfügt, z.B. magistrale Zubereitungen (\"Medication\"-Ressource)."
 
 
 * identifier 0..*  // hier zulassungsnummer statt im code

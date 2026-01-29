@@ -1,7 +1,8 @@
 Instance: AtEmedJourneyMrPlaneintrag0202
 InstanceOf: AtEmedMRPlaneintrag   
-Title: "Example Medikationsplaneintrag 02 02"
-Description: "Example Medikationsplaneintrag 02 02"
+Title: "Beispiel Journey 02: Medikationsplaneintrag 2"
+Description: "**Beschreibung:** Bildet einen Medikationsplaneintrag mit einer Referenz auf eine magistrale Zubereitung und zugehörigen Dosierungsanweisungen ab (MedicationRequest)."
+Usage: #example
 
 // R5 Backports
 * extension[effectiveDosePeriod].valuePeriod.start = "2026-01-28"
@@ -19,7 +20,7 @@ Description: "Example Medikationsplaneintrag 02 02"
 
 * category.coding = http://hl7.org/fhir/medicationrequest-category#1 "Medikationsplaneintrag"
 
-* medicationReference = Reference(ExampleMedicationMagistral01) "Magistrale Zubereitung"
+* medicationReference = Reference(AtEmedJourneyMedicationMagistral02) "Magistrale Zubereitung"
 
 * subject = Reference(AtEmedExamplePatient01)
 

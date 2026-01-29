@@ -1,7 +1,7 @@
 Instance: AtEmedJourneyBundleMedikationsplan02
 InstanceOf: AtEmedBundleMedikationsplan   
-Title: "Example Bundle Collection Medikationsplan 02"
-Description: "Example Bundle vom Typ Collection Medikationsplan 02"
+Title: "Beispiel Journey 02: Collection Bundle"
+Description: "**Beschreibung:** Beispiel eines Collection Bundles, das einen Mediaktionsplan (List) mit 2 Planeinträgen referenziert."
 Usage: #example
 
 * identifier.system = "urn:ietf:rfc:3982"

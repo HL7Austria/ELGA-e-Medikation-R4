@@ -1,7 +1,8 @@
 Instance: AtEmedJourneyMrPlaneintrag0201
 InstanceOf: AtEmedMRPlaneintrag   
-Title: "Example Medikationsplaneintrag 02 01"
-Description: "Example Medikationsplaneintrag 02 01"
+Title: "Beispiel Journey 02: Medikationsplaneintrag 1"
+Description: "**Beschreibung:** Bildet einen Medikationsplaneintrag mit dem Medikament EBETREXAT und zugehörigen Dosierungsanweisungen ab (MedicationRequest)."
+Usage: #example
 
 // R5 Backports
 * extension[effectiveDosePeriod].valuePeriod.start = "2026-01-28"

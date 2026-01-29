@@ -1,17 +1,20 @@
 Profile: AtEmedListMedikationsplan
 Parent: List
 Id: at-emed-list-medikationsplan
-Title: "ELGA e-Medikation Medikationsplan"
-Description: "**Beschreibung:** Bildet den Medikationsplan eines ELGA Teilnehmers ab. Enthält verordnete Arzneimittel und deren Dosierung in Form von 0..* Medikationsplaneinträgen (AtEmedMRPlaneintrag). Die Reihenfolge der Einträge ist fachlich relevant."
+Title: "ELGA e-Med Medikationsplan"
+Description: "**Beschreibung:** Bildet den Medikationsplan eines ELGA Teilnehmers ab (\"List\"-Ressource). 
+Die Liste beinhaltet Referenzen auf 0..* Medikationsplaneinträge (MedicationRequests), die alle verordneten Arzneimitteln und deren Dosierung abbilden.
+Jedes Listenelement enthält einen Änderungsstatus (weitere Elemente sind noch zu klären). Die Reihenfolge der Listenelemente wird duch den User festgelegt."
 
-//* identifier ^short = "Eindeutige Kennung der Liste. Keine Verwendung in der Liste für den Medikationsplan."
+* identifier 0..1
+* identifier ^short = "Eindeutige Kennung der Liste. Verwendung zu prüfen."
 
 * status 1..1 MS
 * status = #current
 * status ^short = "Der Medikationsplan ist aktuell: current | retired | entered-in-error. https://hl7.org/fhir/R4/valueset-list-status.html"
 
 * mode 1..1 MS
-* mode = #working
+//* mode = #working
 * mode ^short = "Der Medikationsplan ist ein Arbeitsdokument: working | snapshot | changes. https://hl7.org/fhir/R4/valueset-list-mode.html"
 
 * code ^short = "Code, der den Typ der Liste beschreibt. https://hl7.org/fhir/R4/valueset-list-example-codes.html. Zu prüfen, ob/wie in Medikationsplan verwendet."

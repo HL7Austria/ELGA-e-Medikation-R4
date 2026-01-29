@@ -1,7 +1,7 @@
-Instance: AtEmedJourneyListMedikationsplanLeer01 
+Instance: AtEmedJourneyListMedikationsplan01 
 InstanceOf: AtEmedListMedikationsplan   
-Title: "Example List Medikationsplan leer 01"
-Description: "Example List Medikationsplan leer 01"
+Title: "Beispiel Journey 01: Leerer Medikationsplan"
+Description: "**Beschreibung:** Beispiel eines leeren Mediaktionsplans (List)"
 Usage: #example
 
 * status = #current

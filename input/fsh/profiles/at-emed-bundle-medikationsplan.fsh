@@ -1,32 +1,31 @@
 Profile: AtEmedBundleMedikationsplan
 Parent: Bundle
 Id: at-emed-bundle-medikationsplan
-Title: "ELGA e-Medikation Bundle vom Typ Collection Medikationsplan"
-Description: "**Beschreibung:** ELGA e-Medikation Bundle vom Typ Collection zur Speicherung und Auslieferung eines Medikationsplans mit Medikationsplaneinträgen. 
-Beinhaltet:
-- Medikationsplan 1..1 (List)
-- Medikationsplaneinträge 0..* (MedicationRequest)
+Title: "ELGA e-Med Medikationsplan Collection Bundle"
+Description: "**Beschreibung:** Das Bundle vom Typ Collection dient dem lesenden Zugriff auf den ELGA Medikationsplan bestehend aus: 
+- 1..1 List: Liste der Medikationsplaneinträge und deren Änderungsstatus 
+- 0..* MedicationRequests: Medikationsplaneinträge
 "
 
-* identifier 0..1
-* identifier ^short = "Persistenter Identifikator für das Bundle."
+* identifier 0..1 // 1..1 MS
+* identifier ^short = "Persistenter Identifikator für das Bundle. Verwendung prüfen."
 
 * type 1..1
 * type = #collection
-* type ^short = "Art des Bundles. Für Medikationspläne immer 'collection'."
+* type ^short = "Art des Bundles. Für Medikationspläne immer \"collection\"."
 
-// TODO: prüfen 
 * timestamp 1..1
 * timestamp ^short = "Zeitpunkt der Erstellung des Bundles. Verwendung prüfen."
 
-* link 0..*
+* link 0..0
 * link ^short = "Verweise auf weiterführende Informationen zum Bundle. Verwendung prüfen." 
 
 // Slicing legt fest, welche Entries erlaubt sind
-* entry ^slicing.discriminator[+].type = #type   //anhand welchem Pfad und Eigenschaft unterschieden wird
+// Unterscheidung der Slices anhand von Pfad und Typ 
+* entry ^slicing.discriminator[+].type = #type   
 * entry ^slicing.discriminator[=].path = "resource"
-* entry ^slicing.rules = #closed  // nur list und medicationrequest erlaubt
-* entry ^slicing.ordered = true  //wir wollen zuerst Liste
+* entry ^slicing.rules = #closed  // als Entries sind nur list und medicationrequest erlaubt
+* entry ^slicing.ordered = true  // erstes Entry soll die Liste sein
 
 * entry contains 
     Medikationsplan 1..1 and    
