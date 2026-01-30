@@ -1,7 +1,7 @@
 Instance: AtEmedJourneyListMedikationsplan01 
 InstanceOf: AtEmedListMedikationsplan   
 Title: "Beispiel Journey 01: Leerer Medikationsplan"
-Description: "**Beschreibung:** Beispiel eines leeren Mediaktionsplans (List)"
+Description: "**Beschreibung:** Beispiel eines leeren Mediaktionsplans (List-Ressource ohne Einträge)"
 Usage: #example
 
 * status = #current

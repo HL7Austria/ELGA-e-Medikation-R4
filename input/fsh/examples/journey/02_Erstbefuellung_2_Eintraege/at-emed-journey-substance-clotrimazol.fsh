@@ -1,4 +1,4 @@
-Alias: $substance-category = http://terminology.hl7.org/CodeSystem/substance-category
+// Alias: $substance-category = http://terminology.hl7.org/CodeSystem/substance-category
 
 Instance: AtEmedJourneySubstanceClotrimazol
 InstanceOf: Substance   

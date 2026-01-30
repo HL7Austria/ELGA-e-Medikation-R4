@@ -7,7 +7,6 @@ Usage: #example
 * status = #active
 * manufacturer = Reference(AtEmedExampleOrganizationApo01) "Amadeus Apotheke"
 * form.coding = https://termgit.elga.gv.at/CodeSystem/medikationdarreichungsform#100000073713 "Salbe"
-
 // CodeableConcept
 * ingredient[+].itemCodeableConcept = $cs-atc#A01AC03 "Hydrocortison"
 * ingredient[=].strength.numerator = 1 '%' "%"

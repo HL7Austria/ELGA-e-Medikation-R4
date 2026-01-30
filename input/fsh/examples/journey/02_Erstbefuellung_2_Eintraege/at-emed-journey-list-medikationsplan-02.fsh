@@ -1,7 +1,7 @@
 Instance: AtEmedJourneyListMedikationsplan02 
 InstanceOf: AtEmedListMedikationsplan   
 Title: "Beispiel Journey 02: Medikationsplan"
-Description: "**Beschreibung:** Beispiel eines Medikationsplans (List), der 2 Einträge (MedicationReqeusts) referenziert und Reihenfolge und Änderungsstatus festhält."
+Description: "**Beschreibung:** Beispiel eines Medikationsplans (List), der 2 Planeinträge (MedicationReqeusts) referenziert und Informationen über Reihenfolge und Änderungsstatus speichert."
 Usage: #example
 
 * status = #current
