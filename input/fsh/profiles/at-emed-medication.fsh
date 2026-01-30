@@ -4,7 +4,6 @@ Id: at-emed-medication
 Title: "ELGA e-Med Medikation"
 Description: "**Beschreibung:** Bildet ein Arzneimittel ab, das nicht über eine PZN verfügt, z.B. magistrale Zubereitungen (\"Medication\"-Ressource)."
 
-
 * identifier 0..*  // hier zulassungsnummer statt im code
 * identifier ^short = "Eindeutiger Identifikator für das Arzneimittel. Verwendung für magistrale Zubereitungen prüfen."
 
@@ -30,6 +29,5 @@ Description: "**Beschreibung:** Bildet ein Arzneimittel ab, das nicht über eine
 
 * batch 0..1
 * batch ^short = "Informationen zur Charge des Arzneimittels. Verwendung für magistrale Zubereitungen prüfen."
-
 
 // Wird die Ressource nur für magistrale Zubreitungen verwendet? Wirkstoffverschreibung? manufacturer immer ATAPSOrganization?

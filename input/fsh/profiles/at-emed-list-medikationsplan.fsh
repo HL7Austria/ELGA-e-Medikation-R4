@@ -2,15 +2,15 @@ Profile: AtEmedListMedikationsplan
 Parent: List
 Id: at-emed-list-medikationsplan
 Title: "ELGA e-Med Medikationsplan"
-Description: "**Beschreibung:** Bildet den Medikationsplan eines ELGA Teilnehmers ab (\"List\"-Ressource). 
-Die Liste beinhaltet Referenzen auf 0..* Medikationsplaneinträge (MedicationRequests), die alle verordneten Arzneimitteln und deren Dosierung abbilden.
-Jedes Listenelement enthält einen Änderungsstatus (weitere Elemente sind noch zu klären). Die Reihenfolge der Listenelemente wird duch den User festgelegt."
+Description: "**Beschreibung:** Bildet den Medikationsplan eines ELGA-Teilnehmers ab (\"List\"-Ressource). 
+Die Liste beinhaltet Referenzen auf 0..* Medikationsplaneinträge (MedicationRequests), die alle verordneten Arzneimittel und deren Dosierung abbilden.
+Die Reihenfolge der Listenelemente kann duch den User festgelegt werden. Jedes Listenelement enthält einen Änderungsstatus (weitere Elemente sind noch zu klären)."
 
-* identifier 0..1
+* identifier 0..1 MS
 * identifier ^short = "Eindeutige Kennung der Liste. Verwendung zu prüfen."
 
 * status 1..1 MS
-* status = #current
+//* status = #current
 * status ^short = "Der Medikationsplan ist aktuell: current | retired | entered-in-error. https://hl7.org/fhir/R4/valueset-list-status.html"
 
 * mode 1..1 MS
@@ -37,18 +37,19 @@ Jedes Listenelement enthält einen Änderungsstatus (weitere Elemente sind noch 
 * orderedBy 1..1 MS
 * orderedBy from http://hl7.org/fhir/ValueSet/list-order 
 * orderedBy = #user
-* orderedBy ^short = "Die Reihenfolge der Einträge im Medikationsplan ist fachlich relevant und wird durch den Ersteller der Liste vorgegeben. Mögliche Codes: user | system | event-date | entry-date| priority | alphabetic | category | patient."
+* orderedBy ^short = "Die Reihenfolge der Einträge im Medikationsplan ist fachlich relevant und wird durch den Erseller der Liste vorgegeben. 
+Mögliche Codes: user | system | event-date | entry-date| priority | alphabetic | category | patient."
 
 // note: Mögliches Kommentar auf Ebene des Medikationsplans
 * note 0..* MS
-* note ^short = "Freitextliche Anmerkungen zum Medikationsplan."
+* note ^short = "Freitextliche Anmerkungen zum Medikationsplan. Prüfen hinsichtlich Korrekturvermerk."
 
 // --- Entries ---
 * entry 0..* MS
 
 * entry.flag 1..1 MS
 * entry.flag from http://hl7.org/fhir/ValueSet/list-item-flag
-* entry.flag ^short = "Kennzeichnet die Art der Änderung des Medikationsplaneintrags"
+* entry.flag ^short = "Kennzeichnet die Art der Änderung des Medikationsplaneintrags."
 
 * entry.deleted 0..1 MS
 * entry.deleted ^short = "Gibt an, ob der referenzierte Medikationsplaneintrag aus dem Medikationsplan entfernt wurde. Unklar, ob Löschen so abgebildet werden soll."
@@ -61,6 +62,6 @@ Jedes Listenelement enthält einen Änderungsstatus (weitere Elemente sind noch 
 * entry.item ^short = "Referenz auf einen Medikationsplaneintrag."
 
 * emptyReason 0..1 MS
-* emptyReason ^short = "Intitalzustand: notstarted Grund, TODO: code für \"Patient nimmt derzeit keine Medikamente ein\"."
+* emptyReason ^short = "Intitalzustand: notstarted Grund, TODO: Code für \"Patient nimmt derzeit keine Medikamente ein\"."
 
 
