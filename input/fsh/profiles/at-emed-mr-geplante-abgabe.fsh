@@ -170,7 +170,7 @@ TODO: Eher keine Verwendung in der geplanten Abgabe, Dokumentation über Substit
 * priorPrescription ^short = "Im Falle einer Änderung wird auf die ersetzte geplante Abgabe verwiesen."
 
 * detectedIssue 0..0
-* detectedIssue ^short = "Keine Verwendung in der geplanten Abgabe."
+* detectedIssue ^short = "Referenenz auf DetectedIssue Ressource. Keine Verwendung in der geplanten Abgabe."
 
 * eventHistory 0..0
 * eventHistory ^short = "Bezeichnet eine Liste von Provenance-Ressourcen, die verschiedene relevante Versionen 
