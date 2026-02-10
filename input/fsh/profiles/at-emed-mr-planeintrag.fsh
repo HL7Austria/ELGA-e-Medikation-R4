@@ -23,36 +23,35 @@ entspricht dieser Zeitraum dem frühesten Startdatum und dem spätesten Enddatum
 * extension[offLabelUse] ^short = "Weist darauf hin, dass der verschreibende Arzt das Medikament wissentlich für eine Indikation, Altersgruppe, Dosierung oder Verabreichungsform verschrieben hat, die nicht von den Aufsichtsbehörden zugelassen ist und in der Verschreibungsinformation für das Produkt nicht erwähnt wird."
 
 * identifier 0..* MS // 1..1 MS ?
-* identifier ^short = "TODO: Verwendung im Medikationsplaneintrag zu prüfen. 
-Geplante-Abgabe-ID (e-Med-ID) steht jedenfalls erst zum Zeitpunkt der Erstellung einer 
+* identifier ^short = "Verwendung im Medikationsplaneintrag zu prüfen. 
+Geplante-Abgabe-ID (e-Med-ID) steht erst zum Zeitpunkt der Erstellung einer 
 geplanten Abgabe (Rezeptierung) zur Verfügung."
 
-// evt. noch einschränken: unknown, draft entfernen
 * status MS
 * status ^short = "Status des Medikationsplaneintrags (im Standardfall active oder complete): 
-active | on-hold | cancelled | completed | entered-in-error | stopped | draft | unknown -> entfernen: draft, unknown" 
+(req) active | on-hold | cancelled | completed | entered-in-error | stopped | draft | unknown -> entfernen: draft, unknown" 
 
 * statusReason 0..0 
-* statusReason ^short = "Grund für den aktuellen Status des Medikationsplaneintrags: https://hl7.org/fhir/R4/valueset-medicationrequest-status-reason.html. Verwendung prüfen."
+* statusReason ^short = "Grund für den aktuellen Status des Medikationsplaneintrags: (ex) https://hl7.org/fhir/R4/valueset-medicationrequest-status-reason.html. Verwendung prüfen."
 
 * intent 1..1 MS
 * intent = #order 
 * intent ^short = "Der Medikationsplaneintrag stellt eine Anforderung und Ermächtigung 
-zum Handeln durch den Antragsteller dar, daher ist intent immer \"order\"."
+zum Handeln durch den Antragsteller dar, daher ist intent immer \"order\". 
+(req) proposal | plan | order | original-order | reflex-order | filler-order | instance-order | option"
 
 // Kategorie damit Medikationsplaneintrag von geplanter Abgabe unterschieden werden kann, da beide "order" 
 * category 1..1 MS
 * category = MedicationRequestCategoryCS#1  //"Medikationsplaneintrag" Display nicht fixieren -> Übersetzungen
-* category ^short = "Kategorie damit Instanz einer geplanten Abgabe von Medikationsplaneintrag
- unterschieden werden kann (beide haben intent order)"
+* category ^short = "Kategorie damit Medikationsplaneintrag von geplanter Abgabe unterschieden werden kann (beide haben intent order)"
 
 * priority 0..0
-* priority ^short = "Priorität des Medikationsplaneintrag: routine | urgent | asap | stat. Keine Verwendung in Medikationsplaneintrag."
+* priority ^short = "Priorität des Medikationsplaneintrag: (req) routine | urgent | asap | stat. Keine Verwendung in Medikationsplaneintrag."
 
 // z.B. Wenn bestimmtes Medikment nicht verordnet werden darf ? Gibt es diesen Usecase?
 * doNotPerform 0..1 MS
 * doNotPerform ^short = "Gibt an, ob der Medikationsplaneintrag die Verordnung einer Medikation 
-(und somit die Erstellung einer geplanten Abgabe) untersagt ist. Verwendung prüfen."
+(und somit die Erstellung einer geplanten Abgabe) untersagt. Verwendung prüfen."
 
 * reported[x] 0..0
 * reported[x] ^short = "Gibt an, ob dieser Datensatz als sekundärer „gemeldeter” Datensatz und nicht als ursprünglicher primärer Referenzdatensatz erfasst wurde. 
@@ -83,7 +82,7 @@ Er kann auch die Quelle der Meldung angeben. Keine Verwendung in Medikationsplan
 * subject ^short = "Österreichischer Patient für den der Medikationsplaneintrag ausgestellt wird."
 
 * encounter 0..0
-* encounter ^short = "Die Begegnung, während der Medikationsplaneintrag erstellt wurde. Verwendung im Medikationsplaneintrag prüfen."
+* encounter ^short = "Aufenthalt/Begegnung, während dessen/der der Medikationsplaneintrag erstellt wurde. Verwendung im Medikationsplaneintrag prüfen."
 
 * supportingInformation 0..0
 * supportingInformation ^short = "Zusätzliche Informationen 
@@ -92,7 +91,7 @@ Es müsste eigene Ressource verlinkt werden, daher keine Verwendung im Medikatio
 
 // -- AuthoredOn ---
 * authoredOn 1..1 MS
-* authoredOn ^short = "Datum der Ausstellung des Medikationsplaneintrags."
+* authoredOn ^short = "Datum der Erstellung des Medikationsplaneintrags."
 
 // -- Requester ---
 * requester 1..1 MS  // zu hinterfragen, ob HL7ATCorePractitionerRole + HL7ATCoreOrganization nötig 
@@ -116,14 +115,14 @@ Keine Verwendung im Planeintrag."
 * reasonCode 0..* MS
 //* reasonCode from $cs-sct (required)
 * reasonCode ^short = "Grund für die Verordnung des Arzneimittels. 
-Entweder Code oder Referenz (evtl. Invariante)."
+Entweder Code oder Referenz (TODO: Evtl. Invariante)."
 * reasonCode.coding 1..*
 // * reasonCode.coding.system 1..1 
 // * reasonCode.coding.code 1..1
 // * reasonCode.coding.display 1..1
 * reasonReference 0..* MS
 * reasonReference ^short = "Grund für die Verordnung des Arzneimittels. 
-Entweder Code oder Referenz (evtl. Invariante)."
+Entweder Code oder Referenz (TODO: Evtl. Invariante)."
 
 * instantiatesCanonical 0..1 MS 
 * instantiatesCanonical ^short = "URL, die auf ein Protokoll, eine Richtlinie, 
@@ -178,7 +177,7 @@ Keine Verwendung im Medikationsplaneintrag."
 * substitution ^short = "Gibt an, ob eine Substitution Teil der Abgabe sein kann/sollte/nicht sein darf. 
 Dieser Block erläutert die Absicht des Arztes, der den Medikationsplaneintrag erstellt. 
 Wenn nichts angegeben ist, kann eine Substitution vorgenommen werden. 
-TODO: Zu prüfen ob Verwendung im Medikationsplaneintrag; Dokumentation über Substitution erfolg in der Dispense-Resource. 
+TODO: Zu prüfen, ob Verwendung im Medikationsplaneintrag; Dokumentation über Substitution erfolg in der Dispense-Resource. 
 Usecase: mit welchem Medikament der Patient das Medikament ersetzen kann. Hinweis: vor allem bei
 OTC Medikamenten sinnvoll, da keine geplante Abgabe dazu existiert"
 
@@ -193,7 +192,7 @@ z. B. Wechselwirkungen zwischen Medikamenten, doppelte Therapie, Dosierungswarnu
 TODO: Es wäre eine eigene Ressource nötig, daher unrealistisch."
 
 * eventHistory 0..0
-* eventHistory ^short = "Bezeichnet eine Liste von Provenance-Ressourcen, 
+* eventHistory ^short = "Referenz auf Provenance-Ressourcen, 
 die verschiedene relevante Versionen dieser Ressource dokumentieren. 
 TODO: Verwendung im Medikationsplaneintrag zu prüfen."
 

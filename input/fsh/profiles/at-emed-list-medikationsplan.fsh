@@ -4,18 +4,24 @@ Id: at-emed-list-medikationsplan
 Title: "ELGA e-Med Medikationsplan"
 Description: "**Beschreibung:** Bildet den Medikationsplan eines ELGA-Teilnehmers ab (\"List\"-Ressource). 
 Die Liste beinhaltet Referenzen auf 0..* Medikationsplaneinträge (MedicationRequests), die alle verordneten Arzneimittel und deren Dosierung abbilden.
-Die Reihenfolge der Listenelemente kann duch den User festgelegt werden. Jedes Listenelement enthält einen Änderungsstatus (weitere Elemente sind noch zu klären)."
+Die Reihenfolge der Listenelemente kann duch den User festgelegt werden. Jedes Listenelement enthält einen Änderungsstatus (weitere Elemente sind noch zu klären).
+
+TODO: Invariante, dass überall in der List der gleiche Patient enthalten sein muss"
 
 * identifier 0..1 MS
-* identifier ^short = "Eindeutige Kennung der Liste. Verwendung zu prüfen."
+* identifier ^short = "Eindeutige Kennung der Liste / des Medikationsplans. Verwendung zu prüfen."
 
 * status 1..1 MS
-//* status = #current
-* status ^short = "Der Medikationsplan ist aktuell: current | retired | entered-in-error. https://hl7.org/fhir/R4/valueset-list-status.html"
+//* status = #current  
+* status ^short = "Verpflichtende Angabe: current | retired | entered-in-error. https://hl7.org/fhir/R4/valueset-list-status.html"
 
 * mode 1..1 MS
 //* mode = #working
-* mode ^short = "Der Medikationsplan ist ein Arbeitsdokument: working | snapshot | changes. https://hl7.org/fhir/R4/valueset-list-mode.html"
+* mode ^short = "Verpflichtende Angabe: working | snapshot | changes. https://hl7.org/fhir/R4/valueset-list-mode.html
+Der Medikationsplan ist ein laufend gepflegtes Dokument: working"
+
+* title 0..0
+* title ^short = "Titel der Liste. Verwendung zu prüfen."
 
 * code ^short = "Code, der den Typ der Liste beschreibt. https://hl7.org/fhir/R4/valueset-list-example-codes.html. Zu prüfen, ob/wie in Medikationsplan verwendet."
 * code 1..1 MS
@@ -23,22 +29,23 @@ Die Reihenfolge der Listenelemente kann duch den User festgelegt werden. Jedes L
 
 * subject 1..1 MS
 * subject only Reference(HL7ATCorePatient)
+* subject ^short = "Österreichischer Patient für den der Medikationsplan erstellt wird."
 
 * encounter 0..0
-* encounter ^short = "Keine Verwendung in der Liste für den Medikationsplan."
+* encounter ^short = "Verwendung zu prüfen."
 
 * date 1..1 MS
-* date ^short = "Letzte Aktualisierung der Liste des Medikationsplans."
+* date ^short = "Letzte Aktualisierung des Medikationsplans."
 
 * source 1..1 MS
 * source only Reference(HL7ATCorePractitioner or HL7ATCorePractitionerRole)
-* source ^short = "Ersteller der Liste des Medikationsplans."
+* source ^short = "Ersteller des Medikationsplans."
 
 * orderedBy 1..1 MS
 * orderedBy from http://hl7.org/fhir/ValueSet/list-order 
 * orderedBy = #user
-* orderedBy ^short = "Die Reihenfolge der Einträge im Medikationsplan ist fachlich relevant und wird durch den Erseller der Liste vorgegeben. 
-Mögliche Codes: user | system | event-date | entry-date| priority | alphabetic | category | patient."
+* orderedBy ^short = "Die Reihenfolge der Einträge im Medikationsplan ist fachlich relevant und wird durch den Ersteller vorgegeben. 
+Mögliche Codes: user | system | event-date | entry-date| priority | alphabetic | category | patient (einschränken?)"
 
 // note: Mögliches Kommentar auf Ebene des Medikationsplans
 * note 0..* MS
@@ -49,19 +56,19 @@ Mögliche Codes: user | system | event-date | entry-date| priority | alphabetic 
 
 * entry.flag 1..1 MS
 * entry.flag from http://hl7.org/fhir/ValueSet/list-item-flag
-* entry.flag ^short = "Kennzeichnet die Art der Änderung des Medikationsplaneintrags."
+* entry.flag ^short = "Kennzeichnet die Art der Änderung des Medikationsplaneintrags: zB Unchanged | Changed | Cancelled | Prescribed | Ceased | Suspended."
 
 * entry.deleted 0..1 MS
-* entry.deleted ^short = "Gibt an, ob der referenzierte Medikationsplaneintrag aus dem Medikationsplan entfernt wurde. Unklar, ob Löschen so abgebildet werden soll."
+* entry.deleted ^short = "Gibt an, ob der referenzierte Medikationsplaneintrag zur Entfernung markiert wurde. Unklar, ob Löschen so abgebildet werden soll."
 
 * entry.date 0..1 MS
-* entry.date ^short = "Datum der Aufnahme des Medikationsplaneintrags in den Medikationsplan. Fachlich zu klären."
+* entry.date ^short = "Datum der Aufnahme des Medikationsplaneintrags. Fachlich zu klären."
 
 * entry.item 1..1 MS
 * entry.item only Reference(AtEmedMRPlaneintrag)
 * entry.item ^short = "Referenz auf einen Medikationsplaneintrag."
 
 * emptyReason 0..1 MS
-* emptyReason ^short = "Intitalzustand: notstarted Grund, TODO: Code für \"Patient nimmt derzeit keine Medikamente ein\"."
+* emptyReason ^short = "Grund, warum der Medikationsplan noch leer ist: Intitalzustand: notstarted, TODO: Code für \"Patient nimmt derzeit keine Medikamente ein\"."
 
 
