@@ -13,6 +13,8 @@ Alias: $cs-sct = http://snomed.info/sct
 // medication
 Alias: $cs-asp-liste = https://termgit.elga.gv.at/CodeSystem/asp-liste
 Alias: $cs-atc = https://termgit.elga.gv.at/CodeSystem/atc-deutsch-wido
+Alias: $cs-emed-doseform = https://termgit.elga.gv.at/CodeSystem/medikationdarreichungsform
+Alias: $vs-emed-mengenart = https://termgit.elga.gv.at/ValueSet-elga-medikationmengenart.html
 
 // FHIR
 Alias: $cs-event-timing = http://hl7.org/fhir/event-timing

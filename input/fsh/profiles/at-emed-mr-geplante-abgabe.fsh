@@ -69,7 +69,6 @@ zum Handeln durch den Antragsteller dar, daher ist intent immer \"order\"."
 * medicationReference 0..1 MS
 * medicationReference only Reference(AtEmedMedication)
 * medicationReference ^short = "Bei magistralen Anwendungen oder Infusionen ohne PZN."
-* obeys med-1
 
 // --- Subject ---
 * subject only Reference(HL7ATCorePatient) 

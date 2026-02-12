@@ -4,8 +4,8 @@ Title: "Beispiel Journey 02: Magistrale Zubereitung"
 Description: "**Beschreibung:** Beispiel einer magistralen Zubereitung (Medication) - Salbe."
 Usage: #example
 
-* status = #active
-* manufacturer = Reference(AtEmedExampleOrganizationApo01) "Amadeus Apotheke"
+//* status = #active
+//* manufacturer = Reference(AtEmedExampleOrganizationApo01) "Amadeus Apotheke"
 * form.coding = https://termgit.elga.gv.at/CodeSystem/medikationdarreichungsform#100000073713 "Salbe"
 // CodeableConcept
 * ingredient[+].itemCodeableConcept = $cs-atc#A01AC03 "Hydrocortison"
@@ -39,6 +39,6 @@ Usage: #example
 // * ingredient[=].strength.denominator.value = 100
 // * ingredient[=].strength.denominator.unit = "g"
 
-* batch.lotNumber = "MAG-2026-001"
-* batch.expirationDate = "2027-01-01"
+//* batch.lotNumber = "MAG-2026-001"
+//* batch.expirationDate = "2027-01-01"
 
