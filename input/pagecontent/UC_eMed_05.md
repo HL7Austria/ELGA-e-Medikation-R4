@@ -6,8 +6,7 @@
 
 GDA sollen in den Medikationsplan von ELGA-Teilnehmer:innen mit Behandlungsbezug einsehen können, um sich einen Überblick zu allen verordneten Medikamenten und der zugehörigen Einnahmeninformation zu verschaffen. 
 <br>
-Ein:e ELGA-Teilnehmer:in soll ihren Medikationsplan einsehen können, um sich mit der vorgesehenen Einnahmeanordnung vertraut zu machen.<br><br>
-Details zu Inhalten des Medikationsplans, siehe "[Die e-Medikation: UC_eMed_05_H01 bis UC_eMed_05_H04](requirements.html)"
+Ein:e ELGA-Teilnehmer:in soll ihren Medikationsplan einsehen können, um sich mit der vorgesehenen Einnahmeanordnung vertraut zu machen.
 
 
 ### Akteure

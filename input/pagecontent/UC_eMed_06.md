@@ -5,8 +5,7 @@
 ### Beschreibung
 
 GDA sollen einen Medikationsplan für eine:n ELGA-Teilnehmer:in erfassen oder korrigieren können, um eine Übersicht über die gesamte aktuell einzunehmende Medikation zur Verfügung zu stellen. 
-<br><br>
-Details zu "Medikationsplan erfassen", siehe "[Die e-Medikation](requirements.html)"
+
 
 ### Akteure
 
