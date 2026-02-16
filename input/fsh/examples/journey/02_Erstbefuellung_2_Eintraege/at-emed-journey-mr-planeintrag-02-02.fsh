@@ -12,15 +12,13 @@ Usage: #example
 * extension[renderedDosageInstruction].valueMarkdown = "1 täglich auftragen"
 
 //* meta[+].profile = "http://hl7.eu/fhir/mpd/StructureDefinition/MedicationRequest-eu-mpd"
-* identifier.value = "4712"
-* status = #active
-* intent = #order
+* identifier.value = "4713_202602280800000" // Eintrag_ID = {ID}_{Zeitstempel}
+* status = MedicationRequestStatusCS#active
+* intent = https://hl7.org/fhir/R4/valueset-medicationrequest-intent#order
 * category = MedicationRequestCategoryCS#1 
 
-
+// Referenz auf Inline Medication Ressource
 * medicationReference.reference = #InlineAtEmedJourneyMedicationMagistral02
-// dtz. nicht möglich
-//* medicationCodeableConcept = $cs-asp-liste#0004340 "ASPIRIN TBL 500MG"
 
 * subject = Reference(AtEmedExamplePatient01)
 * authoredOn = "2026-01-28T08:00:00+00:00"
@@ -44,12 +42,14 @@ Usage: #example
 // * dosageInstruction.maxDosePerPeriod.denominator = 1 '{day}' "{day}"
 
 
+// Inline Medication *********************************************************************
 Instance: InlineAtEmedJourneyMedicationMagistral02
 InstanceOf: AtEmedMedication
-Title: "Beispiel Journey 02: Magistrale Zubereitung"
-Description: "**Beschreibung:** Beispiel einer magistralen Zubereitung (Medication) - Salbe."
+Title: "Beispiel Journey 02: Magistrale Anwendung (Salbe)"
 Usage: #inline
 
+* text.status = #additional
+* text.div = "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n<p>Freitext-Informationen zur magistralen Anwendung.</p>\n</div>"
 
 //* status = #active
 //* manufacturer = Reference(AtEmedExampleOrganizationApo01) "Amadeus Apotheke"

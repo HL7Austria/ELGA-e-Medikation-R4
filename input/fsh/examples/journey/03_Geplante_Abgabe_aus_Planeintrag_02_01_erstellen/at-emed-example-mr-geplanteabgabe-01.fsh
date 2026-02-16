@@ -11,7 +11,7 @@ Usage: #example
 
 //* meta.profile = "http://hl7.eu/fhir/mpd/StructureDefinition/MedicationRequest-eu-mpd"
 * identifier.value = "WYE82A2G8EEW-4711"
-* status = #active
+* status = MedicationRequestStatusCS#active
 * intent = #order
 * category = MedicationRequestCategoryCS#2 "Geplante Abgabe"
 

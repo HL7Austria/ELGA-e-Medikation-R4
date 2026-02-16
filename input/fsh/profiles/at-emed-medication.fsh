@@ -12,6 +12,9 @@ Unterschieden werden folgende Fälle:
     b. Bei magistraler Anwendung, Infusionen 
 "
 
+* text 0..1 MS  //ergänzt AKL
+* text ^short = "TODO: Freitext für magistrale Anwendungen oder Abbildung in Substance.description?"
+
 * identifier 0..0 
 * identifier ^short = "Eindeutiger Identifikator für das Arzneimittel. Wird nicht benötigt, da PZN, sofern vorhanden, im Code angegeben wird."
 
@@ -34,7 +37,8 @@ historischer Verfügbarkeit, im Falle von sich ändernden PZNs; evtl. könnte di
 
 * manufacturer 0..0 
 //* manufacturer only Reference(HL7ATCoreOrganization)
-* manufacturer ^short = "Der Hersteller des Arzneimittels. Keine Verwendung im Kontext Planeintrag. TODO: Prüfen, ob im Kontext durchgeführte Abgabe und magistraler Zubereitung erforderlich; prüfen ob Einschränkung auf österr. Organisation" 
+* manufacturer ^short = "Der Hersteller des Arzneimittels. Keine Verwendung im Kontext Planeintrag. 
+TODO: Prüfen, ob im Kontext durchgeführte Abgabe und magistraler Zubereitung erforderlich; HL7ATCoreOrganization schränkt auf Organisationen gemäß GDA-Index ein."
 
 * form 0..1 MS 
 * form from $cs-emed-doseform (required)
@@ -51,7 +55,7 @@ Wenn PZN vorhanden 0..0, da Anreicherung aus ASP-Liste durch Fachanwendung."
 * ingredient 0..* MS
 * ingredient ^short = "Wirkstoffe. Wenn PZN vorhanden 0..0, da Anreicherung aus ASP-Liste durch Fachanwendung.
 Gemäß AG: Einschränkung auf CodeableConcept, TODO: prüfen, wie Freitext bei magistraler Zubereitung abgebildet wird:
-In diesem Fall müsste in einer Substance-Ressource die description (string) befüllt werden."
+Evtl. in einer Substance-Ressource in der description (string)."
 * ingredient.item[x] only CodeableConcept or Reference(AtEmedSubstance) // or AtEmedMedication, TODO Substance profilieren
 * ingredient.itemCodeableConcept 0..1 MS 
 * ingredient.itemCodeableConcept ^short = "Inhaltsstoff codiert. TODO: prüfen, Einschränkung auf SPOR (EMA). Gemüß CDA v3:

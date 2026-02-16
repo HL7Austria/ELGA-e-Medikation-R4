@@ -7,9 +7,9 @@ Er enthält genau ein Arzneimittel und dessen Dosierung.
 Kann in weiterer Folge dazu dienen, eine geplante Abgabe zu erstellen. Verwendet R5 Backport Extensions."
 
 // TODO: Statt MS Obligations für alle Elemente, daher später kein 0..0 nötig
-// Contained Ressourcen: Medication und Substance
+// Contained Ressourcen: Medication und Substance; TODO prüfen ob Substance erforderlich.
 
-* contained 1..*
+//* contained 1..*
 
 * contained ^slicing.discriminator.type = #type
 * contained ^slicing.discriminator.path = "$this"
@@ -40,7 +40,7 @@ Altersgruppe, Dosierung oder Verabreichungsform verschrieben hat, die nicht von 
 Verschreibungsinformation für das Produkt nicht erwähnt wird."
 // ENDE Extensions
 
-* identifier 0..* MS // 1..1 MS ?
+* identifier 1..1  // sonst 0..* 
 * identifier ^short = "Medikationsplaneintrag-ID. TODO: Verwendung einer logischen Medikationsplaneintrag-ID prüfen.
 Evt. mit Zeitstempel (Planeintrag-ID_{Zeitstempel}) zur Herstellung eines Bezugs von geänderten Planeinträgen.
 Vorteil: 
@@ -51,21 +51,18 @@ Nachteil:
 - Die Verantwortung, dass nur Einträge geändert werden, die keine komplett neue Medikation beinhalten, liegt beim Client."
 
 * status MS
-* status ^short = "Status des Medikationsplaneintrags. TODO: Einschränken auf active, complete, on hold; 
-(req) active | on-hold | cancelled | completed | entered-in-error | stopped | draft | unknown 
-TODO: Fachlich zu püfen, ob im Medikationsplan dokumentiert werden soll, dass und warum ein Medikament abgesetzt wurde (z.B. Allergie).
+* status from MedikationsplaneintragStatusVS (required)
+* status ^short = "Status des Medikationsplaneintrags. VS Einschränkung auf active, complete, on-hold, stopped (?); TODO: Fachlich zu püfen, ob im Medikationsplan dokumentiert werden soll, dass und warum ein Medikament abgesetzt wurde (Status: stopped, z.B. bei Allergie).
 Auch im Kontext mit statusReason, wo dieser Grund codiert angegeben werden kann.
-" 
+(entfernt: cancelled, entered-in-error, draft, unknown)" 
 
 * statusReason 0..0 
 * statusReason ^short = "Grund für den aktuellen Status des Medikationsplaneintrags: (ex) https://hl7.org/fhir/R4/valueset-medicationrequest-status-reason.html.
-TODO: Verwendung prüfen im Zusammenhang mit status."
+TODO: Verwendung fachlich zu prüfen im Zusammenhang mit Status."
 
 * intent 1..1 MS
-* intent = #order // begrüdung
-* intent ^short = "TODO: Begründung, warum hier immer \"order\" anzugeben ist:
-Der Medikationsplaneintrag ist eine Handlungsermächtigung. Dieser wurde von einem:r Arzt:Ärztin erstellt und ermächtigt (auch andere Ärzte) zur Ausstellung einer geplanten Abgabe
-basierend auf diesen Eintrag.
+* intent = https://hl7.org/fhir/R4/valueset-medicationrequest-intent#order // begrüdung
+* intent ^short = "Ein Medikationsplaneintrag ist eine autorisierte ärztliche Anordnung und stellt eine verbindliche Einnahmeanweisung für den Patienten dar, auf dessen Basis eine geplante Abgabe erstellt werden kann. Fixer Wert: \"order\".
 (req) proposal | plan | order | original-order | reflex-order | filler-order | instance-order | option. 
 https://hl7.org/fhir/R4/valueset-medicationrequest-intent.html"
 
@@ -94,8 +91,8 @@ Verantwortlichkeit für Korrektheit des Eintrags zu klären."
 * medication[x] 1..1 MS  
 * medication[x] only Reference(AtEmedMedication)  
 
-* medicationReference 1..1 MS 
-* medicationReference only Reference(AtEmedMedication) 
+// * medicationReference 1..1 MS 
+// * medicationReference only Reference(AtEmedMedication) 
 * medicationReference.reference obeys contained-ref
 * medicationReference ^short = "Das Arzneimittel wird immer in einer contained Medication Ressource dokumentiert, damit 
 Arzneimittel mit und ohne PZN einheitlich dokumentiert werden können."

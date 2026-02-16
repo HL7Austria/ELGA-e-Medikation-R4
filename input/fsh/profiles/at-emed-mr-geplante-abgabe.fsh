@@ -27,8 +27,11 @@ Werden mehrere Arzneimittel gleichzeitig verordnet, wird für jedes Arzneimittel
 * identifier ^short = "MedicationRequest identifier = {eMed-ID}_{locally assigned ID}.
 Setzt sich zusammen aus: groupIdentifier (Rezept-Klammer) und individueller Identifikation der geplanten Abgabe."
 
-// evt. noch einschränken: unknown, draft entfernen  
-* status ^short = "Status der geplanten Abgabe (im Standardfall active oder complete): active | on-hold | cancelled | completed | entered-in-error | stopped | draft | unknown -> entfernen: draft, unknown"
+* status MS
+* status from GeplanteAbgabeStatusVS (required)
+* status ^short = "Status der geplanten Abgabe (im Standardfall active oder complete): 
+ (req) active | on-hold | cancelled | completed | entered-in-error | stopped  (entfernt: draft | unknown); TODO: Fachlich zu prüfen."
+
 
 * statusReason 0..0 
 * statusReason ^short = "Grund für den aktuellen Status: https://hl7.org/fhir/R4/valueset-medicationrequest-status-reason.html. Keine Verwendung in der geplanten Abgabe."
