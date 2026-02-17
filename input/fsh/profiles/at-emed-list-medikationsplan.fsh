@@ -9,7 +9,7 @@ Die Reihenfolge der Listenelemente kann duch den User festgelegt werden. Jedes L
 TODO: Invariante, dass überall in der List der gleiche Patient enthalten sein muss"
 
 * identifier 0..1 MS
-* identifier ^short = "Eindeutige Kennung der Liste / des Medikationsplans. Verwendung zu prüfen."
+* identifier ^short = "Logischer Identfier der Liste / des Medikationsplans. Verwendung zu prüfen."
 
 * status 1..1 MS
 //* status = #current  
@@ -29,7 +29,8 @@ Der Medikationsplan ist ein laufend gepflegtes Dokument: working"
 
 * subject 1..1 MS
 * subject only Reference(HL7ATCorePatient)
-* subject ^short = "Österreichischer Patient für den der Medikationsplan erstellt wird."
+* subject ^short = "Patient, für den der Medikationsplan erstellt werden soll, der über den 
+Zentralen Patientenindex identifizierbar und Teilnehmer von ELGA e-Medikation ist."
 
 * encounter 0..0
 * encounter ^short = "Verwendung zu prüfen."
@@ -39,17 +40,19 @@ Der Medikationsplan ist ein laufend gepflegtes Dokument: working"
 
 * source 1..1 MS
 * source only Reference(HL7ATCorePractitioner or HL7ATCorePractitionerRole)
-* source ^short = "Ersteller des Medikationsplans."
+* source ^short = "Arzt oder Ärztin, die den Medikationsplans erstellt und für den Inhalt verantwortlich ist. 
+Eindeutig identifiziert über den GDA-Index und berechtigt auf die ELGA e-Medikation 
+des Patienten zuzugreifen."
 
 * orderedBy 1..1 MS
 * orderedBy from http://hl7.org/fhir/ValueSet/list-order 
 * orderedBy = #user
 * orderedBy ^short = "Die Reihenfolge der Einträge im Medikationsplan ist fachlich relevant und wird durch den Ersteller vorgegeben. 
-Mögliche Codes: user | system | event-date | entry-date| priority | alphabetic | category | patient (einschränken?)"
+Mögliche Codes: user | system | event-date | entry-date| priority | alphabetic | category | patient (TODO: nur user oder andere Reihenfolge ermöglichen?)"
 
 // note: Mögliches Kommentar auf Ebene des Medikationsplans
 * note 0..* MS
-* note ^short = "Freitextliche Anmerkungen zum Medikationsplan. Prüfen hinsichtlich Korrekturvermerk."
+* note ^short = "Freitextliche Anmerkungen zum Medikationsplan. TODO: prüfen, ob fachlich sinnvoll."
 
 // --- Entries ---
 * entry 0..* MS
@@ -59,7 +62,7 @@ Mögliche Codes: user | system | event-date | entry-date| priority | alphabetic 
 * entry.flag ^short = "Kennzeichnet die Art der Änderung des Medikationsplaneintrags: zB Unchanged | Changed | Cancelled | Prescribed | Ceased | Suspended."
 
 * entry.deleted 0..1 MS
-* entry.deleted ^short = "Gibt an, ob der referenzierte Medikationsplaneintrag zur Entfernung markiert wurde. Unklar, ob Löschen so abgebildet werden soll."
+* entry.deleted ^short = "Gibt an, ob der referenzierte Medikationsplaneintrag zur Entfernung markiert wurde. Unklar, ob Löschen so abgebildet werden soll oder einfach der Eintrag nicht mehr enthalten ist."
 
 * entry.date 0..1 MS
 * entry.date ^short = "Datum der Aufnahme des Medikationsplaneintrags. Fachlich zu klären."
@@ -74,5 +77,3 @@ Mögliche Codes: user | system | event-date | entry-date| priority | alphabetic 
 https://hl7.org/fhir/R4/valueset-list-empty-reason.html eingeschränkt auf: <vbr>
     - notstarted: Intitalzustand <br>
     - nilknown: Patient nimmt derzeit keine Medikamente ein"
-
-
