@@ -79,13 +79,12 @@ https://hl7.org/fhir/R4/valueset-medicationrequest-intent.html"
 (und somit die Erstellung einer geplanten Abgabe) untersagt (z.B. bei Allergie). TODO: Fachlich zu prüfen, ob dieser Usecase existiert.
 Auch im Kontext mit status und statusReason zu betrachten. Evtl. erst in späterer Version"
 
-* reported[x] 0..1 MS
-* reported[x] ^short = "TODO: Verwendung zu püfen: Kann zur Dokumentation von Fremdmedikation verwendet werden. Im Falle eines \"Nachtrags\" einer Medikation in den Medikationsplan
-durch einen anderen, nicht ursprünglich verordnenden Arzt. Dieser muss eindeutig identifiziert sein (im GDA-I vorhanden). Juristisch
-Verantwortlichkeit für Korrektheit des Eintrags zu klären."
+* reported[x] 1..1 MS
 
-* reportedBoolean ^short = "TODO: entfernen?"
-* reportedReference ^short = "Im Falle einer Fremdmedikation verpflichtende Angabe einer Referen auf: (Patient | Practitioner | PractitionerRole | RelatedPerson | Organization)"
+* reportedBoolean ^short = "TRUE im Falle der Dokumentation von Fremdmedikation (ein anderer Arzt hat das Medikament ursprünglich verordnet), sonst FALSE.
+TODO: Klären ob hier der GDA eindeutig identifiziert sein muss (im GDA-I vorhanden) oder analog zu e-Impfpass Freitext sein kann. Juristisch
+Verantwortlichkeit für Korrektheit des Eintrags zu klären."
+* reportedReference ^short = "Im Falle einer Fremdmedikation Angabe einer Referenz auf: (Patient | Practitioner | PractitionerRole | RelatedPerson | Organization)"
 
 // --- Medication immer als Medication-Resource (mit oder ohne PZN, damit Handelsname angegeben werden kann und historisch verfügbar bleibt)
 * medication[x] 1..1 MS  
@@ -138,7 +137,7 @@ TODO: Prüfen, ob eine juristische Verpflichtung zur Dokumentation der Schreibkr
 //* reasonCode from $cs-sct (required)
 * reasonCode ^short = "Grund für die Verordnung des Arzneimittels. 
 Entweder Code oder Referenz (TODO: Evtl. Invariante). Erst wenn codierte Angabe möglich."
-//* reasonCode.coding 1..*
+//* reasonCode.coding 1..*  
 // * reasonCode.coding.system 1..1 
 // * reasonCode.coding.code 1..1
 // * reasonCode.coding.display 1..1
@@ -170,7 +169,7 @@ Verwendung im Medikationsplaneintrag prüfen (dosageInstruction), evtl. durch Do
 * insurance ^short = "Keine Verwendung im Medikationsplaneintrag."
 
 * note 0..* MS 
-* note ^short = "Zusätzliche Informationen zum Medikationsplaneintrag. TODO: zu prüfen im Kontext Korrekturvermerk
+* note ^short = "Zusätzliche Informationen zum Medikationsplaneintrag.
 TODO: fachlich prüfen, an welchen Stellen überall Freitext erforderlich sein soll/muss. Auch im Kontext zu entered-in-error
 Informationen."
 
