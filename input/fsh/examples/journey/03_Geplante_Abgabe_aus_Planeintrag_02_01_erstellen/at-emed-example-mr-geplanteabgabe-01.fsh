@@ -4,6 +4,8 @@ Title: "Beispiel Journey 03: Geplante Abgabe"
 Description: "**Beschreibung:** Bildet eine geplante Abgabe des Medikaments EBETREXAT und zugehörigen Dosierungsanweisungen ab (MedicationRequest)."
 Usage: #example
 
+* contained[medication] = InlineGeplanteAbgabeMedicationMagistral01
+
 // R5 Backports
 * extension[effectiveDosePeriod].valuePeriod.start = "2026-01-28"
 * extension[effectiveDosePeriod].valuePeriod.end = "2026-02-28"
@@ -15,12 +17,14 @@ Usage: #example
 * intent = #order
 * category = MedicationRequestCategoryCS#2 "Geplante Abgabe"
 
-* medicationCodeableConcept = $cs-asp-liste#2443061 "EBETREXAT TBL 10MG"
+// Referenz auf Inline Medication Ressource
+* medicationReference.reference = #InlineGeplanteAbgabeMedicationMagistral01
+
 
 * subject = Reference(AtEmedExamplePatient01)
 * authoredOn = "2026-01-29T08:00:00+00:00"
 * requester = Reference(AtEmedExamplePractitioner01)
-* reasonCode = $cs-sct#59621000 "Essentielle Hypertonie"
+//* reasonCode = $cs-sct#59621000 "Essentielle Hypertonie"
 
 * groupIdentifier.value = "WYE82A2G8EE1"
 
@@ -49,4 +53,13 @@ Usage: #example
 * dispenseRequest.expectedSupplyDuration = 30 'd' "Tage"
 
 * basedOn = Reference(MedicationRequest/AtEmedJourneyMrPlaneintrag0201) "Planeintrag"
+
+
+// Inline Medication *********************************************************************
+Instance: InlineGeplanteAbgabeMedicationMagistral01
+InstanceOf: AtEmedMedication
+Title: "Beispiel Medikation EBETREXAT"
+Usage: #inline
+
+* code = $cs-asp-liste#2443061 "EBETREXAT TBL 10MG"
 

@@ -9,6 +9,22 @@ Werden mehrere Arzneimittel gleichzeitig verordnet, wird für jedes Arzneimittel
 * . ^short = "Geplante Abgabe eines Arzneimittels aus dem Medikationsplan. Verwendet R5 Backport Extensions."
 
 // TODO: Statt MS Obligations für alle Elemente, daher später kein 0..0 nötig
+// Contained Ressourcen: Medication und Substance; TODO prüfen ob Substance erforderlich.
+
+//* contained 1..*
+
+* contained ^slicing.discriminator.type = #type
+* contained ^slicing.discriminator.path = "$this"
+* contained ^slicing.rules = #open
+
+* contained contains
+    medication 1..1 and
+    substance 0..*
+
+* contained[medication] only AtEmedMedication
+* contained[substance] only AtEmedSubstance
+
+
 
 // Extensions
 * extension contains $medicationRequest-effectiveDosePeriod-r5 named effectiveDosePeriod 0..1 
@@ -56,33 +72,29 @@ zum Handeln durch den Antragsteller dar, daher ist intent immer \"order\"."
 * reported[x] 0..0
 * reported[x] ^short = "Keine Verwendung in der geplanten Abgabe."
 
-// --- Medication Choice: Code (PZN) ODER Medication-Resource ---
-* medication[x] 1..1 MS  //Obligation auf obersten Ebenen, Rendering prüfen
-* medication[x] only CodeableConcept or Reference(AtEmedMedication)  
-// CodeableConcept-Variante (ASP-Liste, PZN)
-* medicationCodeableConcept 0..1 MS  
-* medicationCodeableConcept from $cs-asp-liste (required)  // gem. CDA code: Pharmazentralnummer (OID 1.2.40.0.34.4.16), Zulassungsnummer (OID 1.2.40.0.34.4.17), Package Reference Number der AGES (OID 1.2.40.0.34.4.26) (geplant als Ablöse zur PZN), (in Vorbereitung) PCID der EMA (OID 1.2.40.0.34.4.27)
-* medicationCodeableConcept ^short = "Angabe mittels Pharmazentralnummer (PZN) aus der ASP-Liste."
-* medicationCodeableConcept.coding 1.. // zusätzlich ausländische Codes o.ä. zulassen
-// * medicationCodeableConcept.coding.system 1..
-// * medicationCodeableConcept.coding.code 1..
-// * medicationCodeableConcept.coding.display 1..   // Übersetzungen ermöglichen
+// --- Medication immer als Medication-Resource (mit oder ohne PZN, damit Handelsname angegeben werden kann und historisch verfügbar bleibt)
+* medication[x] 1..1 MS  
+* medication[x] only Reference(AtEmedMedication)  
 
-// Reference-Variante für magistrale Zubereitung/Infusionen
-* medicationReference 0..1 MS
-* medicationReference only Reference(AtEmedMedication)
-* medicationReference ^short = "Bei magistralen Anwendungen oder Infusionen ohne PZN."
+// * medicationReference 1..1 MS 
+// * medicationReference only Reference(AtEmedMedication) 
+* medicationReference.reference obeys contained-ref
+* medicationReference ^short = "Das Arzneimittel wird immer in einer contained Medication Ressource dokumentiert, damit 
+Arzneimittel mit und ohne PZN einheitlich dokumentiert werden können."
 
 // --- Subject ---
 * subject only Reference(HL7ATCorePatient) 
 * subject 1..1 MS
-* subject ^short = "Österreichischer Patient für den die geplante Abgabe ausgestellt wird."
+* subject ^short = "Patient, für den der Medikationsplaneintrag ausgestellt werden soll, der über den 
+Zentralen Patientenindex identifizierbar und Teilnehmer von ELGA e-Medikation ist."
 
 * encounter 0..0
-* encounter ^short = "Keine Verwendung in der geplanten Abgabe."
+* encounter ^short = "Aufenthalt/Begegnung, während dessen die geplante Abgabe erstellt wurde. Keine Verwendung in der geplanten Abgabe."
 
 * supportingInformation 0..0
-* supportingInformation ^short = "Keine Verwendung in der geplanten Abgabe."
+* supportingInformation ^short = "Referenz auf zusätzliche Informationen (Ressource Any)
+(z. B. Größe und Gewicht des Patienten), die die Verschreibung des Medikaments unterstützen. 
+Keine Verwendung in der geplanten Abgabe."
 
 // -- AuthoredOn ---
 * authoredOn 1..1 MS
@@ -91,7 +103,8 @@ zum Handeln durch den Antragsteller dar, daher ist intent immer \"order\"."
 // -- Requester ---
 * requester 1..1 MS  // zu hinterfragen, ob HL7ATCorePractitionerRole + HL7ATCoreOrganization nötig 
 * requester only Reference(HL7ATCorePractitioner or HL7ATCorePractitionerRole or HL7ATCoreOrganization)
-* requester ^short = "Der Arzt oder die Ärztin, die die geplante Abgabe erstellt hat und für den Inhalt verantwortlich ist."
+* requester ^short = "Der Arzt oder die Ärztin, die die geplante Abgabe erstellt hat und für den Inhalt verantwortlich ist.
+Eindeutig identifiziert über den GDA-Index und berechtigt auf die ELGA e-Medikation des Patienten zuzugreifen."
 
 * performer 0..0 
 * performer ^short = "Keine Verwendung in der geplanten Abgabe."
@@ -105,27 +118,18 @@ zum Handeln durch den Antragsteller dar, daher ist intent immer \"order\"."
 * performerType 0..0
 * performerType ^short = "Keine Verwendung in der geplanten Abgabe."
 
-// Grund für die Medikation
-* reasonCode 0..* MS
+// Grund für die Medikation 
+* reasonCode 0..0 
 //* reasonCode from $cs-sct (required)
 * reasonCode ^short = "Grund für die Verordnung des Arzneimittels. 
-Entweder Code oder Referenz (evtl. Invariante)."
-* reasonCode.coding 1..*
-// * reasonCode.coding.system 1..1 
-// * reasonCode.coding.code 1..1
-// * reasonCode.coding.display 1..1
-* reasonReference 0..* MS
-* reasonReference ^short = "Grund für die Verordnung des Arzneimittels. 
-Entweder Code oder Referenz (evtl. Invariante)."
+Entweder Code oder Referenz (TODO: Evtl. Invariante). Erst wenn codierte Angabe möglich."
 
 * instantiatesCanonical 0..0 
-* instantiatesCanonical ^short = "URL, die auf ein Protokoll, eine Richtlinie, 
-eine Guideline oder eine andere Definition verweist, die von diesem 
+* instantiatesCanonical ^short = "URL, die auf ein Protokoll (Richtlinie, Guideline) verweist, die von diesem 
 Medikationsplaneintrag ganz oder teilweise eingehalten wird. Keine Verwendung in der geplanten Abgabe."
 
 * instantiatesUri 0..0 
-* instantiatesUri ^short = "URL, die auf ein extern gepflegtes Protokoll, eine Richtlinie, eine Richtlinie, 
-eine Guideline oder eine andere Definition verweist, die von diesem 
+* instantiatesUri ^short = "URL, die auf ein extern gepflegtes Protokoll (Richtlinie, Guideline) verweist, die von diesem 
 Medikationsplaneintrag ganz oder teilweise eingehalten wird. Keine Verwendung in der geplanten Abgabe."
 
 * basedOn 1..1 MS
@@ -144,10 +148,10 @@ wird für jedes Arzneimittel eine geplante Abgabe mit demselben groupIdentifier 
 * insurance ^short = "Keine Verwendung in der geplanten Abgabe."
 
 * note 0..* MS
-* note ^short = "Zusätzliche Informationen zur geplanten Abgabe. TODO: zu prüfen im Kontext Korrekturvermerk"
+* note ^short = "Zusätzliche Informationen zur geplanten Abgabe. TODO: prüfen"
 
 * dosageInstruction 0..* MS
-* dosageInstruction ^short = "TODO: alle Elemente + R5 Extensions prüfen"
+* dosageInstruction ^short = "Anweisungen zur Einnahme/Verabreichung des Arzneimittels. TODO: alle Elemente + R5 Extensions prüfen"
 // * dosageInstruction.patientInstruction ^short = "Anweisungen für den Patienten"
 // * dosageInstruction.timing.repeat.frequency ^short = "Wiederholungen innerhalb der Dauer"
 // * dosageInstruction.timing.repeat.period ^short = "Zeitraum, über den Wiederholungen erfolgen sollen"
@@ -164,19 +168,20 @@ wird für jedes Arzneimittel eine geplante Abgabe mit demselben groupIdentifier 
 * dispenseRequest.numberOfRepeatsAllowed ^short = "Anzahl der möglichen Einlösungen."
 
 * substitution 0..1 MS
-* substitution ^short = "Gibt an, ob eine Substitution Teil der Abgabe sein kann / sollte / nicht sein darf. 
-Dieser Block erläutert die Absicht des verschreibenden Arztes. Wenn nichts angegeben ist, kann eine Substitution vorgenommen werden. 
-TODO: Eher keine Verwendung in der geplanten Abgabe, Dokumentation über Substitution erfolg in der Dispenses-Resource."
+* substitution ^short = "Gibt an, ob das Arzneimittel substituiert werden darf oder nicht.
+Erläutert die Absicht des verschreibenden Arztes. Wenn nichts angegeben ist, kann eine Substitution vorgenommen werden. 
+Die Dokumentation über eine tatsächlich erfolgte Substitution erfolgt in der Dispense-Resource. 
+TODO: Eher keine Verwendung in der geplanten Abgabe."
 
 * priorPrescription 0..1 MS
 * priorPrescription ^short = "Im Falle einer Änderung wird auf die ersetzte geplante Abgabe verwiesen."
 
 * detectedIssue 0..0
-* detectedIssue ^short = "Referenenz auf DetectedIssue Ressource. Keine Verwendung in der geplanten Abgabe."
+* detectedIssue ^short = "Klinisches Problem mit Maßnahme. Nur mittesl Referenz auf Ressouce DetectedIssue. Keine Verwendung in der geplanten Abgabe."
 
 * eventHistory 0..0
-* eventHistory ^short = "Bezeichnet eine Liste von Provenance-Ressourcen, die verschiedene relevante Versionen 
-dieser Ressource dokumentieren. Keine Verwendung in der geplanten Abgabe."
+* eventHistory ^short = "Referenz auf Provenance-Ressourcen, die verschiedene relevante Versionen dieser Ressource dokumentieren. 
+Keine Verwendung in der geplanten Abgabe."
 
 // // --- XOR-Invariant: genau eines von beiden ---
 // // https://hl7.org/fhirpath/N1/
