@@ -69,6 +69,10 @@ Mögliche Codes: user | system | event-date | entry-date| priority | alphabetic 
 * entry.item ^short = "Referenz auf einen Medikationsplaneintrag."
 
 * emptyReason 0..1 MS
-* emptyReason ^short = "Grund, warum der Medikationsplan noch leer ist: Intitalzustand: notstarted, TODO: Code für \"Patient nimmt derzeit keine Medikamente ein\"."
+* emptyReason from MedikationsplanEmptyReasonVS
+* emptyReason ^short = "Begründung, warum der Medikationsplan leer ist: 
+https://hl7.org/fhir/R4/valueset-list-empty-reason.html eingeschränkt auf: <vbr>
+    - notstarted: Intitalzustand <br>
+    - nilknown: Patient nimmt derzeit keine Medikamente ein"
 
 
