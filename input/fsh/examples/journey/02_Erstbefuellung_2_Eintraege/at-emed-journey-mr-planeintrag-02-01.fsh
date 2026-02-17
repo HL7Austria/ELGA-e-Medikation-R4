@@ -4,7 +4,7 @@ Title: "Beispiel Journey 02: Medikationsplaneintrag 1"
 Description: "**Beschreibung:** Bildet einen Medikationsplaneintrag mit dem Medikament EBETREXAT und zugehörigen Dosierungsanweisungen ab (MedicationRequest)."
 Usage: #example
 
-* contained[medication] = InlineAtEmedJourneyMedicationMagistral01
+* contained[medication] = InlinePlaneintragMedicationMagistral01
 
 // R5 Backports
 * extension[effectiveDosePeriod].valuePeriod.start = "2026-01-28"
@@ -20,7 +20,7 @@ Usage: #example
 * reportedBoolean = false
 
 // Referenz auf Inline Medication Ressource
-* medicationReference.reference = #InlineAtEmedJourneyMedicationMagistral01
+* medicationReference.reference = #InlinePlaneintragMedicationMagistral01
 
 * subject = Reference(AtEmedExamplePatient01)
 * authoredOn = "2026-01-28T08:00:00+00:00"
@@ -47,7 +47,7 @@ Usage: #example
 
 
 // Inline Medication *********************************************************************
-Instance: InlineAtEmedJourneyMedicationMagistral01
+Instance: InlinePlaneintragMedicationMagistral01
 InstanceOf: AtEmedMedication
 Title: "Beispiel Medikation EBETREXAT"
 Usage: #inline
