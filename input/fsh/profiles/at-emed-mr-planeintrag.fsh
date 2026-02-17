@@ -102,7 +102,7 @@ Arzneimittel mit und ohne PZN einheitlich dokumentiert werden können."
 * subject ^short = "Patient, für den der Medikationsplaneintrag ausgestellt werden soll, der über den 
 Zentralen Patientenindex identifizierbar und Teilnehmer von ELGA e-Medikation ist."
 * encounter 0..0
-* encounter ^short = "Aufenthalt/Begegnung, während dessen/der der Medikationsplaneintrag erstellt wurde. Keine Verwendung im Medikationsplaneintrag."
+* encounter ^short = "Aufenthalt/Begegnung, während dessen der Medikationsplaneintrag erstellt wurde. Keine Verwendung im Medikationsplaneintrag."
 
 * supportingInformation 0..0
 * supportingInformation ^short = "Referenz auf zusätzliche Informationen (Ressource Any)
@@ -128,7 +128,7 @@ des Patienten zuzugreifen."
 * performerType ^short = "Rollen: https://hl7.org/fhir/R4/valueset-performer-role.html. 
 Keine Verwendung im Planeintrag. TODO: evtl im Kontext Medikationsblatt zu prüfen."
 
-* recorder 0..0 // ag: schreibkraft: evtl. rechtl. verpflichtung zur dokumentation
+* recorder 0..0
 * recorder ^short = "Die Person, die den Medikationsplaneintrag im Auftrag eines GDA eingegeben hat. 
 TODO: Prüfen, ob eine juristische Verpflichtung zur Dokumentation der Schreibkraft besteht."
 
@@ -137,10 +137,6 @@ TODO: Prüfen, ob eine juristische Verpflichtung zur Dokumentation der Schreibkr
 //* reasonCode from $cs-sct (required)
 * reasonCode ^short = "Grund für die Verordnung des Arzneimittels. 
 Entweder Code oder Referenz (TODO: Evtl. Invariante). Erst wenn codierte Angabe möglich."
-//* reasonCode.coding 1..*  
-// * reasonCode.coding.system 1..1 
-// * reasonCode.coding.code 1..1
-// * reasonCode.coding.display 1..1
 * reasonReference 0..0 
 
 * instantiatesCanonical 0..0 
