@@ -8,6 +8,7 @@ Usage: #example
 * timestamp = "2026-01-28T08:00:00+00:00"
 // Liste 
 * entry[Medikationsplan].resource = AtEmedJourneyListMedikationsplan01
+* entry[Medikationsplan].fullUrl = "urn:uuid:62e2daa5-c34b-4b97-8044-fd893bc99a55"
 * entry[Medikationsplan].request.method = #PUT 
 * entry[Medikationsplan].request.url = "List/AtEmedJourneyListMedikationsplan01"
 
@@ -25,4 +26,4 @@ Usage: #example
 // * date = "2026-01-28T08:00:00+11:00"
 // * source = Reference(AtEmedExamplePractitioner01)
 // * orderedBy = http://terminology.hl7.org/CodeSystem/list-order#user
-// * emptyReason = http://terminology.hl7.org/CodeSystem/list-empty-reason#notstarted
+// * emptyReason = $cs-list-empty-reason#notstarted
