@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="ELGA_Stylesheet_v1.0.xsl"?>
+<ClinicalDocument xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:pharm="urn:ihe:pharm:medication" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:ips="urn:hl7-org:ips"
+    xmlns:hl7at="urn:hl7-at:v3">
+    <!--=======================================================================
+      *** CDA Demo-Dokument "Rezept" ***
+
+      basierend auf dem Standard:
+      ELGA CDA Implementierungsleitfäden HL7 Implementation Guide for CDA® R2: e-Medikation (Version 3)
+
+      Dies ist ein Beispielbefund. Bei den Inhalten handelt es sich um synthetische Mustertexte und
+    keinesfalls um personenbezogene Echtdaten oder realistische Befunde.
+
+      Autor: Nikola Tanjga, ELGA GmbH
+        
+      Dokumentenversion: 1.0.0+20250615
+      Bitte kontrollieren, ob unter https://gitlab.com/elga-gmbh/cda-beispielbefunde eine neue Version zur Verfügung steht
+
+      Die Kommentare in diesem CDA Dokument dienen lediglich der Orientierungshilfe und sind nicht
+    Bestandteil einer konkreten Implementierung!
+    =======================================================================-->
+
+    <!--**********************************************************************
+      Administrative Daten "CDA Header"
+    ***********************************************************************-->
+
+    <!-- Hoheitsbereich des Dokuments -->
+    <realmCode code="AT" />
+    <!-- Dokumentformat -->
+    <typeId root="2.16.840.1.113883.1.3" extension="POCD_HD000040" />
+    <!-- templateIds -->
+    <!-- eHealth Austria Dokumente -->
+    <templateId root="1.2.40.0.34.6.0.11.0.1" />
+    <!-- templateId für speziellen Implementierungsleitfaden "e-Medikation". Dient als informative
+    Referenz. -->
+    <templateId root="1.2.40.0.34.7.8.9.3" />
+    <!-- templateId für den ELGA e-Medikation v3 Rezept Dokumentenstandard -->
+    <templateId root="1.2.40.0.34.6.0.11.0.20" />
+    <!-- templateId für den eHDSI ePrescription Dokumentenstandard-->
+    <templateId root="1.3.6.1.4.1.12559.11.10.1.3.1.1.1" />
+    <!-- Dokumenten-Id -->
+    <id root="1.2.40.0.34.99.4613.3.1" extension="123456.1" assigningAuthorityName="Amadeus Spital" />
+    <!-- Dokumententyp -->
+    <code codeSystemName="LOINC" code="57833-6" codeSystem="2.16.840.1.113883.6.1"
+        displayName="Prescription for medication">
+        <!-- Dokumentenklasse -->
+        <translation codeSystemName="LOINC" code="52471-0" codeSystem="2.16.840.1.113883.6.1"
+            displayName="Medications" />
+    </code>
+    <!-- Titel des Dokuments -->
+    <title>Rezept</title>
+    <!-- Terminologiedatum -->
+    <hl7at:terminologyDate value="20250610" />
+    <!-- Version des Rezept Dokumentenstandards, welche dieses Beispiel erfüllt -->
+    <formatCode code="urn:hl7-at:emedat:3.0.0+20250615" codeSystem="1.2.40.0.34.5.37"
+        displayName="HL7 Austria e-Medikation 3.0.0+20250615" />
+    <!-- Erstellungsdatum des Dokuments -->
+    <effectiveTime value="20250615063500+0200" />
+    <!-- Vertraulichkeitscode -->
+    <confidentialityCode code="N" displayName="normal" codeSystem="2.16.840.1.113883.5.25"
+        codeSystemName="HL7:Confidentiality" />
+    <!-- Sprachcode des Dokuments -->
+    <languageCode code="de-AT" />
+    <!-- Versionierung des Dokuments -->
+    <setId root="1.2.40.0.34.99.4613.3.1" extension="123456" assigningAuthorityName="Amadeus Spital" />
+    <versionNumber value="1" />
+    <!-- Patient -->
+    <recordTarget>
+        <patientRole>
+            <!-- Identifikation des Patienten im lokalen System -->
+            <id root="1.2.40.0.34.99.4613.3.2" extension="121212"
+                assigningAuthorityName="Amadeus Spital" />
+            <!-- Sozialversicherungsnummer des Patienten -->
+            <id root="1.2.40.0.10.1.4.3.1" extension="1111241261"
+                assigningAuthorityName="Österreichische Sozialversicherung" />
+            <!-- Adresse des Patienten -->
+            <addr use="HP">
+                <streetAddressLine>Musterstraße 13a</streetAddressLine>
+                <postalCode>7000</postalCode>
+                <city>Eisenstadt</city>
+                <state>Burgenland</state>
+                <country>AT</country>
+            </addr>
+            <!-- Kontaktdaten des Patienten -->
+            <telecom use="H" value="tel:+43.2682.40400" />
+            <telecom use="MC" value="tel:+43.664.1234567" />
+            <telecom value="mailto:musterfrau@provider.at" />
+            <patient>
+                <!-- Name des Patienten -->
+                <name>
+                    <prefix qualifier="AC">Dr.</prefix>
+                    <given>Maria</given>
+                    <given>Johanna</given>
+                    <family>Musterfrau</family>
+                    <family qualifier="BR">VorDerHeirat</family>
+                    <suffix qualifier="AC">BSc</suffix>
+                </name>
+                <!-- Geschlecht des Patienten -->
+                <administrativeGenderCode code="F" displayName="Female"
+                    codeSystem="2.16.840.1.113883.5.1" codeSystemName="HL7:AdministrativeGender" />
+                <!-- Geburtsdatum des Patienten -->
+                <birthTime value="19611224" />
+                <!-- Familienstand des Patienten -->
+                <maritalStatusCode code="M" displayName="Married" codeSystem="2.16.840.1.113883.5.2"
+                    codeSystemName="HL7:MaritalStatus" />
+                <!-- Religionszugehörigkeit des Patienten (siehe Allgemeiner
+                Implementierungsleitfaden) -->
+                <religiousAffiliationCode code="101" codeSystem="2.16.840.1.113883.2.16.1.4.1"
+                    codeSystemName="HL7.AT:ReligionAustria" displayName="Römisch-Katholisch" />
+                <!-- Geburtsort des Patienten -->
+                <birthplace>
+                    <place>
+                        <addr>
+                            <streetAddressLine>Musterstraße 23b</streetAddressLine>
+                            <postalCode>8011</postalCode>
+                            <city>Graz</city>
+                            <state>Steiermark</state>
+                            <country>AT</country>
+                        </addr>
+                    </place>
+                </birthplace>
+                <!-- Sprachfähigkeit des Patienten -->
+                <languageCommunication>
+                    <languageCode code="de-AT" />
+                    <modeCode code="ESP" displayName="Expressed spoken"
+                        codeSystem="2.16.840.1.113883.5.60" codeSystemName="HL7:LanguageAbilityMode" />
+                    <proficiencyLevelCode code="E" displayName="Excellent"
+                        codeSystem="2.16.840.1.113883.5.61"
+                        codeSystemName="HL7:LanguageAbilityProficiency" />
+                    <preferenceInd value="false" />
+                </languageCommunication>
+                <languageCommunication>
+                    <languageCode code="en" />
+                    <modeCode code="ESP" displayName="Expressed spoken"
+                        codeSystem="2.16.840.1.113883.5.60" codeSystemName="HL7:LanguageAbilityMode" />
+                    <proficiencyLevelCode code="F" displayName="Fair"
+                        codeSystem="2.16.840.1.113883.5.61"
+                        codeSystemName="HL7:LanguageAbilityProficiency" />
+                    <preferenceInd value="false" />
+                </languageCommunication>
+            </patient>
+        </patientRole>
+    </recordTarget>
+    <!-- Verfasser des Dokuments -->
+    <author>
+        <!-- Funktionscode -->
+        <functionCode code="2211" codeSystem="2.16.840.1.113883.2.9.6.2.7"
+            codeSystemName="ISCO-08" displayName="Generalist medical practitioners" />
+        <!-- Zeitpunkt der Erstellung (z.B. des Diktats) -->
+        <time value="20250615130100+0200" />
+        <assignedAuthor>
+            <!-- Identifikation des Verfassers des Dokuments im lokalen System -->
+            <id root="1.2.40.0.34.99.4613.3.3" extension="1111"
+                assigningAuthorityName="Amadeus Spital" />
+            <!-- Fachrichtung des Verfassers des Dokuments -->
+            <code code="116" codeSystem="1.2.40.0.34.5.160" codeSystemName="ELGA_Fachaerzte"
+                displayName="Fachärztin/Facharzt für Innere Medizin" />
+            <!-- Angabe der Adresse des Verfassers des Dokuments -->
+            <addr>
+                <streetName>Währinger Gürtel</streetName>
+                <houseNumber>18-20</houseNumber>
+                <postalCode>1090</postalCode>
+                <city>Wien</city>
+                <state>Wien</state>
+                <country>AT</country>
+            </addr>
+            <!-- Kontaktdaten des Verfassers des Dokuments -->
+            <telecom use="WP" value="tel:+43.1.3453446.1111" />
+            <!-- Personendaten des Verfassers des Dokuments -->
+            <assignedPerson>
+                <name>
+                    <prefix>Dr.</prefix>
+                    <family>Dominik</family>
+                    <given>Matic</given>
+                </name>
+            </assignedPerson>
+            <!--  Organisation, in deren Auftrag der Verfasser des Dokuments die Dokumentation
+            verfasst hat -->
+            <representedOrganization>
+                <!-- ID der Organisation aus dem GDA Index -->
+                <id root="1.2.40.0.34.99.4613" assigningAuthorityName="GDA Index" />
+                <!-- Name der Organisation -->
+                <name>Amadeus Spital</name>
+                <!-- Kontaktdaten der Organisation -->
+                <telecom value="tel:+43.1.3453446.0" />
+                <telecom value="fax:+43.1.3453446.4589" />
+                <telecom value="mailto:info@amadeusspital.at" />
+                <telecom value="http://www.amadeusspital.at" />
+                <!-- Adresse der Organisation -->
+                <addr>
+                    <streetName>Währinger Gürtel</streetName>
+                    <houseNumber>18-20</houseNumber>
+                    <postalCode>1090</postalCode>
+                    <city>Wien</city>
+                    <state>Wien</state>
+                    <country>AT</country>
+                </addr>
+            </representedOrganization>
+        </assignedAuthor>
+    </author>
+    <!-- Verwahrer des Dokuments -->
+    <custodian>
+        <assignedCustodian>
+            <representedCustodianOrganization>
+                <!-- ID der Organisation aus dem GDA Index -->
+                <id root="1.2.40.0.34.99.4613" assigningAuthorityName="GDA Index" />
+                <!-- Name der Organisation -->
+                <name>Amadeus Spital</name>
+                <!-- Kontaktdaten der Organisation -->
+                <telecom value="tel:+43.1.3453446.0" />
+                <!-- Adresse der Organisation -->
+                <addr>
+                    <streetName>Währinger Gürtel</streetName>
+                    <houseNumber>18-20</houseNumber>
+                    <postalCode>1090</postalCode>
+                    <city>Wien</city>
+                    <state>Wien</state>
+                    <country>AT</country>
+                </addr>
+            </representedCustodianOrganization>
+        </assignedCustodian>
+    </custodian>
+    <!--  Rechtlicher Unterzeichner -->
+    <legalAuthenticator>
+        <!-- Zeitpunkt der Unterzeichnung -->
+        <time value="20250615135400+0200" />
+        <!-- Signaturcode -->
+        <signatureCode code="S" />
+        <!-- Personen- und Organisationsdaten des rechtlichen Unterzeichners des Dokuments -->
+        <assignedEntity>
+            <!-- Identifikation des Rechtlichen Unterzeichners des Dokuments -->
+            <id root="1.2.40.0.34.99.4613.3.3" extension="2222"
+                assigningAuthorityName="Amadeus Spital" />
+            <!-- Adresse des Unterzeichners -->
+            <addr>
+                <streetName>Währinger Gürtel</streetName>
+                <houseNumber>18-20</houseNumber>
+                <postalCode>1090</postalCode>
+                <city>Wien</city>
+                <state>Wien</state>
+                <country>AT</country>
+            </addr>
+            <!-- Kontaktdaten des Rechtlichen Unterzeichners des Dokuments -->
+            <telecom use="WP" value="tel:+43.1.3453446.2222" />
+            <!-- Personendaten des Rechtlichen Unterzeichners des Dokuments -->
+            <assignedPerson>
+                <!-- Name des Rechtlichen Unterzeichners des Dokuments -->
+                <name>
+                    <prefix>Univ.-Prof.Dr.</prefix>
+                    <family>Dom</family>
+                    <given>Turio</given>
+                </name>
+            </assignedPerson>
+            <!--  Organisation, in deren Auftrag der Rechtlichen Unterzeichners des Dokuments die
+            Dokumentation unterzeichnet hat -->
+            <representedOrganization>
+                <!-- ID der Organisation aus dem GDA Index -->
+                <id root="1.2.40.0.34.99.4613" assigningAuthorityName="GDA Index" />
+                <!-- Name der Organisation -->
+                <name>Amadeus Spital</name>
+                <!-- Kontaktdaten der Organisation -->
+                <telecom value="tel:+43.1.3453446.0" />
+                <telecom value="fax:+43.1.3453446.4589" />
+                <telecom value="mailto:info@amadeusspital.at" />
+                <telecom value="http://www.amadeusspital.at" />
+                <!-- Adresse der Organisation -->
+                <addr>
+                    <streetName>Währinger Gürtel</streetName>
+                    <houseNumber>18-20</houseNumber>
+                    <postalCode>1090</postalCode>
+                    <city>Wien</city>
+                    <state>Wien</state>
+                    <country>AT</country>
+                </addr>
+            </representedOrganization>
+        </assignedEntity>
+    </legalAuthenticator>
+    <!-- Beginn und Ende des Gültigkeitszeitraums wie auch Rezeptart -->
+    <documentationOf>
+        <serviceEvent>
+            <code code="KASSEN" codeSystemName="MedikationRezeptart"
+                codeSystem="1.2.40.0.10.1.4.3.4.3.3" displayName="Kassenrezept" />
+            <!-- Zeitraum der Gültigkeit -->
+            <effectiveTime>
+                <!-- Beginn des Gültigkeitszeitraums -->
+                <low value="20250615135400+0200" />
+                <!-- Ende des Gültigkeitszeitraums -->
+                <high value="20250630135400+0200" />
+            </effectiveTime>
+        </serviceEvent>
+    </documentationOf>
+<!-- BODY *****************************************************************************************    -->
+    <component>
+        <structuredBody>
+            <component>
+                <section>
+                    <templateId root="1.2.40.0.34.6.0.11.2.137" />
+                    <templateId root="1.3.6.1.4.1.12559.11.10.1.3.1.2.1" />
+                    <id root="1.2.3.999" extension="extension"
+                        assigningAuthorityName="assigningAuthorityName" />
+                    <code code="57828-6" codeSystem="2.16.840.1.113883.6.1"
+                        displayName="Prescription list" />
+                    <title>title</title>
+                    <text />
+                    <entry typeCode="COMP">
+                        <substanceAdministration
+                            xmlns="urn:hl7-org:v3" classCode="SBADM" moodCode="INT">
+                            <templateId root="1.2.40.0.34.6.0.11.3.185" />
+                            <templateId root="1.3.6.1.4.1.12559.11.10.1.3.1.3.2" />
+                            <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7" />
+                            <templateId root="2.16.840.1.113883.10.20.1.24" />
+                            <templateId root="1.3.6.1.4.1.19376.1.9.1.3.6" />
+                            <!-- include template 1.2.40.0.34.6.0.11.9.48 'Medikation Sbadm
+                            TemplateId Options' (dynamic)   -->
+                            <id root="1.2.3.999" extension="extension" />
+                            <id root="1.2.3.999" extension="extension" />
+                            <text>
+                                <reference value="--TODO--" />
+                            </text>
+                            <statusCode code="completed" />
+                            <!-- include template 1.2.40.0.34.6.0.11.9.49 'Medikation Einnahmedauer'
+                            (dynamic)   -->
+                            <!-- choice: 1 
+    include template 1.2.40.0.34.6.0.11.9.50 'Medikation Dosierungsvariante 1: Tagesdosierung
+                            effectiveTime' (dynamic)  
+    include template 1.2.40.0.34.6.0.11.9.51 'Medikation Dosierungsvariante 2: Einzeldosierung'
+                            (dynamic)  
+    include template 1.2.40.0.34.6.0.11.9.52 'Medikation Dosierungsvariante 3: Tagesdosierung mit
+                            Einnahmepause' (dynamic)  
+    include template 1.2.40.0.34.6.0.11.9.53 'Medikation Dosierungsvariante 4: Einzeldosierung mit
+                            Einnahmepause' (dynamic)  
+ -->
+                            <repeatNumber />
+                            <routeCode />
+                            <!-- choice: 1 
+    include template 1.2.40.0.34.6.0.11.9.54 'Medikation Dosierungsvariante 1: Tagesdosierung
+                            doseQuantity' (dynamic)  
+    include template 1.2.40.0.34.6.0.11.9.55 'Medikation Dosierungsvariante 2: Einzeldosierung
+                            doseQuantity' (dynamic)  
+    include template 1.2.40.0.34.6.0.11.9.56 'Medikation Dosierungsvariante 3: Tagesdosierung mit
+                            Einnahmepause doseQuantity' (dynamic)  
+    include template 1.2.40.0.34.6.0.11.9.57 'Medikation Dosierungsvariante 4: Einzeldosierung mit
+                            Einnahmepause doseQuantity' (dynamic)  
+ -->
+                            <consumable typeCode="CSM">
+                                <manufacturedProduct
+                                    xmlns="urn:hl7-org:v3" classCode="MANU">
+                                    <templateId root="1.2.40.0.34.6.0.11.3.186" />
+                                    <templateId root="1.3.6.1.4.1.12559.11.10.1.3.1.3.29" />
+                                    <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+                                        <templateId root="1.3.6.1.4.1.12559.11.10.1.3.1.3.30" />
+                                        <code nullFlavor="NA" code="--code--"
+                                            codeSystem="1.2.40.0.34.4.16">
+                                            <!-- include template 1.2.40.0.34.6.0.11.9.2 'Original
+                                            Text Reference' (dynamic) 0..1 R -->
+                                            <translation code="--code--"
+                                                codeSystem="1.2.40.0.34.4.17" />
+                                        </code>
+                                        <name nullFlavor="NA">name</name>
+                                        <formCode nullFlavor="NI" />
+                                        <asContent classCode="CONT">
+                                            <quantity unit="%" value="1">
+                                                <translation>
+                                                    <!-- include template 1.2.40.0.34.6.0.11.9.2
+                                                    'Original Text Reference' (dynamic) 1..1 M -->
+                                                </translation>
+                                            </quantity>
+                                            <containerPackagedProduct classCode="CONT"
+                                                determinerCode="KIND">
+                                                <formCode nullFlavor="NI" />
+                                            </containerPackagedProduct>
+                                        </asContent>
+                                        <ingredient classCode="ACTI">
+                                            <ingredientSubstance classCode="MMAT"
+                                                determinerCode="KIND">
+                                                <code>
+                                                    <!-- include template 1.2.40.0.34.6.0.11.9.2
+                                                    'Original Text Reference' (dynamic) 0..1 R -->
+                                                    <translation />
+                                                </code>
+                                                <name>name</name>
+                                            </ingredientSubstance>
+                                        </ingredient>
+                                    </manufacturedMaterial>
+                                </manufacturedProduct>
+                            </consumable>
+                            <!-- include template 1.2.40.0.34.6.0.11.1.2.2.1 'Author v2 Prescriber'
+                            (dynamic)  C -->
+                            <!-- include template 1.2.40.0.34.6.0.11.9.58 'Medikation
+                            Dosierungsvariante 2: Einzeldosierung entryRelationship' (dynamic)   -->
+                            <!-- include template 1.2.40.0.34.6.0.11.9.60 'Medikation
+                            Dosierungsvariante 4: Einzeldosierung mit Einnahmepause
+                            entryRelationship' (dynamic)   -->
+                            <entryRelationship typeCode="COMP">
+                                <supply classCode="SPLY" moodCode="RQO">
+                                    <independentInd value="false" />
+                                    <quantity value="1" unit="1" />
+                                </supply>
+                            </entryRelationship>
+                            <entryRelationship typeCode="SUBJ" inversionInd="true">
+                                <!-- include template 1.2.40.0.34.6.0.11.9.62 'Medikation Patient
+                                Instructions' (dynamic) 1..1 M -->
+                            </entryRelationship>
+                            <entryRelationship typeCode="SUBJ" inversionInd="true">
+                                <!-- include template 1.2.40.0.34.6.0.11.9.63 'Medikation Pharmacist
+                                Instructions' (dynamic) 1..1 M -->
+                            </entryRelationship>
+                            <!-- include template 1.2.40.0.34.6.0.11.9.64 'Medikation Therapieart'
+                            (dynamic) 0..1  -->
+                            <entryRelationship typeCode="SUBJ" inversionInd="true">
+                                <!-- include template 1.2.40.0.34.6.0.11.3.6 'Problem Entry'
+                                (dynamic) 1..1 M -->
+                            </entryRelationship>
+                            <!-- include template 1.2.40.0.34.6.0.11.9.65 'Medikation ID des
+                            Containers' (dynamic) 0..1 C -->
+                        </substanceAdministration>
+                    </entry>
+                </section>
+            </component>
+        </structuredBody>
+    </component>
+</ClinicalDocument>
