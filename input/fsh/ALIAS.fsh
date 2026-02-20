@@ -16,10 +16,17 @@ Alias: $cs-atc = https://termgit.elga.gv.at/CodeSystem/atc-deutsch-wido
 Alias: $cs-emed-doseform = https://termgit.elga.gv.at/CodeSystem/medikationdarreichungsform
 Alias: $vs-emed-mengenart = https://termgit.elga.gv.at/ValueSet-elga-medikationmengenart.html
 
+//medication request
+Alias: $cs-medication-request-status = http://hl7.org/fhir/medicationrequest-status
+
+// medikationsplan
+Alias: $cs-list-empty-reason = http://terminology.hl7.org/CodeSystem/list-empty-reason
+
 // FHIR
 Alias: $cs-event-timing = http://hl7.org/fhir/event-timing
 
 Alias: $cs-hl7-at-organizationtype = https://termgit.elga.gv.at/ValueSet/hl7-at-organizationtype
+
 
 // terminology.hl7.org
 // Alias: $cs-v3-MaritalStatus = http://terminology.hl7.org/CodeSystem/v3-MaritalStatus
@@ -31,7 +38,7 @@ Alias: $cs-hl7-at-organizationtype = https://termgit.elga.gv.at/ValueSet/hl7-at-
 // Alias: $cs-allergyintolerance-clinical = http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical
 // Alias: $cs-v2-0203 = http://terminology.hl7.org/CodeSystem/v2-0203
 // Alias: $cs-allergyintolerance-verification = http://terminology.hl7.org/CodeSystem/allergyintolerance-verification
-// Alias: $cs-list-empty-reason = http://terminology.hl7.org/CodeSystem/list-empty-reason
+
 // termgit.elga.gv.at
 
 //Alias: $cs-elga-laborparameterergaenzung = https://termgit.elga.gv.at/CodeSystem/elga-laborparameterergaenzung

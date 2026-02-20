@@ -4,7 +4,7 @@ Title: "Beispiel Journey 02: Medikationsplaneintrag 1"
 Description: "**Beschreibung:** Bildet einen Medikationsplaneintrag mit dem Medikament EBETREXAT und zugehörigen Dosierungsanweisungen ab (MedicationRequest)."
 Usage: #example
 
-* contained[medication] = InlinePlaneintragMedicationMagistral01
+* contained[medication] = ContainedMedication01
 
 // R5 Backports
 * extension[effectiveDosePeriod].valuePeriod.start = "2026-01-28"
@@ -13,14 +13,15 @@ Usage: #example
 
 //* meta[+].profile = "http://hl7.eu/fhir/mpd/StructureDefinition/MedicationRequest-eu-mpd"
 * identifier.value = "4712_202602280800000" // Eintrag_ID = {ID}_{Zeitstempel}
-* status = MedicationRequestStatusCS#active
+//* status = $cs-medication-request-status#active
+* status = #active
 * intent = https://hl7.org/fhir/R4/valueset-medicationrequest-intent#order
 * category = MedicationRequestCategoryCS#1 
 
 * reportedBoolean = false
 
 // Referenz auf Inline Medication Ressource
-* medicationReference.reference = #InlinePlaneintragMedicationMagistral01
+* medicationReference.reference = "#ContainedMedication01"
 
 * subject = Reference(AtEmedExamplePatient01)
 * authoredOn = "2026-01-28T08:00:00+00:00"
@@ -46,12 +47,12 @@ Usage: #example
 
 
 
-// Inline Medication *********************************************************************
-Instance: InlinePlaneintragMedicationMagistral01
+// Contained Medication *********************************************************************
+Instance: ContainedMedication01
 InstanceOf: AtEmedMedication
 Title: "Beispiel Medikation EBETREXAT"
 Usage: #inline
-
+//* id = "ContainedMedication01"
 * code = $cs-asp-liste#2443061 "EBETREXAT TBL 10MG"
 
 

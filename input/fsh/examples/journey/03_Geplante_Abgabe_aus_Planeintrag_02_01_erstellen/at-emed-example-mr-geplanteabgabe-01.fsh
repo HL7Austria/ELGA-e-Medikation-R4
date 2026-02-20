@@ -4,7 +4,7 @@ Title: "Beispiel Journey 03: Geplante Abgabe"
 Description: "**Beschreibung:** Bildet eine geplante Abgabe des Medikaments EBETREXAT und zugehörigen Dosierungsanweisungen ab (MedicationRequest)."
 Usage: #example
 
-* contained[medication] = InlineGeplanteAbgabeMedicationMagistral01
+* contained[medication] = ContainedMedication02
 
 // R5 Backports
 * extension[effectiveDosePeriod].valuePeriod.start = "2026-01-28"
@@ -13,12 +13,13 @@ Usage: #example
 
 //* meta.profile = "http://hl7.eu/fhir/mpd/StructureDefinition/MedicationRequest-eu-mpd"
 * identifier.value = "WYE82A2G8EEW-4711"
-* status = MedicationRequestStatusCS#active
+//* status = $cs-medication-request-status#active
+* status = #active
 * intent = #order
 * category = MedicationRequestCategoryCS#2 "Geplante Abgabe"
 
 // Referenz auf Inline Medication Ressource
-* medicationReference.reference = #InlineGeplanteAbgabeMedicationMagistral01
+* medicationReference.reference = #ContainedMedication02
 
 
 * subject = Reference(AtEmedExamplePatient01)
@@ -56,7 +57,7 @@ Usage: #example
 
 
 // Inline Medication *********************************************************************
-Instance: InlineGeplanteAbgabeMedicationMagistral01
+Instance: ContainedMedication02
 InstanceOf: AtEmedMedication
 Title: "Beispiel Medikation EBETREXAT"
 Usage: #inline

@@ -11,4 +11,4 @@ Usage: #example
 * date = "2026-01-28T08:00:00+11:00"
 * source = Reference(AtEmedExamplePractitioner01)
 * orderedBy = http://terminology.hl7.org/CodeSystem/list-order#user
-* emptyReason = http://terminology.hl7.org/CodeSystem/list-empty-reason#notstarted
+* emptyReason = $cs-list-empty-reason#notstarted

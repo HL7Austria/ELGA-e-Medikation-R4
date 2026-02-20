@@ -4,7 +4,7 @@ Title: "Beispiel Journey 02: Medikationsplaneintrag 2"
 Description: "**Beschreibung:** Bildet einen Medikationsplaneintrag mit einer Referenz auf eine magistrale Zubereitung und zugehörigen Dosierungsanweisungen ab (MedicationRequest)."
 Usage: #example
 
-* contained[medication] = InlineAtEmedJourneyMedicationMagistral02
+* contained[medication] = ContainedMedicationMagistral02
 
 // R5 Backports
 * extension[effectiveDosePeriod].valuePeriod.start = "2026-01-28"
@@ -13,19 +13,20 @@ Usage: #example
 
 //* meta[+].profile = "http://hl7.eu/fhir/mpd/StructureDefinition/MedicationRequest-eu-mpd"
 * identifier.value = "4713_202602280800000" // Eintrag_ID = {ID}_{Zeitstempel}
-* status = MedicationRequestStatusCS#active
+//* status = $cs-medication-request-status#active
+* status = #active
 * intent = https://hl7.org/fhir/R4/valueset-medicationrequest-intent#order
 * category = MedicationRequestCategoryCS#1 
 
 * reportedReference = Reference(AtEmedExamplePractitioner02)
 
 // Referenz auf Inline Medication Ressource
-* medicationReference.reference = #InlineAtEmedJourneyMedicationMagistral02
+* medicationReference.reference = "#ContainedMedicationMagistral02"
 
 * subject = Reference(AtEmedExamplePatient01)
 * authoredOn = "2026-01-28T08:00:00+00:00"
 * requester = Reference(AtEmedExamplePractitioner01)
-
+ 
 * note.text = "Freitext Informationen zum Medikationsplaneintrag."
 
 * dosageInstruction.text = "1 täglich auftragen"
@@ -44,8 +45,8 @@ Usage: #example
 // * dosageInstruction.maxDosePerPeriod.denominator = 1 '{day}' "{day}"
 
 
-// Inline Medication *********************************************************************
-Instance: InlineAtEmedJourneyMedicationMagistral02
+// Contained Medication *********************************************************************
+Instance: ContainedMedicationMagistral02
 InstanceOf: AtEmedMedication
 Title: "Beispiel Journey 02: Magistrale Anwendung (Salbe)"
 Usage: #inline

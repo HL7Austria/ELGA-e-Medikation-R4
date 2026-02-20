@@ -74,10 +74,11 @@ zum Handeln durch den Antragsteller dar, daher ist intent immer \"order\"."
 
 // --- Medication immer als Medication-Resource (mit oder ohne PZN, damit Handelsname angegeben werden kann und historisch verfügbar bleibt)
 * medication[x] 1..1 MS  
-* medication[x] only Reference(AtEmedMedication)  
+//* medication[x] only Reference(AtEmedMedication)  
+//* medicationCodeableConcept 0..0
 
-// * medicationReference 1..1 MS 
-// * medicationReference only Reference(AtEmedMedication) 
+* medicationReference 1..1 MS 
+* medicationReference only Reference(AtEmedMedication) 
 * medicationReference.reference obeys contained-ref
 * medicationReference ^short = "Das Arzneimittel wird immer in einer contained Medication Ressource dokumentiert, damit 
 Arzneimittel mit und ohne PZN einheitlich dokumentiert werden können."
