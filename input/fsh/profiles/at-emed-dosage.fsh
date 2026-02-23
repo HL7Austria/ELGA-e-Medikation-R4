@@ -16,16 +16,15 @@ Description: "**Beschreibung:** Dosage"
 * additionalInstruction 0..*  // 0..1
 * additionalInstruction ^short = "Codierte Anweisungen oder Warnhinweise für den Patienten, z.B. zur Einnahme oder zur Aufbewahrung des Arzneimittels. (ex):
 https://hl7.org/fhir/R4/valueset-additional-instruction-codes.html. TODO: Nur wenn nicht ohnehin im Beipackzettel enthalten oder zusätzlich? Evtl. f. magistrale Zubereitungen, da kein Beipackzettel."
+
 * patientInstruction 0..1
 * patientInstruction ^short = "Freitext Anweisungen für den Patienten, z.B. zur Einnahme oder zur Aufbewahrung des Arzneimittels."
 
-//* timing only $TimingDE  // TODO    (r5: https://hl7.org/fhir/R5/datatypes.html#Timing)
-* timing MS
+
+* timing 0..1 MS
+* timing only AtEmedTiming
 * timing ^short = "Zeitpunkt oder Zeitraum der Einnahme des Medikaments. 
 Um widersprüchliche Anweisungen zu vermeiden, ist entweder Dosage.timing oder Dosage.text zu befüllen."
-// Falls eine strukturierte Dosierung als Text abgebildet werden soll, ist dafür die GeneratedDosageInstructionsMeta Extension zu verwenden.
-//  Bei einmaliger Einnahme: Zeitpunkt der Einnahme, z.B. 2026-01-28T08:00:00+00:00
-//  Bei regelmäßiger Einnahme: Angabe von Frequenz und Zeitraum, z.B. 1 Kapsel täglich morgens -> frequency=1, period=1, periodUnit=d"
 
 
 * asNeededBoolean 0..1 MS
@@ -36,39 +35,46 @@ Um widersprüchliche Anweisungen zu vermeiden, ist entweder Dosage.timing oder D
 * site 0..1 // evtl aus asp-liste? eindeutig? spezielle körperstelle betreffend;
 * site ^short = "Körperstelle, an der das Medikament angewendet wird, z.B. Haut, Auge, Ohr etc."
 
-* route 0..1 
+* route 0..1 MS
 * route from $cs-medikationartanwendung (required) 
-* route ^short = "Verabreichungsweg, z.B. oral, nasal, intravenös, subkutan etc."
+* route ^short = "Art der Anwendung der Arznei. (z.B. oral, nasal, intravenös, subkutan)
+ Kann bei codierten Arzneien aus der ASP-Liste entnommen werden."
 
-* method 0..1 // Verabreichungsmethode, z.B. Infusion, Injektion, Tablette, Salbe etc. 
+* method 0..1 MS
 * method ^short = "Verabreichungsmethode, z.B. Infusion, Injektion, Tablette, Salbe etc. "
 
-// * doseAndRate 0..1  //$dose-rate-type = http://terminology.hl7.org/CodeSystem/dose-rate-type
-// * doseAndRate.doseQuantity
-// * doseQuantity
-// // inhalation 3x die woche für 30 min
-// * rateRatio //evtl reicht dose aus
-// * rateRange
-// * rateQuantity
+* doseAndRate 0..1  MS 
+* doseAndRate ^short =  "Menge des verabreichten Medikaments"
 
-* doseAndRate MS
-* doseAndRate ^short = "Menge des verabreichten Medikaments"
+* doseAndRate.type 0..1
+* doseAndRate.type ^short = "Art der Dosierung, z.B. berechnet, wie verordnet (ex): https://hl7.org/fhir/R4/valueset-dose-rate-type.html" //$dose-rate-type = http://terminology.hl7.org/CodeSystem/dose-rate-type
+
+* doseAndRate.dose[x] ^short = "Menge des verabreichten Medikaments pro Dosis. 
+Bei zählbaren Einheiten (z.B. Tabletten) kann die Einheit optional angegeben werden, 
+bei nicht-zählbaren Einheiten muss die Einheit angegeben werden (z.B. mg)."
+* doseAndRate.doseRange 0..1 MS
+* doseAndRate.doseRange ^short = "Dosierungsspanne wird mit low und high angegeben, z.B. 5-10 mg."
 * doseAndRate.doseQuantity 0..1 MS
-* doseAndRate.doseQuantity only SimpleQuantity
-* doseAndRate.doseQuantity from $vs-emed-mengenart (required)
+* doseAndRate.doseQuantity.unit from $vs-emed-mengenart (required) // auch Mengenart_alternativ?
+* doseAndRate.doseQuantity ^short = "Mapping auf doseQuantity"
 //Menge in nicht-zählbaren Einheiten -> @unit 1..1 (required) aus Value-Set ELGA_MedikationMengenart
 //Menge in zählbaren Einheiten (Tabletten, Kapseln, etc.) -> @unit 0..1 (otional) mit @unit aus Value-Set ELGA_MedikationMengenartAlternativ
-// * doseAndRate.doseQuantity ^sliceName = "doseQuantity"
-// * doseAndRate.doseQuantity ^short = "Menge des Medikaments pro Dosis"
-// * doseAndRate.doseQuantity ^definition = "Menge des Medikaments pro Dosis."
-// * doseAndRate.doseQuantity ^comment = "Beachten Sie, dass dies die Menge des angegebenen Medikaments angibt, nicht die Menge für die einzelnen Wirkstoffe. Jede Wirkstoffmenge kann in der Medication-Ressource kommuniziert werden. Zum Beispiel, wenn man angeben möchte, dass eine Tablette 375 mg enthält und die Dosis eine Tablette beträgt, kann man die Medication-Ressource verwenden, um zu dokumentieren, dass die Tablette aus 375 mg des Wirkstoffs XYZ besteht. Alternativ, wenn die Dosis 375 mg beträgt, muss man möglicherweise nur angeben, dass es sich um eine Tablette handelt. Bei einer Infusion wie Dopamin, bei der 400 mg Dopamin in 500 ml einer Infusionslösung gemischt werden, würde dies alles in der Medication-Ressource kommuniziert werden. Wenn die Verabreichung nicht als sofortig vorgesehen ist (Rate ist vorhanden oder Timing hat eine Dauer), kann dies angegeben werden, um die Gesamtmenge anzugeben, die über den im Zeitplan angegebenen Zeitraum verabreicht werden soll, z. B. 500 ml in der Dosis, wobei Timing verwendet wird, um anzugeben, dass dies über 4 Stunden erfolgen soll."
+
+
+* doseAndRate.dose[x] ^short = "Menge des verabreichten Medikaments pro Zeiteinheit."
+* doseAndRate.rateRatio ^short = "TODO: prüfen" 
+* doseAndRate.rateRange ^short = "TODO: prüfen" 
+* doseAndRate.rateQuantity ^short = "TODO: prüfen" 
+
+* maxDosePerPeriod 0..1 //Maximale Menge pro Zeiteinheit
+* maxDosePerAdministration 0..1  //Maximal Menge pro Abgabe
+* maxDosePerLifetime 0..1 //Relevant für Bestrahlung/Tumortherapie, nur im Kontext Krankenhausintern?
 
 
 
 
-// * maxDosePerPeriod 0..1 //wieviele in der studen? personenspez. pro einnahmezeitpunkt zb. maximale dosis von 4 tabetten pro einnahmezeitpunkt; zb. abweichend von beipackzettel
-// * maxDosePerAdministration 0..1  // weiviele per einnahme
-// * maxDosePerLifetime 0..1 // ? bestrahlung? tumortherapie // nur im kontext krankenhausintern
+
+/* Invarianten ***********************************************************************/
 
 // Invariant: DosageStructuredOrFreeTextWarning
 // Description: "Die Dosierungsangabe darf entweder nur als Freitext oder nur als vollständige strukturierte Information erfolgen — eine Mischung ist nicht erlaubt."

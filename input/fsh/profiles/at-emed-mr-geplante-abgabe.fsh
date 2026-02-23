@@ -151,18 +151,10 @@ wird für jedes Arzneimittel eine geplante Abgabe mit demselben groupIdentifier 
 * note 0..* MS
 * note ^short = "Zusätzliche Informationen zur geplanten Abgabe. TODO: prüfen"
 
-* dosageInstruction 0..* MS
-* dosageInstruction ^short = "Anweisungen zur Einnahme/Verabreichung des Arzneimittels. TODO: alle Elemente + R5 Extensions prüfen"
-// * dosageInstruction.patientInstruction ^short = "Anweisungen für den Patienten"
-// * dosageInstruction.timing.repeat.frequency ^short = "Wiederholungen innerhalb der Dauer"
-// * dosageInstruction.timing.repeat.period ^short = "Zeitraum, über den Wiederholungen erfolgen sollen"
-// * dosageInstruction.timing.repeat.periodUnit ^short = "Zeiteinheit: s | min | h | d | wk | mo | a  (UCUM)"
-// * dosageInstruction.timing.repeat.when from $cs-event-timing
-// * dosageInstruction.timing.repeat.when ^short = "Code für den Zeitraum des Auftretens (z.B. nach dem Frühstück) https://hl7.org/fhir/R4/valueset-event-timing.html"
-// * dosageInstruction.asNeeded[x] ^short = "Bedarfsmedikation"
-// * dosageInstruction.doseAndRate.rate[x] 0..0
-// * dosageInstruction.doseAndRate.rate[x] ^short = "Verabreichte Medikamentendosis. Keine Verwendung in der geplanten Abgabe. Zu prüfen"
-// * effectiveDosePeriod ^short = "Period over which the medication is to be taken | Zeitraum, über den das Medikament eingenommen werden soll"
+* dosageInstruction 1..* MS 
+* dosageInstruction only AtEmedDosage
+* dosageInstruction ^short = "Angabe der Dosierinformationen strukturiert oder als Freitext"
+//* dosageInstruction.timing.code.coding from $vs-einnahmezeitpunkte (required)
 
 * dispenseRequest 0..1 MS
 * dispenseRequest ^short = "Details zur geplanten Abgabe des Arzneimittels."

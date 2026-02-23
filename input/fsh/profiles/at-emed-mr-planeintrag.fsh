@@ -143,17 +143,8 @@ Nachteil:
 * note ^short = "Zusätzliche Informationen zum Medikationsplaneintrag. TODO: fachlich prüfen, an welchen Stellen überall Freitext erforderlich sein soll/muss. Auch im Kontext zu entered-in-error Informationen."
 
 * dosageInstruction 1..* MS // bsp von linkedcare usw. analysieren
-* dosageInstruction ^short = "Anweisungen zur Einnahme/Verabreichung des Arzneimittels. TODO: alle Elemente + R5 Extensions prüfen"
-// * dosageInstruction.patientInstruction ^short = "Anweisungen für den Patienten"
-// * dosageInstruction.timing.repeat.frequency ^short = "Wiederholungen innerhalb der Dauer"
-// * dosageInstruction.timing.repeat.period ^short = "Zeitraum, über den Wiederholungen erfolgen sollen"
-// * dosageInstruction.timing.repeat.periodUnit ^short = "Zeiteinheit: s | min | h | d | wk | mo | a  (UCUM)"
-// * dosageInstruction.timing.repeat.when from $cs-event-timing
-// * dosageInstruction.timing.repeat.when ^short = "Code für den Zeitraum des Auftretens (z.B. nach dem Frühstück) https://hl7.org/fhir/R4/valueset-event-timing.html"
-// * dosageInstruction.asNeeded[x] ^short = "Bedarfsmedikation"
-// * dosageInstruction.doseAndRate.rate[x] 0..0
-// * dosageInstruction.doseAndRate.rate[x] ^short = "Verabreichte Medikamentendosis. Keine Verwendung im Medikationsplaneintrag."
-// * effectiveDosePeriod ^short = "Period over which the medication is to be taken | Zeitraum, über den das Medikament eingenommen werden soll"
+* dosageInstruction only AtEmedDosage
+* dosageInstruction ^short  = "Angabe der Dosierinformationen strukturiert oder als Freitext"
 
 * dispenseRequest 0..0 
 * dispenseRequest ^short = "Details zur geplanten Abgabe des Arzneimittels im Medikationsplan. Keine Verwendung im Medikationsplaneintrag."
