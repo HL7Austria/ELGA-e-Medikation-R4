@@ -1,0 +1,60 @@
+Alias: $TimingDE = http://ig.fhir.de/igs/medication/StructureDefinition/TimingDE
+Alias: $DosageDoseQuantityDE = http://ig.fhir.de/igs/medication/ValueSet/DosageDoseQuantityDE
+
+Profile: DosageDE
+Parent: Dosage
+Id: DosageDE
+Title: "Dosage DE"
+Description: "Gibt an, wie das Medikament eingenommen oder verabreicht wurde bzw. eingenommen oder verabreicht werden soll - entweder selbst vom Patienten eingenommen oder bei Fremdverabreichung von Dritten (z. B. Leistungserbringer, Angehörige) verabreicht."
+* ^version = "1.0.3"
+* ^status = #active
+* ^date = "2025-11-19T17:22:58+01:00"
+* ^publisher = "HL7 Deutschland e.V."
+* ^contact.name = "HL7 Deutschland e.V."
+* ^contact.telecom.system = #url
+* ^contact.telecom.value = "https://hl7.de"
+* obeys DosageStructuredOrFreeTextWarning and DosageStructuredRequiresBoth and DosageDoseUnitSameCode and DosageWarnungViererschemaInText and FreeTextSingleDosageOnlyWarning
+* text MS
+* text ^short = "Freitext-Dosierungsanweisungen, z. B. 'Maximal 3x täglich 1 Stück bei Bedarf'"
+* text ^definition = "Freitext-Dosierungsanweisungen, z. B. 'Maximal 3x täglich 1 Stück bei Bedarf'. Als Quelle dient hier ausschließlich der Arzt oder Apotheker"
+* text ^comment = "Die Freitextdosierung sollte nur angegeben werden, wenn aufgrund der Komplexität keine strukturierte Dosierung möglich ist, um widersprüchliche Anweisungen zu vermeiden."
+* timing only $TimingDE
+* timing MS
+* timing ^short = "Wann das Medikament verabreicht werden soll"
+* timing ^definition = "Wann das Medikament verabreicht werden soll."
+* timing ^comment = "Um widersprüchliche Anweisungen zu vermeiden, ist entweder Dosage.timing oder Dosage.text zu befüllen. Falls eine strukturierte Dosierung als Text abgebildet werden soll ist dafür die GeneratedDosageInstructionsMeta Extension zu verwenden."
+* doseAndRate MS
+* doseAndRate ^short = "Menge des verabreichten Medikaments"
+* doseAndRate ^definition = "Die verabreichte Menge des Medikaments."
+* doseAndRate.doseQuantity 0..1 MS
+* doseAndRate.doseQuantity only SimpleQuantity
+* doseAndRate.doseQuantity from $DosageDoseQuantityDE (required)
+* doseAndRate.doseQuantity ^sliceName = "doseQuantity"
+* doseAndRate.doseQuantity ^short = "Menge des Medikaments pro Dosis"
+* doseAndRate.doseQuantity ^definition = "Menge des Medikaments pro Dosis."
+* doseAndRate.doseQuantity ^comment = "Beachten Sie, dass dies die Menge des angegebenen Medikaments angibt, nicht die Menge für die einzelnen Wirkstoffe. Jede Wirkstoffmenge kann in der Medication-Ressource kommuniziert werden. Zum Beispiel, wenn man angeben möchte, dass eine Tablette 375 mg enthält und die Dosis eine Tablette beträgt, kann man die Medication-Ressource verwenden, um zu dokumentieren, dass die Tablette aus 375 mg des Wirkstoffs XYZ besteht. Alternativ, wenn die Dosis 375 mg beträgt, muss man möglicherweise nur angeben, dass es sich um eine Tablette handelt. Bei einer Infusion wie Dopamin, bei der 400 mg Dopamin in 500 ml einer Infusionslösung gemischt werden, würde dies alles in der Medication-Ressource kommuniziert werden. Wenn die Verabreichung nicht als sofortig vorgesehen ist (Rate ist vorhanden oder Timing hat eine Dauer), kann dies angegeben werden, um die Gesamtmenge anzugeben, die über den im Zeitplan angegebenen Zeitraum verabreicht werden soll, z. B. 500 ml in der Dosis, wobei Timing verwendet wird, um anzugeben, dass dies über 4 Stunden erfolgen soll."
+
+Invariant: DosageStructuredOrFreeTextWarning
+Description: "Die Dosierungsangabe darf entweder nur als Freitext oder nur als vollständige strukturierte Information erfolgen — eine Mischung ist nicht erlaubt."
+* severity = #warning
+* expression = "(%resource.ofType(MedicationRequest).dosageInstruction | \n ofType(MedicationDispense).dosageInstruction | \n ofType(MedicationStatement).dosage).all(\n  (text.exists() and timing.empty() and doseAndRate.empty()) or\n  (text.empty() and (timing.exists() or doseAndRate.exists()))\n)\n"
+
+Invariant: DosageStructuredRequiresBoth
+Description: "Wenn eine strukturierte Dosierungsangabe erfolgt, müssen sowohl timing als auch doseAndRate angegeben werden."
+* severity = #error
+* expression = "(%resource.ofType(MedicationRequest).dosageInstruction | \n ofType(MedicationDispense).dosageInstruction | \n ofType(MedicationStatement).dosage).all(\n  (timing.exists() implies doseAndRate.exists()) and\n  (doseAndRate.exists() implies timing.exists())\n)\n"
+
+Invariant: DosageDoseUnitSameCode
+Description: "Die Dosiereinheit muss über alle Dosierungen gleich sein."
+* severity = #error
+* expression = "(%resource.ofType(MedicationRequest).dosageInstruction | ofType(MedicationDispense).dosageInstruction | ofType(MedicationStatement).dosage).all(\ndoseAndRate.exists() implies\n  (\n    %resource.dosageInstruction.doseAndRate.dose.ofType(Quantity).code | \n    %resource.dosageInstruction.doseAndRate.dose.ofType(Range).low.code | \n    %resource.dosageInstruction.doseAndRate.dose.ofType(Range).high.code\n  ).distinct().count() = 1\n)"
+
+Invariant: DosageWarnungViererschemaInText
+Description: "Hinweis: In Dosage.text wurde ein Viererschema (z. B. 1-1-1-1) erkannt. Bitte prüfen, ob dies strukturiert abgebildet werden kann."
+* severity = #warning
+* expression = "text.exists() implies text.matches('.*\\\\d+\\\\s*[-–]\\\\s*\\\\d+\\\\s*[-–]\\\\s*\\\\d+\\\\s*[-–]\\\\d+.*').not()"
+
+Invariant: FreeTextSingleDosageOnlyWarning
+Description: "Wenn eine Dosierung als reiner Freitext angegeben ist, soll nur genau ein Dosage-Element existieren."
+* severity = #warning
+* expression = "(\n  (%resource.ofType(MedicationRequest).dosageInstruction |\n   %resource.ofType(MedicationDispense).dosageInstruction |\n   %resource.ofType(MedicationStatement).dosage\n  ).exists(text.exists() and timing.empty() and doseAndRate.empty())\n)\nimplies\n(\n  (%resource.ofType(MedicationRequest).dosageInstruction |\n   %resource.ofType(MedicationDispense).dosageInstruction |\n   %resource.ofType(MedicationStatement).dosage\n  ).count() = 1\n)"

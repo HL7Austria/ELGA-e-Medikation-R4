@@ -24,3 +24,10 @@
 ##### Medikationsplan lesen:
    * Medikationsplan mit 2 Medikationsplaneinträgen anzeigen:
      * Beispiel: [Collection Bundle](Bundle-AtEmedJourneyBundleMedikationsplan02.html)
+
+
+
+
+### Dosierungsbeispiele
+
+

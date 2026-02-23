@@ -1,0 +1,81 @@
+// https://ig.fhir.de/igs/medication/StructureDefinition-DosageDgMP.html
+Alias: $DosageDE = http://ig.fhir.de/igs/medication/StructureDefinition/DosageDE
+Alias: $TimingDgMP = http://ig.fhir.de/igs/medication/StructureDefinition/TimingDgMP
+Alias: $KBV_VS_SFHIR_BMP_DOSIEREINHEIT = https://fhir.kbv.de/ValueSet/KBV_VS_SFHIR_BMP_DOSIEREINHEIT
+
+Profile: DosageDgMP
+Parent: $DosageDE
+Id: DosageDgMP
+Title: "Dosage dgMP"
+Description: "Gibt an, wie das Medikament vom Patienten im Kontext dgMP eingenommen wird/wurde oder eingenommen werden soll."
+* ^date = "2025-11-19T17:22:58+01:00"
+* ^publisher = "HL7 Deutschland e.V."
+* ^contact.name = "HL7 Deutschland e.V."
+* ^contact.telecom.system = #url
+* ^contact.telecom.value = "https://hl7.de"
+* obeys DosageStructuredOrFreeText and DosageStructuredRequiresGeneratedText and FreeTextSingleDosageOnly and FreeTextMatchesRenderedText
+* sequence ..0
+* sequence ^comment = "Begründung Einschränkung Kardinalität: Eine Dosier-Sequenz ist in der ersten Ausbaustufe des dgMP nicht vorgesehen, um die Komplexität zu reduzieren und die Übersichtlichkeit zu erhöhen."
+* additionalInstruction ..0
+* patientInstruction ..0
+* timing only $TimingDgMP
+* asNeeded[x] ..0
+* asNeeded[x] ^comment = "Begründung Einschränkung Kardinalität: Eine Bedarfsdosis ist in der ersten Ausbaustufe des dgMP nicht vorgesehen, um die Komplexität zu reduzieren und die Übersichtlichkeit zu erhöhen."
+* site ..0
+* site ^comment = "Begründung Einschränkung Kardinalität: Eine Verabreichungsstelle ist in der ersten Ausbaustufe des dgMP nicht vorgesehen, um die Komplexität zu reduzieren und die Übersichtlichkeit zu erhöhen."
+* route ..0
+* route ^comment = "Begründung Einschränkung Kardinalität: Ein Verabreichungsweg ist in der ersten Ausbaustufe des dgMP nicht vorgesehen, um die Komplexität zu reduzieren und die Übersichtlichkeit zu erhöhen."
+* method ..0
+* method ^comment = "Begründung Einschränkung Kardinalität: Eine Verabreichungsmethode ist in der ersten Ausbaustufe des dgMP nicht vorgesehen, um die Komplexität zu reduzieren und die Übersichtlichkeit zu erhöhen."
+* doseAndRate ..1
+* doseAndRate ^comment = "Begründung Einschränkung Kardinalität: Nur eine Dosierung pro Medikation ist in der ersten Ausbaustufe des dgMP vorgesehen, um die Komplexität zu reduzieren und die Übersichtlichkeit zu erhöhen."
+* doseAndRate.type ..0
+* doseAndRate.type ^comment = "Begründung Einschränkung Kardinalität: Eine 'type'-Angabe ist in der ersten Ausbaustufe des dgMP nicht vorgesehen, um die Komplexität zu reduzieren und die Übersichtlichkeit zu erhöhen."
+* doseAndRate.dose[x] only SimpleQuantity
+* doseAndRate.dose[x] ^comment = "Begründung Einschränkung Datentyp: Nur einfache Mengenangaben sind in der ersten Ausbaustufe des dgMP vorgesehen, um die Komplexität zu reduzieren und die Übersichtlichkeit zu erhöhen."
+* doseAndRate.doseQuantity only SimpleQuantity
+* doseAndRate.doseQuantity from $KBV_VS_SFHIR_BMP_DOSIEREINHEIT (required)
+* doseAndRate.doseQuantity ^sliceName = "doseQuantity"
+* doseAndRate.doseQuantity.unit 1.. MS
+* doseAndRate.doseQuantity.system 1.. MS
+* doseAndRate.doseQuantity.code 1.. MS
+* doseAndRate.rate[x] ..0
+* doseAndRate.rate[x] ^comment = "Begründung Einschränkung Kardinalität: Eine Verabreichungsmenge pro Zeiteinheit ist in der ersten Ausbaustufe des dgMP nicht vorgesehen, um die Komplexität zu reduzieren und die Übersichtlichkeit zu erhöhen."
+* maxDosePerPeriod ..0
+* maxDosePerPeriod ^comment = "Begründung Einschränkung Kardinalität: Eine maximale Dosis pro Zeitraum ist in der ersten Ausbaustufe des dgMP nicht vorgesehen, um die Komplexität zu reduzieren und die Übersichtlichkeit zu erhöhen."
+* maxDosePerAdministration ..0
+* maxDosePerAdministration ^comment = "Begründung Einschränkung Kardinalität: Eine maximale Dosis pro Verabreichung ist in der ersten Ausbaustufe des dgMP nicht vorgesehen, um die Komplexität zu reduzieren und die Übersichtlichkeit zu erhöhen."
+* maxDosePerLifetime ..0
+* maxDosePerLifetime ^comment = "Begründung Einschränkung Kardinalität: Eine maximale Dosis über die Lebenszeit ist in der ersten Ausbaustufe des dgMP nicht vorgesehen, um die Komplexität zu reduzieren und die Übersichtlichkeit zu erhöhen."
+
+Invariant: DosageStructuredOrFreeText
+Description: "Die Dosierungsangabe darf entweder nur als Freitext oder nur als vollständige strukturierte Information erfolgen — eine Mischung ist nicht erlaubt."
+* severity = #error
+* expression = "(%resource.ofType(MedicationRequest).dosageInstruction | \n ofType(MedicationDispense).dosageInstruction | \n ofType(MedicationStatement).dosage).all(\n  (text.exists() and timing.empty() and doseAndRate.empty()) or\n  (text.empty() and (timing.exists() or doseAndRate.exists()))\n)\n"
+
+Invariant: DosageStructuredRequiresGeneratedText
+Description: "Liegt eine strukturierte Dosierungsangabe vor (timing und doseAndRate belegt, text leer), muss die Extension GeneratedDosageInstructionsMeta vorhanden sein."
+* severity = #error
+* expression = "(\n  (%resource.ofType(MedicationRequest).dosageInstruction |\n   %resource.ofType(MedicationDispense).dosageInstruction |\n   %resource.ofType(MedicationStatement).dosage\n  ).exists(timing.exists() and doseAndRate.exists() and text.empty())\n)\nimplies\n(\n%resource.extension.where(\n  url = 'http://ig.fhir.de/igs/medication/StructureDefinition/GeneratedDosageInstructionsMeta'\n).exists() and\n(\n  %resource.extension.where(\n    url = 'http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationRequest.renderedDosageInstruction'\n  ).exists() or\n  %resource.extension.where(\n    url = 'http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationDispense.renderedDosageInstruction'\n  ).exists() or\n  %resource.extension.where(\n    url = 'http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationStatement.renderedDosageInstruction'\n  ).exists()\n)\n)\n"
+
+Invariant: FreeTextSingleDosageOnly
+Description: "Wenn eine Dosierung als reiner Freitext angegeben ist, darf nur genau ein Dosage-Element existieren."
+* severity = #error
+* expression = "(\n  (%resource.ofType(MedicationRequest).dosageInstruction |\n   %resource.ofType(MedicationDispense).dosageInstruction |\n   %resource.ofType(MedicationStatement).dosage\n  ).exists(text.exists() and timing.empty() and doseAndRate.empty())\n)\nimplies\n(\n  (%resource.ofType(MedicationRequest).dosageInstruction |\n   %resource.ofType(MedicationDispense).dosageInstruction |\n   %resource.ofType(MedicationStatement).dosage\n  ).count() = 1\n)"
+
+Invariant: FreeTextMatchesRenderedText
+Description: "Wenn eine Dosierung als reiner Freitext angegeben ist (text vorhanden, timing und doseAndRate leer) UND die Extension renderedDosageInstruction befüllt ist, muss der Wert in dosageInstruction.text mit dem Wert in der Extension übereinstimmen."
+* severity = #error
+* expression = "(\n  (%resource.ofType(MedicationRequest).dosageInstruction |\n   %resource.ofType(MedicationDispense).dosageInstruction |\n   %resource.ofType(MedicationStatement).dosage\n  ).where(text.exists() and timing.empty() and doseAndRate.empty()).exists()\n)\nimplies\n(\n  (\n    %resource.ofType(MedicationRequest).exists() and\n    (\n      %resource.extension.where(\n        url = 'http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationRequest.renderedDosageInstruction'\n      ).empty() or\n      %resource.extension.where(\n        url = 'http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationRequest.renderedDosageInstruction'\n      ).value = %resource.dosageInstruction.text\n    )\n  ) or\n  (\n    %resource.ofType(MedicationDispense).exists() and\n    (\n      %resource.extension.where(\n        url = 'http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationDispense.renderedDosageInstruction'\n      ).empty() or\n      %resource.extension.where(\n        url = 'http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationDispense.renderedDosageInstruction'\n      ).value = %resource.dosageInstruction.text\n    )\n  ) or\n  (\n    %resource.ofType(MedicationStatement).exists() and\n    (\n      %resource.extension.where(\n        url = 'http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationStatement.renderedDosageInstruction'\n      ).empty() or\n      %resource.extension.where(\n        url = 'http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationStatement.renderedDosageInstruction'\n      ).value = %resource.dosage.text\n    )\n  )\n)"
+
+Mapping: rim
+Id: rim
+Title: "RIM Mapping"
+Source: DosageDgMP
+Target: "http://hl7.org/v3"
+
+Mapping: v2
+Id: v2
+Title: "HL7 v2 Mapping"
+Source: DosageDgMP
+Target: "http://hl7.org/v2"
