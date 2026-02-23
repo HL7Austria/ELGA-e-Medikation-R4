@@ -13,12 +13,13 @@ Alias: $cs-sct = http://snomed.info/sct
 // medication
 Alias: $cs-asp-liste = https://termgit.elga.gv.at/CodeSystem/asp-liste
 Alias: $cs-atc = https://termgit.elga.gv.at/CodeSystem/atc-deutsch-wido
-Alias: $cs-emed-doseform = https://termgit.elga.gv.at/CodeSystem/medikationdarreichungsform
-Alias: $vs-emed-mengenart = https://termgit.elga.gv.at/ValueSet-elga-medikationmengenart
+Alias: $cs-emed-doseform = https://termgit.elga.gv.at/CodeSystem/medikationdarreichungsform     // Gel, Kapsel, Salbe, Tablette  ...
+Alias: $vs-emed-mengenart = https://termgit.elga.gv.at/ValueSet-elga-medikationmengenart        // Percent, PerHour, mg, Tablette ...
 
 //Dosierungen
-Alias: $cs-medikationartanwendung = https://termgit.elga.gv.at/CodeSystem/medikationartanwendung
-
+Alias: $cs-medikationartanwendung = https://termgit.elga.gv.at/CodeSystem/medikationartanwendung   // Anwendung auf der Haut, 	zur Inhalation ...
+Alias: $vs-einnahmezeitpunkte = https://termgit.elga.gv.at/ValueSet/elga-einnahmezeitpunkte        // Mittags, morgens: dosageInstruction.timing.repeat.when
+Alias: $vs-medikationfrequenz = https://termgit.elga.gv.at/ValueSet/elga-medikationfrequenz         // Tag, Monat, Woche, Jahr
 
 //medication request
 Alias: $cs-medication-request-status = http://hl7.org/fhir/medicationrequest-status
@@ -27,8 +28,7 @@ Alias: $cs-medication-request-status = http://hl7.org/fhir/medicationrequest-sta
 Alias: $cs-list-empty-reason = http://terminology.hl7.org/CodeSystem/list-empty-reason
 
 // FHIR
-Alias: $cs-event-timing = http://hl7.org/fhir/event-timing
-
+//Alias: $cs-event-timing = http://hl7.org/fhir/event-timing
 Alias: $cs-hl7-at-organizationtype = https://termgit.elga.gv.at/ValueSet/hl7-at-organizationtype
 
 
@@ -55,7 +55,6 @@ Alias: $cs-hl7-at-organizationtype = https://termgit.elga.gv.at/ValueSet/hl7-at-
 // Alias: $cs-lkat-bmsgpk-2025 = https://termgit.elga.gv.at/CodeSystem/lkat-bmsgpk-2025
 // Alias: $cs-elga-ergaenzungsliste = https://termgit.elga.gv.at/CodeSystem/elga-ergaenzungsliste
 // Alias: $cs-rast-klassen = https://termgit.elga.gv.at/CodeSystem/rast-klassen
-// Alias: $cs-elga-medikationmengenart = https://termgit.elga.gv.at/ValueSet/elga-medikationmengenart
 
 // value sets
 // FHIR
