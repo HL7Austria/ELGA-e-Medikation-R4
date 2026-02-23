@@ -14,7 +14,11 @@ Alias: $cs-sct = http://snomed.info/sct
 Alias: $cs-asp-liste = https://termgit.elga.gv.at/CodeSystem/asp-liste
 Alias: $cs-atc = https://termgit.elga.gv.at/CodeSystem/atc-deutsch-wido
 Alias: $cs-emed-doseform = https://termgit.elga.gv.at/CodeSystem/medikationdarreichungsform
-Alias: $vs-emed-mengenart = https://termgit.elga.gv.at/ValueSet-elga-medikationmengenart.html
+Alias: $vs-emed-mengenart = https://termgit.elga.gv.at/ValueSet-elga-medikationmengenart
+
+//Dosierungen
+Alias: $cs-medikationartanwendung = https://termgit.elga.gv.at/CodeSystem/medikationartanwendung
+
 
 //medication request
 Alias: $cs-medication-request-status = http://hl7.org/fhir/medicationrequest-status
@@ -42,7 +46,7 @@ Alias: $cs-hl7-at-organizationtype = https://termgit.elga.gv.at/ValueSet/hl7-at-
 // termgit.elga.gv.at
 
 //Alias: $cs-elga-laborparameterergaenzung = https://termgit.elga.gv.at/CodeSystem/elga-laborparameterergaenzung
-// Alias: $cs-medikationartanwendung = https://termgit.elga.gv.at/CodeSystem/medikationartanwendung
+
 // Alias: $cs-eimpf-impfstoffe = https://termgit.elga.gv.at/CodeSystem/eimpf-impfstoffe
 // Alias: $cs-eimpf-historischeimpfstoffe = https://termgit.elga.gv.at/CodeSystem/eimpf-historischeimpfstoffe
 // Alias: $cs-icd-10-bmsgpk-2025 = https://termgit.elga.gv.at/CodeSystem/icd-10-bmsgpk-2025
