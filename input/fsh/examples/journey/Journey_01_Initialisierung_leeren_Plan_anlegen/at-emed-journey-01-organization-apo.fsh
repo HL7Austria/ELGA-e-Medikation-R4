@@ -1,7 +1,7 @@
-Instance: AtEmedExampleOrganizationApo01
+Instance: At-Emed-Journey-01-Organization-Apo
 InstanceOf: HL7ATCoreOrganization
 Title: "Beispiel Organisation Apotheke 01"
-Description: "**Beschreibung:** Beispiel einer Apotheke als Organisation."
+Description: "Beispiel einer Apotheke als Organisation."
 Usage: #example
 * identifier[0].system = "urn:ietf:rfc:3986"
 * identifier[=].value = "urn:oid:1.2.40.0.34.99.4613.3"

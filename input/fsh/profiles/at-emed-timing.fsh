@@ -2,7 +2,7 @@ Profile: AtEmedTiming
 Parent: Timing
 Id: at-emed-timing
 Title: "ELGA e-Med Timing"
-Description: "**Beschreibung:** ELGA e-Med Timing"
+Description: "ELGA e-Med Timing"
 
 * event 0..* MS
 * event ^short = "Zeitpunkt der Einnahme: Mapping /effectiveTime[1]/@value"

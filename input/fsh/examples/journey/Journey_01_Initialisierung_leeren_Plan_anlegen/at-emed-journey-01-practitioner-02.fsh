@@ -1,7 +1,7 @@
-Instance: AtEmedExamplePractitioner02
+Instance: At-Emed-Journey-01-Practitioner-02
 InstanceOf: HL7ATCorePractitioner
 Title: "Beispiel Ärztin 02"
-Description: "**Beschreibung:** Beispiel einer ursprünglich eine Medikation verordnenden Ärztin (Fremdmedikation)."
+Description: "Beispiel einer ursprünglich eine Medikation verordnenden Ärztin (Fremdmedikation)."
 Usage: #example
 
 //* meta.profile = "http://hl7.at/fhir/HL7ATCoreProfiles/4.0.1/StructureDefinition/at-core-practitioner"

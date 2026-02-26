@@ -2,7 +2,7 @@ Profile: AtEmedBundleMedikationsplan
 Parent: Bundle
 Id: at-emed-bundle-medikationsplan
 Title: "ELGA e-Med Medikationsplan Collection Bundle"
-Description: "**Beschreibung:** Das Bundle vom Typ Collection bestehend aus: 
+Description: "Das Bundle vom Typ Collection bestehend aus: 
 - 1..1 Medikationsplan (List): Liste mit Referenzen auf Medikationsplaneinträge und zur Abbildung von Reihenfolge und Änderungsstatus) 
 - 0..* Medikationsplaneinträge (MedicationRequests): Medikation und Dosierung"
 

@@ -2,7 +2,7 @@ Profile: AtEmedListMedikationsplan
 Parent: List
 Id: at-emed-list-medikationsplan
 Title: "ELGA e-Med Medikationsplan"
-Description: "**Beschreibung:** Bildet den Medikationsplan eines ELGA-Teilnehmers ab (\"List\"-Ressource). 
+Description: "Bildet den Medikationsplan eines ELGA-Teilnehmers ab (\"List\"-Ressource). 
 Die Liste beinhaltet Referenzen auf 0..* Medikationsplaneinträge (MedicationRequests), die alle verordneten Arzneimittel und deren Dosierung abbilden.
 Die Reihenfolge der Listenelemente kann duch den User festgelegt werden. Jedes Listenelement enthält einen Änderungsstatus (weitere Elemente sind noch zu klären).
 
@@ -39,10 +39,10 @@ Zentralen Patientenindex identifizierbar und Teilnehmer von ELGA e-Medikation is
 * date ^short = "Letzte Aktualisierung des Medikationsplans."
 
 * source 1..1 MS
-* source only Reference(HL7ATCorePractitioner or HL7ATCorePractitionerRole)
+* source only Reference(HL7ATCorePractitioner or HL7ATCorePractitionerRole or Device)
 * source ^short = "Arzt oder Ärztin, die den Medikationsplans erstellt und für den Inhalt verantwortlich ist. 
 Eindeutig identifiziert über den GDA-Index und berechtigt auf die ELGA e-Medikation 
-des Patienten zuzugreifen."
+des Patienten zuzugreifen. Device nur für initiale Erstellung durch die Fachanwendung."
 
 * orderedBy 1..1 MS
 * orderedBy from http://hl7.org/fhir/ValueSet/list-order 

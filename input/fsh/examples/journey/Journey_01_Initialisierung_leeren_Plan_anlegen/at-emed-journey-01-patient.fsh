@@ -2,10 +2,10 @@ Alias: $hl7-at-religionaustria = https://termgit.elga.gv.at/CodeSystem/hl7-at-re
 Alias: $iso-3166-1-alpha-3 = https://termgit.elga.gv.at/CodeSystem/iso-3166-1-alpha-3
 Alias: $v2-0203 = http://terminology.hl7.org/CodeSystem/v2-0203
 
-Instance: AtEmedExamplePatient01
+Instance: At-Emed-Journey-01-Patient-01
 InstanceOf: HL7ATCorePatient
 Title: "Beispiel Patient 01"
-Description: "**Beschreibung:** Beispiel eines Patienten."
+Description: "Beispiel eines Patienten."
 Usage: #example
 * meta.profile = "http://hl7.at/fhir/HL7ATCoreProfiles/5.0.0/StructureDefinition/at-core-patient"
 * extension[0].extension.url = "code"

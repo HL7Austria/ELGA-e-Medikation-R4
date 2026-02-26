@@ -2,7 +2,7 @@ Profile: AtEmedMRPlaneintrag
 Parent: MedicationRequest
 Id: at-emed-mr-planeintrag
 Title: "ELGA e-Med Planeintrag"
-Description: "**Beschreibung:** Bildet einen Medikationsplaneintrag im Medikationsplan eines ELGA-Teilnehmers ab (\"MedicationRequest\"-Ressource).
+Description: "Bildet einen Medikationsplaneintrag im Medikationsplan eines ELGA-Teilnehmers ab (\"MedicationRequest\"-Ressource).
 Er enthält genau ein Arzneimittel und dessen Dosierung.
 Kann in weiterer Folge dazu dienen, eine geplante Abgabe zu erstellen. Verwendet R5 Backport Extensions."
 

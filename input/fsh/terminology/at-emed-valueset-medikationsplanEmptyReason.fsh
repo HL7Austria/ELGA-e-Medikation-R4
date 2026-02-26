@@ -1,7 +1,7 @@
 ValueSet: MedikationsplanEmptyReasonVS
 
 Title: "ELGA e-Med Medikationsplan Empty Reason Value Set"
-Description: "**Beschreibung:** ValueSet für zulässige Ausprägungen des elements emptyReason Status eines Medikationsplaneintrags (MedicationRequest)."
+Description: "ValueSet für zulässige Ausprägungen des elements emptyReason Status eines Medikationsplaneintrags (MedicationRequest)."
 * ^experimental = true
 
 * include $cs-list-empty-reason#nilknown

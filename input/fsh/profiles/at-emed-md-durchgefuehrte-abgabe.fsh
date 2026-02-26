@@ -2,7 +2,7 @@ Profile: AtEmedMDDurchgefuehrteAbgabe
 Parent: MedicationDispense
 Id: at-emed-md-durchgefuehrte-abgabe
 Title: "ELGA e-Med Durchgeführte Abgabe"
-Description: "**Beschreibung:** Dokumentiert eine durchgeführte Abgabe eines Arzneimittels (\"MedicationDispense\"-Ressource). 
+Description: "Dokumentiert eine durchgeführte Abgabe eines Arzneimittels (\"MedicationDispense\"-Ressource). 
 Sofern eine zugehörige geplante Abgabe vorliegt, können Abweichungen hinsichtlich der Dosierung oder einer möglichen
 Substitution des Medikaments in der durchgeführten Abgabe dokumentiert werden."
 * . ^short = "Durchgeführte Abgabe eines Arzneimittels mit oder ohne Bezug zum Medikationsplan. Verwendet R5 Backport Extensions."

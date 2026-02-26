@@ -1,10 +1,10 @@
-Instance: AtEmedJourneyMrPlaneintrag0202
+Instance: At-Emed-Journey-05-Mr-Planeintrag-02
 InstanceOf: AtEmedMRPlaneintrag   
 Title: "Beispiel Journey 02: Medikationsplaneintrag 2"
-Description: "**Beschreibung:** Bildet einen Medikationsplaneintrag mit einer Referenz auf eine magistrale Zubereitung und zugehörigen Dosierungsanweisungen ab (MedicationRequest)."
+Description: "Bildet einen Medikationsplaneintrag mit einer Referenz auf eine magistrale Zubereitung und zugehörigen Dosierungsanweisungen ab (MedicationRequest)."
 Usage: #example
 
-* contained[medication] = ContainedMedicationMagistral02
+* contained[medication] = ContainedMedicationMagistral05
 
 // R5 Backports
 * extension[effectiveDosePeriod].valuePeriod.start = "2026-01-28"
@@ -18,14 +18,14 @@ Usage: #example
 * intent = https://hl7.org/fhir/R4/valueset-medicationrequest-intent#order
 * category = MedicationRequestCategoryCS#1 
 
-* reportedReference = Reference(AtEmedExamplePractitioner02)
+* reportedReference = Reference(At-Emed-Journey-01-Practitioner-02)
 
 // Referenz auf Inline Medication Ressource
-* medicationReference.reference = "#ContainedMedicationMagistral02"
+* medicationReference.reference = "#ContainedMedicationMagistral05"
 
-* subject = Reference(AtEmedExamplePatient01)
-* authoredOn = "2026-01-28T08:00:00+00:00"
-* requester = Reference(AtEmedExamplePractitioner01)
+* subject = Reference(At-Emed-Journey-01-Patient-01)
+* authoredOn = "2026-02-07T08:00:00+00:00"
+* requester = Reference(At-Emed-Journey-01-Practitioner-01)
  
 * note.text = "Freitext Informationen zum Medikationsplaneintrag."
 
@@ -46,7 +46,7 @@ Usage: #example
 
 
 // Contained Medication *********************************************************************
-Instance: ContainedMedicationMagistral02
+Instance: ContainedMedicationMagistral05
 InstanceOf: AtEmedMedication
 Title: "Beispiel Journey 02: Magistrale Anwendung (Salbe)"
 Usage: #inline
@@ -55,7 +55,7 @@ Usage: #inline
 * text.div = "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n<p>Freitext-Informationen zur magistralen Anwendung.</p>\n</div>"
 
 //* status = #active
-//* manufacturer = Reference(AtEmedExampleOrganizationApo01) "Amadeus Apotheke"
+//* manufacturer = Reference(AtEmed-Example-Organization-Apo-01) "Amadeus Apotheke"
 * form.coding = https://termgit.elga.gv.at/CodeSystem/medikationdarreichungsform#100000073713 "Salbe"
 // CodeableConcept
 * ingredient[+].itemCodeableConcept = $cs-atc#A01AC03 "Hydrocortison"
@@ -72,12 +72,12 @@ Usage: #inline
 * ingredient[=].strength.denominator.unit = "g"   
 
 // alternativ: Substance Reference
-// * ingredient[+].itemReference = Reference(AtEmedJourneySubstanceHydrocortison) "Hydrocortison"
+// * ingredient[+].itemReference = Reference(At-Emed-Journey-Substance-Hydrocortison) "Hydrocortison"
 // * ingredient[=].strength.numerator.value = 1
 // * ingredient[=].strength.numerator.unit = "%"
 // * ingredient[=].strength.denominator.value = 100
 // * ingredient[=].strength.denominator.unit = "g"
-// * ingredient[+].itemReference = Reference(AtEmedJourneySubstanceClotrimazol) "Clotrimazol"
+// * ingredient[+].itemReference = Reference(At-Emed-Journey-Substance-Clotrimazol) "Clotrimazol"
 // * ingredient[=].strength.numerator.value = 1
 // * ingredient[=].strength.numerator.unit = "%"
 // * ingredient[=].strength.denominator.value = 100

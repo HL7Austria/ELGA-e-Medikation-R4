@@ -2,7 +2,7 @@ Profile: AtEmedBundleMedikationsplanTx
 Parent: Bundle
 Id: at-emed-bundle-tx-medikationsplan
 Title: "ELGA e-Med Medikationsplan Transaction Bundle"
-Description: "**Beschreibung:** Das Bundle vom Typ Transaction dient dem schreibenden Zugriff auf den ELGA Medikationsplan bestehend aus: 
+Description: "Das Bundle vom Typ Transaction dient dem schreibenden Zugriff auf den ELGA Medikationsplan bestehend aus: 
 - 1..1 Medikationsplan (List): Liste mit Referenzen auf Medikationsplaneinträge und zur Abbildung von Reihenfolge und Änderungsstatus) 
 - 0..* Medikationsplaneinträge (MedicationRequests): Medikation und Dosierung"
 

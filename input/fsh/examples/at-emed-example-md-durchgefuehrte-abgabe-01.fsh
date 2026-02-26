@@ -1,4 +1,4 @@
-Instance: AtEmedExampleDurchgefuehrteAbgabe01
+Instance: At-Emed-Example-Durchgefuehrte-Abgabe-01
 InstanceOf: AtEmedMDDurchgefuehrteAbgabe
 Title: "Beispiel Durchgeführte Abgabe 1"
 Description: "Beispiel Durchgeführte Abgabe 1"
@@ -24,7 +24,7 @@ Usage: #example
 * identifier.value = "WYE82A2G8EEW-4711-001"
 * status = #completed
 * medicationReference = Reference(Medication/01C-Cefuroxime1500Branded) "Cefuroxime MIP 1500 mg, powder for solution for injection/infusion. N10."
-* subject = Reference(AtEmedExamplePatient01)
+* subject = Reference(At-Emed-Journey-01-Patient-01)
 * performer.actor = Reference(PractitionerRole/pharmacist1)
 * authorizingPrescription = Reference(MedicationRequest/400C-prescription-cefuroxime-singleline)
 * quantity = 1 '1'

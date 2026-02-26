@@ -1,0 +1,648 @@
+{
+    "resourceType": "Bundle",
+    "id": "91c4bc3e-403a-4321-987e-d0c4822294bc",
+    "meta": {
+        "lastUpdated": "2026-02-25T12:59:42.281+00:00"
+    },
+    "type": "searchset",
+    "total": 1,
+    "link": [
+        {
+            "relation": "self",
+            "url": "https://hapi.fhir.org/baseR4/List?_include=*&patient=Patient%2FAt-Emed-Example-Patient-01"
+        }
+    ],
+    "entry": [
+        {
+            "fullUrl": "https://hapi.fhir.org/baseR4/List/At-Emed-Journey-List-Medikationsplan-01",
+            "resource": {
+                "resourceType": "List",
+                "id": "At-Emed-Journey-List-Medikationsplan-01",
+                "meta": {
+                    "versionId": "3",
+                    "lastUpdated": "2026-02-25T12:57:29.123+00:00",
+                    "source": "#6Ws2brbk8ZQ6PsIg",
+                    "profile": [
+                        "https://fhir.hl7.at/elga/emed/r4/StructureDefinition/at-emed-list-medikationsplan"
+                    ]
+                },
+                "status": "current",
+                "mode": "working",
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "736378000",
+                            "display": "Medikationsplan"
+                        }
+                    ]
+                },
+                "subject": {
+                    "reference": "Patient/At-Emed-Journey-01-Patient-01"
+                },
+                "date": "2026-02-05T08:00:00+00:00",
+                "source": {
+                    "reference": "Practitioner/At-Emed-Journey-01-Practitioner-02"
+                },
+                "orderedBy": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/list-order",
+                            "code": "user"
+                        }
+                    ]
+                },
+                "entry": [
+                    {
+                        "flag": {
+                            "coding": [
+                                {
+                                    "system": "urn:oid:1.2.36.1.2001.1001.101.104.16592",
+                                    "code": "04",
+                                    "display": "Prescribed"
+                                }
+                            ]
+                        },
+                        "date": "2026-01-28T08:00:00+00:00",
+                        "item": {
+                            "reference": "MedicationRequest/At-Emed-Journey-02-Mr-Planeintrag-02"
+                        }
+                    },
+                    {
+                        "flag": {
+                            "coding": [
+                                {
+                                    "system": "urn:oid:1.2.36.1.2001.1001.101.104.16592",
+                                    "code": "04",
+                                    "display": "Prescribed"
+                                }
+                            ]
+                        },
+                        "date": "2026-01-28T08:00:00+00:00",
+                        "item": {
+                            "reference": "MedicationRequest/At-Emed-Journey-02-Mr-Planeintrag-01"
+                        }
+                    }
+                ]
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "https://hapi.fhir.org/baseR4/MedicationRequest/At-Emed-Journey-02-Mr-Planeintrag-02",
+            "resource": {
+                "resourceType": "MedicationRequest",
+                "id": "At-Emed-Journey-02-Mr-Planeintrag-02",
+                "meta": {
+                    "versionId": "1",
+                    "lastUpdated": "2026-02-25T12:37:08.610+00:00",
+                    "source": "#V3GzMG3HdGZfH9hE",
+                    "profile": [
+                        "https://fhir.hl7.at/elga/emed/r4/StructureDefinition/at-emed-mr-planeintrag"
+                    ]
+                },
+                "contained": [
+                    {
+                        "resourceType": "Medication",
+                        "id": "ContainedMedicationMagistral02",
+                        "meta": {
+                            "profile": [
+                                "https://fhir.hl7.at/elga/emed/r4/StructureDefinition/at-emed-medication"
+                            ]
+                        },
+                        "text": {
+                            "status": "additional",
+                            "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>Freitext-Informationen zur magistralen Anwendung.</p></div>"
+                        },
+                        "form": {
+                            "coding": [
+                                {
+                                    "system": "https://termgit.elga.gv.at/CodeSystem/medikationdarreichungsform",
+                                    "code": "100000073713",
+                                    "display": "Salbe"
+                                }
+                            ]
+                        },
+                        "ingredient": [
+                            {
+                                "itemCodeableConcept": {
+                                    "coding": [
+                                        {
+                                            "system": "https://termgit.elga.gv.at/CodeSystem/atc-deutsch-wido",
+                                            "code": "A01AC03",
+                                            "display": "Hydrocortison"
+                                        }
+                                    ]
+                                },
+                                "strength": {
+                                    "numerator": {
+                                        "value": 1,
+                                        "unit": "%",
+                                        "system": "http://unitsofmeasure.org",
+                                        "code": "%"
+                                    },
+                                    "denominator": {
+                                        "value": 100,
+                                        "unit": "g",
+                                        "system": "http://unitsofmeasure.org",
+                                        "code": "g"
+                                    }
+                                }
+                            },
+                            {
+                                "itemCodeableConcept": {
+                                    "coding": [
+                                        {
+                                            "system": "https://termgit.elga.gv.at/CodeSystem/atc-deutsch-wido",
+                                            "code": "A01AB18",
+                                            "display": "Clotrimazol"
+                                        }
+                                    ]
+                                },
+                                "strength": {
+                                    "numerator": {
+                                        "value": 1,
+                                        "unit": "%",
+                                        "system": "http://unitsofmeasure.org",
+                                        "code": "%"
+                                    },
+                                    "denominator": {
+                                        "value": 100,
+                                        "unit": "g",
+                                        "system": "http://unitsofmeasure.org",
+                                        "code": "g"
+                                    }
+                                }
+                            },
+                            {
+                                "itemCodeableConcept": {
+                                    "text": "Salbengrundlage"
+                                },
+                                "isActive": false,
+                                "strength": {
+                                    "numerator": {
+                                        "value": 98,
+                                        "unit": "g"
+                                    },
+                                    "denominator": {
+                                        "value": 100,
+                                        "unit": "g"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "extension": [
+                    {
+                        "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationRequest.effectiveDosePeriod",
+                        "valuePeriod": {
+                            "start": "2026-01-28",
+                            "end": "2026-02-28"
+                        }
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationRequest.renderedDosageInstruction",
+                        "valueMarkdown": "1 täglich auftragen"
+                    }
+                ],
+                "identifier": [
+                    {
+                        "value": "4713_202602280800000"
+                    }
+                ],
+                "status": "active",
+                "intent": "order",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "https://fhir.hl7.at/elga/emed/r4/CodeSystem/MedicationRequestCategoryCS",
+                                "code": "1"
+                            }
+                        ]
+                    }
+                ],
+                "reportedReference": {
+                    "reference": "Practitioner/At-Emed-Journey-01-Practitioner-02"
+                },
+                "medicationReference": {
+                    "reference": "#ContainedMedicationMagistral02"
+                },
+                "subject": {
+                    "reference": "Patient/At-Emed-Journey-01-Patient-01"
+                },
+                "authoredOn": "2026-01-28T08:00:00+00:00",
+                "requester": {
+                    "reference": "Practitioner/At-Emed-Journey-01-Practitioner-01"
+                },
+                "note": [
+                    {
+                        "text": "Freitext Informationen zum Medikationsplaneintrag."
+                    }
+                ],
+                "dosageInstruction": [
+                    {
+                        "text": "1 täglich auftragen",
+                        "patientInstruction": "Abends sehr dünn auf die betroffene Stelle auftragen.",
+                        "timing": {
+                            "repeat": {
+                                "frequency": 1,
+                                "period": 1,
+                                "periodUnit": "d"
+                            }
+                        },
+                        "route": {
+                            "coding": [
+                                {
+                                    "system": "https://termgit.elga.gv.at/CodeSystem-medikationartanwendung.html",
+                                    "code": "100000073566",
+                                    "display": "Anwendung auf der Haut"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "search": {
+                "mode": "include"
+            }
+        },
+        {
+            "fullUrl": "https://hapi.fhir.org/baseR4/MedicationRequest/At-Emed-Journey-02-Mr-Planeintrag-01",
+            "resource": {
+                "resourceType": "MedicationRequest",
+                "id": "At-Emed-Journey-02-Mr-Planeintrag-01",
+                "meta": {
+                    "versionId": "1",
+                    "lastUpdated": "2026-02-25T12:37:08.610+00:00",
+                    "source": "#V3GzMG3HdGZfH9hE",
+                    "profile": [
+                        "https://fhir.hl7.at/elga/emed/r4/StructureDefinition/at-emed-mr-planeintrag"
+                    ]
+                },
+                "contained": [
+                    {
+                        "resourceType": "Medication",
+                        "id": "ContainedMedication01",
+                        "meta": {
+                            "profile": [
+                                "https://fhir.hl7.at/elga/emed/r4/StructureDefinition/at-emed-medication"
+                            ]
+                        },
+                        "code": {
+                            "coding": [
+                                {
+                                    "system": "https://termgit.elga.gv.at/CodeSystem/asp-liste",
+                                    "code": "2443061",
+                                    "display": "EBETREXAT TBL 10MG"
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "extension": [
+                    {
+                        "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationRequest.effectiveDosePeriod",
+                        "valuePeriod": {
+                            "start": "2026-01-28",
+                            "end": "2026-02-28"
+                        }
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationRequest.renderedDosageInstruction",
+                        "valueMarkdown": "1 Kapsel täglich morgens"
+                    }
+                ],
+                "identifier": [
+                    {
+                        "value": "4712_202602280800000"
+                    }
+                ],
+                "status": "active",
+                "intent": "order",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "https://fhir.hl7.at/elga/emed/r4/CodeSystem/MedicationRequestCategoryCS",
+                                "code": "1"
+                            }
+                        ]
+                    }
+                ],
+                "reportedBoolean": false,
+                "medicationReference": {
+                    "reference": "#ContainedMedication01"
+                },
+                "subject": {
+                    "reference": "Patient/At-Emed-Journey-01-Patient-01"
+                },
+                "authoredOn": "2026-01-28T08:00:00+00:00",
+                "requester": {
+                    "reference": "Practitioner/At-Emed-Journey-01-Practitioner-01"
+                },
+                "note": [
+                    {
+                        "text": "Freitext Informationen zum Medikationsplaneintrag."
+                    }
+                ],
+                "dosageInstruction": [
+                    {
+                        "text": "1 Kapsel täglich morgens",
+                        "patientInstruction": "Nehmen Sie die Kapsel jeden Morgen mit ausreichend Flüssigkeit ein.",
+                        "timing": {
+                            "repeat": {
+                                "frequency": 1,
+                                "period": 1,
+                                "periodUnit": "d"
+                            }
+                        },
+                        "route": {
+                            "coding": [
+                                {
+                                    "system": "https://termgit.elga.gv.at/CodeSystem-medikationartanwendung.html",
+                                    "code": "100000073619",
+                                    "display": "zum Einnehmen"
+                                }
+                            ]
+                        },
+                        "doseAndRate": [
+                            {
+                                "doseQuantity": {
+                                    "value": 5,
+                                    "unit": "mg",
+                                    "system": "http://unitsofmeasure.org",
+                                    "code": "mg"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            "search": {
+                "mode": "include"
+            }
+        },
+        {
+            "fullUrl": "https://hapi.fhir.org/baseR4/Practitioner/At-Emed-Journey-01-Practitioner-02",
+            "resource": {
+                "resourceType": "Practitioner",
+                "id": "At-Emed-Journey-01-Practitioner-02",
+                "meta": {
+                    "versionId": "1",
+                    "lastUpdated": "2026-02-25T12:25:13.796+00:00",
+                    "source": "#ASLUPMvF8qfPrGuj",
+                    "profile": [
+                        "http://hl7.at/fhir/HL7ATCoreProfiles/4.0.1/StructureDefinition/at-core-practitioner"
+                    ]
+                },
+                "identifier": [
+                    {
+                        "system": "urn:ietf:rfc:3986",
+                        "value": "urn:oid:1.2.40.0.34.99.4613.4",
+                        "assigner": {
+                            "display": "Bundesministerium für Gesundheit"
+                        }
+                    },
+                    {
+                        "system": "urn:oid:1.2.40.0.10.1.4.3.2",
+                        "value": "987654322",
+                        "assigner": {
+                            "display": "Dachverband der österreichischen Sozialversicherungsträger"
+                        }
+                    }
+                ],
+                "active": true,
+                "name": [
+                    {
+                        "family": "Fremdmedikation",
+                        "given": [
+                            "Hermine"
+                        ],
+                        "prefix": [
+                            "Prof. Dr."
+                        ]
+                    }
+                ],
+                "telecom": [
+                    {
+                        "system": "email",
+                        "value": "office@fremdmedikation.at",
+                        "use": "work"
+                    },
+                    {
+                        "system": "phone",
+                        "value": "+436500987654399",
+                        "use": "work"
+                    }
+                ],
+                "address": [
+                    {
+                        "use": "work",
+                        "type": "both",
+                        "line": [
+                            "Hauptstraße 7 Stiege 1"
+                        ],
+                        "_line": [
+                            {
+                                "extension": [
+                                    {
+                                        "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName",
+                                        "valueString": "Hauptstraße"
+                                    },
+                                    {
+                                        "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber",
+                                        "valueString": "7"
+                                    },
+                                    {
+                                        "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-additionalLocator",
+                                        "valueString": "Stiege 1"
+                                    },
+                                    {
+                                        "url": "http://hl7.at/fhir/HL7ATCoreProfiles/4.0.1/StructureDefinition/at-core-ext-address-additionalInformation",
+                                        "valueString": "Barrierefreier Zugang"
+                                    }
+                                ]
+                            }
+                        ],
+                        "city": "Unterstinkenbrunn",
+                        "state": "Niederösterreich",
+                        "postalCode": "2154",
+                        "country": "AUT"
+                    }
+                ],
+                "gender": "female"
+            },
+            "search": {
+                "mode": "include"
+            }
+        },
+        {
+            "fullUrl": "https://hapi.fhir.org/baseR4/Patient/At-Emed-Journey-01-Patient-01",
+            "resource": {
+                "resourceType": "Patient",
+                "id": "At-Emed-Journey-01-Patient-01",
+                "meta": {
+                    "versionId": "1",
+                    "lastUpdated": "2026-02-25T12:19:41.816+00:00",
+                    "source": "#X5XffmjRqrG39xzD",
+                    "profile": [
+                        "http://hl7.at/fhir/HL7ATCoreProfiles/4.0.1/StructureDefinition/at-core-patient",
+                        "http://hl7.at/fhir/HL7ATCoreProfiles/5.0.0/StructureDefinition/at-core-patient"
+                    ]
+                },
+                "extension": [
+                    {
+                        "url": "http://hl7.at/fhir/HL7ATCoreProfiles/5.0.0/StructureDefinition/at-core-ext-patient-religion",
+                        "extension": [
+                            {
+                                "url": "code",
+                                "valueCodeableConcept": {
+                                    "coding": [
+                                        {
+                                            "system": "https://termgit.elga.gv.at/CodeSystem/hl7-at-religionaustria",
+                                            "code": "162",
+                                            "display": "Pastafarianismus"
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/patient-citizenship",
+                        "extension": [
+                            {
+                                "url": "code",
+                                "valueCodeableConcept": {
+                                    "coding": [
+                                        {
+                                            "system": "https://termgit.elga.gv.at/CodeSystem/iso-3166-1-alpha-3",
+                                            "code": "AUT",
+                                            "display": "Österreich"
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "identifier": [
+                    {
+                        "type": {
+                            "coding": [
+                                {
+                                    "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                                    "code": "SS",
+                                    "display": "Social Security number"
+                                }
+                            ]
+                        },
+                        "system": "urn:oid:1.2.40.0.10.1.4.3.1",
+                        "value": "1234010100",
+                        "assigner": {
+                            "display": "Dachverband der österreichischen Sozialversicherungsträger"
+                        }
+                    },
+                    {
+                        "type": {
+                            "coding": [
+                                {
+                                    "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                                    "code": "NI",
+                                    "display": "National unique individual identifier"
+                                }
+                            ]
+                        },
+                        "system": "urn:oid:1.2.40.0.10.2.1.1.149",
+                        "value": "GH:oeLdSEb0l+8kSdJWjOYyYmnYki0=",
+                        "assigner": {
+                            "display": "Bundesministerium für Inneres"
+                        }
+                    },
+                    {
+                        "type": {
+                            "coding": [
+                                {
+                                    "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                                    "code": "PI",
+                                    "display": "Patient internal identifier"
+                                }
+                            ]
+                        },
+                        "system": "urn:oid:1.2.3.4.5",
+                        "value": "0815",
+                        "assigner": {
+                            "display": "Ein GDA in Österreich"
+                        }
+                    }
+                ],
+                "name": [
+                    {
+                        "family": "Mustermann",
+                        "given": [
+                            "Max"
+                        ],
+                        "prefix": [
+                            "DI"
+                        ]
+                    }
+                ],
+                "telecom": [
+                    {
+                        "system": "email",
+                        "value": "office@hl7.at",
+                        "use": "work"
+                    },
+                    {
+                        "system": "phone",
+                        "value": "+436501234567890",
+                        "use": "home"
+                    }
+                ],
+                "gender": "male",
+                "birthDate": "1900-01-01",
+                "address": [
+                    {
+                        "use": "home",
+                        "type": "both",
+                        "line": [
+                            "Landstrasse 1 Stock 9 Tür 42"
+                        ],
+                        "_line": [
+                            {
+                                "extension": [
+                                    {
+                                        "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName",
+                                        "valueString": "Landstrasse"
+                                    },
+                                    {
+                                        "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber",
+                                        "valueString": "1"
+                                    },
+                                    {
+                                        "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-additionalLocator",
+                                        "valueString": "Stock 9 Tür 42"
+                                    },
+                                    {
+                                        "url": "http://hl7.at/fhir/HL7ATCoreProfiles/5.0.0/StructureDefinition/at-core-ext-address-additionalInformation",
+                                        "valueString": "Lift vorhanden"
+                                    }
+                                ]
+                            }
+                        ],
+                        "city": "Linz",
+                        "state": "Oberösterreich",
+                        "postalCode": "4020",
+                        "country": "AUT"
+                    }
+                ]
+            },
+            "search": {
+                "mode": "include"
+            }
+        }
+    ]
+}

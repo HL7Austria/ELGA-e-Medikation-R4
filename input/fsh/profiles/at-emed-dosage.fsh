@@ -2,7 +2,7 @@ Profile: AtEmedDosage
 Parent: Dosage
 Id: at-emed-dosage
 Title: "ELGA e-Med Dosage"
-Description: "**Beschreibung:** Dosage"
+Description: "Dosage"
 
 // Medication IG DE https://ig.fhir.de/igs/medication/index.html
 //* obeys DosageStructuredOrFreeTextWarning and DosageStructuredRequiresBoth and DosageDoseUnitSameCode and DosageWarnungViererschemaInText and FreeTextSingleDosageOnlyWarning

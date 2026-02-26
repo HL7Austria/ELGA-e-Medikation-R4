@@ -1,11 +1,11 @@
-Instance: AtEmedJourneyMedicationMagistral02
+Instance: At-Emed-Journey-02-Medication-Magistral-01
 InstanceOf: AtEmedMedication
 Title: "Beispiel Journey 02: Magistrale Zubereitung"
-Description: "**Beschreibung:** Beispiel einer magistralen Zubereitung (Medication) - Salbe."
+Description: "Beispiel einer magistralen Zubereitung (Medication) - Salbe."
 Usage: #example
 
 //* status = #active
-//* manufacturer = Reference(AtEmedExampleOrganizationApo01) "Amadeus Apotheke"
+//* manufacturer = Reference(AtEmed-Example-Organization-Apo-01) "Amadeus Apotheke"
 * form.coding = https://termgit.elga.gv.at/CodeSystem/medikationdarreichungsform#100000073713 "Salbe"
 // CodeableConcept
 * ingredient[+].itemCodeableConcept = $cs-atc#A01AC03 "Hydrocortison"
@@ -22,12 +22,12 @@ Usage: #example
 * ingredient[=].strength.denominator.unit = "g"   
 
 // alternativ: Substance Reference
-// * ingredient[+].itemReference = Reference(AtEmedJourneySubstanceHydrocortison) "Hydrocortison"
+// * ingredient[+].itemReference = Reference(At-Emed-Journey-Substance-Hydrocortison) "Hydrocortison"
 // * ingredient[=].strength.numerator.value = 1
 // * ingredient[=].strength.numerator.unit = "%"
 // * ingredient[=].strength.denominator.value = 100
 // * ingredient[=].strength.denominator.unit = "g"
-// * ingredient[+].itemReference = Reference(AtEmedJourneySubstanceClotrimazol) "Clotrimazol"
+// * ingredient[+].itemReference = Reference(At-Emed-Journey-Substance-Clotrimazol) "Clotrimazol"
 // * ingredient[=].strength.numerator.value = 1
 // * ingredient[=].strength.numerator.unit = "%"
 // * ingredient[=].strength.denominator.value = 100
