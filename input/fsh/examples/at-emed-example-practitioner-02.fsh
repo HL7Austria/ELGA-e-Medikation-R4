@@ -1,4 +1,4 @@
-Instance: At-Emed-Journey-01-Practitioner-02
+Instance: At-Emed-Example-Practitioner-02
 InstanceOf: HL7ATCorePractitioner
 Title: "Beispiel Ärztin 02"
 Description: "Beispiel einer ursprünglich eine Medikation verordnenden Ärztin (Fremdmedikation)."

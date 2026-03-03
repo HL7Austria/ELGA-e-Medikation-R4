@@ -7,8 +7,8 @@ Usage: #example
 * contained[medication] = contained-medication-zeit-01
 
 // R5 Backports
-// * extension[effectiveDosePeriod].valuePeriod.start = "2026-01-28"
-// * extension[effectiveDosePeriod].valuePeriod.end = "2026-02-28"
+// * extension[effectiveDosePeriod].valuePeriod.start = "2026-02-27"
+// * extension[effectiveDosePeriod].valuePeriod.end = "2026-03-06"
 * extension[renderedDosageInstruction].valueMarkdown = "täglich: 08:00 Uhr — je 1 Stück"
 
 * identifier.value = "4712_202602280800000" // Eintrag_ID = {ID}_{Zeitstempel}
@@ -21,9 +21,9 @@ Usage: #example
 // Referenz auf Contained Medication Ressource
 * medicationReference.reference = "#contained-medication-zeit-01"
 
-* subject = Reference(At-Emed-Journey-01-Patient-01)
-* authoredOn = "2026-01-28T08:00:00+00:00"
-* requester = Reference(At-Emed-Journey-01-Practitioner-01)
+* subject = Reference(At-Emed-Example-Patient-01)
+* authoredOn = "2026-02-27T10:20:00+00:00"
+* requester = Reference(At-Emed-Example-Practitioner-01)
 
 * dosageInstruction.timing.repeat.frequency = 2
 * dosageInstruction.timing.repeat.period = 1

@@ -39,10 +39,10 @@ Zentralen Patientenindex identifizierbar und Teilnehmer von ELGA e-Medikation is
 * date ^short = "Letzte Aktualisierung des Medikationsplans."
 
 * source 1..1 MS
-* source only Reference(HL7ATCorePractitioner or HL7ATCorePractitionerRole or Device)
+* source only Reference(HL7ATCorePractitioner or HL7ATCorePractitionerRole or Device or HL7ATCorePatient)
 * source ^short = "Arzt oder Ärztin, die den Medikationsplans erstellt und für den Inhalt verantwortlich ist. 
 Eindeutig identifiziert über den GDA-Index und berechtigt auf die ELGA e-Medikation 
-des Patienten zuzugreifen. Device nur für initiale Erstellung durch die Fachanwendung."
+des Patienten zuzugreifen. Device nur für initiale Erstellung durch die Fachanwendung. Patient nur zur Änderung der Reihenfolge der Planeinträge oder nachdem er Einträge gelöscht hat."
 
 * orderedBy 1..1 MS
 * orderedBy from http://hl7.org/fhir/ValueSet/list-order 

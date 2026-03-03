@@ -7,8 +7,8 @@ Usage: #example
 * contained[medication] = contained-medication-journey-02-magistral
 
 // R5 Backports
-* extension[effectiveDosePeriod].valuePeriod.start = "2026-01-28"
-* extension[effectiveDosePeriod].valuePeriod.end = "2026-02-28"
+* extension[effectiveDosePeriod].valuePeriod.start = "2026-02-27"
+* extension[effectiveDosePeriod].valuePeriod.end = "2026-03-16"
 * extension[renderedDosageInstruction].valueMarkdown = "1 täglich auftragen"
 
 //* meta[+].profile = "http://hl7.eu/fhir/mpd/StructureDefinition/MedicationRequest-eu-mpd"
@@ -18,14 +18,14 @@ Usage: #example
 * intent = https://hl7.org/fhir/R4/valueset-medicationrequest-intent#order
 * category = MedicationRequestCategoryCS#1 
 
-* reportedReference = Reference(At-Emed-Journey-01-Practitioner-02)
+* reportedReference = Reference(At-Emed-Example-Practitioner-02)
 
 // Referenz auf Inline Medication Ressource
 * medicationReference.reference = "#contained-medication-journey-02-magistral"
 
-* subject = Reference(At-Emed-Journey-01-Patient-01)
-* authoredOn = "2026-01-28T08:00:00+00:00"
-* requester = Reference(At-Emed-Journey-01-Practitioner-01)
+* subject = Reference(At-Emed-Example-Patient-01)
+* authoredOn = "2026-02-27T10:20:00+00:00"
+* requester = Reference(At-Emed-Example-Practitioner-01)
  
 * dosageInstruction.patientInstruction = "Abends sehr dünn auf die betroffene Stelle auftragen."
 * dosageInstruction.timing.repeat.frequency = 1
@@ -39,8 +39,8 @@ InstanceOf: AtEmedMedication
 Title: "Beispiel Journey 02: Magistrale Anwendung (Salbe)"
 Usage: #inline
 
-* text.status = #additional
-* text.div = "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n<p>Freitext-Informationen zur magistralen Anwendung.</p>\n</div>"
+// * text.status = #additional
+// * text.div = "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n<p>Freitext-Informationen zur magistralen Anwendung.</p>\n</div>"
 
 //* status = #active
 //* manufacturer = Reference(AtEmed-Example-Organization-Apo-01) "Amadeus Apotheke"

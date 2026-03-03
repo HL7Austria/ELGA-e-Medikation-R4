@@ -19,9 +19,9 @@ Usage: #example
 // Referenz auf Contained Medication Ressource
 * medicationReference.reference = "#contained-medication-freitext-01"
 
-* subject = Reference(At-Emed-Journey-01-Patient-01)
-* authoredOn = "2026-01-28T08:00:00+00:00"
-* requester = Reference(At-Emed-Journey-01-Practitioner-01)
+* subject = Reference(At-Emed-Example-Patient-01)
+* authoredOn = "2026-02-27T10:20:00+00:00"
+* requester = Reference(At-Emed-Example-Practitioner-01)
 
 * dosageInstruction.text = "2 Stück morgens zum Frühstück"
 

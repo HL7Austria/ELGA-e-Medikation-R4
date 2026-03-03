@@ -1,4 +1,4 @@
-Instance: At-Emed-Journey-01-Device
+Instance: At-Emed-Example-Device-01
 InstanceOf: Device
 Title: "Beispiel Journey 01: e-Med Fachanwendung"
 Description: "Beispiel der e-Med Fachanwendung, die den Mediaktionsplan initial erstellt."

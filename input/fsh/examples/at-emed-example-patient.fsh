@@ -2,7 +2,7 @@ Alias: $hl7-at-religionaustria = https://termgit.elga.gv.at/CodeSystem/hl7-at-re
 Alias: $iso-3166-1-alpha-3 = https://termgit.elga.gv.at/CodeSystem/iso-3166-1-alpha-3
 Alias: $v2-0203 = http://terminology.hl7.org/CodeSystem/v2-0203
 
-Instance: At-Emed-Journey-01-Patient-01
+Instance: At-Emed-Example-Patient-01
 InstanceOf: HL7ATCorePatient
 Title: "Beispiel Patient 01"
 Description: "Beispiel eines Patienten."

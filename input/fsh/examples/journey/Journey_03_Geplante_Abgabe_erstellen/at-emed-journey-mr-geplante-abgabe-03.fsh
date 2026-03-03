@@ -7,8 +7,8 @@ Usage: #example
 * contained[medication] = ContainedMedication02
 
 // R5 Backports
-* extension[effectiveDosePeriod].valuePeriod.start = "2026-01-28"
-* extension[effectiveDosePeriod].valuePeriod.end = "2026-02-28"
+* extension[effectiveDosePeriod].valuePeriod.start = "2026-02-27"
+* extension[effectiveDosePeriod].valuePeriod.end = "2026-03-06"
 * extension[renderedDosageInstruction].valueMarkdown = "1 Kapsel täglich morgens"
 
 //* meta.profile = "http://hl7.eu/fhir/mpd/StructureDefinition/MedicationRequest-eu-mpd"
@@ -22,9 +22,9 @@ Usage: #example
 * medicationReference.reference = #ContainedMedication02
 
 
-* subject = Reference(At-Emed-Journey-01-Patient-01)
+* subject = Reference(At-Emed-Example-Patient-01)
 * authoredOn = "2026-01-29T08:00:00+00:00"
-* requester = Reference(At-Emed-Journey-01-Practitioner-01)
+* requester = Reference(At-Emed-Example-Practitioner-01)
 //* reasonCode = $cs-sct#59621000 "Essentielle Hypertonie"
 
 * groupIdentifier.value = "WYE82A2G8EE1"
