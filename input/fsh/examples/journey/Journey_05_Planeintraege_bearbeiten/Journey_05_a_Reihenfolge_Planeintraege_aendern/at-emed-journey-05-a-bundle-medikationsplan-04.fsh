@@ -1,13 +1,13 @@
 Instance: At-Emed-Journey-05-a-Bundle-Medikationsplan
 InstanceOf: AtEmedBundleMedikationsplan   
 Title: "Beispiel Journey 05-a: Collection Bundle mit geänderter Reihenfolge der Planeinträge."
-Description: "Beispiel eines Collection Bundles, mit geänderter Reihenfolge der Medikationsplaneinträge (referenziert List-Ressource mit Einträgen)."
+Description: "Beispiel eines Collection Bundles, mit geänderter Reihenfolge der Medikationsplaneinträge."
 Usage: #example
 
 * identifier.system = "http://system-to-be-defined.com"
 * identifier.value = "63fef90a-be11-4ddf-aece-d77da15c4f20"
 * type = #collection
-* timestamp = "2026-03-01T10:20:00+00:00"
+* timestamp = "2026-03-05T12:20:00+00:00"
 // Liste: Die Position in der Liste bestimmt die Reihenfolge der Einträge im Medikationsplan
 * entry[Medikationsplan].resource = At-Emed-Journey-05-a-List-Reihenfolge 
 * entry[Medikationsplan].fullUrl = "urn:uuid:62e2daa5-c34b-4b97-8044-fd893bc99a56"

@@ -1,7 +1,7 @@
 Instance: At-Emed-Journey-05-b-Bundle-Medikationsplan
 InstanceOf: AtEmedBundleMedikationsplan   
-Title: "Beispiel Journey 05-b: Collection Bundle"
-Description: "Beispiel eines Collection Bundles mit geändertem und abgesetztem Planeintrag."
+Title: "Beispiel Journey 05-b: Collection Bundles mit geändertem und abgesetztem Medikationsplaneintrag"
+Description: "Beispiel eines Collection Bundles mit geändertem und abgesetztem Medikationsplaneintrag."
 Usage: #example
 
 * identifier.system = "http://system-to-be-defined.com"

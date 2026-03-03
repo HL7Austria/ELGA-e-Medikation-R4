@@ -8,7 +8,7 @@ Usage: #example
 * mode = #working
 * code = $cs-sct#736378000 "Medikationsplan"
 * subject = Reference(At-Emed-Example-Patient-01)
-* date = "2026-03-01T10:20:00+00:00"
+* date = "2026-03-05T12:20:00+00:00"
 * source = Reference(At-Emed-Example-Patient-01)
 * orderedBy = http://terminology.hl7.org/CodeSystem/list-order#user
 

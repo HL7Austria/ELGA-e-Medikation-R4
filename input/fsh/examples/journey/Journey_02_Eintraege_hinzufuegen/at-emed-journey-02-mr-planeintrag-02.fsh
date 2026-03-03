@@ -18,7 +18,8 @@ Usage: #example
 * intent = https://hl7.org/fhir/R4/valueset-medicationrequest-intent#order
 * category = MedicationRequestCategoryCS#1 
 
-* reportedReference = Reference(At-Emed-Example-Practitioner-02)
+* reportedBoolean = false
+//* reportedReference = Reference(At-Emed-Example-Practitioner-02)
 
 // Referenz auf Inline Medication Ressource
 * medicationReference.reference = "#contained-medication-journey-02-magistral"

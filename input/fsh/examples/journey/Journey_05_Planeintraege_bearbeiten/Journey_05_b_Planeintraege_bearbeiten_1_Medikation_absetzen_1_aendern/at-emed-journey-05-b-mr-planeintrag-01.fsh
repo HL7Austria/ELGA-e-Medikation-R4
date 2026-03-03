@@ -1,7 +1,7 @@
 Instance: At-Emed-Journey-05-b-Mr-Planeintrag-01
 InstanceOf: AtEmedMRPlaneintrag   
-Title: "Beispiel Journey 05-b: Medikationsplaneintrag 1"
-Description: "Geänderter Medikationsplaneintrag mit dem Medikament EBETREXAT und zugehörigen Dosierungsanweisungen ab (MedicationRequest)."
+Title: "Beispiel Journey 05-b: Änderung Dosierung des Medikationsplaneintrags"
+Description: "Änderung der Dosierung eines Medikationsplaneintrags (EBETREXAT)."
 Usage: #example
 
 * contained[medication] = contained-medication-journey-05-01

@@ -1,5 +1,5 @@
 Instance: At-Emed-Journey-01-Bundle-Tx-Medikationsplan
-InstanceOf: AtEmedBundleMedikationsplanTx   
+InstanceOf: AtEmedBundleTxMedikationsplan   
 Title: "Beispiel Journey 01: Transaction Bundle"
 Description: "Beispiel eines Transaction Bundles, mit leerem Mediaktionsplan (referenziert List-Ressource ohne Einträge)."
 Usage: #example

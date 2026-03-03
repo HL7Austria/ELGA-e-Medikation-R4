@@ -1,11 +1,11 @@
 Instance: At-Emed-Journey-05-a-Bundle-Medikationsplan-Tx
-InstanceOf: AtEmedBundleMedikationsplanTx   
+InstanceOf: AtEmedBundleTxMedikationsplan   
 Title: "Beispiel Journey 05-a: Transaction Bundle zur Änderung der Reihenfolge der Medikationsplaneinträge."
-Description: "Beispiel eines Transaction Bundles, zur Änderung der Reihenfolge der Medikationsplaneinträge (referenziert List-Ressource mit MedicationRequests."
+Description: "Beispiel eines Transaction Bundles, zur Änderung der Reihenfolge der Medikationsplaneinträge."
 Usage: #example
 
 * type = #transaction
-* timestamp = "2026-03-01T10:20:00+00:00"
+* timestamp = "2026-03-05T12:20:00+00:00"
 // Liste 
 * entry[Medikationsplan].resource = At-Emed-Journey-05-a-List-Reihenfolge
 * entry[Medikationsplan].fullUrl = "urn:uuid:62e2daa5-c34b-4b97-8044-fd893bc99a56"
