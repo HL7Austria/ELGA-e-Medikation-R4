@@ -63,6 +63,10 @@ pages:
     title: "Start"
   requirements.md:
     title: "Die \"e-Medikation\""
+    dosierungen.md:
+      title: "Dosierungen"
+    patient_journey.md:
+      title: "Patient Journey"
   actors.md:
     title: "Akteure"
   anwendungsfaelle.md:
@@ -114,7 +118,10 @@ pages:
 menu:
   Start: index.html
   Inhalt: toc.html
-  Die "e-Medikation": requirements.html
+  Die "e-Medikation": 
+    "Überblick": requirements.html
+    "Dosierschemata": dosierungen.html
+    "Patient Journey": patient_journey.html
   Akteure: actors.html
   FHIR Artefakte: artifacts.html
   Anwendungsfälle:

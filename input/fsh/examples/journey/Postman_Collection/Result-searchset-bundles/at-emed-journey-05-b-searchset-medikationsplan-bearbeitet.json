@@ -1,15 +1,15 @@
 {
     "resourceType": "Bundle",
-    "id": "74fcb132-616d-42eb-84e2-35f5bd37c7df",
+    "id": "14b01906-d591-4441-b53d-ce74187a6c89",
     "meta": {
-        "lastUpdated": "2026-03-03T12:52:54.221+00:00"
+        "lastUpdated": "2026-03-05T11:35:00.534+00:00"
     },
     "type": "searchset",
     "total": 1,
     "link": [
         {
             "relation": "self",
-            "url": "https://hapi.fhir.org/baseR4/List?_include=*&patient=Patient%2FAt-Emed-Example-Patient-01"
+            "url": "https://hapi.fhir.org/baseR4/List?_include=*&_include%3Aiterate=*&patient=Patient%2FAt-Emed-Example-Patient-01"
         }
     ],
     "entry": [
@@ -19,9 +19,9 @@
                 "resourceType": "List",
                 "id": "At-Emed-Example-List-Medikationsplan",
                 "meta": {
-                    "versionId": "5",
-                    "lastUpdated": "2026-03-03T12:52:39.285+00:00",
-                    "source": "#RaJlJTds2Xr7PdKn",
+                    "versionId": "12",
+                    "lastUpdated": "2026-03-05T11:33:50.228+00:00",
+                    "source": "#ZJxCUgrTyWYfI0Mc",
                     "profile": [
                         "https://fhir.hl7.at/elga/emed/r4/StructureDefinition/at-emed-list-medikationsplan"
                     ]
@@ -522,9 +522,9 @@
                 "resourceType": "MedicationRequest",
                 "id": "At-Emed-Example-Mr-Planeintrag-01",
                 "meta": {
-                    "versionId": "2",
-                    "lastUpdated": "2026-03-03T11:25:46.163+00:00",
-                    "source": "#QyEh6cP12b9ApBSK",
+                    "versionId": "4",
+                    "lastUpdated": "2026-03-05T11:33:50.228+00:00",
+                    "source": "#ZJxCUgrTyWYfI0Mc",
                     "profile": [
                         "https://fhir.hl7.at/elga/emed/r4/StructureDefinition/at-emed-mr-planeintrag"
                     ]

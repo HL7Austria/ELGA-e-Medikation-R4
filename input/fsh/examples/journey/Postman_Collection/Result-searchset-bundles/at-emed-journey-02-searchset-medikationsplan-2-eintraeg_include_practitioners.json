@@ -1,15 +1,15 @@
 {
     "resourceType": "Bundle",
-    "id": "174c467a-13a7-4252-84ae-aa355bad8d84",
+    "id": "cabcf606-2cf1-4661-8227-0ca9782c846e",
     "meta": {
-        "lastUpdated": "2026-03-05T11:26:48.138+00:00"
+        "lastUpdated": "2026-03-05T11:18:50.287+00:00"
     },
     "type": "searchset",
     "total": 1,
     "link": [
         {
             "relation": "self",
-            "url": "https://hapi.fhir.org/baseR4/List?_include=*&_include%3Aiterate=*&patient=Patient%2FAt-Emed-Example-Patient-01"
+            "url": "https://hapi.fhir.org/baseR4/List?_include=List%3Asource&_include=List%3Aitem&_include%3Aiterate=MedicationRequest%3Arequester&patient=Patient%2FAt-Emed-Example-Patient-01"
         }
     ],
     "entry": [
@@ -19,9 +19,9 @@
                 "resourceType": "List",
                 "id": "At-Emed-Example-List-Medikationsplan",
                 "meta": {
-                    "versionId": "11",
-                    "lastUpdated": "2026-03-05T11:26:02.099+00:00",
-                    "source": "#C5TpaYEubSIKhsWm",
+                    "versionId": "10",
+                    "lastUpdated": "2026-03-05T11:18:38.212+00:00",
+                    "source": "#H0XiclnffIKvUnKu",
                     "profile": [
                         "https://fhir.hl7.at/elga/emed/r4/StructureDefinition/at-emed-list-medikationsplan"
                     ]
@@ -40,9 +40,9 @@
                 "subject": {
                     "reference": "Patient/At-Emed-Example-Patient-01"
                 },
-                "date": "2026-03-05T12:20:00+00:00",
+                "date": "2026-02-27T10:20:00+00:00",
                 "source": {
-                    "reference": "Patient/At-Emed-Example-Patient-01"
+                    "reference": "Practitioner/At-Emed-Example-Practitioner-01"
                 },
                 "orderedBy": {
                     "coding": [
@@ -65,7 +65,7 @@
                         },
                         "date": "2026-02-27T10:20:00+00:00",
                         "item": {
-                            "reference": "MedicationRequest/At-Emed-Example-Mr-Planeintrag-02"
+                            "reference": "MedicationRequest/At-Emed-Example-Mr-Planeintrag-01"
                         }
                     },
                     {
@@ -80,7 +80,7 @@
                         },
                         "date": "2026-02-27T10:20:00+00:00",
                         "item": {
-                            "reference": "MedicationRequest/At-Emed-Example-Mr-Planeintrag-01"
+                            "reference": "MedicationRequest/At-Emed-Example-Mr-Planeintrag-02"
                         }
                     }
                 ]
@@ -90,165 +90,94 @@
             }
         },
         {
-            "fullUrl": "https://hapi.fhir.org/baseR4/Patient/At-Emed-Example-Patient-01",
+            "fullUrl": "https://hapi.fhir.org/baseR4/Practitioner/At-Emed-Example-Practitioner-01",
             "resource": {
-                "resourceType": "Patient",
-                "id": "At-Emed-Example-Patient-01",
+                "resourceType": "Practitioner",
+                "id": "At-Emed-Example-Practitioner-01",
                 "meta": {
                     "versionId": "1",
-                    "lastUpdated": "2026-02-25T12:19:41.816+00:00",
-                    "source": "#X5XffmjRqrG39xzD",
+                    "lastUpdated": "2026-02-25T12:22:16.295+00:00",
+                    "source": "#c8Cgrdm9C7EMNx8h",
                     "profile": [
-                        "http://hl7.at/fhir/HL7ATCoreProfiles/4.0.1/StructureDefinition/at-core-patient",
-                        "http://hl7.at/fhir/HL7ATCoreProfiles/5.0.0/StructureDefinition/at-core-patient"
+                        "http://hl7.at/fhir/HL7ATCoreProfiles/4.0.1/StructureDefinition/at-core-practitioner"
                     ]
                 },
-                "extension": [
-                    {
-                        "url": "http://hl7.at/fhir/HL7ATCoreProfiles/5.0.0/StructureDefinition/at-core-ext-patient-religion",
-                        "extension": [
-                            {
-                                "url": "code",
-                                "valueCodeableConcept": {
-                                    "coding": [
-                                        {
-                                            "system": "https://termgit.elga.gv.at/CodeSystem/hl7-at-religionaustria",
-                                            "code": "162",
-                                            "display": "Pastafarianismus"
-                                        }
-                                    ]
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "url": "http://hl7.org/fhir/StructureDefinition/patient-citizenship",
-                        "extension": [
-                            {
-                                "url": "code",
-                                "valueCodeableConcept": {
-                                    "coding": [
-                                        {
-                                            "system": "https://termgit.elga.gv.at/CodeSystem/iso-3166-1-alpha-3",
-                                            "code": "AUT",
-                                            "display": "Österreich"
-                                        }
-                                    ]
-                                }
-                            }
-                        ]
-                    }
-                ],
                 "identifier": [
                     {
-                        "type": {
-                            "coding": [
-                                {
-                                    "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
-                                    "code": "SS",
-                                    "display": "Social Security number"
-                                }
-                            ]
-                        },
-                        "system": "urn:oid:1.2.40.0.10.1.4.3.1",
-                        "value": "1234010100",
+                        "system": "urn:ietf:rfc:3986",
+                        "value": "urn:oid:1.2.40.0.34.99.4613.4",
+                        "assigner": {
+                            "display": "Bundesministerium für Gesundheit"
+                        }
+                    },
+                    {
+                        "system": "urn:oid:1.2.40.0.10.1.4.3.2",
+                        "value": "987654321",
                         "assigner": {
                             "display": "Dachverband der österreichischen Sozialversicherungsträger"
                         }
-                    },
-                    {
-                        "type": {
-                            "coding": [
-                                {
-                                    "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
-                                    "code": "NI",
-                                    "display": "National unique individual identifier"
-                                }
-                            ]
-                        },
-                        "system": "urn:oid:1.2.40.0.10.2.1.1.149",
-                        "value": "GH:oeLdSEb0l+8kSdJWjOYyYmnYki0=",
-                        "assigner": {
-                            "display": "Bundesministerium für Inneres"
-                        }
-                    },
-                    {
-                        "type": {
-                            "coding": [
-                                {
-                                    "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
-                                    "code": "PI",
-                                    "display": "Patient internal identifier"
-                                }
-                            ]
-                        },
-                        "system": "urn:oid:1.2.3.4.5",
-                        "value": "0815",
-                        "assigner": {
-                            "display": "Ein GDA in Österreich"
-                        }
                     }
                 ],
+                "active": true,
                 "name": [
                     {
-                        "family": "Mustermann",
+                        "family": "Musterärztin",
                         "given": [
-                            "Max"
+                            "Melanie"
                         ],
                         "prefix": [
-                            "DI"
+                            "Prof. Dr."
                         ]
                     }
                 ],
                 "telecom": [
                     {
                         "system": "email",
-                        "value": "office@hl7.at",
+                        "value": "office@musterpraxis.at",
                         "use": "work"
                     },
                     {
                         "system": "phone",
-                        "value": "+436501234567890",
-                        "use": "home"
+                        "value": "+436500987654321",
+                        "use": "work"
                     }
                 ],
-                "gender": "male",
-                "birthDate": "1900-01-01",
                 "address": [
                     {
-                        "use": "home",
+                        "use": "work",
                         "type": "both",
                         "line": [
-                            "Landstrasse 1 Stock 9 Tür 42"
+                            "Mozartgasse 8 Stiege 2"
                         ],
                         "_line": [
                             {
                                 "extension": [
                                     {
                                         "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName",
-                                        "valueString": "Landstrasse"
+                                        "valueString": "Mozartgasse"
                                     },
                                     {
                                         "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber",
-                                        "valueString": "1"
+                                        "valueString": "8"
                                     },
                                     {
                                         "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-additionalLocator",
-                                        "valueString": "Stock 9 Tür 42"
+                                        "valueString": "Stiege 2"
                                     },
                                     {
-                                        "url": "http://hl7.at/fhir/HL7ATCoreProfiles/5.0.0/StructureDefinition/at-core-ext-address-additionalInformation",
-                                        "valueString": "Lift vorhanden"
+                                        "url": "http://hl7.at/fhir/HL7ATCoreProfiles/4.0.1/StructureDefinition/at-core-ext-address-additionalInformation",
+                                        "valueString": "Barrierefreier Zugang"
                                     }
                                 ]
                             }
                         ],
-                        "city": "Linz",
-                        "state": "Oberösterreich",
-                        "postalCode": "4020",
+                        "city": "St. Wolfgang",
+                        "state": "Salzburg",
+                        "postalCode": "5350",
                         "country": "AUT"
                     }
-                ]
+                ],
+                "gender": "female"
             },
             "search": {
                 "mode": "include"
@@ -513,100 +442,6 @@
                         ]
                     }
                 ]
-            },
-            "search": {
-                "mode": "include"
-            }
-        },
-        {
-            "fullUrl": "https://hapi.fhir.org/baseR4/Practitioner/At-Emed-Example-Practitioner-01",
-            "resource": {
-                "resourceType": "Practitioner",
-                "id": "At-Emed-Example-Practitioner-01",
-                "meta": {
-                    "versionId": "1",
-                    "lastUpdated": "2026-02-25T12:22:16.295+00:00",
-                    "source": "#c8Cgrdm9C7EMNx8h",
-                    "profile": [
-                        "http://hl7.at/fhir/HL7ATCoreProfiles/4.0.1/StructureDefinition/at-core-practitioner"
-                    ]
-                },
-                "identifier": [
-                    {
-                        "system": "urn:ietf:rfc:3986",
-                        "value": "urn:oid:1.2.40.0.34.99.4613.4",
-                        "assigner": {
-                            "display": "Bundesministerium für Gesundheit"
-                        }
-                    },
-                    {
-                        "system": "urn:oid:1.2.40.0.10.1.4.3.2",
-                        "value": "987654321",
-                        "assigner": {
-                            "display": "Dachverband der österreichischen Sozialversicherungsträger"
-                        }
-                    }
-                ],
-                "active": true,
-                "name": [
-                    {
-                        "family": "Musterärztin",
-                        "given": [
-                            "Melanie"
-                        ],
-                        "prefix": [
-                            "Prof. Dr."
-                        ]
-                    }
-                ],
-                "telecom": [
-                    {
-                        "system": "email",
-                        "value": "office@musterpraxis.at",
-                        "use": "work"
-                    },
-                    {
-                        "system": "phone",
-                        "value": "+436500987654321",
-                        "use": "work"
-                    }
-                ],
-                "address": [
-                    {
-                        "use": "work",
-                        "type": "both",
-                        "line": [
-                            "Mozartgasse 8 Stiege 2"
-                        ],
-                        "_line": [
-                            {
-                                "extension": [
-                                    {
-                                        "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName",
-                                        "valueString": "Mozartgasse"
-                                    },
-                                    {
-                                        "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber",
-                                        "valueString": "8"
-                                    },
-                                    {
-                                        "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-additionalLocator",
-                                        "valueString": "Stiege 2"
-                                    },
-                                    {
-                                        "url": "http://hl7.at/fhir/HL7ATCoreProfiles/4.0.1/StructureDefinition/at-core-ext-address-additionalInformation",
-                                        "valueString": "Barrierefreier Zugang"
-                                    }
-                                ]
-                            }
-                        ],
-                        "city": "St. Wolfgang",
-                        "state": "Salzburg",
-                        "postalCode": "5350",
-                        "country": "AUT"
-                    }
-                ],
-                "gender": "female"
             },
             "search": {
                 "mode": "include"
