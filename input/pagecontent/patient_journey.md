@@ -32,9 +32,9 @@ Journey-01 ist für die e-Medikation vorausgesetzt und wird nur zur Vollständig
 Am 27.2.2026 möchte Dr. Musterärztin ihrem Patienten Max Mustermann mehrere Medikamente verschreiben. Daher ruft sie seinen Medikationsplan ab, um eine Übersicht über seine gesamte, aktuell von ihm eingenommene Medikation zu erhalten. Da für Herrn Mustermann noch kein Medikationsplan erstellt wurde, ist dieser leer.
 
    * Medikationsplan abrufen:
-     * Beispiel: [Collection Bundle](Bundle-At-Emed-Journey-01-Bundle-Medikationsplan.html)
-     [![Visualisierungsbeispiel](images/at-emed-journey-01-searchset-medikationsplan_s.png){: style="width: 60%"}](images/at-emed-journey-01-searchset-medikationsplan_s.png)
-     <img src="at-emed-journey-01-searchset-medikationsplan_s.png" alt="XTEHR Logo" style="max-width: 100%; height: 40px;" />
+     * Beispiel: [Collection Bundle](Bundle-At-Emed-Journey-01-Bundle-Medikationsplan.html) 
+
+     [![Visualisierungsbeispiel](at-emed-journey-01-searchset-medikationsplan_s.png){: style="width: 60%"}](at-emed-journey-01-searchset-medikationsplan_s.png)
 
         
 Dr. Musterärztin ergänzt das Medikament Ebetrexat (10 mg, Tabletten) und erklärt dem Patienten, dass er morgens und abends je eine Tablette einnehmen soll und worauf er bei der Einnahme zu achten hat. Sie dokumentiert dies in seinem Medikationsplan. <br>
@@ -43,7 +43,8 @@ Sie speichert den neuen Medikationsplan und erstellt im nächsten Schritt geplan
 
    * Medikationsplaneinträge hinzufügen:
      * Beispiel [Transaction Bundle](Bundle-At-Emed-Journey-02-Bundle-Tx-Medikationsplan.html)
-     [![Visualisierungsbeispiel](images\at-emed-journey-02-searchset-medikationsplan-2-eintraege_s.png){: style="width: 60%"}](images\at-emed-journey-02-searchset-medikationsplan-2-eintraege_s.png)
+
+     [![Visualisierungsbeispiel](at-emed-journey-02-searchset-medikationsplan-2-eintraege_s.png){: style="width: 60%"}](at-emed-journey-02-searchset-medikationsplan-2-eintraege_s.png)
   
 
 #### Journey-03:  
@@ -95,6 +96,7 @@ Die Cortisonsalbe ist nicht mehr nötig, daher soll der Patient diese absetzen. 
   
    * Medikationsplan (Variante ohne Filter: abgelaufenen Einträge anzeigen):
      * Beispiel: [Collection Bundle](Bundle-At-Emed-Journey-05-b-Bundle-Medikationsplan.html)
+     
      [![Visualisierungsbeispiel](at-emed-journey-05-b-searchset-medikationsplan-bearbeitet_s.png){: style="width: 60%"}](at-emed-journey-05-b-searchset-medikationsplan-bearbeitet_s.png)
 
    * Medikationsplan (Variante gefiltert: nur aktuelle Einträge anzeigen):
