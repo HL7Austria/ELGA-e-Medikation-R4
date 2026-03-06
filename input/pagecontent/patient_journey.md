@@ -51,7 +51,7 @@ Sie speichert den neuen Medikationsplan und erstellt im nächsten Schritt geplan
 
 Dr. Musterärztin erstellt für beide Medikamente eine geplante Abgabe, sodass Herr Mustermann diese in der Apotheke abholen kann.
    * Geplante Abgaben erstellen: 
-     * Beispiel: TODO
+     * Beispiel [Medication Request](MedicationRequest-At-Emed-Journey-03-Mr-Geplante-Abgabe.html)
   
 
 #### Journey-04:
