@@ -13,7 +13,6 @@ Usage: #example
 
 * identifier.value = "4712_202602280800000" // Eintrag_ID = {ID}_{Zeitstempel}
 * status = #active
-//* intent = https://hl7.org/fhir/R4/valueset-medicationrequest-intent#order
 * intent = #order
 * category = MedicationRequestCategoryCS#1 "Medikationsplaneintrag" 
 * reportedBoolean = false
@@ -25,12 +24,17 @@ Usage: #example
 * authoredOn = "2026-02-27T10:20:00+00:00"
 * requester = Reference(At-Emed-Example-Practitioner-01)
 
+* note.text = "Freitext Informationen zum Medikationsplaneintrag."
+
+* dosageInstruction.patientInstruction = "Nehmen Sie die Kapsel nach dem Essen mit ausreichend Flüssigkeit ein."
 * dosageInstruction.timing.repeat.frequency = 2
 * dosageInstruction.timing.repeat.period = 1
 * dosageInstruction.timing.repeat.periodUnit = #d
-* dosageInstruction.timing.repeat.when[0] = $vs-einnahmezeitpunkte#ACM "Morgens"   // morgens
-* dosageInstruction.timing.repeat.when[+] = $vs-einnahmezeitpunkte#ACV "Abends"  // abends
+* dosageInstruction.timing.repeat.when[0] = $vs-einnahmezeitpunkte#ACM "Morgens"   
+* dosageInstruction.timing.repeat.when[+] = $vs-einnahmezeitpunkte#ACV "Abends"  
 * dosageInstruction.doseAndRate.doseQuantity = $vs-emed-mengenart#{Stueck} "Stück"
+* dosageInstruction.route = $cs-medikationartanwendung#100000073619 "zum Einnehmen"
+//* dosageInstruction.doseAndRate.doseQuantity = 10 'mg' "mg"
 
 
 // Contained Medication *********************************************************************
