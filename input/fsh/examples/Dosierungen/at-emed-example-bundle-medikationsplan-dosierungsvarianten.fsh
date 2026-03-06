@@ -20,3 +20,9 @@ Usage: #example
 * entry[Medikationsplaneintrag][=].fullUrl = "urn:uuid:62e2daa5-c34b-4b97-8044-fd893bc99a59"
 * entry[Medikationsplaneintrag][+].resource = At-Emed-Example-Mr-Dosierung-Wochentag
 * entry[Medikationsplaneintrag][=].fullUrl = "urn:uuid:62e2daa5-c34b-4b97-8044-fd893bc99a60"
+* entry[Medikationsplaneintrag][+].resource = At-Emed-Example-Mr-Dosierung-Intervalle-Wh
+* entry[Medikationsplaneintrag][=].fullUrl = "urn:uuid:62e2daa5-c34b-4b97-8044-fd893bc99a61"
+* entry[Medikationsplaneintrag][+].resource = At-Emed-Example-Mr-Dosierung-Zeitintervalle-Kombi
+* entry[Medikationsplaneintrag][=].fullUrl = "urn:uuid:62e2daa5-c34b-4b97-8044-fd893bc99a62"
+* entry[Medikationsplaneintrag][+].resource = At-Emed-Example-Mr-Dosierung-Wochentag-Kombi
+* entry[Medikationsplaneintrag][=].fullUrl = "urn:uuid:62e2daa5-c34b-4b97-8044-fd893bc99a63"

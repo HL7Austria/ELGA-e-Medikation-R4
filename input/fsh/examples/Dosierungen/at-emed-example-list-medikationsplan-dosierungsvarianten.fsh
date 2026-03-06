@@ -29,4 +29,19 @@ Usage: #example
 * entry[=].flag.coding.system = "urn:oid:1.2.36.1.2001.1001.101.104.16592"
 * entry[=].date = "2026-02-27T10:20:00+00:00"
 * entry[=].item = Reference(At-Emed-Example-Mr-Dosierung-Wochentag)
+* entry[+].flag.coding = #04 "Prescribed"
+* entry[=].flag.coding.system = "urn:oid:1.2.36.1.2001.1001.101.104.16592"
+* entry[=].date = "2026-02-27T10:20:00+00:00"
+* entry[=].item = Reference(At-Emed-Example-Mr-Dosierung-Intervalle-Wh)
+* entry[+].flag.coding = #04 "Prescribed"
+* entry[=].flag.coding.system = "urn:oid:1.2.36.1.2001.1001.101.104.16592"
+* entry[=].date = "2026-02-27T10:20:00+00:00"
+* entry[=].item = Reference(At-Emed-Example-Mr-Dosierung-Zeitintervalle-Kombi)
+* entry[+].flag.coding = #04 "Prescribed"
+* entry[=].flag.coding.system = "urn:oid:1.2.36.1.2001.1001.101.104.16592"
+* entry[=].date = "2026-02-27T10:20:00+00:00"
+* entry[=].item = Reference(At-Emed-Example-Mr-Dosierung-Wochentag-Kombi)
+
+
+
 
