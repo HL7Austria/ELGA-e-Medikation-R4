@@ -24,10 +24,8 @@ Werden mehrere Arzneimittel gleichzeitig verordnet, wird für jedes Arzneimittel
 * contained[medication] only AtEmedMedication
 * contained[substance] only AtEmedSubstance
 
-
-
 // Extensions
-* extension contains $medicationRequest-effectiveDosePeriod-r5 named effectiveDosePeriod 0..1 
+* extension contains $medicationRequest-effectiveDosePeriod-r5 named effectiveDosePeriod 0..1
 * extension[effectiveDosePeriod] ^short = "Zeitraum, in dem die Medikation eingenommen werden soll."
 * extension[effectiveDosePeriod] ^definition = "Zeitraum, über den die Medikation eingenommen werden soll. Wenn mehrere dosageInstruction-Zeilen vorhanden sind (z. B. bei einer ausschleichenden Dosierung), entspricht dieser Zeitraum dem frühesten Startdatum und dem spätesten Enddatum der dosageInstructions."
 
@@ -37,17 +35,17 @@ Werden mehrere Arzneimittel gleichzeitig verordnet, wird für jedes Arzneimittel
 // IHE extension statt Backport Extension: Verwendung zu klären
 * extension contains $ihe-ext-medicationrequest-offlabeluse named offLabelUse 0..1 
 * extension[offLabelUse] ^short = "Weist darauf hin, dass der verschreibende Arzt das Medikament wissentlich für eine Indikation, Altersgruppe, Dosierung oder Verabreichungsform verschrieben hat, die nicht von den Aufsichtsbehörden zugelassen ist und in der Verschreibungsinformation für das Produkt nicht erwähnt wird."
+// ENDE Extensions
 
-// MedicationRequest 
 * identifier 1..* MS  // 1..1 MS ?
-* identifier ^short = "MedicationRequest identifier = {eMed-ID}_{locally assigned ID}.
-Setzt sich zusammen aus: groupIdentifier (Rezept-Klammer) und individueller Identifikation der geplanten Abgabe."
+* identifier ^short = "Gepante-Abgabe-ID = {groupIdentifier}_{Medikationsplaneintrag-ID}.
+Setzt sich zusammen aus: groupIdentifier (Rezept-Klammer) und Medikationsplaneintrag-ID.
+Wenn mehrere Medikamente gleichzeitig verordnet wurden, haben sie den gleichen groupIdentifier, aber unterschiedliche Medikationsplaneintrag-IDs."
 
-* status MS
+* status 1..1 MS
 * status from GeplanteAbgabeStatusVS (required)
 * status ^short = "Status der geplanten Abgabe (im Standardfall active oder complete): 
  (req) active | on-hold | cancelled | completed | entered-in-error | stopped  (entfernt: draft | unknown); TODO: Fachlich zu prüfen."
-
 
 * statusReason 0..0 
 * statusReason ^short = "Grund für den aktuellen Status: https://hl7.org/fhir/R4/valueset-medicationrequest-status-reason.html. Keine Verwendung in der geplanten Abgabe."
@@ -60,8 +58,7 @@ zum Handeln durch den Antragsteller dar, daher ist intent immer \"order\"."
 // Kategorie damit geplante Abgabe von Medikationsplaneintrag unterschieden werden kann, da beide "order" 
 * category 1..1 MS
 * category = MedicationRequestCategoryCS#2 "Geplante Abgabe"
-* category ^short = "Kategorie damit Instanz einer geplanten Abgabe von Medikationsplaneintrag
- unterschieden werden kann (beide haben intent order)"
+* category ^short = "Kategorie zur Unterscheidung eines Medikationsplaneintrags von einer geplanten Abgabe (beide haben intent order)"
 
 * priority 0..0
 * priority ^short = "Priorität der geplanten Abgabe: routine | urgent | asap | stat. Keine Verwendung in der geplanten Abgabe."
@@ -86,7 +83,7 @@ Arzneimittel mit und ohne PZN einheitlich dokumentiert werden können."
 // --- Subject ---
 * subject only Reference(HL7ATCorePatient) 
 * subject 1..1 MS
-* subject ^short = "Patient, für den der Medikationsplaneintrag ausgestellt werden soll, der über den 
+* subject ^short = "Patient, für den die geplante Abgabe ausgestellt werden soll, der über den 
 Zentralen Patientenindex identifizierbar und Teilnehmer von ELGA e-Medikation ist."
 
 * encounter 0..0
@@ -115,9 +112,6 @@ Eindeutig identifiziert über den GDA-Index und berechtigt auf die ELGA e-Medika
 
 * recorder 0..0
 * recorder ^short = "Keine Verwendung in der geplanten Abgabe."
-
-* performerType 0..0
-* performerType ^short = "Keine Verwendung in der geplanten Abgabe."
 
 // Grund für die Medikation 
 * reasonCode 0..0 
@@ -151,14 +145,37 @@ wird für jedes Arzneimittel eine geplante Abgabe mit demselben groupIdentifier 
 * note 0..* MS
 * note ^short = "Zusätzliche Informationen zur geplanten Abgabe. TODO: prüfen"
 
+// DOSAGE
 * dosageInstruction 1..* MS 
 * dosageInstruction only AtEmedDosage
-* dosageInstruction ^short = "Angabe der Dosierinformationen strukturiert oder als Freitext"
-//* dosageInstruction.timing.code.coding from $vs-einnahmezeitpunkte (required)
+* dosageInstruction ^short = "Angabe der Dosierinformationen strukturiert oder als Freitext. TODO: Inhalte AtEmedDosage fachlich prüfen."
 
+
+// DISPENSE REQUEST
 * dispenseRequest 0..1 MS
-* dispenseRequest ^short = "Details zur geplanten Abgabe des Arzneimittels."
-* dispenseRequest.numberOfRepeatsAllowed ^short = "Anzahl der möglichen Einlösungen."
+* dispenseRequest ^short = "Details zur geplanten Abgabe des Arzneimittels. TODO: alle Elemente fachlich zu prüfen."
+
+* dispenseRequest.initialFill 0..1 MS
+* dispenseRequest.initialFill.quantity ^short = "Anzahl der Einheiten für die erste Abgabe, z.B. 30 Kapseln oder 100 mg."   
+
+* dispenseRequest.dispenseInterval 0..1 MS  
+* dispenseRequest.dispenseInterval ^short = "Mindestzeitraum zwischen den Abgaben."
+
+* dispenseRequest.validityPeriod 0..1 MS
+* dispenseRequest.validityPeriod ^short = "Zeitraum in dem die geplante Abgabe eingelöst werden kann."
+
+* dispenseRequest.numberOfRepeatsAllowed 0..1 MS
+* dispenseRequest.numberOfRepeatsAllowed ^short = "Anzahl der weiteren möglichen Einlösungen."  
+
+* dispenseRequest.quantity 0..1 MS
+* dispenseRequest.quantity ^short = "Menge des Medikaments, die bei jeder Abgabe bereitgestellt werden soll, z.B. 30 Stück."
+
+* dispenseRequest.expectedSupplyDuration 0..1 MS
+* dispenseRequest.expectedSupplyDuration.value ^short = "Dauer, für die die bereitgestellte Menge des Medikaments voraussichtlich ausreicht, z.B. 30 Tage."
+
+* dispenseRequest.performer 0..0 
+* dispenseRequest.performer ^short = "Apotheke oder andere Einrichtung, die die geplante Abgabe einlösen soll. Keine Verwendung in der geplanten Abgabe."
+
 
 * substitution 0..1 MS
 * substitution ^short = "Gibt an, ob das Arzneimittel substituiert werden darf oder nicht.
