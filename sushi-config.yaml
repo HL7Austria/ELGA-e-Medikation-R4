@@ -63,13 +63,13 @@ pages:
     title: "Start"
   requirements.md:
     title: "Die \"e-Medikation\""
-    dosierungen.md:
-      title: "Dosierungen"
+    dosaging.md:
+      title: "Dosierschemata"
     patient_journey.md:
       title: "Patient Journey"
   actors.md:
     title: "Akteure"
-  anwendungsfaelle.md:
+  usecases.md:
     title: "Überblick Anwendungsfälle"
     UC_eMed_05.md:
       title: "UC_eMed_05 - Medikationsplan lesen"
@@ -120,12 +120,12 @@ menu:
   Inhalt: toc.html
   Die "e-Medikation": 
     "Überblick": requirements.html
-    "Dosierschemata": dosierungen.html
+    "Dosierschemata": dosaging.html
     "Patient Journey": patient_journey.html
   Akteure: actors.html
   FHIR Artefakte: artifacts.html
   Anwendungsfälle:
-    "Überblick": anwendungsfaelle.html
+    "Überblick": usecases.html
     "UC_eMed_05 Medikationsplan lesen": UC_eMed_05.html
     "UC_eMed_06 Medikationsplan schreiben": UC_eMed_06.html
     "UC_eMed_07 Geplante und durchgeführte Abgaben lesen": UC_eMed_07.html
