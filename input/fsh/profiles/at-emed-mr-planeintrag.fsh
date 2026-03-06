@@ -59,6 +59,7 @@ Nachteil:
 * intent 1..1 MS
 * intent = https://hl7.org/fhir/R4/valueset-medicationrequest-intent#order
 * intent ^short = "Ein Medikationsplaneintrag ist eine autorisierte ärztliche Anordnung und stellt eine verbindliche Einnahmeanweisung für den Patienten dar, auf dessen Basis eine geplante Abgabe erstellt werden kann. Fixer Wert: \"order\". (req) proposal | plan | order | original-order | reflex-order | filler-order | instance-order | option. https://hl7.org/fhir/R4/valueset-medicationrequest-intent.html"
+
 * category 1..1 MS
 * category = MedicationRequestCategoryCS#1 "Medikationsplaneintrag"  //"Medikationsplaneintrag" Display nicht fixieren -> Übersetzungen
 * category ^short = "Kategorie zur Unterscheidung eines Medikationsplaneintrags von einer geplanten Abgabe (beide haben intent order)"
@@ -71,7 +72,6 @@ Nachteil:
 
 * reported[x] 1..1 MS
 * reportedReference only Reference(Patient or Practitioner or PractitionerRole)
-
 
 * reportedBoolean ^short = "TRUE im Falle der Dokumentation von Fremdmedikation (ein anderer Arzt hat das Medikament ursprünglich verordnet), sonst FALSE. TODO: Klären ob hier der GDA eindeutig identifiziert sein muss (im GDA-I vorhanden) oder analog zu e-Impfpass Freitext sein kann. Juristisch Verantwortlichkeit für Korrektheit des Eintrags zu klären."
 * reportedReference ^short = "Im Falle einer Fremdmedikation Angabe einer Referenz auf: (Patient | Practitioner | PractitionerRole | RelatedPerson | Organization)"
@@ -90,6 +90,7 @@ Nachteil:
 * subject only Reference(HL7ATCorePatient) // ag auch eu-patient, evtl nur verschl. bpkh, daten zpi verfügbar, auch mit svnr möglich, speicherfristen
 * subject 1..1 MS
 * subject ^short = "Patient, für den der Medikationsplaneintrag ausgestellt werden soll, der über den Zentralen Patientenindex identifizierbar und Teilnehmer von ELGA e-Medikation ist."
+
 * encounter 0..0
 * encounter ^short = "Aufenthalt/Begegnung, während dessen der Medikationsplaneintrag erstellt wurde. Keine Verwendung im Medikationsplaneintrag."
 
@@ -142,9 +143,10 @@ Nachteil:
 * note 0..* MS 
 * note ^short = "Zusätzliche Informationen zum Medikationsplaneintrag. TODO: fachlich prüfen, an welchen Stellen überall Freitext erforderlich sein soll/muss. Auch im Kontext zu entered-in-error Informationen."
 
+// DOSAGE
 * dosageInstruction 1..* MS // bsp von linkedcare usw. analysieren
 * dosageInstruction only AtEmedDosage
-* dosageInstruction ^short  = "Angabe der Dosierinformationen strukturiert oder als Freitext"
+* dosageInstruction ^short  = "Angabe der Dosierinformationen strukturiert oder als Freitext. TODO: Inhalte AtEmedDosage fachlich prüfen."
 
 * dispenseRequest 0..0 
 * dispenseRequest ^short = "Details zur geplanten Abgabe des Arzneimittels im Medikationsplan. Keine Verwendung im Medikationsplaneintrag."

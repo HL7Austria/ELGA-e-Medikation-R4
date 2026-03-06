@@ -25,6 +25,7 @@ https://hl7.org/fhir/R4/valueset-additional-instruction-codes.html. TODO: Nur we
 * timing only AtEmedTiming
 * timing ^short = "Zeitpunkt oder Zeitraum der Einnahme des Medikaments. 
 Um widersprüchliche Anweisungen zu vermeiden, ist entweder Dosage.timing oder Dosage.text zu befüllen."
+//* timing.code.coding from $vs-einnahmezeitpunkte (required)
 
 
 * asNeededBoolean 0..1 MS
