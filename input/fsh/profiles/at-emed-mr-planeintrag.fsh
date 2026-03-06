@@ -60,7 +60,7 @@ Nachteil:
 * intent = https://hl7.org/fhir/R4/valueset-medicationrequest-intent#order
 * intent ^short = "Ein Medikationsplaneintrag ist eine autorisierte ärztliche Anordnung und stellt eine verbindliche Einnahmeanweisung für den Patienten dar, auf dessen Basis eine geplante Abgabe erstellt werden kann. Fixer Wert: \"order\". (req) proposal | plan | order | original-order | reflex-order | filler-order | instance-order | option. https://hl7.org/fhir/R4/valueset-medicationrequest-intent.html"
 * category 1..1 MS
-* category = MedicationRequestCategoryCS#1  //"Medikationsplaneintrag" Display nicht fixieren -> Übersetzungen
+* category = MedicationRequestCategoryCS#1 "Medikationsplaneintrag"  //"Medikationsplaneintrag" Display nicht fixieren -> Übersetzungen
 * category ^short = "Kategorie zur Unterscheidung eines Medikationsplaneintrags von einer geplanten Abgabe (beide haben intent order)"
 
 * priority 0..0

@@ -15,7 +15,7 @@ Usage: #example
 * status = #active
 //* intent = https://hl7.org/fhir/R4/valueset-medicationrequest-intent#order
 * intent = #order
-* category = MedicationRequestCategoryCS#1 
+* category = MedicationRequestCategoryCS#1 "Medikationsplaneintrag"
 * reportedBoolean = false
 
 // Referenz auf Contained Medication Ressource
@@ -28,8 +28,8 @@ Usage: #example
 * dosageInstruction.timing.repeat.frequency = 2
 * dosageInstruction.timing.repeat.period = 1
 * dosageInstruction.timing.repeat.periodUnit = #d
-* dosageInstruction.timing.repeat.when[0] = $vs-einnahmezeitpunkte#ACM  // morgens
-* dosageInstruction.timing.repeat.when[+] = $vs-einnahmezeitpunkte#ACV  // abends
+* dosageInstruction.timing.repeat.when[0] = $vs-einnahmezeitpunkte#ACM "Morgens"
+* dosageInstruction.timing.repeat.when[+] = $vs-einnahmezeitpunkte#ACV "Abends" 
 * dosageInstruction.doseAndRate.doseQuantity = $vs-emed-mengenart#{Stueck} "Stück"
 
 

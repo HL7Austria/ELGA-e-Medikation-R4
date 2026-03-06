@@ -59,7 +59,7 @@ zum Handeln durch den Antragsteller dar, daher ist intent immer \"order\"."
 
 // Kategorie damit geplante Abgabe von Medikationsplaneintrag unterschieden werden kann, da beide "order" 
 * category 1..1 MS
-* category = MedicationRequestCategoryCS#2
+* category = MedicationRequestCategoryCS#2 "Geplante Abgabe"
 * category ^short = "Kategorie damit Instanz einer geplanten Abgabe von Medikationsplaneintrag
  unterschieden werden kann (beide haben intent order)"
 
