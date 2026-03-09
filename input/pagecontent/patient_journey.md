@@ -34,7 +34,7 @@ Am 27.2.2026 möchte Dr. Musterärztin ihrem Patienten Max Mustermann mehrere Me
    * Medikationsplan abrufen:
      * Beispiel: [Collection Bundle](Bundle-At-Emed-Journey-01-Bundle-Medikationsplan.html) 
 
-     [Visualisierungsbeispiel](at-emed-journey-01-searchset-medikationsplan_s.png)
+     <!-- [Visualisierungsbeispiel](at-emed-journey-01-searchset-medikationsplan_s.png) -->
 
         
 Dr. Musterärztin ergänzt das Medikament Ebetrexat (10 mg, Tabletten) und erklärt dem Patienten, dass er morgens und abends je eine Tablette einnehmen soll und worauf er bei der Einnahme zu achten hat. Sie dokumentiert dies in seinem Medikationsplan. <br>
@@ -44,7 +44,7 @@ Sie speichert den neuen Medikationsplan und erstellt im nächsten Schritt geplan
    * Medikationsplaneinträge hinzufügen:
      * Beispiel [Transaction Bundle](Bundle-At-Emed-Journey-02-Bundle-Tx-Medikationsplan.html)
 
-     [Visualisierungsbeispiel](at-emed-journey-02-searchset-medikationsplan-2-eintraege_s.png)
+     <!-- [Visualisierungsbeispiel](at-emed-journey-02-searchset-medikationsplan-2-eintraege_s.png) -->
   
 
 #### Journey-03:  
@@ -81,7 +81,7 @@ Weil er es für sinnvoll hält, ändert er die Reihenfolge der Planeinträge. Di
    * Medikationsplan mit geänderter Reihenfolge anzeigen:
      * Beispiel: [Collection Bundle](Bundle-At-Emed-Journey-05-a-Bundle-Medikationsplan.html)
 
-     [Visualisierungsbeispiel](at-emed-journey-05-a-searchset-medikationsplan-reihenfolge-geaendert_s.png)
+     <!-- [Visualisierungsbeispiel](at-emed-journey-05-a-searchset-medikationsplan-reihenfolge-geaendert_s.png) -->
 
 
 #### Journey-05-b:
@@ -97,7 +97,7 @@ Die Cortisonsalbe ist nicht mehr nötig, daher soll der Patient diese absetzen. 
    * Medikationsplan (Variante ohne Filter: abgelaufenen Einträge anzeigen):
      * Beispiel: [Collection Bundle](Bundle-At-Emed-Journey-05-b-Bundle-Medikationsplan.html)
      
-     [Visualisierungsbeispiel](at-emed-journey-05-b-searchset-medikationsplan-bearbeitet_s.png)
+     <!-- [Visualisierungsbeispiel](at-emed-journey-05-b-searchset-medikationsplan-bearbeitet_s.png) -->
 
    * Medikationsplan (Variante gefiltert: nur aktuelle Einträge anzeigen):
      * Beispiel: Todo
