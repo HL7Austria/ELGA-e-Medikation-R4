@@ -1,4 +1,4 @@
 {% include styleheader.md %}
 
-- [Dosierschemata](dosierungen.html)
+- [Dosierschemata](dosaging.html)
 - [Patient Journey](patient_journey.html)
