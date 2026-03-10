@@ -4,7 +4,7 @@ Id: at-emed-mr-geplante-abgabe
 Title: "ELGA e-Med Geplante Abgabe"
 Description: "Bildet eine geplante Abgabe eines Arzneimittels aus dem zugrundeliegenden Medikationsplaneintrag des ELGA-Teilnehmers ab (\"MedicationRequest\"-Ressource).
 Sie enthält das verordnete Arzneimittel und dessen Dosierung und spielgelt die Inhalte des e-Rezepts wider. Geplante Abgaben dienen somit der Nachvollziehbarkeit der rezeptierten Arzneimittel in der e-Medikation.
-Als groupIdentifier dient die Geplante-Abgabe-ID (früher eMED-ID), die auch im e-Rezept mitgeführt wird.
+Als groupIdentifier dient die Geplante-Abgabe-ID, die auch im e-Rezept mitgeführt wird.
 Werden mehrere Arzneimittel gleichzeitig verordnet, wird für jedes Arzneimittel eine geplante Abgabe mit demselben groupIdentifier erstellt (bildet 'Rezept-Klammer'). Verwendet R5 Backport Extensions."
 * . ^short = "Geplante Abgabe eines Arzneimittels aus dem Medikationsplan. Verwendet R5 Backport Extensions."
 
@@ -13,6 +13,7 @@ Werden mehrere Arzneimittel gleichzeitig verordnet, wird für jedes Arzneimittel
 
 //* contained 1..*
 
+// TODO: zu prüfen: Umsetzung von contained Ressorcen
 * contained ^slicing.discriminator.type = #type
 * contained ^slicing.discriminator.path = "$this"
 * contained ^slicing.rules = #open
@@ -24,7 +25,7 @@ Werden mehrere Arzneimittel gleichzeitig verordnet, wird für jedes Arzneimittel
 * contained[medication] only AtEmedMedication
 * contained[substance] only AtEmedSubstance
 
-// Extensions
+// Extensions   ***************** TODO: erst mit Dosierungen besprechen
 * extension contains $medicationRequest-effectiveDosePeriod-r5 named effectiveDosePeriod 0..1
 * extension[effectiveDosePeriod] ^short = "Zeitraum, in dem die Medikation eingenommen werden soll."
 * extension[effectiveDosePeriod] ^definition = "Zeitraum, über den die Medikation eingenommen werden soll. Wenn mehrere dosageInstruction-Zeilen vorhanden sind (z. B. bei einer ausschleichenden Dosierung), entspricht dieser Zeitraum dem frühesten Startdatum und dem spätesten Enddatum der dosageInstructions."
@@ -32,15 +33,15 @@ Werden mehrere Arzneimittel gleichzeitig verordnet, wird für jedes Arzneimittel
 * extension contains $medicationrequest-rendereddosageinstruction-r5 named renderedDosageInstruction 0..1
 * extension[renderedDosageInstruction] ^short = "Vollständige Darstellung der Dosierungsanweisungen"
 
-// IHE extension statt Backport Extension: Verwendung zu klären
+
+// IHE extension statt Backport Extension: TODO: Verwendung zu klären
 * extension contains $ihe-ext-medicationrequest-offlabeluse named offLabelUse 0..1 
 * extension[offLabelUse] ^short = "Weist darauf hin, dass der verschreibende Arzt das Medikament wissentlich für eine Indikation, Altersgruppe, Dosierung oder Verabreichungsform verschrieben hat, die nicht von den Aufsichtsbehörden zugelassen ist und in der Verschreibungsinformation für das Produkt nicht erwähnt wird."
-// ENDE Extensions
+// ENDE Extensions  ******************
 
 * identifier 1..* MS  // 1..1 MS ?
-* identifier ^short = "Gepante-Abgabe-ID = {groupIdentifier}_{Medikationsplaneintrag-ID}.
-Setzt sich zusammen aus: groupIdentifier (Rezept-Klammer) und Medikationsplaneintrag-ID.
-Wenn mehrere Medikamente gleichzeitig verordnet wurden, haben sie den gleichen groupIdentifier, aber unterschiedliche Medikationsplaneintrag-IDs."
+* identifier ^short = "Gepante-Abgabe-ID ? Verwendung prüfen."
+
 
 * status 1..1 MS
 * status from GeplanteAbgabeStatusVS (required)
@@ -83,8 +84,7 @@ Arzneimittel mit und ohne PZN einheitlich dokumentiert werden können."
 // --- Subject ---
 * subject only Reference(HL7ATCorePatient) 
 * subject 1..1 MS
-* subject ^short = "Patient, für den die geplante Abgabe ausgestellt werden soll, der über den 
-Zentralen Patientenindex identifizierbar und Teilnehmer von ELGA e-Medikation ist."
+* subject ^short = "Patient, für den die geplante Abgabe ausgestellt werden soll (über Zentralen Patientenindex identifiziert und Teilnehmer von ELGA e-Medikation)."
 
 * encounter 0..0
 * encounter ^short = "Aufenthalt/Begegnung, während dessen die geplante Abgabe erstellt wurde. Keine Verwendung in der geplanten Abgabe."
@@ -101,8 +101,8 @@ Keine Verwendung in der geplanten Abgabe."
 // -- Requester ---
 * requester 1..1 MS  // zu hinterfragen, ob HL7ATCorePractitionerRole + HL7ATCoreOrganization nötig 
 * requester only Reference(HL7ATCorePractitioner or HL7ATCorePractitionerRole or HL7ATCoreOrganization)
-* requester ^short = "Der Arzt oder die Ärztin, die die geplante Abgabe erstellt hat und für den Inhalt verantwortlich ist.
-Eindeutig identifiziert über den GDA-Index und berechtigt auf die ELGA e-Medikation des Patienten zuzugreifen."
+* requester ^short = "Der Arzt oder die Ärztin, die die geplante Abgabe erstellt hat und für den Inhalt verantwortlich ist 
+(eindeutig identifiziert über den GDA-Index und berechtigt auf die ELGA e-Medikation des Patienten zuzugreifen)"
 
 * performer 0..0 
 * performer ^short = "Keine Verwendung in der geplanten Abgabe."
@@ -117,23 +117,25 @@ Eindeutig identifiziert über den GDA-Index und berechtigt auf die ELGA e-Medika
 * reasonCode 0..0 
 //* reasonCode from $cs-sct (required)
 * reasonCode ^short = "Grund für die Verordnung des Arzneimittels. 
-Entweder Code oder Referenz (TODO: Evtl. Invariante). Erst wenn codierte Angabe möglich."
+Entweder Code oder Referenz (TODO: Evtl. Invariante). Verwendung in geplanter Abgabe prüfen."
 
 * instantiatesCanonical 0..0 
-* instantiatesCanonical ^short = "URL, die auf ein Protokoll (Richtlinie, Guideline) verweist, die von diesem 
-Medikationsplaneintrag ganz oder teilweise eingehalten wird. Keine Verwendung in der geplanten Abgabe."
+* instantiatesCanonical ^short = "URL, die auf ein Protokoll (Richtlinie, Guideline) verweist, das von dieser 
+geplanten Abgabe ganz oder teilweise eingehalten wird. Keine Verwendung in der geplanten Abgabe."
 
 * instantiatesUri 0..0 
-* instantiatesUri ^short = "URL, die auf ein extern gepflegtes Protokoll (Richtlinie, Guideline) verweist, die von diesem 
-Medikationsplaneintrag ganz oder teilweise eingehalten wird. Keine Verwendung in der geplanten Abgabe."
+* instantiatesUri ^short = "URL, die auf ein extern gepflegtes Protokoll (Richtlinie, Guideline) verweist, das von dieser 
+geplanten Abgabe ganz oder teilweise eingehalten wird. Keine Verwendung in der geplanten Abgabe."
 
 * basedOn 1..1 MS
-* basedOn only Reference(AtEmedMRPlaneintrag)
+* basedOn only Reference(AtEmedMRPlaneintrag)  // zeigt auf aktuelle Ressource
 * basedOn ^short = "Referenz auf den zugrundeliegenden Medikationsplaneintrag, auf dem diese geplante Abgabe basiert."
+// TODO: hier könnte zusätzlich eine logische Referenz ergänzt werden: reference.identifier
+// {Medikationsplaneintrag-ID}_{Medikationsplaneintrag-ID_Version}.
 
 * groupIdentifier 1..1 MS 
-* groupIdentifier ^short = "Als groupIdentifier dient die Geplante-Abgabe-ID (früher eMED-ID), 
-die auch im e-Rezept mitgeführt wird. Werden von einem:r Arzt:Ärtztin mehrere Arzneimittel gleichzeitig verordnet, 
+* groupIdentifier ^short = "Als groupIdentifier dient die eMED-ID, die auch im e-Rezept mitgeführt wird. 
+Werden von einem:r Arzt:Ärtztin mehrere Arzneimittel gleichzeitig verordnet, 
 wird für jedes Arzneimittel eine geplante Abgabe mit demselben groupIdentifier erstellt (bildet 'Rezept-Klammer')."
 
 * courseOfTherapyType 0..0 
@@ -148,7 +150,7 @@ wird für jedes Arzneimittel eine geplante Abgabe mit demselben groupIdentifier 
 // DOSAGE
 * dosageInstruction 1..* MS 
 * dosageInstruction only AtEmedDosage
-* dosageInstruction ^short = "Angabe der Dosierinformationen strukturiert oder als Freitext. TODO: Inhalte AtEmedDosage fachlich prüfen."
+* dosageInstruction ^short = "Angabe der Dosierinformationen. TODO: Dosiervarianten."
 
 
 // DISPENSE REQUEST
@@ -181,7 +183,7 @@ wird für jedes Arzneimittel eine geplante Abgabe mit demselben groupIdentifier 
 * substitution ^short = "Gibt an, ob das Arzneimittel substituiert werden darf oder nicht.
 Erläutert die Absicht des verschreibenden Arztes. Wenn nichts angegeben ist, kann eine Substitution vorgenommen werden. 
 Die Dokumentation über eine tatsächlich erfolgte Substitution erfolgt in der Dispense-Resource. 
-TODO: Eher keine Verwendung in der geplanten Abgabe."
+TODO: Verwendung in der geplanten Abgabe prüfen."
 
 * priorPrescription 0..1 MS
 * priorPrescription ^short = "Im Falle einer Änderung wird auf die ersetzte geplante Abgabe verwiesen."
@@ -193,10 +195,11 @@ TODO: Eher keine Verwendung in der geplanten Abgabe."
 * eventHistory ^short = "Referenz auf Provenance-Ressourcen, die verschiedene relevante Versionen dieser Ressource dokumentieren. 
 Keine Verwendung in der geplanten Abgabe."
 
+
 // // --- XOR-Invariant: genau eines von beiden ---
 // // https://hl7.org/fhirpath/N1/
 // Invariant: med-1
-// Description: "Für die geplante Abgabe muss entweder CodeableConcept (PZN) oder Reference(Medication) angegeben werden – aber genau eins."
+// Description: "Für die geplante Abgabe muss entweder CodeableConcept (PZN) oder Reference(Medication) angegeben werden."
 // Expression: "medicationCodeableConcept.exists() xor medicationReference.exists()"
 // Severity: #error
 

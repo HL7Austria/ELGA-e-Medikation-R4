@@ -132,7 +132,7 @@ Nachteil:
 * basedOn ^short = "TODO: Verwendung im Medikationsplaneintrag zu prüfen. Vermutlich nicht möglich, da keine versionsspezifischen Referenzen verwendet werden."
 
 * groupIdentifier 0..0
-* groupIdentifier ^short = "TODO: Verwendung im Medikationsplaneintrag zu prüfen. Erst bei der geplanten Abgabe (Rezepterstellung) relevant. Evtl ein Verweis auf erstellte Rezepte? Würde Extension erfordern, da Kardinalität nur 0..1 zulässig"
+* groupIdentifier ^short = "Erst bei der geplanten Abgabe (Rezepterstellung) relevant. Evtl ein Verweis auf erstellte Rezepte? Würde Extension erfordern, da Kardinalität nur 0..1 zulässig"
 
 * courseOfTherapyType 0..1 MS 
 * courseOfTherapyType ^short = "Gesamtmuster der Medikamentengabe (z.B. saisonal). Verwendung im Medikationsplaneintrag prüfen (dosageInstruction), evtl. durch Dosierungsinformationen abgedeck."

@@ -13,10 +13,10 @@ Substitution des Medikaments in der durchgeführten Abgabe dokumentiert werden."
 // MedicationDispense TODO + Check CDA
 
 * identifier 0..* MS  // 1..1 MS ?
-* identifier ^short = "Externer Identifier."
+* identifier ^short = "Durchgeführte-Abgabe-ID ? Verwendung prüfen."
 
 * partOf 0..0
-* partOf ^short = "Auslösendes Ereignis. Verwendung in der durchgeführten Abgabe prüfen."
+* partOf ^short = "Auslösendes Ereignis. Referenz auf Procedure-Ressource, daher keine Verwendung in der durchgeführten Abgabe."
 
 * status 1..1 MS
 * status ^short = "Status des durchgeführten Abgabe: preparation | in-progress | cancelled | on-hold | completed | entered-in-error | stopped | declined | unknown; http://hl7.org/fhir/ValueSet/medicationdispense-status|4.0.1
