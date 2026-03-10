@@ -4,7 +4,6 @@ Id: at-emed-mr-geplante-abgabe
 Title: "ELGA e-Med Geplante Abgabe"
 Description: "Bildet eine geplante Abgabe eines Arzneimittels aus dem zugrundeliegenden Medikationsplaneintrag des ELGA-Teilnehmers ab (\"MedicationRequest\"-Ressource).
 Sie enthält das verordnete Arzneimittel und dessen Dosierung und spielgelt die Inhalte des e-Rezepts wider. Geplante Abgaben dienen somit der Nachvollziehbarkeit der rezeptierten Arzneimittel in der e-Medikation.
-Als groupIdentifier dient die Geplante-Abgabe-ID, die auch im e-Rezept mitgeführt wird.
 Werden mehrere Arzneimittel gleichzeitig verordnet, wird für jedes Arzneimittel eine geplante Abgabe mit demselben groupIdentifier erstellt (bildet 'Rezept-Klammer'). Verwendet R5 Backport Extensions."
 * . ^short = "Geplante Abgabe eines Arzneimittels aus dem Medikationsplan. Verwendet R5 Backport Extensions."
 
@@ -36,17 +35,23 @@ Werden mehrere Arzneimittel gleichzeitig verordnet, wird für jedes Arzneimittel
 
 // IHE extension statt Backport Extension: TODO: Verwendung zu klären
 * extension contains $ihe-ext-medicationrequest-offlabeluse named offLabelUse 0..1 
-* extension[offLabelUse] ^short = "Weist darauf hin, dass der verschreibende Arzt das Medikament wissentlich für eine Indikation, Altersgruppe, Dosierung oder Verabreichungsform verschrieben hat, die nicht von den Aufsichtsbehörden zugelassen ist und in der Verschreibungsinformation für das Produkt nicht erwähnt wird."
+* extension[offLabelUse] ^short = "Weist darauf hin, dass der verschreibende Arzt das 
+Medikament wissentlich für eine Indikation, Altersgruppe, Dosierung oder Verabreichungsform 
+verschrieben hat, die nicht von den Aufsichtsbehörden zugelassen ist und in der 
+Verschreibungsinformation für das Produkt nicht erwähnt wird." //ws: kein Usecase derzeit; implizit durch diagnose verknüfung in zukunft
 // ENDE Extensions  ******************
 
 * identifier 1..* MS  // 1..1 MS ?
-* identifier ^short = "Gepante-Abgabe-ID ? Verwendung prüfen."
+* identifier ^short = "Gepante-Abgabe-ID ? Verwendung prüfen." //ws: nicht nötig, wenn bei based on logischer identifier verwendet wird
 
 
 * status 1..1 MS
 * status from GeplanteAbgabeStatusVS (required)
 * status ^short = "Status der geplanten Abgabe (im Standardfall active oder complete): 
  (req) active | on-hold | cancelled | completed | entered-in-error | stopped  (entfernt: draft | unknown); TODO: Fachlich zu prüfen."
+//ws: status bei der erstellung active ; implizit wenn alle abgaben durchgeführt, mittels operation möglich; bleibt offen, bis komplett eingelöst
+// on-hold, stopped, cancelled nicht für geplante abgabe; wie e-rezept storno: nur wenn noch keine durchgeführte abgabe, storno möglich
+
 
 * statusReason 0..0 
 * statusReason ^short = "Grund für den aktuellen Status: https://hl7.org/fhir/R4/valueset-medicationrequest-status-reason.html. Keine Verwendung in der geplanten Abgabe."
@@ -60,6 +65,8 @@ zum Handeln durch den Antragsteller dar, daher ist intent immer \"order\"."
 * category 1..1 MS
 * category = MedicationRequestCategoryCS#2 "Geplante Abgabe"
 * category ^short = "Kategorie zur Unterscheidung eines Medikationsplaneintrags von einer geplanten Abgabe (beide haben intent order)"
+//ws 2. slice für privat/kassenrezept
+
 
 * priority 0..0
 * priority ^short = "Priorität der geplanten Abgabe: routine | urgent | asap | stat. Keine Verwendung in der geplanten Abgabe."
@@ -76,7 +83,7 @@ zum Handeln durch den Antragsteller dar, daher ist intent immer \"order\"."
 //* medicationCodeableConcept 0..0
 
 * medicationReference 1..1 MS 
-* medicationReference only Reference(AtEmedMedication) 
+* medicationReference only Reference(AtEmedMedication)   //ws planeintrag kann auch nur wirkstoffe enthalten; evtl. wirkstoff oder pzn; magistral, pzn, sonstige; todo bepr. mit medication ressource
 * medicationReference.reference obeys contained-ref
 * medicationReference ^short = "Das Arzneimittel wird immer in einer contained Medication Ressource dokumentiert, damit 
 Arzneimittel mit und ohne PZN einheitlich dokumentiert werden können."
@@ -100,7 +107,7 @@ Keine Verwendung in der geplanten Abgabe."
 
 // -- Requester ---
 * requester 1..1 MS  // zu hinterfragen, ob HL7ATCorePractitionerRole + HL7ATCoreOrganization nötig 
-* requester only Reference(HL7ATCorePractitioner or HL7ATCorePractitionerRole or HL7ATCoreOrganization)
+* requester only Reference(HL7ATCorePractitioner or HL7ATCorePractitionerRole or HL7ATCoreOrganization) //HL7ATCorePractitioner nicht ausreichend
 * requester ^short = "Der Arzt oder die Ärztin, die die geplante Abgabe erstellt hat und für den Inhalt verantwortlich ist 
 (eindeutig identifiziert über den GDA-Index und berechtigt auf die ELGA e-Medikation des Patienten zuzugreifen)"
 
@@ -111,7 +118,7 @@ Keine Verwendung in der geplanten Abgabe."
 * performerType ^short = "Keine Verwendung in der geplanten Abgabe."
 
 * recorder 0..0
-* recorder ^short = "Keine Verwendung in der geplanten Abgabe."
+* recorder ^short = "Keine Verwendung in der geplanten Abgabe."  //ws mit ediagnose abstimmen, wie verwendung
 
 // Grund für die Medikation 
 * reasonCode 0..0 
@@ -137,6 +144,7 @@ geplanten Abgabe ganz oder teilweise eingehalten wird. Keine Verwendung in der g
 * groupIdentifier ^short = "Als groupIdentifier dient die eMED-ID, die auch im e-Rezept mitgeführt wird. 
 Werden von einem:r Arzt:Ärtztin mehrere Arzneimittel gleichzeitig verordnet, 
 wird für jedes Arzneimittel eine geplante Abgabe mit demselben groupIdentifier erstellt (bildet 'Rezept-Klammer')."
+//ws wording emed-id evtl aufgrund von parallelbetrieb noch anzupassen
 
 * courseOfTherapyType 0..0 
 * courseOfTherapyType ^short = "Gesamtmuster der Medikamentengabe (z.B. saisonal). Keine Verwendung in der geplanten Abgabe."
@@ -145,54 +153,64 @@ wird für jedes Arzneimittel eine geplante Abgabe mit demselben groupIdentifier 
 * insurance ^short = "Keine Verwendung in der geplanten Abgabe."
 
 * note 0..* MS
-* note ^short = "Zusätzliche Informationen zur geplanten Abgabe. TODO: prüfen"
+* note ^short = "Zusätzliche Informationen zur geplanten Abgabe. TODO: prüfen" //ws: analog zu cda? keine anmerkungen betreffend dosierung
+// kommunikation zw. arzt und apotheker; hl7 consult. ob feld nötig
 
 // DOSAGE
-* dosageInstruction 1..* MS 
+* dosageInstruction 0..1 //1..* MS 
 * dosageInstruction only AtEmedDosage
 * dosageInstruction ^short = "Angabe der Dosierinformationen. TODO: Dosiervarianten."
 
 
 // DISPENSE REQUEST
-* dispenseRequest 0..1 MS
+* dispenseRequest 1..1 MS
 * dispenseRequest ^short = "Details zur geplanten Abgabe des Arzneimittels. TODO: alle Elemente fachlich zu prüfen."
 
-* dispenseRequest.initialFill 0..1 MS
+* dispenseRequest.initialFill 0..0 
 * dispenseRequest.initialFill.quantity ^short = "Anzahl der Einheiten für die erste Abgabe, z.B. 30 Kapseln oder 100 mg."   
 
-* dispenseRequest.dispenseInterval 0..1 MS  
+* dispenseRequest.dispenseInterval 0..0 
 * dispenseRequest.dispenseInterval ^short = "Mindestzeitraum zwischen den Abgaben."
 
-* dispenseRequest.validityPeriod 0..1 MS
+* dispenseRequest.validityPeriod 1..1 MS  //ws: teilabgaben verlängern einlösedauer 
 * dispenseRequest.validityPeriod ^short = "Zeitraum in dem die geplante Abgabe eingelöst werden kann."
+//ws: startdatum = authoredOn (weglassen, wenn gleich); enddatum = 30 Tage später
+// client oder serverseitig
+// todo: fachlich zu klären, ob gültigkeitsdauer eingeschränkt werden kann; unterscheidung kasse/privat
 
-* dispenseRequest.numberOfRepeatsAllowed 0..1 MS
+
+* dispenseRequest.numberOfRepeatsAllowed 0..1 MS   //ws: wenn privatrezept verpflichtende angabe; 
 * dispenseRequest.numberOfRepeatsAllowed ^short = "Anzahl der weiteren möglichen Einlösungen."  
 
-* dispenseRequest.quantity 0..1 MS
-* dispenseRequest.quantity ^short = "Menge des Medikaments, die bei jeder Abgabe bereitgestellt werden soll, z.B. 30 Stück."
+* dispenseRequest.quantity 1..1 MS
+* dispenseRequest.quantity ^short = "Menge des Medikaments, die bei jeder Abgabe bereitgestellt werden soll, z.B. 2 Packungen (OP2)."
+// ws: für pzn und magistral möglich
 
-* dispenseRequest.expectedSupplyDuration 0..1 MS
+* dispenseRequest.expectedSupplyDuration 0..0 
 * dispenseRequest.expectedSupplyDuration.value ^short = "Dauer, für die die bereitgestellte Menge des Medikaments voraussichtlich ausreicht, z.B. 30 Tage."
 
 * dispenseRequest.performer 0..0 
 * dispenseRequest.performer ^short = "Apotheke oder andere Einrichtung, die die geplante Abgabe einlösen soll. Keine Verwendung in der geplanten Abgabe."
 
 
-* substitution 0..1 MS
+* substitution 0..0  // ws wird nicht verwendet 
 * substitution ^short = "Gibt an, ob das Arzneimittel substituiert werden darf oder nicht.
 Erläutert die Absicht des verschreibenden Arztes. Wenn nichts angegeben ist, kann eine Substitution vorgenommen werden. 
 Die Dokumentation über eine tatsächlich erfolgte Substitution erfolgt in der Dispense-Resource. 
-TODO: Verwendung in der geplanten Abgabe prüfen."
+TODO: Verwendung in der geplanten Abgabe prüfen." // usecase pflege als begründung ergänzen
 
-* priorPrescription 0..1 MS
-* priorPrescription ^short = "Im Falle einer Änderung wird auf die ersetzte geplante Abgabe verwiesen."
+* priorPrescription 0..0 // 
+* priorPrescription ^short = "Im Falle einer Änderung wird auf die 
+ersetzte geplante Abgabe verwiesen."
 
 * detectedIssue 0..0
-* detectedIssue ^short = "Klinisches Problem mit Maßnahme. Nur mittesl Referenz auf Ressouce DetectedIssue. Keine Verwendung in der geplanten Abgabe."
+* detectedIssue ^short = "Klinisches Problem mit Maßnahme. Nur mittesl 
+Referenz auf Ressouce DetectedIssue. Keine Verwendung in der geplanten 
+Abgabe."
 
 * eventHistory 0..0
-* eventHistory ^short = "Referenz auf Provenance-Ressourcen, die verschiedene relevante Versionen dieser Ressource dokumentieren. 
+* eventHistory ^short = "Referenz auf Provenance-Ressourcen, die 
+verschiedene relevante Versionen dieser Ressource dokumentieren. 
 Keine Verwendung in der geplanten Abgabe."
 
 
@@ -203,3 +221,4 @@ Keine Verwendung in der geplanten Abgabe."
 // Expression: "medicationCodeableConcept.exists() xor medicationReference.exists()"
 // Severity: #error
 
+// ws: invarianten: welche prüfungen innerhalb der ressource,operations, server
