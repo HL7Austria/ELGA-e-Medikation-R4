@@ -22,19 +22,18 @@ Substitution des Medikaments in der durchgeführten Abgabe dokumentiert werden."
 * status ^short = "Status des durchgeführten Abgabe: preparation | in-progress | cancelled | on-hold | completed | entered-in-error | stopped | declined | unknown; http://hl7.org/fhir/ValueSet/medicationdispense-status|4.0.1
 -> VS einschränken"
 
-* statusReason[x] ^short = "Warum keine Abgabe erfolgte (zB. Allergie, Produkt nicht verfügbar). Code oder Referenz (DetectedIssue)"
+* statusReason[x] ^short = "Grund für den aktuellen Status, z.B. warum keine Abgabe erfolgte (zB. Allergie, Produkt nicht verfügbar). Code oder Referenz (DetectedIssue)"
 * statusReasonCodeableConcept 0..1 MS
 * statusReasonCodeableConcept ^short = "Bsp: https://hl7.org/fhir/R4/valueset-medicationdispense-status-reason.html"
-
 * statusReasonReference 0..0
-* statusReasonReference ^short = "Verwendung in der durchgeführten Abgabe prüfen."
+* statusReasonReference ^short = "Referenz auf DetectedIssue-Ressource, daher keine Verwendung in der durchgeführten Abgabe."
 
 * category 0..0 MS 
 * category ^short = "Angabe, wo das abgegebene Medikament voraussichtlich eingenommen oder verabreicht wird (z.B. stationär oder ambulant), https://hl7.org/fhir/R4/valueset-medicationdispense-category.html. Verwendung zu prüfen."
 
 * medication[x] 1..1 MS
 * medication[x] only CodeableConcept or Reference(AtEmedMedication)  
-* medication[x] ^short = "Abgegebenes Medikament. Code oder Referenz"
+* medication[x] ^short = "Abgegebenes Medikament. Code oder Referenz"  // TODO: wie in medicationRequests containedMedication
 
 // CodeableConcept-Variante (ASP-Liste, PZN)
 * medicationCodeableConcept 0..1 MS  
@@ -42,10 +41,12 @@ Substitution des Medikaments in der durchgeführten Abgabe dokumentiert werden."
 * medicationCodeableConcept ^short = "Angabe mittels Pharmazentralnummer (PZN) aus der ASP-Liste."
 * medicationCodeableConcept.coding 1.. // zusätzlich ausländische Codes o.ä. zulassen
 
+
+
 // --- Subject ---
 * subject only Reference(HL7ATCorePatient) 
 * subject 1..1 MS
-* subject ^short = "Österreichischer Patient für den die durchgeführte Abgabe ausgestellt wird."
+* subject ^short = "Patient, für den die durchgeführte Abgabe ausgestellt wird (über Zentralen Patientenindex identifiziert und Teilnehmer von ELGA e-Medikation)."
 
 * context 0..0
 * context ^short = "Referenz auf Encounter oder EpisodeOfCare. Verwendung in der durchgeführten Abgabe prüfen."
@@ -60,13 +61,15 @@ Verwendung in der durchgeführten Abgabe prüfen."
 * performer.function ^short = "Rolle: https://hl7.org/fhir/R4/valueset-medicationdispense-performer-function.html; Verwendung in der durchgeführten Abgabe prüfen."
 * performer.actor 1..1 MS
 * performer.actor only Reference(HL7ATCorePractitioner or HL7ATCorePractitionerRole or HL7ATCoreOrganization)
-* performer.actor ^short = "RefrenzReference auf Practitioner, PractitionerRole, Organization; entfernen: Patient, Device, RelatedPerson"
+* performer.actor ^short = "RefrenzReference auf Practitioner, PractitionerRole, Organization (entfernen: Patient, Device, RelatedPerson), 
+die die durchgeführte Abgabe erstellt hat und für den Inhalt verantwortlich ist (identifiziert über den GDA-Index und berechtigt 
+auf die ELGA e-Medikation des Patienten zuzugreifen)"
 
 * location 0..0 
 * location ^short = "Ort der Abgabe (Referenz auf Location Ressource). Verwendung prüfen."
 
 * authorizingPrescription 0..1 MS
-* authorizingPrescription ^short = "Referenz auf zugehörige geplante Abgabe."
+* authorizingPrescription ^short = "Referenz auf zugehörige geplante Abgabe (MedicationRequest)."
 
 * type 0..1 MS
 * type ^short = "Mögliche Werte z.B. FFC (First-Fill Complete für vollständig erfüllte Bestellungen), FFP (First-Fill Part Fill für teilweise erfüllte Bestellungen), 
@@ -95,15 +98,14 @@ Bsp: http://terminology.hl7.org/ValueSet/v3-ActPharmacySupplyType"
 * note ^short = "Zusätzliche Informationen zur Abgabe, die nicht anders dokumentiert werden kann."
 
 * dosageInstruction 0..* MS 
-* dosageInstruction ^short = "Gibt an, wie das Medikament vom Patienten einzunehmen ist. 
-Wenn sich die Dosis oder Dosierungsrate über den gesamten Verabreichungszeitraum ändern soll 
-(z.B. bei verschreibungspflichtigen Medikamenten mit schrittweiser Dosierungsreduktion), 
-müssen mehrere Dosierungsanweisungen bereitgestellt werden, um die verschiedenen Dosen/Dosierungsraten zu vermitteln. 
+* dosageInstruction ^short = "Gibt an, wie das Medikament vom Patienten einzunehmen ist. TODO: Dosiervarianten.
 Der Apotheker überprüft die Medikamentenbestellung vor der Abgabe und aktualisiert die Dosierungsanweisung auf der Grundlage 
 des tatsächlich abgegebenen Produkts."
 
+
 * substitution 0..1 MS
-* substitution ^short = "Gibt an, ob im Rahmen der Abgabe eine Substitution vorgenommen wurde oder nicht. Wenn nichts angegeben ist, wurde keine Substitution vorgenommen."
+* substitution ^short = "Gibt an, ob im Rahmen der Abgabe eine Substitution vorgenommen wurde oder nicht. 
+Wenn nichts angegeben ist, wurde keine Substitution vorgenommen."
 * substitution.wasSubstituted 1..1
 * substitution.wasSubstituted ^short = "TRUE, wenn der Apotheker ein anderes Medikament oder Produkt als das verschriebene abgegeben hat."
 
@@ -118,7 +120,7 @@ des tatsächlich abgegebenen Produkts."
 * substitution.responsibleParty only Reference(HL7ATCorePractitioner or HL7ATCorePractitionerRole)
 
 * detectedIssue 0..0
-* detectedIssue ^short = "Referenenz auf DetectedIssue Ressource. Verwendung prüfen."
+* detectedIssue ^short = "Referenenz auf DetectedIssue Ressource, daher keine Verwendung in durchgeführter Abgabe."
 
 * eventHistory 0..0
 * eventHistory ^short = "Bezeichnet eine Liste von Provenance-Ressourcen, die verschiedene relevante Versionen 
