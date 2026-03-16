@@ -1,10 +1,10 @@
-Instance: At-Emed-Journey-03-Mr-Geplante-Abgabe   
+Instance: At-Emed-Example-Mr-Geplante-Abgabe   
 InstanceOf: AtEmedMRGeplanteAbgabe
-Title: "Beispiel Journey 03: Geplante Abgabe"
+Title: "Beispiel: Geplante Abgabe"
 Description: "Bildet eine geplante Abgabe des Medikaments EBETREXAT und zugehörigen Dosierungsanweisungen ab (MedicationRequest)."
 Usage: #example
 
-* contained[+] = ContainedMedication03
+* contained[+] = ContainedMedication
 
 // R5 Backports
 // * extension[effectiveDosePeriod].valuePeriod.start = "2026-02-27"
@@ -14,10 +14,12 @@ Usage: #example
 //* identifier.value = "WYE82A2G8EEW_4712_202602280800000"
 * status = #active
 * intent = #order
-* category = MedicationRequestCategoryCS#2 "Geplante Abgabe"
+* category[mrcategory] = MedicationRequestCategoryCS#2 "Geplante Abgabe"
+* category[recipetype] = MedicationRequestCategoryRecipeTypeCS#1 "Kassenrezept"
+
 
 // Referenz auf Inline Medication Ressource
-* medicationReference.reference = #ContainedMedication03
+* medicationReference.reference = #ContainedMedication
 
 
 * subject = Reference(At-Emed-Example-Patient-01)
@@ -53,7 +55,7 @@ Usage: #example
 
 
 // Inline Medication *********************************************************************
-Instance: ContainedMedication03
+Instance: ContainedMedication
 InstanceOf: AtEmedMedication
 Title: "Beispiel Medikation EBETREXAT"
 Usage: #inline

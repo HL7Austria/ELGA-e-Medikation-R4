@@ -21,12 +21,13 @@ Usage: #example
 
 // https://build.fhir.org/ig/hl7-eu/mpd/MedicationDispense-400D-dispense-1.json.html
 //* meta.profile = "http://hl7.eu/fhir/mpd/StructureDefinition/MedicationDispense-eu-mpd"
-* identifier.value = "WYE82A2G8EEW-4711-001"
+//* identifier.value = "WYE82A2G8EEW-4711-001"
 * status = #completed
 * medicationReference = Reference(Medication/01C-Cefuroxime1500Branded) "Cefuroxime MIP 1500 mg, powder for solution for injection/infusion. N10."
 * subject = Reference(At-Emed-Example-Patient-01)
 * performer.actor = Reference(PractitionerRole/pharmacist1)
+* type = #FF
 * authorizingPrescription = Reference(MedicationRequest/400C-prescription-cefuroxime-singleline)
 * quantity = 1 '1'
-* daysSupply = 3 'd' "day(s)"
+//* daysSupply = 3 'd' "day(s)"
 * whenHandedOver = "2024-12-06T19:54:00Z"

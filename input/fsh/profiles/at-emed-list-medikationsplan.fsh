@@ -25,7 +25,7 @@ Der Medikationsplan ist ein laufend gepflegtes Dokument: working"
 
 * code ^short = "Code, der den Typ der Liste beschreibt. https://hl7.org/fhir/R4/valueset-list-example-codes.html. Zu prüfen, ob/wie in Medikationsplan verwendet."
 * code 1..1 MS
-* code = $cs-sct#736378000 "Medikationsplan"
+* code = $cs-sct#736378000 "Medication management plan (record artifact)"  // "Medikationsplan"
 
 * subject 1..1 MS
 * subject only Reference(HL7ATCorePatient)
