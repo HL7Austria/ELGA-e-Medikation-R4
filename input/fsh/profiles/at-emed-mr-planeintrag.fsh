@@ -7,23 +7,6 @@ Er enthält genau ein Arzneimittel und dessen Dosierung.
 Kann in weiterer Folge dazu dienen, eine geplante Abgabe zu erstellen. Verwendet R5 Backport Extensions."
 
 // TODO: Statt MS Obligations für alle Elemente, daher später kein 0..0 nötig
-// Contained Ressourcen: Medication und Substance; TODO prüfen ob Substance erforderlich.
-
-//* contained 1..*
-
-* contained ^slicing.discriminator.type = #type
-* contained ^slicing.discriminator.path = "$this"
-//* contained ^slicing.discriminator.path = "resource"    //Unterschied?
-//* contained ^slicing.discriminator.path = "resourceType"
-
-* contained ^slicing.rules = #open
-
-* contained contains
-    medication 1..1 and
-    substance 0..*
-
-* contained[medication] only AtEmedMedication
-* contained[substance] only AtEmedSubstance
 
 
 // Extensions
@@ -78,13 +61,10 @@ Nachteil:
 
 // --- Medication immer als Medication-Resource (mit oder ohne PZN, damit Handelsname angegeben werden kann und historisch verfügbar bleibt)
 * medication[x] 1..1 MS  
-//* medication[x] only Reference(AtEmedMedication)  
-//* medicationCodeableConcept 0..0
+* medication[x] only Reference(AtEmedMedication)  
+* medication[x] ^type.aggregation = #contained
 
-* medicationReference 1..1 MS 
-* medicationReference only Reference(AtEmedMedication) 
-* medicationReference.reference obeys contained-ref
-* medicationReference ^short = "Das Arzneimittel wird immer in einer contained Medication Ressource dokumentiert, damit Arzneimittel mit und ohne PZN einheitlich dokumentiert werden können."
+* medication[x] ^short = "Das Arzneimittel wird immer in einer contained Medication Ressource dokumentiert, damit Arzneimittel mit und ohne PZN einheitlich dokumentiert werden können."
 
 // --- Subject ---
 * subject only Reference(HL7ATCorePatient) // ag auch eu-patient, evtl nur verschl. bpkh, daten zpi verfügbar, auch mit svnr möglich, speicherfristen
@@ -168,10 +148,3 @@ Nachteil:
 // Description: "dateTime muss mindestens aus Tag, Monat und Jahr bestehen"
 // * severity = #error
 // * expression = "toString().matches('^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\\\.[0-9]+)?(Z|(\\\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?$')"
-
-
-Invariant: contained-ref
-Description: "Medication must be contained (#...)"
-Severity: #error
-//Expression: "reference.startsWith('#')"
-Expression: "$this.startsWith('#')"
