@@ -4,7 +4,7 @@ Title: "Beispiel Medikationsplaneintrag mit Schema mit Wochentags-Bezug"
 Description: "Medikationsplaneintrag mit Schema mit Wochentags-Bezug (jeden Dienstag und jeden Donnerstag)."
 Usage: #example
 
-* contained[medication] = contained-medication-wochentag
+* contained[+] = contained-medication-wochentag
 
 // R5 Backports
 // * extension[effectiveDosePeriod].valuePeriod.start = "2026-02-27"

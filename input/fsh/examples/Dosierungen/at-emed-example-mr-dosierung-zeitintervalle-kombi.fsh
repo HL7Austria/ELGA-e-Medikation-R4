@@ -4,7 +4,7 @@ Title: "Beispiel Medikationsplaneintrag Dosierung als Kombination von Zeitinterv
 Description: "Medikationsplaneintrag mit Dosierung als Kombination von Zeitintervallen (alle 2 Tage: 08:00 Uhr — je 1 Stück; 18:00 Uhr — je 2 Stück)."
 Usage: #example
 
-* contained[medication] = contained-medication-zeitintervalle-kombi
+* contained[+] = contained-medication-zeitintervalle-kombi
 
 // R5 Backports
 // * extension[effectiveDosePeriod].valuePeriod.start = "2026-02-27"

@@ -4,7 +4,7 @@ Title: "Beispiel Medikationsplaneintrag mit Dosierung als Kombination von Wochen
 Description: "Medikationsplaneintrag mit Dosierung als Kombination von Wochentagen (montags 1-0-1-0 Stück; freitags 1-0-1-0 Stück)."
 Usage: #example
 
-* contained[medication] = contained-medication-wochentag-kombi
+* contained[+] = contained-medication-wochentag-kombi
 
 // R5 Backports
 // * extension[effectiveDosePeriod].valuePeriod.start = "2026-02-27"

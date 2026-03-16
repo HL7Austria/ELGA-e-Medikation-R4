@@ -4,7 +4,7 @@ Title: "Beispiel Medikationsplaneintrag mit Dosierungsintervallen"
 Description: "Medikationsplaneintrag mit Dosierung im Intervallen (alle 8 Tage 1 Stück)."
 Usage: #example
 
-* contained[medication] = contained-medication-intervalle-wh
+* contained[+] = contained-medication-intervalle-wh
 
 // R5 Backports
 // * extension[effectiveDosePeriod].valuePeriod.start = "2026-02-27"

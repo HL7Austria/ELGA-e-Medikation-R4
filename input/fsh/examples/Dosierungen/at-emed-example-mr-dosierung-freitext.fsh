@@ -4,7 +4,7 @@ Title: "Medikationsplaneintrag mit Freitext-Dosierung"
 Description: "Medikationsplaneintrag mit Dosierung im Tageszeitenschema (morgens, mittags, abends, nachts): 1-0-1-0."
 Usage: #example
 
-* contained[medication] = contained-medication-freitext-01
+* contained[+] = contained-medication-freitext-01
 
 // R5 Backports
 * extension[renderedDosageInstruction].valueMarkdown = "2 Stück morgens zum Frühstück"

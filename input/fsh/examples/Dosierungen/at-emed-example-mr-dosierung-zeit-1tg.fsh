@@ -4,7 +4,7 @@ Title: "Beispiel Medikationsplaneintrag mit Dosierung im Tageszeitenschema"
 Description: "Medikationsplaneintrag mit Dosierung im Tageszeitenschema (morgens, mittags, abends, nachts): 1-0-1-0."
 Usage: #example
 
-* contained[medication] = contained-medication-zeit-01
+* contained[+] = contained-medication-zeit-01
 
 // R5 Backports
 // * extension[effectiveDosePeriod].valuePeriod.start = "2026-02-27"
