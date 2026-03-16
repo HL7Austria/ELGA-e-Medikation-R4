@@ -16,4 +16,13 @@ Title: "ELGA e-Med Geplante Abgabe Status ValueSet"
 Description: "ValueSet für zulässige Ausprägungen eines Status einer geplanten Abgabe (MedicationRequest)."
 
 * ^experimental = true
-* include codes from system $cs-medication-request-status
+//* include codes from system $cs-medication-request-status
+
+* include $cs-medication-request-status#active
+* include $cs-medication-request-status#completed
+* include $cs-medication-request-status#entered-in-error
+* include $cs-medication-request-status#stopped
+// nicht:
+//* include $cs-medication-request-status#on-hold
+//* include $cs-medication-request-status#stopped
+//* include $cs-medication-request-status#cancelled
