@@ -4,7 +4,7 @@ Title: "Beispiel Journey 05-b: Änderung Dosierung des Medikationsplaneintrags"
 Description: "Änderung der Dosierung eines Medikationsplaneintrags (EBETREXAT)."
 Usage: #example
 
-* contained[medication] = contained-medication-journey-05-01
+* contained[+] = contained-medication-journey-05-01
 
 // R5 Backports
 // * extension[effectiveDosePeriod].valuePeriod.start = "2026-02-27"
