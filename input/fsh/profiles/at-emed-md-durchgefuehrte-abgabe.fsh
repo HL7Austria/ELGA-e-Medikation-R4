@@ -3,24 +3,22 @@ Parent: MedicationDispense
 Id: at-emed-md-durchgefuehrte-abgabe
 Title: "ELGA e-Med Durchgeführte Abgabe"
 Description: "Dokumentiert eine durchgeführte Abgabe eines Arzneimittels (\"MedicationDispense\"-Ressource). 
-Sofern eine zugehörige geplante Abgabe vorliegt, können Abweichungen hinsichtlich der Dosierung oder einer möglichen
-Substitution des Medikaments in der durchgeführten Abgabe dokumentiert werden."
+In der durchgeführten Abgabe können Abweichungen hinsichtlich der Dosierung des Medikaments dokumentiert werden.
+Sofern eine zugehörige geplante Abgabe vorliegt, muss diese referenziert werden. Einer mögliche Substitution des Medikaments ist implizit, durch die Referenz auf die zugehörige geplante Abgabe, ersichtlich."
 * . ^short = "Durchgeführte Abgabe eines Arzneimittels mit oder ohne Bezug zum Medikationsplan. Verwendet R5 Backport Extensions."
-//ws kann sich auf geplante abgabe beziehen, kann hinsichtlich dosierung abweichen
-// sofern eine geplante Abgabe vorliegt, muss sie sich darauf beziehen
+
 
 // Extensions TODO
-
-// MedicationDispense TODO + Check CDA
+// TODO Check CDA
 
 * identifier 0..0 //..* MS  
-* identifier ^short = "Durchgeführte-Abgabe-ID ? Verwendung prüfen." // ws vermutlich keine notwendigkeit
+* identifier ^short = "Durchgeführte-Abgabe-ID. TODO: Verwendung zu prüfen." // ws vermutlich keine notwendigkeit
 
 * partOf 0..0 
 * partOf ^short = "Auslösendes Ereignis. Referenz auf Procedure-Ressource, daher keine Verwendung in der durchgeführten Abgabe."
 
 * status 1..1 MS
-* status ^short = "Status des durchgeführten Abgabe: preparation | in-progress | cancelled | on-hold | completed | entered-in-error | stopped | declined | unknown; http://hl7.org/fhir/ValueSet/medicationdispense-status|4.0.1
+* status ^short = "Status der durchgeführten Abgabe: preparation | in-progress | cancelled | on-hold | completed | entered-in-error | stopped | declined | unknown; http://hl7.org/fhir/ValueSet/medicationdispense-status|4.0.1
 -> VS einschränken"
 // ws status von type abhängig; in operation definition
 // leerabgabe: vorschlag, wie zu lösen
@@ -71,12 +69,12 @@ die die durchgeführte Abgabe erstellt hat und für den Inhalt verantwortlich is
 auf die ELGA e-Medikation des Patienten zuzugreifen)"
 
 * location 0..0 
-* location ^short = "Ort der Abgabe (Referenz auf Location Ressource). Verwendung prüfen."
+* location ^short = "Ort der Abgabe (Referenz auf Location Ressource). Keine Verwendung in durchgeführter Abgabe."
 
 * authorizingPrescription 0..1 MS  //wenn eine geplante abgabe existiert, muss das feld befüllt werden
 * authorizingPrescription ^short = "Referenz auf zugehörige geplante Abgabe (MedicationRequest)."
 
-* type 1..1 MS  //
+* type 1..1 MS  //TODO: Valueset
 * type ^short = "Mögliche Werte z.B. FFC (First-Fill Complete für vollständig erfüllte Bestellungen), FFP (First-Fill Part Fill für teilweise erfüllte Bestellungen), 
 Bsp: http://terminology.hl7.org/ValueSet/v3-ActPharmacySupplyType"  //ffc, ffp, Refill - Part Fill, refill complete: evtl. selbst definieren
 // für leerabgabe: complete-ausprägung; emergency supply offen (OTC), complete
@@ -112,8 +110,8 @@ des tatsächlich abgegebenen Produkts."
 * substitution 0..0 // MS  ws: nur implizit
 * substitution ^short = "Gibt an, ob im Rahmen der Abgabe eine Substitution vorgenommen wurde oder nicht. 
 Wenn nichts angegeben ist, wurde keine Substitution vorgenommen."
-* substitution.wasSubstituted 1..1
-* substitution.wasSubstituted ^short = "TRUE, wenn der Apotheker ein anderes Medikament oder Produkt als das verschriebene abgegeben hat."
+// * substitution.wasSubstituted 1..1
+// * substitution.wasSubstituted ^short = "TRUE, wenn der Apotheker ein anderes Medikament oder Produkt als das verschriebene abgegeben hat."
 
 // '* substitution.type 0..1 MS
 // * substitution.type ^short = "Typ der Substitution: z.B. E equivalent, http://terminology.hl7.org/ValueSet/v3-ActSubstanceAdminSubstitutionCode" 
