@@ -12,6 +12,7 @@ Unterschieden werden folgende Fälle:
     b. Bei magistraler Anwendung, Infusionen 
 "
 
+
 * text 0..1 MS  //ergänzt AKL
 * text ^short = "TODO: Freitext für magistrale Anwendungen oder Abbildung in Substance.description?"
 
@@ -64,7 +65,8 @@ Weitere Codes, wie auch die deutsche Bezeichnung der Codes, entsprechen dem GKV-
 AOK Bundesverband GbR, Deutschland, welcher auf den WHO ATC basiert.
 Zusätzlich kommen ergänzende Codes aus dem Arzneimittelverzeichnis der AGES zum Einsatz."
 * ingredient.itemReference 0..1 MS
-* ingredient.itemReference.reference obeys contained-sub  // contained Substance
+* ingredient.itemReference ^type.aggregation = #contained
+//* ingredient.itemReference.reference obeys contained-sub  // contained Substance
 * ingredient.itemReference ^short = "Referenz auf Ressourcen Substance im Fall von magistraler Anwendung"
 
 * ingredient.isActive 0..1 MS
@@ -77,8 +79,7 @@ Zusätzlich kommen ergänzende Codes aus dem Arzneimittelverzeichnis der AGES zu
 * batch ^short = "Informationen zur Charge des Arzneimittels. Keine Verwenund im Kontext Planeintrag."
 
 
-
-Invariant: contained-sub
-Description: "Substance must be contained"
-Severity: #error
-Expression: "reference.startsWith('#')"
+// Invariant: contained-sub
+// Description: "Substance must be contained"
+// Severity: #error
+// Expression: "reference.startsWith('#')"
