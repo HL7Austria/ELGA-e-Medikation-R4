@@ -18,32 +18,33 @@ Sofern eine zugehörige geplante Abgabe vorliegt, muss diese referenziert werden
 * partOf ^short = "Auslösendes Ereignis. Referenz auf Procedure-Ressource, daher keine Verwendung in der durchgeführten Abgabe."
 
 * status 1..1 MS
-* status ^short = "Status der durchgeführten Abgabe: preparation | in-progress | cancelled | on-hold | completed | entered-in-error | stopped | declined | unknown; http://hl7.org/fhir/ValueSet/medicationdispense-status|4.0.1
--> VS einschränken"
-// ws status von type abhängig; in operation definition
-// leerabgabe: vorschlag, wie zu lösen
-// wenn apotheke med. bereits bestellt hat: preparation ? usecase?
-//completed + entered-in-error + stopped -> offen
-// leerabgabe: 2 bereits eingelöst, 3 nicht erforderlich
+* status ^short = "Status der durchgeführten Abgabe: <br>
+\"completed\": durchgeführte Abgabe ist abgeschlossen <br>
+\"entered-in-error\": durchgeführte Abgabe wird aufgrund falscher Eingabe storniert <br>
+\"stopped\": Abgabe wird nicht durchgeführt (Medikament wird abgesetzt) <br>
+http://hl7.org/fhir/ValueSet/medicationdispense-status|4.0.1"
+
+//zu prüfen: ob es einen Status in-progress / preparation geben soll, z.B. wenn Bestellvorgang gestartet wurde und der typ First Fill - Part Fill ist.
+//zu prüfen: können Abhängigkeiten zwischen status, typ, Rezeptart? automatisch geprüft werden? Falls der Status vom Typ der geplanten Abgabe (Rezeptart) abhängig sein kann (z.B. in-progress bei Bestellung o.ä.), evtl Operation 
+
 
 * statusReason[x] ^short = "Grund für den aktuellen Status, z.B. warum keine Abgabe erfolgte (zB. Allergie, Produkt nicht verfügbar). Code oder Referenz (DetectedIssue)"
 * statusReasonCodeableConcept 0..1 MS
-* statusReasonCodeableConcept ^short = "Bsp: https://hl7.org/fhir/R4/valueset-medicationdispense-status-reason.html"
+* statusReasonCodeableConcept ^short = "Bsp: https://hl7.org/fhir/R4/valueset-medicationdispense-status-reason.html"   // TODO: unklar, ob 0..0
 * statusReasonReference 0..0
 * statusReasonReference ^short = "Referenz auf DetectedIssue-Ressource, daher keine Verwendung in der durchgeführten Abgabe."
 
 * category 0..0 
-* category ^short = "Angabe, wo das abgegebene Medikament voraussichtlich eingenommen oder verabreicht wird (z.B. stationär oder ambulant), https://hl7.org/fhir/R4/valueset-medicationdispense-category.html. Verwendung zu prüfen."
+* category ^short = "Angabe, wo das abgegebene Medikament voraussichtlich eingenommen oder verabreicht wird (z.B. stationär oder ambulant), https://hl7.org/fhir/R4/valueset-medicationdispense-category.html. Keine Verwendung in der durchgeführten Abgabe."
 
-* medication[x] 1..1 MS
-* medication[x] only CodeableConcept or Reference(AtEmedMedication)  
-* medication[x] ^short = "Abgegebenes Medikament. Code oder Referenz"  // TODO: wie in medicationRequests containedMedication
 
-// CodeableConcept-Variante (ASP-Liste, PZN) analog zu medicationrequest
-* medicationCodeableConcept 0..1 MS  
-* medicationCodeableConcept from $cs-asp-liste (required)  // gem. CDA code: Pharmazentralnummer (OID 1.2.40.0.34.4.16), Zulassungsnummer (OID 1.2.40.0.34.4.17), Package Reference Number der AGES (OID 1.2.40.0.34.4.26) (geplant als Ablöse zur PZN), (in Vorbereitung) PCID der EMA (OID 1.2.40.0.34.4.27)
-* medicationCodeableConcept ^short = "Angabe mittels Pharmazentralnummer (PZN) aus der ASP-Liste."
-* medicationCodeableConcept.coding 1.. // zusätzlich ausländische Codes o.ä. zulassen
+// --- Medication immer als Medication-Resource (mit oder ohne PZN, damit Handelsname angegeben werden kann und historisch verfügbar bleibt)
+* medication[x] 1..1 MS  
+* medication[x] only Reference(AtEmedMedication)  
+* medication[x] ^type.aggregation = #contained
+
+* medication[x] ^short = "Abgegebenes Medikament. Das Medikament wird immer in einer contained Medication Ressource dokumentiert, damit 
+Arzneimittel mit und ohne PZN einheitlich dokumentiert werden können."
 
 
 // --- Subject ---
@@ -52,11 +53,10 @@ Sofern eine zugehörige geplante Abgabe vorliegt, muss diese referenziert werden
 * subject ^short = "Patient, für den die durchgeführte Abgabe ausgestellt wird (über Zentralen Patientenindex identifiziert und Teilnehmer von ELGA e-Medikation)."
 
 * context 0..0
-* context ^short = "Referenz auf Encounter oder EpisodeOfCare. Verwendung in der durchgeführten Abgabe prüfen."
+* context ^short = "Referenz auf Encounter oder EpisodeOfCare. Keine Verwendung in der durchgeführten Abgabe."
 
-* supportingInformation 0..0 //* 
-* supportingInformation ^short = "Referenz auf zusätzliche Informationen, die die Abgabe des Medikaments unterstützen. 
-Verwendung in der durchgeführten Abgabe prüfen."
+* supportingInformation 0..0 
+* supportingInformation ^short = "Referenz auf zusätzliche Informationen, die die Abgabe des Medikaments unterstützen. Keine Verwendung in der durchgeführten Abgabe."
 
 * performer 1..1 MS
 * performer ^short = "Durchführende Person" 
@@ -64,23 +64,42 @@ Verwendung in der durchgeführten Abgabe prüfen."
 * performer.function ^short = "Rolle: https://hl7.org/fhir/R4/valueset-medicationdispense-performer-function.html; Verwendung in der durchgeführten Abgabe prüfen."
 * performer.actor 1..1 MS
 * performer.actor only Reference(HL7ATCorePractitioner or HL7ATCorePractitionerRole or HL7ATCoreOrganization)
-* performer.actor ^short = "RefrenzReference auf Practitioner, PractitionerRole, Organization (entfernen: Patient, Device, RelatedPerson), 
+* performer.actor ^short = "Refrenz auf Practitioner, PractitionerRole, Organization, 
 die die durchgeführte Abgabe erstellt hat und für den Inhalt verantwortlich ist (identifiziert über den GDA-Index und berechtigt 
-auf die ELGA e-Medikation des Patienten zuzugreifen)"
+auf die ELGA e-Medikation des Patienten zuzugreifen)."
 
 * location 0..0 
 * location ^short = "Ort der Abgabe (Referenz auf Location Ressource). Keine Verwendung in durchgeführter Abgabe."
 
-* authorizingPrescription 0..1 MS  //wenn eine geplante abgabe existiert, muss das feld befüllt werden
-* authorizingPrescription ^short = "Referenz auf zugehörige geplante Abgabe (MedicationRequest)."
+* authorizingPrescription 0..1 MS    // TODO: Technisch prüfen?
+* authorizingPrescription ^short = "Verpflichtende Referenz auf zugehörige geplante Abgabe (MedicationRequest), sofern diese existiert."
 
 * type 1..1 MS  //TODO: Valueset
 * type ^short = "Mögliche Werte z.B. FFC (First-Fill Complete für vollständig erfüllte Bestellungen), FFP (First-Fill Part Fill für teilweise erfüllte Bestellungen), 
-Bsp: http://terminology.hl7.org/ValueSet/v3-ActPharmacySupplyType"  //ffc, ffp, Refill - Part Fill, refill complete: evtl. selbst definieren
+Bsp: http://terminology.hl7.org/ValueSet/v3-ActPharmacySupplyType  //ffc, ffp, Refill - Part Fill, refill complete: evtl. selbst definieren
 // für leerabgabe: complete-ausprägung; emergency supply offen (OTC), complete
 
+Der Prozess des „Besorgers“ (wenn ein Arzneimittel nicht lagernd ist und bestellt werden muss) wird in der e-Medikation abgebildet. 
+Dabei wird das Rezept von der Apotheke eingelöst, und die Abgabe wird als Teilabgabe gekennzeichnet 
+(siehe Markierung FFP „First Fill, Part Fill“ oder RFP „Refill - Part Fill“). Die Verordnung wird nicht in den Status EINGELÖST versetzt und es können solange weitere Abgaben dispensiert werden, bis eine Abgabe mit der Markierung RFC „Refill - Complete“ gespeichert wird. Die Kennzeichnung zeigt, dass das Arzneimittel dem Patienten noch nicht ausgehändigt wurde. Die Kennzeichnung zeigt auch, ob alle Packungen einer Verordnung bzw. teilweise Packungen einer Verordnung bestellt werden. Solange eine Abgabe mit der Kennzeichnung „Besorger“ vorhanden ist, muss die Abgabe mit der eMED-ID abrufbar sein.
+
+\"FFC\": First Fill - Complete:  <br>
+\"FFP\": First Fill - Part Fill <br>  
+\"RFP\": Refill - Part Fill <br> 
+\"RFC\": Refill - Complete <br>
+"
+
+// EM	Emergency Supply: kein geplante Abgabe (Rezept) für ein verschreibungspflichtes Rezept vorhanden
+// SO	Script Owing: kein geplante Abgabe (Rezept) für ein verschreibungspflichtes Rezept vorhanden, geplante Verordnung wird im nachhinen vom GDA erstellt (Rezept nachbringen)
+// FFPS First fill, part fill, partial strength: Eine Erstabgabe, bei der die gelieferte Menge weniger als eine vollständige Wiederholung der bestellten Menge beträgt. (Beispiel: Bei einer Bestellung von 90 Tabletten und 3 Nachfüllungen könnte eine Teilabgabe nur 30 Tabletten umfassen.) Dies gilt auch, wenn die gelieferte Stärke geringer ist als die bestellte Stärke (z. B. 10 mg bei einer Bestellung von 50 mg, wobei bei einer späteren Abgabe 40-mg-Tabletten ausgegeben werden).
+// FFCS first fill complete, partial strength: A first fill where the quantity supplied is equal to one full repetition of the ordered amount. (e.g. If the order was 90 tablets, 3 refills, a complete fill would be for the full 90 tablets) and also where the strength supplied is less than the ordered strength (e.g. 10mg for an order of 50mg where a subsequent fill will dispense 40mg tablets).
+
+
+
+
+
 * quantity 1..1 MS // analog zu geplante abg.
-* quantity ^short = "Abgegebene Menge und Einheit"
+* quantity ^short = "Abgegebene Menge und Einheit."
 
 * daysSupply 0..0 //1 MS
 * daysSupply ^short = "Medikamentenmenge, ausgedrückt als zeitliche Menge"

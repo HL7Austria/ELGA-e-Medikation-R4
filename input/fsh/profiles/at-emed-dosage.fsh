@@ -38,8 +38,7 @@ Um widersprüchliche Anweisungen zu vermeiden, ist entweder Dosage.timing oder D
 
 * route 0..1 MS
 * route from $cs-medikationartanwendung (required) 
-* route ^short = "Art der Anwendung der Arznei. (z.B. oral, nasal, intravenös, subkutan)
- Kann bei codierten Arzneien aus der ASP-Liste entnommen werden."
+* route ^short = "Art der Anwendung der Arznei. (z.B. oral, nasal, intravenös, subkutan). Kann bei codierten Arzneien aus der ASP-Liste entnommen werden."
 
 * method 0..1 MS
 * method ^short = "Verabreichungsmethode, z.B. Infusion, Injektion, Tablette, Salbe etc. "

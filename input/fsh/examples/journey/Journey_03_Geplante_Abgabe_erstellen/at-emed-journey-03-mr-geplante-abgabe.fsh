@@ -14,7 +14,8 @@ Usage: #example
 //* identifier.value = "WYE82A2G8EEW_4712_202602280800000"
 * status = #active
 * intent = #order
-* category = MedicationRequestCategoryCS#2 "Geplante Abgabe"
+* category[mrcategory] = MedicationRequestCategoryCS#2 "Geplante Abgabe"
+* category[recipetype] = $vs-medication-rezeptart#1 "Kassenrezept"
 
 // Referenz auf Inline Medication Ressource
 * medicationReference.reference = #ContainedMedication03
