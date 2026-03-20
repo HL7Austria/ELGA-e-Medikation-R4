@@ -31,11 +31,13 @@ Werden mehrere Arzneimittel gleichzeitig verordnet, wird für jedes Arzneimittel
 
 * status 1..1 MS
 * status from GeplanteAbgabeStatusVS (required)
-* status ^short = "Status der geplanten Abgabe. 
-\"active\": offne, geplante Abgabe <br>
-\"completed\": implizit mittels Custom Operation gesetzt, nachdem alle Abgaben durchgeführt wurden (Rezept komplett eingelöst) (TODO: techn. prüfen) <br>
-\"entered-in-error\": nach fehlerhafter Eingabe; Storno nur möglich, wenn noch keine zugehörige Abgabe durchgeführt wurde (TODO: techn. prüfen?) <br>
-\"stopped\": TODO: Verwendung zu prüfen (Status soll analog zu e-Rezept abgebildet werden) <br>
+* dispenseRequest.validityPeriod ^short = "Status der geplanten Abgabe: active | completed | entered-in-error | stopped. Details siehe Definition."
+* status.validityPeriod ^definition = """
+Status der geplanten Abgabe:
+* \"active\": offne, geplante Abgabe 
+* \"completed\": implizit mittels Custom Operation gesetzt, nachdem alle Abgaben durchgeführt wurden (Rezept komplett eingelöst) (TODO: techn. prüfen) 
+* \"entered-in-error\": nach fehlerhafter Eingabe; Storno nur möglich, wenn noch keine zugehörige Abgabe durchgeführt wurde (TODO: techn. prüfen?) 
+* \"stopped\": TODO: Verwendung zu prüfen (Status soll analog zu e-Rezept abgebildet werden)
 (nicht verwendet: on-hold, stopped, cancelled, draft, unknown)"
 
 * statusReason 0..0 

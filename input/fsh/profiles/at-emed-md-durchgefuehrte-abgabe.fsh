@@ -7,11 +7,14 @@ In der durchgeführten Abgabe können Abweichungen hinsichtlich der Dosierung de
 Sofern eine zugehörige geplante Abgabe vorliegt, muss diese referenziert werden. Einer mögliche Substitution des Medikaments ist implizit, durch die Referenz auf die zugehörige geplante Abgabe, ersichtlich."
 * . ^short = "Durchgeführte Abgabe eines Arzneimittels mit oder ohne Bezug zum Medikationsplan. Verwendet R5 Backport Extensions."
 
-
-// Extensions TODO
 // TODO Check CDA
 
-* identifier 0..0 //..* MS  
+// Extensions   ***************** TODO
+* extension contains $medicationrequest-rendereddosageinstruction-r5 named renderedDosageInstruction 0..1
+* extension[renderedDosageInstruction] ^short = "Vollständige Darstellung der Dosierungsanweisungen"
+// ENDE Extensions  ******************
+
+* identifier 0..0 
 * identifier ^short = "Durchgeführte-Abgabe-ID. TODO: Verwendung zu prüfen." // ws vermutlich keine notwendigkeit
 
 * partOf 0..0 
