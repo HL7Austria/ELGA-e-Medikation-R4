@@ -143,7 +143,7 @@ TODO: eMED-ID Wording ist evtl. aufgrund des Parallelbetriebs noch anzupassen"
 * courseOfTherapyType ^short = "Gesamtmuster der Medikamentengabe (z.B. saisonal). Keine Verwendung in der geplanten Abgabe."
 
 * insurance 0..0
-* insurance ^short = "Keine Verwendung in der geplanten Abgabe."
+* insurance ^short = "Versicherungsinformatinen als Coverage oder ClaimResponse Resource. Keine Verwendung in der geplanten Abgabe."
 
 * note 0..* MS  
 * note ^short = "Zusätzliche Informationen zur geplanten Abgabe (Kommunikations zw. Arzt und Apotheke); die nicht die Dosierung betreffen. 
@@ -166,36 +166,37 @@ TODO: prüfen was CDA derzeit zulässt; HL7 Consultation, ob Feld benötigt"
 * dispenseRequest.dispenseInterval ^short = "Mindestzeitraum zwischen den Abgaben. Keine Verwendung in der geplanten Abgabe."
 
 * dispenseRequest.validityPeriod 1..1 MS 
-* dispenseRequest.validityPeriod ^short = "Zeitraum in dem die geplante Abgabe eingelöst werden kann. <br>
-Der Gültigkeitszeitraum ist abhängig von der Rezeptart (gemäß e-Med v2): </br>
+* dispenseRequest.validityPeriod ^short = "Der Zeitraum in dem die geplante Abgabe eingelöst werden kann ist abhängig von der Rezeptart (siehe Definition)."
+* dispenseRequest.validityPeriod ^definition = """
+Zeitraum in dem die geplante Abgabe eingelöst werden kann.
+Der Gültigkeitszeitraum ist abhängig von der **Rezeptart** (gemäß e-Med v2): 
+* **Kassenrezept**: ab Erstelldatum einen Monat gültig (vom Ausstellungszeitpunkt bis zum gleichen Tag des Folgemonats 23:59 Uhr); validityPeriod.start kein Datum in der Zukunft; bei einer Teilabgabe verlängert sich die gesamte Gültigkeitsdauer auf 3 Monate („Besorger“-Prozess).
+* **Privatrezept**: ab Erstelldatum maximal 365 Tage gültig, wenn die erste Einlösung innerhalb von 1 Monat ab Erstelldatum erfolgt (sonst Status abgelaufen). validityPeriod.start kein Datum in der Zukunft; Die Gültigkeitsdauer (validityPeriod.end) kann vom Arzt definiert werden.
+* **Substitutionsrezept**: Maximale Gültigkeitsdauer 12 Monate. Das validityPeriod.start darf maximal einen Monat in der Zukunft liegen, gültig bis das validityPeriod.end erreicht ist.
 
-Kassenrezept: ab Erstelldatum einen Monat gültig (vom Ausstellungszeitpunkt bis zum gleichen Tag des Folgemonats 23:59 Uhr); validityPeriod.start kein Datum in der Zukunft; bei einer Teilabgabe verlängert sich die gesamte Gültigkeitsdauer auf 3 Monate („Besorger“-Prozess).<br>
-
-Privatrezept: ab Erstelldatum maximal 365 Tage gültig, wenn die erste Einlösung innerhalb von 1 Monat ab Erstelldatum erfolgt (sonst Status abgelaufen). validityPeriod.start kein Datum in der Zukunft; Die Gültigkeitsdauer (validityPeriod.end) kann vom Arzt definiert werden.<br>
-
-Substitutionsrezept: Maximale Gültigkeitsdauer 12 Monate. Das validityPeriod.start darf maximal einen Monat in der Zukunft liegen, gültig bis das validityPeriod.end erreicht ist.<br>
-
-Falls das start-Datum dem authoredOn-Datum entspricht, kann das start-Datum entfallen.<br><br>
-
-TODO: Techn. Prüfung der Gültigkeitszeiträume<br>
-zu prüfen: Kann beim Kassenrezept validityPeriod.start in der Vergangenheit liegen, wenn geplante Abgabe in nachhinein erstellt wurde (z.B. wenn Arzt auf Urlaub und eine Notfallabgabe in der Apotheke durchgeführt wurde)?<br>
-"
+TODO: Techn. Prüfung der Gültigkeitszeiträume
+Falls das validityPeriod.start dem authoredOn-Datum entspricht, kann das start-Datum entfallen.
+zu prüfen: Kann beim Kassenrezept validityPeriod.start in der Vergangenheit liegen, wenn die geplante Abgabe in nachhinein erstellt wurde (z.B. wenn Arzt auf Urlaub und eine Notfallabgabe in der Apotheke durchgeführt wurde)?
+"""
 
 * dispenseRequest.numberOfRepeatsAllowed 1..1 MS   // repeatNumber 1..1 im CDA
-* dispenseRequest.numberOfRepeatsAllowed ^short = "Anzahl der weiteren möglichen Einlösungen:<br>
-Kassenrezept: keine weitere Einlösung möglich (fixer Wert 0) <br>
-Privatrezept: bis zu 6 Einlösungen, Anzahl der möglichen Einlösungen kann vom Arzt definiert werden<br>
-Sustitutionsrzepet: keine weitere Einlösung möglich (fixer Wert 0) <br><br>
-TODO: Techn. Prüfung: Wenn Kassenrezept oder Substitutionsrezept, dann 0. Verpflichtende Eingabe, wenn Privatrezept, max 6.<br>
-"
+* dispenseRequest.validityPeriod ^short = "Die Anzahl der weiteren möglichen Einlösungen ist abhängig von der Rezeptart (siehe Definition)."
+* dispenseRequest.validityPeriod ^definition = """
+Anzahl der weiteren möglichen Einlösungen:
+* **Kassenrezept**: keine weitere Einlösung möglich (fixer Wert 0)
+* **Privatrezept**: bis zu 6 Einlösungen, Anzahl der möglichen Einlösungen kann vom Arzt definiert werden
+* **Sustitutionsrzepet**: keine weitere Einlösung möglich (fixer Wert 0) 
+
+TODO: Techn. Prüfung: Wenn Kassenrezept oder Substitutionsrezept, dann 0. Verpflichtende Eingabe, wenn Privatrezept, max 6.
+"""
 
 * dispenseRequest.quantity 1..1 MS
 * dispenseRequest.quantity ^short = "Menge des Medikaments, die bei jeder Abgabe bereitgestellt werden soll. 
 Da sich die Angaben zum Arzneimittel jeweils auf eine Packung der Arznei beziehen, MUSS die Anzahl der auszugebenden Packungen angegeben werden (mindestens 1). 
-Dies gilt für Arzneimittel mit PZN und magistralen Zubereitungen, z.B. 2 Packungen (OP2), im Fall einer Magistralen Anwendung: Menge 1."
+Dies gilt für Arzneimittel mit PZN und magistralen Zubereitungen."
 
 * dispenseRequest.expectedSupplyDuration 0..0 
-* dispenseRequest.expectedSupplyDuration.value ^short = "Dauer, für die die bereitgestellte Menge des Medikaments voraussichtlich ausreicht, z.B. 30 Tage. Keine Verwendung in der geplanten Abgabe."
+* dispenseRequest.expectedSupplyDuration.value ^short = "Dauer, für die die bereitgestellte Menge des Medikaments voraussichtlich ausreicht. Keine Verwendung in der geplanten Abgabe."
 
 * dispenseRequest.performer 0..0 
 * dispenseRequest.performer ^short = "Apotheke oder andere Einrichtung, die die geplante Abgabe einlösen soll. Keine Verwendung in der geplanten Abgabe."
@@ -204,7 +205,7 @@ Dies gilt für Arzneimittel mit PZN und magistralen Zubereitungen, z.B. 2 Packun
 * substitution ^short = "Gibt an, ob das Arzneimittel substituiert werden darf oder nicht.
 Erläutert die Absicht des verschreibenden Arztes. Keine Verwendung in der geplanten Abgabe." 
 
-* priorPrescription 0..0 // 
+* priorPrescription 0..0 
 * priorPrescription ^short = "Im Falle einer Änderung wird auf die ersetzte geplante Abgabe verwiesen. Keine Verwendung in der geplanten Abgabe."
 
 * detectedIssue 0..0
@@ -217,4 +218,4 @@ verschiedene relevante Versionen dieser Ressource dokumentieren.
 Keine Verwendung in der geplanten Abgabe."
 
 
-// ws: invarianten: welche prüfungen innerhalb der ressource,operations, server
+// ws: invarianten: welche prüfungen innerhalb der ressource, operations, server
