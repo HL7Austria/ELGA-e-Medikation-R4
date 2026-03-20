@@ -31,7 +31,6 @@ Werden mehrere Arzneimittel gleichzeitig verordnet, wird für jedes Arzneimittel
 
 * status 1..1 MS
 * status from GeplanteAbgabeStatusVS (required)
-
 * status ^short = "Status der geplanten Abgabe: active | completed | entered-in-error | stopped. Details siehe Definition."
 * status ^definition = """
 Status der geplanten Abgabe:

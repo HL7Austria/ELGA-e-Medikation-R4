@@ -21,15 +21,17 @@ Sofern eine zugehörige geplante Abgabe vorliegt, muss diese referenziert werden
 * partOf ^short = "Auslösendes Ereignis. Referenz auf Procedure-Ressource, daher keine Verwendung in der durchgeführten Abgabe."
 
 * status 1..1 MS
-* status ^short = "Status der durchgeführten Abgabe: <br>
-\"completed\": durchgeführte Abgabe ist abgeschlossen <br>
-\"entered-in-error\": durchgeführte Abgabe wird aufgrund falscher Eingabe storniert <br>
-\"stopped\": Abgabe wird nicht durchgeführt (Medikament wird abgesetzt) <br>
-http://hl7.org/fhir/ValueSet/medicationdispense-status|4.0.1"
+* status ^short = "Status der durchgeführten Abgabe: completed | entered-in-error | stopped. Details siehe Definition."
+* status ^definition = """
+* **\"completed\"**: Die durchgeführte Abgabe ist abgeschlossen. 
+* **\"entered-in-error\"**: Die durchgeführte Abgabe wird aufgrund falscher Eingabe storniert.
+* **\"stopped\"**: Die Abgabe wird nicht durchgeführt (Medikament wird abgesetzt). 
+http://hl7.org/fhir/ValueSet/medicationdispense-status|4.0.1
 
-//zu prüfen: ob es einen Status in-progress / preparation geben soll, z.B. wenn Bestellvorgang gestartet wurde und der typ First Fill - Part Fill ist.
-//zu prüfen: können Abhängigkeiten zwischen status, typ, Rezeptart? automatisch geprüft werden? Falls der Status vom Typ der geplanten Abgabe (Rezeptart) abhängig sein kann (z.B. in-progress bei Bestellung o.ä.), evtl Operation 
-
+TODO: zu prüfen: 
+* ob es einen Status in-progress / preparation geben soll, z.B. wenn Bestellvorgang gestartet wurde und der typ First Fill - Part Fill ist.
+* Technische Prüfungen bezüglich Abhängigkeiten von status, typ, Rezeptart? automatisch geprüft werden? Falls der Status vom Typ der geplanten Abgabe (Rezeptart) abhängig sein kann (z.B. in-progress bei Bestellung o.ä.), evtl Operation 
+"""
 
 * statusReason[x] ^short = "Grund für den aktuellen Status, z.B. warum keine Abgabe erfolgte (zB. Allergie, Produkt nicht verfügbar). Code oder Referenz (DetectedIssue)"
 * statusReasonCodeableConcept 0..1 MS
@@ -59,12 +61,12 @@ Arzneimittel mit und ohne PZN einheitlich dokumentiert werden können."
 * context ^short = "Referenz auf Encounter oder EpisodeOfCare. Keine Verwendung in der durchgeführten Abgabe."
 
 * supportingInformation 0..0 
-* supportingInformation ^short = "Referenz auf zusätzliche Informationen, die die Abgabe des Medikaments unterstützen. Keine Verwendung in der durchgeführten Abgabe."
+* supportingInformation ^short = "Referenz (Any) auf zusätzliche Informationen, die die Abgabe des Medikaments unterstützen. Keine Verwendung in der durchgeführten Abgabe."
 
 * performer 1..1 MS
 * performer ^short = "Durchführende Person" 
-* performer.function 0..0 // MS
-* performer.function ^short = "Rolle: https://hl7.org/fhir/R4/valueset-medicationdispense-performer-function.html; Verwendung in der durchgeführten Abgabe prüfen."
+* performer.function 0..0 
+* performer.function ^short = "Rolle: https://hl7.org/fhir/R4/valueset-medicationdispense-performer-function.html; Keine Verwendung in der durchgeführten Abgabe."
 * performer.actor 1..1 MS
 * performer.actor only Reference(HL7ATCorePractitioner or HL7ATCorePractitionerRole or HL7ATCoreOrganization)
 * performer.actor ^short = "Refrenz auf Practitioner, PractitionerRole, Organization, 
@@ -99,10 +101,8 @@ Dabei wird das Rezept von der Apotheke eingelöst, und die Abgabe wird als Teila
 
 
 
-
-
-* quantity 1..1 MS // analog zu geplante abg.
-* quantity ^short = "Abgegebene Menge und Einheit."
+* quantity 1..1 MS 
+* quantity ^short = "Abgegebene Packungsanzahl."
 
 * daysSupply 0..0 //1 MS
 * daysSupply ^short = "Medikamentenmenge, ausgedrückt als zeitliche Menge"
@@ -114,11 +114,10 @@ Dabei wird das Rezept von der Apotheke eingelöst, und die Abgabe wird als Teila
 * whenHandedOver ^short = "Der Zeitpunkt, zu dem das abgegebene Produkt dem Patienten oder seinem Vertreter zur Verfügung gestellt wurde."
 
 * destination 0..0
-* destination ^short = "Ort an den das Medikament geschickt wurde (Referenz auf Location Ressource). Verwendung prüfen."
+* destination ^short = "Ort an den das Medikament geschickt wurde (Referenz auf Location Ressource). Keine Verwendung in durchgeführter Abgabe."
 
 * receiver 0..0
-* receiver ^short = "Person, die das Medikament abgeholt hat. Verwendung prüfen."
-* receiver only Reference(HL7ATCorePatient or HL7ATCorePractitioner)
+* receiver ^short = "Person, die das Medikament abgeholt hat. Referenz auf Patient oder Practitioner. Keine Verwendung in durchgeführter Abgabe."
 
 * note 0..* MS // analog zur geplanten abgabe
 * note ^short = "Zusätzliche Informationen zur Abgabe, die nicht anders dokumentiert werden kann."
