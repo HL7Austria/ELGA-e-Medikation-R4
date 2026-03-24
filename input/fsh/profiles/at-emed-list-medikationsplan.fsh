@@ -4,9 +4,9 @@ Id: at-emed-list-medikationsplan
 Title: "ELGA e-Med Medikationsplan"
 Description: "Bildet den Medikationsplan eines ELGA-Teilnehmers ab (\"List\"-Ressource). 
 Die Liste beinhaltet Referenzen auf 0..* Medikationsplaneinträge (MedicationRequests), die alle verordneten Arzneimittel und deren Dosierung abbilden.
-Die Reihenfolge der Listenelemente kann duch den User festgelegt werden. Jedes Listenelement enthält einen Änderungsstatus (weitere Elemente sind noch zu klären).
+Die Reihenfolge der Listenelemente kann duch den User festgelegt werden. Jedes Listenelement enthält einen Änderungsstatus."
 
-TODO: Invariante, dass überall in der List der gleiche Patient enthalten sein muss"
+//TODO: Invariante, dass überall in der List der gleiche Patient enthalten sein muss
 
 * identifier 0..1 MS
 * identifier ^short = "Logischer Identfier der Liste / des Medikationsplans. Verwendung zu prüfen."
@@ -65,7 +65,7 @@ Mögliche Codes: user | system | event-date | entry-date| priority | alphabetic 
 * entry.deleted ^short = "Gibt an, ob der referenzierte Medikationsplaneintrag zur Entfernung markiert wurde. Unklar, ob Löschen so abgebildet werden soll oder einfach der Eintrag nicht mehr enthalten ist."
 
 * entry.date 0..1 MS
-* entry.date ^short = "Datum der Aufnahme des Medikationsplaneintrags. Fachlich zu klären."
+* entry.date ^short = "Datum der Aufnahme / Änderung des Medikationsplaneintrags. Fachlich zu klären."
 
 * entry.item 1..1 MS
 * entry.item only Reference(AtEmedMRPlaneintrag)

@@ -23,18 +23,31 @@ Kann in weiterer Folge dazu dienen, eine geplante Abgabe zu erstellen. Verwendet
 // ENDE Extensions
 
 * identifier 1..1  // sonst 0..* 
-* identifier ^short = "Medikationsplaneintrag-ID. TODO: Verwendung einer logischen Medikationsplaneintrag-ID prüfen.
+* identifier ^short = "Medikationsplaneintrag-ID. TODO: Verwendung einer logischen Medikationsplaneintrag-ID prüfen. Details zur Herstellung von Bezügen von geänderten Planeinträgen, siehe Definition."
+* identifier ^definition = """
+Medikationsplaneintrag-ID.
 Evt. mit Zeitstempel (Planeintrag-ID_{Zeitstempel}) zur Herstellung eines Bezugs von geänderten Planeinträgen.
 Vorteil: 
 - Auch wenn sich die PZN ändert, aber logisch der gleiche Eintrag betroffen ist (z.B. Austausch eines Arzneimittels durch ein anderes mit weniger Wechselwirkung), kann ein Bezug hergestellt werden.
 - Wenn zur Vorversion des Eintrags bereits eine geplante Abgabe erstellt wurde, kann ein Bezug zum ursprünglichen Eintrag hergestellt werden.
 Nachteil: 
 - Falls Planeinträge mit komplett neuer Arznei überschrieben werden, entsteht dadurch ein verwirrender Bezug. 
-- Die Verantwortung, dass nur Einträge geändert werden, die keine komplett neue Medikation beinhalten, liegt beim Client."
+- Die Verantwortung, dass nur Einträge geändert werden, die keine komplett neue Medikation beinhalten, liegt beim Ersteller des Eintrags.
+"""
 
 * status 1..1 MS
 * status from MedikationsplaneintragStatusVS (required)
-* status ^short = "Status des Medikationsplaneintrags. VS Einschränkung auf active, complete, on-hold, stopped (?); TODO: Fachlich zu püfen, ob im Medikationsplan dokumentiert werden soll, dass und warum ein Medikament abgesetzt wurde (Status: stopped, z.B. bei Allergie). Auch im Kontext mit statusReason, wo dieser Grund codiert angegeben werden kann (entfernt: cancelled, entered-in-error, draft, unknown)" 
+* status ^short = "Status des Medikationsplaneintrags. active | completed | on-hold | stopped. TODO: Fachlich zu püfen, ob im Medikationsplan dokumentiert werden soll, dass und warum ein Medikament abgesetzt wurde (Status: stopped, z.B. bei Allergie). Details siehe Definition."
+* status ^definition = """
+Status des Medikationsplaneintrags:
+* \"active\": aktive Therapie; soll aktuell vom Patienten eingenommen werden
+* \"completed\": Therapie regulär abgeschlossen
+* \"on-hold\": Therapie vorübergehend unterbrochen; Wiederaufnahme vorgesehen
+* \"stopped\": begonnen Therapie, aber vorzeitig und ohne regulären Abschluss beendet
+
+(nicht verwendet: cancelled, entered-in-error, draft, unknown)
+https://hl7.org/fhir/R4/valueset-medicationrequest-status.html
+"""
 
 * statusReason 0..0 
 * statusReason ^short = "Grund für den aktuellen Status des Medikationsplaneintrags: (ex) https://hl7.org/fhir/R4/valueset-medicationrequest-status-reason.html. TODO: Verwendung fachlich zu prüfen im Zusammenhang mit Status."
@@ -115,7 +128,7 @@ Nachteil:
 * groupIdentifier ^short = "Erst bei der geplanten Abgabe (Rezepterstellung) relevant. Evtl ein Verweis auf erstellte Rezepte? Würde Extension erfordern, da Kardinalität nur 0..1 zulässig"
 
 * courseOfTherapyType 0..1 MS 
-* courseOfTherapyType ^short = "Gesamtmuster der Medikamentengabe (z.B. saisonal). Verwendung im Medikationsplaneintrag prüfen (dosageInstruction), evtl. durch Dosierungsinformationen abgedeck."
+* courseOfTherapyType ^short = "Gesamtmuster der Medikamentengabe. continuous | acute | seasonal. Verwendung im Medikationsplaneintrag prüfen, evtl. durch Dosierungsinformationen abgedeckt."
 
 * insurance 0..0
 * insurance ^short = "Keine Verwendung im Medikationsplaneintrag."
