@@ -75,12 +75,15 @@ pages:
       title: "UC_eMed_05 - Medikationsplan lesen"
     UC_eMed_06.md:
       title: "UC_eMed_06 - Medikationsplan schreiben"
+    UC_eMed_06_Sub_UC.md:
+      title: "Sub-Usecases zu UC_eMed_06: Medikationsplan schreiben"
     UC_eMed_07.md:
       title: "UC_eMed_07 - Geplante und durchgeführte Abgaben lesen"
     UC_eMed_08.md:
       title: "UC_eMed_08 - Geplante Abgabe schreiben"
     UC_eMed_09.md:
       title: "UC_eMed_09 - Durchgeführte Abgabe schreiben"
+
 
 
 
@@ -131,6 +134,7 @@ menu:
     "UC_eMed_07 Geplante und durchgeführte Abgaben lesen": UC_eMed_07.html
     "UC_eMed_08 Geplante Abgabe schreiben": UC_eMed_08.html
     "UC_eMed_09 Durchgeführte Abgabe schreiben": UC_eMed_09.html
+    "Sub-Usecases zu UC_eMed_06: Medikationsplan schreiben": UC_eMed_06_Sub_UC.html
   Mapping: mapping.html
 
 # ╭───────────────────────────Less Common Implementation Guide Properties──────────────────────────╮
