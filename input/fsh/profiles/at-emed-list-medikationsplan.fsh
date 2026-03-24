@@ -13,12 +13,14 @@ Die Reihenfolge der Listenelemente kann duch den User festgelegt werden. Jedes L
 
 * status 1..1 MS
 //* status = #current  
-* status ^short = "Verpflichtende Angabe: current | retired | entered-in-error. https://hl7.org/fhir/R4/valueset-list-status.html"
+* status ^short = "Verpflichtende Angabe: current | retired. https://hl7.org/fhir/R4/valueset-list-status.html
+TODO: retired nach Ableben des Patienten bis Ende der Aufbewahrungsfrist? automatisch gesetzt?
+entered-in-error nicht sinnvoll"
 
 * mode 1..1 MS
-//* mode = #working
+* mode = #working
 * mode ^short = "Verpflichtende Angabe: working | snapshot | changes. https://hl7.org/fhir/R4/valueset-list-mode.html
-Der Medikationsplan ist ein laufend gepflegtes Dokument: working"
+Der Medikationsplan ist ein laufend gepflegtes Dokument: working."
 
 * title 0..0
 * title ^short = "Titel der Liste. Verwendung zu prüfen."
@@ -47,7 +49,8 @@ des Patienten zuzugreifen. Device nur für initiale Erstellung durch die Fachanw
 * orderedBy 1..1 MS
 * orderedBy from http://hl7.org/fhir/ValueSet/list-order 
 * orderedBy = #user
-* orderedBy ^short = "Die Reihenfolge der Einträge im Medikationsplan ist fachlich relevant und wird durch den Ersteller vorgegeben. 
+* orderedBy ^short = "Die Reihenfolge der Einträge im Medikationsplan ist fachlich relevant und wird durch den Ersteller vorgegeben. Da nicht verpflichtend, könnte das Element auch 0..0 gesetzt werden.
+Evtl. Unterscheidung user und patient.
 Mögliche Codes: user | system | event-date | entry-date| priority | alphabetic | category | patient (TODO: nur user oder andere Reihenfolge ermöglichen?)"
 
 // note: Mögliches Kommentar auf Ebene des Medikationsplans
@@ -59,7 +62,17 @@ Mögliche Codes: user | system | event-date | entry-date| priority | alphabetic 
 
 * entry.flag 1..1 MS
 * entry.flag from http://hl7.org/fhir/ValueSet/list-item-flag
-* entry.flag ^short = "Kennzeichnet die Art der Änderung des Medikationsplaneintrags: zB Unchanged | Changed | Cancelled | Prescribed | Ceased | Suspended."
+* entry.flag ^short = "Kennzeichnet die Art der Änderung des Medikationsplaneintrags: (example) Unchanged | Changed | Cancelled | Prescribed | Ceased | Suspended. Details siehe Definition."
+* entry.flag ^definition = """
+Kennzeichnet die Art der Änderung des Medikationsplaneintrags: 
+* \"Unchanged\": Medikationsplaneintrag bleibt unverändert bestehen
+* \"Changed\": Medikationsplaneintrag wird geändert
+* \"Cancelled\": Medikationsplaneintrag wird storniert
+* \"Prescribed\": Neuer Medikationsplaneintrag wurde hinzugefügt
+* \"Ceased\": Medikationsplaneintrag wird abgesetzt
+* \"Suspended\": Medikationsplaneintrag wird pausiert
+"""  // TODO: eigenes Value Set erstellen
+
 
 * entry.deleted 0..1 MS
 * entry.deleted ^short = "Gibt an, ob der referenzierte Medikationsplaneintrag zur Entfernung markiert wurde. Unklar, ob Löschen so abgebildet werden soll oder einfach der Eintrag nicht mehr enthalten ist."
@@ -73,7 +86,11 @@ Mögliche Codes: user | system | event-date | entry-date| priority | alphabetic 
 
 * emptyReason 0..1 MS
 * emptyReason from MedikationsplanEmptyReasonVS
-* emptyReason ^short = "Begründung, warum der Medikationsplan leer ist: 
-https://hl7.org/fhir/R4/valueset-list-empty-reason.html eingeschränkt auf: <vbr>
+* emptyReason ^short = "Begründung, warum der Medikationsplan leer ist: notstarted |  nilknown. Details siehe Definition."
+* emptyReason ^definition = """
+Begründung, warum der Medikationsplan leer ist. Eingeschränkt auf: <vbr>
     - notstarted: Intitalzustand <br>
-    - nilknown: Patient nimmt derzeit keine Medikamente ein"
+    - nilknown: Patient nimmt derzeit keine Medikamente ein
+
+https://hl7.org/fhir/R4/valueset-list-empty-reason.html
+"""
