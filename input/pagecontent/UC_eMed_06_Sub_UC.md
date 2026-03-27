@@ -15,14 +15,61 @@ Der **Medikationsplaneintrag ("MedicationRequest"-Ressource)** im Medikationspla
 #### Initial erstellter Medikationsplan
 Die initiale Erstellung des Medikationsplans wird durch die e-Medikation Fachanwendung umgesetzt. Das Element emptyReason **notstarted** dokumentiert den Intitalzustand. Dies ist nicht gleichbedeutend mit der Aussage, dass der Patient keine Medikamente einnimmt, sondern zeigt nur, dass noch kein Medikationsplan dokumentiert wurde.
 
-```
 Relevante Felder (List):
+```
+AtEmedListMedikationsplan
 * status: **current**
 * mode: working
 * date: Datum der Erstellung durch die Fachanwendung
 * source: Intitiale Erstellung durch die Fachanwendung
 * emptyReason: **notstarted** (noch keine Medikationsplaneinträge erfasst)
 ```
+
+
+Test: Anzeige mit md-Tabelle:
+
+| Feld         | Wert |
+|--------------|------|
+| status       | **current** |
+| mode         | working |
+| date         | Datum der Erstellung durch die Fachanwendung |
+| source       | Initiale Erstellung durch die Fachanwendung |
+| emptyReason  | **notstarted** (noch keine Medikationsplaneinträge erfasst) |
+
+
+Test: Anzeige mit html:
+<div class="highlight">
+
+<pre>
+* status: <b>current</b>
+* mode: working
+* date: Datum der Erstellung durch die Fachanwendung
+* source: Initiale Erstellung durch die Fachanwendung
+* emptyReason: <b>notstarted</b> (noch keine Medikationsplaneinträge erfasst)
+</pre>
+
+</div>
+
+Test: md-Tabelle mit Einrückung:
+
+| Element | Beschreibung |
+|--------|-------------|
+| status | **current** |
+| mode | working |
+| date | Datum der Erstellung |
+| source | Initiale Erstellung |
+| emptyReason | **notstarted** |
+| └─ reasonDetail | Detail zum Grund |
+
+Test md-Tabelle mit Path:
+
+| Pfad | Beschreibung |
+|------|-------------|
+| status | **current** |
+| emptyReason | **notstarted** |
+| emptyReason.reasonDetail | Zusatzinfo |
+
+
 
 #### Sub-Usecase: Medikationsplaneintrag in Medikationsplan hinzufügen
 Der GDA kann dem Medikationsplan ein oder mehrere Medikationsplaneinträge hinzufügen. 
@@ -31,7 +78,7 @@ Hierfür werden entsprechende Medikationsplaneinträge erstellt und in der List-
 
 Relevante Felder (List):
 ```
-AtEmedListMedikationsplan
+* AtEmedListMedikationsplan
 * status: **current**
 * mode: working
 * date: Datum der Bearbeitung des Medikationsplans
