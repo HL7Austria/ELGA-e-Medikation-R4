@@ -77,7 +77,9 @@ auf die ELGA e-Medikation des Patienten zuzugreifen)."
 * location ^short = "Ort der Abgabe (Referenz auf Location Ressource). Keine Verwendung in durchgeführter Abgabe."
 
 * authorizingPrescription 0..1 MS    // TODO: Technisch prüfen?
-* authorizingPrescription ^short = "Verpflichtende Referenz auf zugehörige geplante Abgabe (MedicationRequest), sofern diese existiert."
+* authorizingPrescription ^short = "Verpflichtende Referenz auf zugehörige geplante Abgabe (MedicationRequest), sofern diese existiert.
+zu prüfen (gemäß CDA): 'Ohne Verordnungsbezug kann nur die Abgabe jener OTC-Präparate in der e-Medikation 
+gespeichert werden, die auch wechselwirkungsrelevant sind.'"
 
 * type 1..1 MS  //TODO: Valueset
 * type ^short = "Mögliche Werte z.B. FFC (First-Fill Complete für vollständig erfüllte Bestellungen), FFP (First-Fill Part Fill für teilweise erfüllte Bestellungen), 
