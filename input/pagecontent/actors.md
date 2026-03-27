@@ -1,3 +1,5 @@
+{% include styleheader.md %}
+
 ### Akteure im niedergelassenen Bereich {#actor-GDA_NGLA}
 
 - Arzt

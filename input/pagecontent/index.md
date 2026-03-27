@@ -1,3 +1,5 @@
+{% include styleheader.md %}
+
 # e-Medikation (R4)
 
 Der vorliegende **FHIR Implementation Guide e‑Medikation R4** ersetzt die bestehende, auf CDA basierende Version 2 der e‑Medikation. 

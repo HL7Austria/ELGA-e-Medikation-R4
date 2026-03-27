@@ -60,82 +60,87 @@ dependencies:
 #
 pages:
   index.md:
-    title: "Start"
-  requirements.md:
-    title: "Die \"e-Medikation\""
-    dosaging.md:
-      title: "Dosierschemata"
-    patient_journey.md:
-      title: "Patient Journey"
+    title: Home
+  scope_and_content.md:
+    title: Umfang und Inhalt
+  background.md:
+    title: Hintergrund
+  challenges.md:
+    title: Herausforderungen  
+  design_choices.md:
+    title: Designentscheidungen
+  dosaging.md:
+    title: Dosierschemata
   actors.md:
-    title: "Akteure"
-  usecases.md:
-    title: "Überblick Anwendungsfälle"
+    title: Akteure
+  # workflowmanagement.md:
+  #   title: Workflowmanagement
+  # obligations.md:
+  #   title: Obligations
+  use_case_overview.md:
+    title: Überblick & Anwendungsbeispiel
+    patient_journey.md:
+      title: Patient Journey
     UC_eMed_05.md:
-      title: "UC_eMed_05 - Medikationsplan lesen"
+      title: UC_eMed_05 - Medikationsplan lesen
     UC_eMed_06.md:
-      title: "UC_eMed_06 - Medikationsplan schreiben"
+      title: UC_eMed_06 - Medikationsplan schreiben
     UC_eMed_06_Sub_UC.md:
-      title: "Sub-Usecases zu UC_eMed_06: Medikationsplan schreiben"
+      title: Sub-Usecases zu UC_eMed_06 (Medikationsplan schreiben)
     UC_eMed_07.md:
-      title: "UC_eMed_07 - Geplante und durchgeführte Abgaben lesen"
+      title: UC_eMed_07 - Geplante und durchgeführte Abgaben lesen
     UC_eMed_08.md:
-      title: "UC_eMed_08 - Geplante Abgabe schreiben"
+      title: UC_eMed_08 - Geplante Abgabe schreiben
     UC_eMed_09.md:
-      title: "UC_eMed_09 - Durchgeführte Abgabe schreiben"
+      title: UC_eMed_09 - Durchgeführte Abgabe schreiben
+  mapping.md:
+    title: Mappings
+  # imprint.md:
+  #   title: Impressum
+  # authors.md:
+  #   title: Mitwirkende
+  # downloads.md:
+  #   title: Downloads
+  # dependencies.md:
+  #   title: Dependencies
+  # copyright.md:
+  #   title: Copyright
+  # known_issues.md:
+  #   title: Known Issues
 
-
-
-
-    mapping.md:
-      title: Mappings
-
-#   implementation.xml:
-#   examples.xml:
-#     title: Examples Overview
-#     simpleExamples.xml:
-#     complexExamples.xml:
-#
-#
-# The parameters property represents IG.definition.parameter. Rather
-# than a list of code/value pairs (as in the ImplementationGuide
-# resource), the code is the YAML key. If a parameter allows repeating
-# values, the value in the YAML should be a sequence/array.
-# For parameters defined by core FHIR see:
-# http://build.fhir.org/codesystem-guide-parameter-code.html
-# For parameters defined by the FHIR Tools IG see:
-# http://build.fhir.org/ig/FHIR/fhir-tools-ig/branches/master/CodeSystem-ig-parameters.html
-#
-# parameters:
-#   excludettl: true
-#   validation: [allow-any-extensions, no-broken-links]
-#
-# ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
-# │ The menu property will be used to generate the input/menu.xml file. The menu is represented    │
-# │ as a simple structure where the YAML key is the menu item name and the value is the URL.       │
-# │ The IG publisher currently only supports one level deep on sub-menus. To provide a             │
-# │ custom menu.xml file, do not include this property and include a `menu.xml` file in            │
-# │ input/includes. To use a provided input/includes/menu.xml file, delete the "menu"              │
-# │ property below.                                                                                │
-# ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 menu:
-  Start: index.html
-  Inhalt: toc.html
-  Die "e-Medikation": 
-    "Überblick": requirements.html
-    "Dosierschemata": dosaging.html
-    "Patient Journey": patient_journey.html
-  Akteure: actors.html
-  FHIR Artefakte: artifacts.html
+  Home: index.html
+  Inhaltsverzeichnis: toc.html
+  Einleitung: 
+    Umfang und Inhalt: scope_and_content.html
+    Hintergrund: background.html
+    Herausforderungen: challenges.html
+  Funktionales:
+    Designentscheidungen: design_choices.html
+    Akteure: actors.html
+    # Workflowmanagement: workflowmanagement.html
+    # Obligations: obligations.html
+    Dosierschemata: dosaging.html
   Anwendungsfälle:
-    "Überblick": usecases.html
-    "UC_eMed_05 Medikationsplan lesen": UC_eMed_05.html
-    "UC_eMed_06 Medikationsplan schreiben": UC_eMed_06.html
-    "UC_eMed_07 Geplante und durchgeführte Abgaben lesen": UC_eMed_07.html
-    "UC_eMed_08 Geplante Abgabe schreiben": UC_eMed_08.html
-    "UC_eMed_09 Durchgeführte Abgabe schreiben": UC_eMed_09.html
-    "Sub-Usecases zu UC_eMed_06: Medikationsplan schreiben": UC_eMed_06_Sub_UC.html
-  Mapping: mapping.html
+    Überblick: use_case_overview.html
+    Patient Journey: patient_journey.html
+    UC_eMed_05 Medikationsplan lesen: UC_eMed_05.html
+    UC_eMed_06 Medikationsplan schreiben: UC_eMed_06.html
+    UC_eMed_07 Geplante und durchgeführte Abgaben lesen: UC_eMed_07.html
+    UC_eMed_08 Geplante Abgabe schreiben: UC_eMed_08.html
+    UC_eMed_09 Durchgeführte Abgabe schreiben: UC_eMed_09.html
+    Sub-Usecases zu UC_eMed_06 (Medikationsplan schreiben): UC_eMed_06_Sub_UC.html
+  Mappings: mapping.html
+  Artifacts: artifacts.html
+  # About:
+  #   Impressum: imprint.html
+  #   Mitwirkende: authors.html
+  #   Downloads:  downloads.html
+  #   Dependencies: dependencies.html
+  #   Copyright: copyright.html
+  #   Known Issues: known_issues.html
+
+
 
 # ╭───────────────────────────Less Common Implementation Guide Properties──────────────────────────╮
 # │  Uncomment the properties below to configure additional properties on the ImplementationGuide  │
