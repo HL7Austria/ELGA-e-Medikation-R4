@@ -1,5 +1,3 @@
-{% include styleheader.md %}
-
 <!-- Anwendungsfall UC_eMed_06: Medikationsplan schreiben -->
 
 ### Sub-Usecases zu UC_eMed_06: Medikationsplan schreiben
@@ -20,16 +18,14 @@ Die initiale Erstellung des Medikationsplans wird durch die e-Medikation Fachanw
 
 Relevante Felder (List):
 
-<div class="highlight">
-<pre>
+```
 AtEmedListMedikationsplan
-* status: current
+* status: **current**
 * mode: working
 * date: Datum der Erstellung durch die Fachanwendung
 * source: Intitiale Erstellung durch die Fachanwendung
-* emptyReason: <b>notstarted<b> (noch keine Medikationsplaneinträge erfasst)
-</pre>
-</div>
+* emptyReason: **notstarted** (noch keine Medikationsplaneinträge erfasst)
+```
 
 
 #### Leerer Medikationsplan (keine Medikation eingenommen)
@@ -42,16 +38,15 @@ Dient zur Unterscheidung von leeren Medikationsplänen, die noch nie befüllt wu
 
 Relevante Felder (List):
 
-<div class="highlight">
-<pre>
+```
 AtEmedListMedikationsplan
-* status: current
-* mode: working
-* date: Datum der Bearbeitung
-* source: Veranwortlicher GDA 
-* emptyReason: <b>nilknown<b>, Patient nimmt derzeit kein Medikation ein
-</pre>
-</div>
+ status: current
+ mode: working
+ date: Datum der Bearbeitung
+ source: Veranwortlicher GDA 
+ emptyReason: <b>nilknown<b>, Patient nimmt derzeit kein Medikation ein
+```
+
 
 TODO: Muss ein GDA zuerst alle Einträge abgesetzen / stornieren oder und die Fachanwendung setzt das emptyReason dann beim nächsten readtowrite auf nilknown?
 
@@ -63,8 +58,7 @@ Hierfür werden entsprechende Medikationsplaneinträge *MedicationRequests* erst
 
 Relevante Felder (List):
 
-<div class="highlight">
-<pre>
+```
 * status: current
 * mode: working
 * date: Datum der Bearbeitung des Medikationsplans
@@ -77,8 +71,7 @@ Relevante Felder (List):
     * flag: <b>Prescribed<b> 
     * date: Datum der Aufnahme des Medikationsplaneintrags // in diesem Fall gleich mit dem Datum der Bearbeitung des Medikationsplans
     * item: Referenz auf den <b>Planeintrag 2<b>  // siehe "Neuen Medikationsplaneintrag erstellen"
-</pre>
-</div>
+```
 
 Anmerkung: Für das Erstellen einer geplanten Abgabe (Rezeptieren) aus den Medikationsplaneinträgen heraus siehe UC_08.
 
