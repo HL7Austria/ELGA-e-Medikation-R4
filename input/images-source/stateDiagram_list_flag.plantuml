@@ -1,0 +1,8 @@
+@startuml
+[*] --> New
+New --> Unchanged
+Changed --> Unchanged
+Unchanged --> Changed
+Unchanged --> Removed
+Removed  --> [*]
+@enduml

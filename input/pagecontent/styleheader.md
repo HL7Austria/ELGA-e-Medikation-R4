@@ -68,30 +68,15 @@ width: 100%;}
 }
 
 .codebox {
-  border: 1px solid #156082;
-  background: #dae8f8;
+  border: 1px solid #ccc;
+  background: #f5f5f5;
   padding: 8px 12px;
   border-radius: 4px;
   margin: 8px 0;
-
-  /* Code-Optik */
   font-family: "Courier New", Courier, monospace;
-  font-size: 14px;
-  white-space: pre;
+  color: #2d2d2d;
 }
 
-.codebox2 {
-  border: 1px solid #156082;
-  background: #dae8f8;
-  padding: 8px 12px;
-  border-radius: 4px;
-  margin: 8px 0;
-
-  font-family: "Fira Code", "Courier New", monospace;
-  font-size: 14px;
-  line-height: 1.5;
-  white-space: pre;
-}
 
 </style>
 

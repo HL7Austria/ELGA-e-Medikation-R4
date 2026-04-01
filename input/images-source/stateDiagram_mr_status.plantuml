@@ -1,0 +1,18 @@
+@startuml
+state "entered-in-error" as enteredInError
+state "on-hold" as onHold
+
+[*] --> active
+[*] --> onHold
+onHold --> active
+onHold --> enteredInError
+onHold --> stopped
+onHold --> completed
+active --> stopped
+active --> completed
+active --> onHold
+active --> enteredInError
+stopped --> [*]
+enteredInError --> [*]
+completed --> [*]
+@enduml
