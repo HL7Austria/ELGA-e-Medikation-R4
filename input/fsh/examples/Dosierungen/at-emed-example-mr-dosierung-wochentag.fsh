@@ -30,7 +30,7 @@ Usage: #example
 * dosageInstruction.timing.repeat.periodUnit = #wk
 * dosageInstruction.timing.repeat.dayOfWeek[0] = #tue
 * dosageInstruction.timing.repeat.dayOfWeek[+] = #thu
-* dosageInstruction.doseAndRate.doseQuantity = $vs-emed-mengenart#{Stueck} "Stück"
+* dosageInstruction.doseAndRate.doseQuantity = $cs-ucum#{Stueck} "Stück"
 
 
 // Contained Medication *********************************************************************

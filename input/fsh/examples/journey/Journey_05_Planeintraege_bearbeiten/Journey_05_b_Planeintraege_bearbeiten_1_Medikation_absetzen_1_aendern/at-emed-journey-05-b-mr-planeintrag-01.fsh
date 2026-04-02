@@ -28,9 +28,9 @@ Usage: #example
 * dosageInstruction.timing.repeat.frequency = 1
 * dosageInstruction.timing.repeat.period = 1
 * dosageInstruction.timing.repeat.periodUnit = #d
-* dosageInstruction.timing.repeat.when[0] = $vs-einnahmezeitpunkte#ACM "Morgens"   // morgens
-//* dosageInstruction.timing.repeat.when[+] = $vs-einnahmezeitpunkte#ACV "Abends"  // abends
-* dosageInstruction.doseAndRate.doseQuantity = $vs-emed-mengenart#{Stueck} "Stück"
+* dosageInstruction.timing.repeat.when[0] = $cs-timing#ACM "Morgens"   // morgens
+//* dosageInstruction.timing.repeat.when[+] = $cs-timing#ACV "Abends"  // abends
+* dosageInstruction.doseAndRate.doseQuantity = $cs-ucum#{Stueck} "Stück"
 
 
 // Contained Medication *********************************************************************

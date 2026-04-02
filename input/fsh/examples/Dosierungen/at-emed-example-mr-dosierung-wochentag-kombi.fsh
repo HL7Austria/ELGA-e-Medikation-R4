@@ -32,7 +32,7 @@ Usage: #example
 * dosageInstruction.timing.repeat.dayOfWeek[+] = #fri
 * dosageInstruction.timing.repeat.when[0] = #MORN
 * dosageInstruction.timing.repeat.when[+] = #EVE
-* dosageInstruction.doseAndRate.doseQuantity = $vs-emed-mengenart#{Stueck} "Stück"
+* dosageInstruction.doseAndRate.doseQuantity = $cs-ucum#{Stueck} "Stück"
 
 // Contained Medication *********************************************************************
 Instance: contained-medication-wochentag-kombi

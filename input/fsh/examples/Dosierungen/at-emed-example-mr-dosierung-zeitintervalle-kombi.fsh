@@ -29,12 +29,12 @@ Usage: #example
 * dosageInstruction[=].timing.repeat.period = 2
 * dosageInstruction[=].timing.repeat.periodUnit = #d
 * dosageInstruction[=].timing.repeat.timeOfDay = "08:00:00"
-* dosageInstruction.doseAndRate.doseQuantity = $vs-emed-mengenart#{Stueck} "Stück"
+* dosageInstruction.doseAndRate.doseQuantity = $cs-ucum#{Stueck} "Stück"
 * dosageInstruction[+].timing.repeat.frequency = 1
 * dosageInstruction[=].timing.repeat.period = 2
 * dosageInstruction[=].timing.repeat.periodUnit = #d
 * dosageInstruction[=].timing.repeat.timeOfDay = "18:00:00"
-* dosageInstruction.doseAndRate.doseQuantity = $vs-emed-mengenart#{Stueck} "Stück"
+* dosageInstruction.doseAndRate.doseQuantity = $cs-ucum#{Stueck} "Stück"
 
 
 

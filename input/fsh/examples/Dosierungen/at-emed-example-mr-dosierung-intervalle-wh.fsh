@@ -28,7 +28,7 @@ Usage: #example
 * dosageInstruction.timing.repeat.frequency = 1
 * dosageInstruction.timing.repeat.period = 8
 * dosageInstruction.timing.repeat.periodUnit = #d
-* dosageInstruction.doseAndRate.doseQuantity = $vs-emed-mengenart#{Stueck} "Stück"
+* dosageInstruction.doseAndRate.doseQuantity = $cs-ucum#{Stueck} "Stück"
 
 
 
