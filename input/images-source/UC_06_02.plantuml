@@ -38,19 +38,19 @@ skinparam sequence {
 skinparam BoxPadding 20
 skinparam BoxBorderColor #555555
 
-box "\n  GDA 1  " #4F81BD
+box "\n  GDA 1  " #90C1DC
   actor GDA_1 as "GDA 1"
 end box
 
-box "\n       e-Med Fachanwendung       " #F1A984
+box "\n       e-Med Fachanwendung       " #D9AFA4
   participant eMed_FA as "e-Med FA"
 end box
 
-box "\n    GDA 2  " #C0504D
+box "\n    GDA 2  " #C0BECB
   actor GDA_2 as "GDA 2"
 end box
 
-box "\n Patient  " #9BBB59
+box "\n Patient  " #BBD3B4
   actor Patient as "Patient"
 end box
 

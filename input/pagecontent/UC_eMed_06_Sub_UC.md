@@ -8,23 +8,13 @@
 
 ##### List
 
-Der **Medikationsplan eines ELGA-Teilnehmers ("List"-Ressource)** beinhaltet List-Entries, die 0..* Medikationsplaneinträge (*MedicationRequests*) referenzieren. Die Reihenfolge der Listenelemente kann duch den GDA oder Patienten festgelegt werden. Jedes Listenelement enthält einen Änderungsstatus (*flag*).
-
-Der Status eines Eintrags kann folgende Zustände annehmen:
-
-###### List-Flag Diagramm
-
-<div>{% include stateDiagram_list_flag.svg %}</div>
-
+Der **Medikationsplan eines ELGA-Teilnehmers ("List"-Ressource)** beinhaltet List-Entries, die 0..* Medikationsplaneinträge (*MedicationRequests*) referenzieren. Die Reihenfolge der Listenelemente kann duch den GDA oder Patienten festgelegt werden. Jedes Listenelement enthält im *flag*-Element einen Änderungsstatus (siehe [Status-Änderungen der List-Flag (Medikationsplan)](workflowmanagement.html)).
 
 ##### MedicationRequest
 
 Der **Medikationsplaneintrag ("MedicationRequest"-Ressource)** im Medikationsplan eines ELGA-Teilnehmers / einer ELGA-Teilnehmerin bildet genau ein Arzneimittel und dessen Dosierung ab und bildet in weiterer Folge die Grundlage zur Erstellung einer geplanten Abgabe (siehe UC_08).
 
-##### MedicationRequest-Status Diagramm
-
-<div>{% include stateDiagram_mr_status.svg %}</div>
-
+Der atkuelle Status eines Medikationsplaneintrags wird im *status*-Element dokumentiert (siehe [Status-Änderungen des MedicationRequests im Medikationsplaneintrag](workflowmanagement.html)).  
 
 #### Initial erstellter Medikationsplan UC_06_01
 

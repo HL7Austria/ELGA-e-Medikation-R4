@@ -38,7 +38,7 @@ Status der geplanten Abgabe:
 * \"completed\": implizit mittels Custom Operation gesetzt, nachdem alle Abgaben durchgeführt wurden (Rezept komplett eingelöst) (TODO: techn. prüfen) 
 * \"entered-in-error\": nach fehlerhafter Eingabe; Storno nur möglich, wenn noch keine zugehörige Abgabe durchgeführt wurde (TODO: techn. prüfen?) 
 * \"stopped\": TODO: Verwendung zu prüfen (Status soll analog zu e-Rezept abgebildet werden)
-(nicht verwendet: on-hold, stopped, cancelled, draft, unknown)
+(nicht verwendet: on-hold, cancelled, draft, unknown)
 """
 
 * statusReason 0..0 
