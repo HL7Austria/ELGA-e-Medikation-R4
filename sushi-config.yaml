@@ -73,8 +73,8 @@ pages:
     title: Dosierschemata
   actors.md:
     title: Akteure
-  # workflowmanagement.md:
-  #   title: Workflowmanagement
+  workflowmanagement.md:
+    title: Workflowmanagement
   # obligations.md:
   #   title: Obligations
   use_case_overview.md:
@@ -118,7 +118,7 @@ menu:
   Funktionales:
     Designentscheidungen: design_choices.html
     Akteure: actors.html
-    # Workflowmanagement: workflowmanagement.html
+    Workflowmanagement: workflowmanagement.html
     # Obligations: obligations.html
     Dosierschemata: dosaging.html
   Anwendungsfälle:
