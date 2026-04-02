@@ -10,6 +10,8 @@ Alias: $ihe-ext-medicationrequest-offlabeluse = https://profiles.ihe.net/PHARM/M
 // general
 Alias: $cs-loinc = http://loinc.org
 Alias: $cs-sct = http://snomed.info/sct
+Alias: $cs-ucum = http://unitsofmeasure.org
+Alias: $cs-timing = http://terminology.hl7.org/CodeSystem/v3-TimingEvent
 
 // medication
 Alias: $cs-asp-liste = https://termgit.elga.gv.at/CodeSystem/asp-liste
@@ -20,13 +22,16 @@ Alias: $vs-emed-mengenart = https://termgit.elga.gv.at/ValueSet-elga-medikationm
 //Dosierungen
 Alias: $cs-medikationartanwendung = https://termgit.elga.gv.at/CodeSystem/medikationartanwendung   // Anwendung auf der Haut, 	zur Inhalation ...
 Alias: $vs-einnahmezeitpunkte = https://termgit.elga.gv.at/ValueSet/elga-einnahmezeitpunkte        // Mittags, morgens: dosageInstruction.timing.repeat.when
+     
 Alias: $vs-medikationfrequenz = https://termgit.elga.gv.at/ValueSet/elga-medikationfrequenz         // Tag, Monat, Woche, Jahr
 
+
 //medication request
-Alias: $cs-medication-request-status = http://hl7.org/fhir/medicationrequest-status
+Alias: $cs-medication-request-status = http://hl7.org/fhir/CodeSystem/medicationrequest-status
 
 // medication request - geplante verordung:
 Alias: $vs-medication-rezeptart = 	https://termgit.elga.gv.at/ValueSet/elga-medikationrezeptart
+Alias: $cs-medication-rezeptart = https://termgit.elga.gv.at/CodeSystem/medikationrezeptart
 
 // medikationsplan
 Alias: $cs-list-empty-reason = http://terminology.hl7.org/CodeSystem/list-empty-reason
