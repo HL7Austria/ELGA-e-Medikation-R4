@@ -57,6 +57,9 @@ end box
 autonumber
 
 GDA_1 ->> eMed_FA: $medikationsplanAbrufen\n(Patient)
+note over GDA_1, eMed_FA
+GDA 1 ruft Medikationsplans ab
+end note
 
 activate eMed_FA
 eMed_FA -> eMed_FA: Prüfung auf bestehenden\nMedikationsplan
@@ -66,7 +69,7 @@ eMed_FA -->> GDA_1: Bestehender Medikationsplan
 deactivate eMed_FA
 
 note over GDA_1, eMed_FA
-GDA 1 ruft den Medikationsplan eines Patienten ab.
+Fachanwendung liefert Medikationsplan zurück.
 end note
 
 @enduml

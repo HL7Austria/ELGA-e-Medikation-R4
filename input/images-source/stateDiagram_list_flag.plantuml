@@ -1,8 +1,8 @@
 @startuml
-[*] --> New
-New --> Unchanged
-Changed --> Unchanged
-Unchanged --> Changed
-Unchanged --> Removed
-Removed  --> [*]
+(*) -d-> [Neuen Planeintrag der Liste hinzugefügt] New
+New --> [Fachanwendung ändert Flag autmatisch bei read-to-write-Abruf] Unchanged
+Changed --> [Planeintrag beibehalten/zur Kenntnis genommen] Unchanged
+Unchanged --> [Planeintrag geändert] Changed
+Unchanged -d-> [Planeintrag entfernt] Removed
+Removed  -d-> (*)
 @enduml

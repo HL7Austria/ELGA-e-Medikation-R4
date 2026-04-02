@@ -59,6 +59,10 @@ autonumber
 
 GDA_1 ->> eMed_FA: $medikationsplanAbrufen\n(Patient)
 
+note over GDA_1, eMed_FA
+GDA 1 ruft Medikationsplans ab
+end note
+
 activate eMed_FA
 eMed_FA -> eMed_FA: Prüfung auf bestehenden\nMedikationsplan
 
@@ -67,8 +71,7 @@ eMed_FA -->> GDA_1: Leerer Medikationsplan\n(emptyReason = "nilknown")
 deactivate eMed_FA
 
 note over GDA_1, eMed_FA
-GDA 1 ruft den Medikationsplan eines Patienten ab. 
-Ein leerer Medikationsplan mit emptyReason "nilknown" wird zurückgegeben.
+Fachanwendung liefert leeren Medikationsplan (emptyReason "nilknown") zurück.
 end note
 
 @enduml

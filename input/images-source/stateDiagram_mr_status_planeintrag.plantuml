@@ -1,18 +1,17 @@
 @startuml
-state "entered-in-error" as enteredInError
-state "on-hold" as onHold
+title List Flag
 
-[*] --> active
-[*] --> onHold
-onHold --> active
-onHold --> enteredInError
-onHold --> stopped
-onHold --> completed
-active --> stopped
-active --> completed
-active --> onHold
-active --> enteredInError
-stopped --> [*]
-enteredInError --> [*]
-completed --> [*]
+(*) -d-> [neuer Planeintrag] active
+(*) -d-> [neuer Planeintrag pausiert] onHold
+onHold -r-> [aktivieren] active 
+onHold -d-> [stornieren] enteredInError
+onHold -l-> [absetzen] stopped
+onHold -d-> [beenden] completed
+active -l-> [absetzen] stopped
+active -r-> [beenden] completed  
+active -l-> [pausieren] onHold
+active -d-> [stornieren] enteredInError
+stopped -d-> (*)
+enteredInError -d-> (*)
+completed -d-> (*)
 @enduml

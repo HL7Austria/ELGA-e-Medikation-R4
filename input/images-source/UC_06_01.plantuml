@@ -59,6 +59,10 @@ autonumber
 
 GDA_1 ->> eMed_FA: $medikationsplanAbrufen\n(Patient)
 
+note over GDA_1, eMed_FA
+GDA 1 ruft Medikationsplans ab
+end note
+
 activate eMed_FA
 eMed_FA -> eMed_FA: Prüfung auf bestehenden\nMedikationsplan
 
@@ -67,9 +71,7 @@ eMed_FA -->> GDA_1: Leerer Medikationsplan\n(emptyReason = "notstarted")
 deactivate eMed_FA
 
 note over GDA_1, eMed_FA
-Initialer Zugriff durch GDA 1 zur Erstellung bzw. Abfrage
-eines Medikationsplans. Falls noch kein Plan existiert, wird ein
-leerer Medikationsplan mit emptyReason "notstarted" zurückgegeben.
+Fachanwendung erzeugt leeren Medikationsplan (emptyReason "notstarted") und liefert ihn zurück.
 end note
 
 @enduml
