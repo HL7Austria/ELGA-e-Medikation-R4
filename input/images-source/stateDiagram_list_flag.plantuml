@@ -1,8 +1,10 @@
 @startuml
-(*) -d-> [Neuen Planeintrag der Liste hinzugefügt] New
-New --> [Fachanwendung ändert Flag autmatisch bei read-to-write-Abruf] Unchanged
-Changed --> [Planeintrag beibehalten/zur Kenntnis genommen] Unchanged
-Unchanged --> [Planeintrag geändert] Changed
-Unchanged -d-> [Planeintrag entfernt] Removed
+title List Flag
+
+(*) -d-> [Neuer Planeintrag\nhinzugefügt] New
+New --> [Autmatisch bei read-to-write-Abruf\n(durch Fachanwendung)] Unchanged
+Changed --> [Planeintrag beibehalten/\nzur Kenntnis genommen] Unchanged
+Unchanged --> [Planeintrag\ngeändert] Changed
+Unchanged -d-> [Planeintrag\nentfernt] Removed
 Removed  -d-> (*)
 @enduml

@@ -1,17 +1,17 @@
 @startuml
-title List Flag
+title MedicationRequest Status
 
 (*) -d-> [neuer Planeintrag] active
-(*) -d-> [neuer Planeintrag pausiert] onHold
-onHold -r-> [aktivieren] active 
-onHold -d-> [stornieren] enteredInError
-onHold -l-> [absetzen] stopped
-onHold -d-> [beenden] completed
+(*) -d-> [neuer Planeintrag\npausiert] "on-hold"
+"on-hold" -r-> [aktivieren] active 
+"on-hold" -d-> [stornieren] "entered-in-error"
+"on-hold" -l-> [absetzen] stopped
+"on-hold" -d-> [beenden] completed
 active -l-> [absetzen] stopped
 active -r-> [beenden] completed  
-active -l-> [pausieren] onHold
-active -d-> [stornieren] enteredInError
+active -l-> [pausieren] "on-hold"
+active -d-> [stornieren] "entered-in-error"
 stopped -d-> (*)
-enteredInError -d-> (*)
+"entered-in-error" -d-> (*)
 completed -d-> (*)
 @enduml
