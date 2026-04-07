@@ -49,7 +49,7 @@ Status des Medikationsplaneintrags:
 https://hl7.org/fhir/R4/valueset-medicationrequest-status.html
 """
 
-* statusReason 0..0 
+* statusReason 0..0   // TODO: statusReason.text optional für Begründung der Änderung zulassen?
 * statusReason ^short = "Grund für den aktuellen Status des Medikationsplaneintrags: (ex) https://hl7.org/fhir/R4/valueset-medicationrequest-status-reason.html. TODO: Verwendung fachlich zu prüfen im Zusammenhang mit Status."
 
 * intent 1..1 MS
@@ -67,7 +67,7 @@ https://hl7.org/fhir/R4/valueset-medicationrequest-status.html
 * doNotPerform ^short = "Gibt an, ob der Medikationsplaneintrag die Verordnung einer Medikation (und somit die Erstellung einer geplanten Abgabe) untersagt (z.B. bei Allergie). TODO: Fachlich zu prüfen, ob dieser Usecase existiert. Auch im Kontext mit status und statusReason zu betrachten. Evtl. erst in späterer Version"
 
 * reported[x] 1..1 MS
-* reportedReference only Reference(Patient or Practitioner or PractitionerRole)
+* reportedReference only Reference(Patient or Practitioner or PractitionerRole)  // TODO: nur boolschen Wert zulassen
 
 * reportedBoolean ^short = "TRUE im Falle der Dokumentation von Fremdmedikation (ein anderer Arzt hat das Medikament ursprünglich verordnet), sonst FALSE. TODO: Klären ob hier der GDA eindeutig identifiziert sein muss (im GDA-I vorhanden) oder analog zu e-Impfpass Freitext sein kann. Juristisch Verantwortlichkeit für Korrektheit des Eintrags zu klären."
 * reportedReference ^short = "Im Falle einer Fremdmedikation Angabe einer Referenz auf: (Patient | Practitioner | PractitionerRole | RelatedPerson | Organization)"

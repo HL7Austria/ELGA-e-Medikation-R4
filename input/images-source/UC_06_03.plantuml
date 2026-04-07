@@ -56,20 +56,46 @@ end box
 
 autonumber
 
-GDA_1 ->> eMed_FA: $medikationsplanAbrufen\n(Patient)
+GDA_1 ->> eMed_FA: $readtowrite\n(Patient)
 note over GDA_1, eMed_FA
-GDA 1 ruft Medikationsplans ab
+GDA 1 ruft Medikationsplans ab, mit der Intension zu schreiben
 end note
 
 activate eMed_FA
 eMed_FA -> eMed_FA: Prüfung auf bestehenden\nMedikationsplan
 
-eMed_FA -->> GDA_1: Bestehender Medikationsplan
+eMed_FA -> eMed_FA: List-Flags von *new* oder *changed* auf *unchanged* setzen\nList-Entries mit Flag *removed* entfernen\nList-Entries mit abgelaufenem Behandlungszeitraum auf *completed* setzen
+
+eMed_FA -->> GDA_1: Collection Bundle mit List und MedicationRequests zurückliefern
 
 deactivate eMed_FA
 
 note over GDA_1, eMed_FA
 Fachanwendung liefert Medikationsplan zurück.
 end note
+
+activate GDA_1
+
+GDA_1 -> GDA_1: MedicationRequest erstellen,\nmit Flag "new" der Liste hinzufügen
+
+GDA_1 ->> eMed_FA: $write\n(Patient)
+
+deactivate GDA_1
+
+note over GDA_1, eMed_FA
+GDA 1 sendet neuen Medikationsplan zur Fachanwendung
+end note
+
+activate eMed_FA
+
+eMed_FA -> eMed_FA: Prüfung, ob Medikationsplan noch aktuell\n(kein anderer GDA hat ein $write durchgeführt)
+
+note over eMed_FA
+Fachanwendung speichert Medikationsplan.
+end note
+
+deactivate eMed_FA
+
+center footer Sub_UC_06_03 - Medikationsplaneintrag in Medikationsplan hinzufügen
 
 @enduml

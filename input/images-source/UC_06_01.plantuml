@@ -74,4 +74,6 @@ note over GDA_1, eMed_FA
 Fachanwendung erzeugt leeren Medikationsplan (emptyReason "notstarted") und liefert ihn zurück.
 end note
 
+center footer Sub_UC_06_01 - Initial erstellter Medikationsplan
+
 @enduml

@@ -3,7 +3,7 @@ title List Flag
 
 (*) -d-> [Neuer Planeintrag\nhinzugefügt] New
 New --> [Autmatisch bei read-to-write-Abruf\n(durch Fachanwendung)] Unchanged
-Changed --> [Planeintrag beibehalten/\nzur Kenntnis genommen] Unchanged
+Changed --> [Autmatisch bei read-to-write-Abruf\n(durch Fachanwendung)] Unchanged
 Unchanged --> [Planeintrag\ngeändert] Changed
 Unchanged -d-> [Planeintrag\nentfernt] Removed
 Removed  -d-> (*)
