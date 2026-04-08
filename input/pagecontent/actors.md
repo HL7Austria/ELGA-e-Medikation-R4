@@ -2,45 +2,44 @@
 
 ### Akteure im niedergelassenen Bereich {#actor-GDA_NGLA}
 
-- Arzt
+- Ärzte
 - Allgemeinmediziner mit und ohne Kassenvertrag
-* Facharzt mit und ohne Kassenvertrag
+* Fachärzte mit und ohne Kassenvertrag
 * Hausapotheker (Da im GDA-Index jeder GDA nur eine Rolle besitzt und es die Rolle „Hausapotheker“ nicht gibt, haben Hausapotheker dieselbe Rolle wie niedergelassene Ärzte ohne Hausapotheke. Somit hat jeder Arzt auch die Funktionalitäten zur Abgabe zur Verfügung.)
-etc.
-* Arztpraxisassistent
+* Arztpraxisassistenz
 
 <div xmlns="http://www.w3.org/1999/xhtml" class="container"> 
     
-    TODO Operations
+    <!-- TODO Operations -->
 </div>
 
 
 ### Akteure der Krankenanstalt {#actor-GDA_KH}
-In der e-Medikation erfolgt keine Unterscheidung zwischen stationären und ambulanten Bereich.
+In der e-Medikation erfolgt keine Unterscheidung zwischen stationärem und ambulantem Bereich.
 <div xmlns="http://www.w3.org/1999/xhtml" class="container"> 
     
-    TODO Operations
+    <!-- TODO Operations -->
 </div>
   
 
 ### Akteure in der Apotheke {#actor-GDA_APO}
-- Pharmazeut
-- Pharmazeutisch-kaufmännische:r Assistent:in
-- Pharmazeutisch-technische:r Assistent:in
+- Pharmazeuten
+- Pharmazeutisch-kaufmännische Assistenz
+- Pharmazeutisch-technische Assistenz
 
 <div xmlns="http://www.w3.org/1999/xhtml" class="container"> 
     
-    TODO Operations
+    <!-- TODO Operations -->
 </div>
 
 
 ### Einrichtung der Pflege {#actor-GDA_PFL}
 
-Die GDA-Software muss sicherstellen, dass eine eindeutige Identifizierung des ärztlichen Personals möglich ist. Nur dieses darf e-Medikationsplanänderungen und geplante Verordnungen durchführen. 
+Die GDA-Software muss sicherstellen, dass eine eindeutige Identifizierung des ärztlichen Personals möglich ist. Nur dieses darf Medikationsplanänderungen und geplante Abgaben dokumentieren. 
     
 <div xmlns="http://www.w3.org/1999/xhtml" class="container"> 
     
-    TODO Operations
+    <!-- TODO Operations -->
 </div>
 
 ### ELGA-Teilnehmer {#actor-TEILN}
@@ -54,7 +53,7 @@ Die GDA-Software muss sicherstellen, dass eine eindeutige Identifizierung des ä
 
 <div xmlns="http://www.w3.org/1999/xhtml" class="container"> 
     
-    TODO Operations
+    <!-- TODO Operations -->
 </div>
 
 <br>
