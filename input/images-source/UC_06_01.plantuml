@@ -57,7 +57,7 @@ end box
 autonumber
 
 
-GDA_1 ->> eMed_FA: $medikationsplanAbrufen\n(Patient)
+GDA_1 ->> eMed_FA: $readtowrite\n(Patient)
 
 note over GDA_1, eMed_FA
 GDA 1 ruft Medikationsplans ab
