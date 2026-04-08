@@ -1,0 +1,84 @@
+@startuml
+skinparam borderColor #000000
+skinparam backgroundColor #f5f5f5
+skinparam shadowing false
+skinparam roundCorner 10
+skinparam defaultFontName "Arial"
+skinparam defaultFontSize 14
+skinparam defaultFontColor #000000
+
+skinparam note {
+  BackgroundColor #e0e5f0-#d1d9e6
+  BorderColor #8b95a5
+  BorderThickness 1
+  RoundCorner 8
+  Padding 6
+  FontColor #111827
+  Shadowing true
+}
+
+skinparam HyperlinkColor #0000EE
+skinparam HyperlinkUnderline false
+
+skinparam sequence {
+  ParticipantBorderColor #555555
+  ParticipantBackgroundColor #ffffff
+  ParticipantFontColor #000000
+  ParticipantFontSize 14
+  ParticipantPadding 20
+  ArrowColor #111827
+  ArrowThickness 2
+  ArrowFontColor #000000
+  ArrowFontSize 13
+  GroupBorderColor #111827
+  GroupBackgroundColor #f3f4f6
+  GroupBorderThickness 1
+}
+
+skinparam BoxPadding 20
+skinparam BoxBorderColor #555555
+
+box "\n  GDA 1  " #90C1DC
+  actor GDA_1 as "GDA 1"
+end box
+
+box "\n       e-Med Fachanwendung       " #D9AFA4
+  participant eMed_FA as "e-Med FA"
+end box
+
+box "\n    GDA 2  " #C0BECB
+  actor GDA_2 as "GDA 2"
+end box
+
+box "\n Patient  " #BBD3B4
+  actor Patient as "Patient"
+end box
+
+autonumber
+
+
+activate GDA_1
+
+GDA_1 ->> eMed_FA: $read\n(Patient)
+note over GDA_1, eMed_FA
+GDA 1 ruft Medikationsplans ab
+end note
+
+activate eMed_FA
+eMed_FA -> eMed_FA: Prüfung auf bestehenden\nMedikationsplan
+
+eMed_FA -->> GDA_1: Collection Bundle
+
+deactivate eMed_FA
+
+note over GDA_1, eMed_FA
+Fachanwendung liefert Medikationsplan zurück.
+end note
+
+deactivate eMed_FA
+
+deactivate GDA_1
+
+center footer Sub_UC_06_03 - Medikationsplaneintrag in Medikationsplan hinzufügen
+
+@enduml
