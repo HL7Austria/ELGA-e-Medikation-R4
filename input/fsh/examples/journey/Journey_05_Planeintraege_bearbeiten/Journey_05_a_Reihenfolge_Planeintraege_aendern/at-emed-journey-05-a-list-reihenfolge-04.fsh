@@ -1,7 +1,7 @@
 Instance: At-Emed-Journey-05-a-List-Reihenfolge
 InstanceOf: AtEmedListMedikationsplan   
 Title: "Beispiel Journey 05-a: Reihenfolge der Planeinträge ändern"
-Description: "Beispiel Änderung der Reihenfolge der Medikationsplaneinträge (MedicationReqeusts) durch den Patienten."
+Description: "Beispiel Änderung der Reihenfolge der Medikationsplaneinträge (MedicationRequests) durch den Patienten."
 Usage: #example
 
 * status = #current
