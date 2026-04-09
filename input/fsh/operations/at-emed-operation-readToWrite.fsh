@@ -1,6 +1,6 @@
 Instance: AtEmedListReadToWrite
 InstanceOf: OperationDefinition
-Title: "e-Med Operation für Read-to-write"
+Title: "e-Med Operation für Read-to-Write"
 Description: "Die $readtowrite Operation wird aufgerufen, wenn ein Medikationsplan mit der Intention zu schreiben gelesen wird."
 Usage: #definition
 
