@@ -1,44 +1,88 @@
 {% include styleheader.md %}
 
-Im Folgenden werden standardisierte Interaktionen für den lesenden und schreibenden Zugriff auf FHIR-Ressourcen erläutert, die für alle technischen Use Cases relevant sind.
+<!-- Zugriffsarten auf den Medikationsplan -->
 
-#### Ablauf Read-only-Zugriff
+Im Folgenden werden standardisierte Interaktionen für den lesenden und schreibenden Zugriff auf den Medikationsplan erläutert, die für alle technischen Use Cases relevant sind.
+
+### Read-only-Zugriff
+
+
+Beim Read-only-Zugriff wird der aktuelle Medikationsplan (zuletzt gespeichertes Collection Bundle) von der Fachanwendung **unverändert** bereitgestellt.
+
+Das **Collection Bundle** enthält:
+* die List-Ressource des Medikationsplans
+* alle referenzierten Ressourcen (z.B. MedicationRequest, Patient, Practitioner) vollständig (inline)
+* Es erfolgt keine Veränderung von Flags, Status oder Inhalten.
+* Der Zugriff dient ausschließlich der Anzeige bzw. Information.
+
+Ist zum Zeitpunkt der Abfrage kein Medikationsplan für den/die Patient:in vorhanden, liefert die Fachanwendung ein **leeres Ergebnis** zurück.
+
+#### Ablauf
 
 <div>{% include diagram_read.svg %}</div>
+<br>
 
-Beim Read-only-Zugriff prüft die Fachanwendung, ob bereits ein Medikationsplan erstellt wurde. Ist dies nicht der Fall wird dieser erstellt (siehe [Sub_UC_06_01 - Initial erstellter Medikationsplan](Sub_UC_eMed_06.html#sub_uc_06_01---initial-erstellter-medikationsplan)).
+**Abruf aktueller Medikationsplan:**
+* Aktuelle Planversion mit dem Suchparameter Patient abrufen: GET [base]/Bundle?type=collection&_count=1&_sort=-timestamp&list.subject={bPK-GH}
+* Alle Planversionen mit dem Suchparameter Patient abrufen: GET [base]/Bundle?type=collection&_sort=-timestamp&list.subject={bPK-GH}
 
+**Abruf historischer Medikationsplanversionen mit Suchkriterien:**
+* Abfrage alle historischen collections zu dem Patienten, die nach dem angegebenen Datum gespeichert wurden und list.entry.flag=removed haben:
+    * GET [base]/Bundle?type=collection&_sort=-timestamp&timestamp=ge2025-01-01&list.subject={bPK-GH}&list.entry.flag=removed  (TODO query prüfen)
 
-Existiert berets ein Medikationsplan, liefert die Fachanwendung die zuletzt gespeicherte Version des Medikationsplans (Collection Bundle). Dieses Bundle enthält die List-Ressource sowie alle darin referenzierten Ressourcen (z.B. MedicationRequest, Patient, Practitioner). Alle referenzierten Ressourcen werden vollständig im Bundle mitgeliefert (inline).
+### Read-to-Write-Zugriff
 
+Der Read-to-Write-Zugriff dient der Vorbereitung einer Änderung des Medikationsplans:
 
-TODO: <br>
-* Read als GET oder custom operation?<br>
-* Historischen Medikationsplan abrufen<br>
-* Search via bpk-gh des Patienten:<br>
-    * Custom Suchparameter für List im Collection Bundle 
+* Bei einem Read-to-Write-Zugriff prüft die Fachanwendung zunächst, ob bereits ein Medikationsplan vorhanden ist. Ist dies nicht der Fall, wird dieser erstellt (siehe [Sub_UC_06_01 - Initial erstellter Medikationsplan](Sub_UC_eMed_06.html#sub_uc_06_01---initial-erstellter-medikationsplan)) und zurückgeliefert.
 
-#### Ablauf Read-to-write-Zugriff
+* Existiert bereits ein Medikationsplan (d.h. es wurde bereits ein Collection Bundle persistiert), wird von der Fachanwendung aus diesem eine **neue Version eines Collection Bundles** erstellt: 
+    * mit einem neuen **List.identifier** (zur Konsistenzprüfung beim späteren Schreibvorgang)
+    * die Inhalte werden von der Fachanwendung wie folgt aufbereitet:
+        * Wenn List.entry.flag **new** → **unchanged**
+        * Wenn List.entry.flag **changed** → **unchanged**
+        * Wenn List.entry.flag **removed** → Einträge werden aus der Liste **entfernt**
+        * fachlich zu prüfen (TODO): Einträge mit abgelaufenem Behandlungszeitraum und courseOfTherapyType **acute** automatisch entfernen
+    * die Fachanwendung speichert die neue Version des Collection Bundles temporär
+    * die Fachanwendung liefert diese zurück an den GDA:
+        * inkl. List und aller referenzierten Ressourcen (inline)
+        * ergänzt um den List.identifier
+        * Ziel ist ein neutraler, weiterbearbeitbarer Zustand für den nächsten GDA
+
+#### Custom Operations
+
+[$readtowrite](OperationDefinition-AtEmed.List.ReadtoWrite.html)
+
+### Write-Zugriff
+
+Der Write-Zugriff ist eine eigenständige Operation, die ausschließlich im Kontext eines vorherigen Read-to-Writes erfolgen darf:
+
+* Der GDA übermittelt den aktualisierten Medikationsplan als Transaction Bundle:
+    * Inline enthalten: neue und geänderte Ressourcen
+    * Referenziert: unveränderte Ressourcen
+* Die Fachanwendung prüft u.a. ob der übermittelte **List.identifier** mit dem List.identifier der temporär gespeicherten Medikationsplanversion **übereinstimmt** (d.h. es wurde zwischenzeitlich kein anderer Schreibvorgang durchgeführt)
+    * Stimm der List.identifier nicht überein, lehnt die Fachanwendung die Aktualisierung des Medikationsplans ab. Es muss erneut ein Read-to-Write ausgeführt werden und die Aktualisierungen übernommen werden, bevor ein neuerlicher Speicherversuch gestartet werden kann.
+* Bei erfolgreicher Prüfung:
+    * werden die übermittelten Änderungen in die Ressourcen übernommen und
+    * der **neue Medikationsplan persistiert** (Collection Bundle)
+
+#### Custom Operations
+
+[$write](OperationDefinition-AtEmed.List.Write.html)
+
+#### Ablauf
 
 <div>{% include diagram_readtowrite.svg %}</div>
+<div>{% include diagram_readtowrite_copy.svg %}</div>
 
-Beim Read-to-write-Zugriff prüft die Fachanwendung, ob bereits ein Medikationsplan erstellt wurde. Ist dies nicht der Fall wird dieser erstellt (siehe [Sub_UC_06_01 - Initial erstellter Medikationsplan](Sub_UC_eMed_06.html#sub_uc_06_01---initial-erstellter-medikationsplan)).
+<br>
 
-Existiert berets ein Medikationsplan, erzeugt die Fachanwendung aus der zuletzt gespeicherten Version des Medikationsplans ein neues Collection Bundle und nimmt folgende Änderungen vor:
-- List-Flags von *new* oder *changed* auf *unchanged* setzen
-- List-Entries mit Flag *removed* entfernen (stornierte, )
-- List-Entries mit abgelaufenem Behandlungszeitraum + MedicationRequests mit  auf *completed* setzen (TODO: prüfen)
-
-TODO: <br>
-* Evtl. 2 Versionen: eine ungefiliterte Version (inkl. der seit dem letzten Speichern abgelaufener Einträge) und eine Version nur mit aktiven Einträgen/gültigem Behandlungszeitraum
+TODO: Evtl. 2 Versionen: eine ungefiliterte Version (inkl. der seit dem letzten Speichern abgelaufener Einträge) und eine Version nur mit aktiven Einträgen/gültigem Behandlungszeitraum
 
 
-Dieses Bundle enthält die List-Ressource sowie alle darin referenzierten Ressourcen (z.B. MedicationRequest, Patient, Practitioner). Alle referenzierten Ressourcen werden vollständig im Bundle mitgeliefert (inline).
+##### Abgelehnter Read-to-Write-Zugriff
 
-
-###### Abgelehnter Read-to-write-Zugriff
-
-TODO: Sequenzdaigramm: 2. GDA führt zeitgleich read-to-write aus -> späteres schreiben wird abgelehnt, da Identifier-Prüfung fehlschlägt
+TODO: Sequenzdaigramm: 2. GDA führt zeitgleich Read-to-Write aus -> späteres schreiben wird abgelehnt, da Identifier-Prüfung fehlschlägt
 
 
 
