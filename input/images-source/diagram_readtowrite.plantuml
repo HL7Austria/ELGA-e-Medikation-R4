@@ -27,13 +27,12 @@ skinparam sequence {
   ParticipantFontSize 14
   ParticipantPadding 20
   ArrowColor #111827
-  ArrowThickness 2
+  ArrowThickness 1
   ArrowFontColor #000000
   ArrowFontSize 13
   GroupBorderColor #111827
   GroupBackgroundColor #eef2ff
   GroupBorderThickness 2
-  GroupFontStyle bold
 }
 
 skinparam BoxPadding 20
@@ -59,6 +58,7 @@ end box
 autonumber
 
  
+== Read-to-Write ==
 
 GDA_1 ->> eMed_FA: POST $readtowrite (Patient)
 

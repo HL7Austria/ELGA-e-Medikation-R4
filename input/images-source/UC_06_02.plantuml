@@ -27,12 +27,12 @@ skinparam sequence {
   ParticipantFontSize 14
   ParticipantPadding 20
   ArrowColor #111827
-  ArrowThickness 2
+  ArrowThickness 1
   ArrowFontColor #000000
   ArrowFontSize 13
   GroupBorderColor #111827
-  GroupBackgroundColor #f3f4f6
-  GroupBorderThickness 1
+  GroupBackgroundColor #eef2ff
+  GroupBorderThickness 2
 }
 
 skinparam BoxPadding 20
@@ -54,8 +54,8 @@ box "\n Patient  " #7FAF87
   actor Patient as "Patient"
 end box
 
-autonumber
 
+autonumber
 
 GDA_1 ->> eMed_FA: $medikationsplanAbrufen\n(Patient)
 
