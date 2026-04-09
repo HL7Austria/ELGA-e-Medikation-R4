@@ -31,74 +31,69 @@ skinparam sequence {
   ArrowFontColor #000000
   ArrowFontSize 13
   GroupBorderColor #111827
-  GroupBackgroundColor #f3f4f6
-  GroupBorderThickness 1
+  GroupBackgroundColor #eef2ff
+  GroupBorderThickness 2
+  GroupFontStyle bold
 }
 
 skinparam BoxPadding 20
 skinparam BoxBorderColor #555555
 
-box "\n  GDA 1  " #90C1DC
+box "\n  GDA 1  " #5FA8C6
   actor GDA_1 as "GDA 1"
 end box
 
-box "\n       e-Med Fachanwendung       " #D9AFA4
+box "\n       e-Med Fachanwendung       " #C48778
   participant eMed_FA as "e-Med FA"
 end box
 
-box "\n    GDA 2  " #C0BECB
+box "\n    GDA 2  " #8F8CA3
   actor GDA_2 as "GDA 2"
 end box
 
-box "\n Patient  " #BBD3B4
+box "\n Patient  " #7FAF87
   actor Patient as "Patient"
 end box
 
+
 autonumber
 
+ 
+
+GDA_1 ->> eMed_FA: POST $readtowrite (Patient)
+
+activate eMed_FA
+eMed_FA -> eMed_FA: Prüfung auf bestehenden Medikationsplan
+eMed_FA -> eMed_FA: Erstellt neue Version des Collection Bundles + neuer List.identifier
+eMed_FA -> eMed_FA: Aufbereitung für Read-to-Write:\n- new|changed → unchanged\n- removed → entfernen\n- zu prüfen: acute + abgelaufen → entfernen\nSpeichere temporäre Version
+
+eMed_FA -->> GDA_1: Collection Bundle + List.identifier
+deactivate eMed_FA
+
+== Bearbeitung durch GDA ==
 
 activate GDA_1
-
-GDA_1 ->> eMed_FA: $readtowrite\n(Patient)
-note over GDA_1, eMed_FA
-GDA 1 ruft Medikationsplans ab, mit der Intension zu schreiben
-end note
-
-activate eMed_FA
-eMed_FA -> eMed_FA: Prüfung auf bestehenden\nMedikationsplan
-
-eMed_FA -> eMed_FA: \nNeue Medikationsplan-Version erstellen (neuer Identifier)\nList-Flags von *new* oder *changed* auf *unchanged* setzen\nList-Entries mit Flag *removed* entfernen
-
-eMed_FA -->> GDA_1: Collection Bundle
-
-deactivate eMed_FA
-
-note over GDA_1, eMed_FA
-Fachanwendung liefert Medikationsplan zurück.
-end note
-
-
-GDA_1 -> GDA_1: MedicationRequest erstellen / bearbeiten
-
-GDA_1 ->> eMed_FA: $write\n(Patient bpkGH, Transaction Bundle)
-
-
-note over GDA_1, eMed_FA
-GDA 1 sendet neuen Medikationsplan zur Fachanwendung
-end note
-
-activate eMed_FA
-
-eMed_FA -> eMed_FA: Prüfung, ob Medikationsplan noch aktuell\n(kein anderer GDA hat ein $write durchgeführt)
-
-note over eMed_FA
-Fachanwendung speichert Medikationsplan.
-end note
-
-deactivate eMed_FA
-
+GDA_1 -> GDA_1: Einträge hinzufügen / ändern / entfernen
 deactivate GDA_1
 
-center footer Sub_UC_06_03 - Medikationsplaneintrag in Medikationsplan hinzufügen
+== Write ==
+
+GDA_1 ->> eMed_FA: POST $write (Transaction Bundle + List.identifier)
+
+activate eMed_FA
+eMed_FA -> eMed_FA: List.identifier == List.identifier\nder temporären Version?
+
+alt gültig
+  eMed_FA -> eMed_FA: Persistiere neue Version des Medikationsplans\n(temporäre Version wird überschrieben)
+  eMed_FA -->> GDA_1: OK
+else ungültig
+  eMed_FA -->> GDA_1: Fehler (Konflikt)
+end
+
+deactivate eMed_FA
+
+
+center footer Read-to-Write- / Write-Zugriff
+
 
 @enduml

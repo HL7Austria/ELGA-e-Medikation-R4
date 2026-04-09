@@ -38,19 +38,19 @@ skinparam sequence {
 skinparam BoxPadding 20
 skinparam BoxBorderColor #555555
 
-box "\n  GDA 1  " #90C1DC
+box "\n  GDA 1  " #5FA8C6
   actor GDA_1 as "GDA 1"
 end box
 
-box "\n       e-Med Fachanwendung       " #D9AFA4
+box "\n       e-Med Fachanwendung       " #C48778
   participant eMed_FA as "e-Med FA"
 end box
 
-box "\n    GDA 2  " #C0BECB
+box "\n    GDA 2  " #8F8CA3
   actor GDA_2 as "GDA 2"
 end box
 
-box "\n Patient  " #BBD3B4
+box "\n Patient  " #7FAF87
   actor Patient as "Patient"
 end box
 
@@ -58,7 +58,7 @@ autonumber
 
 GDA_1 ->> eMed_FA: $readtowrite\n(Patient)
 note over GDA_1, eMed_FA
-GDA 1 ruft Medikationsplans ab, mit der Intension zu schreiben
+GDA 1 ruft Medikationsplans ab, mit der Intention zu schreiben
 end note
 
 activate eMed_FA

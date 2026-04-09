@@ -1,0 +1,49 @@
+@startuml
+
+!include style.iuml 
+
+actor "GDA 1" as GDA_1 #5FA8C6
+participant "e-Med Fachanwendung" as eMed_FA #C48778
+actor "GDA 2" as GDA_2 #8F8CA3
+actor "Patient" as Patient #7FAF87
+
+autonumber
+
+
+GDA_1 ->> eMed_FA: POST $readtowrite (Patient)
+
+activate eMed_FA
+eMed_FA -> eMed_FA: Prüfung auf bestehenden Medikationsplan
+eMed_FA -> eMed_FA: Erstellt neue Version des Collection Bundles + neuer List.identifier
+eMed_FA -> eMed_FA: Aufbereitung für Read-to-Write:\n- new|changed → unchanged\n- removed → entfernen\n- zu prüfen: acute + abgelaufen → entfernen\nSpeichere temporäre Version
+
+eMed_FA -->> GDA_1: Collection Bundle + List.identifier
+deactivate eMed_FA
+
+== Bearbeitung durch GDA ==
+
+activate GDA_1
+GDA_1 -> GDA_1: Einträge hinzufügen / ändern / entfernen
+deactivate GDA_1
+
+== Write ==
+
+GDA_1 ->> eMed_FA: POST $write (Transaction Bundle + List.identifier)
+
+activate eMed_FA
+eMed_FA -> eMed_FA: List.identifier == List.identifier\nder temporären Version?
+
+alt gültig
+  eMed_FA -> eMed_FA: Persistiere neue Version des Medikationsplans\n(temporäre Version wird überschrieben)
+  eMed_FA -->> GDA_1: OK
+else ungültig
+  eMed_FA -->> GDA_1: Fehler (Konflikt)
+end
+
+deactivate eMed_FA
+
+
+center footer Read-to-Write-/Write-Zugriff
+
+
+@enduml
