@@ -1,23 +1,21 @@
 {% include styleheader.md %}
 
-<!-- Anwendungsfall UC_eMed_06: Medikationsplan schreiben -->
-
-### Technische Use Cases für Medikationsplan schreiben (UC_eMed_06)
+<!-- Technische Use Cases für Medikationsplan schreiben (UC_eMed_06) -->
 
 #### Relevante Profile
 
 ##### AtEmedListMedikationsplan (*List*)
 
-Der Medikationsplan eines ELGA-Teilnehmers/einer ELGA-Teilnehmerin (*List*-Ressource) beinhaltet List-Entries, die 0..* Medikationsplaneinträge (*MedicationRequests*) referenzieren. Die Reihenfolge der Listenelemente kann duch den GDA oder Patienten festgelegt werden. Jedes Listenelement enthält im *flag*-Element den Änderungsstatus (siehe [Status-Änderungen der List-Flag (Medikationsplan)](workflowmanagement.html#status-%C3%A4nderungen-der-list-flag-medikationsplan)).
+Der Medikationsplan eines ELGA-Teilnehmers/einer ELGA-Teilnehmerin (*List*-Ressource) beinhaltet List-Entries, die 0..* Medikationsplaneinträge (*MedicationRequests*) referenzieren. Die Reihenfolge der Listenelemente kann duch den GDA oder Patienten festgelegt werden. Jedes Listenelement enthält im *flag*-Element den Änderungsstatus (siehe [Status der List-Flag (Medikationsplan)](workflowmanagement.html#status-der-list-flag-medikationsplan)).
 
 
 ##### AtEmedMRPlaneintrag (*MedicationRequest*)
 
 Der Medikationsplaneintrag (*MedicationRequest*-Ressource) im Medikationsplan eines ELGA-Teilnehmers/einer ELGA-Teilnehmerin bildet genau ein Arzneimittel und dessen Dosierung ab und bildet in weiterer Folge die Grundlage zur Erstellung einer geplanten Abgabe (siehe *UC_08 Geplante Abgabe Schreiben*).
 
-Der aktuelle Status eines Medikationsplaneintrags wird im *status*-Element dokumentiert (siehe [Status-Änderungen des MedicationRequests im Medikationsplaneintrag](workflowmanagement.html#status-%C3%A4nderungen-des-medicationrequests-im-medikationsplaneintrag)).  
+Der aktuelle Status eines Medikationsplaneintrags wird im *status*-Element dokumentiert (siehe [Status des MedicationRequests im Medikationsplaneintrag](workflowmanagement.html#status-des-medicationrequests-im-medikationsplaneintrag)).  
 
-Abhängig vom List-Flag kann der Medikationsplaneintrag nur eingeschränkte Status einnehmen (siehe [Planeintrag-Status in Abhängigkeit des Flag-Status des Medikationsplans](workflowmanagement.html#planeintrag-status-in-abh%C3%A4ngigkeit-des-flag-status-des-medikationsplans)).
+Abhängig vom List-Flag kann der Medikationsplaneintrag nur eingeschränkte Status einnehmen (siehe [Konsistenzregeln zwischen List-Flag und MedicationReqeust-Status](workflowmanagement.html#konsistenzregeln-zwischen-list-flag-und-medicationreqeust-status)).
 
 
 
@@ -77,7 +75,7 @@ Der GDA kann dem Medikationsplan ein oder mehrere Medikationsplaneinträge hinzu
 
 Hierfür werden entsprechende Medikationsplaneinträge *MedicationRequests* erstellt und in der *List*-Ressouce referenziert:
 - Das List-Flag des referenzierten MedicationRequests erhält den Wert *new*, 
-- die MedicationRequests selbst können den Status *active* oder *on-hold* erhalten (siehe [Planeintrag-Status in Abhängigkeit des Flag-Status des Medikationsplans](workflowmanagement.html#planeintrag-status-in-abh%C3%A4ngigkeit-des-flag-status-des-medikationsplans))
+- die MedicationRequests selbst können den Status *active* oder *on-hold* erhalten (siehe [Konsistenzregeln zwischen List-Flag und MedicationReqeust-Status](workflowmanagement.html#konsistenzregeln-zwischen-list-flag-und-medicationreqeust-status))
 - der Behandlungszeitraum im MedicationRequest kann sich auf das aktuelle Datum beziehen oder in der Zukunft liegen
 - ein bereits bestehender MedicationRequest kann wieder (re)aktiviert werden:
     - MedicationRequest mit Status *on-hold* wird beim read-to-write-Zugriff im Collection Bundle mitgeliefert und kann wieder auf *active* gesetzt werden (TODO: siehe Sub_UC_06_0x - Medikationsplaneintrag in Medikationsplan reaktivieren)
@@ -127,7 +125,7 @@ TODO: noch offen für AtEmedMRPlaneintrag:
 
 ##### Auswirkung der Zugriffsart auf List-Status und Bundles: neuer Medikationsplaneintrag
 
-siehe [Abhängigkeit List-Flag von der Zugriffsart](workflowmanagement.html#abh%C3%A4ngigkeit-list-flag-von-der-zugriffsart): Status *new*
+Siehe [Auswirkung der Zugriffsart auf List-Status und Bundles](workflowmanagement.html#auswirkung-der-zugriffsart-auf-list-status-und-bundles): Status *new*.
 
 
 #### Sub_UC_06_04 - Medikationsplaneintrag im Medikationsplan beibehalten
@@ -165,7 +163,8 @@ AtEmedMRPlaneintrag
 
 ##### Auswirkung der Zugriffsart auf List-Status und Bundles: Medikationsplaneintrag beibehalten
 
-siehe [Abhängigkeit List-Flag von der Zugriffsart](workflowmanagement.html#abh%C3%A4ngigkeit-list-flag-von-der-zugriffsart): Status *unchanged*
+Siehe [Auswirkung der Zugriffsart auf List-Status und Bundles](workflowmanagement.html#auswirkung-der-zugriffsart-auf-list-status-und-bundles): Status *unchanged*.
+
 
 #### Sub_UC_06_05 - Medikationsplaneintrag im Medikationsplan ändern
 
@@ -220,7 +219,7 @@ AtEmedMRPlaneintrag
 
 ##### Auswirkung der Zugriffsart auf List-Status und Bundles: Medikationsplaneintrag ändern
 
-siehe [Abhängigkeit List-Flag von der Zugriffsart](workflowmanagement.html#abh%C3%A4ngigkeit-list-flag-von-der-zugriffsart): Status *changed*
+Siehe [Auswirkung der Zugriffsart auf List-Status und Bundles](workflowmanagement.html#auswirkung-der-zugriffsart-auf-list-status-und-bundles): Status *changed*.
 
 
 #### Sub_UC_06_06 - Medikationsplaneintrag im Medikationsplan stornieren

@@ -1,8 +1,8 @@
 {% include styleheader.md %}
 
-<!-- Anwendungsfall UC_eMed_08: Geplante Abgabe schreiben -->
+<!--  Technische Use Cases für Geplante Abgabe schreiben (UC_eMed_08) -->
 
-### Technische Use Cases für Geplante Abgabe schreiben (UC_eMed_08)
+
 
 In Arbeit.
 

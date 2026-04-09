@@ -16,7 +16,7 @@ Das *flag*-Element eines Entries der List-Ressource beschreibt die Art der Ände
 <div>{% include stateDiagram_list_flag.svg %}</div>
 
 
-#### Abhängigkeit List-Flag von der Zugriffsart
+#### Auswirkung der Zugriffsart auf List-Status und Bundles
 
 | Status | Read-only-Zugriff | Read-to-Write-Zugriff | Schreibender Zugriff |
 |--------|------|------|------|
@@ -41,7 +41,7 @@ Das *status*-Element kann in Planeinträgen fogende Zustände annehmen:
 <div>{% include stateDiagram_mr_status_planeintrag.svg %}</div>
 
 
-##### Abhängigkeiten List-Flag und MedicationReqeust-Status
+##### Konsistenzregeln zwischen List-Flag und MedicationReqeust-Status
 
 | Use Case | List-Flag | MedicationReqeust-Status      (Planeintrag) | Beschreibung |  |
 |---|---|---|---|---|
@@ -55,8 +55,8 @@ Das *status*-Element kann in Planeinträgen fogende Zustände annehmen:
 |  | **removed**  | **stopped** | Bestehender Planeintrag wird vor Ablauf des Behandlungszeitraums abgesetzt  |  |
 |  | **removed**  | **entered-in-error** | Bestehender Planeintrag wird storniert, aufgrund falscher Eingabe |  | 
 
-#### Status-Änderungen des MedicationRequests in der geplanten Abgabe
+#### Status des MedicationRequests in der geplanten Abgabe
 In Arbeit.
 
-#### Status-Änderungen des MedicationDispense (durchgeführte Abgabe)
+#### Status des MedicationDispense (durchgeführte Abgabe)
 In Arbeit.

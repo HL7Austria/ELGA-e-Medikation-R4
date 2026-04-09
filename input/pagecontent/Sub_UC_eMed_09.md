@@ -1,8 +1,8 @@
 {% include styleheader.md %}
 
-<!-- Anwendungsfall UC_eMed_09: Durchgeführte Abgabe schreiben -->
+<!-- Technische Use Cases für Durchgeführte Abgabe schreiben (UC_eMed_09) -->
 
-### Technische Use Cases für Durchgeführte Abgabe schreiben (UC_eMed_09)
+ 
 
 In Arbeit.
 
