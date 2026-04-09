@@ -73,7 +73,7 @@ Der Write-Zugriff ist eine eigenständige Operation, die ausschließlich im Kont
 #### Ablauf
 
 <div>{% include diagram_readtowrite.svg %}</div>
-<div>{% include diagram_readtowrite_copy.svg %}</div>
+<!-- <div>{% include diagram_readtowrite_copy.svg %}</div> -->
 
 <br>
 
