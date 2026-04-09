@@ -78,7 +78,7 @@ pages:
   # obligations.md:
   #   title: Obligations
   interactions.md:
-    title: Standardisierter Zugriff auf FHIR-Ressourcen
+    title: Zugriffsarten auf den Medikationsplan
   overview_sub_use_case.md:
     title: Technische Use Cases
   Sub_UC_eMed_06.md:
@@ -129,7 +129,7 @@ menu:
     Workflowmanagement: workflowmanagement.html
     # Obligations: obligations.html
     Dosierschemata: dosaging.html
-    Standardisierter Zugriff auf FHIR-Ressourcen: interactions.html
+    Zugriffsarten auf den Medikationsplan: interactions.html
     Technische Use Cases: overview_sub_use_case.html
   Anwendungsfälle:
     Überblick: overview_use_case.html
