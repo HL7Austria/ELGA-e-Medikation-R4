@@ -36,14 +36,14 @@ Der Read-to-Write-Zugriff dient der Vorbereitung einer Änderung des Medikations
 
 * Bei einem Read-to-Write-Zugriff prüft die Fachanwendung zunächst, ob bereits ein Medikationsplan vorhanden ist. Ist dies nicht der Fall, wird dieser erstellt (siehe [Sub_UC_06_01 - Initial erstellter Medikationsplan](Sub_UC_eMed_06.html#sub_uc_06_01---initial-erstellter-medikationsplan)) und zurückgeliefert.
 
-* Existiert bereits ein Medikationsplan (d.h. es wurde bereits ein Collection Bundle persistiert), wird von der Fachanwendung aus diesem eine **neue Version eines Collection Bundles** erstellt: 
-    * mit einem neuen **List.identifier** (zur Konsistenzprüfung beim späteren Schreibvorgang)
+* Existiert bereits ein Medikationsplan (d.h. es wurde bereits ein Collection Bundle persistiert), wird von der Fachanwendung aus diesem ein **Collection Bundle** zur Auslieferung erstellt: 
+    * mit einem neuen **List.identifier** (wird von der Fachanwendung zur späteren Schreibintegritätsprüfung gespeichert)
     * die Inhalte werden von der Fachanwendung wie folgt aufbereitet:
         * Wenn List.entry.flag **new** → **unchanged**
         * Wenn List.entry.flag **changed** → **unchanged**
         * Wenn List.entry.flag **removed** → Einträge werden aus der Liste **entfernt**
-        * fachlich zu prüfen (TODO): Einträge mit abgelaufenem Behandlungszeitraum und courseOfTherapyType **acute** automatisch entfernen
-    * die Fachanwendung speichert die neue Version des Collection Bundles temporär
+        * Einträge mit abgelaufenem Behandlungszeitraum bleiben erhalten 
+        <!-- * fachlich zu prüfen (TODO): Einträge mit abgelaufenem Behandlungszeitraum und courseOfTherapyType **acute** automatisch entfernen -->
     * die Fachanwendung liefert diese zurück an den GDA:
         * inkl. List und aller referenzierten Ressourcen (inline)
         * ergänzt um den List.identifier
@@ -77,12 +77,19 @@ Der Write-Zugriff ist eine eigenständige Operation, die ausschließlich im Kont
 
 <br>
 
-TODO: Evtl. 2 Versionen: eine ungefiliterte Version (inkl. der seit dem letzten Speichern abgelaufener Einträge) und eine Version nur mit aktiven Einträgen/gültigem Behandlungszeitraum
+<!-- TODO: Evtl. 2 Versionen: eine ungefiliterte Version (inkl. der seit dem letzten Speichern abgelaufener Einträge) und eine Version nur mit aktiven Einträgen/gültigem Behandlungszeitraum -->
 
 
-##### Abgelehnter Read-to-Write-Zugriff
+#### Abgelehnter Read-to-Write-Zugriff
 
-TODO: Sequenzdaigramm: 2. GDA führt zeitgleich Read-to-Write aus -> späteres schreiben wird abgelehnt, da Identifier-Prüfung fehlschlägt
+* Wenn weitere Akteure (hier GDA 2) ein Read-to-Write ausführen, während GDA 1 das von der Fachanwendung übermittelte Bundle bearbeitet, erhalten sie:
+    * dasselbe Collection Bundle (mit dem selben List.identifier), das zuvor schon GDA 1 übermittelt wurde.
+* Nur bei jenem Akteur, der zuerst ein Write ausführt, wird der temporär in der Fachanwendung vorgehaltene List.identifier mit dem eigenen im TransactionBundle.List.identifier übereinstimmen, da der termporäre List.identifier danach gelöscht wird.
+* Bei einem späteren Schreibversuch eines anderen Akteurs mit dem ursprünglich gleichen List.identifier wird die Prüfung daher fehlschlagen und ein Speichern abgelehnt.
+* Erst ein weiteres Read-to-Write löst wieder das generieren eines zur Auslieferung bereitgestellten temporären Collection Bundles inkl. neuem List.identifier aus. 
 
+#### Ablauf
+
+<div>{% include diagram_write_error.svg %}</div>
 
 
