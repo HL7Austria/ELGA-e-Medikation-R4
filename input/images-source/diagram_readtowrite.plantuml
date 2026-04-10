@@ -60,7 +60,11 @@ autonumber
  
 == Read-to-Write ==
 
-GDA_1 ->> eMed_FA: POST $readtowrite (Patient)
+GDA_1 ->> eMed_FA: POST $readtowrite
+note over GDA_1
+Medikationsplan abrufen, 
+mit der Intention zu schreiben
+end note
 
 activate eMed_FA
 eMed_FA -> eMed_FA: Prüfung auf bestehenden\nMedikationsplan
@@ -69,15 +73,17 @@ eMed_FA -> eMed_FA: Erstellt Collection Bundle zur Auslieferung\n(inkl. neuem Li
 eMed_FA -->> GDA_1: Collection Bundle + List.identifier
 deactivate eMed_FA
 
-== Bearbeitung durch GDA ==
-
 activate GDA_1
 GDA_1 -> GDA_1: Einträge hinzufügen/ändern/entfernen
-deactivate GDA_1
+
+note over GDA_1
+Medikationsplan bearbeiten
+end note
 
 == Write ==
 
 GDA_1 ->> eMed_FA: PUT $write (Transaction Bundle + List.identifier)
+deactivate GDA_1
 
 activate eMed_FA
 eMed_FA -> eMed_FA: TransactionBundle.List.identifier ==\ntemporär gespeicherter List.identifier?
@@ -86,7 +92,7 @@ alt gültig
   eMed_FA -> eMed_FA: Persistiert neue Version des\nMedikationsplans
 
   note over eMed_FA
-  Medikationsplan wurde aktualisiert.
+  Neuer Medikationsplan gespeichert
   end note
 
   eMed_FA -->> GDA_1: OK

@@ -57,7 +57,7 @@ end box
 
 autonumber
 
-GDA_1 ->> eMed_FA: $medikationsplanAbrufen\n(Patient)
+GDA_1 ->> eMed_FA: POST $readtowrite
 
 note over GDA_1, eMed_FA
 GDA 1 ruft Medikationsplans ab
@@ -66,13 +66,12 @@ end note
 activate eMed_FA
 eMed_FA -> eMed_FA: Prüfung auf bestehenden\nMedikationsplan
 
+eMed_FA -> eMed_FA: Wenn bereits Plan vorhanden +\nalle List.enty.flags im Medikationsplan = "removed":\nFachanwendung setzt List.emptyReason = "nilknown"
+
 eMed_FA -->> GDA_1: Leerer Medikationsplan\n(emptyReason = "nilknown")
 
 deactivate eMed_FA
 
-note over GDA_1, eMed_FA
-Fachanwendung liefert leeren Medikationsplan (emptyReason "nilknown") zurück.
-end note
 
 center footer Sub_UC_06_02 - Leerer Medikationsplan (keine Medikation eingenommen)
 

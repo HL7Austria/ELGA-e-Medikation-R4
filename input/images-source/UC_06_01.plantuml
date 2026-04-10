@@ -66,7 +66,7 @@ end note
 
 activate eMed_FA
 eMed_FA -> eMed_FA: Prüfung auf bestehenden\nMedikationsplan
-eMed_FA -> eMed_FA: Fachanwendung erzeugt leeren Medikationsplan\n(emptyReason = "notstarted")
+eMed_FA -> eMed_FA: Wenn noch kein Plan vorhanden:\nFachanwendung erzeugt leeren Medikationsplan\n mit emptyReason = "notstarted"
 
 eMed_FA -->> GDA_1: Leerer Medikationsplan
 
