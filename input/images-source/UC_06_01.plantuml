@@ -58,7 +58,7 @@ end box
 autonumber
 
 
-GDA_1 ->> eMed_FA: $readtowrite\n(Patient)
+GDA_1 ->> eMed_FA: POST $readtowrite
 
 note over GDA_1, eMed_FA
 GDA 1 ruft Medikationsplans ab
@@ -66,14 +66,12 @@ end note
 
 activate eMed_FA
 eMed_FA -> eMed_FA: Prüfung auf bestehenden\nMedikationsplan
+eMed_FA -> eMed_FA: Fachanwendung erzeugt leeren Medikationsplan\n(emptyReason = "notstarted")
 
-eMed_FA -->> GDA_1: Leerer Medikationsplan\n(emptyReason = "notstarted")
+eMed_FA -->> GDA_1: Leerer Medikationsplan
 
 deactivate eMed_FA
 
-note over GDA_1, eMed_FA
-Fachanwendung erzeugt leeren Medikationsplan (emptyReason "notstarted") und liefert ihn zurück.
-end note
 
 center footer Sub_UC_06_01 - Initial erstellter Medikationsplan
 

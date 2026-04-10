@@ -59,7 +59,7 @@ autonumber
 
 == Read ==
 
-GDA_1 ->> eMed_FA: GET Medikationsplan (Patient)
+GDA_1 ->> eMed_FA: GET Medikationsplan
 
 activate eMed_FA
 eMed_FA -> eMed_FA: Prüfung auf bestehenden\nMedikationsplan

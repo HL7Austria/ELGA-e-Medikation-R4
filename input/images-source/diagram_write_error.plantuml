@@ -1,0 +1,132 @@
+@startuml
+skinparam borderColor #000000
+skinparam backgroundColor #f5f5f5
+skinparam shadowing false
+skinparam roundCorner 10
+skinparam defaultFontName "Arial"
+skinparam defaultFontSize 14
+skinparam defaultFontColor #000000
+
+skinparam note {
+  BackgroundColor #e0e5f0-#d1d9e6
+  BorderColor #8b95a5
+  BorderThickness 1
+  RoundCorner 8
+  Padding 6
+  FontColor #111827
+  Shadowing true
+}
+
+skinparam HyperlinkColor #0000EE
+skinparam HyperlinkUnderline false
+
+skinparam sequence {
+  ParticipantBorderColor #555555
+  ParticipantBackgroundColor #ffffff
+  ParticipantFontColor #000000
+  ParticipantFontSize 14
+  ParticipantPadding 20
+  ArrowColor #111827
+  ArrowThickness 1
+  ArrowFontColor #000000
+  ArrowFontSize 13
+  GroupBorderColor #111827
+  GroupBackgroundColor #eef2ff
+  GroupBorderThickness 2
+}
+
+skinparam BoxPadding 20
+skinparam BoxBorderColor #555555
+
+box "\n  GDA 1  " #5FA8C6
+  actor GDA_1 as "GDA 1"
+end box
+
+box "\n       e-Med Fachanwendung       " #C48778
+  participant eMed_FA as "e-Med FA"
+end box
+
+box "\n    GDA 2  " #8F8CA3
+  actor GDA_2 as "GDA 2"
+end box
+
+box "\n Patient  " #7FAF87
+  actor Patient as "Patient"
+end box
+
+
+autonumber
+
+ 
+== Read-to-Write durch GDA 1 ==
+
+GDA_1 ->> eMed_FA: POST $readtowrite (Patient)
+
+activate eMed_FA
+eMed_FA -> eMed_FA: Prüfung auf bestehenden\nMedikationsplan
+eMed_FA -> eMed_FA: Erstellt Collection Bundle zur Auslieferung\n(inkl. neuem List.identifier "123")\nfür Read-to-Write:\n- new|changed → unchanged\n- removed → entfernen
+
+eMed_FA -->> GDA_1: Collection Bundle + List.identifier "123"
+deactivate eMed_FA
+
+activate GDA_1
+GDA_1 -> GDA_1: Einträge hinzufügen/ändern/entfernen
+
+note over GDA_1
+GDA 1 bearbeitet Medikationsplan
+end note
+
+== Read-to-Write durch GDA 2 ==
+
+GDA_2 ->> eMed_FA: POST $readtowrite (Patient)
+
+
+activate eMed_FA
+eMed_FA -> eMed_FA: Prüfung auf bestehenden\nMedikationsplan
+eMed_FA -> eMed_FA: Erstellt Collection Bundle zur Auslieferung\n(inkl. neuem List.identifier "123")\nfür Read-to-Write:\n- new|changed → unchanged\n- removed → entfernen
+
+eMed_FA -->> GDA_2: Collection Bundle + List.identifier "123"
+deactivate eMed_FA
+
+activate GDA_2
+GDA_2 -> GDA_2: Einträge hinzufügen/ändern/entfernen
+
+note over GDA_2
+GDA 2 bearbeitet Medikationsplan
+end note
+
+== Write durch GDA 2 ==
+
+GDA_2 ->> eMed_FA: PUT $write (Transaction Bundle + List.identifier "123")
+deactivate GDA_2
+
+activate eMed_FA
+eMed_FA -> eMed_FA: TransactionBundle.List.identifier "123" ==\ntemporär gespeicherter List.identifier "123"
+eMed_FA -> eMed_FA: Persistiert neue Version des\nMedikationsplans mit List.identifier "123"
+eMed_FA -> eMed_FA: Löscht temporären List.identifier "123"
+eMed_FA -->> GDA_2: OK 
+
+note over eMed_FA
+Medikationsplan wurde durch GDA 2 aktualisiert.
+end note
+
+deactivate eMed_FA
+
+== Write-Error für GDA 1 ==
+
+GDA_1 ->> eMed_FA: PUT $write (Transaction Bundle + List.identifier "123")
+deactivate GDA_1
+
+activate eMed_FA
+eMed_FA -> eMed_FA: TransactionBundle.List.identifier "123" stimmt nicht\nmit temporär gespeicherten List.identifier überein\n(kein Eintrag vorhanden)
+eMed_FA -> eMed_FA: Fachanwendung lehnt Speichern ab
+eMed_FA -->> GDA_1: Fehler (Konflikt): ein anderer GDA hat\nzwischenzeitlich geschrieben
+note over eMed_FA, GDA_1
+Speichern des Medikationsplans wurde abgelehnt, der GDA 1 muss ein neues Read-to-Write ausführen.
+end note
+
+deactivate eMed_FA
+
+center footer Write-Error
+
+@enduml
