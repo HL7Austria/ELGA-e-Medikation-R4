@@ -2,22 +2,10 @@
 
 <!-- Technische Use Cases für Medikationsplan schreiben (UC_eMed_06) -->
 
-#### Relevante Profile
+TODO:
+Im Folgenden wird ... erklärt ... Sequenzdiagramme
 
-##### AtEmedListMedikationsplan (*List*)
-
-Der Medikationsplan eines ELGA-Teilnehmers/einer ELGA-Teilnehmerin (*List*-Ressource) beinhaltet List-Entries, die 0..* Medikationsplaneinträge (*MedicationRequests*) referenzieren. Die Reihenfolge der Listenelemente kann duch den GDA oder Patienten festgelegt werden. Jedes Listenelement enthält im *flag*-Element den Änderungsstatus (siehe [Status der List-Flag (Medikationsplan)](workflowmanagement.html#status-der-list-flag-medikationsplan)).
-
-
-##### AtEmedMRPlaneintrag (*MedicationRequest*)
-
-Der Medikationsplaneintrag (*MedicationRequest*-Ressource) im Medikationsplan eines ELGA-Teilnehmers/einer ELGA-Teilnehmerin bildet genau ein Arzneimittel und dessen Dosierung ab und bildet in weiterer Folge die Grundlage zur Erstellung einer geplanten Abgabe (siehe *UC_08 Geplante Abgabe Schreiben*).
-
-Der aktuelle Status eines Medikationsplaneintrags wird im *status*-Element dokumentiert (siehe [Status des MedicationRequests im Medikationsplaneintrag](workflowmanagement.html#status-des-medicationrequests-im-medikationsplaneintrag)).  
-
-Abhängig vom List-Flag kann der Medikationsplaneintrag nur eingeschränkte Status einnehmen (siehe [Konsistenzregeln zwischen List-Flag und MedicationRequest-Status](workflowmanagement.html#konsistenzregeln-zwischen-list-flag-und-medicationrequest-status)).
-
-
+Die für den jeweiligen Use Case relevanten Profilfelder werden im Folgenden in grauen Boxen dargestellt. Diese dienen der kompakten Übersicht über die erforderlichen Anpassungen der Ressourcen im Kontext des spezifischen Anwendungsfalls.
 
 
 #### Sub_UC_06_01 - Initial erstellter Medikationsplan 
@@ -28,11 +16,12 @@ Ein GDA ruft den Medikationsplan eines Patienten ab, ohne zu wissen, ob dieser b
 
 Dieser Status kennzeichnet ausschließlich den Initialzustand (keine Einträge im Medikationsplan) und trifft keine Aussage darüber, ob der Patient tatsächlich keine Medikamente einnimmt.
 
+Auch der Patient kann die Erstellung eines Medikationsplans auslösen.
+
 ##### Ablauf
 
 <div>{% include UC_06_01.svg %}</div>
 
-Anmerkung: Auch der Patient kann die Erstellung eines Medikationsplans auslösen.
 
 ##### Relevante Felder (List):
 
@@ -48,9 +37,11 @@ AtEmedListMedikationsplan
 
 #### Sub_UC_06_02 - Leerer Medikationsplan (keine Medikation eingenommen)
 
+TODO: in Arbeit.
+
 Ein leerer Medikationsplan mit dem Wert emptyReason *nilknown* bedeutet, dass der Patient derzeit keine Medikamente einnimmt. Der Medikatonsplan erhält diesen Status, wenn:
-- ein GDA zuvor die gesamte Medikation abgesetzt, storniert oder gelöscht hat (TODO: Implizites setzen von nilknown durch die Fachanwendung beim nächsten Read-to-Write?)
-- ein GDA dokumentieren möchte, dass der Patient keine Medikamente einnehmen soll 
+- ein GDA zuvor die gesamte Medikation abgesetzt, storniert oder gelöscht hat. Dabei muss der GDA der Liste den Status *nilknown* geben. (TODO: Invariante zur Überprüfung)
+- ein GDA dokumentieren möchte, dass der Patient keine Medikamente einnehmen soll. Wenn die Liste zuvor das emptyReason *notstarted* hatte, kann der GDA den Status *nilknown* setzen.
 
 Dient zur Unterscheidung von leeren Medikationsplänen, die noch nie befüllt wurden.
 
@@ -82,9 +73,11 @@ Hierfür werden entsprechende Medikationsplaneinträge *MedicationRequests* erst
     - MedicationRequest mit einem Endzustand (*stopped, entered-in-error* oder *completed*), wird beim Read-to-Write-Zugriff im Collection Bundle **nicht** mitgeliefert und kann nur über die Historie abgerufen und durch Erzeugung eines neuen Planeintrags in den Medikationsplan aufgenommen werden (via Client-SW) (TODO: prüfen)
 
 
-##### Ablauf
+##### Standardablauf
 
-Siehe [Ablauf Read-to-Write-Zugriff](interactions.html#ablauf-read-to-write-zugriff)
+Der folgende Ablauf gilt für alle folgenden Use Cases. Die im jeweiligen Kapitel angegebenen *Relevanten Felder* der verwendeten Profile, dokumentieren die erforderlichen Anpassungen der Ressource für den speziellen Use Case.
+
+<div>{% include UC_06_03.svg %}</div>
 
 
 ##### Relevante Felder (List):
