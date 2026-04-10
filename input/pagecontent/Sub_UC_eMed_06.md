@@ -2,10 +2,9 @@
 
 <!-- Technische Use Cases für Medikationsplan schreiben (UC_eMed_06) -->
 
-TODO:
-Im Folgenden wird ... erklärt ... Sequenzdiagramme
+m folgenden Kapitel werden die fachlichen Anwendungsfälle in Form technischer Use Cases beschrieben. Die zugehörigen Sequenzdiagramme veranschaulichen die beteiligten Akteure sowie die jeweiligen Abläufe.
 
-Die für den jeweiligen Use Case relevanten Profilfelder werden im Folgenden in grauen Boxen dargestellt. Diese dienen der kompakten Übersicht über die erforderlichen Anpassungen der Ressourcen im Kontext des spezifischen Anwendungsfalls.
+Für jeden Use Case werden die relevanten Profilfelder in grauen Boxen hervorgehoben. Diese ermöglichen eine kompakte Übersicht über die erforderlichen Anpassungen der Ressourcen im Kontext des jeweiligen Anwendungsfalls.
 
 
 #### Sub_UC_06_01 - Initial erstellter Medikationsplan 
@@ -36,8 +35,6 @@ AtEmedListMedikationsplan
 
 
 #### Sub_UC_06_02 - Leerer Medikationsplan (keine Medikation eingenommen)
-
-TODO: in Arbeit.
 
 Ein leerer Medikationsplan mit dem Wert emptyReason *nilknown* bedeutet, dass der Patient derzeit keine Medikamente einnimmt. Der Medikatonsplan erhält diesen Status, wenn:
 - ein GDA zuvor die gesamte Medikation abgesetzt, storniert oder gelöscht hat. Dabei muss der GDA der Liste den Status *nilknown* geben. (TODO: Invariante zur Überprüfung)
