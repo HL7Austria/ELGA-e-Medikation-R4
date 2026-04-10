@@ -80,7 +80,7 @@ Der Write-Zugriff ist eine eigenständige Operation, die ausschließlich im Kont
 <!-- TODO: Evtl. 2 Versionen: eine ungefiliterte Version (inkl. der seit dem letzten Speichern abgelaufener Einträge) und eine Version nur mit aktiven Einträgen/gültigem Behandlungszeitraum -->
 
 
-#### Abgelehnter Read-to-Write-Zugriff
+#### Abgelehnter Write-Zugriff
 
 * Wenn weitere Akteure (hier GDA 2) ein Read-to-Write ausführen, während GDA 1 das von der Fachanwendung übermittelte Bundle bearbeitet, erhalten sie:
     * dasselbe Collection Bundle (mit dem selben List.identifier), das zuvor schon GDA 1 übermittelt wurde.
