@@ -1,5 +1,5 @@
 @startuml
-title MedicationRequest Status
+title MedicationRequest.status
 
 (*) -d-> [neuer Planeintrag] active
 (*) -d-> [neuer Planeintrag\npausiert] "on-hold"

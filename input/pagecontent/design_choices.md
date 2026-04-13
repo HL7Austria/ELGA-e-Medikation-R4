@@ -8,6 +8,8 @@ Der Medikationsplan eines ELGA-Teilnehmers bzw. einer ELGA-Teilnehmerin wird dur
 
 Die Reihenfolge der Einträge kann durch den GDA oder den Patienten festgelegt werden. Jeder Listeneintrag enthält im Element *List.entry.flag* den Änderungsstatus des jeweiligen Medikationsplaneintrags (siehe [Status der List.entry.flag (Medikationsplan)](workflowmanagement.html#status-der-list-entry-flag-medikationsplan)).
 
+<!-- TODO: Wiederverwendbarkeit der Liste für e-Diagnose und e-Behandlungsplan -->
+
 
 #### AtEmedMRPlaneintrag (*MedicationRequest*)
 

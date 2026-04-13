@@ -121,7 +121,7 @@ TODO: noch offen für AtEmedMRPlaneintrag:
 
 ##### Auswirkung der Zugriffsart auf List-Status und Bundles: neuer Medikationsplaneintrag
 
-Siehe [Auswirkung der Zugriffsart auf List-Status und Bundles](workflowmanagement.html#auswirkung-der-zugriffsart-auf-list-status-und-bundles): Status *new*.
+Siehe [Auswirkung der Zugriffsart auf List.entry.flags und Bundle-Inhalte](workflowmanagement.html#auswirkung-der-zugriffsart-auf-list-status-und-bundle-inhalte): Status *new*.
 
 
 #### Sub_UC_06_04 - Medikationsplaneintrag im Medikationsplan beibehalten
@@ -159,7 +159,7 @@ AtEmedMRPlaneintrag
 
 ##### Auswirkung der Zugriffsart auf List-Status und Bundles: Medikationsplaneintrag beibehalten
 
-Siehe [Auswirkung der Zugriffsart auf List-Status und Bundles](workflowmanagement.html#auswirkung-der-zugriffsart-auf-list-status-und-bundles): Status *unchanged*.
+Siehe [Auswirkung der Zugriffsart auf List.entry.flags und Bundle-Inhalte](workflowmanagement.html#auswirkung-der-zugriffsart-auf-list-status-und-bundle-inhalte): Status *unchanged*.
 
 
 #### Sub_UC_06_05 - Medikationsplaneintrag im Medikationsplan ändern
@@ -215,7 +215,7 @@ AtEmedMRPlaneintrag
 
 ##### Auswirkung der Zugriffsart auf List-Status und Bundles: Medikationsplaneintrag ändern
 
-Siehe [Auswirkung der Zugriffsart auf List-Status und Bundles](workflowmanagement.html#auswirkung-der-zugriffsart-auf-list-status-und-bundles): Status *changed*.
+Siehe [Auswirkung der Zugriffsart auf List.entry.flags und Bundle-Inhalte](workflowmanagement.html#auswirkung-der-zugriffsart-auf-list-status-und-bundle-inhalte): Status *changed*.
 
 
 #### Sub_UC_06_06 - Medikationsplaneintrag im Medikationsplan stornieren
