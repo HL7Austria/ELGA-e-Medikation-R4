@@ -2,14 +2,15 @@ Profile: AtEmedListMedikationsplan
 Parent: List
 Id: at-emed-list-medikationsplan
 Title: "ELGA e-Med Medikationsplan"
-Description: "Bildet den Medikationsplan eines ELGA-Teilnehmers ab (\"List\"-Ressource). 
-Die Liste beinhaltet Referenzen auf 0..* Medikationsplaneinträge (MedicationRequests), die alle geplanten Medikationen und deren Dosierung abbilden.
-Die Reihenfolge der Listenelemente kann duch den User festgelegt werden. Jedes Listenelement enthält einen Änderungsstatus."
+Description: "Der Medikationsplan eines ELGA-Teilnehmers bzw. einer ELGA-Teilnehmerin wird durch eine List-Ressource abgebildet. 
+Diese enthält 0..* Einträge (List.entry), wobei jedes Entry genau eine Referenz auf einen Medikationsplaneintrag (MedicationRequest) in List.entry.item beinhaltet.
+Die Reihenfolge der Einträge kann durch den GDA oder den Patienten festgelegt werden. Jeder Listeneintrag enthält im Element List.entry.flag den Änderungsstatus des jeweiligen Medikationsplaneintrags."
+
 
 //TODO: Invariante, dass überall in der List der gleiche Patient enthalten sein muss
 
 * identifier 0..1 MS
-* identifier ^short = "Logischer Identfier der Liste (des Medikationsplans) zur Schreibintegritätsprüfung."
+* identifier ^short = "Logischer Identfier der Liste (des Medikationsplans) zur Integritätsprüfung beim Schreibvorgang."
 
 * status 1..1 MS
 * status from ElgaListStatusVS (required)
@@ -46,16 +47,17 @@ des Patienten zuzugreifen. Device nur für initiale Erstellung durch die Fachanw
 * orderedBy 1..1 MS
 * orderedBy from http://hl7.org/fhir/ValueSet/list-order 
 * orderedBy = #user
-* orderedBy ^short = "Die Reihenfolge der Einträge im Medikationsplan ist fachlich relevant und wird durch den Ersteller vorgegeben. Da nicht verpflichtend, könnte das Element auch 0..0 gesetzt werden.
-Evtl. Unterscheidung user und patient.
-Mögliche Codes: user | system | event-date | entry-date| priority | alphabetic | category | patient (TODO: nur user oder andere Reihenfolge ermöglichen?)"
+* orderedBy ^short = "Die Reihenfolge der Einträge im Medikationsplan ist fachlich relevant und wird durch den Ersteller vorgegeben."
+// Da nicht verpflichtend, könnte das Element auch 0..0 gesetzt werden. Evtl. Unterscheidung user und patient.
+// Mögliche Codes: user | system | event-date | entry-date| priority | alphabetic | category | patient (TODO: nur user oder andere Reihenfolge ermöglichen?)"
 
 // note: Mögliches Kommentar auf Ebene des Medikationsplans
 * note 0..* MS
-* note ^short = "Freitextliche Anmerkungen zum Medikationsplan. TODO: prüfen, ob fachlich sinnvoll."
+* note ^short = "Freitextliche Anmerkungen zum Medikationsplan." // TODO prüfen ob 0..1 
 
 // --- Entries ---
 * entry 0..* MS
+* entry ^short = "Medikationsplaneinträge in der Liste"
 
 * entry.flag 1..1 MS
 * entry.flag from ElgaListEntryFlagVS
@@ -64,11 +66,12 @@ Mögliche Codes: user | system | event-date | entry-date| priority | alphabetic 
 * status ^short = "Mögliche Ausprägungen: [current | retired] Bedeutung: current: default | retired: nach Ableben des Patienten bis Ende der Aufbewahrungsfrist"
 
 
-* entry.deleted 0..0 MS // removed, löschen: planeintrag aus liste entfernen
-* entry.deleted ^short = "Gibt an, ob der referenzierte Medikationsplaneintrag zur Entfernung markiert wurde. Unklar, ob Löschen so abgebildet werden soll oder einfach der Eintrag nicht mehr enthalten ist."
+* entry.deleted 0..0 MS 
+* entry.deleted ^short = "Gibt an, ob der referenzierte Medikationsplaneintrag zur Entfernung markiert wurde.
+Keine Verwendung im Medikationsplan, da GDA für die Kennzeichnung von zur Entfernung freigegebenen Planeinträgen das Element entry.flag mit dem Wert \"removed\" verwenden und ELGA-Teilnehmer Einträge durch Entfernen aus der Liste löschen." // TODO: Umsetzung für gelöschte MedicationRequests
 
 * entry.date 0..1 MS
-* entry.date ^short = "Datum der Aufnahme / Änderung des Medikationsplaneintrags. Fachlich zu klären."
+* entry.date ^short = "Datum der Aufnahme bzw. Änderung des Medikationsplaneintrags."
 
 * entry.item 1..1 MS
 * entry.item only Reference(AtEmedMRPlaneintrag)
