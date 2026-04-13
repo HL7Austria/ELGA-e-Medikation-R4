@@ -4,7 +4,9 @@
 
 #### AtEmedListMedikationsplan (*List*)
 
-Der Medikationsplan eines ELGA-Teilnehmers/einer ELGA-Teilnehmerin (*List*-Ressource) beinhaltet List-Entries, die 0..* Medikationsplaneinträge (*MedicationRequests*) referenzieren. Die Reihenfolge der Listenelemente kann duch den GDA oder Patienten festgelegt werden. Jedes Listenelement enthält im *flag*-Element den Änderungsstatus (siehe [Status der List.entry.flag (Medikationsplan)](workflowmanagement.html#status-der-list-entry-flag-medikationsplan)).
+Der Medikationsplan eines ELGA-Teilnehmers bzw. einer ELGA-Teilnehmerin wird durch eine *List*-Ressource abgebildet. Diese enthält 0..* Einträge (*List.entry*), wobei jedes Entry genau eine Referenz (*Reference*) auf einen Medikationsplaneintrag (*MedicationRequest*) in *List.entry.item* beinhaltet.
+
+Die Reihenfolge der Einträge kann durch den GDA oder den Patienten festgelegt werden. Jeder Listeneintrag enthält im Element *List.entry.flag* den Änderungsstatus des jeweiligen Medikationsplaneintrags (siehe [Status der List.entry.flag (Medikationsplan)](workflowmanagement.html#status-der-list-entry-flag-medikationsplan)).
 
 
 #### AtEmedMRPlaneintrag (*MedicationRequest*)

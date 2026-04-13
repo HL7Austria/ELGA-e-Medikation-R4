@@ -37,7 +37,7 @@ Der Read-to-Write-Zugriff dient der Vorbereitung einer Änderung des Medikations
 * Bei einem Read-to-Write-Zugriff prüft die Fachanwendung zunächst, ob bereits ein Medikationsplan vorhanden ist. Ist dies nicht der Fall, wird dieser erstellt (siehe [Sub_UC_06_01 - Initial erstellter Medikationsplan](Sub_UC_eMed_06.html#sub_uc_06_01---initial-erstellter-medikationsplan)) und zurückgeliefert.
 
 * Existiert bereits ein Medikationsplan (d.h. es wurde bereits ein Collection Bundle persistiert), wird von der Fachanwendung aus diesem ein **Collection Bundle** zur Auslieferung erstellt: 
-    * mit einem neuen oder bereits temporär gespeicherten **List.identifier** (wird von der Fachanwendung zur späteren Schreibintegritätsprüfung verwaltet)
+    * mit einem neuen oder bereits temporär gespeicherten **List.identifier** (wird von der Fachanwendung zur späteren Integritätsprüfung beim Schreibvorgang verwaltet)
     * die Inhalte werden von der Fachanwendung wie folgt aufbereitet:
         * Wenn List.entry.flag **new** → **unchanged**
         * Wenn List.entry.flag **changed** → **unchanged**

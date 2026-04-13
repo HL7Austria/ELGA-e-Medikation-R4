@@ -4,7 +4,7 @@
 
 #### Status des List.entry.flags (Medikationsplan)
 
-Das *flag*-Element eines Entries der List-Ressource beschreibt die Art der Änderung eines Mediaktionsplaneintrags auf Listenebene und kann folgende Status einnehmen:
+Das *flag*-Element eines Entries der List-Ressource beschreibt die **Art der Änderung eines Mediaktionsplaneintrags auf Listenebene** und kann folgende Status einnehmen:
 
 | Status | Beschreibung |
 |--------|------|
