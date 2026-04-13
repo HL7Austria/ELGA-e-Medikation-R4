@@ -12,7 +12,7 @@ Usage: #example
 * extension[renderedDosageInstruction].valueMarkdown = "1-0-1-0 Stück"
 
 * identifier.value = "4712_202602280800000" // Eintrag_ID = {ID}_{Zeitstempel}
-* status = #active
+* status = $cs-medication-request-status#active
 * intent = #order
 * category = MedicationRequestCategoryCS#1 "Medikationsplaneintrag" 
 * reportedBoolean = false

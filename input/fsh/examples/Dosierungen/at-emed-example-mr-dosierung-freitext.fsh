@@ -10,7 +10,7 @@ Usage: #example
 * extension[renderedDosageInstruction].valueMarkdown = "2 Stück morgens zum Frühstück"
 
 * identifier.value = "4719_202602280800000" // Eintrag_ID = {ID}_{Zeitstempel}
-* status = #active
+* status = $cs-medication-request-status#active
 //* intent = https://hl7.org/fhir/R4/valueset-medicationrequest-intent#order
 * intent = #order
 * category = MedicationRequestCategoryCS#1 "Medikationsplaneintrag" 

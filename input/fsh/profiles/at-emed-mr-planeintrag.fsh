@@ -22,7 +22,7 @@ Kann in weiterer Folge dazu dienen, eine geplante Abgabe zu erstellen. Verwendet
 * extension[offLabelUse] ^short = "Weist darauf hin, dass der verschreibende Arzt das Medikament wissentlich für eine Indikation, Altersgruppe, Dosierung oder Verabreichungsform verschrieben hat, die nicht von den Aufsichtsbehörden zugelassen ist und in der Verschreibungsinformation für das Produkt nicht erwähnt wird."
 // ENDE Extensions
 
-* identifier 1..1  // sonst 0..* 
+* identifier 1..1  
 * identifier ^short = "Medikationsplaneintrag-ID. TODO: Verwendung einer logischen Medikationsplaneintrag-ID prüfen. Details zur Herstellung von Bezügen von geänderten Planeinträgen, siehe Definition."
 * identifier ^definition = """
 Medikationsplaneintrag-ID.
@@ -37,20 +37,11 @@ Nachteil:
 
 * status 1..1 MS
 * status from MedikationsplaneintragStatusVS (required)
-* status ^short = "Status des Medikationsplaneintrags. active | completed | on-hold | stopped. TODO: Fachlich zu püfen, ob im Medikationsplan dokumentiert werden soll, dass und warum ein Medikament abgesetzt wurde (Status: stopped, z.B. bei Allergie). Details siehe Definition."
-* status ^definition = """
-Status des Medikationsplaneintrags:
-* \"active\": aktive Therapie; soll aktuell vom Patienten eingenommen werden
-* \"completed\": Therapie regulär abgeschlossen
-* \"on-hold\": Therapie vorübergehend unterbrochen; Wiederaufnahme vorgesehen
-* \"stopped\": begonnen Therapie, aber vorzeitig und ohne regulären Abschluss beendet
+* status ^short = "Status des Medikationsplaneintrags. Mögliche Ausprägungen: [active | on-hold | completed | stopped | entered-in-error]. Bedeutung: active: Planeintrag einer aktiven Medikation, die eingenommen werden soll | on-hold: Planeintrag ist pausiert, die Therapie ist unterbrochen (Wiederaufnahme vorgesehen) | completed: Therapie gemäß Planeintrag wie geplant durchgeführt und abgeschlossen | stopped: Therapie gemäß Planeintrag vorzeitig gestoppt und abgeschlossen | entered-in-error: Fehlerhafter Planeintrag storniert und abgeschlossen."
 
-(nicht verwendet: cancelled, entered-in-error, draft, unknown)
-https://hl7.org/fhir/R4/valueset-medicationrequest-status.html
-"""
-
-* statusReason 0..0   // TODO: statusReason.text optional für Begründung der Änderung zulassen?
-* statusReason ^short = "Grund für den aktuellen Status des Medikationsplaneintrags: (ex) https://hl7.org/fhir/R4/valueset-medicationrequest-status-reason.html. TODO: Verwendung fachlich zu prüfen im Zusammenhang mit Status."
+//TODO: Fachlich zu püfen, ob im Medikationsplan dokumentiert werden soll, dass und warum ein Medikament abgesetzt wurde (Status: stopped, z.B. bei Allergie). Details siehe Definition.
+* statusReason 0..1   // TODO: statusReason.text optional für Begründung der Änderung zulassen?
+* statusReason ^short = "Grund für den aktuellen Status des Medikationsplaneintrags: (ex) https://hl7.org/fhir/R4/valueset-medicationrequest-status-reason.html."
 
 * intent 1..1 MS
 * intent = https://hl7.org/fhir/R4/valueset-medicationrequest-intent#order

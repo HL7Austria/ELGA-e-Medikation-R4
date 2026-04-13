@@ -14,7 +14,7 @@ Usage: #example
 //* meta[+].profile = "http://hl7.eu/fhir/mpd/StructureDefinition/MedicationRequest-eu-mpd"
 * identifier.value = "4712_202602280800000" // Eintrag_ID = {ID}_{Zeitstempel}
 //* status = $cs-medication-request-status#active
-* status = #active
+* status = $cs-medication-request-status#active
 * intent = https://hl7.org/fhir/R4/valueset-medicationrequest-intent#order
 * category = MedicationRequestCategoryCS#1 "Medikationsplaneintrag" 
 

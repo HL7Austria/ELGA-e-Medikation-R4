@@ -13,7 +13,7 @@ Die Reihenfolge der Listenelemente kann duch den User festgelegt werden. Jedes L
 
 * status 1..1 MS
 * status from ElgaListStatusVS (required)
-* status ^short = "Mögliche Ausprägungen: [current | retired] Bedeutung: current: default | retired: nach Ableben des Patienten bis Ende der Aufbewahrungsfrist"
+* status ^short = "Status des Medikationsplans. Mögliche Ausprägungen: [current | retired] Bedeutung: current: default | retired: nach Ableben des Patienten bis Ende der Aufbewahrungsfrist"
 
 * mode 1..1 MS
 * mode = #working (exactly)

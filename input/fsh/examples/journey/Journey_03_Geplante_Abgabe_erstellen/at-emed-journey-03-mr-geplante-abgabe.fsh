@@ -12,7 +12,7 @@ Usage: #example
 * extension[renderedDosageInstruction].valueMarkdown = "1-0-1-0 Stück"
 
 //* identifier.value = "WYE82A2G8EEW_4712_202602280800000"
-* status = #active
+* status = $cs-medication-request-status#active
 * intent = #order
 * category[mrcategory] = MedicationRequestCategoryCS#2 "Geplante Abgabe"
 * category[recipetype] = $cs-medication-rezeptart#1 "Kassenrezept"

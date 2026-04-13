@@ -12,7 +12,7 @@ Usage: #example
 * extension[renderedDosageInstruction].valueMarkdown = "alle 2 Tage: 08:00 Uhr — je 1 Stück; 18:00 Uhr — je 2 Stück"
 
 * identifier.value = "4712_202602280800000" // Eintrag_ID = {ID}_{Zeitstempel}
-* status = #active
+* status = $cs-medication-request-status#active
 //* intent = https://hl7.org/fhir/R4/valueset-medicationrequest-intent#order
 * intent = #order
 * category = MedicationRequestCategoryCS#1 "Medikationsplaneintrag" 
