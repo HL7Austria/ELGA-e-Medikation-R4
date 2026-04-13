@@ -126,9 +126,9 @@ menu:
   Funktionales:
     Designentscheidungen: design_choices.html
     Akteure: actors.html
+    Dosierschemata: dosaging.html
     Workflowmanagement: workflowmanagement.html
     # Obligations: obligations.html
-    Dosierschemata: dosaging.html
     Zugriffsarten auf den Medikationsplan: interactions.html
   Anwendungsfälle:
     Überblick: overview_use_case.html
