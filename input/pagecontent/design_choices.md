@@ -11,7 +11,8 @@ Die Reihenfolge der Einträge kann durch den GDA oder den Patienten festgelegt w
 
 #### AtEmedMRPlaneintrag (*MedicationRequest*)
 
-Der Medikationsplaneintrag (*MedicationRequest*-Ressource) im Medikationsplan eines ELGA-Teilnehmers/einer ELGA-Teilnehmerin bildet genau ein Arzneimittel und dessen Dosierung ab und bildet in weiterer Folge die Grundlage zur Erstellung einer geplanten Abgabe (siehe *UC_08 Geplante Abgabe Schreiben*).
+Ein Medikationsplaneintrag im Medikationsplan eines ELGA-Teilnehmers bzw. einer ELGA-Teilnehmerin wird durch eine *MedicationRequest*-Ressource abgebildet. Die Ressource enthält genau ein Medikament mit der zugehörigen Dosierung, wobei das Medikament verpflichtend in einer contained *Medication*-Ressource, also inline (innerhalb der Ressource), dokumentiert wird.
+Der Medikationsplaneintrag kann in weiterer Folge als Grundlage für die Erstellung einer geplanten Abgabe dienen. Es werden R5-Backport-Extensions verwendet."
 
 Der aktuelle Status eines Medikationsplaneintrags wird im *status*-Element dokumentiert (siehe [Status des MedicationRequests im Medikationsplaneintrag](workflowmanagement.html#status-des-medicationrequests-im-medikationsplaneintrag)).  
 
