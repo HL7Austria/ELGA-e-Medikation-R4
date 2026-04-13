@@ -21,7 +21,7 @@ Usage: #example
 
 // * status = #current
 // * mode = #working
-// * code = $cs-sct#736378000 "Medication management plan (record artifact)"  // "Medikationsplan"
+// * code = $cs-sct#736378000 "Medikationsplan"  // "Medikationsplan"
 // * subject = Reference(At-Emed-Example-Patient-01)
 // * date = "2026-01-28T08:00:00+11:00"
 // * source = Reference(At-Emed-Example-Practitioner-01)

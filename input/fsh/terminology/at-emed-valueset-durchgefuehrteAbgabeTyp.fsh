@@ -5,7 +5,7 @@ Description: "ValueSet für zulässige Ausprägungen eines Typs einer durchgefü
 
 * ^experimental = true
 
-* include $cs-medication-dispense-type#FFC "First Fill - Complete"  // vollständig erfüllte Bestellungen
-* include $cs-medication-dispense-type#FFP "First Fill - Part Fill"  // teilweise erfüllte Bestellungen
-* include $cs-medication-dispense-type#RFP "Refill - Part Fill"
-* include $cs-medication-dispense-type#RFC "Refill - Complete"  // Rezept vollständig eingelöst (alle Teilabgaben)
+* $cs-medication-dispense-type#FFC "First Fill - Complete"  // vollständig erfüllte Bestellungen
+* $cs-medication-dispense-type#FFP "First Fill - Part Fill"  // teilweise erfüllte Bestellungen
+* $cs-medication-dispense-type#RFP "Refill - Part Fill"
+* $cs-medication-dispense-type#RFC "Refill - Complete"  // Rezept vollständig eingelöst (alle Teilabgaben)

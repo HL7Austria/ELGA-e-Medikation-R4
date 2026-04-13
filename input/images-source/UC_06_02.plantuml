@@ -66,7 +66,7 @@ end note
 activate eMed_FA
 eMed_FA -> eMed_FA: Prüfung auf bestehenden\nMedikationsplan
 
-eMed_FA -> eMed_FA: Wenn bereits Plan vorhanden +\nalle List.enty.flags im Medikationsplan = "removed":\nFachanwendung setzt List.emptyReason = "nilknown"
+eMed_FA -> eMed_FA: Wenn Plan vorhanden +\nalle List.enty.flags im Medikationsplan = "removed":\nFachanwendung setzt List.emptyReason = "nilknown"
 
 eMed_FA -->> GDA_1: Leerer Medikationsplan\n(emptyReason = "nilknown")
 

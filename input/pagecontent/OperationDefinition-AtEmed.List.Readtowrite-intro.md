@@ -1,5 +1,5 @@
 
-Beim Ausliefern des Collection Bundles werden folgende List-Flags vom Server automatisch geändert:
+Beim Ausliefern des Collection Bundles werden folgende List.entry.flags vom Server automatisch geändert:
 
 * von new zu unchangened
 * von changed zu unchangened

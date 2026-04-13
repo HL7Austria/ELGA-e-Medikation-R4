@@ -3,46 +3,43 @@ Parent: List
 Id: at-emed-list-medikationsplan
 Title: "ELGA e-Med Medikationsplan"
 Description: "Bildet den Medikationsplan eines ELGA-Teilnehmers ab (\"List\"-Ressource). 
-Die Liste beinhaltet Referenzen auf 0..* Medikationsplaneinträge (MedicationRequests), die alle verordneten Arzneimittel und deren Dosierung abbilden.
+Die Liste beinhaltet Referenzen auf 0..* Medikationsplaneinträge (MedicationRequests), die alle geplanten Medikationen und deren Dosierung abbilden.
 Die Reihenfolge der Listenelemente kann duch den User festgelegt werden. Jedes Listenelement enthält einen Änderungsstatus."
 
 //TODO: Invariante, dass überall in der List der gleiche Patient enthalten sein muss
 
 * identifier 0..1 MS
-* identifier ^short = "Logischer Identfier der Liste / des Medikationsplans. Verwendung zu prüfen."
+* identifier ^short = "Logischer Identfier der Liste (des Medikationsplans) zur Schreibintegritätsprüfung."
 
 * status 1..1 MS
-//* status = #current  
-* status ^short = "Verpflichtende Angabe: current | retired. https://hl7.org/fhir/R4/valueset-list-status.html
-TODO: retired nach Ableben des Patienten bis Ende der Aufbewahrungsfrist? automatisch gesetzt?
-entered-in-error nicht sinnvoll"
+//* status from ElgaListStatusVS (required)
+* status ^short = "Mögliche Ausprägungen: [current | retired] Bedeutung: current: default | retired: nach Ableben des Patienten bis Ende der Aufbewahrungsfrist"
 
 * mode 1..1 MS
-* mode = #working
-* mode ^short = "Verpflichtende Angabe: working | snapshot | changes. https://hl7.org/fhir/R4/valueset-list-mode.html
-Der Medikationsplan ist ein laufend gepflegtes Dokument: working."
+* mode = #working (exactly)
+* mode ^short = "Der Medikationsplan ist ein laufend gepflegtes Dokument. Fixer Wert: working."
 
 * title 0..0
-* title ^short = "Titel der Liste. Verwendung zu prüfen."
+* title ^short = "Titel der Liste."
 
-* code ^short = "Code, der den Typ der Liste beschreibt. https://hl7.org/fhir/R4/valueset-list-example-codes.html. Zu prüfen, ob/wie in Medikationsplan verwendet."
-* code 1..1 MS
-* code = $cs-sct#736378000 "Medication management plan (record artifact)"  // "Medikationsplan"
+* code 1..1 MS 
+* code = $cs-sct#736378000 "Medikationsplan" (exactly)
+* code ^short = "Code, der den Typ der Liste beschreibt."
 
 * subject 1..1 MS
-* subject only Reference(HL7ATCorePatient)
-* subject ^short = "Patient, für den der Medikationsplan erstellt werden soll, der über den 
+* subject only Reference(HL7ATCorePatient) // TODO ELGA Patient ableiten
+* subject ^short = "Patient, für den der Medikationsplan dokumentiert wird, der über den 
 Zentralen Patientenindex identifizierbar und Teilnehmer von ELGA e-Medikation ist."
 
 * encounter 0..0
-* encounter ^short = "Verwendung zu prüfen."
+* encounter ^short = "Behandlungskontext, in dem die Liste erstellt wurde."
 
 * date 1..1 MS
 * date ^short = "Letzte Aktualisierung des Medikationsplans."
 
 * source 1..1 MS
-* source only Reference(HL7ATCorePractitioner or HL7ATCorePractitionerRole or Device or HL7ATCorePatient)
-* source ^short = "Arzt oder Ärztin, die den Medikationsplans erstellt und für den Inhalt verantwortlich ist. 
+* source only Reference(HL7ATCorePractitioner or HL7ATCorePractitionerRole or Device or HL7ATCorePatient)  // TODO ELGA Profile
+* source ^short = "Arzt oder Ärztin, die den Medikationsplans erstellt hat und für den Inhalt verantwortlich ist. 
 Eindeutig identifiziert über den GDA-Index und berechtigt auf die ELGA e-Medikation 
 des Patienten zuzugreifen. Device nur für initiale Erstellung durch die Fachanwendung. Patient nur zur Änderung der Reihenfolge der Planeinträge oder nachdem er Einträge gelöscht hat."
 
@@ -61,20 +58,13 @@ Mögliche Codes: user | system | event-date | entry-date| priority | alphabetic 
 * entry 0..* MS
 
 * entry.flag 1..1 MS
-* entry.flag from http://hl7.org/fhir/ValueSet/list-item-flag
-* entry.flag ^short = "Kennzeichnet die Art der Änderung des Medikationsplaneintrags: (example) Unchanged | Changed | Cancelled | Prescribed | Ceased | Suspended. Details siehe Definition."
-* entry.flag ^definition = """
-Kennzeichnet die Art der Änderung des Medikationsplaneintrags: 
-* \"Unchanged\": Medikationsplaneintrag bleibt unverändert bestehen
-* \"Changed\": Medikationsplaneintrag wird geändert
-* \"Cancelled\": Medikationsplaneintrag wird storniert
-* \"Prescribed\": Neuer Medikationsplaneintrag wurde hinzugefügt
-* \"Ceased\": Medikationsplaneintrag wird abgesetzt
-* \"Suspended\": Medikationsplaneintrag wird pausiert
-"""  // TODO: eigenes Value Set erstellen
+* entry.flag from ElgaListEntryFlagVS
+* entry.flag ^short = "Kennzeichnet die Art der Änderung des Medikationsplaneintrags: [New | Unchanged | Changed | Removed] Bedeutung: New: Neuer Planeintrag wird hinzugefügt | Unchanged: Bestehender Planeintrag wird beibehalten und zur Kenntnis genommen | Changed: Bestehender Planeintrag wird geändert | Removed: Bestehender Planeintrag wird entfernt"
+
+* status ^short = "Mögliche Ausprägungen: [current | retired] Bedeutung: current: default | retired: nach Ableben des Patienten bis Ende der Aufbewahrungsfrist"
 
 
-* entry.deleted 0..1 MS
+* entry.deleted 0..0 MS // removed, löschen: planeintrag aus liste entfernen
 * entry.deleted ^short = "Gibt an, ob der referenzierte Medikationsplaneintrag zur Entfernung markiert wurde. Unklar, ob Löschen so abgebildet werden soll oder einfach der Eintrag nicht mehr enthalten ist."
 
 * entry.date 0..1 MS
@@ -85,12 +75,5 @@ Kennzeichnet die Art der Änderung des Medikationsplaneintrags:
 * entry.item ^short = "Referenz auf einen Medikationsplaneintrag."
 
 * emptyReason 0..1 MS
-* emptyReason from MedikationsplanEmptyReasonVS
-* emptyReason ^short = "Begründung, warum der Medikationsplan leer ist: notstarted |  nilknown. Details siehe Definition."
-* emptyReason ^definition = """
-Begründung, warum der Medikationsplan leer ist. Eingeschränkt auf: <vbr>
-    - notstarted: Intitalzustand <br>
-    - nilknown: Patient nimmt derzeit keine Medikamente ein
-
-https://hl7.org/fhir/R4/valueset-list-empty-reason.html
-"""
+* emptyReason from ElgaListEmptyReasonVS (required)
+* emptyReason ^short = "Begründung, warum der Medikationsplan leer ist. Mögliche Ausprägungen: [notstarted |  nilknown] Bedeutung: notstarted: Intitalzustand - noch nie befüllt | nilknown: Patient nimmt derzeit keine Medikamente ein"

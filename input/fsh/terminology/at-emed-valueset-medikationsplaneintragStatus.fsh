@@ -4,7 +4,8 @@ Description: "ValueSet für zulässige Ausprägungen eines Status eines Medikati
 * ^experimental = true
 //* include codes from system MedicationRequestCategoryCS
 
-* include $cs-medication-request-status#active
-* include $cs-medication-request-status#on-hold
-* include $cs-medication-request-status#completed
-* include $cs-medication-request-status#stopped
+* $cs-medication-request-status#active
+* $cs-medication-request-status#on-hold
+* $cs-medication-request-status#stopped
+* $cs-medication-request-status#entered-in-error
+* $cs-medication-request-status#completed

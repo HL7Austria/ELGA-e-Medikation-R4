@@ -64,12 +64,17 @@ GDA_1 ->> eMed_FA: GET Medikationsplan
 activate eMed_FA
 eMed_FA -> eMed_FA: Prüfung auf bestehenden\nMedikationsplan
 
-eMed_FA -->> GDA_1: Collection Bundle (unverändert)
+alt Medikationsplan vorhanden
+  eMed_FA -->> GDA_1: Collection Bundle (unverändert)
+
+else kein Medikationsplan vorhanden
+  eMed_FA -->> GDA_1: leeres Ergebnis
+end
 
 deactivate eMed_FA
 
 note over GDA_1, eMed_FA
-Fachanwendung liefert Medikationsplan zurück.
+Fachanwendung liefert Medikationsplan oder leeres Ergebnis zurück.
 end note
 
 deactivate eMed_FA

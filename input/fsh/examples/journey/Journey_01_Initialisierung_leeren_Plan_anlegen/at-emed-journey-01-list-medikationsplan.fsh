@@ -6,7 +6,7 @@ Usage: #example
 
 * status = #current
 * mode = #working
-* code = $cs-sct#736378000 "Medication management plan (record artifact)"  // "Medikationsplan"
+* code = $cs-sct#736378000 "Medikationsplan"  // "Medikationsplan"
 * subject = Reference(At-Emed-Example-Patient-01)
 * date = "2026-02-27T08:00:00+00:00" 
 // Verantworlich für die intitiale Erstellung ist die Flachanwendung
