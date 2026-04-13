@@ -80,19 +80,19 @@ pages:
   interactions.md:
     title: Zugriffsarten auf den Medikationsplan
   overview_use_case.md:
-    title: Überblick & Anwendungsbeispiel
+    # title: Überblick & Anwendungsbeispiel
     patient_journey.md:
       title: Patient Journey
-    UC_eMed_05.md:
-      title: UC_eMed_05 - Medikationsplan lesen
-    UC_eMed_06.md:
-      title: UC_eMed_06 - Medikationsplan schreiben
-    UC_eMed_07.md:
-      title: UC_eMed_07 - Geplante und durchgeführte Abgaben lesen
-    UC_eMed_08.md:
-      title: UC_eMed_08 - Geplante Abgabe schreiben
-    UC_eMed_09.md:
-      title: UC_eMed_09 - Durchgeführte Abgabe schreiben
+    # UC_eMed_05.md:
+    #   title: UC_eMed_05 - Medikationsplan lesen
+    # UC_eMed_06.md:
+    #   title: UC_eMed_06 - Medikationsplan schreiben
+    # UC_eMed_07.md:
+    #   title: UC_eMed_07 - Geplante und durchgeführte Abgaben lesen
+    # UC_eMed_08.md:
+    #   title: UC_eMed_08 - Geplante Abgabe schreiben
+    # UC_eMed_09.md:
+    #   title: UC_eMed_09 - Durchgeführte Abgabe schreiben
     overview_sub_use_case.md:
       title: Technische Use Cases
     Sub_UC_eMed_06.md:
@@ -101,8 +101,8 @@ pages:
       title: ​Technische Use Cases für Geplante Abgabe schreiben (UC_eMed_08)
     Sub_UC_eMed_09.md:
       title: ​Technische Use Cases für Durchgeführte Abgabe schreiben (UC_eMed_09)
-  mapping.md:
-    title: Mappings
+  # mapping.md:
+  #   title: Mappings
   # imprint.md:
   #   title: Impressum
   # authors.md:
@@ -131,15 +131,15 @@ menu:
     # Obligations: obligations.html
     Zugriffsarten auf den Medikationsplan: interactions.html
   Anwendungsfälle:
-    Überblick: overview_use_case.html
+    # Überblick: overview_use_case.html
     Patient Journey: patient_journey.html
-    UC_eMed_05 Medikationsplan lesen: UC_eMed_05.html
-    UC_eMed_06 Medikationsplan schreiben: UC_eMed_06.html
-    UC_eMed_07 Geplante und durchgeführte Abgaben lesen: UC_eMed_07.html
-    UC_eMed_08 Geplante Abgabe schreiben: UC_eMed_08.html
-    UC_eMed_09 Durchgeführte Abgabe schreiben: UC_eMed_09.html
+    # UC_eMed_05 Medikationsplan lesen: UC_eMed_05.html
+    # UC_eMed_06 Medikationsplan schreiben: UC_eMed_06.html
+    # UC_eMed_07 Geplante und durchgeführte Abgaben lesen: UC_eMed_07.html
+    # UC_eMed_08 Geplante Abgabe schreiben: UC_eMed_08.html
+    # UC_eMed_09 Durchgeführte Abgabe schreiben: UC_eMed_09.html
     Technische Use Cases: overview_sub_use_case.html
-  Mappings: mapping.html
+  # Mappings: mapping.html
   Artifacts: artifacts.html
   # About:
   #   Impressum: imprint.html

@@ -12,7 +12,7 @@ Die Reihenfolge der Listenelemente kann duch den User festgelegt werden. Jedes L
 * identifier ^short = "Logischer Identfier der Liste (des Medikationsplans) zur Schreibintegritätsprüfung."
 
 * status 1..1 MS
-//* status from ElgaListStatusVS (required)
+* status from ElgaListStatusVS (required)
 * status ^short = "Mögliche Ausprägungen: [current | retired] Bedeutung: current: default | retired: nach Ableben des Patienten bis Ende der Aufbewahrungsfrist"
 
 * mode 1..1 MS

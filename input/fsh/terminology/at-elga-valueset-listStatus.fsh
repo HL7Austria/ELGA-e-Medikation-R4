@@ -1,4 +1,4 @@
-ValueSet: ListStatusVS
+ValueSet: ElgaListStatusVS
 Title: "ELGA List Status ValueSet"
 Description: "Zulässige Ausprägungen des Status einer List-Ressource in ELGA."
 * ^status = #active

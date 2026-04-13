@@ -4,7 +4,7 @@
 
 #### AtEmedListMedikationsplan (*List*)
 
-Der Medikationsplan eines ELGA-Teilnehmers/einer ELGA-Teilnehmerin (*List*-Ressource) beinhaltet List-Entries, die 0..* Medikationsplaneinträge (*MedicationRequests*) referenzieren. Die Reihenfolge der Listenelemente kann duch den GDA oder Patienten festgelegt werden. Jedes Listenelement enthält im *flag*-Element den Änderungsstatus (siehe [Status der List-Flag (Medikationsplan)](workflowmanagement.html#status-der-list-flag-medikationsplan)).
+Der Medikationsplan eines ELGA-Teilnehmers/einer ELGA-Teilnehmerin (*List*-Ressource) beinhaltet List-Entries, die 0..* Medikationsplaneinträge (*MedicationRequests*) referenzieren. Die Reihenfolge der Listenelemente kann duch den GDA oder Patienten festgelegt werden. Jedes Listenelement enthält im *flag*-Element den Änderungsstatus (siehe [Status der List.entry.flag (Medikationsplan)](workflowmanagement.html#status-der-list-entry-flag-medikationsplan)).
 
 
 #### AtEmedMRPlaneintrag (*MedicationRequest*)
@@ -13,4 +13,4 @@ Der Medikationsplaneintrag (*MedicationRequest*-Ressource) im Medikationsplan ei
 
 Der aktuelle Status eines Medikationsplaneintrags wird im *status*-Element dokumentiert (siehe [Status des MedicationRequests im Medikationsplaneintrag](workflowmanagement.html#status-des-medicationrequests-im-medikationsplaneintrag)).  
 
-Abhängig vom List-Flag kann der Medikationsplaneintrag nur eingeschränkte Status einnehmen (siehe [Konsistenzregeln zwischen List-Flag und MedicationRequest-Status](workflowmanagement.html#konsistenzregeln-zwischen-list-flag-und-medicationrequest-status)).
+Abhängig vom List.entry.flag kann der Medikationsplaneintrag nur eingeschränkte Status einnehmen (siehe [Konsistenzregeln zwischen List.entry.flag und MedicationRequest-Status](workflowmanagement.html#konsistenzregeln-zwischen-list-entry-flag-und-medicationrequest-status)).
