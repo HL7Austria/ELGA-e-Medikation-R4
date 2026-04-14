@@ -9,7 +9,7 @@ Die Reihenfolge der Einträge kann durch den GDA oder den Patienten festgelegt w
 
 //TODO: Invariante, dass überall in der List der gleiche Patient enthalten sein muss
 
-* identifier 0..1 MS
+* identifier 1..1 MS
 * identifier ^short = "Logischer Identfier der Liste (des Medikationsplans) zur Integritätsprüfung beim Schreibvorgang."
 
 * status 1..1 MS
@@ -52,7 +52,7 @@ des Patienten zuzugreifen. Device nur für initiale Erstellung durch die Fachanw
 // Mögliche Codes: user | system | event-date | entry-date| priority | alphabetic | category | patient (TODO: nur user oder andere Reihenfolge ermöglichen?)"
 
 // note: Mögliches Kommentar auf Ebene des Medikationsplans
-* note 0..* MS
+* note 0..* MS  // eher 0..1 und man muss das alte überschreiben oder löschen
 * note ^short = "Freitextliche Anmerkungen zum Medikationsplan." // TODO prüfen ob 0..1 
 
 // --- Entries ---

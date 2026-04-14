@@ -4,6 +4,7 @@ Title: "Beispiel Journey 05-b: Mediationsplan ändern (Einträge absetzen und ä
 Description: "Beispiel: Mediationsplan ändern (Einträge absetzen und ändern)."
 Usage: #example
 
+* identifier.value = "123"
 * status = #current
 * mode = #working
 * code = $cs-sct#736378000 "Medikationsplan"  // "Medikationsplan"

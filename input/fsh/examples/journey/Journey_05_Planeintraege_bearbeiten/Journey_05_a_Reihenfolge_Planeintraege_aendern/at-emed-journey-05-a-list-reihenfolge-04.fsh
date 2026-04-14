@@ -4,6 +4,7 @@ Title: "Beispiel Journey 05-a: Reihenfolge der Planeinträge ändern"
 Description: "Beispiel Änderung der Reihenfolge der Medikationsplaneinträge (MedicationRequests) durch den Patienten."
 Usage: #example
 
+* identifier.value = "123"
 * status = #current
 * mode = #working
 * code = $cs-sct#736378000 "Medikationsplan"  // "Medikationsplan"

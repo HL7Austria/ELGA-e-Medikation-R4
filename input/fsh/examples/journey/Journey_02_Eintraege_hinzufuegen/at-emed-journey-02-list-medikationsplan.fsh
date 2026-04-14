@@ -4,6 +4,7 @@ Title: "Beispiel Journey 02: Medikationsplan"
 Description: "Beispiel eines Medikationsplans (List), der 2 Planeinträge (MedicationRequests) referenziert und Informationen über Reihenfolge und Änderungsstatus speichert."
 Usage: #example
 
+* identifier.value = "123"
 * status = #current
 * mode = #working
 * code = $cs-sct#736378000 "Medikationsplan"  // "Medikationsplan"

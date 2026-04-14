@@ -4,6 +4,7 @@ Title: "Beispiel Medikationsplan mit Dosierungsvarianten"
 Description: "Beispiel Medikationsplan (List) mit Dosierungsvarianten: Freitext Dosierung, Schema mit Tageszeiten-Bezug (1-0-1-0), Schema mit Uhrzeiten-Bezug."
 Usage: #example
 
+* identifier.value = "123"
 * status = #current
 * mode = #working
 * code = $cs-sct#736378000 "Medikationsplan"  // "Medikationsplan"

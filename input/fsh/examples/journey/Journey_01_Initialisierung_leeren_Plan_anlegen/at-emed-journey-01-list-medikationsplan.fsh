@@ -4,6 +4,7 @@ Title: "Beispiel Journey 01: Leerer Medikationsplan"
 Description: "Beispiel eines leeren Mediaktionsplans (List-Ressource ohne Einträge)"
 Usage: #example
 
+* identifier.value = "123"
 * status = #current
 * mode = #working
 * code = $cs-sct#736378000 "Medikationsplan"  // "Medikationsplan"
