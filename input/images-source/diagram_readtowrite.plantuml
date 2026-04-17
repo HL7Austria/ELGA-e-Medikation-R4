@@ -82,11 +82,12 @@ end note
 
 == Write ==
 
-GDA_1 ->> eMed_FA: PUT $write (Transaction Bundle + List.identifier)
+GDA_1 ->> eMed_FA: POST $write (Transaction Bundle + List.identifier)
 deactivate GDA_1
 
 activate eMed_FA
 eMed_FA -> eMed_FA: List.identifier im TransactionBundle ==\ntemporär gespeicherter List.identifier?
+eMed_FA -> eMed_FA: Validierung des neuen Plans:\nnur erlaubte Änderungen zulassen\n(keine unzulässigen Zustandsübergänge)
 
 alt gültig
   eMed_FA -> eMed_FA: Persistiert neue Version des\nMedikationsplans

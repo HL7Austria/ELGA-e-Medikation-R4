@@ -97,7 +97,7 @@ end note
 
 == Write durch GDA 2 ==
 
-GDA_2 ->> eMed_FA: PUT $write (Transaction Bundle + List.identifier "123")
+GDA_2 ->> eMed_FA: POST $write (Transaction Bundle + List.identifier "123")
 deactivate GDA_2
 
 activate eMed_FA
@@ -114,7 +114,7 @@ deactivate eMed_FA
 
 == Write-Error für GDA 1 ==
 
-GDA_1 ->> eMed_FA: PUT $write (Transaction Bundle + List.identifier "123")
+GDA_1 ->> eMed_FA: POST $write (Transaction Bundle + List.identifier "123")
 deactivate GDA_1
 
 activate eMed_FA
