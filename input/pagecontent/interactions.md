@@ -2,31 +2,34 @@
 
 <!-- Zugriffsarten auf den Medikationsplan -->
 
-Im Folgenden werden standardisierte Interaktionen für den lesenden und schreibenden Zugriff auf den Medikationsplan erläutert, die für alle technischen Use Cases relevant sind.
+Im Folgenden werden standardisierte Interaktionen für den lesenden und schreibenden Zugriff auf den Medikationsplan eines Patienten bzw. einer Patientin erläutert, die für alle technischen Use Cases relevant sind.
 
 ### Read-only-Zugriff
 
-Beim Read-only-Zugriff wird der aktuelle Medikationsplan (zuletzt gespeichertes Collection Bundle) von der Fachanwendung **unverändert** bereitgestellt.
+Beim Read-only-Zugriff stellt die Fachanwendung den aktuellen Medikationsplan (zuletzt gespeichertes Collection Bundle inkl. aller referenzierten Ressourcen) **unverändert** bereit.
 
-Das **Collection Bundle** enthält:
-* die List-Ressource des Medikationsplans
-* alle darin referenzierten Ressourcen (z.B. MedicationRequest, Patient, Practitioner) vollständig (inline)
-* Es erfolgt keine Veränderung von Flags, Status oder Inhalten.
-* Der Zugriff dient ausschließlich der Anzeige bzw. Information.
-
-Ist zum Zeitpunkt der Abfrage kein Medikationsplan für den/die Patient:in vorhanden, liefert die Fachanwendung ein **leeres Ergebnis** zurück.
 
 #### Ablauf
 
+1. Der GDA führt ein GET auf das Collection Bundle des Medikationsplans aus.
+2. Die Fachanwendung prüft, ob ein Medikationsplan für den/die Patient:in existiert.
+3. Ist **kein Medikationsplan vorhanden**, wird ein **leeres Ergebnis** zurückgegeben.
+4. Ist ein Medikationsplan vorhanden, wird das zuletzt gespeicherte Collection Bundle zurückgeliefert. <br>
+    Das **Collection Bundle** enthält:<br>
+        * die List-Ressource des Medikationsplans <br>
+        * alle referenzierten Ressourcen (z. B. MedicationRequest, Patient, Practitioner) vollständig (inline)
+
+Beim Read-only-Zugriff erfolgt **keine Veränderung** von Flags, Status oder Inhalten durch die Fachanwendung.
+Der Zugriff dient ausschließlich der Anzeige bzw. Informationsabfrage.
+
+<br>
 <div>{% include diagram_read.svg %}</div>
 <br>
 
-**Abruf aktueller Medikationsplan:**
-* Aktuelle Planversion mit dem Suchparameter Patient abrufen: GET [base]/Bundle?type=collection&_count=1&_sort=-timestamp&list.subject={bPK-GH}
-* Alle Planversionen mit dem Suchparameter Patient abrufen: GET [base]/Bundle?type=collection&_sort=-timestamp&list.subject={bPK-GH}
-
-**Abruf historischer Medikationsplanversionen mit Suchkriterien:**
-* Abfrage alle historischen collections zu dem Patienten, die nach dem angegebenen Datum gespeichert wurden und list.entry.flag=removed haben:
+**Beispiele für Zugriffe mittels Suchparameter**
+* **Aktuelle Planversion** mit dem Suchparameter Patient abrufen: GET [base]/Bundle?type=collection&_count=1&_sort=-timestamp&list.subject={bPK-GH}
+* **Alle Planversionen** mit dem Suchparameter Patient abrufen: GET [base]/Bundle?type=collection&_sort=-timestamp&list.subject={bPK-GH}
+* Abfrage aller **historischen Medikationsplan-Versionen** eines Patienten, die nach dem angegebenen Datum gespeichert wurden und Plan-Einträge enthalten, die als **storniert, beendet oder abgesetzt** gekennzeichnet sind:
     * GET [base]/Bundle?type=collection&_sort=-timestamp&timestamp=ge2025-01-01&list.subject={bPK-GH}&list.entry.flag=removed  (TODO query prüfen)
 
 ### Read-to-Write-Zugriff
