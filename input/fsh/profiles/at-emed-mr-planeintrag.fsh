@@ -3,10 +3,11 @@ Parent: MedicationRequest
 Id: at-emed-mr-planeintrag
 Title: "ELGA e-Med Planeintrag"
 Description: "Ein Medikationsplaneintrag im Medikationsplan eines ELGA-Teilnehmers bzw. einer ELGA-Teilnehmerin wird durch eine \"MedicationRequest\"-Ressource abgebildet.
-Die Ressource enthält genau ein Medikament mit der zugehörigen Dosierung, wobei das Medikament verpflichtend in einer contained Medication-Ressource (inline), also innerhalb der Ressource, dokumentiert wird.
+Die Ressource enthält genau ein Medikament mit der zugehörigen Dosierung, wobei das Medikament verpflichtend in einer contained Medication-Ressource (inline, d.h. innerhalb der Ressource), dokumentiert wird.
 Der Medikationsplaneintrag kann in weiterer Folge als Grundlage für die Erstellung einer geplanten Abgabe dienen. Es werden R5-Backport-Extensions verwendet."
 // TODO: Statt MS Obligations für alle Elemente, daher später kein 0..0 nötig
 
+* . ^short = "Medikationsplaneintrag"
 
 // Extensions
 * extension contains $medicationRequest-effectiveDosePeriod-r5 named effectiveDosePeriod 0..1
