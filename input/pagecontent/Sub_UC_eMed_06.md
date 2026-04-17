@@ -407,8 +407,9 @@ AtEmedListMedikationsplan
 TODO: statusReason wäre hier sinnvoll, dzt. NP
 
 
+#### Sub-Usecase: Historischen Medikationsplaneintrag abrufen
 
-
+TODO: Abrufen der _history von medicationrequests (für den Verlauf eines einzelnen MedicationRequests)
 
 <!-- #### Beispiel -->
 

@@ -69,14 +69,11 @@ alt kein Medikationsplan vorhanden
 else Medikationsplan vorhanden
   eMed_FA -->> GDA_1: CollectionBundle (Medikationsplan + Ressourcen) (unverändert)
 end
-
 deactivate eMed_FA
 
 note over GDA_1, eMed_FA
 Fachanwendung liefert Medikationsplan oder leeres Ergebnis zurück.
 end note
-
-deactivate eMed_FA
 
 center footer Read-only-Zugriff
 

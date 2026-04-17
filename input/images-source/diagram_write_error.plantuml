@@ -63,8 +63,8 @@ autonumber
 GDA_1 ->> eMed_FA: POST $readtowrite (Patient)
 
 activate eMed_FA
-eMed_FA -> eMed_FA: Prüfung auf bestehenden\nMedikationsplan
-eMed_FA -> eMed_FA: Collection Bundle zur Auslieferung\n(inkl. neuem temporär gespeicherten List.identifier)\nBedingung für Read-to-Write Collection Bundle:\n- new|changed → unchanged\n- removed → entfernen
+eMed_FA -> eMed_FA: Annahme: Prüfung auf bestehenden\nMedikationsplan erfolgreich
+eMed_FA -> eMed_FA: Collection Bundle zur Auslieferung erstellt\n(inkl. temporärem List.identifier "123")
 
 eMed_FA -->> GDA_1: Collection Bundle + List.identifier "123"
 deactivate eMed_FA
@@ -82,8 +82,8 @@ GDA_2 ->> eMed_FA: POST $readtowrite (Patient)
 
 
 activate eMed_FA
-eMed_FA -> eMed_FA: Prüfung auf bestehenden\nMedikationsplan
-eMed_FA -> eMed_FA: Collection Bundle zur Auslieferung\n(inkl. temporär gespeicherten List.identifier)\nBedingung für Read-to-Write Collection Bundle:\n- new|changed → unchanged\n- removed → entfernen
+eMed_FA -> eMed_FA: Annahme: Prüfung auf bestehenden\nMedikationsplan erfolgreich
+eMed_FA -> eMed_FA: Collection Bundle zur Auslieferung erstellt\n(inkl. temporärem List.identifier "123")
 
 eMed_FA -->> GDA_2: Collection Bundle + List.identifier "123"
 deactivate eMed_FA
