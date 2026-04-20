@@ -69,8 +69,8 @@ pages:
     title: Herausforderungen  
   design_choices.md:
     title: Designentscheidungen
-  dosaging.md:
-    title: Dosierschemata
+  # dosaging.md:
+  #   title: Dosierschemata
   actors.md:
     title: Akteure
   workflowmanagement.md:
@@ -126,7 +126,7 @@ menu:
   Funktionales:
     Designentscheidungen: design_choices.html
     Akteure: actors.html
-    Dosierschemata: dosaging.html
+    # Dosierschemata: dosaging.html
     Workflowmanagement: workflowmanagement.html
     # Obligations: obligations.html
     Zugriffsarten auf den Medikationsplan: interactions.html
