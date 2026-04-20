@@ -59,8 +59,8 @@ autonumber
 
  
 == Read-to-Write durch GDA 1 ==
-
-GDA_1 ->> eMed_FA: POST $readtowrite (Patient)
+activate GDA_1
+GDA_1 ->> eMed_FA: POST $readtowrite CollectionBundle\n(Medikationsplan + Ressourcen)
 
 activate eMed_FA
 eMed_FA -> eMed_FA: Annahme: Prüfung auf bestehenden\nMedikationsplan erfolgreich
@@ -69,7 +69,6 @@ eMed_FA -> eMed_FA: Collection Bundle zur Auslieferung erstellt\n(inkl. temporä
 eMed_FA -->> GDA_1: Collection Bundle + List.identifier "123"
 deactivate eMed_FA
 
-activate GDA_1
 GDA_1 -> GDA_1: Einträge hinzufügen/ändern/entfernen
 
 note over GDA_1
@@ -78,8 +77,8 @@ end note
 
 == Read-to-Write durch GDA 2 ==
 
-GDA_2 ->> eMed_FA: POST $readtowrite (Patient)
-
+GDA_2 ->> eMed_FA: POST $readtowrite CollectionBundle\n(Medikationsplan + Ressourcen)
+activate GDA_2
 
 activate eMed_FA
 eMed_FA -> eMed_FA: Annahme: Prüfung auf bestehenden\nMedikationsplan erfolgreich
@@ -88,7 +87,6 @@ eMed_FA -> eMed_FA: Collection Bundle zur Auslieferung erstellt\n(inkl. temporä
 eMed_FA -->> GDA_2: Collection Bundle + List.identifier "123"
 deactivate eMed_FA
 
-activate GDA_2
 GDA_2 -> GDA_2: Einträge hinzufügen/ändern/entfernen
 
 note over GDA_2
@@ -98,13 +96,14 @@ end note
 == Write durch GDA 2 ==
 
 GDA_2 ->> eMed_FA: POST $write (Transaction Bundle + List.identifier "123")
-deactivate GDA_2
 
 activate eMed_FA
 eMed_FA -> eMed_FA: List.identifier "123" im Transaction Bundle ==\ntemporär gespeicherter List.identifier "123"
+eMed_FA -> eMed_FA: Validierung des neuen Plans\n(keine unzulässigen Zustandsübergänge)
 eMed_FA -> eMed_FA: Persistiert neue Version des\nMedikationsplans mit List.identifier "123"
 eMed_FA -> eMed_FA: Löscht temporären List.identifier "123"
 eMed_FA -->> GDA_2: OK 
+deactivate GDA_2
 
 note over eMed_FA
 Medikationsplan wurde durch GDA 2 aktualisiert.
@@ -115,12 +114,12 @@ deactivate eMed_FA
 == Write-Error für GDA 1 ==
 
 GDA_1 ->> eMed_FA: POST $write (Transaction Bundle + List.identifier "123")
-deactivate GDA_1
 
 activate eMed_FA
 eMed_FA -> eMed_FA: List.identifier "123" im TransactionBundle stimmt nicht\nmit temporär gespeicherten List.identifier überein\n(kein Eintrag vorhanden)
 eMed_FA -> eMed_FA: Fachanwendung lehnt Speichern ab
-eMed_FA -->> GDA_1: Fehler (Konflikt): ein anderer GDA hat\nzwischenzeitlich geschrieben
+eMed_FA -->> GDA_1: Fehler (Konflikt)
+deactivate GDA_1
 note over eMed_FA, GDA_1
 Speichern des Medikationsplans wurde abgelehnt, der GDA 1 muss ein neues Read-to-Write ausführen.
 end note
