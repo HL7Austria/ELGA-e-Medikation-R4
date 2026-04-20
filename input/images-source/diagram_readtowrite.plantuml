@@ -61,6 +61,7 @@ autonumber
 == Read-to-Write ==
 
 GDA_1 ->> eMed_FA: POST $readtowrite CollectionBundle\n(Medikationsplan + Ressourcen)
+activate GDA_1
 
 note over GDA_1
 Medikationsplan abrufen, 
@@ -78,41 +79,14 @@ else Medikationsplan vorhanden
   eMed_FA -> eMed_FA: Plan vorhanden:\nCollection Bundle zur Auslieferung\n(inkl. neuem temporär gespeicherten List.identifier)\nBedingung für Read-to-Write Collection Bundle:\n- new|changed → unchanged\n- removed → entfernen
   eMed_FA -->> GDA_1: Collection Bundle + List.identifier
   deactivate eMed_FA
-  activate GDA_1
 end
 
 GDA_1 -> GDA_1: Einträge hinzufügen/ändern/entfernen
 
 note over GDA_1
-Medikationsplan bearbeiten
+Medikationsplan bearbeiten.
+Nach Fertigstellung kann ein Write-Zugriff erfolgen.
 end note
-
-== Write ==
-
-GDA_1 ->> eMed_FA: POST $write (Transaction Bundle + List.identifier)
-
-deactivate GDA_1
-
-activate eMed_FA
-eMed_FA -> eMed_FA: List.identifier im TransactionBundle ==\ntemporär gespeicherter List.identifier?
-eMed_FA -> eMed_FA: Validierung des neuen Plans\n(keine unzulässigen Zustandsübergänge)
-
-alt ungültig 
-  eMed_FA -->> GDA_1: Fehler 
-  
-else gültig 
-  eMed_FA -> eMed_FA: Persistiert neue Version des\nMedikationsplans
-
-  note over eMed_FA
-  Neuer Medikationsplan gespeichert
-  end note
-
-  eMed_FA -->> GDA_1: OK
-end
-
-
-deactivate eMed_FA
-
 
 center footer Read-to-Write- / Write-Zugriff
 
