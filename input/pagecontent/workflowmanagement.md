@@ -1,5 +1,3 @@
-{% include styleheader.md %}
-
 ### Überblick der Statusänderungen der e-Medikation Ressourcen 
 
 #### Status des List.entry.flags (Medikationsplan)
@@ -56,17 +54,83 @@ Im Kontext des Medikationsplans kann dieses Element folgende Statuswerte annehme
 Da der Status eines Medikationsplaneintrags im Medikationsplan auf **zwei Ebenen** geführt wird (List.entry.flag und MedicationRequest.status), müssen diese beiden Ebenen zur Sicherstellung einer konsistenten Verarbeitung inhaltlich aufeinander abgestimmt sein. Die folgende Tabelle beschreibt die geltenden Konsistenzregeln zwischen List.entry.flag und MedicationRequest.status in Abhängigkeit vom jeweiligen Use Case:
 <br>
 
-| Use Case | List.entry.flags | MedicationRequest-Status      (Planeintrag) | Beschreibung |  |
-|---|---|---|---|---|
-| Neuen Planeintrag zum Medikationsplan hinzufügen | **new** | **active** | Neuer Planeintrag wird erstellt und ist aktiv<br> - der Behandlungszeitraum kann in der Zukunft liegen<br> - Bereits bestehender Planeintrag kann wieder reaktiviert werden (Client-SW) |  |
-|  |  **new** | **on-hold** | Neuer Planeintrag wird erstellt, wird aber pausiert  |  |
-| Bestehenden Planeintrag im Medikationsplan beibehalten/zur Kenntnis nehmen | **unchanged** | **active**  | Bestehender Planeintrag bleibt unverändert<br> - der Behandlungszeitraum darf noch nicht abgelaufen sein |  |
-|  | **unchanged**  | **on-hold** | Bestehender Planeintrag bleibt unverändert pausiert<br> - der Behandlungszeitraum darf noch nicht abgelaufen sein |  |
-| Bestehenden Planeintrag im Medikationsplan ändern | **changed** | **active** | Bestehender Planeintrag wird geändert |  |
-|  | **changed** | **on-hold** | Bestehender Planeintrag wird geändert und pausiert |  |
-| Bestehenden Planeintrag aus Medikationsplan entfernen | **removed**  | **completed** | Bestehender Planeintrag wird beendet (durch Ablauf des Behandlungszeitraums, wenn keine erneute Verordnung) |  |
-|  | **removed**  | **stopped** | Bestehender Planeintrag wird vor Ablauf des Behandlungszeitraums abgesetzt  |  |
-|  | **removed**  | **entered-in-error** | Bestehender Planeintrag wird storniert, aufgrund falscher Eingabe |  | 
+
+<table>
+  <colgroup>
+    <col style="width: 30%">
+    <col style="width: 20%"> 
+    <col style="width: 20%">
+    <col style="width: 30%">
+  </colgroup>
+  <thead>
+    <tr>
+      <th>Use Case</th>
+      <th>List.entry.flags</th>
+      <th>MedicationRequest-Status<br>(Planeintrag)</th>
+      <th>Beschreibung</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="2"><span style="font-weight:normal">Neuen Planeintrag zum Medikationsplan hinzufügen</span></td>
+      <td><span style="font-weight:bold">new</span></td>
+      <td><span style="font-weight:bold">active</span></td>
+      <td>
+        <span style="font-weight:normal">Neuer Planeintrag wird erstellt und ist aktiv</span><br>
+        <span style="font-weight:normal">- der Behandlungszeitraum kann in der Zukunft liegen</span>
+      </td>
+    </tr>
+    <tr>
+      <td><span style="font-weight:bold">new</span></td>
+      <td><span style="font-weight:bold">on-hold</span></td>
+      <td><span style="font-weight:normal">Neuer Planeintrag wird erstellt, wird aber pausiert</span></td>
+    </tr>
+    <tr>
+      <td rowspan="2"><span style="font-weight:normal">Bestehenden Planeintrag im Medikationsplan beibehalten/zur Kenntnis nehmen</span></td>
+      <td><span style="font-weight:bold">unchanged</span></td>
+      <td><span style="font-weight:bold">active</span></td>
+      <td>
+        <span style="font-weight:normal">Bestehender Planeintrag bleibt unverändert</span><br>
+        <span style="font-weight:normal">- der Behandlungszeitraum darf noch nicht abgelaufen sein</span>
+      </td>
+    </tr>
+    <tr>
+      <td><span style="font-weight:bold">unchanged</span></td>
+      <td><span style="font-weight:bold">on-hold</span></td>
+      <td>
+        <span style="font-weight:normal">Bestehender Planeintrag bleibt unverändert pausiert</span><br>
+        <span style="font-weight:normal">- der Behandlungszeitraum darf noch nicht abgelaufen sein</span>
+      </td>
+    </tr>
+    <tr>
+      <td rowspan="2"><span style="font-weight:normal">Bestehenden Planeintrag im Medikationsplan ändern</span></td>
+      <td><span style="font-weight:bold">changed</span></td>
+      <td><span style="font-weight:bold">active</span></td>
+      <td><span style="font-weight:normal">Bestehender Planeintrag wird geändert</span></td>
+    </tr>
+    <tr>
+      <td><span style="font-weight:bold">changed</span></td>
+      <td><span style="font-weight:bold">on-hold</span></td>
+      <td><span style="font-weight:normal">Bestehender Planeintrag wird geändert und pausiert</span></td>
+    </tr>
+    <tr>
+      <td rowspan="3"><span style="font-weight:normal">Bestehenden Planeintrag aus Medikationsplan entfernen</span></td>
+      <td><span style="font-weight:bold">removed</span></td>
+      <td><span style="font-weight:bold">completed</span></td>
+      <td><span style="font-weight:normal">Bestehender Planeintrag wird beendet. Die Therapie wurde wie geplant durchgeführt und ist abgeschlossen.</span></td>
+    </tr>
+    <tr>
+      <td><span style="font-weight:bold">removed</span></td>
+      <td><span style="font-weight:bold">stopped</span></td>
+      <td><span style="font-weight:normal">Bestehender Planeintrag wird vor Ablauf des Behandlungszeitraums dauerhaft gestoppt. Die Medikation wurde, bevor alle geplanten Einnahmen oder Verabreichungen durchgeführt wurden, abgesetzt.</span></td>
+    </tr>
+    <tr>
+      <td><span style="font-weight:bold">removed</span></td>
+      <td><span style="font-weight:bold">entered-in-error</span></td>
+      <td><span style="font-weight:normal">Bestehender Planeintrag wird storniert, aufgrund falscher Eingabe</span></td>
+    </tr>
+  </tbody>
+</table>
 
 <br>
 

@@ -58,7 +58,7 @@ Die GDA-Software muss sicherstellen, dass eine eindeutige Identifizierung des ä
 
 <br>
 <br>
-<!-- [![overview](usecases_e_med4.drawio.png){: style="width: 100%"}](usecases_e_med4.drawio.png) -->
+[![diagram](usecases_e_med4.drawio.png){: style="width: 100%"}](usecases_e_med4.drawio.png)
 
-![diagram](usecases_e_med4.drawio.png)
+<!-- ![diagram](usecases_e_med4.drawio.png) -->
 <br clear="all"/>

@@ -14,11 +14,11 @@ Usage: #definition
 * instance = false   // Id von Instanz muss beim Aufruf nicht bekannt sein, nur Patient-ID
 * code = #write
 * parameter[+]
-* parameter[=].name = #bpkGH   // prüfen
+* parameter[=].name = #id   // prüfen
 * parameter[=].use = #in
 * parameter[=].min = 1
 * parameter[=].max = "1"
-* parameter[=].documentation = "Der *bpkGH* Parameter dient der Zurordnung des Patienten."
+* parameter[=].documentation = "Der *id* Parameter dient der Zurordnung des Patienten."
 * parameter[=].type = #string
 * parameter[+]
 * parameter[=].name = #medikationsplan   
