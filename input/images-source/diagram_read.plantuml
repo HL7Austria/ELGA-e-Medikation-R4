@@ -58,7 +58,7 @@ end box
 autonumber
 
 == Read ==
-
+activate GDA_1
 GDA_1 ->> eMed_FA: GET CollectionBundle (Medikationsplan + Ressourcen)
 
 activate eMed_FA
@@ -68,6 +68,7 @@ alt kein Medikationsplan vorhanden
   eMed_FA -->> GDA_1: leeres Ergebnis
 else Medikationsplan vorhanden
   eMed_FA -->> GDA_1: CollectionBundle (Medikationsplan + Ressourcen) (unverändert)
+  deactivate GDA_1
 end
 deactivate eMed_FA
 
