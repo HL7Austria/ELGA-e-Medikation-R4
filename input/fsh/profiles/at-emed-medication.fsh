@@ -2,16 +2,15 @@ Profile: AtEmedMedication
 Parent: Medication
 Id: at-emed-medication
 Title: "ELGA e-Med Medikation"
-Description: "Bildet ein Arzneimittel in der \"Medication\"-Ressource ab. Wird grundsätzlich verwendet in Planeintrag, geplante Abgabe und durchgeführte Abgabe. Aktuell nur geprüft im Kontext Planeintrag.
-Unterschieden werden folgende Fälle:
-1. Arzneimittel besitzt eine PZN und wird über diese identifiziert, die weiteren Informationen werden durch die Fachanwendung angereichert.
-    a. Identifikation nur über PZN: eine Befüllung jener Felder, die über die ASP-Liste angereichert werden können, durch den GDA wird technisch verhindert (Invariante oder eigene Medication Ressource).
-    b. Identifikation über PZN und Handelsname: damit eine Prüfung auf Übereinstimmung durchgeführt werden kann. TODO: Juristisch zu prüfen. 
-3. Arzneimittel besitzt keine PZN, alle benötigten Informationen sind verpflichtend vom GDA zu befüllen:
-    a. Bei Verschreibung von Wirkstoffen
-    b. Bei magistraler Anwendung, Infusionen 
-"
-
+Description: "Bildet ein Arzneimittel in der \"Medication\"-Ressource ab. Wird grundsätzlich verwendet in Planeintrag, geplante Abgabe und durchgeführte Abgabe."
+// TODO: Medication aktuell nur geprüft im Kontext Planeintrag.
+// Unterschieden werden folgende Fälle:
+// 1. Arzneimittel besitzt eine PZN und wird über diese identifiziert, die weiteren Informationen werden durch die Fachanwendung angereichert.
+//     a. Identifikation nur über PZN: eine Befüllung jener Felder, die über die ASP-Liste angereichert werden können, durch den GDA wird technisch verhindert (Invariante oder eigene Medication Ressource).
+//     b. Identifikation über PZN und Handelsname: damit eine Prüfung auf Übereinstimmung durchgeführt werden kann. TODO: Juristisch zu prüfen. 
+// 3. Arzneimittel besitzt keine PZN, alle benötigten Informationen sind verpflichtend vom GDA zu befüllen:
+//     a. Bei Verschreibung von Wirkstoffen
+//     b. Bei magistraler Anwendung, Infusionen 
 
 * text 0..1 MS  //ergänzt AKL
 * text ^short = "TODO: Freitext für magistrale Anwendungen oder Abbildung in Substance.description?"
@@ -54,16 +53,16 @@ Für den eHDSI Kontext ist das CodeSystem 0.4.0.127.0.16.1.1.2.1 zu verwenden."
 Wenn PZN vorhanden 0..0, da Anreicherung aus ASP-Liste durch Fachanwendung."
 
 * ingredient 0..* MS
-* ingredient ^short = "Wirkstoffe. Wenn PZN vorhanden 0..0, da Anreicherung aus ASP-Liste durch Fachanwendung.
-Gemäß AG: Einschränkung auf CodeableConcept, TODO: prüfen, wie Freitext bei magistraler Zubereitung abgebildet wird:
-Evtl. in einer Substance-Ressource in der description (string)."
+* ingredient ^short = "Wirkstoffe. Keine Angabe, wenn PZN vorhanden (Anreicherung aus ASP-Liste durch Fachanwendung)."
+// Gemäß AG: Einschränkung auf CodeableConcept, TODO: prüfen, wie Freitext bei magistraler Zubereitung abgebildet wird:
+// Evtl. in einer Substance-Ressource in der description (string).
 * ingredient.item[x] only CodeableConcept or Reference(AtEmedSubstance) // or AtEmedMedication, TODO Substance profilieren
 * ingredient.itemCodeableConcept 0..1 MS 
-* ingredient.itemCodeableConcept ^short = "Inhaltsstoff codiert. TODO: prüfen, Einschränkung auf SPOR (EMA). Gemüß CDA v3:
-Wirkstoff-Codes stammen aus der ATC-Klassifikation (Anatomical Therapeutic Chemical Classification), die von der WHO herausgegeben wird. 
-Weitere Codes, wie auch die deutsche Bezeichnung der Codes, entsprechen dem GKV-Arzneimittelindex im Wissenschaftlichen Institut der AOK (WidO), 
-AOK Bundesverband GbR, Deutschland, welcher auf den WHO ATC basiert.
-Zusätzlich kommen ergänzende Codes aus dem Arzneimittelverzeichnis der AGES zum Einsatz."
+// * ingredient.itemCodeableConcept ^short = "Inhaltsstoff codiert." TODO: prüfen, Einschränkung auf SPOR (EMA). Gemüß CDA v3:
+// Wirkstoff-Codes stammen aus der ATC-Klassifikation (Anatomical Therapeutic Chemical Classification), die von der WHO herausgegeben wird. 
+// Weitere Codes, wie auch die deutsche Bezeichnung der Codes, entsprechen dem GKV-Arzneimittelindex im Wissenschaftlichen Institut der AOK (WidO), 
+// AOK Bundesverband GbR, Deutschland, welcher auf den WHO ATC basiert.
+// Zusätzlich kommen ergänzende Codes aus dem Arzneimittelverzeichnis der AGES zum Einsatz.
 * ingredient.itemReference 0..1 MS
 * ingredient.itemReference ^type.aggregation = #contained
 //* ingredient.itemReference.reference obeys contained-sub  // contained Substance
@@ -73,10 +72,10 @@ Zusätzlich kommen ergänzende Codes aus dem Arzneimittelverzeichnis der AGES zu
 * ingredient.isActive ^short = "Aktive Wirkstoff TRUE/FALSE"
 
 * ingredient.strength 0..1 MS
-* ingredient.strength ^short = "Menge der vorhandenen Zutat"
+* ingredient.strength ^short = "Menge der vorhandenen Zutaten."
 
 * batch 0..0 // MS
-* batch ^short = "Informationen zur Charge des Arzneimittels. Keine Verwenund im Kontext Planeintrag."
+* batch ^short = "Informationen zur Charge des Arzneimittels." // Keine Verwendung im Kontext Planeintrag.
 
 
 // Invariant: contained-sub

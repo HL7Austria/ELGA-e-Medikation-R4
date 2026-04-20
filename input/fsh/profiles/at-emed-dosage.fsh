@@ -15,7 +15,7 @@ Description: "Dosage"
 
 * additionalInstruction 0..*  // 0..1
 * additionalInstruction ^short = "Codierte Anweisungen oder Warnhinweise für den Patienten, z.B. zur Einnahme oder zur Aufbewahrung des Arzneimittels. (ex):
-https://hl7.org/fhir/R4/valueset-additional-instruction-codes.html. TODO: Nur wenn nicht ohnehin im Beipackzettel enthalten oder zusätzlich? Evtl. f. magistrale Zubereitungen, da kein Beipackzettel."
+https://hl7.org/fhir/R4/valueset-additional-instruction-codes.html." // TODO: Nur wenn nicht ohnehin im Beipackzettel enthalten oder zusätzlich? Evtl. f. magistrale Zubereitungen, da kein Beipackzettel."
 
 * patientInstruction 0..1
 * patientInstruction ^short = "Freitext Anweisungen für den Patienten, z.B. zur Einnahme oder zur Aufbewahrung des Arzneimittels."
@@ -31,7 +31,7 @@ Um widersprüchliche Anweisungen zu vermeiden, ist entweder Dosage.timing oder D
 * asNeededBoolean 0..1 MS
 * asNeededBoolean ^short = "Bedarfsmedikation: Ja/Nein"
 * asNeededCodeableConcept 0..0 
-* asNeededCodeableConcept ^short = "Bedarfsmedikation: Grund für die Bedarfsmedikation; Vermutlich reicht ein genereller Grund für die Medikation im Planeintrag (wenn e-Diagnose verfügbar)."
+* asNeededCodeableConcept ^short = "Bedarfsmedikation: Grund für die Bedarfsmedikation" //TODO: Vermutlich reicht ein genereller Grund für die Medikation im Planeintrag (wenn e-Diagnose verfügbar)."
 
 * site 0..1 // evtl aus asp-liste? eindeutig? spezielle körperstelle betreffend;
 * site ^short = "Körperstelle, an der das Medikament angewendet wird, z.B. Haut, Auge, Ohr etc."
@@ -41,7 +41,7 @@ Um widersprüchliche Anweisungen zu vermeiden, ist entweder Dosage.timing oder D
 * route ^short = "Art der Anwendung der Arznei. (z.B. oral, nasal, intravenös, subkutan). Kann bei codierten Arzneien aus der ASP-Liste entnommen werden."
 
 * method 0..1 MS
-* method ^short = "Verabreichungsmethode, z.B. Infusion, Injektion, Tablette, Salbe etc. "
+* method ^short = "Verabreichungsmethode, z.B. Infusion, Injektion, Tablette, Salbe etc."
 
 * doseAndRate 0..1  MS 
 * doseAndRate ^short =  "Menge des verabreichten Medikaments"
@@ -62,9 +62,9 @@ bei nicht-zählbaren Einheiten muss die Einheit angegeben werden (z.B. mg)."
 
 
 * doseAndRate.dose[x] ^short = "Menge des verabreichten Medikaments pro Zeiteinheit."
-* doseAndRate.rateRatio ^short = "TODO: prüfen" 
-* doseAndRate.rateRange ^short = "TODO: prüfen" 
-* doseAndRate.rateQuantity ^short = "TODO: prüfen" 
+//* doseAndRate.rateRatio ^short = "TODO: prüfen" 
+//* doseAndRate.rateRange ^short = "TODO: prüfen" 
+//* doseAndRate.rateQuantity ^short = "TODO: prüfen" 
 
 * maxDosePerPeriod 0..1 //Maximale Menge pro Zeiteinheit
 * maxDosePerAdministration 0..1  //Maximal Menge pro Abgabe
@@ -75,28 +75,4 @@ bei nicht-zählbaren Einheiten muss die Einheit angegeben werden (z.B. mg)."
 
 
 /* Invarianten ***********************************************************************/
-
-// Invariant: DosageStructuredOrFreeTextWarning
-// Description: "Die Dosierungsangabe darf entweder nur als Freitext oder nur als vollständige strukturierte Information erfolgen — eine Mischung ist nicht erlaubt."
-// * severity = #warning
-// * expression = "(%resource.ofType(MedicationRequest).dosageInstruction | \n ofType(MedicationDispense).dosageInstruction | \n ofType(MedicationStatement).dosage).all(\n  (text.exists() and timing.empty() and doseAndRate.empty()) or\n  (text.empty() and (timing.exists() or doseAndRate.exists()))\n)\n"
-
-// Invariant: DosageStructuredRequiresBoth
-// Description: "Wenn eine strukturierte Dosierungsangabe erfolgt, müssen sowohl timing als auch doseAndRate angegeben werden."
-// * severity = #error
-// * expression = "(%resource.ofType(MedicationRequest).dosageInstruction | \n ofType(MedicationDispense).dosageInstruction | \n ofType(MedicationStatement).dosage).all(\n  (timing.exists() implies doseAndRate.exists()) and\n  (doseAndRate.exists() implies timing.exists())\n)\n"
-
-// Invariant: DosageDoseUnitSameCode
-// Description: "Die Dosiereinheit muss über alle Dosierungen gleich sein."
-// * severity = #error
-// * expression = "(%resource.ofType(MedicationRequest).dosageInstruction | ofType(MedicationDispense).dosageInstruction | ofType(MedicationStatement).dosage).all(\ndoseAndRate.exists() implies\n  (\n    %resource.dosageInstruction.doseAndRate.dose.ofType(Quantity).code | \n    %resource.dosageInstruction.doseAndRate.dose.ofType(Range).low.code | \n    %resource.dosageInstruction.doseAndRate.dose.ofType(Range).high.code\n  ).distinct().count() = 1\n)"
-
-// Invariant: DosageWarnungViererschemaInText
-// Description: "Hinweis: In Dosage.text wurde ein Viererschema (z. B. 1-1-1-1) erkannt. Bitte prüfen, ob dies strukturiert abgebildet werden kann."
-// * severity = #warning
-// * expression = "text.exists() implies text.matches('.*\\\\d+\\\\s*[-–]\\\\s*\\\\d+\\\\s*[-–]\\\\s*\\\\d+\\\\s*[-–]\\\\d+.*').not()"
-
-// Invariant: FreeTextSingleDosageOnlyWarning
-// Description: "Wenn eine Dosierung als reiner Freitext angegeben ist, soll nur genau ein Dosage-Element existieren."
-// * severity = #warning
-// * expression = "(\n  (%resource.ofType(MedicationRequest).dosageInstruction |\n   %resource.ofType(MedicationDispense).dosageInstruction |\n   %resource.ofType(MedicationStatement).dosage\n  ).exists(text.exists() and timing.empty() and doseAndRate.empty())\n)\nimplies\n(\n  (%resource.ofType(MedicationRequest).dosageInstruction |\n   %resource.ofType(MedicationDispense).dosageInstruction |\n   %resource.ofType(MedicationStatement).dosage\n  ).count() = 1\n)"
+ // TODO
