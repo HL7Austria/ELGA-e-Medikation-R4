@@ -181,10 +181,10 @@ skinparam {
 
 
 
-actor "GDA 1" as GDA_1 #5FA8C6
+actor "GDA 1" as GDA_1 #b2c3c9
 participant "e-Med Fachanwendung" as eMed_FA #C48778
-actor "GDA 2" as GDA_2 #8F8CA3
-actor "Patient" as Patient #7FAF87
+actor "GDA 2" as GDA_2 #D8D7E0
+actor "Patient" as Patient #b3c4ba
 
 autonumber
 
