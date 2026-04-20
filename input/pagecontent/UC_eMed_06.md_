@@ -4,17 +4,22 @@
 
 ### Beschreibung
 
-GDA sollen einen Medikationsplan für eine:n ELGA-Teilnehmer:in erfassen oder korrigieren können, um eine Übersicht über die gesamte aktuell einzunehmende Medikation zur Verfügung zu stellen. 
+Als GDA möchte ich den Medikationsplan von einem:einer ELGA-Teilnehmer:in bearbeiten können, um eine Übersicht über die gesamte aktuell einzunehmende Medikation zur Verfügung zu stellen. 
+
+Als ELGA-Teilnehmer:in möchte ich Medikationsplaneinträge oder ganze Medikationsplanversionen unwiderruflich löschen können, um gezielt die Verfügbarkeit meiner Medikationsdaten einzuschränken. 
 
 
 ### Akteure
 
 * GDA
 * ELGA-Teilnehmer:in
+* Vertretung 
+* OBST 
 
 ### Auslöser
 
-* GDA möchte einen Medikationsplan für eine:n ELGA-Teilnehmer:in erfassen oder korrigieren 
+* GDA möchte einen Medikationsplan für eine:n ELGA-Teilnehmer:in bearbeiten 
+* ELGA-Teilnehmer:in möchte einen Medikationsplaneintrag oder eine vollständige Medikationsplanversion unwiderruflich löschen 
 
 ### Vorbedingungen
 
@@ -23,100 +28,68 @@ GDA sollen einen Medikationsplan für eine:n ELGA-Teilnehmer:in erfassen oder ko
 
 ### Nachbedingungen/Ergebnis 
 
-* Ein neuer Medikationsplan wurde erfasst oder ein einzelner Eintrag wurde korrigiert.
-* Zugriff wird protokolliert.
+* eine neue Medikationsplanversion wurde durch die Bearbeitung des bestehenden Medikationsplans erzeugt (durch GDA oder ELGA-Teilnehmer:in) oder  
+* eine bestehende Version wurde gelöscht (durch ELGA-Teilnehmer:in) 
+* Zugriff wird protokolliert
 
 ###	Abläufe
-#### Standardablauf: Medikationsplan erfassen 
-1. GDA startet das Erfassen eines neuen Medikationsplans 
-   1. Im Falle eines manuellen Erfassens (initiales Erfassen sofern noch kein Medikationsplan vorhanden ist): 
-      1. werden neue Einträge hinzugefügt 
-   2. Im Falle eines bestehenden Medikationsplans (der zuletzt erfassten Medikationsplan-Version): 
-      1. können neue Einträge hinzugefügt werden 
-      2. können bestehende Einträge (inkl. vorhandener Korrekturvermerke) übernommen und ggf. verändert werden 
-      3. können bestehende Einträge entfernt werden  
+#### Standardablauf: Medikationsplan bearbeiten 
+
+1. GDA startet die Bearbeitung des Medikationsplans basierend auf der zuletzt erfassten Medikationsplanversion (initial steht ein „leerer“ Medikationsplan zur Verfügung). Es können 
+    a. neue Medikationsplaneinträge hinzugefügt werden<br>
+    b. bestehende Medikationsplaneinträge unverändert beibehalten werden <br>
+    c. bestehende Medikationsplaneinträge verändert werden (fachliche Änderung) <br>
+    d. bestehende Einträge entfernt werden (Absetzen von Medikamenten) <br>
+    e. bestehende Einträge verworfen werden (als „irrtümlich erfasst“ kennzeichnen) <br>
+    f. bestehende Einträge pausiert werden <br>
 2. GDA definiert die Reihenfolge der Medikationsplaneinträge 
-3. GDA bestätigt die Vollständigkeit bzw. Verträglichkeit des ganzheitlichen Mediationsplans und speichert diesen ab 
+3. GDA bestätigt die Verträglichkeit der neu hinzugefügten/geänderten Medikation mit dem bestehenden Medikationsplan und speichert diesen ab 
+
 
 #### Alternativabläufe 
-##### Alternativablauf 01: selbst erfasste Medikationsplaneinträge bearbeiten
-1. GDA ruft einen bestehenden, selbst erfassten Medikationsplaneintrag auf 
-2. GDA verändert zuvor erfasste Angaben 
-3. GDA speichert die Änderungen ab 
 
-##### Alternativablauf 02: Medikationsplan korrigieren
-1. GDA ruft eine bestehende Medikationsplanversion auf (eine beliebige Vorversion oder die zuletzt erfasste Version) 
-2. GDA markiert einen einzelnen Eintrag im Medikationsplan als inkorrekt oder fügt einen allgemeingültigen Korrekturvermerk am Medikationsplan selbst hinzu 
-3. GDA ergänzt einen Kommentar zu den Hintergründen der Korrektur 
+##### Alternativablauf 01: einzelne Medikationsplaneinträge löschen
 
-##### Alternativablauf 03: einzelne Medikationsplaneinträge löschen 
-1. ELGA-Teilnehmer:in ruft den zuletzt erstellten Medikationsplan auf 
-2. ELGA-Teilnehmer:in entfernt einzelne Einträge aus dem Medikationsplan 
-3. ELGA-Teilnehmer:in speichert die Änderungen ab 
+1. ELGA-Teilnehmer:in ruft den zuletzt erfassten Medikationsplan auf  
+2. ELGA-Teilnehmer:in löscht einzelne Medikationsplaneinträge aus dem Medikationsplan unwiderruflich 
+3. ELGA-Teilnehmer:in speichert den neuen Medikationsplan ab 
 
-##### Alternativablauf 04: Medikationsplanversionen löschen 
+##### Alternativablauf 02: Medikationsplanversionen löschen 
+
 1. ELGA-Teilnehmer:in ruft eine bestehende Medikationsplanversion auf (eine beliebige Vorversion oder die zuletzt erfasste Version) 
-2. ELGA-Teilnehmer:in entfernt die aufgerufene Medikationsplanversion vollständig 
-3. ELGA-Teilnehmer:in speichert die Änderungen ab 
-
-##### Alternativablauf 05: Medikationsplan vollständig leeren 
-TBD, ob: 
-1. Aktueller Plan wird in die Historie verschoben (Arzt/Ärztin bestätigt das Absetzen jeglicher Medikation) 
-2. Leeren Plan als neuen Plan speichern
-   1. Auswirkung auf Standardablauf klären
-
-### Relevante ILF (Implementierungsleitfäden) + deren User Storys 
-**TODO: DRAFT AKL (evtl. nicht mehr aktuell)**
-#### UC_eMed_06_S01 Medikationsplan lesen um zu schreiben
-1. Vor dem Scheiben eines Medikationsplans muss sichergestellt sein, dass die aktuelle Version gelesen wird. 
-2. Anwender trägt mindestens alle verpflichtend auszufüllenden Datenfelder für den Medikationsplan ein (sofern noch nicht vorhanden)
-3. Im Anschluss wird der gesamte bestehende Medikationsplan durch eine neue, geänderte Version ersetzt. Dabei nimmt der GDA die vorbestehenden Einträge lediglich zur Kenntnis, d.h. er verantwortet nur die Verträglichkeit der neu hinzugefügten Medikation mit der bestehenden.
-
-#### UC_eMed_06_S02 Medikationsplaneintrag editieren (Hinweis für Patienten/Mitbehandler, Indikation und Dosierangaben)
-
-#### UC_eMed_06_S03 Medikationsplaneintrag pausieren / aktivieren / beenden
-
-#### UC_eMed_06_S04 Medikationsplaneintrag stornieren
-
-#### UC_eMed_06_S05 Medikationsplaneintrag nachtragen 
-Optional kann der GDA aufgrund einer dokumentierten durchgeführten Abgabe Einträge im den Medikationsplan nachtragen (d.h. einen neuen Eintrag erstellen). 
-Es besteht aber keine direkte Referenz zwischen der Abgabe und dem Medikationsplaneintrag (TODO prüfen).
-
-#### UC_eMed_06_S06 Medikationsplaneintrag reihen 
-Weiters kann der GDA die Reihenfolge der Medikationsplaneinträge im Medikationsplan festlegen. Dies geschieht in der Praxis insbesondere, um eine fachlich sinnvolle Gruppierung von Medikamenten vorzunehmen und dient der Übersichtlichkeit.
-
-#### Beispiel
-
-#### Technische Hinweise
-
-#### Relevante Profile
-
-#### Relevante Invarianten
-
-#### Mögliche Notifications
-
-### Abgrenzungen 
-Keine.
-
-### User Interface Beschreibungen 
-Mockup folgt.
+2. ELGA-Teilnehmer:in löscht die aufgerufene Medikationsplanversion unwiderruflich 
 
 ### Hinweise 
 
-### Medikationsplan erfassen (UC_eMed_06_H01)
+### H01: Medikationsplan bearbeiten 
 
-Ein Medikationsplan besteht aus ein oder mehreren Medikationsplaneinträgen. Jeder Medikationsplaneintrag beinhaltet ein verordnetes Medikament samt Einnahmeinformation, das von der:dem ELGA-Teilnehmer:in aktuell eingenommen werden soll. Zudem enthält der Eintrag die Information, welche:r Ärztin:Arzt diesen medizinisch verantwortet. 
+Ein Medikationsplan besteht aus ein oder mehreren Medikationsplaneinträgen (oder ist initial bzw. nach einem vollständigen Absetzen der gesamten Medikation leer). Jeder Medikationsplaneintrag beinhaltet ein verordnetes Medikament samt Einnahmeinformation, das von der:dem ELGA-Teilnehmer:in aktuell eingenommen werden soll. Zudem enthält der Medikationsplaneintrag die Information, welche:r Ärztin:Arzt diesen medizinisch verantwortet. 
 
-Ein Medikationsplan beinhaltet u.a. folgende Informationen: 
-* Präparat (PZN, Wirkstoff, Dosierung) 
-* Gebrauchsanweisung (Signatur) 
+Ein Medikationsplaneintrag beinhaltet u.a. folgende Informationen: 
+
+* Präparat (PZN/Wirkstoff, Dosierung) 
+
+    * durch die Fachanwendung wird geprüft, ob der angegebene PZN-Code mit dem bereitgestellten Anzeigename des Präparats übereinstimmt (Abgleich ASP-Liste)
+* Gebrauchsanweisung (Signatur)
 * Einnahmezeitraum (befristet, unbefristet) 
 * Verordner:in 
 * Hinweise 
-* Indikation 
+* Fremdmedikation/Eigenmedikation 
+
+
 
 <div class="hinweisbox">
-    ℹ️   
+    ℹ️
+Interaktionen zur Bearbeitung des Medikationsplans im jeweiligen Clientsystem </b></b>
+Die zuletzt erfasste Medikationsplanversion wird als Basis für die Bearbeitung des Medikationsplans und die daraus resultierende Erzeugung einer neuen Medikationsplanversion durch GDA im Clientsystem verwendet: 
+
+
+
+
+
+
+
+
     Die nachfolgenden Informationen betreffen die Implementierung des Medikationsplans im jeweiligen Client-System: <br>       
     Ein Medikationsplan wird <b>initial erstellt</b> (es existieren noch keine Vorversionen): <br>                
     <ul>
