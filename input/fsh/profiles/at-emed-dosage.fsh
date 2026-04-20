@@ -10,7 +10,7 @@ Description: "Dosage"
 * sequence 0..1 MS
 * sequence ^short = "Die Reihenfolge der Dosierungsanweisungen. Entfällt bei Einzeldosierung."
 
-* text MS
+* text 0..1 MS
 * text ^short = "Freitext-Dosierungsanweisung, wenn keine strukturierte Angabe möglich ist."
 
 * additionalInstruction 0..*  // 0..1
@@ -66,12 +66,12 @@ bei nicht-zählbaren Einheiten muss die Einheit angegeben werden (z.B. mg)."
 //* doseAndRate.rateRange ^short = "TODO: prüfen" 
 //* doseAndRate.rateQuantity ^short = "TODO: prüfen" 
 
-* maxDosePerPeriod 0..1 //Maximale Menge pro Zeiteinheit
-* maxDosePerAdministration 0..1  //Maximal Menge pro Abgabe
+* maxDosePerPeriod 0..1 
+* maxDosePerPeriod ^short = "Maximale Menge pro Zeiteinheit"
+* maxDosePerAdministration 0..1  //
+* maxDosePerAdministration ^short = "Maximal Menge pro Abgabe"
 * maxDosePerLifetime 0..1 //Relevant für Bestrahlung/Tumortherapie, nur im Kontext Krankenhausintern?
-
-
-
+* maxDosePerLifetime ^short = "Maximale Lebenszeitdosis"
 
 
 /* Invarianten ***********************************************************************/

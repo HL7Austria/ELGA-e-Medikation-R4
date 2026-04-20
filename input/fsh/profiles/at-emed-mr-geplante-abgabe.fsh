@@ -27,27 +27,20 @@ Werden mehrere Arzneimittel gleichzeitig verordnet, wird für jedes Arzneimittel
 // ENDE Extensions  ******************
 
 * identifier 0..0 //1..* MS  Gepante-Abgabe-ID 
-* identifier ^short = "Gepante-Abgabe-ID. TODO: Verwendung noch zu prüfen, evtl. basedon mit logischem Identifier ausreichend."
+* identifier ^short = "Gepante-Abgabe-ID." // TODO: Verwendung noch zu prüfen, evtl. basedon mit logischem Identifier ausreichend."
 
 * status 1..1 MS
 * status from GeplanteAbgabeStatusVS (required)
-* status ^short = "Status der geplanten Abgabe: active | completed | entered-in-error | stopped. Details siehe Definition."
-* status ^definition = """
-Status der geplanten Abgabe:
-* \"active\": offene, geplante Abgabe 
-* \"completed\": implizit mittels Custom Operation gesetzt, nachdem alle Abgaben durchgeführt wurden (Rezept komplett eingelöst) (TODO: techn. prüfen) 
-* \"entered-in-error\": nach fehlerhafter Eingabe; Storno nur möglich, wenn noch keine zugehörige Abgabe durchgeführt wurde (TODO: techn. prüfen?) 
-* \"stopped\": TODO: Verwendung zu prüfen (Status soll analog zu e-Rezept abgebildet werden)
-(nicht verwendet: on-hold, cancelled, draft, unknown)
-"""
+* status ^short = "Status der geplanten Abgabe. Mögliche Ausprägung: [active | completed | entered-in-error | stopped]. Bedeutung: active: offene, geplante Abgabe | completed: geplante Abgabe abgeschlossen | entered-in-error: nach fehlerhafter Eingabe; Storno nur möglich, wenn noch keine zugehörige Abgabe durchgeführt wurde | stopped: Verwendung zu prüfen (Status soll analog zu e-Rezept abgebildet werden)"
+//(nicht verwendet: on-hold, cancelled, draft, unknown)
+// completed: evtl. implizit mittels Custom Operation gesetzt, nachdem alle Abgaben durchgeführt wurden (Rezept komplett eingelöst) (TODO: techn. prüfen)
 
 * statusReason 0..0 
-* statusReason ^short = "Grund für den aktuellen Status: https://hl7.org/fhir/R4/valueset-medicationrequest-status-reason.html. Keine Verwendung in der geplanten Abgabe."
+* statusReason ^short = "Grund des aktuellen Status: https://hl7.org/fhir/R4/valueset-medicationrequest-status-reason.html. Keine Verwendung in der geplanten Abgabe."
 
 * intent 1..1 MS
 * intent = #order 
-* intent ^short = "Die Geplante Abgabe stellt eine Anforderung und Ermächtigung 
-zum Handeln durch den Antragsteller dar, daher ist intent immer \"order\"."
+* intent ^short = "Die geplante Abgabe stellt einen Auftrag zur Durchführung und eine Autorisierung des Verfassers dar; daher ist intent immer \"order\"."
 
 // Slicing Kategorie:  
 // - Kategorie zur Unterscheidung der MedicationRequests: Planeintrag und geplante Abgabe
@@ -105,42 +98,41 @@ Keine Verwendung in der geplanten Abgabe."
 * requester 1..1 MS 
 * requester only Reference(HL7ATCorePractitioner or HL7ATCorePractitionerRole or HL7ATCoreOrganization) 
 * requester ^short = "Der Arzt oder die Ärztin, die die geplante Abgabe erstellt hat und für den Inhalt verantwortlich ist 
-(eindeutig identifiziert über den GDA-Index und berechtigt auf die ELGA e-Medikation des Patienten zuzugreifen).
-TODO: HL7ATCore-Practitioner-Profile profilieren."
+(eindeutig identifiziert über den GDA-Index und berechtigt auf die ELGA e-Medikation des Patienten zuzugreifen)."
+//TODO: HL7ATCore-Practitioner-Profile profilieren."
 
 * performer 0..0 
-* performer ^short = "Keine Verwendung in der geplanten Abgabe."
+* performer ^short = "Durchführende Person. Keine Verwendung in der geplanten Abgabe."
 
 * performerType 0..0
 * performerType ^short = "Keine Verwendung in der geplanten Abgabe."
 
 * recorder 0..0
-* recorder ^short = "Person der Dateineingabe. Gemäß Vorgaben im CDA keine Verwendung in der geplanten Abgabe. TODO: Abstimmung der Verwendung mit e-Diagnose." 
+* recorder ^short = "Person der Dateineingabe. Keine Verwendung in der geplanten Abgabe." //  TODO: Gemäß Vorgaben im CDA, keine Verwendung. Abstimmung der Verwendung mit e-Diagnose." 
 
-// Grund für die Medikation 
 * reasonCode 0..0 
 //* reasonCode from $cs-sct (required)
-* reasonCode ^short = "Grund für die Verordnung des Arzneimittels als Code oder Referenz. Bis zur Verfügbarkeit von e-Diagnose keine Verwendung in geplanter Abgabe. "
+* reasonCode ^short = "Grund für die Verordnung des Arzneimittels als Code oder Referenz. Bis zur Verfügbarkeit von e-Diagnose keine Verwendung in geplanter Abgabe."
 
 * instantiatesCanonical 0..0 
-* instantiatesCanonical ^short = "URL, die auf ein Protokoll (Richtlinie, Guideline) verweist, das von dieser 
+* instantiatesCanonical ^short = "URL, die auf eine Richtlinie/Guideline verweist, die von dieser 
 geplanten Abgabe ganz oder teilweise eingehalten wird. Keine Verwendung in der geplanten Abgabe."
 
 * instantiatesUri 0..0 
-* instantiatesUri ^short = "URL, die auf ein extern gepflegtes Protokoll (Richtlinie, Guideline) verweist, das von dieser 
+* instantiatesUri ^short = "URL, die auf eine externe gepflegte Richtlinie/Guideline verweist, die von dieser 
 geplanten Abgabe ganz oder teilweise eingehalten wird. Keine Verwendung in der geplanten Abgabe."
 
 * basedOn 1..1 MS
 * basedOn only Reference(AtEmedMRPlaneintrag) 
-* basedOn ^short = "Referenz auf die (aktuelle) Version des zugrundeliegenden Medikationsplaneintrags, auf dem diese geplante Abgabe basiert.
-TODO: zu prüfen: zusätzliche logische Referenz: reference.identifier 
-{Medikationsplaneintrag-ID}_{Medikationsplaneintrag-ID_Version}."
+* basedOn ^short = "Referenz auf die (aktuelle) Version des zugrundeliegenden Medikationsplaneintrags, auf dem diese geplante Abgabe basiert."
+// TODO: zu prüfen: zusätzliche logische Referenz: reference.identifier 
+// {Medikationsplaneintrag-ID}_{Medikationsplaneintrag-ID_Version}."
 
 * groupIdentifier 1..1 MS
 * groupIdentifier ^short = "Als groupIdentifier dient die eMED-ID, die auch im e-Rezept mitgeführt wird. 
-Werden von einem:r Arzt:Ärtztin mehrere Arzneimittel gleichzeitig verordnet, 
-wird für jedes Arzneimittel eine geplante Abgabe mit demselben groupIdentifier erstellt (bildet 'Rezept-Klammer').
-TODO: eMED-ID Wording ist evtl. aufgrund des Parallelbetriebs noch anzupassen"
+Werden von einem:r Arzt:Ärtztin mehrere Arzneimittel gleichzeitig verordnet, wird für jedes Arzneimittel eine 
+geplante Abgabe mit demselben groupIdentifier erstellt (bildet 'Rezept-Klammer')."
+//TODO: eMED-ID Wording ist evtl. aufgrund des Parallelbetriebs noch anzupassen"
 
 * courseOfTherapyType 0..0 
 * courseOfTherapyType ^short = "Gesamtmuster der Medikamentengabe (z.B. saisonal). Keine Verwendung in der geplanten Abgabe."
@@ -149,13 +141,13 @@ TODO: eMED-ID Wording ist evtl. aufgrund des Parallelbetriebs noch anzupassen"
 * insurance ^short = "Versicherungsinformatinen als Coverage oder ClaimResponse Resource. Keine Verwendung in der geplanten Abgabe."
 
 * note 0..* MS  
-* note ^short = "Zusätzliche Informationen zur geplanten Abgabe (Kommunikations zw. Arzt und Apotheke); die nicht die Dosierung betreffen. 
-TODO: prüfen was CDA derzeit zulässt; HL7 Consultation, ob Feld benötigt" 
+* note ^short = "Zusätzliche Informationen zur geplanten Abgabe (Kommunikation zwischen Arzt und Apotheke, die nicht die Dosierung betreffen)." 
+//TODO: prüfen was CDA derzeit zulässt; HL7 Consultation, ob Feld benötigt" 
 
 // DOSAGE
 * dosageInstruction 0..1 //1..* MS 
 * dosageInstruction only AtEmedDosage
-* dosageInstruction ^short = "Angabe der Dosierinformationen. TODO: Dosiervarianten."
+* dosageInstruction ^short = "Angabe der Dosierinformationen." // TODO: Dosiervarianten."
 
 
 // DISPENSE REQUEST
@@ -169,32 +161,31 @@ TODO: prüfen was CDA derzeit zulässt; HL7 Consultation, ob Feld benötigt"
 * dispenseRequest.dispenseInterval ^short = "Mindestzeitraum zwischen den Abgaben. Keine Verwendung in der geplanten Abgabe."
 
 * dispenseRequest.validityPeriod 1..1 MS 
-* dispenseRequest.validityPeriod ^short = "Der Zeitraum in dem die geplante Abgabe eingelöst werden kann ist abhängig von der Rezeptart (siehe Definition)."
+* dispenseRequest.validityPeriod ^short = "Gültigkeitszeitraum einer geplante Abgabe. Diese ist abhängig von der Rezeptart: Kassenrezept: ab Erstelldatum einen Monat gültig, bei einer Teilabgabe verlängert sich die gesamte Gültigkeitsdauer auf 3 Monate („Besorger“-Prozess). Privatrezept: ab Erstelldatum maximal 365 Tage gültig, die Gültigkeitsdauer kann vom Arzt definiert werden. Substitutionsrezept: Maximale Gültigkeitsdauer 12 Monate."
 * dispenseRequest.validityPeriod ^definition = """
 Zeitraum in dem die geplante Abgabe eingelöst werden kann.
 Der Gültigkeitszeitraum ist abhängig von der **Rezeptart** (gemäß e-Med v2): 
 * **Kassenrezept**: ab Erstelldatum einen Monat gültig (vom Ausstellungszeitpunkt bis zum gleichen Tag des Folgemonats 23:59 Uhr); validityPeriod.start kein Datum in der Zukunft; bei einer Teilabgabe verlängert sich die gesamte Gültigkeitsdauer auf 3 Monate („Besorger“-Prozess).
 * **Privatrezept**: ab Erstelldatum maximal 365 Tage gültig, wenn die erste Einlösung innerhalb von 1 Monat ab Erstelldatum erfolgt (sonst Status abgelaufen). validityPeriod.start kein Datum in der Zukunft; Die Gültigkeitsdauer (validityPeriod.end) kann vom Arzt definiert werden.
 * **Substitutionsrezept**: Maximale Gültigkeitsdauer 12 Monate. Das validityPeriod.start darf maximal einen Monat in der Zukunft liegen, gültig bis das validityPeriod.end erreicht ist.
-
-TODO: Techn. Prüfung der Gültigkeitszeiträume
-Falls das validityPeriod.start dem authoredOn-Datum entspricht, kann das start-Datum entfallen.
-zu prüfen: Kann beim Kassenrezept validityPeriod.start in der Vergangenheit liegen, wenn die geplante Abgabe in nachhinein erstellt wurde (z.B. wenn Arzt auf Urlaub und eine Notfallabgabe in der Apotheke durchgeführt wurde)?
 """
+// TODO: Techn. Prüfung der Gültigkeitszeiträume
+// Falls das validityPeriod.start dem authoredOn-Datum entspricht, kann das start-Datum entfallen.
+// zu prüfen: Kann beim Kassenrezept validityPeriod.start in der Vergangenheit liegen, wenn die geplante Abgabe in nachhinein erstellt wurde (z.B. wenn Arzt auf Urlaub und eine Notfallabgabe in der Apotheke durchgeführt wurde)?
+
 
 * dispenseRequest.numberOfRepeatsAllowed 1..1 MS   // repeatNumber 1..1 im CDA
-* dispenseRequest.validityPeriod ^short = "Die Anzahl der weiteren möglichen Einlösungen ist abhängig von der Rezeptart (siehe Definition)."
+* dispenseRequest.validityPeriod ^short = "Die Anzahl der weiteren möglichen Einlösungen ist abhängig von der Rezeptart: Kassenrezept: keine weitere Einlösung möglich (fixer Wert 0). Privatrezept: bis zu 6 Einlösungen, Anzahl der möglichen Einlösungen kann vom Arzt definiert werden. Sustitutionsrezept: keine weitere Einlösung möglich (fixer Wert 0)"
 * dispenseRequest.validityPeriod ^definition = """
 Anzahl der weiteren möglichen Einlösungen:
 * **Kassenrezept**: keine weitere Einlösung möglich (fixer Wert 0)
 * **Privatrezept**: bis zu 6 Einlösungen, Anzahl der möglichen Einlösungen kann vom Arzt definiert werden
-* **Sustitutionsrzepet**: keine weitere Einlösung möglich (fixer Wert 0) 
-
-TODO: Techn. Prüfung: Wenn Kassenrezept oder Substitutionsrezept, dann 0. Verpflichtende Eingabe, wenn Privatrezept, max 6.
+* **Sustitutionsrezept**: keine weitere Einlösung möglich (fixer Wert 0) 
 """
+// TODO: Techn. Prüfung: Wenn Kassenrezept oder Substitutionsrezept, dann 0. Verpflichtende Eingabe, wenn Privatrezept, max 6.
 
 * dispenseRequest.quantity 1..1 MS
-* dispenseRequest.quantity ^short = "Menge des Medikaments, die bei jeder Abgabe bereitgestellt werden soll. 
+* dispenseRequest.quantity ^short = "Menge des Medikaments, die bei jeder Abgabe bereitgestellt werden soll.
 Da sich die Angaben zum Arzneimittel jeweils auf eine Packung der Arznei beziehen, MUSS die Anzahl der auszugebenden Packungen angegeben werden (mindestens 1). 
 Dies gilt für Arzneimittel mit PZN und magistralen Zubereitungen."
 

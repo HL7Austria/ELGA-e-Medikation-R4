@@ -23,17 +23,17 @@ Der Medikationsplaneintrag kann in weiterer Folge als Grundlage für die Erstell
 // ENDE Extensions
 
 * identifier 1..1  
-* identifier ^short = "Medikationsplaneintrag-ID. TODO: Verwendung einer logischen Medikationsplaneintrag-ID prüfen. Details zur Herstellung von Bezügen von geänderten Planeinträgen, siehe Definition."
-* identifier ^definition = """
-Medikationsplaneintrag-ID.
-Evt. mit Zeitstempel (Planeintrag-ID_{Zeitstempel}) zur Herstellung eines Bezugs von geänderten Planeinträgen.
-Vorteil: 
-- Auch wenn sich die PZN ändert, aber logisch der gleiche Eintrag betroffen ist (z.B. Austausch eines Arzneimittels durch ein anderes mit weniger Wechselwirkung), kann ein Bezug hergestellt werden.
-- Wenn zur Vorversion des Eintrags bereits eine geplante Abgabe erstellt wurde, kann ein Bezug zum ursprünglichen Eintrag hergestellt werden.
-Nachteil: 
-- Falls Planeinträge mit komplett neuer Arznei überschrieben werden, entsteht dadurch ein verwirrender Bezug. 
-- Die Verantwortung, dass nur Einträge geändert werden, die keine komplett neue Medikation beinhalten, liegt beim Ersteller des Eintrags.
-"""
+* identifier ^short = "Medikationsplaneintrag-ID." // TODO: Verwendung einer logischen Medikationsplaneintrag-ID prüfen. Details zur Herstellung von Bezügen von geänderten Planeinträgen, siehe Definition."
+// * identifier ^definition = """
+// Medikationsplaneintrag-ID.
+// Evt. mit Zeitstempel (Planeintrag-ID_{Zeitstempel}) zur Herstellung eines Bezugs von geänderten Planeinträgen.
+// Vorteil: 
+// - Auch wenn sich die PZN ändert, aber logisch der gleiche Eintrag betroffen ist (z.B. Austausch eines Arzneimittels durch ein anderes mit weniger Wechselwirkung), kann ein Bezug hergestellt werden.
+// - Wenn zur Vorversion des Eintrags bereits eine geplante Abgabe erstellt wurde, kann ein Bezug zum ursprünglichen Eintrag hergestellt werden.
+// Nachteil: 
+// - Falls Planeinträge mit komplett neuer Arznei überschrieben werden, entsteht dadurch ein verwirrender Bezug. 
+// - Die Verantwortung, dass nur Einträge geändert werden, die keine komplett neue Medikation beinhalten, liegt beim Ersteller des Eintrags.
+// """
 
 * status 1..1 MS
 * status from MedikationsplaneintragStatusVS (required)
@@ -60,7 +60,8 @@ Nachteil:
 * reported[x] 1..1 MS
 * reportedReference only Reference(Patient or Practitioner or PractitionerRole)  // TODO: nur boolschen Wert zulassen
 
-* reportedBoolean ^short = "TRUE im Falle der Dokumentation von Fremdmedikation (ein anderer Arzt hat das Medikament ursprünglich verordnet), sonst FALSE. TODO: Klären ob hier der GDA eindeutig identifiziert sein muss (im GDA-I vorhanden) oder analog zu e-Impfpass Freitext sein kann. Juristisch Verantwortlichkeit für Korrektheit des Eintrags zu klären."
+* reportedBoolean ^short = "TRUE im Falle der Dokumentation von Fremdmedikation (ein anderer Arzt hat das Medikament ursprünglich verordnet), sonst FALSE."
+// TODO: Klären ob hier der GDA eindeutig identifiziert sein muss (im GDA-I vorhanden) oder analog zu e-Impfpass Freitext sein kann. Juristisch Verantwortlichkeit für Korrektheit des Eintrags zu klären."
 * reportedReference ^short = "Im Falle einer Fremdmedikation Angabe einer Referenz auf: (Patient | Practitioner | PractitionerRole | RelatedPerson | Organization)"
 
 // --- Medication immer als Medication-Resource (mit oder ohne PZN, damit Handelsname angegeben werden kann und historisch verfügbar bleibt)
@@ -91,58 +92,58 @@ Nachteil:
 * requester ^short = "Arzt oder Ärztin, die den Medikationsplaneintrag erstellt hat und für den Inhalt verantwortlich ist. Eindeutig identifiziert über den GDA-Index und berechtigt auf die ELGA e-Medikation des Patienten zuzugreifen."
 
 * performer 0..0 
-* performer ^short = "Der gewünschte Ausführende der medikamentösen Behandlung (z.B. der Ausführende der Medikamentengabe). Keine Verwendung im Planeintrag. TODO: evtl im Kontext Medikationsblatt zu prüfen."
+* performer ^short = "Der gewünschte Ausführende der medikamentösen Behandlung (z.B. der Ausführende der Medikamentengabe). Keine Verwendung im Planeintrag." //TODO: evtl im Kontext Medikationsblatt zu prüfen.
 
 * performerType 0..0
-* performerType ^short = "Rollen: https://hl7.org/fhir/R4/valueset-performer-role.html. Keine Verwendung im Planeintrag. TODO: evtl im Kontext Medikationsblatt zu prüfen."
+* performerType ^short = "Rollen: https://hl7.org/fhir/R4/valueset-performer-role.html. Keine Verwendung im Planeintrag." // TODO: evtl im Kontext Medikationsblatt zu prüfen.
 
 * recorder 0..0
-* recorder ^short = "Die Person, die den Medikationsplaneintrag im Auftrag eines GDA eingegeben hat. TODO: Prüfen, ob eine juristische Verpflichtung zur Dokumentation der Schreibkraft besteht."
+* recorder ^short = "Die Person, die den Medikationsplaneintrag im Auftrag eines GDA eingegeben hat." // TODO: Prüfen, ob eine juristische Verpflichtung zur Dokumentation der Schreibkraft besteht."
 
 // Grund für die Medikation 
 * reasonCode 0..0 
 //* reasonCode from $cs-sct (required)
-* reasonCode ^short = "Grund für die Verordnung des Arzneimittels. Entweder Code oder Referenz (TODO: Evtl. Invariante). Erst wenn codierte Angabe möglich."
+* reasonCode ^short = "Grund für die Verordnung des Arzneimittels. Entweder Code oder Referenz. Verwendung erst, wenn codierte Angabe möglich." //TODO: Evtl. Invariante
 * reasonReference 0..0 
 
 * instantiatesCanonical 0..0 
-* instantiatesCanonical ^short = "URL, die auf ein Protokoll (Richtlinie, Guideline) verweist, das von diesem Medikationsplaneintrag ganz oder teilweise eingehalten wird. Derzeit keine Verwendung im Medikationsplaneintrag."
+* instantiatesCanonical ^short = "URL, die auf eine Richtlinie/Guideline verweist, die von diesem Medikationsplaneintrag ganz oder teilweise eingehalten wird. Derzeit keine Verwendung im Medikationsplaneintrag."
 
 * instantiatesUri 0..0 
-* instantiatesUri ^short = "URL, die auf ein extern gepflegtes Protokoll (Richtlinie, Guideline) verweist, das von diesem Medikationsplaneintrag ganz oder teilweise eingehalten wird. Derzeit keine Verwendung im Medikationsplaneintrag."
+* instantiatesUri ^short = "URL, die auf eine extern gepflegte Richtlinie/Guideline verweist, die von diesem Medikationsplaneintrag ganz oder teilweise eingehalten wird. Derzeit keine Verwendung im Medikationsplaneintrag."
 
 * basedOn 0..0 
 //* basedOn only Reference(AtEmedMRPlaneintrag)
-* basedOn ^short = "TODO: Verwendung im Medikationsplaneintrag zu prüfen. Vermutlich nicht möglich, da keine versionsspezifischen Referenzen verwendet werden."
+* basedOn ^short = "Keine Verwendung im Medikationsplaneintrag." // TODO: Verwendung vermutlich nicht möglich, da keine versionsspezifischen Referenzen verwendet werden."
 
 * groupIdentifier 0..0
-* groupIdentifier ^short = "Erst bei der geplanten Abgabe (Rezepterstellung) relevant. Evtl ein Verweis auf erstellte Rezepte? Würde Extension erfordern, da Kardinalität nur 0..1 zulässig"
+* groupIdentifier ^short = "Erst bei der geplanten Abgabe (Rezepterstellung) relevant." // TODO: Evtl ein Verweis auf erstellte Rezepte? Würde Extension erfordern, da Kardinalität nur 0..1 zulässig"
 
 * courseOfTherapyType 0..1 MS 
-* courseOfTherapyType ^short = "Gesamtmuster der Medikamentengabe. continuous | acute | seasonal. Verwendung im Medikationsplaneintrag prüfen, evtl. durch Dosierungsinformationen abgedeckt."
+* courseOfTherapyType ^short = "Gesamtmuster der Medikamentengabe. continuous | acute | seasonal." // TODO: Verwendung im Medikationsplaneintrag prüfen, evtl. durch Dosierungsinformationen abgedeckt."
 
 * insurance 0..0
 * insurance ^short = "Keine Verwendung im Medikationsplaneintrag."
 
 * note 0..* MS 
-* note ^short = "Zusätzliche Informationen zum Medikationsplaneintrag. TODO: fachlich prüfen, an welchen Stellen überall Freitext erforderlich sein soll/muss. Auch im Kontext zu entered-in-error Informationen."
+* note ^short = "Zusätzliche Informationen zum Medikationsplaneintrag." // TODO: fachlich prüfen, an welchen Stellen überall Freitext erforderlich sein soll/muss. Auch im Kontext zu entered-in-error Informationen."
 
 // DOSAGE
 * dosageInstruction 1..* MS // bsp von linkedcare usw. analysieren
 * dosageInstruction only AtEmedDosage
-* dosageInstruction ^short  = "Angabe der Dosierinformationen strukturiert oder als Freitext. TODO: Inhalte AtEmedDosage fachlich prüfen."
+* dosageInstruction ^short  = "Angabe der Dosierinformationen strukturiert oder als Freitext." //TODO: Inhalte AtEmedDosage fachlich prüfen.
 
 * dispenseRequest 0..0 
 * dispenseRequest ^short = "Details zur geplanten Abgabe des Arzneimittels im Medikationsplan. Keine Verwendung im Medikationsplaneintrag."
 
 * substitution 0..1 MS //ag: evtl f. patient u pflegeheim als info
-* substitution ^short = "Gibt an, ob das Arzneimittel substituiert werden darf oder nicht. Erläutert die Absicht des Arztes, der den Medikationsplaneintrag erstellt. Wenn nichts angegeben ist, kann eine Substitution vorgenommen werden. Die Dokumentation über eine tatsächlich erfolgte Substitution erfolgt in der Dispense-Resource. TODO: Usecase fachlich zu prüfen. Es kann für den Patienten selbst oder das Pflegeheim eine wichtige Information sein, mit welchem Medikament das verordnete Medikament im Bedarfsfall ersetzen werden kann."
+* substitution ^short = "Gibt an, ob das Arzneimittel substituiert werden darf oder nicht. Erläutert die Absicht des Arztes, der den Medikationsplaneintrag erstellt. Wenn nichts angegeben ist, kann eine Substitution vorgenommen werden." // TODO: Die Dokumentation über eine tatsächlich erfolgte Substitution könnte in der Dispense-Resource erfolgen. Usecase fachlich zu prüfen. Es kann für den Patienten selbst oder das Pflegeheim eine wichtige Information sein, mit welchem Medikament das verordnete Medikament im Bedarfsfall ersetzen werden kann."
 
 * priorPrescription 0..1 MS
 * priorPrescription ^short = "Im Falle einer Änderung wird auf den ersetzten Medikationsplaneintrag verwiesen."
 
 * detectedIssue 0..0
-* detectedIssue ^short = "Klinisches Problem mit Maßnahme. Nur mittesl Referenz auf Ressouce DetectedIssue, Keine Verwendung im Medikationsplaneintrag."
+* detectedIssue ^short = "Klinisches Problem mit Maßnahme (Referenz auf Ressouce DetectedIssue). Keine Verwendung im Medikationsplaneintrag."
 
 * eventHistory 0..0
 * eventHistory ^short = "Referenz auf Provenance-Ressourcen, die verschiedene relevante Versionen dieser Ressource dokumentieren. Keine Verwendung im Medikationsplaneintrag."
