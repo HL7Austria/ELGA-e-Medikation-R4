@@ -88,7 +88,7 @@ Medikationsplan bearbeiten.
 Nach Fertigstellung kann ein Write-Zugriff erfolgen.
 end note
 
-center footer Read-to-Write- / Write-Zugriff
+center footer Read-to-Write-Zugriff
 
 
 @enduml
