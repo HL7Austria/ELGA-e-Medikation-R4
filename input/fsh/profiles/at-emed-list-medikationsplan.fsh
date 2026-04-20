@@ -63,9 +63,6 @@ des Patienten zuzugreifen. Device nur für initiale Erstellung durch die Fachanw
 * entry.flag from ElgaListEntryFlagVS
 * entry.flag ^short = "Kennzeichnet die Art der Änderung des Medikationsplaneintrags: [New | Unchanged | Changed | Removed] Bedeutung: New: Neuer Planeintrag wird hinzugefügt | Unchanged: Bestehender Planeintrag wird beibehalten und zur Kenntnis genommen | Changed: Bestehender Planeintrag wird geändert | Removed: Bestehender Planeintrag wird entfernt"
 
-* status ^short = "Mögliche Ausprägungen: [current | retired] Bedeutung: current: default | retired: nach Ableben des Patienten bis Ende der Aufbewahrungsfrist"
-
-
 * entry.deleted 0..0 MS 
 * entry.deleted ^short = "Gibt an, ob der referenzierte Medikationsplaneintrag zur Entfernung markiert wurde.
 Keine Verwendung im Medikationsplan, da GDA für die Kennzeichnung von zur Entfernung freigegebenen Planeinträgen das Element entry.flag mit dem Wert \"removed\" verwenden und ELGA-Teilnehmer Einträge durch Entfernen aus der Liste löschen." // TODO: Umsetzung für gelöschte MedicationRequests
