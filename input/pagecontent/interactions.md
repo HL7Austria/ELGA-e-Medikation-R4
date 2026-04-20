@@ -124,8 +124,8 @@ Es muss erneut ein Read-to-Write ausgeführt werden und die Aktualisierungen üb
 16. GDA 2 erhält eine Meldung, dass der Medikationsplan erfolgreich aktualisiert wurde.
 17. GDA 1 sendet mittels POST $write ein Transaction Bundle mit dem aktualisierten Medikationsplan mit List.identifier "123".
 18. Die Prüfung auf Übereinstimmung des von GDA 1 verwendeten List.identifier und dem von der der Fachanwendung vorgehaltenen temporären identifer schlägt fehl.
-19. Die Fachanwendung lehnt das Speichern ab.
-20. GDA 1 erhält eine Fehlermeldung und muss ein erneutes Read-to-Write ausführen, welches das Generieren eines zur Auslieferung bereitgestellten temporären Collection Bundles inkl. neuem List.identifiers auslöst.
+19. Die Fachanwendung **lehnt das Speichern ab**.
+20. GDA 1 erhält eine **Fehlermeldung** und muss ein erneutes Read-to-Write ausführen, welches das Generieren eines zur Auslieferung bereitgestellten temporären Collection Bundles inkl. neuem List.identifiers auslöst.
 
 
 #### Sequenzdiagramm Abgelehnter Write-Zugriff
