@@ -1,0 +1,93 @@
+@startuml
+skinparam borderColor #000000
+skinparam backgroundColor #f5f5f5
+skinparam shadowing false
+skinparam roundCorner 10
+skinparam defaultFontName "Arial"
+skinparam defaultFontSize 14
+skinparam defaultFontColor #000000
+
+skinparam note {
+  BackgroundColor #e0e5f0-#d1d9e6
+  BorderColor #8b95a5
+  BorderThickness 1
+  RoundCorner 8
+  Padding 6
+  FontColor #111827
+  Shadowing true
+}
+
+skinparam HyperlinkColor #0000EE
+skinparam HyperlinkUnderline false
+
+skinparam sequence {
+  ParticipantBorderColor #555555
+  ParticipantBackgroundColor #ffffff
+  ParticipantFontColor #000000
+  ParticipantFontSize 14
+  ParticipantPadding 20
+  ArrowColor #111827
+  ArrowThickness 1
+  ArrowFontColor #000000
+  ArrowFontSize 13
+  GroupBorderColor #111827
+  GroupBackgroundColor #eef2ff
+  GroupBorderThickness 2
+}
+
+skinparam BoxPadding 20
+skinparam BoxBorderColor #555555
+
+box "\n  GDA 1  " #5FA8C6
+  actor GDA_1 as "GDA 1"
+end box
+
+box "\n       e-Med Fachanwendung       " #C48778
+  participant eMed_FA as "e-Med FA"
+end box
+
+box "\n    GDA 2  " #8F8CA3
+  actor GDA_2 as "GDA 2"
+end box
+
+box "\n Patient  " #7FAF87
+  actor Patient as "Patient"
+end box
+
+
+autonumber
+
+activate GDA_1
+
+note over GDA_1
+Vorbedingung: Nach einem Read-to-Write
+wurde der Medikationsplan bearbeit
+end note
+
+== Write ==
+
+GDA_1 ->> eMed_FA: POST $write (Transaction Bundle + List.identifier)
+
+activate eMed_FA
+eMed_FA -> eMed_FA: List.identifier im TransactionBundle ==\ntemporär gespeicherter List.identifier?
+
+alt ungültig 
+  eMed_FA -> eMed_FA: Validierung des neuen Plans\n(keine unzulässigen Zustandsübergänge)
+  eMed_FA -->> GDA_1: Fehler 
+  
+else gültig 
+  eMed_FA -> eMed_FA: Persistiert neue Version des\nMedikationsplans
+
+  note over eMed_FA
+  Neuer Medikationsplan gespeichert
+  end note
+
+  eMed_FA -->> GDA_1: OK
+  deactivate GDA_1
+  deactivate eMed_FA
+end
+
+center footer Write-Zugriff
+
+
+@enduml
