@@ -41,15 +41,15 @@ skinparam BoxPadding 20
 skinparam BoxBorderColor #555555
 
 
-box "\n Patient " #b3c4ba
+box "\n Patient " #bac38b
 actor Patient as "Max Mustermann"
 end box
 
-box "\n Ärztin " #b2c3c9
+box "\n Ärztin " #9fbac4
 actor Arzt as "Dr. Musterärztin" 
 end box
 
-box "\n Apotheke " #D8D7E0
+box "\n Apotheke " #beaebe
 actor Apotheke as "Amadeus Apotheke"
 end box
 

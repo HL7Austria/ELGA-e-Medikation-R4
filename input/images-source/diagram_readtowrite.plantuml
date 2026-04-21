@@ -38,7 +38,7 @@ skinparam sequence {
 skinparam BoxPadding 20
 skinparam BoxBorderColor #555555
 
-box "\n  GDA 1  " #b2c3c9
+box "\n  GDA 1  " #9fbac4
   actor GDA_1 as "GDA 1"
 end box
 
@@ -46,11 +46,11 @@ box "\n       e-Med Fachanwendung       " #C48778
   participant eMed_FA as "e-Med FA"
 end box
 
-box "\n    GDA 2  " #D8D7E0
+box "\n    GDA 2  " #beaebe
   actor GDA_2 as "GDA 2"
 end box
 
-box "\n Patient  " #b3c4ba
+box "\n Patient  " #bac38b
   actor Patient as "Patient"
 end box
 
@@ -76,7 +76,7 @@ alt kein Medikationsplan vorhanden
   eMed_FA -->> GDA_1: Leerer Medikationsplan
 
 else Medikationsplan vorhanden
-  eMed_FA -> eMed_FA: Plan vorhanden:\nCollection Bundle zur Auslieferung\n(inkl. neuem temporär gespeicherten List.identifier)\nBedingung für Read-to-Write Collection Bundle:\n- new|changed → unchanged\n- removed → entfernen
+  eMed_FA -> eMed_FA: Plan vorhanden:\nstellt Collection Bundle zur Auslieferung bereit:\n(inkl. neuem temporär gespeicherten List.identifier)\nBedingung für Read-to-Write Collection Bundle:\n- new|changed → unchanged\n- removed → entfernen
   eMed_FA -->> GDA_1: Collection Bundle + List.identifier
   deactivate eMed_FA
 end

@@ -7,11 +7,13 @@ Weiters werden in einer Tabelle alle ELGA Rollen angeführt, die Zugriff auf den
 ### Use Case Diagramm
 
 <br>
-[![diagram](usecases_e_med4.drawio.png){: style="width: 50%"}](usecases_e_med4.drawio.png)
+
+[![diagram](usecases_e_med4.drawio.png){: style="width: 60%"}](usecases_e_med4.drawio.png)
+
 <br clear="all"/>
 
 ### Rollen und Berechtigungen
 
-[![tabelle](e_med_berechtigungen.png){: style="width: 80%"}](e_med_berechtigungen.png)
+[![tabelle](e_med_berechtigungen.png){: style="width: 85%"}](e_med_berechtigungen.png)
 
 *Hinweis*: Schreiben impliziert lesenden Zugriff

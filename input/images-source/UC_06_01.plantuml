@@ -38,7 +38,7 @@ skinparam sequence {
 skinparam BoxPadding 20
 skinparam BoxBorderColor #555555
 
-box "\n  GDA 1  " #b2c3c9
+box "\n  GDA 1  " #9fbac4
   actor GDA_1 as "GDA 1"
 end box
 
@@ -46,32 +46,35 @@ box "\n       e-Med Fachanwendung       " #C48778
   participant eMed_FA as "e-Med FA"
 end box
 
-box "\n    GDA 2  " #D8D7E0
+box "\n    GDA 2  " #beaebe
   actor GDA_2 as "GDA 2"
 end box
 
-box "\n Patient  " #b3c4ba
+box "\n Patient  " #bac38b
   actor Patient as "Patient"
 end box
 
 
 autonumber
 
+== Initialisierung ==
 
-GDA_1 ->> eMed_FA: POST $readtowrite
+GDA_1 ->> eMed_FA: POST $readtowrite CollectionBundle\n(Medikationsplan + Ressourcen)
+activate GDA_1
 
-note over GDA_1, eMed_FA
-GDA 1 ruft Medikationsplans ab
+note over GDA_1
+Medikationsplan abrufen, 
+mit der Intention zu schreiben
 end note
 
 activate eMed_FA
 eMed_FA -> eMed_FA: Prüfung auf bestehenden\nMedikationsplan
-eMed_FA -> eMed_FA: Wenn kein Plan vorhanden:\nFachanwendung erzeugt leeren Medikationsplan\n mit emptyReason = "notstarted"
 
+eMed_FA -> eMed_FA: Kein Plan vorhanden:\nFachanwendung erzeugt leeren Medikationsplan\n mit emptyReason = "notstarted"
 eMed_FA -->> GDA_1: Leerer Medikationsplan
 
 deactivate eMed_FA
-
+deactivate GDA_1
 
 center footer Sub_UC_06_01 - Initial erstellter Medikationsplan
 

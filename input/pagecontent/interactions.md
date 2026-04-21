@@ -42,7 +42,7 @@ Der Read-to-Write-Zugriff dient dem **Abruf des Medikationsplans und der Vorbere
 2. Die Fachanwendung prüft, ob ein Medikationsplan für den/die Patient:in existiert.
 3. Ist **kein Medikationsplan vorhanden**, wird dieser erstellt (siehe [Sub_UC_06_01 - Initial erstellter Medikationsplan](Sub_UC_eMed_06.html#sub_uc_06_01---initial-erstellter-medikationsplan)) und 
 4. ein leerer Medikationsplan mit dem emptyReason *notstarted* wird zurückgeliefert.
-5. Existiert bereits ein Medikationsplan (d.h. es wurde bereits ein Collection Bundle persistiert), wird von der Fachanwendung aus diesem ein **Collection Bundle zur Auslieferung** erstellt:<br>
+5. Existiert bereits ein Medikationsplan (d.h. es wurde bereits ein Collection Bundle persistiert), wird von der Fachanwendung aus diesem ein **Collection Bundle zur Auslieferung** bereitgestellt:<br>
 * mit einem neuen oder bereits temporär gespeicherten **List.identifier** (wird von der Fachanwendung zur späteren Integritätsprüfung beim Schreibvorgang verwaltet)<br>
 * Die Inhalte werden von der Fachanwendung wie folgt aufbereitet:<br>
     * Falls der vorherige GDA neue Medikationsplaneinträge hinzugefügt oder bestehende geändert hat (List.entry.flag haben den Wert **new** oder **changed**), werden diese auf **unchanged** gesetzt.<br>
