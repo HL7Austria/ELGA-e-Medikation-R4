@@ -112,10 +112,10 @@ AtEmedMRPlaneintrag
     identifier: neue Medikationsplaneintrag-ID
     status: active | on-hold
     reportedBoolean: false  // Fremdmedikation
-    medicationReference.reference: Medikation mit PZN oder Magistrale Anwendung // Contained Medication siehe TODO: "Arzneimittel dokumentieren"
+    medicationReference.reference: Medikation mit PZN oder Magistrale Anwendung // Contained Medication 
     authoredOn: Datum der Erstellung des Medikationsplaneintrags    
     requester: veranwortlicher GDA  // wird auf Übereinstimmung mit List.source geprüft
-    dosageInstruction: Dosierung + Einnahmezeitraum (ab sofort | in der Zukunft) // siehe TODO: "Dosierung dokumentieren"
+    dosageInstruction: Dosierung + Einnahmezeitraum (ab sofort | in der Zukunft)
 ```
 
 <!-- TODO: noch offen für AtEmedMRPlaneintrag: -->
