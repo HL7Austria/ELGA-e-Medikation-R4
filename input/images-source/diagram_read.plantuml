@@ -59,7 +59,7 @@ autonumber
 
 == Read ==
 activate GDA_1
-GDA_1 ->> eMed_FA: GET CollectionBundle (Medikationsplan + Ressourcen)
+GDA_1 ->> eMed_FA: GET CollectionBundle
 
 activate eMed_FA
 eMed_FA -> eMed_FA: Prüfung auf bestehenden\nMedikationsplan

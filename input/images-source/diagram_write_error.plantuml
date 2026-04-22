@@ -60,7 +60,7 @@ autonumber
  
 == Read-to-Write durch GDA 1 ==
 activate GDA_1
-GDA_1 ->> eMed_FA: POST $readtowrite CollectionBundle\n(Medikationsplan + Ressourcen)
+GDA_1 ->> eMed_FA: POST $readtowrite
 
 activate eMed_FA
 eMed_FA -> eMed_FA: Annahme: Prüfung auf bestehenden\nMedikationsplan erfolgreich
@@ -77,7 +77,7 @@ end note
 
 == Read-to-Write durch GDA 2 ==
 
-GDA_2 ->> eMed_FA: POST $readtowrite CollectionBundle\n(Medikationsplan + Ressourcen)
+GDA_2 ->> eMed_FA: POST $readtowrite
 activate GDA_2
 
 activate eMed_FA
