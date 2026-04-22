@@ -15,7 +15,7 @@ Ruft ein GDA den Medikationsplan eines Patienten zum Zweck der Bearbeitung ab, o
 
 Der GDA erhält in diesem Fall ein Collection Bundle mit einem leeren Medikationsplan (List) mit **emptyReason** ***notstarted*** zurück.
 
-Dieser Status **kennzeichnet ausschließlich den Initialzustand** (keine Einträge im Medikationsplan) und trifft keine Aussage darüber, ob der Patient keine Medikamente einnimmt.
+Dieser Status **kennzeichnet ausschließlich den Initialzustand** (keine Einträge im Medikationsplan) und trifft keine Aussage darüber, ob der Patient Medikamente einnimmt.
 
 Auch der Patient kann die Erstellung eines Medikationsplans auslösen, indem er diesen über das ELGA Portal aufruft (siehe auch [Read-to-Write-Zugriff](interactions.html#read-to-write-zugriff)).
 
@@ -76,11 +76,15 @@ Der GDA kann dem Medikationsplan ein oder mehrere Medikationsplaneinträge hinzu
 
 Hierfür werden entsprechende Medikationsplaneinträge *MedicationRequests* erstellt und in der *List*-Ressouce referenziert:
 - Das List.entry.flag des referenzierten MedicationRequests erhält den Wert *new*, 
-- der MedicationRequest selbst kann den Status *active* oder *on-hold* erhalten (siehe [Konsistenzregeln zwischen List.entry.flags und MedicationRequest-Status](workflowmanagement.html#konsistenzregeln-zwischen-listentryflags-und-medicationrequest-status))
+- der MedicationRequest selbst kann den Status *active* oder *on-hold* erhalten (siehe [Konsistenzregeln zwischen List.entry.flags und MedicationRequest-Status](workflowmanagement.html#konsistenzregeln-zwischen-listentryflags-und-medicationrequest-status)).
+    - für die Dokumentation des Arzneimittels ist Medication Ressource zu verwenden, diese muss immer inline im MedicationRequest enthalten sein
 - der Behandlungszeitraum im MedicationRequest kann sich auf das aktuelle Datum beziehen oder in der Zukunft liegen
 
 Der GDA übermittelt (via POST $write) den aktualisierten Medikationsplan in einem Transaction Bundle:
-    - alle neuen Ressourcen sind inline im Bundle enthalten
+- alle neuen Ressourcen sind inline im Transaction Bundle enthalten
+- die unveränderten Ressourcen sind nicht im Transaction Bundle enthalten, sondern werden in der Liste nur referenziert
+
+<!-- Anmerkung: Beim nächsten Read-to-Write ändert die Fachanwendung im Auslieferungs-Collection-Bundle den Status der Einträge mit *new* automatisch auf *unchanged*.  -->
 
 ##### Ablauf
 
@@ -137,7 +141,7 @@ Hierfür bleiben entsprechende Medikationsplaneinträge *MedicationRequests*, so
 Die *List*-source wird mit dem verantwortlichen GDA, das Datum in *date* aktualisiert.
 
 Der GDA übermittelt (via POST $write) den aktualisierten Medikationsplan in einem Transaction Bundle:
-    - die unveränderten Ressourcen sind nicht im Transaction Bundle enthalten, sondern werden in der Liste nur referenziert
+- die unveränderten Ressourcen sind nicht im Transaction Bundle enthalten, sondern werden in der Liste nur referenziert
 
 ##### Ablauf
 
@@ -161,7 +165,7 @@ AtEmedListMedikationsplan
 
 ```JSON
 AtEmedMRPlaneintrag
-    // unverändert
+    // unverändert (verantwortlicher GDA, Datum, Status bleiben bestehen)
 ```
 
 
@@ -180,8 +184,8 @@ Hierfür werden entsprechende Medikationsplaneinträge *MedicationRequests* geä
 - der Behandlungszeitraum im MedicationRequest kann sich auf das aktuelle Datum beziehen oder in der Zukunft liegen
 
 Der GDA übermittelt (via POST $write) den aktualisierten Medikationsplan in einem Transaction Bundle:
-    - alle geänderten Ressourcen sind inline im Bundle enthalten
-    - die unveränderten Ressourcen sind nicht im Transaction Bundle enthalten, sondern werden in der Liste nur referenziert
+- alle geänderten Ressourcen sind inline im Bundle enthalten
+- die unveränderten Ressourcen sind nicht im Transaction Bundle enthalten, sondern werden in der Liste nur referenziert
 
 ##### Ablauf
 
@@ -231,12 +235,14 @@ Hierfür werden entsprechende Medikationsplaneinträge *MedicationRequests* geä
 - der MedicationRequest selbst kann den Status *active* oder *on-hold* erhalten (siehe [Konsistenzregeln zwischen List.entry.flags und MedicationRequest-Status](workflowmanagement.html#konsistenzregeln-zwischen-listentryflags-und-medicationrequest-status))
 - der Behandlungszeitraum im MedicationRequest kann sich auf das aktuelle Datum beziehen oder in der Zukunft liegen
 
-Die Änderung des Medikationsplaneintrag kann alle Inhalte umfassen, z.B.: Änderung des Status (von pausiert zu aktiv u.u.), Austausch des Arzneimittels, Änderung des Behandlungszeitraums oder der Dosierung. Wird die Medikationsplaneintrag-ID (*identifier*) geändert, kann über diese kein Bezug mehr zu vorherehenden Planeinträgen hergestellt werden.
+Die Änderung des Medikationsplaneintrag kann alle Inhalte umfassen, z.B.: Änderung des Status (von pausiert zu aktiv u.u.), Änderung des Behandlungszeitraums oder der Dosierung. Ein Medikament kann auch ausgetauscht werden – etwa dann, wenn für dieselbe Indikation ein anderer Wirkstoff besser geeignet sein könnte.
+Wird die Medikationsplaneintrag-ID (*identifier*) geändert, kann über diese kein Bezug mehr zu vorherehenden Planeinträgen hergestellt werden.
 
-Ob es sinnvoller ist einen bestehenden Medikationsplaneintrag zu beenden (siehe *Medikationsplaneintrag im Medikationsplan beenden*) und einen neuen zu erstellen (siehe *Medikationsplaneintrag im Medikationsplan hinzufügen*), obliegt dem verantwortlichen GDA. 
+Ob ein Eintrag im Medikationsplan geändert wird oder besser beendet (siehe *Medikationsplaneintrag im Medikationsplan beenden*) und ein neuer erstellt wird (siehe *Medikationsplaneintrag im Medikationsplan hinzufügen*), liegt im Ermessen des verantwortlichen GDA.
 
 Der GDA übermittelt (via POST $write) den aktualisierten Medikationsplan in einem Transaction Bundle:
-    - alle neuen Ressourcen sind inline im Bundle enthalten
+- alle geänderten Ressourcen sind inline im Bundle enthalten
+- die unveränderten Ressourcen sind nicht im Transaction Bundle enthalten, sondern werden in der Liste nur referenziert
 
 
 ##### Ablauf
@@ -292,8 +298,8 @@ Hierfür werden der Medikationsplaneintrag *MedicationRequest* und das entsprech
 <!-- der Behandlungszeitraum im MedicationRequest kann sich auf das aktuelle Datum beziehen oder in der Zukunft liegen     ist das Datum hier relevant? -->
 
 Der GDA übermittelt (via POST $write) den aktualisierten Medikationsplan in einem Transaction Bundle:
-    - alle geänderten Ressourcen (inkl. der stornierten) sind inline im Transaction Bundle enthalten
-    - die unveränderten Ressourcen sind nicht im Transaction Bundle enthalten, sondern werden in der Liste nur referenziert
+- alle geänderten Ressourcen (inkl. der stornierten) sind inline im Transaction Bundle enthalten
+- die unveränderten Ressourcen sind nicht im Transaction Bundle enthalten, sondern werden in der Liste nur referenziert
 
 
 Relevante Elemente (List):
@@ -340,8 +346,8 @@ Hierfür werden der Medikationsplaneintrag *MedicationRequest* und das entsprech
 <!-- der Behandlungszeitraum im MedicationRequest kann sich auf das aktuelle Datum beziehen oder in der Zukunft liegen     ist das Datum hier relevant? -->
 
 Der GDA übermittelt (via POST $write) den aktualisierten Medikationsplan in einem Transaction Bundle:
-    - alle geänderten Ressourcen (inkl. der abgesetzten) sind inline im Transaction Bundle enthalten
-    - die unveränderten Ressourcen sind nicht im Transaction Bundle enthalten, sondern werden in der Liste nur referenziert
+- alle geänderten Ressourcen (inkl. der abgesetzten) sind inline im Transaction Bundle enthalten
+- die unveränderten Ressourcen sind nicht im Transaction Bundle enthalten, sondern werden in der Liste nur referenziert
 
 ##### Ablauf
 
@@ -392,8 +398,8 @@ Um einen Medikationsplaneintrag zu beenden, werden der Medikationsplaneintrag *M
 - der MedicationRequest erhält den Status *completed* (siehe [Konsistenzregeln zwischen List.entry.flags und MedicationRequest-Status](workflowmanagement.html#konsistenzregeln-zwischen-listentryflags-und-medicationrequest-status))
 
 Der GDA übermittelt (via POST $write) den aktualisierten Medikationsplan in einem Transaction Bundle:
-    - alle geänderten Ressourcen (inkl. der beendeten) sind inline im Transaction Bundle enthalten
-    - die unveränderten Ressourcen sind nicht im Transaction Bundle enthalten, sondern werden in der Liste nur referenziert
+- alle geänderten Ressourcen (inkl. der beendeten) sind inline im Transaction Bundle enthalten
+- die unveränderten Ressourcen sind nicht im Transaction Bundle enthalten, sondern werden in der Liste nur referenziert
 
 ##### Ablauf
 
