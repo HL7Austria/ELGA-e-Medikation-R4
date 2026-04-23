@@ -121,6 +121,7 @@ Der Medikationsplaneintrag kann in weiterer Folge als Grundlage für die Erstell
 
 * courseOfTherapyType 0..1 MS 
 * courseOfTherapyType ^short = "Gesamtmuster der Medikamentengabe. continuous | acute | seasonal." // TODO: Verwendung im Medikationsplaneintrag prüfen, evtl. durch Dosierungsinformationen abgedeckt."
+// Invariante, die prüft: wenn continuous, dann kein Enddatum für Behandlungszeitraum.
 
 * insurance 0..0
 * insurance ^short = "Keine Verwendung im Medikationsplaneintrag."
