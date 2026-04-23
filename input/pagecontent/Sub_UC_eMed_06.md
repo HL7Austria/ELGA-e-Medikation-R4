@@ -77,7 +77,7 @@ Der GDA kann dem Medikationsplan ein oder mehrere Medikationsplaneinträge hinzu
 Hierfür werden entsprechende Medikationsplaneinträge *MedicationRequests* erstellt und in der *List*-Ressouce referenziert:
 - Das List.entry.flag des referenzierten MedicationRequests erhält den Wert *new*, 
 - der MedicationRequest selbst kann den Status *active* oder *on-hold* erhalten (siehe [Konsistenzregeln zwischen List.entry.flags und MedicationRequest-Status](workflowmanagement.html#konsistenzregeln-zwischen-listentryflags-und-medicationrequest-status)).
-    - für die Dokumentation des Arzneimittels ist Medication Ressource zu verwenden, diese muss immer inline im MedicationRequest enthalten sein
+    - für die Dokumentation des Arzneimittels ist Medication Ressource zu verwenden, diese muss immer im MedicationRequest enthalten sein (contained)
 - der Behandlungszeitraum im MedicationRequest kann sich auf das aktuelle Datum beziehen oder in der Zukunft liegen
 
 Der GDA übermittelt (via POST $write) den aktualisierten Medikationsplan in einem Transaction Bundle:
