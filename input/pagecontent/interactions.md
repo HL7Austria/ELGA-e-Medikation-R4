@@ -66,7 +66,7 @@ Der temporär gespeicherte List.identifier für die Integritätsprüfung beim Sc
 
 #### Sequenzdiagramm Read-to-Write-Zugriff
 <br>
-<div>{% include diagram_readtowrite.svg %}</div>
+<div>{% include_relative plantuml/diagram_readtowrite.svg %}</div>
 <br>
 
 
@@ -96,7 +96,7 @@ Es muss erneut ein Read-to-Write ausgeführt werden und die Aktualisierungen üb
 
 #### Sequenzdiagramm Write-Zugriff
 <br>
-<div>{% include diagram_write.svg %}</div>
+<div>{% include_relative plantuml/diagram_write.svg %}</div>
 <br>
 
 <!-- TODO: Evtl. 2 Versionen: eine ungefiliterte Version (inkl. der seit dem letzten Speichern abgelaufener Einträge) und eine Version nur mit aktiven Einträgen/gültigem Behandlungszeitraum -->
@@ -130,7 +130,7 @@ Es muss erneut ein Read-to-Write ausgeführt werden und die Aktualisierungen üb
 
 #### Sequenzdiagramm Abgelehnter Write-Zugriff
 <br>
-<div>{% include diagram_write_error.svg %}</div>
+<div>{% include_relative plantuml/diagram_write_error.svg %}</div>
 <br>
 
 

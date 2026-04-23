@@ -22,7 +22,7 @@ Auch der Patient kann die Erstellung eines Medikationsplans auslösen, indem er 
 
 ##### Ablauf
 
-<div>{% include UC_06_01.svg %}</div>
+<div>{% include_relative plantuml/UC_06_01.svg %}</div>
 
 
 ##### Relevante Elemente (List):
@@ -49,7 +49,7 @@ Dient der Unterscheidung von Medikationsplänen, die noch nie befüllt wurden, u
 
 ##### Ablauf
 
-<div>{% include UC_06_02.svg %}</div>
+<div>{% include_relative plantuml/UC_06_02.svg %}</div>
 
 ##### Relevante Elemente (List):
 
@@ -88,7 +88,7 @@ Der GDA übermittelt (via POST $write) den aktualisierten Medikationsplan in ein
 
 ##### Ablauf
 
-Siehe [Ablauf Read-to-Write-Zugriff](interactions.html#ablauf-read-to-write-zugriff) und [Write-Zugriff](interactions.html#write-zugriff).
+Siehe [Read-to-Write-Zugriff](interactions.html#read-to-write-zugriff) und [Write-Zugriff](interactions.html#write-zugriff).
 
 
 ##### Relevante Elemente (List):
@@ -145,7 +145,7 @@ Der GDA übermittelt (via POST $write) den aktualisierten Medikationsplan in ein
 
 ##### Ablauf
 
-Siehe [Ablauf Read-to-Write-Zugriff](interactions.html#ablauf-read-to-write-zugriff) und [Write-Zugriff](interactions.html#write-zugriff).  
+Siehe [Read-to-Write-Zugriff](interactions.html#read-to-write-zugriff) und [Write-Zugriff](interactions.html#write-zugriff).  
 
 ##### Relevante Elemente (List):
 
@@ -189,7 +189,7 @@ Der GDA übermittelt (via POST $write) den aktualisierten Medikationsplan in ein
 
 ##### Ablauf
 
-Siehe [Ablauf Read-to-Write-Zugriff](interactions.html#ablauf-read-to-write-zugriff) und [Write-Zugriff](interactions.html#write-zugriff).  
+Siehe [Read-to-Write-Zugriff](interactions.html#read-to-write-zugriff) und [Write-Zugriff](interactions.html#write-zugriff).  
 
 ##### Relevante Elemente (List):
 
@@ -247,7 +247,7 @@ Der GDA übermittelt (via POST $write) den aktualisierten Medikationsplan in ein
 
 ##### Ablauf
 
-Siehe [Ablauf Read-to-Write-Zugriff](interactions.html#ablauf-read-to-write-zugriff) und [Write-Zugriff](interactions.html#write-zugriff).
+Siehe [Read-to-Write-Zugriff](interactions.html#read-to-write-zugriff) und [Write-Zugriff](interactions.html#write-zugriff).
 
 ##### Relevante Elemente (List):
 
@@ -290,7 +290,7 @@ Siehe [Auswirkung der Zugriffsart auf List.entry.flags und Bundle-Inhalte](workf
 
 #### Sub_UC_06_07 - Medikationsplaneintrag im Medikationsplan stornieren
 
-Der GDA kann einen oder mehrere Medikationsplaneinträge stornieren. Diese sind beim nächsten [Read-to-Write-Zugriff](interactions.html#ablauf-read-to-write-zugriff) nicht mehr im Medikationsplan enthalten.
+Der GDA kann einen oder mehrere Medikationsplaneinträge stornieren. Diese sind beim nächsten [Read-to-Write-Zugriff](interactions.html#read-to-write-zugriff) nicht mehr im Medikationsplan enthalten.
 
 Hierfür werden der Medikationsplaneintrag *MedicationRequest* und das entsprechende Entry der *List*-Ressouce angepasst:
 - Das List.entry.flag des referenzierten MedicationRequests erhält den Wert *removed*, 
@@ -338,7 +338,7 @@ Siehe [Auswirkung der Zugriffsart auf List.entry.flags und Bundle-Inhalte](workf
 #### Sub_UC_06_08 - Medikationsplaneintrag im Medikationsplan absetzen
 
 Der GDA möchte das Medikament (welches in einen Medikationsplaneintrag dokumentiert ist) absetzen, bevor alle geplanten Einnahmen oder Verabreichungen durchgeführt wurden.
-Der betreffende Planeintrag ist beim nächsten [Read-to-Write-Zugriff](interactions.html#ablauf-read-to-write-zugriff) nicht mehr im Medikationsplan enthalten.
+Der betreffende Planeintrag ist beim nächsten [Read-to-Write-Zugriff](interactions.html#read-to-write-zugriff) nicht mehr im Medikationsplan enthalten.
 
 Hierfür werden der Medikationsplaneintrag *MedicationRequest* und das entsprechende Entry der *List*-Ressouce angepasst:
 - Das List.entry.flag des referenzierten MedicationRequests erhält den Wert *removed*, 
@@ -351,7 +351,7 @@ Der GDA übermittelt (via POST $write) den aktualisierten Medikationsplan in ein
 
 ##### Ablauf
 
-Siehe [Ablauf Read-to-Write-Zugriff](interactions.html#ablauf-read-to-write-zugriff) und [Write-Zugriff](interactions.html#write-zugriff).  
+Siehe [Read-to-Write-Zugriff](interactions.html#read-to-write-zugriff) und [Write-Zugriff](interactions.html#write-zugriff).  
 
 ##### Relevante Elemente (List):
 
@@ -390,8 +390,8 @@ Siehe [Auswirkung der Zugriffsart auf List.entry.flags und Bundle-Inhalte](workf
 
 #### Sub_UC_06_09 - Behandlungszeitraum eines Medikationsplaneintrags ist abgelaufen 
 
-Erhält ein GDA nach einem [Read-to-Write-Zugriff](interactions.html#ablauf-read-to-write-zugriff) Medikationsplaneinträge, deren Behandlungszeitraum (effectiveDosePeriod.end) abgelaufen ist, muss der GDA diese Einträge beenden oder bearbeiten (zumindest den Behandlungszeitraum anpassen) bevor ein erneutes Speichern des Medikationsplans zulässig ist (siehe Sub_UC_06_05 - Medikationsplaneintrag im Medikationsplan ändern). 
-Beendete Planeinträge sind beim nächsten [Read-to-Write-Zugriff](interactions.html#ablauf-read-to-write-zugriff) nicht mehr im Medikationsplan enthalten.
+Erhält ein GDA nach einem [Read-to-Write-Zugriff](interactions.html#read-to-write-zugriff) Medikationsplaneinträge, deren Behandlungszeitraum (effectiveDosePeriod.end) abgelaufen ist, muss der GDA diese Einträge beenden oder bearbeiten (zumindest den Behandlungszeitraum anpassen) bevor ein erneutes Speichern des Medikationsplans zulässig ist (siehe Sub_UC_06_05 - Medikationsplaneintrag im Medikationsplan ändern). 
+Beendete Planeinträge sind beim nächsten [Read-to-Write-Zugriff](interactions.html#read-to-write-zugriff) nicht mehr im Medikationsplan enthalten.
 
 Um einen Medikationsplaneintrag zu beenden, werden der Medikationsplaneintrag *MedicationRequest* und das entsprechende Entry der *List*-Ressouce angepasst:
 - Das List.entry.flag des referenzierten MedicationRequests erhält den Wert *removed*, 
@@ -403,7 +403,7 @@ Der GDA übermittelt (via POST $write) den aktualisierten Medikationsplan in ein
 
 ##### Ablauf
 
-Siehe [Ablauf Read-to-Write-Zugriff](interactions.html#ablauf-read-to-write-zugriff) und [Write-Zugriff](interactions.html#write-zugriff).  
+Siehe [Read-to-Write-Zugriff](interactions.html#read-to-write-zugriff) und [Write-Zugriff](interactions.html#write-zugriff).  
 
 ##### Relevante Elemente (List):
 

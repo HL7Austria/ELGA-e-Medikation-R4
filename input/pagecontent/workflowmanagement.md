@@ -14,7 +14,7 @@ Das *flag*-Element eines Entries der List-Ressource beschreibt die **Art der Än
 |  **Removed**  | Bestehender Planeintrag wird entfernt |
 
 <br>
-<div>{% include stateDiagram_list_flag.svg %}</div>
+<div>{% include_relative plantuml/stateDiagram_list_flag.svg %}</div>
 <br>
 
 #### Auswirkung der Zugriffsart auf List.entry.flags und Bundle-Inhalte
@@ -46,7 +46,7 @@ Im Kontext des Medikationsplans kann dieses Element folgende Statuswerte annehme
 | **entered-in-error** | Planeintrag ist storniert: Kennzeichnung eines fehlerhaften Planeintrages. Der Planeintrag wird damit abgeschlossen. |
 
 <br>
-<div>{% include stateDiagram_mr_status_planeintrag.svg %}</div>
+<div>{% include_relative plantuml/stateDiagram_mr_status_planeintrag.svg %}</div>
 <br>
 
 ##### Konsistenzregeln zwischen List.entry.flags und MedicationRequest-Status

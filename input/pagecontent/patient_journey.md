@@ -78,5 +78,5 @@ Die Cortisonsalbe ist nicht mehr nötig, daher soll der Patient diese absetzen. 
 
 
 <br>
-<div>{% include diagram_journey.svg %}</div>
+<div>{% include_relative plantuml/diagram_journey.svg %}</div>
 <br>
