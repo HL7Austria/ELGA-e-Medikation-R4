@@ -24,7 +24,7 @@ Der Zugriff dient ausschließlich der Anzeige bzw. Informationsabfrage von aktue
 
 #### Sequenzdiagramm Read-only-Zugriff
 <br>
-<div>{% include diagram_read.svg %}</div>
+<div>{% include_relative plantuml/diagram_read.svg %}</div>
 <br>
 
 **Beispiele für Zugriffe mittels Suchparameter:**
