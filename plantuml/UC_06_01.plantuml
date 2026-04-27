@@ -71,7 +71,7 @@ activate eMed_FA
 eMed_FA -> eMed_FA: Prüfung auf bestehenden\nMedikationsplan
 
 eMed_FA -> eMed_FA: Kein Plan vorhanden:\nFachanwendung erzeugt leeren Medikationsplan\n mit emptyReason = "notstarted"
-eMed_FA -->> GDA_1: Leerer Medikationsplan
+eMed_FA -->> GDA_1: Leerer Medikationsplan\n(emptyReason = "notstarted")
 
 deactivate eMed_FA
 deactivate GDA_1

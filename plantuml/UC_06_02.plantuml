@@ -75,6 +75,6 @@ eMed_FA -->> GDA_1: Leerer Medikationsplan\n(emptyReason = "nilknown")
 deactivate eMed_FA
 deactivate GDA_1
 
-center footer Sub_UC_06_02 - Leerer Medikationsplan (keine Medikation eingenommen)
+center footer Sub_UC_06_02 - Leerer Medikationsplan (keine Medikation einnehmen)
 
 @enduml
