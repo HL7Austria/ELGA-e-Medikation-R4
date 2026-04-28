@@ -69,7 +69,6 @@ AtEmedListMedikationsplan
 <!-- Der folgende Ablauf gilt für alle weiteren technischen Use Cases (Sub_UC_06_03 bis Sub_UC_06_0X).
 Für jeden Use Case werden in den Kapiteln *Relevante Elemente* die wichtigsten Elemente der verwendeten Profile beschrieben. -->
 
-<!-- <div>{% include UC_0X_Standardablauf.svg %}</div> -->
 
 
 #### Sub_UC_06_03 - Medikationsplaneintrag in Medikationsplan hinzufügen
@@ -77,7 +76,7 @@ Für jeden Use Case werden in den Kapiteln *Relevante Elemente* die wichtigsten 
 Der GDA kann dem Medikationsplan ein oder mehrere Medikationsplaneinträge hinzufügen. 
 
 Hierfür führt der GDA ein $readtowrite aus und bearbeitet das von der Fachanwendung übermittelte Collection Bundle:
-- Die *List*-source wird mit dem aktuellen GDA, das Datum in *date* aktualisiert.
+- Im Element *List.source* wird mit dem aktuellen GDA, das Datum in *date* aktualisiert.
 - Entsprechende Medikationsplaneinträge (*MedicationRequests*) werden neu erstellt und in der *List*-Ressouce referenziert:
     - Das List.entry.flag des referenzierten MedicationRequests erhält den Wert *new*, 
     - der MedicationRequest kann den Status *active* oder *on-hold* erhalten (siehe [Konsistenzregeln zwischen List.entry.flags und MedicationRequest-Status](workflowmanagement.html#konsistenzregeln-zwischen-listentryflags-und-medicationrequest-status)).
@@ -143,7 +142,7 @@ Der GDA kann im Medikationsplan ein oder mehrere Medikationsplaneinträge beibeh
 
 Hierfür führt der GDA ein $readtowrite aus und lässt die entsprechenen Medikationsplaneinträge (*MedicationRequests*) des von der Fachanwendung übermittelten Collection Bundles **unverändert** (im Status *active* oder *on-hold*). Ist der Behandlungszeitraum der Medikationsplaneinträge abgelaufen, muss dieser angepasst werden (siehe *Sub_UC_06_05 - Medikationsplaneintrag im Medikationsplan ändern*). 
 
-Die *List*-source wird mit dem aktuellen GDA, das Datum in *date* aktualisiert.
+Im Element *List.source* wird mit dem aktuellen GDA, das Datum in *date* aktualisiert.
 
 Der GDA übermittelt (via POST $write) den aktualisierten Medikationsplan in einem Transaction Bundle:
 - die unveränderten Ressourcen sind nicht im Bundle enthalten, sondern werden in der Liste nur referenziert
@@ -185,7 +184,7 @@ Siehe [Auswirkung der Zugriffsart auf List.entry.flags und Bundle-Inhalte](workf
 Ein GDA kann die Therapie eines Patienten vorübergehend unterbrechen (die Wiederaufnahme ist vorgesehen).
 
 Hierfür führt der GDA ein $readtowrite aus und bearbeitet das von der Fachanwendung übermittelte Collection Bundle:
-- Die *List*-source wird mit dem aktuellen GDA, das Datum in *date* aktualisiert.
+- Im Element *List.source* wird mit dem aktuellen GDA, das Datum in *date* aktualisiert.
 - Die zu pausierenden Medikationsplaneinträge (*MedicationRequests*) und das entsprechende Entry der *List*-Ressouce werden angepasst:
     - Das List.entry.flag des referenzierten MedicationRequests erhält den Wert *changed*, 
     - der MedicationRequest erhält den Status *on-hold* (siehe [Konsistenzregeln zwischen List.entry.flags und MedicationRequest-Status](workflowmanagement.html#konsistenzregeln-zwischen-listentryflags-und-medicationrequest-status))
@@ -245,7 +244,7 @@ Die Änderung des Medikationsplaneintrag kann alle Inhalte umfassen, z.B.: Ände
 Bei fehlender fachlicher Kontinuität der Bearbeitung eines Medikationsplaneintrages (z.B. Änderung PZN; Blutdruckmittel auf Antibiotikum) soll ein neuer Medikationsplaneintrag erfasst und kein bestehender Eintrag weiterverwendet werden.
 
 Hierfür führt der GDA ein $readtowrite aus und bearbeitet das von der Fachanwendung übermittelte Collection Bundle:
-- Die *List*-source wird mit dem aktuellen GDA, das Datum in *date* aktualisiert.
+- Im Element *List.source* wird mit dem aktuellen GDA, das Datum in *date* aktualisiert.
 - Entsprechende Medikationsplaneinträge (*MedicationRequests*) werden geändert und das entsprechende Entry der *List*-Ressouce angepasst:
     - Das List.entry.flag des referenzierten MedicationRequests erhält den Wert *changed*, 
     - der MedicationRequest selbst kann den Status *active* oder *on-hold* erhalten (siehe [Konsistenzregeln zwischen List.entry.flags und MedicationRequest-Status](workflowmanagement.html#konsistenzregeln-zwischen-listentryflags-und-medicationrequest-status))
@@ -307,7 +306,7 @@ Siehe [Auswirkung der Zugriffsart auf List.entry.flags und Bundle-Inhalte](workf
 Der GDA kann einen oder mehrere Medikationsplaneinträge aufgrund einer falschen Eingabe stornieren. Diese sind beim nächsten [Read-to-Write-Zugriff](interactions.html#read-to-write-zugriff) nicht mehr im Medikationsplan enthalten.
 
 Hierfür führt der GDA ein $readtowrite aus und bearbeitet das von der Fachanwendung übermittelte Collection Bundle:
-- Die *List*-source wird mit dem aktuellen GDA, das Datum in *date* aktualisiert.
+- Im Element *List.source* wird mit dem aktuellen GDA, das Datum in *date* aktualisiert.
 - Entsprechende Medikationsplaneinträge (*MedicationRequests*) und das entsprechende Entry der *List*-Ressouce werden angepasst:
     - Das List.entry.flag des referenzierten MedicationRequests erhält den Wert *removed*, 
     - der MedicationRequest erhält den Status *entered-in-error* (siehe [Konsistenzregeln zwischen List.entry.flags und MedicationRequest-Status](workflowmanagement.html#konsistenzregeln-zwischen-listentryflags-und-medicationrequest-status))
@@ -363,7 +362,7 @@ Der GDA möchte das Medikament (welches in einen Medikationsplaneintrag dokument
 Der betreffende Planeintrag ist beim nächsten [Read-to-Write-Zugriff](interactions.html#read-to-write-zugriff) nicht mehr im Medikationsplan enthalten.
 
 Hierfür führt der GDA ein $readtowrite aus und bearbeitet das von der Fachanwendung übermittelte Collection Bundle:
-- Die *List*-source wird mit dem aktuellen GDA, das Datum in *date* aktualisiert.
+- Im Element *List.source* wird mit dem aktuellen GDA, das Datum in *date* aktualisiert.
 - Entsprechende Medikationsplaneinträge (*MedicationRequests*) und das entsprechende Entry der *List*-Ressouce werden angepasst:
     - Das List.entry.flag des referenzierten MedicationRequests erhält den Wert *removed*, 
     - der MedicationRequest erhält den Status *stopped* (siehe [Konsistenzregeln zwischen List.entry.flags und MedicationRequest-Status](workflowmanagement.html#konsistenzregeln-zwischen-listentryflags-und-medicationrequest-status))
@@ -419,7 +418,7 @@ Erhält ein GDA nach einem [Read-to-Write-Zugriff](interactions.html#read-to-wri
 Beendete Planeinträge sind beim nächsten [Read-to-Write-Zugriff](interactions.html#read-to-write-zugriff) nicht mehr im Medikationsplan enthalten.
 
 Um Planeinträge zu beenden bearbeitet der GDA nach einem $readtowrite das von der Fachanwendung übermittelte Collection Bundle wie folgt:
-- Die *List*-source wird mit dem aktuellen GDA, das Datum in *date* aktualisiert.
+- Im Element *List.source* wird mit dem aktuellen GDA, das Datum in *date* aktualisiert.
 - Abgelaufene Medikationsplaneinträge (*MedicationRequest*) und das entsprechende Entry der *List*-Ressouce werden angepasst:
     - Das List.entry.flag des referenzierten MedicationRequests erhält den Wert *removed*, 
     - der MedicationRequest erhält den Status *completed* (siehe [Konsistenzregeln zwischen List.entry.flags und MedicationRequest-Status](workflowmanagement.html#konsistenzregeln-zwischen-listentryflags-und-medicationrequest-status))
@@ -473,7 +472,7 @@ Siehe [Auswirkung der Zugriffsart auf List.entry.flags und Bundle-Inhalte](workf
 Der GDA kann die Reihenfolge der Medikationsplaneinträge ändern. Die Einträge selbst bleiben dabei unverändert.
 
 Hierfür führt der GDA ein $readtowrite aus und bearbeitet das von der Fachanwendung übermittelte Collection Bundle:
-- Die *List*-source wird mit dem aktuellen GDA, das Datum in *date* aktualisiert.
+- Im Element *List.source* wird mit dem aktuellen GDA, das Datum in *date* aktualisiert.
 - Die Reihenfolge der Planeinträge wird in der *List*-Ressouce angepasst, indem die Entries entsprechend gereiht werden.
 - Der Behandlungszeitraum der Planeinträge darf noch nicht abgelaufen sein (ansonsten muss dieser bearbeitet werden - siehe [Sub_UC_06_06 - Medikationsplaneintrag im Medikationsplan ändern](Sub_UC_eMed_06.html#sub_uc_06_06---medikationsplaneintrag-im-medikationsplan-ändern)).
 
@@ -519,7 +518,60 @@ Siehe [Auswirkung der Zugriffsart auf List.entry.flags und Bundle-Inhalte](workf
 
 #### Sub_UC_06_11 - Medikationsplaneintrag durch ELGA-Teilnehmer löschen
 
-Der ELGA-Teilnehmer kann via ELGA-Portal einzelne oder alle Medikationsplaneinträge löschen. Wurden durch den ELGA-Teilnehmer aller Planeinträge gelöscht, erhält der Medikationsplan durch die Fachanwendung das emptyReason *nilknown*.
-Im Unterschied zu ein Entfernen von Einträgen mittels stornieren, absetzen und beenden, wird beim Löschen durch den ELGA-Teilnehmer der betreffende Medikationsplaneintrag aus dem List.Entry entfernt und der betroffene Planeintrag (*MedicationRequest*) gelöscht.
+Der ELGA-Teilnehmer kann via ELGA-Portal einzelne oder alle Medikationsplaneinträge löschen. Wurden durch den ELGA-Teilnehmer alle Planeinträge gelöscht, erhält der Medikationsplan durch die Fachanwendung das emptyReason *nilknown*.
 
-In Arbeit.
+Im Unterschied zu einem Entfernen von Einträgen mittels stornieren, absetzen und beenden durch den GDA, wird beim Löschen durch den ELGA-Teilnehmer der betreffende Medikationsplaneintrag aus dem List.Entry entfernt und der betroffene Planeintrag (*MedicationRequest*) gelöscht (und nicht nur als *removed* gekennzeichnet).
+
+
+Hierfür führt der Patient über das Portal ein $readtowrite aus und markiert die zu löschenden Medikationsplaneinträge.
+Die Fachanwendung bearbeitet das Collection Bundle wie folgt:
+- Im Element *List.source* wird der Patient dokumentiert, das Datum in *date* aktualisiert.
+- Zu entfernende Medikationsplaneinträge (*MedicationRequests*) werden aus der *List*-Ressouce entfernt
+
+Im Anschluss übermittelt der Patient über das Portal (via POST $patient-write) den aktualisierten Medikationsplan in einem Transaction Bundle:
+- alle zu löschenden MedicationRequests werden im Bundle übermittelt 
+- die unveränderten Ressourcen sind nicht im Bundle enthalten, sondern werden in der Liste nur referenziert
+
+Anmerkung: Im persistierten Collection Bundle sind die gelöschten Medikationsplaneiträge nicht mehr enthalten.
+
+
+##### Ablauf
+
+Siehe [Read-to-Write-Zugriff](interactions.html#read-to-write-zugriff) und [Patient-Write-Zugriff](interactions.html#patient-write-zugriff).
+
+
+##### Relevante Elemente (List)
+
+Zustand **vor dem Löschen** des 2. Planeintrags (Ergebnis von $readtowrite):
+
+```JSON
+AtEmedListMedikationsplan
+    identifier: von der Fachanwendung übermittelt (Integritätsprüfung) 
+    status: current
+    mode: working
+    date: Datum der vorhergehenden Bearbeitung des Medikationsplans
+    source: veranwortlicher GDA, der vorhergehenden Bearbeitung
+    entry[0]:  
+        flag: unchanged
+        date: Datum der Aufnahme des Medikationsplaneintrags  
+        item: Referenz auf den Planeintrag 1  
+    entry[1]:  
+        flag: unchanged
+        date: Datum der Aufnahme des Medikationsplaneintrags 
+        item: Referenz auf den Planeintrag 2  
+```
+
+Zustand **nach dem Löschen** des 2. Planeintrags (List-Ressource im Transaction Bundle von $patient-write):
+
+```JSON
+AtEmedListMedikationsplan
+    identifier: von der Fachanwendung übermittelt (Integritätsprüfung) 
+    status: current
+    mode: working
+    date: Datum des Löschens des Medikationsplans durch den Patienten
+    source: Patient
+    entry[0]:  // 1. Medikationsplaneintrag bleibt gleich
+        flag: unchanged
+        date: Datum der Aufnahme des Medikationsplaneintrags  
+        item: Referenz auf den Planeintrag 1  
+```
