@@ -1,79 +1,78 @@
-Profile: AtEmedListMedikationsplan
-Parent: List
+Profile: AtEmedListMedikationsplan 
+Parent: AtElgaCoreList
 Id: at-emed-list-medikationsplan
 Title: "ELGA e-Med Medikationsplan"
 Description: "Der Medikationsplan eines ELGA-Teilnehmers bzw. einer ELGA-Teilnehmerin wird durch eine List-Ressource abgebildet. 
 Diese enthält 0..* Einträge (List.entry), wobei jedes Entry genau eine Referenz auf einen Medikationsplaneintrag (MedicationRequest) in List.entry.item beinhaltet.
-Die Reihenfolge der Einträge kann durch den GDA oder den Patienten festgelegt werden. Jeder Listeneintrag enthält im Element List.entry.flag den Änderungsstatus des jeweiligen Medikationsplaneintrags."
+Die Reihenfolge der Einträge kann durch den GDA festgelegt werden. Jeder Listeneintrag enthält im Element List.entry.flag den Änderungsstatus des jeweiligen Medikationsplaneintrags."
 
 
 //TODO: Invariante, dass überall in der List der gleiche Patient enthalten sein muss
 
-* identifier 1..1 MS
-* identifier ^short = "Logischer Identfier der Liste (des Medikationsplans) zur Integritätsprüfung beim Schreibvorgang."
+// * identifier 1..1 MS
+// * identifier ^short = "Logischer Identfier der Liste (des Medikationsplans) zur Integritätsprüfung beim Schreibvorgang."
 
-* status 1..1 MS
-* status from ElgaListStatusVS (required)
-* status ^short = "Status des Medikationsplans. Mögliche Ausprägungen: [current | retired] Bedeutung: current: default | retired: nach Ableben des Patienten bis Ende der Aufbewahrungsfrist"
+// * status 1..1 MS
+// * status from ElgaListStatusVS (required)
+// * status ^short = "Status des Medikationsplans. Mögliche Ausprägungen: [current | retired] Bedeutung: current: default | retired: nach Ableben des Patienten bis Ende der Aufbewahrungsfrist"
 
-* mode 1..1 MS
-* mode = #working (exactly)
-* mode ^short = "Der Medikationsplan ist ein laufend gepflegtes Dokument. Fixer Wert: working."
+// * mode 1..1 MS
+// * mode = #working (exactly)
+// * mode ^short = "Der Medikationsplan ist ein laufend gepflegtes Dokument. Fixer Wert: working."
 
-* title 0..0
-* title ^short = "Titel der Liste."
+// * title 0..0
+// * title ^short = "Titel der Liste."
 
-* code 1..1 MS 
-* code = $cs-sct#736378000 "Medikationsplan" (exactly)
-* code ^short = "Code, der den Typ der Liste beschreibt."
+// * code 1..1 MS 
+// * code = $cs-sct#736378000 "Medikationsplan" (exactly)
+// * code ^short = "Code, der den Typ der Liste beschreibt."
 
-* subject 1..1 MS
-* subject only Reference(HL7ATCorePatient) // TODO ELGA Patient ableiten
-* subject ^short = "Patient, für den der Medikationsplan dokumentiert wird, der über den 
-Zentralen Patientenindex identifizierbar und Teilnehmer von ELGA e-Medikation ist."
+// * subject 1..1 MS
+// * subject only Reference(HL7ATCorePatient) // TODO ELGA Patient ableiten
+// * subject ^short = "Patient, für den der Medikationsplan dokumentiert wird, der über den 
+// Zentralen Patientenindex identifizierbar und Teilnehmer von ELGA e-Medikation ist."
 
-* encounter 0..0
-* encounter ^short = "Behandlungskontext, in dem die Liste erstellt wurde."
+// * encounter 0..0
+// * encounter ^short = "Behandlungskontext, in dem die Liste erstellt wurde."
 
-* date 1..1 MS
-* date ^short = "Letzte Aktualisierung des Medikationsplans."
+// * date 1..1 MS
+// * date ^short = "Letzte Aktualisierung des Medikationsplans."
 
-* source 1..1 MS
-* source only Reference(HL7ATCorePractitioner or HL7ATCorePractitionerRole or Device or HL7ATCorePatient)  // TODO ELGA Profile
-* source ^short = "Arzt oder Ärztin, die den Medikationsplans erstellt hat und für den Inhalt verantwortlich ist. 
-Eindeutig identifiziert über den GDA-Index und berechtigt auf die ELGA e-Medikation 
-des Patienten zuzugreifen. Device nur für initiale Erstellung durch die Fachanwendung. Patient nur zur Änderung der Reihenfolge der Planeinträge oder nachdem er Einträge gelöscht hat."
+// * source 1..1 MS
+// * source only Reference(HL7ATCorePractitioner or HL7ATCorePractitionerRole or Device or HL7ATCorePatient)  // TODO ELGA Profile
+// * source ^short = "Arzt oder Ärztin, die den Medikationsplans erstellt hat und für den Inhalt verantwortlich ist. 
+// Eindeutig identifiziert über den GDA-Index und berechtigt auf die ELGA e-Medikation 
+// des Patienten zuzugreifen. Device nur für initiale Erstellung durch die Fachanwendung. Patient nur zur Änderung der Reihenfolge der Planeinträge oder nachdem er Einträge gelöscht hat."
 
-* orderedBy 1..1 MS
-* orderedBy from http://hl7.org/fhir/ValueSet/list-order 
-* orderedBy = #user
-* orderedBy ^short = "Die Reihenfolge der Einträge im Medikationsplan ist fachlich relevant und wird durch den Ersteller vorgegeben."
-// Da nicht verpflichtend, könnte das Element auch 0..0 gesetzt werden. Evtl. Unterscheidung user und patient.
-// Mögliche Codes: user | system | event-date | entry-date| priority | alphabetic | category | patient (TODO: nur user oder andere Reihenfolge ermöglichen?)"
+// * orderedBy 1..1 MS
+// * orderedBy from http://hl7.org/fhir/ValueSet/list-order 
+// * orderedBy = #user
+// * orderedBy ^short = "Die Reihenfolge der Einträge im Medikationsplan ist fachlich relevant und wird durch den Ersteller vorgegeben."
+// // Da nicht verpflichtend, könnte das Element auch 0..0 gesetzt werden. Evtl. Unterscheidung user und patient.
+// // Mögliche Codes: user | system | event-date | entry-date| priority | alphabetic | category | patient (TODO: nur user oder andere Reihenfolge ermöglichen?)"
 
-// note: Mögliches Kommentar auf Ebene des Medikationsplans
-* note 0..* MS  // eher 0..1 und man muss das alte überschreiben oder löschen
-* note ^short = "Freitextliche Anmerkungen zum Medikationsplan." // TODO prüfen ob 0..1 
+// // note: Mögliches Kommentar auf Ebene des Medikationsplans
+// * note 0..0 //* MS  // eher 0..1 und man muss das alte überschreiben oder löschen
+// * note ^short = "Keine Freitext-Anmerkungen auf Listenebene." 
 
-// --- Entries ---
-* entry 0..* MS
-* entry ^short = "Medikationsplaneinträge in der Liste"
+// // --- Entries ---
+// * entry 0..* MS
+// * entry ^short = "Medikationsplaneinträge in der Liste"
 
-* entry.flag 1..1 MS
-* entry.flag from ElgaListEntryFlagVS
-* entry.flag ^short = "Kennzeichnet die Art der Änderung des Medikationsplaneintrags: [New | Unchanged | Changed | Removed] Bedeutung: New: Neuer Planeintrag wird hinzugefügt | Unchanged: Bestehender Planeintrag wird beibehalten und zur Kenntnis genommen | Changed: Bestehender Planeintrag wird geändert | Removed: Bestehender Planeintrag wird entfernt"
+// * entry.flag 1..1 MS
+// * entry.flag from ElgaListEntryFlagVS
+// * entry.flag ^short = "Kennzeichnet die Art der Änderung des Medikationsplaneintrags: [New | Unchanged | Changed | Removed] Bedeutung: New: Neuer Planeintrag wird hinzugefügt | Unchanged: Bestehender Planeintrag wird beibehalten und zur Kenntnis genommen | Changed: Bestehender Planeintrag wird geändert | Removed: Bestehender Planeintrag wird entfernt"
 
-* entry.deleted 0..0 MS 
-* entry.deleted ^short = "Gibt an, ob der referenzierte Medikationsplaneintrag zur Entfernung markiert wurde.
-Keine Verwendung im Medikationsplan, da GDA für die Kennzeichnung von zur Entfernung freigegebenen Planeinträgen das Element entry.flag mit dem Wert \"removed\" verwenden und ELGA-Teilnehmer Einträge durch Entfernen aus der Liste löschen." // TODO: Umsetzung für gelöschte MedicationRequests
+// * entry.deleted 0..0 MS 
+// * entry.deleted ^short = "Kann nur verwendet werden, wenn list.mode = changes, daher keine Verwendung im Medikationsplan."
 
-* entry.date 0..1 MS
-* entry.date ^short = "Datum der Aufnahme bzw. Änderung des Medikationsplaneintrags."
+// * entry.date 0..01 MS
+// * entry.date ^short = "Datum der Aufnahme bzw. Änderung des Medikationsplaneintrags."
 
-* entry.item 1..1 MS
-* entry.item only Reference(AtEmedMRPlaneintrag)
-* entry.item ^short = "Referenz auf einen Medikationsplaneintrag."
+// * entry.item 1..1 MS
+// * entry.item only Reference(AtEmedMRPlaneintrag)
+// * entry.item ^short = "Referenz auf einen Medikationsplaneintrag."
 
-* emptyReason 0..1 MS
-* emptyReason from ElgaListEmptyReasonVS (required)
-* emptyReason ^short = "Begründung, warum der Medikationsplan leer ist. Mögliche Ausprägungen: [notstarted |  nilknown] Bedeutung: notstarted: Intitalzustand - noch nie befüllt | nilknown: Patient nimmt derzeit keine Medikamente ein"
+// * emptyReason 0..1 MS
+// * emptyReason from ElgaListEmptyReasonVS (required)
+// * emptyReason ^short = "Begründung, warum der Medikationsplan leer ist. Mögliche Ausprägungen: [notstarted |  nilknown] Bedeutung: notstarted: Intitalzustand - noch nie befüllt | nilknown: Patient nimmt derzeit keine Medikamente ein"
