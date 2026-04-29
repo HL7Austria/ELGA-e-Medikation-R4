@@ -25,5 +25,5 @@ Usage: #example
 // * subject = Reference(At-Emed-Example-Patient-01)
 // * date = "2026-01-28T08:00:00+11:00"
 // * source = Reference(At-Emed-Example-Practitioner-01)
-// * orderedBy = http://terminology.hl7.org/CodeSystem/list-order#user
+// // * orderedBy = http://terminology.hl7.org/CodeSystem/list-order#user
 // * emptyReason = $cs-list-empty-reason#notstarted

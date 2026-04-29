@@ -12,5 +12,5 @@ Usage: #example
 * date = "2026-02-27T08:00:00+00:00" 
 // Verantworlich für die intitiale Erstellung ist die Flachanwendung
 * source = Reference(At-Emed-Example-Device-01)
-* orderedBy = http://terminology.hl7.org/CodeSystem/list-order#user
+// * orderedBy = http://terminology.hl7.org/CodeSystem/list-order#user
 * emptyReason = $cs-list-empty-reason#notstarted
