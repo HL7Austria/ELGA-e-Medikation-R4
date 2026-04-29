@@ -1,5 +1,5 @@
 @startuml
-title List.entry.flag
+title List.entry.flag (Medikationsplan)
 
 (*) -d-> [Neuen Planeintrag\nhinzufügen] new
 new --> [Automatisch bei\nRead-to-Write-Zugriff\n(durch Fachanwendung)] unchanged
