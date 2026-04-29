@@ -39,9 +39,11 @@ Der Medikationsplaneintrag kann in weiterer Folge als Grundlage für die Erstell
 * status from MedikationsplaneintragStatusVS (required)
 * status ^short = "Status des Medikationsplaneintrags. Mögliche Ausprägungen: [active | on-hold | completed | stopped | entered-in-error]. Bedeutung: active: Planeintrag einer aktiven Medikation, die eingenommen werden soll | on-hold: Planeintrag ist pausiert, die Therapie ist unterbrochen (Wiederaufnahme vorgesehen) | completed: Therapie gemäß Planeintrag wie geplant durchgeführt und abgeschlossen | stopped: Therapie gemäß Planeintrag vorzeitig gestoppt und abgeschlossen | entered-in-error: Fehlerhafter Planeintrag storniert und abgeschlossen."
 
-//TODO: Fachlich zu püfen, ob im Medikationsplan dokumentiert werden soll, dass und warum ein Medikament abgesetzt wurde (Status: stopped, z.B. bei Allergie). Details siehe Definition.
-* statusReason 0..1   // TODO: statusReason.text optional für Begründung der Änderung zulassen?
-* statusReason ^short = "Grund für den aktuellen Status des Medikationsplaneintrags: (ex) https://hl7.org/fhir/R4/valueset-medicationrequest-status-reason.html."
+//TODO: Fachlich zu püfen, ob im Medikationsplan dokumentiert werden soll, dass und warum ein Medikament abgesetzt wurde (Status: stopped, z.B. bei Allergie). 
+* statusReason.coding 0..0    //(ex) https://hl7.org/fhir/R4/valueset-medicationrequest-status-reason.html."
+* statusReason.coding ^short = "Codierter Grund für den aktuellen Status des Medikationsplaneintrags, z.B. warum ein Medikament abgesetzt wurde. Keine codierte Angabe im Medikationsplaneintrag." 
+* statusReason.text 0..1  MS
+* statusReason.text ^short = "Grund für den aktuellen Status des Medikationsplaneintrags (Freitext), z.B. warum ein Medikament abgesetzt wurde." 
 
 * intent 1..1 MS
 * intent = https://hl7.org/fhir/R4/valueset-medicationrequest-intent#order
@@ -57,12 +59,15 @@ Der Medikationsplaneintrag kann in weiterer Folge als Grundlage für die Erstell
 * doNotPerform 0..0 // ..1 MS 
 * doNotPerform ^short = "Gibt an, ob der Medikationsplaneintrag die Verordnung einer Medikation (und somit die Erstellung einer geplanten Abgabe) untersagt (z.B. bei Allergie). TODO: Fachlich zu prüfen, ob dieser Usecase existiert. Auch im Kontext mit status und statusReason zu betrachten. Evtl. erst in späterer Version"
 
-* reported[x] 1..1 MS
-* reportedReference only Reference(Patient or Practitioner or PractitionerRole)  // TODO: nur boolschen Wert zulassen
-
-* reportedBoolean ^short = "TRUE im Falle der Dokumentation von Fremdmedikation (ein anderer Arzt hat das Medikament ursprünglich verordnet), sonst FALSE."
+//* reported[x] 1..1 MS
+* reportedReference 0..0  
+//* reportedReference only Reference(Patient or Practitioner or PractitionerRole) 
+* reportedReference ^short = "Im Falle einer Fremdmedikation Angabe einer Referenz auf: (Patient | Practitioner | PractitionerRole | RelatedPerson | Organization). Keine Verwendung im Medikationsplan."
 // TODO: Klären ob hier der GDA eindeutig identifiziert sein muss (im GDA-I vorhanden) oder analog zu e-Impfpass Freitext sein kann. Juristisch Verantwortlichkeit für Korrektheit des Eintrags zu klären."
-* reportedReference ^short = "Im Falle einer Fremdmedikation Angabe einer Referenz auf: (Patient | Practitioner | PractitionerRole | RelatedPerson | Organization)"
+
+* reportedBoolean 1..1 MS
+* reportedBoolean ^short = "TRUE im Falle der Dokumentation von Fremdmedikation (ein anderer Arzt hat das Medikament ursprünglich verordnet), sonst FALSE."
+
 
 // --- Medication immer als Medication-Resource (mit oder ohne PZN, damit Handelsname angegeben werden kann und historisch verfügbar bleibt)
 * medication[x] 1..1 MS  
