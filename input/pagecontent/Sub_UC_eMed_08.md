@@ -51,7 +51,7 @@ todo: muss die dosierung mit planeintrag übereinstimmen? was muss die fachanwen
 
 <!-- |  **completed**  | geplante Abgabe beendet |
 
-Durch das abgaben der letzten durchgeführten abgabe, löst die fachanwendung die beendigung des geplanten abgabe aus -->
+Nach der letztmöglichen durchgeführten Abgabe zur geplanten Abgabe, setzt die Fachanwendung den Status der geplanten Abgabe auf beendet.
 
 
 #### Sub_UC_eMed_08_03 - Geplante Abgabe stornieren
