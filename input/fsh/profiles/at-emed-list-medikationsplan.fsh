@@ -23,9 +23,9 @@ Die Reihenfolge der Einträge kann durch den GDA festgelegt werden. Jeder Listen
 // * title 0..0
 // * title ^short = "Titel der Liste."
 
-// * code 1..1 MS 
-// * code = $cs-sct#736378000 "Medikationsplan" (exactly)
-// * code ^short = "Code, der den Typ der Liste beschreibt."
+* code 1..1 MS 
+* code = $cs-sct#736378000 "Medikationsplan" (exactly)
+* code ^short = "Code, der den Typ der Liste beschreibt."
 
 // * subject 1..1 MS
 // * subject only Reference(HL7ATCorePatient) // TODO ELGA Patient ableiten
@@ -69,9 +69,9 @@ Die Reihenfolge der Einträge kann durch den GDA festgelegt werden. Jeder Listen
 // * entry.date 0..01 MS
 // * entry.date ^short = "Datum der Aufnahme bzw. Änderung des Medikationsplaneintrags."
 
-// * entry.item 1..1 MS
-// * entry.item only Reference(AtEmedMRPlaneintrag)
-// * entry.item ^short = "Referenz auf einen Medikationsplaneintrag."
+* entry.item 1..1 MS
+* entry.item only Reference(AtEmedMRPlaneintrag)
+* entry.item ^short = "Referenz auf einen Medikationsplaneintrag."
 
 // * emptyReason 0..1 MS
 // * emptyReason from ElgaListEmptyReasonVS (required)
