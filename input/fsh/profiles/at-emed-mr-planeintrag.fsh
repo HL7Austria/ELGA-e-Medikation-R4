@@ -18,9 +18,8 @@ Der Medikationsplaneintrag kann in weiterer Folge als Grundlage für die Erstell
 * extension[renderedDosageInstruction] ^short = "Vollständige Darstellung der Dosierungsanweisungen"
 
 // IHE extension statt Backport Extension: Verwendung zu klären
-* extension contains $ihe-ext-medicationrequest-offlabeluse named offLabelUse 0..1 
-* extension[offLabelUse] ^short = "Weist darauf hin, dass der verschreibende Arzt das Medikament wissentlich für eine Indikation, Altersgruppe, Dosierung oder Verabreichungsform verschrieben hat, die nicht von den Aufsichtsbehörden zugelassen ist und in der Verschreibungsinformation für das Produkt nicht erwähnt wird."
-// ENDE Extensions
+// * extension contains $ihe-ext-medicationrequest-offlabeluse named offLabelUse 0..1 
+// * extension[offLabelUse] ^short = "Weist darauf hin, dass der verschreibende Arzt das Medikament wissentlich für eine Indikation, Altersgruppe, Dosierung oder Verabreichungsform verschrieben hat, die nicht von den Aufsichtsbehörden zugelassen ist und in der Verschreibungsinformation für das Produkt nicht erwähnt wird."
 
 * identifier 1..1  
 * identifier ^short = "Medikationsplaneintrag-ID." // TODO: Verwendung einer logischen Medikationsplaneintrag-ID prüfen. Details zur Herstellung von Bezügen von geänderten Planeinträgen, siehe Definition."
@@ -56,8 +55,8 @@ Der Medikationsplaneintrag kann in weiterer Folge als Grundlage für die Erstell
 * priority 0..0
 * priority ^short = "Priorität des Medikationsplaneintrag: (req) routine | urgent | asap | stat. Keine Verwendung in Medikationsplaneintrag."
 
-* doNotPerform 0..0 // ..1 MS 
-* doNotPerform ^short = "Gibt an, ob der Medikationsplaneintrag die Verordnung einer Medikation (und somit die Erstellung einer geplanten Abgabe) untersagt (z.B. bei Allergie). TODO: Fachlich zu prüfen, ob dieser Usecase existiert. Auch im Kontext mit status und statusReason zu betrachten. Evtl. erst in späterer Version"
+* doNotPerform 0..0 
+* doNotPerform ^short = "Gibt an, ob der Medikationsplaneintrag die Verordnung einer Medikation (und somit die Erstellung einer geplanten Abgabe) untersagt (z.B. bei Allergie)." // TODO: Fachlich zu prüfen, ob dieser Usecase existiert. Auch im Kontext mit status und statusReason zu betrachten. Evtl. erst in späterer Version"
 
 //* reported[x] 1..1 MS
 * reportedReference 0..0  
@@ -125,8 +124,9 @@ Der Medikationsplaneintrag kann in weiterer Folge als Grundlage für die Erstell
 * groupIdentifier ^short = "Erst bei der geplanten Abgabe (Rezepterstellung) relevant." // TODO: Evtl ein Verweis auf erstellte Rezepte? Würde Extension erfordern, da Kardinalität nur 0..1 zulässig"
 
 * courseOfTherapyType 0..1 MS 
-* courseOfTherapyType ^short = "Gesamtmuster der Medikamentengabe. continuous | acute | seasonal." // TODO: Verwendung im Medikationsplaneintrag prüfen, evtl. durch Dosierungsinformationen abgedeckt."
+* courseOfTherapyType ^short = "Gesamtmuster der Medikamentengabe. Mögliche Ausprägungen: [continuous | acute ]" //TODO: seasonal evtl. durch Dosierungsinformationen abgedeckt
 // Invariante, die prüft: wenn continuous, dann kein Enddatum für Behandlungszeitraum.
+// TODO: seasonal entfernen
 
 * insurance 0..0
 * insurance ^short = "Keine Verwendung im Medikationsplaneintrag."
@@ -142,8 +142,9 @@ Der Medikationsplaneintrag kann in weiterer Folge als Grundlage für die Erstell
 * dispenseRequest 0..0 
 * dispenseRequest ^short = "Details zur geplanten Abgabe des Arzneimittels im Medikationsplan. Keine Verwendung im Medikationsplaneintrag."
 
-* substitution 0..1 MS //ag: evtl f. patient u pflegeheim als info
-* substitution ^short = "Gibt an, ob das Arzneimittel substituiert werden darf oder nicht. Erläutert die Absicht des Arztes, der den Medikationsplaneintrag erstellt. Wenn nichts angegeben ist, kann eine Substitution vorgenommen werden." // TODO: Die Dokumentation über eine tatsächlich erfolgte Substitution könnte in der Dispense-Resource erfolgen. Usecase fachlich zu prüfen. Es kann für den Patienten selbst oder das Pflegeheim eine wichtige Information sein, mit welchem Medikament das verordnete Medikament im Bedarfsfall ersetzen werden kann."
+* substitution 0..0 // 
+* substitution ^short = "Gibt an, ob das Arzneimittel substituiert werden darf (Absicht des Arztes, der den Medikationsplaneintrag erstellt). Derzeit keine Verwendung im Medikationsplaneintrag." 
+// Es kann für den Patienten selbst oder das Pflegeheim eine wichtige Information sein, mit welchem Medikament das verordnete Medikament im Bedarfsfall ersetzen werden kann. Derzeit keine Verwendung, Backlog bezügl. Pflege.
 
 * priorPrescription 0..1 MS
 * priorPrescription ^short = "Im Falle einer Änderung wird auf den ersetzten Medikationsplaneintrag verwiesen."
