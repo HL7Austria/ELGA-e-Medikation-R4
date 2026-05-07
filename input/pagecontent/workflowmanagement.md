@@ -138,10 +138,12 @@ Da der Status eines Medikationsplaneintrags im Medikationsplan auf **zwei Ebenen
 
 | Status | Beschreibung |
 |--------|------|
-| **active** | Neue geplante Abgabe |
-| **stopped** | geplante Abgabe wird gestoppt |
-|  **completed**  | geplante Abgabe beendet |
+| **active** | offene geplante Abgabe |
+| **stopped** | geplante Abgabe nicht abgegeben |
+|  **completed**  | geplante Abgabe eingelöst (Fachwendung setzt Status, wenn durchgeführte Abgabe completed)|
 |  **entered-in-error**  | geplante Abgabe storniert|
+
+<!-- TODO: Status abgelaufen ist nur über das Datum und die Rezeptart ersichtlich? -->
 
 <br>
 <div>{% include_relative plantuml/stateDiagram_mr_status_geplante_abgabe.svg %}</div>
@@ -149,4 +151,14 @@ Da der Status eines Medikationsplaneintrags im Medikationsplan auf **zwei Ebenen
 
 
 #### Status des MedicationDispense in der durchgeführten Abgabe
-In Arbeit.
+
+| Status | Beschreibung |
+|--------|------|
+| **stopped** | durchgeführte Abgabe abgesetzt |
+|  **completed**  | durchgeführte Abgabe abgegeben |
+|  **entered-in-error**  | durchgeführte Abgabe storniert|
+
+
+<br>
+<div>{% include_relative plantuml/stateDiagram_md_status_durchgefuehrteAbgabe.svg %}</div>
+<br>
