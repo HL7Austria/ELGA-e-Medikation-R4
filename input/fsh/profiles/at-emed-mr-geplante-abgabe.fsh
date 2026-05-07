@@ -27,7 +27,7 @@ Werden mehrere Arzneimittel gleichzeitig verordnet, wird für jedes Arzneimittel
 // ENDE Extensions  ******************
 
 * identifier 0..0 //1..* MS  Gepante-Abgabe-ID 
-* identifier ^short = "Gepante-Abgabe-ID." // TODO: Verwendung noch zu prüfen, evtl. basedon mit logischem Identifier ausreichend."
+* identifier ^short = "Logischer Identifier. Keine Verwendung in der geplanten Abgabe." // TODO: Verwendung noch zu prüfen, evtl. basedon mit logischem Identifier ausreichend."
 
 * status 1..1 MS
 * status from GeplanteAbgabeStatusVS (required)
@@ -196,8 +196,7 @@ Dies gilt für Arzneimittel mit PZN und magistralen Zubereitungen."
 * dispenseRequest.performer ^short = "Apotheke oder andere Einrichtung, die die geplante Abgabe einlösen soll. Keine Verwendung in der geplanten Abgabe."
 
 * substitution 0..0  
-* substitution ^short = "Gibt an, ob das Arzneimittel substituiert werden darf oder nicht.
-Erläutert die Absicht des verschreibenden Arztes. Keine Verwendung in der geplanten Abgabe." 
+* substitution ^short = "Gibt an, ob das Arzneimittel substituiert werden darf (Absicht des Arztes, der die geplante Abgabe erstellt). Keine Verwendung in der geplanten Abgabe." 
 
 * priorPrescription 0..0 
 * priorPrescription ^short = "Im Falle einer Änderung wird auf die ersetzte geplante Abgabe verwiesen. Keine Verwendung in der geplanten Abgabe."
