@@ -99,7 +99,10 @@ Es muss erneut ein Read-to-Write ausgeführt werden und die Aktualisierungen üb
 <div>{% include_relative plantuml/diagram_write.svg %}</div>
 <br>
 
-<!-- TODO: Evtl. 2 Versionen: eine ungefiliterte Version (inkl. der seit dem letzten Speichern abgelaufener Einträge) und eine Version nur mit aktiven Einträgen/gültigem Behandlungszeitraum -->
+
+#### Diagramm Read-to-Write- und Write-Logik
+<br>
+[![diagram](class_diagram_readtowrite.drawio.svg){: style="width: 80%"}](class_diagram_readtowrite.drawio.svg)
 
 
 #### Abgelehnter Write-Zugriff
@@ -132,5 +135,4 @@ Es muss erneut ein Read-to-Write ausgeführt werden und die Aktualisierungen üb
 <br>
 <div>{% include_relative plantuml/diagram_write_error.svg %}</div>
 <br>
-
 
