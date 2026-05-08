@@ -1,0 +1,179 @@
+@startuml
+
+title Geplante Abgabe für neuen Medikationsplaneintrag erstellen
+
+skinparam borderColor #000000
+skinparam backgroundColor #f5f5f5
+skinparam shadowing false
+skinparam roundCorner 10
+skinparam defaultFontName "Arial"
+skinparam defaultFontSize 14
+skinparam defaultFontColor #000000
+
+skinparam note {
+  BackgroundColor #e0e5f0-#d1d9e6
+  BorderColor #8b95a5
+  BorderThickness 1
+  RoundCorner 8
+  Padding 6
+  FontColor #111827
+  Shadowing true
+}
+
+skinparam HyperlinkColor #0000EE
+skinparam HyperlinkUnderline false
+
+skinparam sequence {
+  ParticipantBorderColor #555555
+  ParticipantBackgroundColor #ffffff
+  ParticipantFontColor #000000
+  ParticipantFontSize 14
+  ParticipantPadding 20
+  ArrowColor #111827
+  ArrowThickness 1
+  ArrowFontColor #000000
+  ArrowFontSize 13
+  GroupBorderColor #111827
+  GroupBackgroundColor #eef2ff
+  GroupBorderThickness 2
+}
+
+skinparam BoxPadding 20
+skinparam BoxBorderColor #555555
+
+box "\n  GDA 1  " #9fbac4
+  actor GDA_1 as "GDA 1"
+end box
+
+box "\n       e-Med Fachanwendung       " #C48778
+  participant eMed_FA as "e-Med FA"
+end box
+
+box "\n    e-Rezept  " #cbb272
+  participant e_Rezept as "e-Rezept"
+end box
+
+autonumber
+
+== Medikationsplan abrufen ($readtowrite) ==
+
+GDA_1 ->> eMed_FA: POST $readtowrite
+activate GDA_1
+
+activate eMed_FA
+eMed_FA -> eMed_FA: Prüfung auf bestehenden\nMedikationsplan
+
+alt kein Medikationsplan vorhanden
+  eMed_FA -> eMed_FA: Leere Medikationsplan mit\nemptyReason "notstarted"
+  eMed_FA -->> GDA_1: Leerer Medikationsplan
+
+else Medikationsplan vorhanden
+  eMed_FA -> eMed_FA: Auslieferungs-Collection-Bundle\n(mit temporären List.identifier):\n- List.entry.flag: new|changed → unchanged\n- List.entry.flag: removed → entfernen
+  eMed_FA -->> GDA_1: Collection Bundle + List.identifier
+  deactivate eMed_FA
+end
+
+GDA_1 -> GDA_1: Neuen Planeintrag erstellen (MedicationRequest)
+note over GDA_1
+GDA fügt dem Medikationsplan (List)
+einen neu erzeugten Planeintrag
+(MedicationRequest) hinzu
+end note
+
+== Medikationsplan schreiben ($write) ==
+
+GDA_1 ->> eMed_FA: POST $write (Transaction Bundle + List.identifier)
+activate eMed_FA
+
+eMed_FA -> eMed_FA: List.identifier im TransactionBundle ==\ntemporärer List.identifier?
+
+alt gültig 
+  eMed_FA -> eMed_FA: Persistiert neue Version des\nMedikationsplans
+  note over eMed_FA
+  Neuer Medikationsplan gespeichert
+  end note
+
+  eMed_FA -->> GDA_1: OK
+  
+else ungültig 
+
+  eMed_FA -> eMed_FA: Validierung des neuen Plans\n(keine unzulässigen\nZustandsübergänge)
+  eMed_FA -->> GDA_1: Fehler 
+  deactivate eMed_FA
+end
+
+== Medikationsplan abrufen ($readtowrite) ==
+
+GDA_1 ->> eMed_FA: POST $readtowrite
+
+activate eMed_FA
+eMed_FA -> eMed_FA: Prüfung auf bestehenden\nMedikationsplan
+
+alt kein Medikationsplan vorhanden
+  eMed_FA -> eMed_FA: Leere Medikationsplan mit\nemptyReason "notstarted"
+  eMed_FA -->> GDA_1: Leerer Medikationsplan
+
+else Medikationsplan vorhanden
+  eMed_FA -> eMed_FA: Auslieferungs-Collection-Bundle\n(mit temporären List.identifier):\n- List.entry.flag: new|changed → unchanged\n- List.entry.flag: removed → entfernen
+  eMed_FA -->> GDA_1: Collection Bundle + List.identifier
+  deactivate eMed_FA
+end
+
+GDA_1 -> GDA_1: Geplante Abgabe für bestehenden\nPlaneintrag erstellen (MedicationRequest)
+note over GDA_1
+Der GDA erstellt für den bestehenden Planeintrag 
+eine Geplante Abgabe (referenziert 
+auf Medikationsplaneintrag)
+end note
+
+
+
+== Geplante Abgabe schreiben ==
+
+GDA_1 -> eMed_FA: e-Med-ID anfordern
+
+note over GDA_1
+GroupIdentifier für "Rezeptklammer"
+anfordern (e-Med-ID)
+end note
+
+activate eMed_FA
+eMed_FA -> eMed_FA: e-Med-ID erzeugen
+eMed_FA -->> GDA_1: e-Med-ID
+deactivate eMed_FA
+note over GDA_1
+Geplante Abgaben mit groupIdentifier 
+(e-Med-ID) versehen
+end note
+
+
+GDA_1 ->> eMed_FA: POST MedicationRequest
+note over GDA_1
+Geplante Abgabe an Fachanwendung übermitteln
+end note
+activate eMed_FA
+
+GDA_1 ->> e_Rezept: Trigger e-Rezept erstellen
+note over GDA_1
+Erstellung e-Rezept auslösen
+end note
+activate e_Rezept
+e_Rezept -> e_Rezept: e-Rezept erstellen
+e_Rezept -->> GDA_1: OK
+deactivate e_Rezept
+
+eMed_FA -> eMed_FA: MedicationRequest prüfen
+alt gültig
+  eMed_FA -> eMed_FA: Geplante Abgabe speichern\n(MedicationRequest)
+  
+  note over eMed_FA
+  Geplante Abgabe 1 gespeichert
+  end note
+
+  eMed_FA -->> GDA_1: OK
+else ungültig
+  eMed_FA -->> GDA_1: Fehler 
+  deactivate eMed_FA
+end
+
+@enduml
