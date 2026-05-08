@@ -120,7 +120,8 @@ Es muss erneut ein Read-to-Write ausgeführt werden und die Aktualisierungen üb
 8. Die Fachanwendung erstellt, genau wie für GDA 1, ein **Collection Bundle zur Auslieferung** (siehe [Read-to-Write-Zugriff](interactions.html#read-to-write-zugriff)) mit dem temporären **List.identifier** "123"
 9. Die Fachanwendung liefert das Collection Bundle an den GDA 2.
 10. GDA 2 **bearbeitet zeitgleich** mit GDA 1 den Medikationsplan.
-11. **GDA 2 sendet zuerst** mittels POST $write ein Transaction Bundle mit dem aktualisierten Medikationsplan.12. Die Fachanwendung prüft, ob der temporär in der Fachanwendung vorgehaltene **List.identifier** mit dem im Transaction Bundle verwendeten List.identifier **übereinstimmt**. Beide haben den Wert "123".
+11. **GDA 2 sendet zuerst** mittels POST $write ein Transaction Bundle mit dem aktualisierten Medikationsplan.
+12. Die Fachanwendung prüft, ob der temporär in der Fachanwendung vorgehaltene **List.identifier** mit dem im Transaction Bundle verwendeten List.identifier **übereinstimmt**. Beide haben den Wert "123".
 13. Die Fachanwendung validert den neuen Plan (keine unzulässigen Zustandsübergänge)
 14. Die Prüfung verläuft erfolgreich, der **neue Medikationsplan** mit List.identifier "123" wird **persistiert**.
 15. Die Fachanwendung **löscht** den **temporären List.identifier** "123".
