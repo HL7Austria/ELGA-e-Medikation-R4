@@ -1,5 +1,5 @@
 Instance: At-Emed-Journey-02-Mr-Planeintrag-02
-InstanceOf: AtEmedMRPlaneintrag   
+InstanceOf: AtElgaEmedMedicationRequestPlaneintrag   
 Title: "Beispiel Journey 02: Medikationsplaneintrag 2"
 Description: "Bildet einen Medikationsplaneintrag mit einer Referenz auf eine magistrale Zubereitung und zugehörigen Dosierungsanweisungen ab (MedicationRequest)."
 Usage: #example
@@ -36,7 +36,7 @@ Usage: #example
 
 // Contained Medication *********************************************************************
 Instance: contained-medication-journey-02-magistral
-InstanceOf: AtEmedMedication
+InstanceOf: AtElgaEmedMedicationMedikation
 Title: "Beispiel Journey 02: Magistrale Anwendung (Salbe)"
 Usage: #inline
 

@@ -1,5 +1,5 @@
 Instance: At-Emed-Journey-03-Mr-Geplante-Abgabe   
-InstanceOf: AtEmedMRGeplanteAbgabe
+InstanceOf: AtElgaEmedMedicationRequestGeplanteAbgabe
 Title: "Beispiel Journey 03: Geplante Abgabe"
 Description: "Bildet eine geplante Abgabe des Medikaments EBETREXAT und zugehörigen Dosierungsanweisungen ab (MedicationRequest)."
 Usage: #example
@@ -55,7 +55,7 @@ Usage: #example
 
 // Inline Medication *********************************************************************
 Instance: ContainedMedication03
-InstanceOf: AtEmedMedication
+InstanceOf: AtElgaEmedMedicationMedikation
 Title: "Beispiel Medikation EBETREXAT"
 Usage: #inline
 

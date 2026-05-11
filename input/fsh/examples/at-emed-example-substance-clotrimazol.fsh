@@ -1,7 +1,7 @@
 // Alias: $substance-category = http://terminology.hl7.org/CodeSystem/substance-category
 
 Instance: At-Emed-Example-Substance-Clotrimazol
-InstanceOf: AtEmedSubstance   
+InstanceOf: AtElgaEmedSubstanceSubstanz   
 Title: "Beispiel Example: Substance Clotrimazol"
 Description: "Beispiel einer Substance Clotrimazol."
 Usage: #example

@@ -1,5 +1,5 @@
 Instance: At-Emed-Example-Mr-Dosierung-Wochentag-Kombi
-InstanceOf: AtEmedMRPlaneintrag
+InstanceOf: AtElgaEmedMedicationRequestPlaneintrag
 Title: "Beispiel Medikationsplaneintrag mit Dosierung als Kombination von Wochentagen"
 Description: "Medikationsplaneintrag mit Dosierung als Kombination von Wochentagen (montags 1-0-1-0 Stück; freitags 1-0-1-0 Stück)."
 Usage: #example
@@ -36,7 +36,7 @@ Usage: #example
 
 // Contained Medication *********************************************************************
 Instance: contained-medication-wochentag-kombi
-InstanceOf: AtEmedMedication
+InstanceOf: AtElgaEmedMedicationMedikation
 Title: "Beispiel Medikation EBETREXAT"
 Usage: #inline
 //* id = "contained-medication-wochentag-kombi"

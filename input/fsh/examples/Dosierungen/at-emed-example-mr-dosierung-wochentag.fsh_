@@ -1,5 +1,5 @@
 Instance: At-Emed-Example-Mr-Dosierung-Wochentag
-InstanceOf: AtEmedMRPlaneintrag
+InstanceOf: AtElgaEmedMedicationRequestPlaneintrag
 Title: "Beispiel Medikationsplaneintrag mit Schema mit Wochentags-Bezug"
 Description: "Medikationsplaneintrag mit Schema mit Wochentags-Bezug (jeden Dienstag und jeden Donnerstag)."
 Usage: #example
@@ -35,7 +35,7 @@ Usage: #example
 
 // Contained Medication *********************************************************************
 Instance: contained-medication-wochentag
-InstanceOf: AtEmedMedication
+InstanceOf: AtElgaEmedMedicationMedikation
 Title: "Beispiel Medikation EBETREXAT"
 Usage: #inline
 //* id = "contained-medication-wochentag"

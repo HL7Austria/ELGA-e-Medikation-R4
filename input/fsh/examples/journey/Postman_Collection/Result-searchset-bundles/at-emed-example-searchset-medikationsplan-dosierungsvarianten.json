@@ -174,7 +174,7 @@
                     "lastUpdated": "2026-03-06T12:03:38.975+00:00",
                     "source": "#CvyDnVEDxa6Ktbey",
                     "profile": [
-                        "https://fhir.hl7.at/elga/emed/r4/StructureDefinition/at-emed-mr-planeintrag"
+                        "https://fhir.hl7.at/elga/emed/r4/StructureDefinition/at-elga-emed-medicationrequest-planeintrag"
                     ]
                 },
                 "contained": [
@@ -183,7 +183,7 @@
                         "id": "contained-medication-wochentag-kombi",
                         "meta": {
                             "profile": [
-                                "https://fhir.hl7.at/elga/emed/r4/StructureDefinition/at-emed-medication"
+                                "https://fhir.hl7.at/elga/emed/r4/StructureDefinition/at-elga-emed-medication-medikation"
                             ]
                         },
                         "code": {
@@ -275,7 +275,7 @@
                     "lastUpdated": "2026-03-06T10:01:34.475+00:00",
                     "source": "#3art007jKpS6DiTl",
                     "profile": [
-                        "https://fhir.hl7.at/elga/emed/r4/StructureDefinition/at-emed-mr-planeintrag"
+                        "https://fhir.hl7.at/elga/emed/r4/StructureDefinition/at-elga-emed-medicationrequest-planeintrag"
                     ]
                 },
                 "contained": [
@@ -284,7 +284,7 @@
                         "id": "contained-medication-1010-01",
                         "meta": {
                             "profile": [
-                                "https://fhir.hl7.at/elga/emed/r4/StructureDefinition/at-emed-medication"
+                                "https://fhir.hl7.at/elga/emed/r4/StructureDefinition/at-elga-emed-medication-medikation"
                             ]
                         },
                         "code": {
@@ -372,7 +372,7 @@
                     "lastUpdated": "2026-03-06T12:03:38.975+00:00",
                     "source": "#CvyDnVEDxa6Ktbey",
                     "profile": [
-                        "https://fhir.hl7.at/elga/emed/r4/StructureDefinition/at-emed-mr-planeintrag"
+                        "https://fhir.hl7.at/elga/emed/r4/StructureDefinition/at-elga-emed-medicationrequest-planeintrag"
                     ]
                 },
                 "contained": [
@@ -381,7 +381,7 @@
                         "id": "contained-medication-freitext-01",
                         "meta": {
                             "profile": [
-                                "https://fhir.hl7.at/elga/emed/r4/StructureDefinition/at-emed-medication"
+                                "https://fhir.hl7.at/elga/emed/r4/StructureDefinition/at-elga-emed-medication-medikation"
                             ]
                         },
                         "code": {
@@ -450,7 +450,7 @@
                     "lastUpdated": "2026-03-06T12:03:38.975+00:00",
                     "source": "#CvyDnVEDxa6Ktbey",
                     "profile": [
-                        "https://fhir.hl7.at/elga/emed/r4/StructureDefinition/at-emed-mr-planeintrag"
+                        "https://fhir.hl7.at/elga/emed/r4/StructureDefinition/at-elga-emed-medicationrequest-planeintrag"
                     ]
                 },
                 "contained": [
@@ -459,7 +459,7 @@
                         "id": "contained-medication-zeitintervalle-kombi",
                         "meta": {
                             "profile": [
-                                "https://fhir.hl7.at/elga/emed/r4/StructureDefinition/at-emed-medication"
+                                "https://fhir.hl7.at/elga/emed/r4/StructureDefinition/at-elga-emed-medication-medikation"
                             ]
                         },
                         "code": {
@@ -652,7 +652,7 @@
                     "lastUpdated": "2026-03-06T12:03:38.975+00:00",
                     "source": "#CvyDnVEDxa6Ktbey",
                     "profile": [
-                        "https://fhir.hl7.at/elga/emed/r4/StructureDefinition/at-emed-mr-planeintrag"
+                        "https://fhir.hl7.at/elga/emed/r4/StructureDefinition/at-elga-emed-medicationrequest-planeintrag"
                     ]
                 },
                 "contained": [
@@ -661,7 +661,7 @@
                         "id": "contained-medication-intervalle-wh",
                         "meta": {
                             "profile": [
-                                "https://fhir.hl7.at/elga/emed/r4/StructureDefinition/at-emed-medication"
+                                "https://fhir.hl7.at/elga/emed/r4/StructureDefinition/at-elga-emed-medication-medikation"
                             ]
                         },
                         "code": {
@@ -910,7 +910,7 @@
                     "lastUpdated": "2026-03-06T12:03:38.975+00:00",
                     "source": "#CvyDnVEDxa6Ktbey",
                     "profile": [
-                        "https://fhir.hl7.at/elga/emed/r4/StructureDefinition/at-emed-mr-planeintrag"
+                        "https://fhir.hl7.at/elga/emed/r4/StructureDefinition/at-elga-emed-medicationrequest-planeintrag"
                     ]
                 },
                 "contained": [
@@ -919,7 +919,7 @@
                         "id": "contained-medication-wochentag",
                         "meta": {
                             "profile": [
-                                "https://fhir.hl7.at/elga/emed/r4/StructureDefinition/at-emed-medication"
+                                "https://fhir.hl7.at/elga/emed/r4/StructureDefinition/at-elga-emed-medication-medikation"
                             ]
                         },
                         "code": {
@@ -1007,7 +1007,7 @@
                     "lastUpdated": "2026-03-06T12:03:38.975+00:00",
                     "source": "#CvyDnVEDxa6Ktbey",
                     "profile": [
-                        "https://fhir.hl7.at/elga/emed/r4/StructureDefinition/at-emed-mr-planeintrag"
+                        "https://fhir.hl7.at/elga/emed/r4/StructureDefinition/at-elga-emed-medicationrequest-planeintrag"
                     ]
                 },
                 "contained": [
@@ -1016,7 +1016,7 @@
                         "id": "contained-medication-zeit-01",
                         "meta": {
                             "profile": [
-                                "https://fhir.hl7.at/elga/emed/r4/StructureDefinition/at-emed-medication"
+                                "https://fhir.hl7.at/elga/emed/r4/StructureDefinition/at-elga-emed-medication-medikation"
                             ]
                         },
                         "code": {

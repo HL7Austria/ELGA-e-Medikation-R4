@@ -1,5 +1,5 @@
 Instance: At-Emed-Example-Medication-Magistral-01
-InstanceOf: AtEmedMedication
+InstanceOf: AtElgaEmedMedicationMedikation
 Title: "Beispiel Journey 02: Magistrale Zubereitung"
 Description: "Beispiel einer magistralen Zubereitung (Medication) - Salbe."
 Usage: #example

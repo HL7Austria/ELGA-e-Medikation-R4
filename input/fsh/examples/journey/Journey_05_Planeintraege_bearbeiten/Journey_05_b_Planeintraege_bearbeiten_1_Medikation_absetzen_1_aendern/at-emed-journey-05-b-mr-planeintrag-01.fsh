@@ -1,5 +1,5 @@
 Instance: At-Emed-Journey-05-b-Mr-Planeintrag-01
-InstanceOf: AtEmedMRPlaneintrag   
+InstanceOf: AtElgaEmedMedicationRequestPlaneintrag   
 Title: "Beispiel Journey 05-b: Änderung Dosierung des Medikationsplaneintrags"
 Description: "Änderung der Dosierung eines Medikationsplaneintrags (EBETREXAT)."
 Usage: #example
@@ -35,7 +35,7 @@ Usage: #example
 
 // Contained Medication *********************************************************************
 Instance: contained-medication-journey-05-01
-InstanceOf: AtEmedMedication
+InstanceOf: AtElgaEmedMedicationMedikation
 Title: "Beispiel Medikation EBETREXAT"
 Usage: #inline
 //* id = "contained-medication-journey-05-01"

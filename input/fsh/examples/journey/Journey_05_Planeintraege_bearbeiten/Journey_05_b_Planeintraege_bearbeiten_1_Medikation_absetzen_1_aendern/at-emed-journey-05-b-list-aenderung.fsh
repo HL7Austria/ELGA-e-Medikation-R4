@@ -1,5 +1,5 @@
 Instance: At-Emed-Journey-05-b-List-Aenderung
-InstanceOf: AtEmedListMedikationsplan   
+InstanceOf: AtElgaEmedListMedikationsplan   
 Title: "Beispiel Journey 05-b: Mediationsplan ändern (Einträge absetzen und ändern)."
 Description: "Beispiel: Mediationsplan ändern (Einträge absetzen und ändern)."
 Usage: #example

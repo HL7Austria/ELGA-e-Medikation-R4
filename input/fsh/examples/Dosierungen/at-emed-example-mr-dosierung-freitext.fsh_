@@ -1,5 +1,5 @@
 Instance: At-Emed-Example-Mr-Dosierung-Freitext
-InstanceOf: AtEmedMRPlaneintrag
+InstanceOf: AtElgaEmedMedicationRequestPlaneintrag
 Title: "Medikationsplaneintrag mit Freitext-Dosierung"
 Description: "Medikationsplaneintrag mit Dosierung im Tageszeitenschema (morgens, mittags, abends, nachts): 1-0-1-0."
 Usage: #example
@@ -28,7 +28,7 @@ Usage: #example
 
 // Contained Medication *********************************************************************
 Instance: contained-medication-freitext-01
-InstanceOf: AtEmedMedication
+InstanceOf: AtElgaEmedMedicationMedikation
 Title: "Beispiel Medikation EBETREXAT"
 Usage: #inline
 //* id = "contained-medication-freitext-01"

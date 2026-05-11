@@ -1,5 +1,5 @@
 Instance: At-Emed-Example-Mr-Dosierung-Zeitintervalle-Kombi
-InstanceOf: AtEmedMRPlaneintrag
+InstanceOf: AtElgaEmedMedicationRequestPlaneintrag
 Title: "Beispiel Medikationsplaneintrag Dosierung als Kombination von Zeitintervallen"
 Description: "Medikationsplaneintrag mit Dosierung als Kombination von Zeitintervallen (alle 2 Tage: 08:00 Uhr — je 1 Stück; 18:00 Uhr — je 2 Stück)."
 Usage: #example
@@ -41,7 +41,7 @@ Usage: #example
 
 // Contained Medication *********************************************************************
 Instance: contained-medication-zeitintervalle-kombi
-InstanceOf: AtEmedMedication
+InstanceOf: AtElgaEmedMedicationMedikation
 Title: "Beispiel Medikation EBETREXAT"
 Usage: #inline
 //* id = "contained-medication-zeitintervalle-kombi"

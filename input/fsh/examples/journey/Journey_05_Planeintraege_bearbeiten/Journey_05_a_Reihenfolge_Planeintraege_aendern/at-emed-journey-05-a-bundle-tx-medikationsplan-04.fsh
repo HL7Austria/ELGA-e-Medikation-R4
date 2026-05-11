@@ -1,5 +1,5 @@
 Instance: At-Emed-Journey-05-a-Bundle-Medikationsplan-Tx
-InstanceOf: AtEmedBundleTxMedikationsplan   
+InstanceOf: AtElgaEmedBundleTxMedikationsplan   
 Title: "Beispiel Journey 05-a: Transaction Bundle zur Änderung der Reihenfolge der Medikationsplaneinträge."
 Description: "Beispiel eines Transaction Bundles, zur Änderung der Reihenfolge der Medikationsplaneinträge."
 Usage: #example

@@ -1,5 +1,5 @@
 Instance: At-Emed-Journey-05-b-Bundle-Tx-Medikationsplan
-InstanceOf: AtEmedBundleTxMedikationsplan   
+InstanceOf: AtElgaEmedBundleTxMedikationsplan   
 Title: "Beispiel Journey 05-b: Transaction Bundle zur Änderung von bestehenden Medikationsplaneinträgen (absetzen und ändern)."
 Description: "Beispiel eines Transaction Bundles, zur Änderung von bestehenden Medikationsplaneinträgen (absetzen und ändern)."
 Usage: #example

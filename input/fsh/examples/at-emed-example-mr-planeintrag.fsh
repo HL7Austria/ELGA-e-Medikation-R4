@@ -1,5 +1,5 @@
 Instance: At-Emed-Example-Mr-Planeintrag
-InstanceOf: AtEmedMRPlaneintrag   
+InstanceOf: AtElgaEmedMedicationRequestPlaneintrag   
 Title: "Beispiel Example Medikationsplaneintrag"
 Description: "Bildet einen Medikationsplaneintrag mit dem Medikament EBETREXAT und zugehörigen Dosierungsanweisungen ab (MedicationRequest)."
 Usage: #example
@@ -49,7 +49,7 @@ Usage: #example
 
 // Contained Medication *********************************************************************
 Instance: ContainedMedication01
-InstanceOf: AtEmedMedication
+InstanceOf: AtElgaEmedMedicationMedikation
 Title: "Beispiel Medikation EBETREXAT"
 Usage: #inline
 //* id = "ContainedMedication01"

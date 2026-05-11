@@ -1,5 +1,5 @@
 Instance: At-Emed-Example-Durchgefuehrte-Abgabe-01
-InstanceOf: AtEmedMDDurchgefuehrteAbgabe
+InstanceOf: AtElgaEmedMedicationRequestDurchgefuehrteAbgabe
 Title: "Beispiel Durchgeführte Abgabe 1"
 Description: "Beispiel Durchgeführte Abgabe 1"
 Usage: #example

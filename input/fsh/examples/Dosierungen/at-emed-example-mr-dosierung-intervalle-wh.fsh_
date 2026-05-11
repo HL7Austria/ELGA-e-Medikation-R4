@@ -1,5 +1,5 @@
 Instance: At-Emed-Example-Mr-Dosierung-Intervalle-Wh
-InstanceOf: AtEmedMRPlaneintrag
+InstanceOf: AtElgaEmedMedicationRequestPlaneintrag
 Title: "Beispiel Medikationsplaneintrag mit Dosierungsintervallen"
 Description: "Medikationsplaneintrag mit Dosierung im Intervallen (alle 8 Tage 1 Stück)."
 Usage: #example
@@ -34,7 +34,7 @@ Usage: #example
 
 // Contained Medication *********************************************************************
 Instance: contained-medication-intervalle-wh
-InstanceOf: AtEmedMedication
+InstanceOf: AtElgaEmedMedicationMedikation
 Title: "Beispiel Medikation EBETREXAT"
 Usage: #inline
 //* id = "contained-medication-intervalle-wh"
