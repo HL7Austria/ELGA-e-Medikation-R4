@@ -1,4 +1,5 @@
 @startuml
+title Write-Zugriff
 skinparam borderColor #000000
 skinparam backgroundColor #f5f5f5
 skinparam shadowing false
@@ -61,33 +62,34 @@ activate GDA_1
 
 note over GDA_1
 Vorbedingung: Nach einem Read-to-Write
-wurde der Medikationsplan bearbeit
+wurde der Medikationsplan bearbeit.
 end note
 
-== Write ==
+group $write
 
-GDA_1 ->> eMed_FA: POST $write (Transaction Bundle + List.identifier)
+  GDA_1 ->> eMed_FA: POST $write AtElgaEmedBundleTxMedikationsplan\n(Transaction Bundle + List.identifier)
 
-activate eMed_FA
-eMed_FA -> eMed_FA: List.identifier im TransactionBundle ==\ntemporär gespeicherter List.identifier?
+  activate eMed_FA
+  eMed_FA -> eMed_FA: List.identifier im TransactionBundle ==\ntemporärer List.identifier?
 
-alt ungültig 
-  eMed_FA -> eMed_FA: Validierung des neuen Plans\n(keine unzulässigen Zustandsübergänge)
-  eMed_FA -->> GDA_1: Fehler 
-  
-else gültig 
-  eMed_FA -> eMed_FA: Persistiert neue Version des\nMedikationsplans
+  alt gültig 
+    eMed_FA -> eMed_FA: Validierung des neuen Plans\n(keine unzulässigen Zustandsübergänge)
+    eMed_FA -> eMed_FA: Persistiert neue Version des\nMedikationsplans
+    
+    note over eMed_FA
+    Neuer Medikationsplan gespeichert
+    end note
 
-  note over eMed_FA
-  Neuer Medikationsplan gespeichert
-  end note
+    eMed_FA -->> GDA_1: OK
 
-  eMed_FA -->> GDA_1: OK
-  deactivate GDA_1
-  deactivate eMed_FA
+  else ungültig 
+
+    eMed_FA -->> GDA_1: Fehler 
+
+    deactivate GDA_1
+    deactivate eMed_FA
+  end
+
 end
-
-center footer Write-Zugriff
-
 
 @enduml

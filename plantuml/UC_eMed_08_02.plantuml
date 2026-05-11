@@ -1,6 +1,6 @@
 @startuml
 
-title Geplante Abgabe aus bestehenden Medikationsplaneinträgen (unverändert) erstellen
+title Geplante Abgabe für neuen Medikationsplaneintrag erstellen
 
 skinparam borderColor #000000
 skinparam backgroundColor #f5f5f5
@@ -67,8 +67,37 @@ Medikationsplan im Collection Bundle
 (AtElgaEmedBundleMedikationsplan)
 end note
 
+GDA_1 -> GDA_1: Neuen Planeintrag erstellen (AtElgaEmedMedicationRequestPlaneintrag)
+
+note over GDA_1
+GDA fügt dem Medikationsplan 
+(AtElgaEmedListMedikationsplan) 
+den neuen Planeintrag hinzu
+(AtElgaEmedMedicationRequestPlaneintrag)
+end note
+
+== Medikationsplan schreiben ==
+
+ref over GDA_1, eMed_FA : $write
+
+note over eMed_FA
+Neuer Medikationsplan gespeichert
+end note
+
+== Medikationsplan abrufen ==
+
+ref over GDA_1, eMed_FA : $readtowrite
+
+
+note over GDA_1
+GDA erhält den aktualisierten
+Medikationsplan im Collection Bundle 
+(AtElgaEmedBundleMedikationsplan)
+end note
+
 GDA_1 -> GDA_1: Geplante Abgabe erstellen\n(AtElgaEmedMedicationRequestGeplanteAbgabe 1)
 GDA_1 -> GDA_1: Geplante Abgabe erstellen\n(AtElgaEmedMedicationRequestGeplanteAbgabe 2)
+
 note over GDA_1
 Die neu erstellten geplanten Abgaben 1 + 2 
 (AtElgaEmedMedicationRequestGeplanteAbgabe)

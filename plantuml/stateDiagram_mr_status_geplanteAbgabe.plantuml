@@ -5,7 +5,9 @@ title MedicationRequest.status (geplante Abgabe)
 active --> [nicht abgegeben] stopped
 active --> [eingelöst\n(durch\nFachanwendung) ] completed  
 active --> [storniert] "entered-in-error"
+active --> [Datum abgelaufen\n(durch\nFachanwendung)] cancelled
 stopped --> (*)
 "entered-in-error" --> (*)
 completed --> (*)
+cancelled --> (*)
 @enduml
