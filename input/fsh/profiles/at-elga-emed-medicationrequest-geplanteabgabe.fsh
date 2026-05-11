@@ -1,7 +1,7 @@
-Profile: AtEmedMRGeplanteAbgabe
+Profile: AtElgaEmedMedicationRequestGeplanteAbgabe
 Parent: MedicationRequest
-Id: at-emed-mr-geplante-abgabe
-Title: "ELGA e-Med Geplante Abgabe"
+Id: at-elga-emed-medicationrequest-geplanteabgabe
+Title: "At ELGA e-Medikation MedicationRequest Geplante Abgabe"
 Description: "Bildet eine geplante Abgabe eines Arzneimittels aus dem zugrundeliegenden Medikationsplaneintrag des ELGA-Teilnehmers ab (\"MedicationRequest\"-Ressource).
 Sie enthält das verordnete Arzneimittel und dessen Dosierung und spielgelt die Inhalte des e-Rezepts wider. Geplante Abgaben dienen somit der Nachvollziehbarkeit der rezeptierten Arzneimittel in der e-Medikation.
 Werden mehrere Arzneimittel gleichzeitig verordnet, wird für jedes Arzneimittel eine geplante Abgabe mit demselben groupIdentifier erstellt (bildet 'Rezept-Klammer'). Verwendet R5 Backport Extensions."
@@ -70,7 +70,7 @@ Werden mehrere Arzneimittel gleichzeitig verordnet, wird für jedes Arzneimittel
 
 // --- Medication immer als Medication-Resource (mit oder ohne PZN, damit Handelsname angegeben werden kann und historisch verfügbar bleibt)
 * medication[x] 1..1 MS  
-* medication[x] only Reference(AtEmedMedication)  
+* medication[x] only Reference(AtElgaEmedMedicationMedikation)  
 * medication[x] ^type.aggregation = #contained
 
    //ws planeintrag kann auch nur wirkstoffe enthalten; evtl. wirkstoff oder pzn; magistral, pzn, sonstige; todo bepr. mit medication ressource
@@ -123,7 +123,7 @@ geplanten Abgabe ganz oder teilweise eingehalten wird. Keine Verwendung in der g
 geplanten Abgabe ganz oder teilweise eingehalten wird. Keine Verwendung in der geplanten Abgabe."
 
 * basedOn 1..1 MS
-* basedOn only Reference(AtEmedMRPlaneintrag) 
+* basedOn only Reference(AtElgaEmedMedicationRequestPlaneintrag) 
 * basedOn ^short = "Referenz auf die (aktuelle) Version des zugrundeliegenden Medikationsplaneintrags, auf dem diese geplante Abgabe basiert."
 // TODO: zu prüfen: zusätzliche logische Referenz: reference.identifier 
 // {Medikationsplaneintrag-ID}_{Medikationsplaneintrag-ID_Version}."
@@ -146,7 +146,7 @@ geplante Abgabe mit demselben groupIdentifier erstellt (bildet 'Rezept-Klammer')
 
 // DOSAGE
 * dosageInstruction 0..1 //1..* MS 
-* dosageInstruction only AtEmedDosage
+* dosageInstruction only AtElgaEmedDosageDosierung
 * dosageInstruction ^short = "Angabe der Dosierinformationen." // TODO: Dosiervarianten."
 
 
@@ -164,7 +164,7 @@ geplante Abgabe mit demselben groupIdentifier erstellt (bildet 'Rezept-Klammer')
 * dispenseRequest.validityPeriod ^short = "Gültigkeitszeitraum einer geplante Abgabe. Diese ist abhängig von der Rezeptart: Kassenrezept: ab Erstelldatum einen Monat gültig, bei einer Teilabgabe verlängert sich die gesamte Gültigkeitsdauer auf 3 Monate („Besorger“-Prozess). Privatrezept: ab Erstelldatum maximal 365 Tage gültig, die Gültigkeitsdauer kann vom Arzt definiert werden. Substitutionsrezept: Maximale Gültigkeitsdauer 12 Monate."
 * dispenseRequest.validityPeriod ^definition = """
 Zeitraum in dem die geplante Abgabe eingelöst werden kann.
-Der Gültigkeitszeitraum ist abhängig von der **Rezeptart** (gemäß e-Med v2): 
+Der Gültigkeitszeitraum ist abhängig von der **Rezeptart**: 
 * **Kassenrezept**: ab Erstelldatum einen Monat gültig (vom Ausstellungszeitpunkt bis zum gleichen Tag des Folgemonats 23:59 Uhr); validityPeriod.start kein Datum in der Zukunft; bei einer Teilabgabe verlängert sich die gesamte Gültigkeitsdauer auf 3 Monate („Besorger“-Prozess).
 * **Privatrezept**: ab Erstelldatum maximal 365 Tage gültig, wenn die erste Einlösung innerhalb von 1 Monat ab Erstelldatum erfolgt (sonst Status abgelaufen). validityPeriod.start kein Datum in der Zukunft; Die Gültigkeitsdauer (validityPeriod.end) kann vom Arzt definiert werden.
 * **Substitutionsrezept**: Maximale Gültigkeitsdauer 12 Monate. Das validityPeriod.start darf maximal einen Monat in der Zukunft liegen, gültig bis das validityPeriod.end erreicht ist.

@@ -193,7 +193,7 @@
                     "lastUpdated": "2026-03-03T12:52:39.285+00:00",
                     "source": "#RaJlJTds2Xr7PdKn",
                     "profile": [
-                        "https://fhir.hl7.at/elga/emed/r4/StructureDefinition/at-emed-mr-planeintrag"
+                        "https://fhir.hl7.at/elga/emed/r4/StructureDefinition/at-elga-emed-medicationrequest-planeintrag"
                     ]
                 },
                 "contained": [
@@ -202,7 +202,7 @@
                         "id": "contained-medication-journey-02-magistral",
                         "meta": {
                             "profile": [
-                                "https://fhir.hl7.at/elga/emed/r4/StructureDefinition/at-emed-medication"
+                                "https://fhir.hl7.at/elga/emed/r4/StructureDefinition/at-elga-emed-medication-medikation"
                             ]
                         },
                         "form": {
@@ -361,7 +361,7 @@
                     "lastUpdated": "2026-03-05T10:58:43.041+00:00",
                     "source": "#ZqeFdnSduiLgS99u",
                     "profile": [
-                        "https://fhir.hl7.at/elga/emed/r4/StructureDefinition/at-emed-mr-planeintrag"
+                        "https://fhir.hl7.at/elga/emed/r4/StructureDefinition/at-elga-emed-medicationrequest-planeintrag"
                     ]
                 },
                 "contained": [
@@ -370,7 +370,7 @@
                         "id": "contained-medication-journey-02-01",
                         "meta": {
                             "profile": [
-                                "https://fhir.hl7.at/elga/emed/r4/StructureDefinition/at-emed-medication"
+                                "https://fhir.hl7.at/elga/emed/r4/StructureDefinition/at-elga-emed-medication-medikation"
                             ]
                         },
                         "code": {

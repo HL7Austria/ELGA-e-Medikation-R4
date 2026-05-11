@@ -1,8 +1,8 @@
-Profile: AtEmedDosage
+Profile: AtElgaEmedDosageDosierung
 Parent: Dosage
-Id: at-emed-dosage
-Title: "ELGA e-Med Dosage"
-Description: "Dosage"
+Id: at-elga-emed-dosage-dosierung
+Title: "AT ELGA e-Medikation Dosage Dosierung"
+Description: "AT ELGA e-Medikation Dosage Dosierung"
 
 // Medication IG DE https://ig.fhir.de/igs/medication/index.html
 //* obeys DosageStructuredOrFreeTextWarning and DosageStructuredRequiresBoth and DosageDoseUnitSameCode and DosageWarnungViererschemaInText and FreeTextSingleDosageOnlyWarning
@@ -22,7 +22,7 @@ https://hl7.org/fhir/R4/valueset-additional-instruction-codes.html." // TODO: Nu
 
 
 * timing 0..1 MS
-* timing only AtEmedTiming
+* timing only AtElgaEmedTimingZeiten
 * timing ^short = "Zeitpunkt oder Zeitraum der Einnahme des Medikaments. 
 Um widersprüchliche Anweisungen zu vermeiden, ist entweder Dosage.timing oder Dosage.text zu befüllen."
 //* timing.code.coding from $vs-einnahmezeitpunkte (required)

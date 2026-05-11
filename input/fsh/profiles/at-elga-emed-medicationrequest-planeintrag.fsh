@@ -1,7 +1,7 @@
-Profile: AtEmedMRPlaneintrag
+Profile: AtElgaEmedMedicationRequestPlaneintrag
 Parent: MedicationRequest
-Id: at-emed-mr-planeintrag
-Title: "ELGA e-Med Planeintrag"
+Id: at-elga-emed-medicationrequest-planeintrag
+Title: "At ELGA e-Medikation MedicationRequest Planeintrag"
 Description: "Ein Medikationsplaneintrag im Medikationsplan eines ELGA-Teilnehmers bzw. einer ELGA-Teilnehmerin wird durch eine \"MedicationRequest\"-Ressource abgebildet.
 Die Ressource enthält genau ein Medikament mit der zugehörigen Dosierung, wobei das Medikament verpflichtend in einer contained Medication-Ressource (inline, d.h. innerhalb der Ressource), dokumentiert wird.
 Der Medikationsplaneintrag kann in weiterer Folge als Grundlage für die Erstellung einer geplanten Abgabe dienen. Es werden R5-Backport-Extensions verwendet."
@@ -70,7 +70,7 @@ Der Medikationsplaneintrag kann in weiterer Folge als Grundlage für die Erstell
 
 // --- Medication immer als Medication-Resource (mit oder ohne PZN, damit Handelsname angegeben werden kann und historisch verfügbar bleibt)
 * medication[x] 1..1 MS  
-* medication[x] only Reference(AtEmedMedication)  
+* medication[x] only Reference(AtElgaEmedMedicationMedikation)  
 * medication[x] ^type.aggregation = #contained
 
 * medication[x] ^short = "Das Arzneimittel wird immer in einer contained Medication Ressource dokumentiert, damit Arzneimittel mit und ohne PZN einheitlich dokumentiert werden können."
@@ -117,7 +117,7 @@ Der Medikationsplaneintrag kann in weiterer Folge als Grundlage für die Erstell
 * instantiatesUri ^short = "URL, die auf eine extern gepflegte Richtlinie/Guideline verweist, die von diesem Medikationsplaneintrag ganz oder teilweise eingehalten wird. Derzeit keine Verwendung im Medikationsplaneintrag."
 
 * basedOn 0..0 
-//* basedOn only Reference(AtEmedMRPlaneintrag)
+//* basedOn only Reference(AtElgaEmedMedicationRequestPlaneintrag)
 * basedOn ^short = "Keine Verwendung im Medikationsplaneintrag." // TODO: Verwendung vermutlich nicht möglich, da keine versionsspezifischen Referenzen verwendet werden."
 
 * groupIdentifier 0..0
@@ -136,8 +136,8 @@ Der Medikationsplaneintrag kann in weiterer Folge als Grundlage für die Erstell
 
 // DOSAGE
 * dosageInstruction 1..* MS // bsp von linkedcare usw. analysieren
-* dosageInstruction only AtEmedDosage
-* dosageInstruction ^short  = "Angabe der Dosierinformationen strukturiert oder als Freitext." //TODO: Inhalte AtEmedDosage fachlich prüfen.
+* dosageInstruction only AtElgaEmedDosageDosierung
+* dosageInstruction ^short  = "Angabe der Dosierinformationen strukturiert oder als Freitext." //TODO: Inhalte AtElgaEmedDosageDosierung fachlich prüfen.
 
 * dispenseRequest 0..0 
 * dispenseRequest ^short = "Details zur geplanten Abgabe des Arzneimittels im Medikationsplan. Keine Verwendung im Medikationsplaneintrag."

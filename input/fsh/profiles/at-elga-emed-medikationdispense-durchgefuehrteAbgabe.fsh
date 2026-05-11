@@ -1,7 +1,7 @@
-Profile: AtEmedMDDurchgefuehrteAbgabe
+Profile: AtElgaEmedMedicationRequestDurchgefuehrteAbgabe
 Parent: MedicationDispense
-Id: at-emed-md-durchgefuehrte-abgabe
-Title: "ELGA e-Med Durchgeführte Abgabe"
+Id: at-elga-emed-medikationdispense-durchgefuehrteAbgabe
+Title: "AT ELGA e-Medikation MedicationDispense Durchgeführte Abgabe"
 Description: "Dokumentiert eine durchgeführte Abgabe eines Arzneimittels (\"MedicationDispense\"-Ressource). 
 In der durchgeführten Abgabe können Abweichungen hinsichtlich der Dosierung des Medikaments dokumentiert werden.
 Sofern eine zugehörige geplante Abgabe vorliegt, muss diese referenziert werden. Einer mögliche Substitution des Medikaments ist implizit, durch die Referenz auf die zugehörige geplante Abgabe, ersichtlich."
@@ -38,7 +38,7 @@ Sofern eine zugehörige geplante Abgabe vorliegt, muss diese referenziert werden
 
 // --- Medication immer als Medication-Resource (mit oder ohne PZN, damit Handelsname angegeben werden kann und historisch verfügbar bleibt)
 * medication[x] 1..1 MS  
-* medication[x] only Reference(AtEmedMedication)  
+* medication[x] only Reference(AtElgaEmedMedicationMedikation)  
 * medication[x] ^type.aggregation = #contained
 
 * medication[x] ^short = "Abgegebenes Medikament. Das Medikament wird immer in einer contained Medication Ressource dokumentiert, damit 

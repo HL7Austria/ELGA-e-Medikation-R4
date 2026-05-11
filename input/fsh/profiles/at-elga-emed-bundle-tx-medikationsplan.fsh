@@ -1,8 +1,8 @@
-Profile: AtEmedBundleMedikationsplan
+Profile: AtElgaEmedBundleTxMedikationsplan
 Parent: Bundle
-Id: at-emed-bundle-medikationsplan
-Title: "ELGA e-Med Medikationsplan Collection Bundle"
-Description: "Das Bundle vom Typ Collection bestehend aus: 
+Id: at-elga-emed-bundle-tx-medikationsplan
+Title: "AT ELGA e-Medikation Transaction Bundle Medikationsplan"
+Description: "Das Bundle vom Typ Transaction dient dem schreibenden Zugriff auf den ELGA Medikationsplan bestehend aus: 
 - 1..1 Medikationsplan (List): Liste mit Referenzen auf Medikationsplaneinträge und zur Abbildung von Reihenfolge und Änderungsstatus 
 - 0..* Medikationsplaneinträge (MedicationRequests): Medikation und Dosierung"
 
@@ -10,14 +10,14 @@ Description: "Das Bundle vom Typ Collection bestehend aus:
 * identifier ^short = "Persistenter Identifikator für das Bundle." //TODO: Verwendung prüfen
 
 * type 1..1 MS
-* type = #collection
-* type ^short = "Art des Bundles. Für Medikationspläne immer \"collection\"."
-
+* type = #transaction
+* type ^short = "Art des Bundles. Für schreibenden Zugriff immer Typ \"transaction\"."
+ 
 * timestamp 1..1 MS
 * timestamp ^short = "Zeitpunkt der Erstellung des Bundles." //TODO: Verwendung prüfen
 
 * link 0..0
-* link ^short = "Verweise auf weiterführende Informationen zum Bundle."  //TODO: Verwendung prüfen
+* link ^short = "Verweise auf weiterführende Informationen zum Bundle." //TODO: Verwendung prüfen
 
 // Slicing legt fest, welche Entries erlaubt sind -> Unterscheidung der Slices anhand von Pfad und Typ 
 * entry ^slicing.discriminator[+].type = #type   
@@ -30,16 +30,14 @@ Description: "Das Bundle vom Typ Collection bestehend aus:
     Medikationsplaneintrag 0..*
 // Liste
 * entry[Medikationsplan].resource 1..1
-* entry[Medikationsplan].resource only AtEmedListMedikationsplan
+* entry[Medikationsplan].resource only AtElgaEmedListMedikationsplan
 // Medikationsplaneinträge
 * entry[Medikationsplaneintrag].resource 1..1
-* entry[Medikationsplaneintrag].resource only AtEmedMRPlaneintrag
+* entry[Medikationsplaneintrag].resource only AtElgaEmedMedicationRequestPlaneintrag
 // * entry[MagistraleZubereitung].resource 1..1
-// * entry[MagistraleZubereitung].resource only AtEmedMedication
+// * entry[MagistraleZubereitung].resource only AtElgaEmedMedicationMedikation
 
 * entry.link 0..0
 * entry.link ^short = "Verweise auf weiterführende Informationen zu diesem Entry." //TODO: Verwendung prüfen
 
-* entry.fullUrl ^short = "Eindeutige URL für den Eintrag im Bundle." //TODO: Verwendung prüfen
-
-// TODO Fachlich abklären, ob Patient und Practitioner auch im Bundle enthalten sein müssen -> damit in der History verfügbar 
+* entry.fullUrl ^short = "Eindeutige URL für den Eintrag im Bundle. "

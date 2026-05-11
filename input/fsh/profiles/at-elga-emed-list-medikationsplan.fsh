@@ -1,7 +1,7 @@
-Profile: AtEmedListMedikationsplan 
+Profile: AtElgaEmedListMedikationsplan 
 Parent: AtElgaCoreList
-Id: at-emed-list-medikationsplan
-Title: "ELGA e-Med Medikationsplan"
+Id: at-elga-emed-list-medikationsplan
+Title: "AT ELGA e-Medikation List Medikationsplan"
 Description: "Der Medikationsplan eines ELGA-Teilnehmers bzw. einer ELGA-Teilnehmerin wird durch eine List-Ressource abgebildet. 
 Diese enthält 0..* Einträge (List.entry), wobei jedes Entry genau eine Referenz auf einen Medikationsplaneintrag (MedicationRequest) in List.entry.item beinhaltet.
 Die Reihenfolge der Einträge kann durch den GDA festgelegt werden. Jeder Listeneintrag enthält im Element List.entry.flag den Änderungsstatus des jeweiligen Medikationsplaneintrags."
@@ -70,7 +70,7 @@ Die Reihenfolge der Einträge kann durch den GDA festgelegt werden. Jeder Listen
 // * entry.date ^short = "Datum der Aufnahme bzw. Änderung des Medikationsplaneintrags."
 
 * entry.item 1..1 MS
-* entry.item only Reference(AtEmedMRPlaneintrag)
+* entry.item only Reference(AtElgaEmedMedicationRequestPlaneintrag)
 * entry.item ^short = "Referenz auf einen Medikationsplaneintrag."
 
 // * emptyReason 0..1 MS
