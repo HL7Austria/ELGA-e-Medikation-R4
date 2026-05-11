@@ -2,11 +2,6 @@
 
 <!-- Technische Use Cases für Medikationsplan schreiben (UC_eMed_06) -->
 
-Im folgenden Kapitel werden die fachlichen Anwendungsfälle in Form technischer Use Cases beschrieben. Die zugehörigen Sequenzdiagramme veranschaulichen die beteiligten Akteure sowie die jeweiligen Abläufe.
-
-Für jeden Use Case werden in den Kapiteln *Relevante Elemente* die wichtigsten Elemente der verwendeten Profile beschrieben. Dies ermöglicht eine kompakte Übersicht über die erforderlichen Anpassungen der Ressourcen im Kontext des jeweiligen Anwendungsfalls.
-
-
 #### Sub_UC_eMed_06_01 - Initial erstellter Medikationsplan 
 
 Die initiale Erstellung des Medikationsplans erfolgt durch die e-Medikation-Fachanwendung.
