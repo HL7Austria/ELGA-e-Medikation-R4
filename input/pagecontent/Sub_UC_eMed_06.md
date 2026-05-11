@@ -28,7 +28,7 @@ Auch der Patient kann die Erstellung eines Medikationsplans auslösen, indem er 
 ##### Relevante Elemente (List)
 
 ```JSON
-AtEmedListMedikationsplan
+AtElgaEmedListMedikationsplan
     identifier: von der Fachanwendung übermittelt (Integritätsprüfung) 
     status: current
     mode: working
@@ -55,7 +55,7 @@ Dient der Unterscheidung von Medikationsplänen, die noch nie befüllt wurden, u
 ##### Relevante Elemente (List)
 
 ```JSON
-AtEmedListMedikationsplan
+AtElgaEmedListMedikationsplan
     identifier: von der Fachanwendung übermittelt (Integritätsprüfung) 
     status: current
     mode: working
@@ -97,7 +97,7 @@ Siehe [Read-to-Write-Zugriff](interactions.html#read-to-write-zugriff) und [Writ
 ##### Relevante Elemente (List)
 
 ```JSON
-AtEmedListMedikationsplan
+AtElgaEmedListMedikationsplan
     identifier: von der Fachanwendung übermittelt (Integritätsprüfung) 
     status: current
     mode: working
@@ -116,7 +116,7 @@ AtEmedListMedikationsplan
 ##### Relevante Elemente (MedicationRequest - Planeintrag 1)
 
 ```JSON
-AtEmedMRPlaneintrag
+AtElgaEmedMedicationRequestPlaneintrag
     identifier: neue Medikationsplaneintrag-ID
     status: active | on-hold
     reportedBoolean: true | false  // true, wenn Fremdmedikation
@@ -126,7 +126,7 @@ AtEmedMRPlaneintrag
     dosageInstruction: Dosierung + Einnahmezeitraum (ab sofort | in der Zukunft)
 ```
 
-<!-- TODO: noch offen für AtEmedMRPlaneintrag: -->
+<!-- TODO: noch offen für AtElgaEmedMedicationRequestPlaneintrag: -->
 <!-- * courseOfTherapyType: Gesamtmuster der Medikamentengabe continuous | acute | seasonal. -->
 <!-- * doNotPerform: Gibt an, ob die Verordnung der Medikation untersagt ist (z.B. bei Allergie). -->
 
@@ -154,7 +154,7 @@ Siehe [Read-to-Write-Zugriff](interactions.html#read-to-write-zugriff) und [Writ
 ##### Relevante Elemente (List)
 
 ```JSON
-AtEmedListMedikationsplan
+AtElgaEmedListMedikationsplan
     identifier: von der Fachanwendung übermittelt (Integritätsprüfung) 
     status: current
     mode: working
@@ -169,7 +169,7 @@ AtEmedListMedikationsplan
 ##### Relevante Elemente (MedicationRequest - Planeintrag 1)
 
 ```JSON
-AtEmedMRPlaneintrag
+AtElgaEmedMedicationRequestPlaneintrag
     // unverändert (verantwortlicher GDA, Datum, Status bleiben bestehen)
 ```
 
@@ -203,7 +203,7 @@ Siehe [Read-to-Write-Zugriff](interactions.html#read-to-write-zugriff) und [Writ
 ##### Relevante Elemente (List)
 
 ```JSON
-AtEmedListMedikationsplan
+AtElgaEmedListMedikationsplan
     identifier: von der Fachanwendung übermittelt (Integritätsprüfung) 
     status: current
     mode: working
@@ -222,7 +222,7 @@ AtEmedListMedikationsplan
 ##### Relevante Elemente (MedicationRequest - Planeintrag 1)
 
 ```JSON
-AtEmedMRPlaneintrag
+AtElgaEmedMedicationRequestPlaneintrag
     identifier: Medikationsplaneintrag-ID bleibt bestehen
     status: on-hold
     statusReason.text: Freitextbegrüdung  
@@ -263,7 +263,7 @@ Siehe [Read-to-Write-Zugriff](interactions.html#read-to-write-zugriff) und [Writ
 ##### Relevante Elemente (List)
 
 ```JSON
-AtEmedListMedikationsplan
+AtElgaEmedListMedikationsplan
     identifier: von der Fachanwendung übermittelt (Integritätsprüfung) 
     status: current
     mode: working
@@ -282,7 +282,7 @@ AtEmedListMedikationsplan
 ##### Relevante Elemente (MedicationRequest - Planeintrag 1)
 
 ```JSON
-AtEmedMRPlaneintrag
+AtElgaEmedMedicationRequestPlaneintrag
     identifier: Medikationsplaneintrag-ID bleibt bestehen  // sofern der Bezug erhalten bleiben soll
     status: active | on-hold
     statusReason.text: Freitextbegrüdung für die Änderung 
@@ -324,7 +324,7 @@ Siehe [Read-to-Write-Zugriff](interactions.html#read-to-write-zugriff) und [Writ
 
 Relevante Elemente (List)
 ```JSON
-AtEmedListMedikationsplan
+AtElgaEmedListMedikationsplan
     identifier: von der Fachanwendung übermittelt (Integritätsprüfung) 
     status: current
     mode: working
@@ -342,7 +342,7 @@ AtEmedListMedikationsplan
 ##### Relevante Elemente (MedicationRequest - Planeintrag 1)
 
 ```JSON
-AtEmedMRPlaneintrag
+AtElgaEmedMedicationRequestPlaneintrag
     identifier: Medikationsplaneintrag-ID bleibt bestehen
     status: entered-in-error
     statusReason.text: Freitextbegrüdung für die Stornierung
@@ -379,7 +379,7 @@ Siehe [Read-to-Write-Zugriff](interactions.html#read-to-write-zugriff) und [Writ
 ##### Relevante Elemente (List)
 
 ```JSON
-AtEmedListMedikationsplan
+AtElgaEmedListMedikationsplan
     identifier: von der Fachanwendung übermittelt (Integritätsprüfung) 
     status: current
     mode: working
@@ -397,7 +397,7 @@ AtEmedListMedikationsplan
 ##### Relevante Elemente (MedicationRequest - Planeintrag 1)
 
 ```JSON
-AtEmedMRPlaneintrag
+AtElgaEmedMedicationRequestPlaneintrag
     identifier: Medikationsplaneintrag-ID bleibt bestehen
     status: stopped
     statusReason.text: Freitextbegrüdung für das Absetzen des Medikaments
@@ -434,7 +434,7 @@ Siehe [Read-to-Write-Zugriff](interactions.html#read-to-write-zugriff) und [Writ
 ##### Relevante Elemente (List)
 
 ```JSON
-AtEmedListMedikationsplan
+AtElgaEmedListMedikationsplan
     identifier: von der Fachanwendung übermittelt (Integritätsprüfung) 
     status: current
     mode: working
@@ -452,7 +452,7 @@ AtEmedListMedikationsplan
 ##### Relevante Elemente (MedicationRequest - Planeintrag 1)
 
 ```JSON
-AtEmedMRPlaneintrag
+AtElgaEmedMedicationRequestPlaneintrag
     identifier: Medikationsplaneintrag-ID bleibt bestehen
     status: completed
     statusReason.text: Freitextbegrüdung  
@@ -488,7 +488,7 @@ Siehe [Read-to-Write-Zugriff](interactions.html#read-to-write-zugriff) und [Writ
 In folgendem Beispiel wird der ursprünglich 2. Eintrag als 1. gereiht.
 
 ```JSON
-AtEmedListMedikationsplan
+AtElgaEmedListMedikationsplan
     identifier: von der Fachanwendung übermittelt (Integritätsprüfung) 
     status: current
     mode: working
@@ -507,7 +507,7 @@ AtEmedListMedikationsplan
 ##### Relevante Elemente (MedicationRequest - Planeintrag 1 und 2)
 
 ```JSON
-AtEmedMRPlaneintrag
+AtElgaEmedMedicationRequestPlaneintrag
     // unverändert (verantwortlicher GDA, Datum, Status bleiben bestehen)
 ```
 
@@ -545,7 +545,7 @@ Siehe [Read-to-Write-Zugriff](interactions.html#read-to-write-zugriff) und [Pati
 Zustand **vor dem Löschen** des 2. Planeintrags (Ergebnis von $readtowrite):
 
 ```JSON
-AtEmedListMedikationsplan
+AtElgaEmedListMedikationsplan
     identifier: von der Fachanwendung übermittelt (Integritätsprüfung) 
     status: current
     mode: working
@@ -564,7 +564,7 @@ AtEmedListMedikationsplan
 Zustand **nach dem Löschen** des 2. Planeintrags (List-Ressource im Transaction Bundle von $patient-write):
 
 ```JSON
-AtEmedListMedikationsplan
+AtElgaEmedListMedikationsplan
     identifier: von der Fachanwendung übermittelt (Integritätsprüfung) 
     status: current
     mode: working
