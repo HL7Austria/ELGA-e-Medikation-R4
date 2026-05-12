@@ -59,12 +59,6 @@ AtElgaEmedListMedikationsplan
     emptyReason: nilknown   // Patient nimmt derzeit kein Medikation ein
 ```
 
-<!-- Standardablauf Medikationsplan bearbeiten -->
-
-<!-- Der folgende Ablauf gilt für alle weiteren technischen Use Cases (Sub_UC_eMed_06_03 bis Sub_UC_eMed_06_0X).
-Für jeden Use Case werden in den Kapiteln *Relevante Elemente* die wichtigsten Elemente der verwendeten Profile beschrieben. -->
-
-
 
 #### Sub_UC_eMed_06_03 - Medikationsplaneintrag in Medikationsplan hinzufügen
 
@@ -86,7 +80,7 @@ Anmerkung: Beim nächsten Read-to-Write ändert die Fachanwendung im zur Auslief
 
 ##### Ablauf
 
-Siehe [Read-to-Write-Zugriff](interactions.html#read-to-write-zugriff) und [Write-Zugriff](interactions.html#write-zugriff).
+<div>{% include_relative plantuml/UC_eMed_06_03.svg %}</div>
 
 
 ##### Relevante Elemente (List)
