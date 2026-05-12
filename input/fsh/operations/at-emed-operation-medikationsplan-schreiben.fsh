@@ -27,7 +27,7 @@ Usage: #definition
 * parameter[=].max = "1"
 * parameter[=].documentation = "Der *medikationsplan* Parameter dient der Übermittlung der Medikationsplandaten des Patienten."
 * parameter[=].type = #Bundle
-* parameter[=].targetProfile[+] = Canonical(AtElgaEmedBundleTxMedikationsplan)   
+* parameter[=].targetProfile[+] = Canonical(AtElgaEmedBundleMedikationsplanTx)   
 * parameter[+]
 * parameter[=].name = #return
 * parameter[=].use = #out

@@ -1,5 +1,5 @@
 Instance: At-Emed-Example-Bundle-Tx-Medikationsplan-Dosierungsvarianten
-InstanceOf: AtElgaEmedBundleTxMedikationsplan   
+InstanceOf: AtElgaEmedBundleMedikationsplanTx   
 Title: "Beispiel Transaction Bundle: Medikationsplan mit Dosierungsvarianten"
 Description: "Beispiel eines Transaction Bundles:  Medikationsplan mit Dosierungsvarianten."
 Usage: #example
