@@ -59,7 +59,7 @@ autonumber
 
 activate GDA_1
 
-ref over GDA_1, eMed_FA : $readtowrite
+ref over GDA_1, eMed_FA : [[interactions.html#sequenzdiagramm-read-to-write-zugriff Read-to-Write-Zugriff]]
 
 note over GDA_1
 GDA erhält den aktuellen
@@ -67,16 +67,17 @@ Medikationsplan im Collection Bundle
 (AtElgaEmedBundleMedikationsplan)
 end note
 
+== Geplante Abgaben vorbereiten und schreiben ==
+
 GDA_1 -> GDA_1: Geplante Abgabe erstellen\n(AtElgaEmedMedicationRequestGeplanteAbgabe 1)
 GDA_1 -> GDA_1: Geplante Abgabe erstellen\n(AtElgaEmedMedicationRequestGeplanteAbgabe 2)
 note over GDA_1
 Die neu erstellten geplanten Abgaben 1 + 2 
 (AtElgaEmedMedicationRequestGeplanteAbgabe)
-referenizieren bestehenden Medikationsplaneinträge
+referenzieren bestehende Medikationsplaneinträge
 (Medikationsplaneintrags-ids)
 end note
 
-== Geplante Abgabe schreiben ==
 
 GDA_1 -> eMed_FA: e-Med groupIdentifier anfordern
 
@@ -97,7 +98,9 @@ end note
 
 GDA_1 ->> e_Rezept: Trigger e-Rezept erstellen
 note over GDA_1
-Erstellung eines e-Rezepts mit beiden geplanten Abgaben auslösen
+Erstellung eines e-Rezepts, welches die Information 
+der beiden geplanten Abgaben beinhaltet.
+
 end note
 activate e_Rezept
 

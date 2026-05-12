@@ -59,36 +59,34 @@ end box
 
 autonumber
 
+== Medikationsplan abrufen ==
 
-group $readtowrite
+GDA_1 ->> eMed_FA: POST $readtowrite
+activate GDA_1
 
-  GDA_1 ->> eMed_FA: POST $readtowrite
-  activate GDA_1
+note over GDA_1
+Medikationsplan abrufen, 
+mit der Intention zu schreiben
+end note
 
-  note over GDA_1
-  Medikationsplan abrufen, 
-  mit der Intention zu schreiben
-  end note
+activate eMed_FA
+eMed_FA -> eMed_FA: Prüfung auf bestehenden\nMedikationsplan
 
-  activate eMed_FA
-  eMed_FA -> eMed_FA: Prüfung auf bestehenden\nMedikationsplan
+alt kein Medikationsplan vorhanden
+  eMed_FA -> eMed_FA: Erzeugt leeren Medikationsplan\n mit emptyReason = "notstarted"
+  eMed_FA -->> GDA_1: Leerer Medikationsplan
 
-  alt kein Medikationsplan vorhanden
-    eMed_FA -> eMed_FA: Erzeugt leeren Medikationsplan\n mit emptyReason = "notstarted"
-    eMed_FA -->> GDA_1: Leerer Medikationsplan
-
-  else Medikationsplan vorhanden
-    eMed_FA -> eMed_FA: Stellt Collection Bundle zur Auslieferung bereit:\n(inkl. temporären List.identifier)\nBedingung für Read-to-Write Collection Bundle:\n- new|changed → unchanged\n- removed → entfernen
-    eMed_FA -->> GDA_1: AtElgaEmedBundleMedikationsplan\n(Collection Bundle + List.identifier)
-    deactivate eMed_FA
-  end
-
+else Medikationsplan vorhanden
+  eMed_FA -> eMed_FA: Stellt Collection Bundle zur Auslieferung bereit:\n(inkl. temporärem List.identifier)\nBedingung für Read-to-Write Collection Bundle:\n- new|changed → unchanged\n- removed → entfernen
+  eMed_FA -->> GDA_1: AtElgaEmedBundleMedikationsplan\n(Collection Bundle + List.identifier)
+  deactivate eMed_FA
 end
+
   
 GDA_1 -> GDA_1: Einträge hinzufügen/ändern/entfernen
 
 note over GDA_1
-Nach dem Bearbeitung des 
+Nach der Bearbeitung des 
 Medikationsplans kann ein 
 Write-Zugriff erfolgen.
 end note

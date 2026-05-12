@@ -1,4 +1,5 @@
 @startuml
+title Medikationsplaneintrag in Medikationsplan hinzufügen
 skinparam borderColor #000000
 skinparam backgroundColor #f5f5f5
 skinparam shadowing false
@@ -58,51 +59,30 @@ end box
 autonumber
 
  
-== Read-to-Write ==
-
-GDA_1 ->> eMed_FA: POST $readtowrite
-note over GDA_1
-Medikationsplan abrufen, 
-mit der Intention zu schreiben
-end note
-
-activate eMed_FA
-eMed_FA -> eMed_FA: Prüfung auf bestehenden\nMedikationsplan
-eMed_FA -> eMed_FA: Erstellt Collection Bundle zur Auslieferung\n(inkl. neuem List.identifier)\nfür Read-to-Write:\n- new|changed → unchanged\n- removed → entfernen
-
-eMed_FA -->> GDA_1: Collection Bundle + List.identifier
-deactivate eMed_FA
+== Medikationsplan abrufen ==
 
 activate GDA_1
-GDA_1 -> GDA_1: Neuen MedicationRequest erstellen,\nmit Flag "new" der Liste hinzufügen
+
+ref over GDA_1, eMed_FA : [[interactions.html#sequenzdiagramm-read-to-write-zugriff Read-to-Write-Zugriff]]
+
+note over GDA_1
+GDA erhält den aktuellen Medikationsplan 
+im Auslieferungs-Bundle 
+end note
+
+== Medikationsplan vorbereiten und schreiben ==
+
+GDA_1 -> GDA_1: Neuen Planeintrag erstellen
+GDA_1 -> GDA_1: Planeintrag mit List.entry.flag\n"new" dem Medikationsplan hinzufügen
 
 note over GDA_1
 Medikationsplaneintrag hinzufügen
 end note
 
-== Write ==
+ref over GDA_1, eMed_FA : [[interactions.html#write-zugriff Write-Zugriff]]
 
-GDA_1 ->> eMed_FA: POST $write (Transaction Bundle + List.identifier)
-deactivate GDA_1
-
-
-activate eMed_FA
-eMed_FA -> eMed_FA: List.identifier im TransactionBundle ==\ntemporär gespeicherter List.identifier?
-eMed_FA -> eMed_FA: Validierung des neuen Plans:\nnur erlaubte Änderungen zulassen\n(keine unzulässigen Zustandsübergänge)
-
-alt gültig
-  eMed_FA -> eMed_FA: Persistiert neue Version des\nMedikationsplans
-
-  note over eMed_FA
-  Neuer Medikationsplan gespeichert
-  end note
-
-  eMed_FA -->> GDA_1: OK
-else ungültig
-  eMed_FA -->> GDA_1: Fehler (Konflikt): ein anderer GDA hat\nzwischenzeitlich geschrieben -> neues Read-to-Write nötig
-end
-deactivate eMed_FA
-
-center footer Sub_UC_06_03 - Medikationsplaneintrag in Medikationsplan hinzufügen
+note over eMed_FA
+Neuer Medikationsplan gespeichert
+end note
 
 @enduml

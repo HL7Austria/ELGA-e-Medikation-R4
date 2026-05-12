@@ -1,6 +1,6 @@
 @startuml
 
-title Geplante Abgabe für neuen Medikationsplaneintrag erstellen
+title Geplante Abgabe für neue Medikationsplaneinträge erstellen
 
 skinparam borderColor #000000
 skinparam backgroundColor #f5f5f5
@@ -55,57 +55,33 @@ end box
 
 autonumber
 
-== Medikationsplan abrufen ==
+== 2 Medikationsplaneinträge in den Medikationsplan hinzufügen ==
 
 activate GDA_1
 
-ref over GDA_1, eMed_FA : $readtowrite
-
-note over GDA_1
-GDA erhält den aktuellen
-Medikationsplan im Collection Bundle 
-(AtElgaEmedBundleMedikationsplan)
-end note
-
-GDA_1 -> GDA_1: Neuen Planeintrag erstellen (AtElgaEmedMedicationRequestPlaneintrag)
-
-note over GDA_1
-GDA fügt dem Medikationsplan 
-(AtElgaEmedListMedikationsplan) 
-den neuen Planeintrag hinzu
-(AtElgaEmedMedicationRequestPlaneintrag)
-end note
-
-== Medikationsplan schreiben ==
-
-ref over GDA_1, eMed_FA : $write
-
-note over eMed_FA
-Neuer Medikationsplan gespeichert
-end note
+ref over GDA_1, eMed_FA : [[Sub_UC_eMed_06.html#ablauf-2 Medikationsplaneintrag in Medikationsplan hinzufügen]]
 
 == Medikationsplan abrufen ==
 
-ref over GDA_1, eMed_FA : $readtowrite
-
+ref over GDA_1, eMed_FA : [[interactions.html#sequenzdiagramm-read-to-write-zugriff Read-to-Write-Zugriff]]
 
 note over GDA_1
 GDA erhält den aktualisierten
 Medikationsplan im Collection Bundle 
-(AtElgaEmedBundleMedikationsplan)
+(neuer Planeintrag hat Flag "unchanged")
 end note
 
-GDA_1 -> GDA_1: Geplante Abgabe erstellen\n(AtElgaEmedMedicationRequestGeplanteAbgabe 1)
-GDA_1 -> GDA_1: Geplante Abgabe erstellen\n(AtElgaEmedMedicationRequestGeplanteAbgabe 2)
+== Geplante Abgaben vorbereiten und schreiben ==
+
+GDA_1 -> GDA_1: Geplante Abgabe 1 erstellen
+GDA_1 -> GDA_1: Geplante Abgabe 2 erstellen
 
 note over GDA_1
 Die neu erstellten geplanten Abgaben 1 + 2 
-(AtElgaEmedMedicationRequestGeplanteAbgabe)
 referenizieren bestehenden Medikationsplaneinträge
 (Medikationsplaneintrags-ids)
 end note
 
-== Geplante Abgabe schreiben ==
 
 GDA_1 -> eMed_FA: e-Med groupIdentifier anfordern
 
@@ -138,7 +114,7 @@ else e_Rezept erfolgreich erstellt
   e_Rezept -> e_Rezept: e-Rezept erstellen
   e_Rezept -->> GDA_1: OK
   deactivate e_Rezept
-  GDA_1 ->> eMed_FA: POST MedicationRequest\n(AtElgaEmedMedicationRequestGeplanteAbgabe 1)
+  GDA_1 ->> eMed_FA: POST MedicationRequest\n(GeplanteAbgabe 1)
   activate eMed_FA
   note over GDA_1
   Geplante Abgabe 1
@@ -146,9 +122,9 @@ else e_Rezept erfolgreich erstellt
   end note
   
   
-eMed_FA -> eMed_FA: AtElgaEmedMedicationRequestGeplanteAbgabe 1 prüfen
+eMed_FA -> eMed_FA: GeplanteAbgabe 1 prüfen
 alt gültig
-  eMed_FA -> eMed_FA: AtElgaEmedMedicationRequestGeplanteAbgabe 1 speichern
+  eMed_FA -> eMed_FA: GeplanteAbgabe 1 speichern
   
   note over eMed_FA
   Geplante Abgabe 1 gespeichert
@@ -159,15 +135,15 @@ alt gültig
     eMed_FA -->> GDA_1: Fehler 
   end
 
-  GDA_1 ->> eMed_FA: POST MedicationRequest\n(AtElgaEmedMedicationRequestGeplanteAbgabe 2)
+  GDA_1 ->> eMed_FA: POST MedicationRequest\n(GeplanteAbgabe 2)
   note over GDA_1
   Geplante Abgabe 2
   an Fachanwendung übermitteln
   end note
 
-  eMed_FA -> eMed_FA: AtElgaEmedMedicationRequestGeplanteAbgabe 2 prüfen
+  eMed_FA -> eMed_FA: GeplanteAbgabe 2 prüfen
   alt gültig
-    eMed_FA -> eMed_FA: AtElgaEmedMedicationRequestGeplanteAbgabe 2 speichern
+    eMed_FA -> eMed_FA: GeplanteAbgabe 2 speichern
     
     note over eMed_FA
     Geplante Abgabe 2 gespeichert
