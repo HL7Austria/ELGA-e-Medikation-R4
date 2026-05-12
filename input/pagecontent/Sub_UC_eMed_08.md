@@ -2,7 +2,8 @@
 
 <!--  Technische Use Cases für Geplante Abgabe schreiben (UC_eMed_08) -->
 
-#### Sub_UC_eMed_08_01 - Geplante Abgabe basierend auf bestehenden Planeintrag erfassen (unverändert)
+### Sub_UC_eMed_08_01 - Geplante Abgabe basierend auf Planeintrag erfassen
+
 
 Ein GDA kann basierend auf einem bestehenden Medikationsplaneintrag ein oder mehrere geplanten Abgaben erstellen und das Erzeugen eines e-Rezepts auslösen.
 
@@ -23,12 +24,12 @@ Basierend auf vorhandenen Planeinträgen (AtElgaEmedMedicationRequestPlaneintrag
 <!-- TODO Suchparameter emed-id: alle geplanten abgaben zu einer e-med-id finden -->
 
 
-##### Ablauf
+#### Ablauf
 
 <div>{% include_relative plantuml/UC_eMed_08_01.svg %}</div>
 
 
-##### Relevante Elemente (MedicationRequest)
+#### Relevante Elemente (MedicationRequest)
 
 ```JSON
 AtElgaEmedMedicationRequestGeplanteAbgabe
@@ -45,56 +46,30 @@ AtElgaEmedMedicationRequestGeplanteAbgabe
     dispenseRequest.quantity
 ```
 
-#### Sub_UC_eMed_08_02 - Geplante Abgabe basierend auf neuem Planeintrag erfassen
+<!-- ### Sub_UC_eMed_08_02 - Geplante Abgabe basierend auf neuem Planeintrag erfassen -->
 
-##### Ablauf
-
-<div>{% include_relative plantuml/UC_eMed_08_02.svg %}</div>
+<!-- #### Ablauf -->
+<!-- 
+<div>{ include_relative plantuml/UC_eMed_08_02.svg }</div> -->
 <!-- Rezept/ Verordnung (PRESCRIPTION) -->
-<!-- | **active** | offene geplante Abgabe | -->
-
-
-<!-- Relevante Elemente  -->
-
-<!-- status | **active** | Neue geplante Abgabe |
-category:recipetype  //rezeptart muss angegeben sein
-medication[x] // medikation muss der medikation aus dem medikationsplaneintrag entsprechen
-authoredOn
-requester
-basedOn  //der zugehörige medikationsplaneintrag muss referenziert werden
-groupIdentifier // Rezeptklammer (vom e-Rezept?)
-dosageInstruction
-dispenseRequest.validityPeriod  // abh. von rezeptart, bzw. verkürzt durch gda
-dispenseRequest.numberOfRepeatsAllowed // abh. von rezeptart
-dispenseRequest.quantity
 
 
 
-todo: muss die dosierung mit planeintrag übereinstimmen? was muss die fachanwendung prüfen muss? was darf von planeintrag abweichen?
+### Sub_UC_eMed_08_02 - Geplante Abgabe beenden
 
- -->
-
-
-
-#### Sub_UC_eMed_08_02 - Geplante Abgabe beenden
-
-<!-- |  **completed**  | geplante Abgabe beendet |
-
-Nach der letztmöglichen durchgeführten Abgabe zur geplanten Abgabe, setzt die Fachanwendung den Status der geplanten Abgabe auf beendet.
+<!-- |  **completed**  | geplante Abgabe beendet | -->
 
 
-#### Sub_UC_eMed_08_03 - Geplante Abgabe stornieren
+### Sub_UC_eMed_08_03 - Geplante Abgabe abgelaufen
 
+<!-- Nach der letztmöglichen durchgeführten Abgabe zur geplanten Abgabe, setzt die Fachanwendung den Status der geplanten Abgabe auf beendet. -->
 
-<!-- |  **entered-in-error**  | geplante Abgabe storniert|
+### Sub_UC_eMed_08_04 - Geplante Abgabe verwerfen
+<!-- |  **entered-in-error**  | geplante Abgabe storniert| -->
 
-$geplante-Abgabe-stornieren 
+#### Sub_UC_eMed_08_05 - Geplante Abgabe durch ELGA-Teilnehmer löschen
 
-
-#### Sub_UC_eMed_08_03 - Geplante Abgabe durch ELGA-Teilnehmer löschen
-
-$delete oder DELETE -->
-
+<!-- $delete oder DELETE -->
 
 
 
