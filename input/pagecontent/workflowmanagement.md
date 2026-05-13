@@ -138,19 +138,23 @@ Da der Status eines Medikationsplaneintrags im Medikationsplan auf **zwei Ebenen
 
 Eine geplante Abgabe kann, abhängig vom jeweiligen ([Use Case für Geplante Abgabe schreiben](Sub_UC_eMed_08.html#%E2%80%8Btechnische-use-cases-für-geplante-abgabe-schreiben-uc_emed_08)), unterschiedliche Status einnehmen und beschreibt die Art der Änderung (Element *status*):
 
-Folgende Status sollen gemäß e-Rezept abgebildet werden: OFFEN, EINGELÖST, STORNIERT, ABGELAUFEN, NICHT_ABGEGEBEN<br>
+<!-- Folgende Status sollen gemäß e-Rezept abgebildet werden: OFFEN, EINGELÖST, STORNIERT, ABGELAUFEN, NICHT_ABGEGEBEN<br> -->
 
-Folgende Status sind gemäß required ValueSet medicationrequest-status verfügbar: https://hl7.org/fhir/R4/valueset-medicationrequest-status.html
+<!-- Folgende Status sind gemäß required ValueSet medicationrequest-status verfügbar: https://hl7.org/fhir/R4/valueset-medicationrequest-status.html -->
 
 | Status | Beschreibung |
 |--------|------|
 | **active** | Geplante Abgabe **offen**: Status beim Erstellen einer Geplanten Abgabe, solange noch (Teil-)Abgaben offen sind (dh. Rezept kann noch eingelöst werden) |
 |  **completed**  | Geplante Abgabe **eingelöst**: Der Status wird durch die Fachwendung **automatisch** gesetzt, wenn alle geplante(n) Abgabe(n) wie vorgesehen durchgeführt wurden (Durchgeführte Abgabe(n) wurde(n) erstellt und abgeschlossen). Die geplante Abgabe ist damit abgeschlossen. |
-| **stopped** | Geplante Abgabe wird **nicht abgegeben**: Die geplante Abgabe wird dauerhaft **durch den GDA** gestoppt, auch wenn bereits Teilabgaben durchgeführt worden sind. Wenn die Geplante Abgabe **abgelaufen** ist, d.h. der Einlösezeitraum für die ausgewählte Rezeptart (*category:recipetype*) ist überschritten, wird der Status **automatisch durch die Fachanwendung** gesetzt. Die Geplante Abgabe ist damit abgeschlossen. |
-|  **entered-in-error**  | Geplante Abgabe ist **storniert**, aufgrund eines Fehlers. Es können **bereits Abgaben durchgeführt** wurden sein (eine Einnahme durch den Patienten könnte bereits erfolgt sein). Die Geplante Abgabe wird damit abgeschlossen. |
-
+| **stopped** | Geplante Abgabe ist **abgelaufen**, d.h. der Einlösezeitraum für die ausgewählte Rezeptart (*category:recipetype*) ist überschritten; der Status wird **automatisch durch die Fachanwendung** gesetzt. Die Geplante Abgabe ist damit abgeschlossen. |
+|  **entered-in-error**  | Geplante Abgabe ist **storniert**, aufgrund eines Fehlers. Es wurden noch keine **Abgaben durchgeführt**. Die Geplante Abgabe wird damit abgeschlossen. |
 
 <!-- |  **cancelled**  | Geplante Abgabe ist storniert, aufgrund eines Fehlers. Die Geplante Abgabe wurde zurückgezogen, **bevor eine Abgabe durchgeführt** wurde. Die Geplante Abgabe ist damit abgeschlossen. | -->
+
+<!-- | **stopped** | Geplante Abgabe wird **nicht abgegeben**: Die geplante Abgabe wird dauerhaft **durch den GDA** gestoppt, auch wenn bereits Teilabgaben durchgeführt worden sind. Wenn die Geplante Abgabe **abgelaufen** ist, d.h. der Einlösezeitraum für die ausgewählte Rezeptart (*category:recipetype*) ist überschritten, wird der Status **automatisch durch die Fachanwendung** gesetzt. Die Geplante Abgabe ist damit abgeschlossen. | -->
+
+<!-- Gemäß:  [active | completed | entered-in-error | stopped]. Bedeutung: active: offene, geplante Abgabe | completed: geplante Abgabe abgeschlossen | entered-in-error: nach fehlerhafter Eingabe; Storno nur möglich, wenn noch keine zugehörige Abgabe durchgeführt wurde | stopped: Verwendung zu prüfen (Status soll analog zu e-Rezept abgebildet werden)"
+//(nicht verwendet: on-hold, cancelled, draft, unknown) -->
 
 <!-- TODO: Status abgelaufen ist nur über das Datum und die Rezeptart ersichtlich? -->
 

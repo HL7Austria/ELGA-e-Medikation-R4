@@ -1,10 +1,10 @@
 @startuml
 title MedicationRequest.status (geplante Abgabe)
 
-(*) --> [offen] active
-active --> ["nicht abgegeben" (durch GDA)\n oder "abgelaufen" (automatisch\ndurch Fachanwendung)] stopped
+(*) --> ["offen"] active
+active --> ["abgelaufen" (automatisch\ndurch Fachanwendung)] stopped
 active --> ["eingelöst" (automatisch\ndurch Fachanwendung)] completed
-active --> [storniert] entered-in-error
+active --> ["storniert"] entered-in-error
 stopped --> (*)
 "entered-in-error" --> (*)
 completed --> (*)
