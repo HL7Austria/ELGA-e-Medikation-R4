@@ -161,7 +161,7 @@ geplante Abgabe mit demselben groupIdentifier erstellt (bildet 'Rezept-Klammer')
 * dispenseRequest.dispenseInterval ^short = "Mindestzeitraum zwischen den Abgaben. Keine Verwendung in der geplanten Abgabe."
 
 * dispenseRequest.validityPeriod 1..1 MS 
-* dispenseRequest.validityPeriod ^short = "Gültigkeitszeitraum einer geplante Abgabe. Diese ist abhängig von der Rezeptart: Kassenrezept: ab Erstelldatum einen Monat gültig, bei einer Teilabgabe verlängert sich die gesamte Gültigkeitsdauer auf 3 Monate („Besorger“-Prozess). Privatrezept: ab Erstelldatum maximal 365 Tage gültig, die Gültigkeitsdauer kann vom Arzt definiert werden. Substitutionsrezept: Maximale Gültigkeitsdauer 12 Monate."
+* dispenseRequest.validityPeriod ^short = "Gültigkeitszeitraum einer geplante Abgabe (abhängig von Rezeptart): Kassenrezept: ab Erstelldatum 1 Monat, bei Teilabgabe verlängert sich Gültigkeitsdauer auf 3 Monate („Besorger“-Prozess). Privatrezept: ab Erstelldatum max. 365 Tage, die Gültigkeitsdauer kann vom Arzt definiert werden. Substitutionsrezept: Max. Gültigkeitsdauer 12 Monate."
 * dispenseRequest.validityPeriod ^definition = """
 Zeitraum in dem die geplante Abgabe eingelöst werden kann.
 Der Gültigkeitszeitraum ist abhängig von der **Rezeptart**: 
@@ -175,8 +175,8 @@ Der Gültigkeitszeitraum ist abhängig von der **Rezeptart**:
 
 
 * dispenseRequest.numberOfRepeatsAllowed 1..1 MS   // repeatNumber 1..1 im CDA
-* dispenseRequest.validityPeriod ^short = "Die Anzahl der weiteren möglichen Einlösungen ist abhängig von der Rezeptart: Kassenrezept: keine weitere Einlösung möglich (fixer Wert 0). Privatrezept: bis zu 6 Einlösungen, Anzahl der möglichen Einlösungen kann vom Arzt definiert werden. Sustitutionsrezept: keine weitere Einlösung möglich (fixer Wert 0)"
-* dispenseRequest.validityPeriod ^definition = """
+* dispenseRequest.numberOfRepeatsAllowed ^short = "Die Anzahl der weiteren möglichen Einlösungen (abhängig von Rezeptart): Kassenrezept: keine weitere Einlösung möglich (fixer Wert 0). Privatrezept: bis zu 6 Einlösungen, Anzahl der möglichen Einlösungen kann vom Arzt definiert werden. Sustitutionsrezept: keine weitere Einlösung möglich (fixer Wert 0)"
+* dispenseRequest.numberOfRepeatsAllowed ^definition = """
 Anzahl der weiteren möglichen Einlösungen:
 * **Kassenrezept**: keine weitere Einlösung möglich (fixer Wert 0)
 * **Privatrezept**: bis zu 6 Einlösungen, Anzahl der möglichen Einlösungen kann vom Arzt definiert werden
