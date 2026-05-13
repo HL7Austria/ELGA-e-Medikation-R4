@@ -1,7 +1,7 @@
 Profile: AtElgaEmedMedicationMedikation
 Parent: Medication
 Id: at-elga-emed-medication-medikation
-Title: "AT ELGA e-Medikation medication Medikation"
+Title: "AT ELGA e-Medikation Medication Medikation"
 Description: "Bildet ein Arzneimittel in der \"Medication\"-Ressource ab. Wird grundsätzlich verwendet in Planeintrag, geplante Abgabe und durchgeführte Abgabe."
 // TODO: Medication aktuell nur geprüft im Kontext Planeintrag.
 // Unterschieden werden folgende Fälle:
