@@ -63,38 +63,69 @@ ref over GDA_1, eMed_FA : [[interactions.html#sequenzdiagramm-read-to-write-zugr
 
 note over GDA_1
 GDA erhält den aktuellen
-Medikationsplan im Collection Bundle 
-(AtElgaEmedBundleMedikationsplan)
+Medikationsplan im 
+Auslieferungs-Collection-Bundle
 end note
 
 == Geplante Abgaben vorbereiten und schreiben ==
 
-GDA_1 -> GDA_1: Geplante Abgabe erstellen\n(AtElgaEmedMedicationRequestGeplanteAbgabe 1)
-GDA_1 -> GDA_1: Geplante Abgabe erstellen\n(AtElgaEmedMedicationRequestGeplanteAbgabe 2)
+GDA_1 -> GDA_1: Geplante Abgabe 1 erstellen
 note over GDA_1
-Die neu erstellten geplanten Abgaben 1 + 2 
-(AtElgaEmedMedicationRequestGeplanteAbgabe)
-referenzieren bestehende Medikationsplaneinträge
-(Medikationsplaneintrags-ids)
+Geplanten Abgaben referenziert
+bestehenden Planeintrag (id)
 end note
 
-
-GDA_1 -> eMed_FA: e-Med groupIdentifier anfordern
-
-note over GDA_1
-e-Med groupIdentifier für "Rezeptklammer"
-anfordern
-end note
-
+GDA_1 -> eMed_FA: POST MedicationRequest\n(GeplanteAbgabe 1)
 activate eMed_FA
-eMed_FA -> eMed_FA: e-Med groupIdentifier erzeugen
-eMed_FA -->> GDA_1: e-Med groupIdentifier
-deactivate eMed_FA
 
 note over GDA_1
-Geplante Abgaben mit 
-e-Med groupIdentifier versehen
+Geplante Abgabe 1
+an Fachanwendung übermitteln,
+e-Med groupIdentfier ist leer
 end note
+
+alt gültig
+  alt e-Med groupIdentifer nicht vorhanden
+    eMed_FA -> eMed_FA: ergänzt e-Med groupIdentfier
+  end
+  
+  eMed_FA -> eMed_FA: GeplanteAbgabe 1 speichern
+  
+  note over eMed_FA
+  Geplante Abgabe 1 gespeichert
+  end note
+
+  eMed_FA -->> GDA_1: OK (MedicationRequest inkl. e-Med groupIdentfier)
+else ungültig
+  eMed_FA -->> GDA_1: Fehler 
+  deactivate eMed_FA
+end
+
+GDA_1 -> GDA_1: Geplante Abgabe 2 erstellen,\ninkl. e-Med groupIdentfier aus\nGeplanter Abgabe 1
+
+GDA_1 ->> eMed_FA: POST MedicationRequest\n(GeplanteAbgabe 2)
+activate eMed_FA
+note over GDA_1
+Geplante Abgabe 2 (inkl. e-Med groupIdentfier
+für "Rezeptklammer") an Fachanwendung übermitteln
+end note
+
+alt gültig
+  alt e-Med groupIdentifer vorhanden
+    eMed_FA -> eMed_FA: e-Med groupIdentifer belassen
+  end
+  eMed_FA -> eMed_FA: GeplanteAbgabe 2 speichern
+  
+  note over eMed_FA
+  e-Med groupIdentifier bleibt unverändert,
+  Geplante Abgabe 2 gespeichert
+  end note
+
+  eMed_FA -->> GDA_1: OK (MedicationRequest inkl. e-Med groupIdentfier)
+else ungültig
+  eMed_FA -->> GDA_1: Fehler 
+  deactivate eMed_FA
+end
 
 GDA_1 ->> e_Rezept: Trigger e-Rezept erstellen
 note over GDA_1
@@ -104,57 +135,13 @@ der beiden geplanten Abgaben beinhaltet.
 end note
 activate e_Rezept
 
-alt Fehler bei Erstellung e_Rezept
-
-  e_Rezept -->> GDA_1: Fehler 
-
-else e_Rezept erfolgreich erstellt
+alt gültig
   e_Rezept -> e_Rezept: e-Rezept erstellen
   e_Rezept -->> GDA_1: OK
+
+else ungültig
+  e_Rezept -->> GDA_1: Fehler
   deactivate e_Rezept
-  GDA_1 ->> eMed_FA: POST MedicationRequest\n(AtElgaEmedMedicationRequestGeplanteAbgabe 1)
-  activate eMed_FA
-  note over GDA_1
-  Geplante Abgabe 1
-  an Fachanwendung übermitteln
-  end note
-  
-  
-eMed_FA -> eMed_FA: AtElgaEmedMedicationRequestGeplanteAbgabe 1 prüfen
-alt gültig
-  eMed_FA -> eMed_FA: AtElgaEmedMedicationRequestGeplanteAbgabe 1 speichern
-  
-  note over eMed_FA
-  Geplante Abgabe 1 gespeichert
-  end note
-
-  eMed_FA -->> GDA_1: OK
-  else ungültig
-    eMed_FA -->> GDA_1: Fehler 
-  end
-
-  GDA_1 ->> eMed_FA: POST MedicationRequest\n(AtElgaEmedMedicationRequestGeplanteAbgabe 2)
-  note over GDA_1
-  Geplante Abgabe 2
-  an Fachanwendung übermitteln
-  end note
-
-  eMed_FA -> eMed_FA: AtElgaEmedMedicationRequestGeplanteAbgabe 2 prüfen
-  alt gültig
-    eMed_FA -> eMed_FA: AtElgaEmedMedicationRequestGeplanteAbgabe 2 speichern
-    
-    note over eMed_FA
-    Geplante Abgabe 2 gespeichert
-    end note
-
-    eMed_FA -->> GDA_1: OK
-  else ungültig
-    eMed_FA -->> GDA_1: Fehler 
-    deactivate eMed_FA
-  end
-
-
 end
-
 
 @enduml
