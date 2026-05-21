@@ -21,7 +21,7 @@ Der Medikationsplaneintrag kann in weiterer Folge als Grundlage für die Erstell
 // * extension contains $ihe-ext-medicationrequest-offlabeluse named offLabelUse 0..1 
 // * extension[offLabelUse] ^short = "Weist darauf hin, dass der verschreibende Arzt das Medikament wissentlich für eine Indikation, Altersgruppe, Dosierung oder Verabreichungsform verschrieben hat, die nicht von den Aufsichtsbehörden zugelassen ist und in der Verschreibungsinformation für das Produkt nicht erwähnt wird."
 
-* identifier 1..1  
+* identifier 1..1  MS
 * identifier ^short = "Medikationsplaneintrag-ID." // TODO: Verwendung einer logischen Medikationsplaneintrag-ID prüfen. Details zur Herstellung von Bezügen von geänderten Planeinträgen, siehe Definition."
 // * identifier ^definition = """
 // Medikationsplaneintrag-ID.
@@ -39,6 +39,7 @@ Der Medikationsplaneintrag kann in weiterer Folge als Grundlage für die Erstell
 * status ^short = "Status des Medikationsplaneintrags. Mögliche Ausprägungen: [active | on-hold | completed | stopped | entered-in-error]. Bedeutung: active: Planeintrag einer aktiven Medikation, die eingenommen werden soll | on-hold: Planeintrag ist pausiert, die Therapie ist unterbrochen (Wiederaufnahme vorgesehen) | completed: Therapie gemäß Planeintrag wie geplant durchgeführt und abgeschlossen | stopped: Therapie gemäß Planeintrag vorzeitig gestoppt und abgeschlossen | entered-in-error: Fehlerhafter Planeintrag storniert und abgeschlossen."
 
 //TODO: Fachlich zu püfen, ob im Medikationsplan dokumentiert werden soll, dass und warum ein Medikament abgesetzt wurde (Status: stopped, z.B. bei Allergie). 
+* statusReason MS
 * statusReason.coding 0..0    //(ex) https://hl7.org/fhir/R4/valueset-medicationrequest-status-reason.html."
 * statusReason.coding ^short = "Codierter Grund für den aktuellen Status des Medikationsplaneintrags, z.B. warum ein Medikament abgesetzt wurde. Keine codierte Angabe im Medikationsplaneintrag." 
 * statusReason.text 0..1  MS
