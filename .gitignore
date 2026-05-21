@@ -6,3 +6,7 @@ Thumbs.db
 /temp
 /template
 .vscode/
+_build.new.bat
+_genonce.bat
+_updatePublisher.bat
+.gitignore
