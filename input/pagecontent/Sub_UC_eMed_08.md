@@ -2,9 +2,9 @@
 
 <!--  Technische Use Cases für Geplante Abgabe schreiben (UC_eMed_08) -->
 
-### Sub_UC_eMed_08_01 - Geplante Abgabe basierend auf Planeintrag erfassen
+### Sub_UC_eMed_08_01 - Geplante Abgabe erfassen
 
-Ein GDA kann basierend auf einem bestehenden [Medikationsplaneintrag](design_choices.html#medikationsplaneintrag-bzw-planeintrag-atelgaemedmedicationrequestplaneintrag-medicationrequest) ein oder mehrere [geplanten Abgaben](design_choices.html#geplante-abgabe-atelgaemedmedicationrequestgeplanteabgabe-medicationrequest) erstellen und das Erzeugen eines e-Rezepts auslösen.
+Ein GDA kann basierend auf einem **bestehenden** [Medikationsplaneintrag](design_choices.html#medikationsplaneintrag-bzw-planeintrag-atelgaemedmedicationrequestplaneintrag-medicationrequest) eine oder mehrere [geplanten Abgaben](design_choices.html#geplante-abgabe-atelgaemedmedicationrequestgeplanteabgabe-medicationrequest) erstellen und das Erzeugen eines e-Rezepts auslösen.
 
 Sollte für die geplante Abgabe noch kein zugehöriger Medikationsplaneintrag existieren, muss dieser zuerst erstellt werden (siehe [Sub_UC_eMed_06_03 - Medikationsplaneintrag in Medikationsplan hinzufügen](Sub_UC_eMed_06.html#sub_uc_emed_06_03---medikationsplaneintrag-in-medikationsplan-hinzufügen)).
 
@@ -23,10 +23,14 @@ Basierend auf vorhandenen Planeinträgen erstellt der GDA neue geplante Abgaben 
 
 <!-- TODO Suchparameter emed-id: alle geplanten abgaben zu einer e-med-id finden -->
 
+<!-- privatrezept erstellen -->
+<!-- kassenrezept erstellen -->
+<!-- subistitutionsrezept erstellen -->
+
 
 #### Ablauf
 
-<div>{% include_relative plantuml/UC_eMed_08_01.svg %}</div>
+<div>{% include_relative plantuml/UC_eMed_08_01.svg %} </div>
 
 
 #### Relevante Elemente (MedicationRequest)
@@ -47,14 +51,14 @@ AtElgaEmedMedicationRequestGeplanteAbgabe
 ```
 
 
-### Sub_UC_eMed_08_04 - Geplante Abgabe stornieren (verwerfen)
+### Sub_UC_eMed_08_04 - Geplante Abgabe verwerfen
 
-Ein GDA kann jede bestehende [geplanten Abgabe](design_choices.html#geplante-abgabe-atelgaemedmedicationrequestgeplanteabgabe-medicationrequest) aufgrund einer fehlerhaften Eingabe stornieren (auch wenn er diese nicht selbst erstellt hat), solange noch keine **Abgaben durchgeführt** wurden. Die stornierte Geplante Abgabe wird damit abgeschlossen, kann aber über die Historie der geplanten Abgaben eingesehen werden.
+Ein GDA kann jede bestehende [geplanten Abgabe](design_choices.html#geplante-abgabe-atelgaemedmedicationrequestgeplanteabgabe-medicationrequest) aufgrund einer fehlerhaften Eingabe verwerfen (auch wenn er diese nicht selbst erstellt hat), solange noch **keine Abgaben durchgeführt** wurden. Die verworfene Geplante Abgabe wird damit abgeschlossen, kann aber über die Historie der geplanten Abgaben eingesehen werden.
 <!-- TODO: Suchparameter nach stornierten geplante Abgaben? -->
-<!-- TODO: kann ein GDA die geplante Abgabe eines anderen GDAs stornieren oder nur die eigenen? -->
+<!-- TODO: kann ein GDA die geplante Abgabe eines anderen GDAs verwerfen oder nur die eigenen? -->
 <!-- Wenn nicht seine eigene, woher soll er wissen, dass es ein Irrtum war? Begründung f Statuswechsel dzt nicht möglich. -->
 
-Um eine geplante Abgabe zu stornieren, ruft der GDA diese mittels GET MedicationRequest ab und bearbeitet diesen wie folgt:
+Um eine geplante Abgabe zu verwerfen, ruft der GDA diese mittels GET MedicationRequest ab und bearbeitet diesen wie folgt:
 - Der Status wird auf *entered-in-error* gesetzt,
 - der verantwortliche GDA (*requester*) und das Datum in *authoredOn* werden entsprechend aktualisiert.
 
@@ -67,8 +71,8 @@ Der GDA übermittelt (via POST MedicationRequest) den aktualisierten Medikations
 ```JSON
 AtElgaEmedMedicationRequestGeplanteAbgabe
     status: entered-in-error 
-    authoredOn: Datum der Stornierung der Geplanten Abgabe
-    requester: veranwortlicher GDA für die Stornierung der Geplante Abgabe  // wird auf Übereinstimmung mit List.source geprüft
+    authoredOn: Datum des Verwerfens der Geplanten Abgabe
+    requester: veranwortlicher GDA für das Verwerfen der Geplante Abgabe  // wird auf Übereinstimmung mit List.source geprüft
 ```
 
 ### Sub_UC_eMed_08_02 - Geplante Abgabe beenden (durch Fachanwendung)
@@ -76,6 +80,8 @@ AtElgaEmedMedicationRequestGeplanteAbgabe
 <!-- |  **completed**  | geplante Abgabe beendet | -->
 
 Wurden alle geplanten Abgaben planmäßig durchgeführt (gemäß dem ausgewählten Rezepttyp oder den Einschränkungen des GDAs), setzt die Fachanwendung die geplante Abgabe auf den Status *completed*.
+
+Sonderfall: Wenn die letzte durchgeführte Abgabe danach verworfen wird (Status *entered-in-error*), wird der Status der geplanten Abgabe durch die Fachanwendung wieder auf *active* gesetzt.
 
 #### Relevante Elemente (MedicationRequest)
 
@@ -101,14 +107,16 @@ AtElgaEmedMedicationRequestGeplanteAbgabe
 
 ### Sub_UC_eMed_08_05 - Geplante Abgabe löschen (durch ELGA-Teilnehmer)
 
-In Arbeit.
+Der ELGA-Teilnehmer kann eine geplante Abgabe endgültig löschen. Bereits dokumentierte durchgeführte Abgaben sowie bestehende Planeinträge bleiben davon unberührt.
 
-<!-- DELETE löschen der aktuellen und historischen geplanten Abgaben, vorher get, delete id der abgabe-->
+Die Löschung der geplanten Abgabe umfasst:
 
-<!-- Ein ELGA-Teilnehmer kann eine geplante Abgabe, die basierend auf einen Medikationsplaneintrag erstellt wurde, löschen.
- -->
+- die fachliche Entfernung der betreffenden MedicationRequest-Ressource sowie
+- die Entfernung aller zugehörigen historischen Ressourcenversionen (_history).
 
+Zum Löschen einer geplanten Abgabe ruft der ELGA-Teilnehmer die betreffende geplante Abgabe im ELGA-Portal auf. Dieses führt zunächst eine Leseoperation auf die betreffende MedicationRequest-Ressource aus (GET MedicationDispense/[id]) und löscht anschließend die betreffende geplante Abgabe mittels DELETE (DELETE [base]/MedicationDispense/[id]).
 
+Die Ressource einschließlich aller historischen Versionen darf nach erfolgreicher Löschung weder über reguläre FHIR-Interaktionen noch über administrative Schnittstellen abrufbar sein.
 
 <!-- #### Beispiel -->
 
