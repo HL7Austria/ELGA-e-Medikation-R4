@@ -107,17 +107,17 @@ GDA_1 ->> eMed_FA: POST MedicationRequest\n(GeplanteAbgabe 2)
 activate eMed_FA
 note over GDA_1
 Geplante Abgabe 2 (inkl. e-Med groupIdentfier
-für "Rezeptklammer") an Fachanwendung übermitteln
+von Geplanter Abgabe 1 für "Rezeptklammer") 
+an Fachanwendung übermitteln
 end note
 
 alt gültig
   alt e-Med groupIdentifer vorhanden
-    eMed_FA -> eMed_FA: e-Med groupIdentifer belassen
+    eMed_FA -> eMed_FA: e-Med groupIdentifer\nleibt unverändert
   end
   eMed_FA -> eMed_FA: GeplanteAbgabe 2 speichern
   
   note over eMed_FA
-  e-Med groupIdentifier bleibt unverändert,
   Geplante Abgabe 2 gespeichert
   end note
 
@@ -129,9 +129,9 @@ end
 
 GDA_1 ->> e_Rezept: Trigger e-Rezept erstellen
 note over GDA_1
-Erstellung eines e-Rezepts, welches die Information 
-der beiden geplanten Abgaben beinhaltet.
-
+Erstellung eines e-Rezepts auslösen,
+welches die Information der beiden
+geplanten Abgaben beinhaltet.
 end note
 activate e_Rezept
 
