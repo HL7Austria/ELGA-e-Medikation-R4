@@ -26,9 +26,11 @@ Abhängig vom List.entry.flag kann der Medikationsplaneintrag nur eingeschränkt
 Version des Medikationsplans inklusive aller relevanten Ressourcen (List, MedicationRequests, Patient, Practitioners) wird durch eine *Bundle*-Ressource vom Typ Collection abgebildet.
 Dient einerseits der 1. Persistierung nach einem Write-Zugriff und 2. der Auslieferung des Medikationsplans bei einem Read-to-Write-Zugriff an den GDA.
 
-Ad 1.: Nachdem die Fachanwendung beim [Write-Zugriff](interactions.html#write-zugriff), mittels [Medikationsplan-Transaction-Bundle](design_choices.html#medikationsplan-transaction-bundle-atemedbundlemedikationsplantx-transaction-bundle) alle Ressourcen aktualisiert hat, erstellt diese ein *Medikationsplan-Collection-Bundle* zur **Persistierung**, welches den vom GDA übermittelten Medikationsplan **unverändert** (keine Statusänderungen oder Entfernung entsprechend markierten Planeinträgen) abbildet und die Gesamtheit aller referenzierten Ressourcen enthält. Dies stellt sicher, dass in den historischen Versionen des Medikationsplans alle relevanten Informationen verfügbar sind.
+##### Medikationsplan-Collection-Bundle zur Persistierung nach einem Write-Zugriff
+Nachdem die Fachanwendung beim [Write-Zugriff](interactions.html#write-zugriff), mittels [Medikationsplan-Transaction-Bundle](design_choices.html#medikationsplan-transaction-bundle-atemedbundlemedikationsplantx-transaction-bundle) alle Ressourcen aktualisiert hat, erstellt diese ein *Medikationsplan-Collection-Bundle* zur **Persistierung**, welches den vom GDA übermittelten Medikationsplan **unverändert** (keine Statusänderungen oder Entfernung entsprechend markierten Planeinträgen) abbildet und die Gesamtheit aller referenzierten Ressourcen enthält. Dies stellt sicher, dass in den historischen Versionen des Medikationsplans alle relevanten Informationen verfügbar sind.
 
-Ad 2.: Bei einem [Read-to-Write-Zugriff](interactions.html#read-to-write-zugriff) wird von der Fachanwendung ein **Auslieferungs-Bundle** bereitgestellt und wie folgt **angepasst**: Es enthält den temporären List.identifier zur späteren Integritätsprüfung beim Schreibvorgang.
+##### Medikationsplan-Collection-Bundle zur Auslieferung des Medikationsplans bei einem Read-to-Write-Zugriff
+Bei einem [Read-to-Write-Zugriff](interactions.html#read-to-write-zugriff) wird von der Fachanwendung ein **Auslieferungs-Bundle** bereitgestellt und wie folgt **angepasst**: Es enthält den temporären List.identifier zur späteren Integritätsprüfung beim Schreibvorgang.
 Neue oder gänderte Planeinträge erhalten das List.entry.flag unchanged, zum Entfernen markierte Planeinträge (mit List.entry.flag *removed*) werden aus dem Medikationsplan entfernt.
 Wurden alle Planeinträge entfernt, erhält der Medikationsplan das List.emptyReason *nilknown*.
 
@@ -43,7 +45,18 @@ Das Transaction Bundle dient der Aktualisierung aller enthaltenen Ressourcen und
 
 #### Geplante Abgabe: AtElgaEmedMedicationRequestGeplanteAbgabe (*MedicationRequest*)
 
-Eine geplante Abgabe einer Medikation aus dem zugrundeliegenden Medikationsplaneintrag wird durch eine *MedicationRequest*-Ressource der Kategorie "Geplante Abgabe" abgebildet. Sie enthält die verordnete Medikation und dessen Dosierung und spielgelt die Inhalte des e-Rezepts wider. Geplante Abgaben dienen somit der Nachvollziehbarkeit der rezeptierten Arzneimittel in der e-Medikation. 
+Eine *Geplante Abgabe* einer Medikation aus dem zugrundeliegenden Medikationsplaneintrag wird durch eine *MedicationRequest*-Ressource der Kategorie *Geplante Abgabe* abgebildet. Sie enthält die verordnete Medikation und deren Dosierung und spielgelt die Inhalte des e-Rezepts wider. *Geplante Abgaben* dienen somit der Nachvollziehbarkeit der rezeptierten Arzneimittel in der e-Medikation. 
 Werden mehrere Medikamente gleichzeitig verordnet (und sollen demselben e-Rezept zugeordnet sein), wird für jedes Medikament eine geplante Abgabe mit demselben e-Med groupIdentifier erstellt (bildet 'Rezept-Klammer'). Es werden R5-Backport-Extensions verwendet.
 
 Der aktuelle Status einer geplanten Abgabe wird im *status*-Element dokumentiert (siehe [Status des MedicationRequests in der geplanten Abgabe](workflowmanagement.html#status-des-medicationrequests-in-der-geplanten-abgabe)).  
+
+
+#### Durchgeführte Abgabe: AtElgaEmedMedicationRequestDurchgefuehrteAbgabe (*MedicationDispense*)
+
+Eine *Durchgeführte Abgabe* einer Medikation wird durch eine *MedicationDispense*-Ressource abgebildet. Diese kann, muss aber keinen Bezug zu einer geplanten Abgabe haben. 
+Die *Durchgeführte Abgabe* enthält die abgegebene Medikation und deren Dosierung und dient somit der Nachvollziehbarkeit der abgegebenen Arzneimittel in der e-Medikation. Es werden R5-Backport-Extensions verwendet.
+
+In der *Durchgeführten Abgabe* können Abweichungen hinsichtlich des Medikaments und dessen Dosierung dokumentiert werden. Sofern eine zugehörige [Geplante Abgabe](design_choices.html#geplante-abgabe-atelgaemedmedicationrequestgeplanteabgabe-medicationrequest) vorliegt, muss diese referenziert werden. Eine mögliche Substitution des Medikaments ist implizit, durch die Referenz auf die zugehörige geplante Abgabe, ersichtlich. Es werden R5-Backport-Extensions verwendet.
+
+Der aktuelle Status einer *Durchgeführte Abgabe* wird mittels *status*- und *type*-Element dokumentiert (siehe [Status des MedicationDispense in der durchgeführten Abgabe](workflowmanagement.html#status-des-medicationdispense-in-der-durchgeführten-abgabe)).  
+
