@@ -3,8 +3,8 @@ Parent: MedicationDispense
 Id: at-elga-emed-medikationdispense-durchgefuehrteAbgabe
 Title: "AT ELGA e-Medikation MedicationDispense Durchgeführte Abgabe"
 Description: "Dokumentiert eine durchgeführte Abgabe eines Arzneimittels (\"MedicationDispense\"-Ressource). 
-In der durchgeführten Abgabe können Abweichungen hinsichtlich der Dosierung des Medikaments dokumentiert werden.
-Sofern eine zugehörige geplante Abgabe vorliegt, muss diese referenziert werden. Einer mögliche Substitution des Medikaments ist implizit, durch die Referenz auf die zugehörige geplante Abgabe, ersichtlich."
+In der durchgeführten Abgabe können Abweichungen hinsichtlich des Medikaments und dessen Dosierung dokumentiert werden.
+Sofern eine zugehörige geplante Abgabe vorliegt, muss diese referenziert werden. Eine mögliche Substitution des Medikaments ist implizit, durch die Referenz auf die zugehörige geplante Abgabe, ersichtlich."
 * . ^short = "Durchgeführte Abgabe eines Arzneimittels mit oder ohne Bezug zur geplanten Abgabe. Verwendet R5 Backport Extensions."
 
 // TODO Check CDA
@@ -12,10 +12,16 @@ Sofern eine zugehörige geplante Abgabe vorliegt, muss diese referenziert werden
 // Extensions   ***************** TODO
 * extension contains $medicationrequest-rendereddosageinstruction-r5 named renderedDosageInstruction 0..1
 * extension[renderedDosageInstruction] ^short = "Vollständige Darstellung der Dosierungsanweisungen"
+
+// TODO Extension für Nacherfassung einer Abgabe  
+* extension contains $medicationDispense-recorded-r5 named recorded 1..1
+* extension[recorded] ^short = "Datum und Uhrzeit, zu denen die Abgabe erfasst wurde. Dies muss nicht unbedingt mit dem Zeitpunkt übereinstimmen, zu dem das Medikament dem Patienten ausgehändigt wurde (z.B. bei Nacherfassung der Abgabe)."
+
+
 // ENDE Extensions  ******************
 
 * identifier 0..0 
-* identifier ^short = "Durchgeführte-Abgabe-ID." // TODO: Verwendung zu prüfen, ws: vermutlich keine notwendigkeit
+* identifier ^short = "Durchgeführte-Abgabe-ID. Keine Verwendung in der durchgeführten Abgabe." // TODO: Verwendung zu prüfen, ws: vermutlich keine notwendigkeit
 
 * partOf 0..0 
 * partOf ^short = "Auslösendes Ereignis (Referenz auf Procedure-Ressource). Keine Verwendung in der durchgeführten Abgabe."
@@ -31,6 +37,8 @@ Sofern eine zugehörige geplante Abgabe vorliegt, muss diese referenziert werden
 * statusReasonCodeableConcept ^short = "Grund für den aktuellen Status als Code. (ex) https://hl7.org/fhir/R4/valueset-medicationdispense-status-reason.html"
 * statusReasonReference 0..0
 * statusReasonReference ^short = "Referenz auf DetectedIssue-Ressource. Keine Verwendung in der durchgeführten Abgabe."
+
+//TODO: statusChanged R6 -> um Datum zu dokumentieren, wann Abgabe abgesetzt wurde
 
 * category 0..0 
 * category ^short = "Angabe, wo das abgegebene Medikament voraussichtlich eingenommen oder verabreicht wird (z.B. stationär oder ambulant). Keine Verwendung in der durchgeführten Abgabe."

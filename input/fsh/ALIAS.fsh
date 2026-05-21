@@ -5,7 +5,10 @@ Alias: $imposeProfile = http://hl7.org/fhir/StructureDefinition/structuredefinit
 // R5 extensions
 Alias: $medicationrequest-rendereddosageinstruction-r5 = http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationRequest.renderedDosageInstruction
 Alias: $medicationRequest-effectiveDosePeriod-r5 = http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationRequest.effectiveDosePeriod
-Alias: $ihe-ext-medicationrequest-offlabeluse = https://profiles.ihe.net/PHARM/MPD/StructureDefinition/ihe-ext-offLabel
+//Alias: $ihe-ext-medicationrequest-offlabeluse = https://profiles.ihe.net/PHARM/MPD/StructureDefinition/ihe-ext-offLabel
+Alias: $medicationDispense-recorded-r5 = http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationDispense.recorded
+
+
 
 // general
 Alias: $cs-loinc = http://loinc.org
