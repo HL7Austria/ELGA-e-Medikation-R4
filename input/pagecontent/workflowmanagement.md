@@ -4,8 +4,6 @@
 
 #### Status des List.entry.flags im Medikationsplan
 
-<br>
-
 Ein [Medikationsplaneintrag](design_choices.html#medikationsplaneintrag-bzw-planeintrag-atelgaemedmedicationrequestplaneintrag-medicationrequest) kann, abhängig vom jeweiligen ([Use Case für Medikationsplan schreiben](Sub_UC_eMed_06.html#%E2%80%8Btechnische-use-cases-für-medikationsplan-schreiben-uc_emed_06)), unterschiedliche Status einnehmen. Dieser Status wird sowohl in der MedicationRequest-Ressource selbst als auch auf List-Ebene im Element List.entry.flag dokumentiert.
 
 Das *flag*-Element eines Entries der List-Ressource beschreibt die **Art der Änderung eines Mediaktionsplaneintrags auf Listenebene** und kann folgende Status einnehmen:
@@ -24,7 +22,6 @@ Das *flag*-Element eines Entries der List-Ressource beschreibt die **Art der Än
 
 #### Auswirkung der Zugriffsart auf List.entry.flags und Bundle-Inhalte
 
-<br>
 Je nach Zugriffsart (Read-only, Read-to-Write oder Write) ergeben sich unterschiedliche Auswirkungen auf die Verarbeitung dieser Status sowie auf die enthaltenen Ressourcen in den jeweiligen Bundles (siehe [Zugriffsarten auf den Medikationsplan](interactions.html#zugriffsarten-auf-den-medikationsplan)).
 <br>
 <br>
@@ -40,7 +37,6 @@ Je nach Zugriffsart (Read-only, Read-to-Write oder Write) ergeben sich unterschi
 
 #### Status des MedicationRequests im Medikationsplaneintrag
 
-<br>
 Das *status*-Element der MedicationRequest-Ressource beschreibt den **aktuellen Zustand eines Medikationsplaneintrags**. 
 
 Im Kontext des Medikationsplans kann dieses Element folgende Statuswerte annehmen: 
@@ -60,7 +56,6 @@ Im Kontext des Medikationsplans kann dieses Element folgende Statuswerte annehme
 
 ##### Konsistenzregeln zwischen List.entry.flags und MedicationRequest-Status
 
-<br>
 Da der Status eines Medikationsplaneintrags im Medikationsplan auf **zwei Ebenen** geführt wird (List.entry.flag und MedicationRequest.status), müssen diese beiden Ebenen zur Sicherstellung einer konsistenten Verarbeitung inhaltlich aufeinander abgestimmt sein. Die folgende Tabelle beschreibt die geltenden Konsistenzregeln zwischen List.entry.flag und MedicationRequest.status in Abhängigkeit vom jeweiligen Use Case:
 <br><br>
 
@@ -146,7 +141,6 @@ Da der Status eines Medikationsplaneintrags im Medikationsplan auf **zwei Ebenen
 
 #### Status des MedicationRequests in der geplanten Abgabe
 
-<br>
 Eine [Geplante Abgabe](design_choices.html#geplante-abgabe-atelgaemedmedicationrequestgeplanteabgabe-medicationrequest) kann, abhängig vom jeweiligen ([Use Case für Geplante Abgabe schreiben](Sub_UC_eMed_08.html#%E2%80%8Btechnische-use-cases-für-geplante-abgabe-schreiben-uc_emed_08)), unterschiedliche Status einnehmen (Element *status*):<br><br>
 
 <!-- Folgende Status sollen gemäß e-Rezept abgebildet werden: OFFEN, EINGELÖST, STORNIERT, ABGELAUFEN, NICHT_ABGEGEBEN<br> -->
@@ -176,7 +170,6 @@ Eine [Geplante Abgabe](design_choices.html#geplante-abgabe-atelgaemedmedicationr
 
 #### Gültigkeit von Geplanten Abgaben basierend auf der Rezeptart
 
-<br>
 
 | Rezeptart | Gültigkeit | Einlösungen | Verlängerung | Statuswechsel |
 |-------|------|-------|------|------|
@@ -190,8 +183,6 @@ Eine [Geplante Abgabe](design_choices.html#geplante-abgabe-atelgaemedmedicationr
 <br><br>
 
 #### Status des MedicationDispense in der durchgeführten Abgabe
-
-<br>
 
 Eine [Durchgeführte Abgabe](design_choices.html#durchgeführte-abgabe-AtElgaEmedMedicationDispenseDurchgefuehrteAbgabe-medicationdispense) kann, abhängig vom jeweiligen [Use Case für Durchgeführte Abgabe schreiben](Sub_UC_eMed_09.html), unterschiedliche Status einnehmen (Element *status*). 
 
@@ -213,7 +204,6 @@ Eine [Durchgeführte Abgabe](design_choices.html#durchgeführte-abgabe-AtElgaEme
 
 #### Abhängigkeiten der Geplanten Abgabe und der Durchgeführten Abgaben
 
-<br>
 
 | Use Case                                              | Planeintrag (MedicationRequest-Status) | Beschreibung                                                            | geplante Abgabe (MedicationRequest-Status) | Status Verordnung CDA | Beschreibung                                                                                                                                                       | durchgeführte Abgabe (MedicationDispense-Status) | Status Abgabe CDA      | Beschreibung                                                                                                                                                                                                                                                                                  | Use Case                        |
 | ----------------------------------------------------- | -------------------------------------- | ----------------------------------------------------------------------- | ------------------------------------------ | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------ | ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |

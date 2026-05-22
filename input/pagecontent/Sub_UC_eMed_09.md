@@ -18,11 +18,9 @@ Folgende Tabelle bildet eine Übersicht über alle Varianten von (Teil-)Abgaben:
 - Besorgerprozess
 - Teilabgaben
 - Leerabgaben
-
+<br>
 
 #### Varianten der (Teil-)Abgabe 
-
-<br>
 
 Im Element *MedicationDispense.type* einer durchgeführten Abgabe wird die Art der Abgabe dokumentiert, welche von der [Rezeptart](workflowmanagement.html#gültigkeit-von-geplanten-abgaben-basierend-auf-der-rezeptart) (Anzahl Einlösungen) und vom Use Case abhängt.
 
@@ -40,6 +38,7 @@ Im Element *MedicationDispense.type* einer durchgeführten Abgabe wird die Art d
 | Rezept wird nachgebracht                                   |  -                                                           | keine geplante Abgabe vorhanden                                                                       | type: SO (Script Owing)<br>quantity:  x Packungen<br>status: „complete“                                      | Medikament wurde abgegeben oder reserviert, das formale Rezept wird später nachgereicht.  Planeintrag + geplante Abgabe für Wechselwirkungsrelevante Medikatmente soll nacherfasst werden. |
 | OTC Abgabe (rezeptfrei)                                    |  -                                                           | keine geplante Abgabe vorhanden                                                                       | type: OTC (hinzufügen)<br>quantity:  x Packungen<br>status: „complete“                                       | Rezeptfreies Medikament wurde abgegeben. Ein Planeintrag für Wechselwirkungsrelevante Medikatmente soll nacherfasst werden.                                                                |
 
+<br>
 
 #### Sub_UC_eMed_09_01_0x Durchgeführte Abgabe mit Bezug zu einer geplanten Abgabe erfassen (Vollständige Abgabe)
 
@@ -74,7 +73,7 @@ AtElgaEmedMedicationDispenseDurchgefuehrteAbgabe
 geplante Abgabe wird nach erfolgter Dispense automatisch  auf complete gesetzt
 
 Dispense abgeschlossen; Kann nicht mehr verändert werden. -->
-
+<br>
 
 #### Sub_UC_eMed_09_01_0x Durchgeführte Abgabe ohne Bezug zu einer geplanten Abgabe erfassen
 
@@ -84,6 +83,7 @@ In folgenden Fällen liegt bei der Erfassung einer *Durchgeführten Abgabe* kein
 - OTC Medikation (nicht rezeptpflichtig):
     - für wechselwirkungsrelevante Medikamente (aus ASP-Liste) soll eine *Durchgeführte Abgabe* erstellt werden
 
+<br>
 
 #### Sub_UC_eMed_09_01_0x Durchgeführte Abgabe mit Besorgerprozess erfassen
 
@@ -93,18 +93,22 @@ In folgenden Fällen liegt bei der Erfassung einer *Durchgeführten Abgabe* kein
 <!-- Geplante Abgabe kann nicht mehr in einer anderen Apotheke eingelöst werden 
 und Teilabgabe -->
 
+<br>
+
 #### Sub_UC_eMed_09_01_0x Durchgeführte Abgabe als Teilabgaben erfassen
 
-- \1. Teilabgabe 
+- 1. Teilabgabe 
 - Weitere Teilabgabe
 - Letzte Teilabgabe
 
+<br>
 
 #### Sub_UC_eMed_09_01_0x Durchgeführte Abgabe als Leerabgabe erfassen
 
 - Leerabgabe bei Einzelabgabe
 - Leerabgabe beendet Teilabgaben
 
+<br>
 
 #### Sub_UC_eMed_09_01_0x Durchgeführte Abgabe Nacherfassen
 
@@ -115,12 +119,14 @@ Eine *Durchgeführte Abgabe* muss nacherfasst werden, wenn das Arzneimittel bere
 
 In Arbeit.
 
+<br>
+
 #### Sub_UC_eMed_09_01_0x Durchgeführte Abgabe mit Substitution eines Medikaments erfassen
 
 Eine Substitution eines Medikaments ist nur implizit ersichtich, durch die Referenz auf die zugehörige geplante Abgabe.
 
 <!-- Begrüdung verpflichtend? -->
-
+<br>
 
 ### Sub_UC_eMed_09_02 - Durchgeführte Abgabe verwerfen
 
@@ -134,6 +140,7 @@ Die stornierte *Durchgeführte Abgabe* wird damit abgeschlossen, kann aber über
 <!-- TODO: Suchparameter nach stornierten Durchgeführten Abgaben? -->
 <!-- TODO: kann ein GDA (Apotheke) die Durchgeführte Abgabe eines anderen GDAs verwerfen oder nur die eigenen (wie im CDA)? Wenn auch fremde, woher soll er wissen, dass es ein Irrtum war? Begründung f Statuswechsel? -->
 <!-- TODO: Wenn stornierte *Durchgeführte Abgabe* Teil eines e-Rezepts mit weiteren geplanten Abgaben ist: Auswirkungen? keine -->
+<br>
 
 ### Sub_UC_eMed_09_03 - Durchgeführte Abgabe löschen (durch ELGA-Teilnehmer)
 
