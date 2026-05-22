@@ -114,7 +114,7 @@ Die Löschung der geplanten Abgabe umfasst:
 - die fachliche Entfernung der betreffenden MedicationRequest-Ressource sowie
 - die Entfernung aller zugehörigen historischen Ressourcenversionen (_history).
 
-Zum Löschen einer geplanten Abgabe ruft der ELGA-Teilnehmer die betreffende geplante Abgabe im ELGA-Portal auf. Dieses führt zunächst eine Leseoperation auf die betreffende MedicationRequest-Ressource aus (GET MedicationDispense/[id]) und löscht anschließend die betreffende geplante Abgabe mittels DELETE (DELETE [base]/MedicationDispense/[id]).
+Zum Löschen einer geplanten Abgabe ruft der ELGA-Teilnehmer die betreffende geplante Abgabe im ELGA-Portal auf. Dieses führt zunächst eine Leseoperation auf die betreffende MedicationRequest-Ressource aus (GET MedicationRequest/[id]) und löscht anschließend die betreffende geplante Abgabe mittels DELETE (DELETE [base]/MedicationRequest/[id]).
 
 Die Ressource einschließlich aller historischen Versionen darf nach erfolgreicher Löschung weder über reguläre FHIR-Interaktionen noch über administrative Schnittstellen abrufbar sein.
 
