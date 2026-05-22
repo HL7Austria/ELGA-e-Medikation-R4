@@ -51,12 +51,12 @@ Werden mehrere Medikamente gleichzeitig verordnet (und sollen demselben e-Rezept
 Der aktuelle Status einer geplanten Abgabe wird im *status*-Element dokumentiert (siehe [Status des MedicationRequests in der geplanten Abgabe](workflowmanagement.html#status-des-medicationrequests-in-der-geplanten-abgabe)).  
 
 
-#### Durchgeführte Abgabe: AtElgaEmedMedicationRequestDurchgefuehrteAbgabe (*MedicationDispense*)
+#### Durchgeführte Abgabe: AtElgaEmedMedicationDispenseDurchgefuehrteAbgabe (*MedicationDispense*)
 
-Eine *Durchgeführte Abgabe* einer Medikation wird durch eine *MedicationDispense*-Ressource abgebildet. Diese kann, muss aber keinen Bezug zu einer geplanten Abgabe haben. 
-Die *Durchgeführte Abgabe* enthält die abgegebene Medikation und deren Dosierung und dient somit der Nachvollziehbarkeit der abgegebenen Arzneimittel in der e-Medikation. Es werden R5-Backport-Extensions verwendet.
+Eine *Durchgeführte Abgabe* einer Medikation wird durch eine *MedicationDispense*-Ressource abgebildet. 
+Die *Durchgeführte Abgabe* enthält die abgegebene Medikation und deren Dosierung und dient somit der Nachvollziehbarkeit der abgegebenen Arzneimittel in der e-Medikation. 
 
-In der *Durchgeführten Abgabe* können Abweichungen hinsichtlich des Medikaments und dessen Dosierung dokumentiert werden. Sofern eine zugehörige [Geplante Abgabe](design_choices.html#geplante-abgabe-atelgaemedmedicationrequestgeplanteabgabe-medicationrequest) vorliegt, muss diese referenziert werden. Eine mögliche Substitution des Medikaments ist implizit, durch die Referenz auf die zugehörige geplante Abgabe, ersichtlich. Es werden R5-Backport-Extensions verwendet.
+In der *Durchgeführten Abgabe* können Abweichungen von der *Geplanten Abgabe* hinsichtlich des Medikaments und dessen Dosierung dokumentiert werden. Sofern eine zugehörige [Geplante Abgabe](design_choices.html#geplante-abgabe-atelgaemedmedicationrequestgeplanteabgabe-medicationrequest) vorliegt, muss diese referenziert werden. Eine mögliche Substitution des Medikaments ist implizit, durch die Referenz auf die zugehörige geplante Abgabe, ersichtlich. Es werden R5-Backport-Extensions verwendet.
 
 Der aktuelle Status einer *Durchgeführte Abgabe* wird mittels *status*- und *type*-Element dokumentiert (siehe [Status des MedicationDispense in der durchgeführten Abgabe](workflowmanagement.html#status-des-medicationdispense-in-der-durchgeführten-abgabe)).  
 

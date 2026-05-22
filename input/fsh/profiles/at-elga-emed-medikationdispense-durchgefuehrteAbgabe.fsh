@@ -1,4 +1,4 @@
-Profile: AtElgaEmedMedicationRequestDurchgefuehrteAbgabe
+Profile: AtElgaEmedMedicationDispenseDurchgefuehrteAbgabe
 Parent: MedicationDispense
 Id: at-elga-emed-medikationdispense-durchgefuehrteAbgabe
 Title: "AT ELGA e-Medikation MedicationDispense Durchgeführte Abgabe"
