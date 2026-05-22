@@ -1,11 +1,11 @@
 @startuml
-title MedicationDispense.status (durchgeführte Abgabe)
+title MedicationDispense.status (Durchgeführte Abgabe)
 
-(*) --> [abgesetzt] stopped
-(*) --> [abgegeben] completed  
-(*) --> [storniert] "entered-in-error"
-stopped --> (*)
+(*) --> [abgegeben oder bestellt] completed  
+(*) --> [Leerabgabe] cancelled
+cancelled --> [verwerfen] "entered-in-error"
+completed --> [verwerfen] "entered-in-error"
+cancelled --> (*)
 completed --> (*)
 "entered-in-error" --> (*)
 @enduml
-
