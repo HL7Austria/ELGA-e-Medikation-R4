@@ -1,12 +1,17 @@
 ### Überblick der Statusänderungen der e-Medikation Ressourcen 
 
+<br>
+
 #### Status des List.entry.flags im Medikationsplan
+
+<br>
 
 Ein [Medikationsplaneintrag](design_choices.html#medikationsplaneintrag-bzw-planeintrag-atelgaemedmedicationrequestplaneintrag-medicationrequest) kann, abhängig vom jeweiligen ([Use Case für Medikationsplan schreiben](Sub_UC_eMed_06.html#%E2%80%8Btechnische-use-cases-für-medikationsplan-schreiben-uc_emed_06)), unterschiedliche Status einnehmen. Dieser Status wird sowohl in der MedicationRequest-Ressource selbst als auch auf List-Ebene im Element List.entry.flag dokumentiert.
 
-Das *flag*-Element eines Entries der List-Ressource beschreibt die **Art der Änderung eines Mediaktionsplaneintrags auf Listenebene** und kann folgende Status einnehmen:<br>
+Das *flag*-Element eines Entries der List-Ressource beschreibt die **Art der Änderung eines Mediaktionsplaneintrags auf Listenebene** und kann folgende Status einnehmen:
+<br><br>
 
-| Status | Beschreibung |
+| List.entry.flag | Beschreibung |
 |--------|------|
 | **New** | Neuer Planeintrag wird der Liste hinzugefügt |
 | **Unchanged** | Bestehender Planeintrag wird beibehalten/zur Kenntnis genommen |
@@ -19,10 +24,12 @@ Das *flag*-Element eines Entries der List-Ressource beschreibt die **Art der Än
 
 #### Auswirkung der Zugriffsart auf List.entry.flags und Bundle-Inhalte
 
+<br>
 Je nach Zugriffsart (Read-only, Read-to-Write oder Write) ergeben sich unterschiedliche Auswirkungen auf die Verarbeitung dieser Status sowie auf die enthaltenen Ressourcen in den jeweiligen Bundles (siehe [Zugriffsarten auf den Medikationsplan](interactions.html#zugriffsarten-auf-den-medikationsplan)).
 <br>
+<br>
 
-| Status | Read-only-Zugriff | Read-to-Write-Zugriff | Write-Zugriff |
+| List.entry.flag | Read-only-Zugriff | Read-to-Write-Zugriff | Write-Zugriff |
 |--------|------|------|------|
 | **new** |- List-Entries, die vom Vorgänger-GDA mit *new* geflaggt wurden, bleiben beim read-only-Zugriff **unverändert**.<br>- Die neuen MedicationRequests sind im Collection Bundle enthalten.|- List-Entries, die vom Vorgänger-GDA mit *new* geflaggt wurden, werden beim Read-to-Write-Zugriff von der **Fachanwendung** als **unchanged** geflaggt.<br>- Die betreffenden MedicationRequests sind im Collection Bundle enthalten.|- List-Entries, die beim schreibenden Zugriff vom aktuellen GDA mit *new* geflaggt wurden, werden dem Medikationsplan neu hinzugefügt.<br>- Die betreffenden MedicationRequests müssen im Transaction Bundle **enthalten** sein.|
 | **unchanged** |- List-Entries, die vom Vorgänger-GDA mit *unchanged* geflaggt wurden, bleiben beim read-only-Zugriff **unverändert**.<br>- Die unveränderten MedicationRequests sind im Collection Bundle enthalten. |- List-Entries, die vom Vorgänger-GDA als *unchanged* geflaggt wurden, bleiben beim Read-to-Write-Zugriff von der Fachanwendung unverändert.<br>- Die betreffenden MedicationRequests sind im Collection Bundle enthalten.|- List-Entries, die vom aktuellen GDA nicht verändert wurden, bleiben beim schreibenden Zugriff mit *unchanged* geflaggt. Sie gelten somit als zur Kenntnis genommen.<br>-  Die betreffenden MedicationRequests sind nicht im Transaction Bundle enthalten, sondern werden in der Liste **nur referenziert**.|
@@ -33,11 +40,13 @@ Je nach Zugriffsart (Read-only, Read-to-Write oder Write) ergeben sich unterschi
 
 #### Status des MedicationRequests im Medikationsplaneintrag
 
+<br>
 Das *status*-Element der MedicationRequest-Ressource beschreibt den **aktuellen Zustand eines Medikationsplaneintrags**. 
 
 Im Kontext des Medikationsplans kann dieses Element folgende Statuswerte annehmen: 
+<br><br>
 
-| Status | Beschreibung |
+| MedicationRequest.status | Beschreibung |
 |---------------|------|
 | **active** | Planeintrag dokumentiert aktive Therapie: Medikation soll aktuell vom Patienten eingenommen werden |
 | **on-hold** | Planeintrag ist pausiert: Therapie wurde vorübergehend unterbrochen, Wiederaufnahme ist vorgesehen |
@@ -51,8 +60,9 @@ Im Kontext des Medikationsplans kann dieses Element folgende Statuswerte annehme
 
 ##### Konsistenzregeln zwischen List.entry.flags und MedicationRequest-Status
 
-Da der Status eines Medikationsplaneintrags im Medikationsplan auf **zwei Ebenen** geführt wird (List.entry.flag und MedicationRequest.status), müssen diese beiden Ebenen zur Sicherstellung einer konsistenten Verarbeitung inhaltlich aufeinander abgestimmt sein. Die folgende Tabelle beschreibt die geltenden Konsistenzregeln zwischen List.entry.flag und MedicationRequest.status in Abhängigkeit vom jeweiligen Use Case:
 <br>
+Da der Status eines Medikationsplaneintrags im Medikationsplan auf **zwei Ebenen** geführt wird (List.entry.flag und MedicationRequest.status), müssen diese beiden Ebenen zur Sicherstellung einer konsistenten Verarbeitung inhaltlich aufeinander abgestimmt sein. Die folgende Tabelle beschreibt die geltenden Konsistenzregeln zwischen List.entry.flag und MedicationRequest.status in Abhängigkeit vom jeweiligen Use Case:
+<br><br>
 
 
 <table>
@@ -65,7 +75,7 @@ Da der Status eines Medikationsplaneintrags im Medikationsplan auf **zwei Ebenen
   <thead>
     <tr>
       <th>Use Case</th>
-      <th>List.entry.flags</th>
+      <th>List.entry.flag</th>
       <th>MedicationRequest-Status<br>(Planeintrag)</th>
       <th>Beschreibung</th>
     </tr>
@@ -136,18 +146,20 @@ Da der Status eines Medikationsplaneintrags im Medikationsplan auf **zwei Ebenen
 
 #### Status des MedicationRequests in der geplanten Abgabe
 
-Eine [Geplante Abgabe](design_choices.html#geplante-abgabe-atelgaemedmedicationrequestgeplanteabgabe-medicationrequest) kann, abhängig vom jeweiligen ([Use Case für Geplante Abgabe schreiben](Sub_UC_eMed_08.html#%E2%80%8Btechnische-use-cases-für-geplante-abgabe-schreiben-uc_emed_08)), unterschiedliche Status einnehmen und beschreibt die Art der Änderung (Element *status*):
+<br>
+Eine [Geplante Abgabe](design_choices.html#geplante-abgabe-atelgaemedmedicationrequestgeplanteabgabe-medicationrequest) kann, abhängig vom jeweiligen ([Use Case für Geplante Abgabe schreiben](Sub_UC_eMed_08.html#%E2%80%8Btechnische-use-cases-für-geplante-abgabe-schreiben-uc_emed_08)), unterschiedliche Status einnehmen (Element *status*):<br><br>
 
 <!-- Folgende Status sollen gemäß e-Rezept abgebildet werden: OFFEN, EINGELÖST, STORNIERT, ABGELAUFEN, NICHT_ABGEGEBEN<br> -->
 
 <!-- Folgende Status sind gemäß required ValueSet medicationrequest-status verfügbar: https://hl7.org/fhir/R4/valueset-medicationrequest-status.html -->
 
-| Status | Beschreibung |
+| MedicationRequest.status | Beschreibung |
 |--------|------|
 | **active** | Geplante Abgabe **offen**: Status beim Erstellen einer Geplanten Abgabe, solange noch (Teil-)Abgaben offen sind (dh. Rezept kann noch eingelöst werden) |
-|  **completed**  | Geplante Abgabe **eingelöst**: Der Status wird durch die Fachwendung **automatisch** gesetzt, wenn alle geplante(n) Abgabe(n) wie vorgesehen durchgeführt wurden (Durchgeführte Abgabe(n) wurde(n) erstellt und abgeschlossen). Sonderfall: Sollte im Anschluss die letzte zugehörige Durchgeführte Abgabe den Status *storniert* erhalten, wird die geplante Abgabe von der Fachanwendung automatisch wieder auf *active* gesetzt. |
+|  **completed**  | Geplante Abgabe **eingelöst**: Der Status wird durch die Fachwendung **automatisch** gesetzt, wenn alle möglichen Einlösungen durchgeführt wurden. Sonderfall: Sollte im Anschluss eine Durchgeführte Abgabe den Status *entered-in-error* erhalten, setzt die Fachanwendung gegebenfalls die Geplante Abgabe automatisch wieder auf *active*. |
 | **stopped** | Geplante Abgabe ist **abgelaufen**, d.h. der Einlösezeitraum für die ausgewählte Rezeptart (*category:recipetype*) ist überschritten; der Status wird **automatisch durch die Fachanwendung** gesetzt. Die Geplante Abgabe ist damit abgeschlossen. |
-|  **entered-in-error**  | Geplante Abgabe ist **storniert**, aufgrund eines Fehlers. Es wurden noch **keine Abgaben durchgeführt**. Die Geplante Abgabe wird damit abgeschlossen. |
+|  **entered-in-error**  | Geplante Abgabe wird aufgrund eines Fehlers verworfen. Es wurden noch **keine Abgaben durchgeführt**. Die Geplante Abgabe wird damit abgeschlossen. |
+|  **cancelled**  | Geplante Abgabe erhält automatisch den Status **cancelled** ("nicht abgegeben"), wenn alle Durchgeführten Abgaben (jede Einlösung) den Status **cancelled** erhalten haben ("Leerabgabe") |
 
 <!-- |  **cancelled**  | Geplante Abgabe ist storniert, aufgrund eines Fehlers. Die Geplante Abgabe wurde zurückgezogen, **bevor eine Abgabe durchgeführt** wurde. Die Geplante Abgabe ist damit abgeschlossen. | -->
 
@@ -164,6 +176,8 @@ Eine [Geplante Abgabe](design_choices.html#geplante-abgabe-atelgaemedmedicationr
 
 #### Gültigkeit von Geplanten Abgaben basierend auf der Rezeptart
 
+<br>
+
 | Rezeptart | Gültigkeit | Einlösungen | Verlängerung | Statuswechsel |
 |-------|------|-------|------|------|
 | Kassenrezept | 1 Monat ab Datum der Verordnung: Beginn des Gültigkeitszeitraums + 1 Monat + 1 Tag | 1× | Im Zuge des "Besorgerprozesses" (Medikament muss erst bestellt werden) wird bei einer gespeicherten Teilabgabe die gesamte Gültigkeitsdauer auf 3 Monate verlängert. | Ein Kassenrezept muss innerhalb von 1 Monat eingelöst werden, sonst erhält das Rezept den Status "abgelaufen" (*stopped*). |
@@ -173,18 +187,23 @@ Eine [Geplante Abgabe](design_choices.html#geplante-abgabe-atelgaemedmedicationr
 
 [^1] Die Anzahl der Einlösungen gibt an, wie viele Einlösungen auf ein Rezept durchgeführt werden dürfen bis die Verordnung auf dem Rezept und das Rezept den Status eingelöst(*completed*) erhält.<br>
 [^2] Das Einlösen eines Rezepts nach Ablauf der Gültigkeit wird durch e-Medikation nicht verhindert. Die Abgabe wird in diesem Fall ohne Verordnungsbezug in e-Medikation gespeichert. Wird die Gültigkeitsdauer nicht angegeben, kann die Gültigkeitsdauer vom empfangenden System nur mit 1 Monat angenommen werden, gerechnet vom Erstellungsdatum an.
-
+<br><br>
 
 #### Status des MedicationDispense in der durchgeführten Abgabe
 
-Eine [Durchgeführte Abgabe](design_choices.html#durchgeführte-abgabe-atelgaemedmedicationrequestdurchgefuehrteabgabe-medicationdispense) kann, abhängig vom jeweiligen [Use Case für Durchgeführte Abgabe schreiben](Sub_UC_eMed_09.html), unterschiedliche Status einnehmen und beschreibt die Art der Änderung (Element status):  
+<br>
+
+Eine [Durchgeführte Abgabe](design_choices.html#durchgeführte-abgabe-AtElgaEmedMedicationDispenseDurchgefuehrteAbgabe-medicationdispense) kann, abhängig vom jeweiligen [Use Case für Durchgeführte Abgabe schreiben](Sub_UC_eMed_09.html), unterschiedliche Status einnehmen (Element *status*). 
 
 
-| Status | Beschreibung |
+| MedicationDispense.status | Beschreibung |
 |--------|------|
-| **stopped** | durchgeführte Abgabe abgesetzt |
-|  **completed**  | durchgeführte Abgabe abgegeben |
-|  **entered-in-error**  | durchgeführte Abgabe storniert|
+|  **completed**  | Einzel- oder Teilabgabe wurde durchgeführt |
+| **cancelled** | Durchgeführte Abgabe gecancelt: Der Patient benötigt die Medikation einer geplanten Abgabe nicht (Medikation "abgesetzt") |
+|  **entered-in-error**  | Vorhandene Durchgeführte Abgabe (im Status *complete* oder *cancelled*) wird aufgrund einer falschen Eingabe verworfen (eine mögliche beendete Geplante Abgabe, wird dadurch wieder *aktiv*)|
+
+
+<!-- |  **preparation**  | Durchgeführte Abgabe wird vorbereitet (zubereitet oder bestellt) | -->
 
 
 <br>
@@ -192,7 +211,9 @@ Eine [Durchgeführte Abgabe](design_choices.html#durchgeführte-abgabe-atelgaeme
 <br>
 
 
-#### Abhängigkeiten der geplante Abgabe und durchgeführten Abgaben
+#### Abhängigkeiten der Geplanten Abgabe und der Durchgeführten Abgaben
+
+<br>
 
 | Use Case                                              | Planeintrag (MedicationRequest-Status) | Beschreibung                                                            | geplante Abgabe (MedicationRequest-Status) | Status Verordnung CDA | Beschreibung                                                                                                                                                       | durchgeführte Abgabe (MedicationDispense-Status) | Status Abgabe CDA      | Beschreibung                                                                                                                                                                                                                                                                                  | Use Case                        |
 | ----------------------------------------------------- | -------------------------------------- | ----------------------------------------------------------------------- | ------------------------------------------ | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------ | ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
@@ -200,25 +221,11 @@ Eine [Durchgeführte Abgabe](design_choices.html#durchgeführte-abgabe-atelgaeme
 | Geplante Abgabe beenden (durch Fachanwendung)         | active                                 | Planeintrag bleibt active, unabhängig von Status der gepanten Abgabe \* | completed                                  | EINGELÖST             | auf Basis der durchgeführten Abgaben automatisch gesetzt durch Fachanwendung; dh. Alle möglichen Einlösungen sind abgechlossen (entweder completed oder cancelled) | completed                                        | ABGEGEBEN              | alle möglichen Einlösungen erfolgt                                                                                                                                                                                                                                                            | Durchgeführte Abgabe erfassen   |
 | Geplante Abgabe verwerfen                             | active                                 | Planeintrag bleibt active, unabhängig von Status der gepanten Abgabe \* | entered-in-error                           | STORNIERT             | bei fehlerhafter Eingabe, wenn noch keine Abgabe durchgeführt                                                                                                      |                                                  |                        | keine durchgeführten Abgaben vorhanden                                                                                                                                                                                                                                                        |                                 |
 | Geplante Abgabe abgelaufen (durch Fachanwendung)      | active                                 | Planeintrag bleibt active, unabhängig von Status der gepanten Abgabe \* | stopped                                    | ABGELAUFEN            | automatisch erkannt durch Fachanwendung                                                                                                                            | kein relevanter Status                           | kein relevanter Status | noch keine bzw. noch nicht alle mögl. Einlösungen erfolgt<br>Zu abgelaufenen geplanten Abgaben können keine Abgaben mehr gespeichert werden. Die (nachträgliche) Speicherung von Abgaben zu einem abgelaufenen Rezept kann im Anlassfall allerdings ohne Verordnungsbezug erfolgen.           |                                 |
-| Geplante Abgabe nicht abgegeben (durch Fachanwendung) | active                                 | Planeintrag bleibt active, unabhängig von Status der gepanten Abgabe \* | cancelled                                  | NICHT_ABGEGEBEN       | automatisch, wenn alle Einlösungen im MedicationDispense den Status "cancelled" erhalten haben                                                                     | cancelled                                        | ABGESETZT              | Apotheker dokumentiert in der durchgeführten Abgabe, dass der Patient das Medikament in der geplanten Abgabe nicht einnimmt (mit Packungen 0) (entspricht der Leerabgabe).<br>Kann wieder rückgängig gemacht werden (durch Storno). (S31. v2<br>Absetzdatum + GDA relevant (statusChanged R6) | Durchgeführten Abgabe abgesetzt |
+| Geplante Abgabe nicht abgegeben (durch Fachanwendung) | active                                 | Planeintrag bleibt active, unabhängig von Status der gepanten Abgabe \* | cancelled                                  | NICHT_ABGEGEBEN       | automatisch, wenn alle Einlösungen im MedicationDispense den Status "cancelled" erhalten haben                                                                     | cancelled                                        | ABGESETZT              | Apotheker dokumentiert in der durchgeführten Abgabe, dass der Patient das Medikament in der geplanten Abgabe nicht einnimmt (mit Packungen 0) (entspricht der Leerabgabe).<br>Kann wieder rückgängig gemacht werden (durch Storno) | Durchgeführten Abgabe abgesetzt |
 |                                                       |                                        |                                                                         |                                            |                       |                                                                                                                                                                    | entered-in-error                                 | STORNIERT              | bei fehlerhafter Eingabe                                                                                                                                                                                                                                                                      | Durchgeführte Abgabe verwerfen  |
 
+<br>* solange ein evtl. Behandlungszeitraum nicht überschritten
+
+<br>
 
 
-#### Varianten der (Teil-)Abgabe (durchgeführte Abgabe)
-
-Im Element *MedicationDispense.type* einer durchgeführten Abgabe wird die Art der Abgabe dokumentiert, welche von der Rezeptart (Anzahl Einlösungen) und vom Use Case abhängt.
-
-| Use Case (pro Einlösung)                                   | Geplante Abgabe (MedicationRequest-Status)                   | Beschreibung                                                                                          | Durchgeführte Abgabe (MedicationDispense-Status)                                                             | Beschreibung                                                                                                                                                                               |
-| ---------------------------------------------------------- | ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Vollständige Abgabe (Einzelabgabe)                         | complete, wenn letzte Eilnlösung abgeschlossen, sonst active | geplante Abgabe wird nach erfolgter Dispense automatisch  auf complete gesetzt                        | type: FFC (First Fill - Complete)<br>quantity:  x Packungen<br>status: „complete“                            | Dispense abgeschlossen; Kann nicht mehr verändert werden.                                                                                                                                  |
-| "Besorgerprozess": Medikament von Apotheke bestellt        | active                                                       | geplante Abgabe bleibt active                                                                         | type: FFP (First Fill - Part Fill)<br>quantity:  0 Packungen (wurden  ausgegeben)<br>status: „preparation“   | Medikament bestellt oder Magistrale Zubereitung in Vorbereitung. Geplante Abgabe kann nicht mehr in einer anderen Apotheke abgegeben werden                                                |
-| "Besorgerprozess": bestelltes Medikament wird ausgehändigt | complete                                                     | wenn Dispense complete, dann auch geplante Abgabe complete                                            | type: RFC (Refill - Complete)<br>quantity:  x Packungen<br>status: „complete“                                | Durchgeführte Abgabe abgeschlossen                                                                                                                                                         |
-| 1\. Teilabgabe                                             | active                                                       | geplante Abgabe bleibt active                                                                         | type: FFP (First Fill - Part Fill)<br>quantity:  x Packungen<br>status: „complete“                           | 1\. Teilabgabe                                                                                                                                                                             |
-| Weitere Teilabgabe                                         | active                                                       | geplante Abgabe bleibt active                                                                         | type: RFP (Refill - Part Fill)<br>quantity:  x Packungen<br>status: „complete“                               | weitere Teilabgabe                                                                                                                                                                         |
-| Letzte Teilabgabe                                          | complete                                                     | nach der letzten Teilabgabe wird die geplante Abgabe automatisch auf complete gesetzt                 | type:  RFC (Refill - Complete)<br>quantity:  x Packungen<br>status: „complete“                               | letzte Teilabgabe                                                                                                                                                                          |
-| Leerabgabe beim Einzelabgabe                               | complete                                                     | die geplante Abgabe wird automatisch auf complete gesetzt                                             | type: FFC (First Fill - Complete) bzw. RFC (Refill Complete)<br>quantity:  0 Packungen<br>status: „complete“ | Das Medikament einer geplanten Abgabe wird vom Patienten nicht benötigt und daher als Leerabgabe vermerkt.                                                                                 |
-| Leerabgabe beendet Teilabgaben                             | complete                                                     | nach einer Leerabgabe bei einer  Teilabgabe wird die geplante Abgabe automatisch auf complete gesetzt | type: RFC (Refill - Complete)<br>quantity:  0 Packungen<br>status: „complete“                                | Das Medikament einer geplanten Abgabe wird vom Patienten nicht benötigt und daher als Leerabgabe vermerkt. Dieser Einlösevorgang ist damit beendet.                                        |
-| Notabgabe                                                  |  -                                                           | keine geplante Abgabe vorhanden                                                                       | type: EM (Emergency Supply)<br>quantity:  x Packungen<br>status: „complete“                                  | Das Medikament wurde ohne zugrundeliegende geplante Abgabe abgegeben.<br>Es wird kein Rezept nachgereicht                                                                                  |
-| Rezept wird nachgebracht                                   |  -                                                           | keine geplante Abgabe vorhanden                                                                       | type: SO (Script Owing)<br>quantity:  x Packungen<br>status: „complete“                                      | Medikament wurde abgegeben oder reserviert, das formale Rezept wird später nachgereicht.  Planeintrag + geplante Abgabe für Wechselwirkungsrelevante Medikatmente soll nacherfasst werden. |
-| OTC Abgabe (rezeptfrei)                                    |  -                                                           | keine geplante Abgabe vorhanden                                                                       | type: OTC (hinzufügen)<br>quantity:  x Packungen<br>status: „complete“                                       | Rezeptfreies Medikament wurde abgegeben. Ein Planeintrag für Wechselwirkungsrelevante Medikatmente soll nacherfasst werden.                                                                |
