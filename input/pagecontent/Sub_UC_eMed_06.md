@@ -114,10 +114,11 @@ AtElgaEmedMedicationRequestPlaneintrag
     requester: veranwortlicher GDA  // wird auf Übereinstimmung mit List.source geprüft
     dosageInstruction: Dosierung + Einnahmezeitraum (ab sofort | in der Zukunft)
 ```
+<!-- TODO: muss PZN mit Displayname angegeben werden? oder reicht auch nur pzn. eher nur pzn -> server ergänzt und gibt ausgefülltes zurück -> client kann nochmal prüfen; adapter mach das derzeit so -->
+<!-- wenn software beides angeben kann müsste es ergänzt werden. -->
 
 <!-- TODO: noch offen für AtElgaEmedMedicationRequestPlaneintrag: -->
-<!-- * courseOfTherapyType: Gesamtmuster der Medikamentengabe continuous | acute | seasonal. -->
-<!-- * doNotPerform: Gibt an, ob die Verordnung der Medikation untersagt ist (z.B. bei Allergie). -->
+<!-- ergänzen: * courseOfTherapyType: Gesamtmuster der Medikamentengabe continuous | acute | seasonal. -->
 
 
 ##### Auswirkung der Zugriffsart auf List-Status und Bundles: neuer Medikationsplaneintrag
