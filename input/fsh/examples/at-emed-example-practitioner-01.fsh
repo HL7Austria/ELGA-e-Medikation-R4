@@ -1,5 +1,5 @@
 Instance: At-Emed-Example-Practitioner-01
-InstanceOf: HL7ATCorePractitioner
+InstanceOf: AtElgaCorePractitioner
 Title: "Beispiel Ärztin 01"
 Description: "Beispiel einer behandelnden Ärztin."
 Usage: #example

@@ -78,7 +78,7 @@ Werden mehrere Arzneimittel gleichzeitig verordnet, wird für jedes Arzneimittel
 Arzneimittel mit und ohne PZN einheitlich dokumentiert werden können."
 
 // --- Subject ---
-* subject only Reference(HL7ATCorePatient) 
+* subject only Reference(AtElgaCorePatient) 
 * subject 1..1 MS
 * subject ^short = "Patient, für den die geplante Abgabe ausgestellt werden soll (über Zentralen Patientenindex identifiziert und Teilnehmer von ELGA e-Medikation)."
 
@@ -96,7 +96,7 @@ Keine Verwendung in der geplanten Abgabe."
 
 // -- Requester ---
 * requester 1..1 MS 
-* requester only Reference(HL7ATCorePractitioner or HL7ATCorePractitionerRole or HL7ATCoreOrganization) 
+* requester only Reference(AtElgaCorePractitioner or AtElgaCorePractitionerRole or HL7ATCoreOrganization) 
 * requester ^short = "Der Arzt oder die Ärztin, die die geplante Abgabe erstellt hat und für den Inhalt verantwortlich ist 
 (eindeutig identifiziert über den GDA-Index und berechtigt auf die ELGA e-Medikation des Patienten zuzugreifen)."
 //TODO: HL7ATCore-Practitioner-Profile profilieren."

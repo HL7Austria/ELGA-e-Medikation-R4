@@ -1,5 +1,5 @@
 Instance: At-Emed-Example-Practitioner-02
-InstanceOf: HL7ATCorePractitioner
+InstanceOf: AtElgaCorePractitioner
 Title: "Beispiel Ärztin 02"
 Description: "Beispiel einer ursprünglich eine Medikation verordnenden Ärztin (Fremdmedikation)."
 Usage: #example

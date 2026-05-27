@@ -77,7 +77,7 @@ Der Medikationsplaneintrag kann in weiterer Folge als Grundlage für die Erstell
 * medication[x] ^short = "Das Arzneimittel wird immer in einer contained Medication Ressource dokumentiert, damit Arzneimittel mit und ohne PZN einheitlich dokumentiert werden können."
 
 // --- Subject ---
-* subject only Reference(HL7ATCorePatient) // ag auch eu-patient, evtl nur verschl. bpkh, daten zpi verfügbar, auch mit svnr möglich, speicherfristen
+* subject only Reference(AtElgaCorePatient) // ag auch eu-patient, evtl nur verschl. bpkh, daten zpi verfügbar, auch mit svnr möglich, speicherfristen
 * subject 1..1 MS
 * subject ^short = "Patient, für den der Medikationsplaneintrag ausgestellt werden soll, der über den Zentralen Patientenindex identifizierbar und Teilnehmer von ELGA e-Medikation ist."
 
@@ -92,8 +92,8 @@ Der Medikationsplaneintrag kann in weiterer Folge als Grundlage für die Erstell
 * authoredOn ^short = "Datum der Erstellung des Medikationsplaneintrags."
 
 // -- Requester --- //ag: sptäter organz. weg , practitioner role: name+orga
-* requester 1..1 MS  // zu hinterfragen, ob HL7ATCorePractitionerRole + HL7ATCoreOrganization nötig 
-* requester only Reference(HL7ATCorePractitioner or HL7ATCorePractitionerRole or HL7ATCoreOrganization)
+* requester 1..1 MS  // zu hinterfragen, ob AtElgaCorePractitionerRole + HL7ATCoreOrganization nötig 
+* requester only Reference(AtElgaCorePractitioner or AtElgaCorePractitionerRole or HL7ATCoreOrganization)
 * requester ^short = "Arzt oder Ärztin, die den Medikationsplaneintrag erstellt hat und für den Inhalt verantwortlich ist. Eindeutig identifiziert über den GDA-Index und berechtigt auf die ELGA e-Medikation des Patienten zuzugreifen."
 
 * performer 0..0 

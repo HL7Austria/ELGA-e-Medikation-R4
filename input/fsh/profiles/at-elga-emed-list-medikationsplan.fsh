@@ -28,7 +28,7 @@ Die Reihenfolge der Einträge kann durch den GDA festgelegt werden. Jeder Listen
 * code ^short = "Code, der den Typ der Liste beschreibt."
 
 // * subject 1..1 MS
-// * subject only Reference(HL7ATCorePatient) // TODO ELGA Patient ableiten
+// * subject only Reference(AtElgaCorePatient) // TODO ELGA Patient ableiten
 // * subject ^short = "Patient, für den der Medikationsplan dokumentiert wird, der über den 
 // Zentralen Patientenindex identifizierbar und Teilnehmer von ELGA e-Medikation ist."
 
@@ -39,7 +39,7 @@ Die Reihenfolge der Einträge kann durch den GDA festgelegt werden. Jeder Listen
 // * date ^short = "Letzte Aktualisierung des Medikationsplans."
 
 // * source 1..1 MS
-// * source only Reference(HL7ATCorePractitioner or HL7ATCorePractitionerRole or Device or HL7ATCorePatient)  // TODO ELGA Profile
+// * source only Reference(AtElgaCorePractitioner or AtElgaCorePractitionerRole or Device or AtElgaCorePatient)  // TODO ELGA Profile
 // * source ^short = "Arzt oder Ärztin, die den Medikationsplans erstellt hat und für den Inhalt verantwortlich ist. 
 // Eindeutig identifiziert über den GDA-Index und berechtigt auf die ELGA e-Medikation 
 // des Patienten zuzugreifen. Device nur für initiale Erstellung durch die Fachanwendung. Patient nur zur Änderung der Reihenfolge der Planeinträge oder nachdem er Einträge gelöscht hat."
