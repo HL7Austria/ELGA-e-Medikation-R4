@@ -1,6 +1,6 @@
 @startuml
 
-title Geplante Abgabe aus bestehenden Medikationsplaneinträgen erstellen
+title Geplante Abgabe für bestehende Medikationsplaneinträge erstellen
 
 skinparam borderColor #000000
 skinparam backgroundColor #f5f5f5
@@ -58,90 +58,74 @@ autonumber
 == Medikationsplan abrufen ==
 
 activate GDA_1
-
 ref over GDA_1, eMed_FA : [[interactions.html#sequenzdiagramm-read-to-write-zugriff Read-to-Write-Zugriff]]
 
+
 note over GDA_1
-GDA erhält den aktuellen
-Medikationsplan im 
-Auslieferungs-Collection-Bundle
+GDA erhält Medikationsplan 
+(Auslieferungs-Collection-Bundle)
 end note
 
 == Geplante Abgaben vorbereiten und schreiben ==
 
 GDA_1 -> GDA_1: Geplante Abgabe 1 erstellen
+GDA_1 -> GDA_1: Geplante Abgabe 2 erstellen
 note over GDA_1
-Geplanten Abgaben referenziert
-bestehenden Planeintrag (id)
+Geplante Abgaben referenzieren 
+zugehörige Medikationsplaneinträge.
 end note
 
-GDA_1 -> eMed_FA: POST MedicationRequest\n(GeplanteAbgabe 1)
+GDA_1 -> eMed_FA: e-Med groupIdentifier anfordern
+
+note over GDA_1
+e-Med groupIdentifier für "Rezeptklammer"
+anfordern
+end note
+
 activate eMed_FA
+eMed_FA -> eMed_FA: e-Med groupIdentifier erzeugen
+eMed_FA -->> GDA_1: e-Med groupIdentifier
+deactivate eMed_FA
 
-note over GDA_1
-Geplante Abgabe 1
-an Fachanwendung übermitteln,
-e-Med groupIdentfier ist leer
-end note
-
-alt gültig
-  alt e-Med groupIdentifer nicht vorhanden
-    eMed_FA -> eMed_FA: ergänzt e-Med groupIdentfier
-  end
-  
-  eMed_FA -> eMed_FA: GeplanteAbgabe 1 speichern
-  
-  note over eMed_FA
-  Geplante Abgabe 1 gespeichert
-  end note
-
-  eMed_FA -->> GDA_1: OK (MedicationRequest inkl. e-Med groupIdentfier)
-else ungültig
-  eMed_FA -->> GDA_1: Fehler 
-  deactivate eMed_FA
-end
-
-GDA_1 -> GDA_1: Geplante Abgabe 2 erstellen,\ninkl. e-Med groupIdentfier aus\nGeplanter Abgabe 1
-
-GDA_1 ->> eMed_FA: POST MedicationRequest\n(GeplanteAbgabe 2)
-activate eMed_FA
-note over GDA_1
-Geplante Abgabe 2 (inkl. e-Med groupIdentfier
-von Geplanter Abgabe 1 für "Rezeptklammer") 
-an Fachanwendung übermitteln
-end note
-
-alt gültig
-  alt e-Med groupIdentifer vorhanden
-    eMed_FA -> eMed_FA: e-Med groupIdentifer\nleibt unverändert
-  end
-  eMed_FA -> eMed_FA: GeplanteAbgabe 2 speichern
-  
-  note over eMed_FA
-  Geplante Abgabe 2 gespeichert
-  end note
-
-  eMed_FA -->> GDA_1: OK (MedicationRequest inkl. e-Med groupIdentfier)
-else ungültig
-  eMed_FA -->> GDA_1: Fehler 
-  deactivate eMed_FA
-end
+GDA_1 -> GDA_1: e-Med groupIdentifier zu\nGeplanten Abgaben 1 + 2\nhinzufügen
+GDA_1 -> GDA_1: Transaction Bundle mit\n Geplanten Abgaben 1 + 2 erstellen
 
 GDA_1 ->> e_Rezept: Trigger e-Rezept erstellen
 note over GDA_1
-Erstellung eines e-Rezepts auslösen,
-welches die Information der beiden
-geplanten Abgaben beinhaltet.
+Erstellung e-Rezept auslösen
 end note
 activate e_Rezept
 
-alt gültig
+alt Fehler bei Erstellung e_Rezept
+
+  e_Rezept -->> GDA_1: Fehler 
+
+else e_Rezept erfolgreich erstellt
   e_Rezept -> e_Rezept: e-Rezept erstellen
   e_Rezept -->> GDA_1: OK
-
-else ungültig
-  e_Rezept -->> GDA_1: Fehler
   deactivate e_Rezept
+  GDA_1 ->> eMed_FA: POST Transaction Bundle GeplAbgabe
+  activate eMed_FA
+  note over GDA_1
+  Transaction Bundle mit Geplanten
+  Abgaben an Fachanwendung übermitteln
+  end note
+  
+  
+eMed_FA -> eMed_FA: Transaction Bundle + Inhalt prüfen
+alt gültig
+  eMed_FA -> eMed_FA: GeplanteAbgaben 1 + 2 speichern
+  
+  note over eMed_FA
+  Geplante Abgabe 1 + 2 gespeichert
+  end note
+
+  eMed_FA -->> GDA_1: OK
+  else ungültig
+    eMed_FA -->> GDA_1: Fehler 
+  end
+
 end
+
 
 @enduml
