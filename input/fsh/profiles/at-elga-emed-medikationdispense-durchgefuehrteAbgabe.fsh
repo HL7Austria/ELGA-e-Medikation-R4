@@ -4,7 +4,7 @@ Id: at-elga-emed-medikationdispense-durchgefuehrteAbgabe
 Title: "AT ELGA e-Medikation MedicationDispense Durchgeführte Abgabe"
 Description: "Dokumentiert eine durchgeführte Abgabe eines Arzneimittels (\"MedicationDispense\"-Ressource). 
 In der durchgeführten Abgabe können Abweichungen hinsichtlich des Medikaments und dessen Dosierung dokumentiert werden.
-Sofern eine zugehörige geplante Abgabe vorliegt, muss diese referenziert werden. Eine mögliche Substitution des Medikaments ist implizit, durch die Referenz auf die zugehörige geplante Abgabe, ersichtlich."
+Sofern eine zugehörige geplante Abgabe vorliegt, muss diese mit dem zugehörigen Planeintrag referenziert werden. Eine mögliche Substitution des Medikaments ist implizit, durch die Referenz auf die zugehörige geplante Abgabe, ersichtlich."
 * . ^short = "Durchgeführte Abgabe eines Arzneimittels mit oder ohne Bezug zur geplanten Abgabe. Verwendet R5 Backport Extensions."
 
 // TODO Check CDA
@@ -53,7 +53,7 @@ Sofern eine zugehörige geplante Abgabe vorliegt, muss diese referenziert werden
 Arzneimittel mit und ohne PZN einheitlich dokumentiert werden können."
 
 // --- Subject ---
-* subject only Reference(HL7ATCorePatient) 
+* subject only Reference(AtElgaCorePatient) 
 * subject 1..1 MS
 * subject ^short = "Patient, für den die durchgeführte Abgabe ausgestellt wird (über Zentralen Patientenindex identifiziert und Teilnehmer von ELGA e-Medikation)."
 
@@ -68,7 +68,7 @@ Arzneimittel mit und ohne PZN einheitlich dokumentiert werden können."
 * performer.function 0..0 
 * performer.function ^short = "Rolle der Person, die die Abgabe durchgeführt hat. Keine Verwendung in der durchgeführten Abgabe."
 * performer.actor 1..1 MS
-* performer.actor only Reference(HL7ATCorePractitioner or HL7ATCorePractitionerRole or HL7ATCoreOrganization)
+* performer.actor only Reference(AtElgaCorePractitioner or AtElgaCorePractitionerRole or HL7ATCoreOrganization)
 * performer.actor ^short = "Refrenz auf Practitioner, PractitionerRole, Organization, 
 der/die die durchgeführte Abgabe erstellt hat und für den Inhalt verantwortlich ist (identifiziert über den GDA-Index und berechtigt 
 auf die ELGA e-Medikation des Patienten zuzugreifen)."
@@ -76,8 +76,8 @@ auf die ELGA e-Medikation des Patienten zuzugreifen)."
 * location 0..0 
 * location ^short = "Ort der Abgabe (Referenz auf Location Ressource). Keine Verwendung in durchgeführter Abgabe."
 
-* authorizingPrescription 0..1 MS    // TODO: Technisch prüfen?
-* authorizingPrescription ^short = "Verpflichtende Referenz auf zugehörige geplante Abgabe (MedicationRequest), sofern diese existiert."
+* authorizingPrescription 0..2 MS    // TODO: Slicing nötig? Prüfung ob Planeintrag und 1 geplante Abgabe referenziert werden
+* authorizingPrescription ^short = "Referenz auf zugehörige geplante Abgabe (MedicationRequest), sofern diese existiert bzw. Planeintrag (MedicationRequest)."
 // zu prüfen (gemäß CDA): 'Ohne Verordnungsbezug kann nur die Abgabe jener OTC-Präparate in der e-Medikation 
 // gespeichert werden, die auch wechselwirkungsrelevant sind.'"
 
@@ -139,7 +139,7 @@ Der Apotheker überprüft die Medikamentenverordnung vor der Abgabe und passt di
 
 // * substitution.responsibleParty 0..1 MS 
 // * substitution.responsibleParty ^short = "Für die Subistution Verantwortlicher."
-// * substitution.responsibleParty only Reference(HL7ATCorePractitioner or HL7ATCorePractitionerRole)
+// * substitution.responsibleParty only Reference(AtElgaCorePractitioner or AtElgaCorePractitionerRole)
 
 * detectedIssue 0..0
 * detectedIssue ^short = "Referenenz auf DetectedIssue Ressource. Keine Verwendung in durchgeführter Abgabe."
