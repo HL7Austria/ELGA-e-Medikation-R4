@@ -1,15 +1,24 @@
 {% include styleheader.md %}
 
-<!-- Zugriffsarten auf den Medikationsplan -->
+<!-- Transaktionen -->
 
-Im Folgenden werden standardisierte Interaktionen für den lesenden und schreibenden Zugriff auf den Medikationsplan eines Patienten bzw. einer Patientin erläutert, die für alle technischen Use Cases relevant sind.
 
-### Read-only-Zugriff
+
+Im Folgenden werden standardisierte Interaktionen für den lesenden und schreibenden Zugriff auf die e-Medikation eines Patienten bzw. einer Patientin erläutert, die für alle technischen Use Cases relevant sind.
+
+<!-- TODO: Grafik einbauen -->
+<br>
+[![diagram](eMed_Interactions.png){: style="width: 60%"}](eMed_Interactions.png)
+<br>
+
+### Medikationsplan
+
+#### Read-only-Zugriff
 
 Beim Read-only-Zugriff stellt die Fachanwendung **die aktuelle oder historische Versionen** des Medikationsplans (persistierte Collection Bundles inkl. aller referenzierten Ressourcen) **unverändert** bereit.
 
 
-#### Ablauf
+##### Ablauf
 
 1. Der GDA führt ein **GET** auf das Collection Bundle aus, das den Medikationsplan mit allen zugehörigen relevanten Ressourcen enthält.
 2. Die Fachanwendung prüft, ob ein Medikationsplan für den/die Patient:in existiert.
@@ -22,7 +31,7 @@ Das **Collection Bundle** enthält:<br>
 Beim Read-only-Zugriff erfolgt **keine Veränderung** von Flags, Status oder Inhalten durch die Fachanwendung.<br>
 Der Zugriff dient ausschließlich der Anzeige bzw. Informationsabfrage von aktuellen bzw. historischen Planversionen.
 
-#### Sequenzdiagramm Read-only-Zugriff
+##### Sequenzdiagramm Read-only-Zugriff
 <br>
 <div>{% include_relative plantuml/diagram_read.svg %}</div>
 <br>
@@ -32,18 +41,17 @@ Der Zugriff dient ausschließlich der Anzeige bzw. Informationsabfrage von aktue
 * **Alle Planversionen** mit dem Suchparameter Patient abrufen: GET [base]/Bundle?type=collection&_sort=-timestamp&list.subject={bPK-GH}
 * Abfrage aller **historischen Medikationsplan-Versionen** eines Patienten, die nach dem angegebenen Datum gespeichert wurden und Plan-Einträge enthalten, die als **storniert, beendet oder abgesetzt** gekennzeichnet sind: GET [base]/Bundle?type=collection&_sort=-timestamp&timestamp=ge2025-01-01&list.subject={bPK-GH}&list.entry.flag=removed  (TODO query prüfen)
 
-### Read-to-Write-Zugriff
+#### Read-to-Write-Zugriff
 
 Der Read-to-Write-Zugriff dient dem **Abruf des Medikationsplans und der Vorbereitung einer nachfolgenden Änderung**.
 
-#### Ablauf
+##### Ablauf
 
 1. Der GDA führt ein [POST $readtowrite](interactions.html#custom-operations) auf das Collection Bundle aus, das den Medikationsplan mit allen zugehörigen relevanten Ressourcen enthält.
 2. Die Fachanwendung prüft, ob ein Medikationsplan für den/die Patient:in existiert.
 3. Ist **kein Medikationsplan vorhanden**, wird dieser erstellt (siehe [Sub_UC_06_01 - Initial erstellter Medikationsplan](Sub_UC_eMed_06.html#sub_uc_06_01---initial-erstellter-medikationsplan)) und 
 4. ein leerer Medikationsplan mit dem emptyReason *notstarted* wird zurückgeliefert.
 5. Existiert bereits ein Medikationsplan (d.h. es wurde bereits ein Collection Bundle persistiert), wird von der Fachanwendung aus diesem ein **Collection Bundle zur Auslieferung** bereitgestellt:<br>
-* mit einem neuen oder bereits temporär gespeicherten **List.identifier** (wird von der Fachanwendung zur späteren Integritätsprüfung beim Schreibvorgang verwaltet)<br>
 * Die Inhalte werden von der Fachanwendung wie folgt aufbereitet:<br>
     * Falls der vorherige GDA neue Medikationsplaneinträge hinzugefügt oder bestehende geändert hat (List.entry.flag haben den Wert **new** oder **changed**), werden diese auf **unchanged** gesetzt.<br>
     * Falls der vorherige GDA Medikationsplaneinträge beendet hat (deren List.entry.flag haben den Wert **removed**), werden diese Einträge aus der Liste **entfernt**.<br>
@@ -51,30 +59,28 @@ Der Read-to-Write-Zugriff dient dem **Abruf des Medikationsplans und der Vorbere
     * Einträge mit abgelaufenem Behandlungszeitraum bleiben erhalten.<br>
     <!-- * fachlich zu prüfen (TODO): Einträge mit abgelaufenem Behandlungszeitraum und courseOfTherapyType **acute** automatisch entfernen -->
 6. Die Fachanwendung liefert das **Collection Bundle** an den GDA:<br>
+* inkl. ETag für [optimistisches Locking](https://hl7.org/fhir/http.html#concurrency)
 * inkl. List und aller referenzierten Ressourcen (inline)<br>
-* ergänzt um den List.identifier<br>
 * Ziel ist ein neutraler, weiterbearbeitbarer Zustand für den abrufenden GDA<br>
 7. Der GDA bearbeitet den Medikationsplan (er fügt Einträge hinzu, ändert bestehende oder entfernt diese).
 
-Der temporär gespeicherte List.identifier für die Integritätsprüfung beim Schreibvorgang wird von der Fachanwendung separat von den FHIR Ressourcen verwaltet.
 
-
-#### Custom Operations
+##### Custom Operations
 
 [$readtowrite](OperationDefinition-AtEmed.List.Readtowrite.html)
 
 
-#### Sequenzdiagramm Read-to-Write-Zugriff
+##### Sequenzdiagramm Read-to-Write-Zugriff
 <br>
 <div>{% include_relative plantuml/diagram_readtowrite.svg %}</div>
 <br>
 
 
-### Write-Zugriff
+#### Write-Zugriff
 
 Der Write-Zugriff ist eine eigenständige Operation, die ausschließlich im Kontext eines **zuvor ausgeführten** [Read-to-Write-Zugriffs](interactions.html#read-to-write-zugriff) erfolgen darf.
 
-#### Ablauf
+##### Ablauf
 
 1. Der GDA übermittelt via [POST $write](interactions.html#custom-operations-1) den aktualisierten Medikationsplan als **Transaction Bundle**:
 * alle **neuen und geänderten und zu entfernenden Ressourcen** sind **inline** im Bundle enthalten,
@@ -89,25 +95,26 @@ Es muss erneut ein Read-to-Write ausgeführt werden und die Aktualisierungen üb
 6. Der GDA erhält eine Meldung, dass der Medikationsplan erfolgreich aktualisiert wurde.
 
 
-#### Custom Operations
+##### Custom Operations
 
 [$write](OperationDefinition-AtEmed.List.Write.html)
 
 
-#### Sequenzdiagramm Write-Zugriff
+##### Sequenzdiagramm Write-Zugriff
 <br>
 <div>{% include_relative plantuml/diagram_write.svg %}</div>
 <br>
 
 
-#### Diagramm Read-to-Write- und Write-Logik
+##### Diagramm Read-to-Write- und Write-Logik
 <br>
 [![diagram](class_diagram_readtowrite.drawio.svg){: style="width: 80%"}](class_diagram_readtowrite.drawio.svg)
 
+<!-- TODO: list identifier entfernen wg ETag -->
 
-#### Abgelehnter Write-Zugriff
+##### Abgelehnter Write-Zugriff
 
-#### Ablauf
+##### Ablauf
 
 
 1. **GDA 1** möchte den Medikationsplan seiner Patientin bearbeiten und führt ein [POST $readtowrite](interactions.html#custom-operations) auf das Collection Bundle des Medikationsplans aus.
@@ -132,8 +139,9 @@ Es muss erneut ein Read-to-Write ausgeführt werden und die Aktualisierungen üb
 20. GDA 1 erhält eine **Fehlermeldung** und muss ein erneutes Read-to-Write ausführen, welches das Generieren eines zur Auslieferung bereitgestellten temporären Collection Bundles inkl. neuem List.identifiers auslöst.
 
 
-#### Sequenzdiagramm Abgelehnter Write-Zugriff
+##### Sequenzdiagramm Abgelehnter Write-Zugriff
 <br>
 <div>{% include_relative plantuml/diagram_write_error.svg %}</div>
 <br>
+
 
