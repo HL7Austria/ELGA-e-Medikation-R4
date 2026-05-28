@@ -1,5 +1,5 @@
 @startuml
-title Read-only-Zugriff
+title Plan-History-Read
 skinparam borderColor #000000
 skinparam backgroundColor #f5f5f5
 skinparam shadowing false
@@ -60,16 +60,16 @@ autonumber
 
 == Medikationsplan lesen ==
 
-GDA_1 ->> eMed_FA: GET CollectionBundle
+GDA_1 ->> eMed_FA: GET Medikationsplan-Collection-Bundle
 activate GDA_1
 
 activate eMed_FA
-eMed_FA -> eMed_FA: Prüfung auf bestehenden\nMedikationsplan
+eMed_FA -> eMed_FA: Prüfung auf bestehendes\nMedikationsplan-Collection-Bundle
 
 alt kein Medikationsplan vorhanden
   eMed_FA -->> GDA_1: leeres Ergebnis
 else Medikationsplan vorhanden
-  eMed_FA -->> GDA_1: CollectionBundle (AtEmedBundleMedikationsplan)
+  eMed_FA -->> GDA_1: Medikationsplan-Collection-Bundle
   deactivate GDA_1
   deactivate eMed_FA
 end

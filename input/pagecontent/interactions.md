@@ -2,38 +2,35 @@
 
 <!-- Transaktionen -->
 
-
-
 Im Folgenden werden standardisierte Interaktionen für den lesenden und schreibenden Zugriff auf die e-Medikation eines Patienten bzw. einer Patientin erläutert, die für alle technischen Use Cases relevant sind.
 
-<!-- TODO: Grafik einbauen -->
 <br>
 [![diagram](eMed_Interactions.png){: style="width: 60%"}](eMed_Interactions.png)
 <br>
 
 ### Medikationsplan
 
-#### Read-only-Zugriff
+#### Plan-History-Read
 
-Beim Read-only-Zugriff stellt die Fachanwendung **die aktuelle oder historische Versionen** des Medikationsplans (persistierte Collection Bundles inkl. aller referenzierten Ressourcen) **unverändert** bereit.
+Beim Plan-History-Read stellt die Fachanwendung **die aktuelle oder historische Version(en)** des Medikationsplans ([persistiertes Medikationsplan-Collection-Bundle](design_choices.html#medikationsplan-collection-bundle-zur-persistierung) inkl. aller referenzierten Ressourcen) **unverändert** bereit.
 
 
 ##### Ablauf
 
-1. Der GDA führt ein **GET** auf das Collection Bundle aus, das den Medikationsplan mit allen zugehörigen relevanten Ressourcen enthält.
+1. Der GDA führt ein **GET** auf das [persistierte Medikationsplan-Collection-Bundle](design_choices.html#medikationsplan-collection-bundle-zur-persistierung) aus, das den Medikationsplan mit allen zugehörigen relevanten Ressourcen enthält.
 2. Die Fachanwendung prüft, ob ein Medikationsplan für den/die Patient:in existiert.
 3. Ist **kein Medikationsplan vorhanden**, wird ein **leeres Ergebnis** zurückgegeben.
-4. Ist ein Medikationsplan vorhanden, wird das zuletzt gespeicherte Collection Bundle zurückgeliefert. <br>
+4. Ist ein Medikationsplan vorhanden, wird das zuletzt [persistierte Medikationsplan-Collection-Bundle](design_choices.html#medikationsplan-collection-bundle-zur-persistierung) zurückgeliefert. <br>
 Das **Collection Bundle** enthält:<br>
 * die List-Ressource des Medikationsplans <br>
 * alle referenzierten Ressourcen (z. B. MedicationRequest, Patient, Practitioner) vollständig (inline)
 
-Beim Read-only-Zugriff erfolgt **keine Veränderung** von Flags, Status oder Inhalten durch die Fachanwendung.<br>
+Beim Plan-History-Read erfolgt **keine Veränderung** von Flags, Status oder Inhalten durch die Fachanwendung.<br>
 Der Zugriff dient ausschließlich der Anzeige bzw. Informationsabfrage von aktuellen bzw. historischen Planversionen.
 
-##### Sequenzdiagramm Read-only-Zugriff
+##### Sequenzdiagramm Plan-History-Read
 <br>
-<div>{% include_relative plantuml/diagram_read.svg %}</div>
+<div>{% include_relative plantuml/diagram_plan-history-read.svg %}</div>
 <br>
 
 **Beispiele für Zugriffe mittels Suchparameter:**
