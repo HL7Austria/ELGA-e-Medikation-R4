@@ -26,10 +26,10 @@ Abhängig vom List.entry.flag kann der Medikationsplaneintrag nur eingeschränkt
 Version des Medikationsplans inklusive aller relevanten Ressourcen (List, MedicationRequests, Patient, Practitioners) wird durch eine *Bundle*-Ressource vom Typ Collection abgebildet.
 Dient einerseits der 1. Persistierung nach einem Write-Zugriff und 2. der Auslieferung des Medikationsplans bei einem Read-to-Write-Zugriff an den GDA.
 
-##### Medikationsplan-Collection-Bundle zur Persistierung nach einem Write-Zugriff
+##### Persistiertes Medikationsplan-Collection-Bundle
 Nachdem die Fachanwendung beim [Write-Zugriff](interactions.html#write-zugriff), mittels [Medikationsplan-Transaction-Bundle](design_choices.html#medikationsplan-transaction-bundle-atemedbundlemedikationsplantx-transaction-bundle) alle Ressourcen aktualisiert hat, erstellt diese ein *Medikationsplan-Collection-Bundle* zur **Persistierung**, welches den vom GDA übermittelten Medikationsplan **unverändert** (keine Statusänderungen oder Entfernung entsprechend markierten Planeinträgen) abbildet und die Gesamtheit aller referenzierten Ressourcen enthält. Dies stellt sicher, dass in den historischen Versionen des Medikationsplans alle relevanten Informationen verfügbar sind.
 
-##### Medikationsplan-Collection-Bundle zur Auslieferung des Medikationsplans bei einem Read-to-Write-Zugriff
+##### Auslieferungs-Medikationsplan-Collection-Bundle
 Bei einem [Read-to-Write-Zugriff](interactions.html#read-to-write-zugriff) wird von der Fachanwendung ein **Auslieferungs-Bundle** bereitgestellt und wie folgt **angepasst**: Es enthält den temporären List.identifier zur späteren Integritätsprüfung beim Schreibvorgang.
 Neue oder gänderte Planeinträge erhalten das List.entry.flag unchanged, zum Entfernen markierte Planeinträge (mit List.entry.flag *removed*) werden aus dem Medikationsplan entfernt.
 Wurden alle Planeinträge entfernt, erhält der Medikationsplan das List.emptyReason *nilknown*.
