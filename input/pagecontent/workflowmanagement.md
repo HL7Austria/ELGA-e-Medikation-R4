@@ -22,7 +22,7 @@ Das *flag*-Element eines Entries der List-Ressource beschreibt die **Art der Än
 
 #### Auswirkung der Zugriffsart auf List.entry.flags und Bundle-Inhalte
 
-Je nach Zugriffsart (Read-only, Read-to-Write oder Write) ergeben sich unterschiedliche Auswirkungen auf die Verarbeitung dieser Status sowie auf die enthaltenen Ressourcen in den jeweiligen Bundles (siehe [Zugriffsarten auf den Medikationsplan](interactions.html#zugriffsarten-auf-den-medikationsplan)).
+Je nach Zugriffsart (Read-only, Read-to-Write oder Write) ergeben sich unterschiedliche Auswirkungen auf die Verarbeitung dieser Status sowie auf die enthaltenen Ressourcen in den jeweiligen Bundles (siehe [Transaktionen](interactions.html)).
 <br>
 <br>
 
