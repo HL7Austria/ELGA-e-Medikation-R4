@@ -64,9 +64,9 @@ GDA_1 ->> eMed_FA: POST $readtowrite
 
 activate eMed_FA
 eMed_FA -> eMed_FA: Annahme: Prüfung auf bestehenden\nMedikationsplan erfolgreich
-eMed_FA -> eMed_FA: Collection Bundle zur Auslieferung erstellt\n(inkl. temporärem List.identifier "123")
+eMed_FA -> eMed_FA: Collection Bundle zur Auslieferung erstellt
 
-eMed_FA -->> GDA_1: Collection Bundle + List.identifier "123"
+eMed_FA -->> GDA_1: Collection Bundle + ETag "123"
 deactivate eMed_FA
 
 GDA_1 -> GDA_1: Einträge hinzufügen/ändern/entfernen
@@ -82,9 +82,9 @@ activate GDA_2
 
 activate eMed_FA
 eMed_FA -> eMed_FA: Annahme: Prüfung auf bestehenden\nMedikationsplan erfolgreich
-eMed_FA -> eMed_FA: Collection Bundle zur Auslieferung erstellt\n(inkl. temporärem List.identifier "123")
+eMed_FA -> eMed_FA: Collection Bundle zur Auslieferung erstellt
 
-eMed_FA -->> GDA_2: Collection Bundle + List.identifier "123"
+eMed_FA -->> GDA_2: Collection Bundle + ETag "123"
 deactivate eMed_FA
 
 GDA_2 -> GDA_2: Einträge hinzufügen/ändern/entfernen
@@ -95,13 +95,12 @@ end note
 
 == Write durch GDA 2 ==
 
-GDA_2 ->> eMed_FA: POST $write (Transaction Bundle + List.identifier "123")
+GDA_2 ->> eMed_FA: POST $write (Transaction Bundle + ETag "123")
 
 activate eMed_FA
-eMed_FA -> eMed_FA: List.identifier "123" im Transaction Bundle ==\ntemporär gespeicherter List.identifier "123"
+eMed_FA -> eMed_FA: ETag "123" im Header ==\nETag der Fachanwendung "123"
 eMed_FA -> eMed_FA: Validierung des neuen Plans\n(keine unzulässigen Zustandsübergänge)
-eMed_FA -> eMed_FA: Persistiert neue Version des\nMedikationsplans mit List.identifier "123"
-eMed_FA -> eMed_FA: Löscht temporären List.identifier "123"
+eMed_FA -> eMed_FA: Persistiert neue Version des\nMedikationsplans
 eMed_FA -->> GDA_2: OK 
 deactivate GDA_2
 
@@ -113,10 +112,10 @@ deactivate eMed_FA
 
 == Write-Error für GDA 1 ==
 
-GDA_1 ->> eMed_FA: POST $write (Transaction Bundle + List.identifier "123")
+GDA_1 ->> eMed_FA: POST $write (Transaction Bundle + ETag "123")
 
 activate eMed_FA
-eMed_FA -> eMed_FA: List.identifier "123" im TransactionBundle stimmt nicht\nmit temporär gespeicherten List.identifier überein\n(kein Eintrag vorhanden)
+eMed_FA -> eMed_FA: ETag "123" im Header stimmt nicht\nmit ETag der Fachanwendung überein
 eMed_FA -> eMed_FA: Fachanwendung lehnt Speichern ab
 eMed_FA -->> GDA_1: Fehler (Konflikt)
 deactivate GDA_1

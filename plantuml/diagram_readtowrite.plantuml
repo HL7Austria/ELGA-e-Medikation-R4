@@ -77,8 +77,8 @@ alt kein Medikationsplan vorhanden
   eMed_FA -->> GDA_1: Leerer Medikationsplan
 
 else Medikationsplan vorhanden
-  eMed_FA -> eMed_FA: Stellt Collection Bundle zur Auslieferung bereit:\n(inkl. temporärem List.identifier)\nBedingung für Read-to-Write Collection Bundle:\n- new|changed → unchanged\n- removed → entfernen
-  eMed_FA -->> GDA_1: AtElgaEmedBundleMedikationsplan\n(Collection Bundle + List.identifier)
+  eMed_FA -> eMed_FA: Stellt Collection Bundle zur Auslieferung bereit:\nBedingung für Read-to-Write Collection Bundle:\n- new|changed → unchanged\n- removed → entfernen
+  eMed_FA -->> GDA_1: AtElgaEmedBundleMedikationsplan\n(Collection Bundle + ETag für optimistisches Locking)
   deactivate eMed_FA
 end
 

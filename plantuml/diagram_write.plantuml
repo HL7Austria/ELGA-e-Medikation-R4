@@ -67,10 +67,10 @@ end note
 
 == Medikationsplan schreiben ==
 
-GDA_1 ->> eMed_FA: POST $write AtElgaEmedBundleMedikationsplanTx\n(Transaction Bundle + List.identifier)
+GDA_1 ->> eMed_FA: POST $write Medikationsplan-Transaction-Bundle + ETag
 
 activate eMed_FA
-eMed_FA -> eMed_FA: List.identifier im TransactionBundle ==\ntemporärer List.identifier?
+eMed_FA -> eMed_FA: ETag im Header ==\nETag der Fachanwendung?
 
 alt gültig 
   eMed_FA -> eMed_FA: Validierung des neuen Plans\n(keine unzulässigen Zustandsübergänge)
