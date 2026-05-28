@@ -79,7 +79,7 @@ pages:
   # obligations.md:
   #   title: Obligations
   interactions.md:
-    title: Zugriffsarten auf den Medikationsplan
+    title: Transaktionen
   overview_use_case.md:
     # title: Überblick & Anwendungsbeispiel
     patient_journey.md:
@@ -130,7 +130,7 @@ menu:
     # Dosierschemata: dosaging.html
     Workflowmanagement: workflowmanagement.html
     # Obligations: obligations.html
-    Zugriffsarten auf den Medikationsplan: interactions.html
+    Transaktionen: interactions.html
   Anwendungsfälle:
     # Überblick: overview_use_case.html
     Patient Journey: patient_journey.html
