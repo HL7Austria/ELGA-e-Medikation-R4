@@ -17,7 +17,7 @@ Das *flag*-Element eines Entries der List-Ressource beschreibt die **Art der Än
 | **Removed**  | Bestehender Planeintrag wird entfernt |
 
 <br>
-<div>{% include_relative plantuml/stateDiagram_list_flag.svg %}</div>
+<div>{% include_relative plantuml/workflow_list_flag.svg %}</div>
 <br>
 
 #### Auswirkung der Zugriffsart auf List.entry.flags und Bundle-Inhalte
@@ -51,7 +51,7 @@ Im Kontext des Medikationsplans kann dieses Element folgende Statuswerte annehme
 | **entered-in-error** | Planeintrag ist storniert: Kennzeichnung eines fehlerhaften Planeintrages. Der Planeintrag wird damit abgeschlossen. |
 
 <br>
-<div>{% include_relative plantuml/stateDiagram_mr_status_planeintrag.svg %}</div>
+<div>{% include_relative plantuml/workflow_mr_status_planeintrag.svg %}</div>
 <br>
 
 ##### Konsistenzregeln zwischen List.entry.flags und MedicationRequest-Status
@@ -165,7 +165,7 @@ Eine [Geplante Abgabe](design_choices.html#geplante-abgabe-atelgaemedmedicationr
 <!-- TODO: Status abgelaufen ist nur über das Datum und die Rezeptart ersichtlich? -->
 
 <br>
-<div>{% include_relative plantuml/stateDiagram_mr_status_geplante_abgabe.svg %}</div>
+<div>{% include_relative plantuml/workflow_mr_status_geplanteabgabe.svg %}</div>
 <br>
 
 #### Gültigkeit von Geplanten Abgaben basierend auf der Rezeptart
@@ -198,7 +198,7 @@ Eine [Durchgeführte Abgabe](design_choices.html#durchgeführte-abgabe-AtElgaEme
 
 
 <br>
-<div>{% include_relative plantuml/stateDiagram_md_status_durchgefuehrteAbgabe.svg %}</div>
+<div>{% include_relative plantuml/workflow_md_status_durchgefuehrteabgabe.svg %}</div>
 <br>
 
 

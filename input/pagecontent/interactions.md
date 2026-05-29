@@ -30,7 +30,7 @@ Der Zugriff dient ausschließlich der Anzeige bzw. Informationsabfrage von aktue
 
 ##### Sequenzdiagramm Plan-History-Read
 <br>
-<div>{% include_relative plantuml/diagram_plan-history-read.svg %}</div>
+<div>{% include_relative plantuml/interaction_planhistoryread.svg %}</div>
 <br>
 
 **Beispiele für Zugriffe mittels Suchparameter:**
@@ -69,7 +69,7 @@ Plan-Read dient dem **Abruf des Medikationsplans und der Vorbereitung einer nach
 
 ##### Sequenzdiagramm Plan-Read
 <br>
-<div>{% include_relative plantuml/diagram_plan-read.svg %}</div>
+<div>{% include_relative plantuml/interaction_planread.svg %}</div>
 <br>
 
 
@@ -99,7 +99,7 @@ Es muss erneut ein Plan-Read ausgeführt werden und die Aktualisierungen überno
 
 ##### Sequenzdiagramm Plan-Write
 <br>
-<div>{% include_relative plantuml/diagram_plan-write.svg %}</div>
+<div>{% include_relative plantuml/interaction_planwrite.svg %}</div>
 <br>
 
 
@@ -137,7 +137,7 @@ Es muss erneut ein Plan-Read ausgeführt werden und die Aktualisierungen überno
 
 ##### Sequenzdiagramm Abgelehntes Plan-Write
 <br>
-<div>{% include_relative plantuml/diagram_plan-write_error.svg %}</div>
+<div>{% include_relative plantuml/interaction_planwrite_error.svg %}</div>
 <br>
 
 
