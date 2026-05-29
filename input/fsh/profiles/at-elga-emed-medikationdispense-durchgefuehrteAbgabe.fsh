@@ -1,6 +1,6 @@
 Profile: AtElgaEmedMedicationDispenseDurchgefuehrteAbgabe
 Parent: MedicationDispense
-Id: at-elga-emed-medikationdispense-durchgefuehrteAbgabe
+Id: at-elga-emed-medikationdispense-durchgefuehrteabgabe
 Title: "AT ELGA e-Medikation MedicationDispense Durchgeführte Abgabe"
 Description: "Dokumentiert eine durchgeführte Abgabe eines Arzneimittels (\"MedicationDispense\"-Ressource). 
 In der durchgeführten Abgabe können Abweichungen hinsichtlich des Medikaments und dessen Dosierung dokumentiert werden.
@@ -76,8 +76,25 @@ auf die ELGA e-Medikation des Patienten zuzugreifen)."
 * location 0..0 
 * location ^short = "Ort der Abgabe (Referenz auf Location Ressource). Keine Verwendung in durchgeführter Abgabe."
 
-* authorizingPrescription 0..2 MS    // TODO: Slicing nötig? Prüfung ob Planeintrag und 1 geplante Abgabe referenziert werden
-* authorizingPrescription ^short = "Referenz auf zugehörige geplante Abgabe (MedicationRequest), sofern diese existiert bzw. Planeintrag (MedicationRequest)."
+
+// Slicing authorizingPrescription:  
+// - authorizingPrescription zur Unterscheidung der MedicationRequest-Referenzen: Planeintrag und geplante Abgabe
+* authorizingPrescription ^slicing.discriminator[+].type = #value
+* authorizingPrescription ^slicing.discriminator[=].path = "reference.ofType(MedicationRequest).category"
+* authorizingPrescription ^slicing.rules = #closed
+* authorizingPrescription ^slicing.ordered = false
+
+* authorizingPrescription contains   
+    geplanteAbgabe 0..1 MS and
+    planeintrag 0..1 MS
+
+* authorizingPrescription[geplanteAbgabe] only Reference(AtElgaEmedMedicationRequestGeplanteAbgabe)
+* authorizingPrescription[planeintrag] only Reference(AtElgaEmedMedicationRequestPlaneintrag)
+* authorizingPrescription ^short = "Referenz auf zugehörige geplante Abgabe (MedicationRequest), sofern diese existiert bzw. 
+Planeintrag (MedicationRequest). Es muss nicht zwingend eine geplante Abgabe referenziert werden, da es auch durchgeführte 
+Abgaben ohne geplante Abgabe geben kann (z.B. Notfall oder OTC-Medikation)."
+// TODO Invariante oder Ergänzung durch Fachanwendung: Wenn geplante Abgabe referenziert, muss auch auf den Planeintrag referenziert werden. 
+
 // zu prüfen (gemäß CDA): 'Ohne Verordnungsbezug kann nur die Abgabe jener OTC-Präparate in der e-Medikation 
 // gespeichert werden, die auch wechselwirkungsrelevant sind.'"
 

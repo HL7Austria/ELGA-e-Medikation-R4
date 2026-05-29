@@ -28,7 +28,7 @@ Usage: #example
 * subject = Reference(At-Emed-Example-Patient-01)
 * performer.actor = Reference(PractitionerRole/pharmacist1)
 * type = #FF
-* authorizingPrescription = Reference(MedicationRequest/400C-prescription-cefuroxime-singleline)
+* authorizingPrescription[geplanteAbgabe] = Reference(MedicationRequest/400C-prescription-cefuroxime-singleline)
 * quantity = 1 '1'
 //* daysSupply = 3 'd' "day(s)"
 * whenHandedOver = "2026-02-27T10:20:00+00:00"
