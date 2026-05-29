@@ -1,18 +1,18 @@
-Instance: AtEmedListReadToWrite
+Instance: AtEmedListPlanRead
 InstanceOf: OperationDefinition
-Title: "e-Med Operation für Read-to-Write"
-Description: "Die $readtowrite Operation wird aufgerufen, wenn ein Medikationsplan mit der Intention zu schreiben gelesen wird."
+Title: "e-Med Operation für Plan-Read"
+Description: "Die $plan-read Operation wird aufgerufen, wenn ein Medikationsplan mit der Intention zu schreiben gelesen wird."
 Usage: #definition
 
-* id = "AtEmed.List.Readtowrite"
-* name = "AtEmed_List_Readtowrite"
+* id = "AtEmed.List.PlanRead"
+* name = "AtEmed_List_PlanRead"
 * status = #draft
 * kind = #operation
 * affectsState = true  // Ändert den Zustand am Server; zu klären Version-ID
 * system = true       // Aufruf erfolgt auf Systemebene, wenn noch kein Plan erstellt wurde 
 * type = true   // Aufruf auf Typeebene (Ressourcentyp), wenn bereits ein Plan erstellt wurde
 * instance = false   // Id von Instanz muss beim Aufruf nicht bekannt sein, nur Patient-ID
-* code = #readtowrite
+* code = #planread
 * parameter[+]
 * parameter[=].name = #id   // prüfen
 * parameter[=].use = #in

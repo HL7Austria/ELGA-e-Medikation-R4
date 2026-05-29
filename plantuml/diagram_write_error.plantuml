@@ -58,9 +58,9 @@ end box
 autonumber
 
  
-== Read-to-Write durch GDA 1 ==
+== Plan-Read durch GDA 1 ==
 activate GDA_1
-GDA_1 ->> eMed_FA: POST $readtowrite
+GDA_1 ->> eMed_FA: POST $plan-read
 
 activate eMed_FA
 eMed_FA -> eMed_FA: Annahme: Prüfung auf bestehenden\nMedikationsplan erfolgreich
@@ -75,9 +75,9 @@ note over GDA_1
 GDA 1 bearbeitet Medikationsplan
 end note
 
-== Read-to-Write durch GDA 2 ==
+== Plan-Read durch GDA 2 ==
 
-GDA_2 ->> eMed_FA: POST $readtowrite
+GDA_2 ->> eMed_FA: POST $plan-read
 activate GDA_2
 
 activate eMed_FA
@@ -93,9 +93,9 @@ note over GDA_2
 GDA 2 bearbeitet Medikationsplan
 end note
 
-== Write durch GDA 2 ==
+== Plan-Write durch GDA 2 ==
 
-GDA_2 ->> eMed_FA: POST $write (Transaction Bundle + ETag "123")
+GDA_2 ->> eMed_FA: POST $plan-write (Transaction Bundle + ETag "123")
 
 activate eMed_FA
 eMed_FA -> eMed_FA: ETag "123" im Header ==\nETag der Fachanwendung "123"
@@ -110,9 +110,9 @@ end note
 
 deactivate eMed_FA
 
-== Write-Error für GDA 1 ==
+== Plan-Write-Error für GDA 1 ==
 
-GDA_1 ->> eMed_FA: POST $write (Transaction Bundle + ETag "123")
+GDA_1 ->> eMed_FA: POST $plan-write (Transaction Bundle + ETag "123")
 
 activate eMed_FA
 eMed_FA -> eMed_FA: ETag "123" im Header stimmt nicht\nmit ETag der Fachanwendung überein
@@ -120,11 +120,11 @@ eMed_FA -> eMed_FA: Fachanwendung lehnt Speichern ab
 eMed_FA -->> GDA_1: Fehler (Konflikt)
 deactivate GDA_1
 note over eMed_FA, GDA_1
-Speichern des Medikationsplans wurde abgelehnt, der GDA 1 muss ein neues Read-to-Write ausführen.
+Speichern des Medikationsplans wurde abgelehnt, der GDA 1 muss ein neues Plan-Read ausführen.
 end note
 
 deactivate eMed_FA
 
-center footer Write-Error
+center footer Plan-Write-Error
 
 @enduml

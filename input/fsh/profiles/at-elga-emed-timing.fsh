@@ -1,8 +1,8 @@
-Profile: AtElgaEmedTimingZeiten
+Profile: AtElgaEmedTiming
 Parent: Timing
-Id: at-elga-emed-timing-zeiten
-Title: "AT ELGA e-Medikation Timing Zeiten"
-Description: "AT ELGA e-Medikation Timing Zeiten"
+Id: at-elga-emed-timing
+Title: "AT ELGA e-Medikation Timing"
+Description: "AT ELGA e-Medikation Timing"
 
 * event 0..* MS
 * event ^short = "Zeitpunkt der Einnahme." //TODO: Mapping /effectiveTime[1]/@value"

@@ -2,8 +2,8 @@
 title List.entry.flag (Medikationsplan)
 
 (*) -d-> [Neuen Planeintrag\nhinzufügen] new
-new --> [Automatisch bei\nRead-to-Write-Zugriff\n(durch Fachanwendung)] unchanged
-changed --> [Automatisch bei\nRead-to-Write-Zugriff\n(durch Fachanwendung)] unchanged
+new --> [Automatisch bei\nPlan-Read\n(durch Fachanwendung)] unchanged
+changed --> [Automatisch bei\nPlan-Read\n(durch Fachanwendung)] unchanged
 unchanged --> [Planeintrag\nändern] changed
 unchanged -d-> [Planeintrag\nentfernen] removed
 removed  -d-> (*)

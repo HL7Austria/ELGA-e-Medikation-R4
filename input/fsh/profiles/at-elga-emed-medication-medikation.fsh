@@ -54,7 +54,7 @@ Wenn PZN vorhanden 0..0, da Anreicherung aus ASP-Liste durch Fachanwendung."
 * ingredient ^short = "Wirkstoffe. Keine Angabe, wenn PZN vorhanden (Anreicherung aus ASP-Liste durch Fachanwendung)."
 // Gemäß AG: Einschränkung auf CodeableConcept, TODO: prüfen, wie Freitext bei magistraler Zubereitung abgebildet wird:
 // Evtl. in einer Substance-Ressource in der description (string).
-* ingredient.item[x] only CodeableConcept or Reference(AtElgaEmedSubstanceSubstanz) // or AtElgaEmedMedicationMedikation, TODO Substance profilieren
+* ingredient.item[x] only CodeableConcept or Reference(AtElgaEmedSubstanceWirkstoff) // or AtElgaEmedMedicationMedikation, TODO Substance profilieren
 * ingredient.itemCodeableConcept 0..1 MS 
 // * ingredient.itemCodeableConcept ^short = "Inhaltsstoff codiert." TODO: prüfen, Einschränkung auf SPOR (EMA). Gemüß CDA v3:
 // Wirkstoff-Codes stammen aus der ATC-Klassifikation (Anatomical Therapeutic Chemical Classification), die von der WHO herausgegeben wird. 
