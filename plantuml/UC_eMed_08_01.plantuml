@@ -72,7 +72,7 @@ GDA_1 -> GDA_1: Geplante Abgabe 1 erstellen
 GDA_1 -> GDA_1: Geplante Abgabe 2 erstellen
 note over GDA_1
 Geplante Abgaben referenzieren 
-zugehörige Medikationsplaneinträge.
+zugehörige Medikationsplaneinträge
 end note
 
 GDA_1 -> eMed_FA: e-Med groupIdentifier anfordern
