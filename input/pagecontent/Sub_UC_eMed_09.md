@@ -6,7 +6,7 @@
 
 Der GDA (Apotheke bzw. Arzt mit Hausapotheke) kann eine [Durchgeführte Abgabe](design_choices.html#durchgeführte-abgabe-AtElgaEmedMedicationDispenseDurchgefuehrteAbgabe-medicationdispense) für einen ELGA-Teilnehmer erfassen, um die Abgabe eines Medikamentes medizinisch zu dokumentieren.
 
-Sofern eine zugehörige [Geplante Abgabe](design_choices.html#geplante-abgabe-atelgaemedmedicationrequestgeplanteabgabe-medicationrequest) vorliegt, **muss** diese im Element *authorizingPrescription* referenziert werden. 
+Sofern eine zugehörige [Geplante Abgabe](design_choices.html#geplante-abgabe-atelgaemedmedicationrequestgeplanteabgabe-medicationrequest) vorliegt, **muss** diese im Element *MedicationDispense.authorizingPrescription* referenziert werden. 
 
 Die in der *Geplanten Abgabe* dokumentierte [Rezeptart](workflowmanagement.html#gültigkeit-von-geplanten-abgaben-basierend-auf-der-rezeptart) (bzw. eine evtl. Einschränkung durch den GDA (Arzt) im Element *MedicationRequest.numberOfRepeatsAllowed*), legt fest wieviele Abgaben durchgeführt werden dürfen. 
 
