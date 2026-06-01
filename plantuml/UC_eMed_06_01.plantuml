@@ -59,7 +59,7 @@ autonumber
 
 == Initialisierung ==
 
-GDA_1 ->> eMed_FA: POST $readtowrite
+GDA_1 ->> eMed_FA: POST $plan-read
 activate GDA_1
 
 note over GDA_1
@@ -70,8 +70,8 @@ end note
 activate eMed_FA
 eMed_FA -> eMed_FA: Prüfung auf bestehenden\nMedikationsplan
 
-eMed_FA -> eMed_FA: Kein Plan vorhanden:\nFachanwendung erzeugt leeren Medikationsplan\n mit emptyReason = "notstarted"
-eMed_FA -->> GDA_1: Leerer Medikationsplan\n(emptyReason = "notstarted")
+eMed_FA -> eMed_FA: Kein Plan vorhanden:\nFachanwendung erzeugt leeren Medikationsplan\n mit List.emptyReason = "notstarted"
+eMed_FA -->> GDA_1: Leerer Medikationsplan\n(List.emptyReason = "notstarted")
 
 deactivate eMed_FA
 deactivate GDA_1

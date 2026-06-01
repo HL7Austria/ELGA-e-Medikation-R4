@@ -1,4 +1,5 @@
 @startuml
+title Plan-Write
 skinparam borderColor #000000
 skinparam backgroundColor #f5f5f5
 skinparam shadowing false
@@ -57,52 +58,37 @@ end box
 
 autonumber
 
- 
-== Read-to-Write ==
-
-GDA_1 ->> eMed_FA: POST $readtowrite
-note over GDA_1
-Medikationsplan abrufen, 
-mit der Intention zu schreiben
-end note
-
-activate eMed_FA
-eMed_FA -> eMed_FA: Prüfung auf bestehenden\nMedikationsplan
-eMed_FA -> eMed_FA: Erstellt Collection Bundle zur Auslieferung\n(inkl. neuem List.identifier)\nfür Read-to-Write:\n- new|changed → unchanged\n- removed → entfernen
-
-eMed_FA -->> GDA_1: Collection Bundle + List.identifier
-deactivate eMed_FA
-
 activate GDA_1
-GDA_1 -> GDA_1: Neuen MedicationRequest erstellen,\nmit Flag "new" der Liste hinzufügen
 
 note over GDA_1
-Medikationsplaneintrag hinzufügen
+Vorbedingung: Nach einem Plan-Read
+wird der Medikationsplan bearbeit.
 end note
 
-== Write ==
+== Medikationsplan schreiben ==
 
-GDA_1 ->> eMed_FA: POST $write (Transaction Bundle + List.identifier)
-deactivate GDA_1
-
+GDA_1 ->> eMed_FA: POST $plan-write Medikationsplan-Transaction-Bundle + ETag
 
 activate eMed_FA
-eMed_FA -> eMed_FA: List.identifier im TransactionBundle ==\ntemporär gespeicherter List.identifier?
-eMed_FA -> eMed_FA: Validierung des neuen Plans:\nnur erlaubte Änderungen zulassen\n(keine unzulässigen Zustandsübergänge)
+eMed_FA -> eMed_FA: ETag im Header ==\nETag der Fachanwendung?
 
-alt gültig
+alt gültig 
+  eMed_FA -> eMed_FA: Validierung des neuen Plans\n(keine unzulässigen Zustandsübergänge)
   eMed_FA -> eMed_FA: Persistiert neue Version des\nMedikationsplans
-
+  
   note over eMed_FA
   Neuer Medikationsplan gespeichert
   end note
 
   eMed_FA -->> GDA_1: OK
-else ungültig
-  eMed_FA -->> GDA_1: Fehler (Konflikt): ein anderer GDA hat\nzwischenzeitlich geschrieben -> neues Read-to-Write nötig
-end
-deactivate eMed_FA
 
-center footer Sub_UC_06_03 - Medikationsplaneintrag in Medikationsplan hinzufügen
+else ungültig 
+
+  eMed_FA -->> GDA_1: Fehler 
+
+  deactivate GDA_1
+  deactivate eMed_FA
+end
+
 
 @enduml

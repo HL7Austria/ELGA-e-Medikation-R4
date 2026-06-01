@@ -58,7 +58,7 @@ autonumber
 == Medikationsplan abrufen ==
 
 activate GDA_1
-ref over GDA_1, eMed_FA : [[interactions.html#sequenzdiagramm-read-to-write-zugriff Read-to-Write-Zugriff]]
+ref over GDA_1, eMed_FA : [[interactions.html#sequenzdiagramm-plan-read Plan-Read]]
 
 
 note over GDA_1

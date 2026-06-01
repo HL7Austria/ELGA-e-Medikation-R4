@@ -57,7 +57,7 @@ end box
 
 autonumber
 
-GDA_1 ->> eMed_FA: POST $readtowrite
+GDA_1 ->> eMed_FA: POST $plan-read
 activate GDA_1
 
 note over GDA_1, eMed_FA
@@ -70,7 +70,7 @@ eMed_FA -> eMed_FA: Prüfung auf bestehenden\nMedikationsplan
 
 eMed_FA -> eMed_FA: Wenn Plan vorhanden +\nalle List.enty.flags im Medikationsplan = "removed":\nFachanwendung setzt List.emptyReason = "nilknown"
 
-eMed_FA -->> GDA_1: Leerer Medikationsplan\n(emptyReason = "nilknown")
+eMed_FA -->> GDA_1: Leerer Medikationsplan\n(List.emptyReason = "nilknown")
 
 deactivate eMed_FA
 deactivate GDA_1

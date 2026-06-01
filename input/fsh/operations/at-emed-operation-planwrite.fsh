@@ -1,11 +1,11 @@
-Instance: AtEmedListWrite
+Instance: AtEmedListPlanWrite
 InstanceOf: OperationDefinition
-Title: "e-Med Operation für Write des Medikationsplans"  //TODO
-Description: "Die $write Operation wird aufgerufen, wenn ein Medikationsplan geschrieben wird."
+Title: "e-Med Operation für Plan-Write"  //TODO
+Description: "Die $plan-write Operation wird aufgerufen, wenn ein Medikationsplan geschrieben wird."
 Usage: #definition
 
-* id = "AtEmed.List.Write"
-* name = "AtEmed_List_Write"
+* id = "AtEmed.List.PlanWrite"
+* name = "AtEmed_List_PlanWrite"
 * status = #draft
 * kind = #operation
 * affectsState = true  // Ändert den Zustand am Server

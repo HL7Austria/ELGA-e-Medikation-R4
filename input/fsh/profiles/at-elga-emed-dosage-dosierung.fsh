@@ -22,7 +22,7 @@ https://hl7.org/fhir/R4/valueset-additional-instruction-codes.html." // TODO: Nu
 
 
 * timing 0..1 MS
-* timing only AtElgaEmedTimingZeiten
+* timing only AtElgaEmedTiming
 * timing ^short = "Zeitpunkt oder Zeitraum der Einnahme des Medikaments. 
 Um widersprüchliche Anweisungen zu vermeiden, ist entweder Dosage.timing oder Dosage.text zu befüllen."
 //* timing.code.coding from $vs-einnahmezeitpunkte (required)
