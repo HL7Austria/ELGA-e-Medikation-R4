@@ -95,12 +95,12 @@ end note
 
 == Plan-Write durch GDA 2 ==
 
-GDA_2 ->> eMed_FA: POST $plan-write (Transaction Bundle + ETag "123")
+GDA_2 ->> eMed_FA: POST $plan-write (Transaction\nBundle + ETag "123")
 
 activate eMed_FA
 eMed_FA -> eMed_FA: ETag "123" im Header ==\nETag der Fachanwendung "123"
-eMed_FA -> eMed_FA: Validierung des neuen Plans\n(keine unzulässigen Zustandsübergänge)
-eMed_FA -> eMed_FA: Persistiert neue Version des\nMedikationsplans
+eMed_FA -> eMed_FA: Validierung neuer Plan\n(keine unzulässigen\nZustandsübergänge)
+eMed_FA -> eMed_FA: Persistiert neue Version des\nMedikationsplans + erzeugt neuen\nETag "124".
 eMed_FA -->> GDA_2: OK 
 deactivate GDA_2
 
@@ -115,7 +115,7 @@ deactivate eMed_FA
 GDA_1 ->> eMed_FA: POST $plan-write (Transaction Bundle + ETag "123")
 
 activate eMed_FA
-eMed_FA -> eMed_FA: ETag "123" im Header stimmt nicht\nmit ETag der Fachanwendung überein
+eMed_FA -> eMed_FA: ETag im Header "123" stimmt nicht\nmit ETag der Fachanwendung "124\nüberein
 eMed_FA -> eMed_FA: Fachanwendung lehnt Speichern ab
 eMed_FA -->> GDA_1: Fehler (Konflikt)
 deactivate GDA_1

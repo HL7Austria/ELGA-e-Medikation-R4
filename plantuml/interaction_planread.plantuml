@@ -78,7 +78,7 @@ alt kein Medikationsplan vorhanden
 
 else Medikationsplan vorhanden
   eMed_FA -> eMed_FA: Stellt Auslieferungs-Medikationsplan-Collection-Bundle bereit:\nBedingung:\n- new|changed → unchanged\n- removed → entfernen
-  eMed_FA -->> GDA_1: Auslieferungs-Medikationsplan-Collection-Bundle\n+ ETag für optimistisches Locking
+  eMed_FA -->> GDA_1: Auslieferungs-Medikationsplan-Collection-Bundle\n+ ETag für Optimistic Locking
   deactivate eMed_FA
 end
 
