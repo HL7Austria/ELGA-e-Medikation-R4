@@ -10,7 +10,8 @@ Im Folgenden werden standardisierte Interaktionen für den lesenden und schreibe
 
 ### Medikationsplan
 
-#### Plan-History-Read
+#### Plan-History-Read 
+<!-- plan-history-search​ -->
 
 Beim Plan-History-Read stellt die Fachanwendung **die aktuelle oder historische Version(en)** des Medikationsplans ([persistiertes Medikationsplan-Collection-Bundle](design_choices.html#persistiertes-medikationsplan-collection-bundle) inkl. aller referenzierten Ressourcen) **unverändert** bereit.
 
@@ -141,3 +142,5 @@ Es muss erneut ein [Plan-Read](interactions.html#plan-read) ausgeführt werden u
 <br>
 
 
+#### Groupidentifier-Create
+siehe "Ablauf - Bezug e-Med groupIdentifier".
