@@ -32,7 +32,7 @@ Description: "Das Bundle vom Typ Collection bestehend aus:
 * entry[Medikationsplan].resource 1..1
 * entry[Medikationsplan].resource only AtElgaEmedListMedikationsplan
 // Medikationsplaneinträge
-* entry[Medikationsplaneintrag].resource 1..1
+* entry[Medikationsplaneintrag].resource 1..1   //TODO prüfen
 * entry[Medikationsplaneintrag].resource only AtElgaEmedMedicationRequestPlaneintrag
 // * entry[MagistraleZubereitung].resource 1..1
 // * entry[MagistraleZubereitung].resource only AtElgaEmedMedicationMedikation
