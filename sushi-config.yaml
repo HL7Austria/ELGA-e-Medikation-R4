@@ -219,6 +219,8 @@ menu:
 # is specified by id or name, SUSHI will replace it with the correct
 # URL when generating the IG JSON.
 #
+
+
 # groups:
 #   GroupA:
 #     name: Group A
@@ -233,7 +235,31 @@ menu:
 #     - StructureDefinition/bark-control
 #     - StructureDefinition/bee-sting
 #
-#
+
+# groups:
+#   Medikationsplan:
+#     name: Medikationsplan
+#     description: Medikationsplan
+#     resources:
+#       - StructureDefinition/StructureDefinition-at-elga-emed-bundle-medikationsplan
+#       - StructureDefinition/StructureDefinition-at-elga-emed-bundle-medikationsplan-tx
+#       - StructureDefinition/StructureDefinition-at-elga-emed-list-medikationsplan
+#       - StructureDefinition/StructureDefinition-at-elga-emed-medicationrequest-planeintrag
+#       - StructureDefinition/StructureDefinition-at-elga-emed-medication-medikation
+#       - StructureDefinition/StructureDefinition-at-elga-emed-substance-wirkstoff
+
+#   Geplante Abgabe:
+#     name: Geplante Abgabe
+#     description: Geplante Abgabe
+#     resources:
+#       - StructureDefinition/StructureDefinition-at-elga-emed-medicationrequest-geplanteabgabe
+
+#   Durchgeführte Abgabe:
+#     name: Durchgeführte Abgabe
+#     description: Durchgeführte Abgabe
+#     resources:
+#     - StructureDefinition/StructureDefinition-at-elga-emed-medicationrequest-durchgefuehrteabgabe
+
 # The ImplementationGuide resource defines several other properties
 # not represented above. These properties can be used as-is and
 # should follow the format defined in ImplementationGuide:
