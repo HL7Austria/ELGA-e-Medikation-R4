@@ -18,7 +18,7 @@ Usage: #definition
 * parameter[=].use = #in
 * parameter[=].min = 1
 * parameter[=].max = "1"
-* parameter[=].documentation = "Der *id* Parameter dient der Zurordnung des Patienten."
+* parameter[=].documentation = "Der *id* Parameter dient der Zuordnung des Patienten."
 * parameter[=].type = #string
 * parameter[+]
 * parameter[=].name = #return
