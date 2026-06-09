@@ -59,17 +59,20 @@ autonumber
 
  
 == Plan-Read durch GDA 1 ==
-
-GDA_1 ->> eMed_FA: POST $plan-read
 activate GDA_1
+GDA_1 ->> eMed_FA: POST $plan-read
 
 activate eMed_FA
+eMed_FA -> eMed_FA: Annahme: Prüfung auf bestehenden\nMedikationsplan erfolgreich
+eMed_FA -> eMed_FA: Collection Bundle zur Auslieferung erstellt
+
 eMed_FA -->> GDA_1: Collection Bundle + ETag "123"
 deactivate eMed_FA
 
+GDA_1 -> GDA_1: Einträge hinzufügen/ändern/entfernen
+
 note over GDA_1
 GDA 1 bearbeitet Medikationsplan
-(Einträge hinzufügen/ändern/entfernen)
 end note
 
 == Plan-Read durch GDA 2 ==
@@ -78,13 +81,16 @@ GDA_2 ->> eMed_FA: POST $plan-read
 activate GDA_2
 
 activate eMed_FA
+eMed_FA -> eMed_FA: Annahme: Prüfung auf bestehenden\nMedikationsplan erfolgreich
+eMed_FA -> eMed_FA: Collection Bundle zur Auslieferung erstellt
 
 eMed_FA -->> GDA_2: Collection Bundle + ETag "123"
 deactivate eMed_FA
 
+GDA_2 -> GDA_2: Einträge hinzufügen/ändern/entfernen
+
 note over GDA_2
 GDA 2 bearbeitet Medikationsplan
-(Einträge hinzufügen/ändern/entfernen)
 end note
 
 == Plan-Write durch GDA 2 ==
@@ -93,6 +99,8 @@ GDA_2 ->> eMed_FA: POST $plan-write (Transaction\nBundle + ETag "123")
 
 activate eMed_FA
 eMed_FA -> eMed_FA: ETag "123" im Header ==\nETag der Fachanwendung "123"
+eMed_FA -> eMed_FA: Validierung neuer Plan\n(keine unzulässigen\nZustandsübergänge)
+eMed_FA -> eMed_FA: Persistiert neue Version des\nMedikationsplans + erzeugt neuen\nETag "124".
 eMed_FA -->> GDA_2: OK 
 deactivate GDA_2
 
@@ -107,15 +115,12 @@ deactivate eMed_FA
 GDA_1 ->> eMed_FA: POST $plan-write (Transaction Bundle + ETag "123")
 
 activate eMed_FA
-eMed_FA -> eMed_FA: ETag im Header "123" stimmt nicht\nmit ETag der Fachanwendung\nüberein, da er bereits zum Schreiben\nverwendet wurde
-note over eMed_FA
-Fachanwendung lehnt Speichern ab
-end note
+eMed_FA -> eMed_FA: ETag im Header "123" stimmt nicht\nmit ETag der Fachanwendung "124\nüberein
+eMed_FA -> eMed_FA: Fachanwendung lehnt Speichern ab
 eMed_FA -->> GDA_1: Fehler (Konflikt)
 deactivate GDA_1
 note over eMed_FA, GDA_1
-Speichern des Medikationsplans wurde abgelehnt, 
-der GDA 1 muss ein neues Plan-Read ausführen.
+Speichern des Medikationsplans wurde abgelehnt, der GDA 1 muss ein neues Plan-Read ausführen.
 end note
 
 deactivate eMed_FA

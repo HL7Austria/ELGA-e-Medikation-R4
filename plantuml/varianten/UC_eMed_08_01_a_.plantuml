@@ -1,6 +1,6 @@
 @startuml
 
-title Geplante Abgabe für bestehende Medikationsplaneinträge erstellen
+title Geplante Abgabe für bestehende Medikationsplaneinträge erstellen\nVariante A: GroupIdentifier vorab holen
 
 skinparam borderColor #000000
 skinparam backgroundColor #f5f5f5
