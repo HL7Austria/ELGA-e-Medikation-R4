@@ -37,7 +37,7 @@ Wurden alle Planeinträge entfernt, erhält der Medikationsplan das List.emptyRe
 
 #### Medikationsplan-Transaction-Bundle: AtEmedBundleMedikationsplanTx (*Transaction Bundle*)
 
-Ein Bundle vom Typ Transaction, das beim [Plan-Write](interactions.html#plan-write) auf den Medikationsplan an die Fachanwendung übermittelt wird. 
+Ein Bundle vom Typ Transaction, das beim [Plan-Write](interactions.html#plan-write) an die Fachanwendung übermittelt wird. 
 Das Bundle enthält den [Medikationsplan](design_choices.html#medikationsplan-atelgaemedlistmedikationsplan-list) mit Referenzen auf die [Medikationsplaneinträge](design_choices.html#medikationsplaneintrag-bzw-planeintrag-atelgaemedmedicationrequestplaneintrag-medicationrequest). Alle neuen bzw. geänderten und zu entfernenden Medikationsplaneinträge müssen inline im Bundle enthalten sein, alle unveränderten Ressourcen werden referenziert.
 
 Das Transaction Bundle dient der Aktualisierung aller enthaltenen Ressourcen und wird selbst nicht persisitert.
@@ -49,6 +49,15 @@ Eine *Geplante Abgabe* einer Medikation aus dem zugrundeliegenden Medikationspla
 Werden mehrere Medikamente gleichzeitig verordnet (und sollen demselben e-Rezept zugeordnet sein), wird für jedes Medikament eine geplante Abgabe mit demselben e-Med groupIdentifier erstellt (bildet 'Rezept-Klammer'). Es werden R5-Backport-Extensions verwendet.
 
 Der aktuelle Status einer geplanten Abgabe wird im *status*-Element dokumentiert (siehe [Status des MedicationRequests in der geplanten Abgabe](workflowmanagement.html#status-des-medicationrequests-in-der-geplanten-abgabe)).  
+
+
+
+#### Geplante Abgabe Transaction-Bundle: AtEmedBundleGeplanteAbgabeTX (*Transaction Bundle*)
+
+Ein Bundle vom Typ Transaction, das beim Speichern von [Geplanten Abgaben](design_choices.html#geplante-abgabe-atelgaemedmedicationrequestgeplanteabgabe-medicationrequest) mittels [Prescription-Write](interactions.html#request-write) auf den Medikationsplan an die Fachanwendung übermittelt wird. 
+
+Die im Bundle enthaltenen *Geplanten Abgaben* müssen mit dem gleichen *e-Med groupIdentifier* gekennzeichnet sein. Fehlt dieser, wird er von der Fachanwendung ergänzt. 
+
 
 
 #### Durchgeführte Abgabe: AtElgaEmedMedicationDispenseDurchgefuehrteAbgabe (*MedicationDispense*)
