@@ -73,19 +73,19 @@ end note
 GDA_1 -> eMed_FA: POST $groupidentifier-create​ 
 
 note over GDA_1
-e-Med groupIdentifier für "Rezeptklammer"
+e-Med GroupIdentifier für "Rezeptklammer"
 anfordern
 end note
 
 activate eMed_FA
-eMed_FA -> eMed_FA: e-Med groupIdentifier erzeugen
-eMed_FA -->> GDA_1: e-Med groupIdentifier
+eMed_FA -> eMed_FA: e-Med GroupIdentifier erzeugen
+eMed_FA -->> GDA_1: e-Med GroupIdentifier
 deactivate eMed_FA
 
 note over GDA_1
 Erstellte <i>Geplante Abgaben</i> referenzieren 
 zugehörige Medikationsplaneinträge und
-enthalten e-Med groupIdentifier
+enthalten e-Med GroupIdentifier
 end note
 
 
@@ -138,13 +138,8 @@ else gleichzeitige Erstellung <i>Geplante Abgabe</i>
     else Fehler nicht behebbar
       eMed_FA -->> GDA_1: Fehler 
       deactivate eMed_FA
-      GDA_1 ->> e_Rezept: e-Rezept von e-Med groupIdentifier entkoppeln
+      GDA_1 ->> e_Rezept: e-Rezept von e-Med GroupIdentifier entkoppeln
       deactivate GDA_1 
-
-      note over e_Rezept
-        Siehe Use Case "e-Rezept von e-Med
-        groupIdentifier entkoppeln"
-      end note
 
     end
   end

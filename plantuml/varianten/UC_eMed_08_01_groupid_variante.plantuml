@@ -79,21 +79,21 @@ referenzieren bestehende Medikationsplaneinträge
 end note
 
 
-GDA_1 -> eMed_FA: e-Med groupIdentifier anfordern
+GDA_1 -> eMed_FA: e-Med GroupIdentifier anfordern
 
 note over GDA_1
-e-Med groupIdentifier für "Rezeptklammer"
+e-Med GroupIdentifier für "Rezeptklammer"
 anfordern
 end note
 
 activate eMed_FA
-eMed_FA -> eMed_FA: e-Med groupIdentifier erzeugen
-eMed_FA -->> GDA_1: e-Med groupIdentifier
+eMed_FA -> eMed_FA: e-Med GroupIdentifier erzeugen
+eMed_FA -->> GDA_1: e-Med GroupIdentifier
 deactivate eMed_FA
 
 note over GDA_1
 Geplante Abgaben mit 
-e-Med groupIdentifier versehen
+e-Med GroupIdentifier versehen
 end note
 
 GDA_1 ->> e_Rezept: Trigger e-Rezept erstellen

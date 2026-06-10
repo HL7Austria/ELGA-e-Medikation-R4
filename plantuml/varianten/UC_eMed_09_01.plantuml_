@@ -75,19 +75,19 @@ Geplante Abgaben referenzieren
 zugehörige Medikationsplaneinträge
 end note
 
-GDA_1 -> eMed_FA: e-Med groupIdentifier anfordern
+GDA_1 -> eMed_FA: e-Med GroupIdentifier anfordern
 
 note over GDA_1
-e-Med groupIdentifier für "Rezeptklammer"
+e-Med GroupIdentifier für "Rezeptklammer"
 anfordern
 end note
 
 activate eMed_FA
-eMed_FA -> eMed_FA: e-Med groupIdentifier erzeugen
-eMed_FA -->> GDA_1: e-Med groupIdentifier
+eMed_FA -> eMed_FA: e-Med GroupIdentifier erzeugen
+eMed_FA -->> GDA_1: e-Med GroupIdentifier
 deactivate eMed_FA
 
-GDA_1 -> GDA_1: e-Med groupIdentifier zu\nGeplanten Abgaben 1 + 2\nhinzufügen
+GDA_1 -> GDA_1: e-Med GroupIdentifier zu\nGeplanten Abgaben 1 + 2\nhinzufügen
 GDA_1 -> GDA_1: Transaction Bundle mit\n Geplanten Abgaben 1 + 2 erstellen
 
 GDA_1 ->> e_Rezept: Trigger e-Rezept erstellen

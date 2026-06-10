@@ -79,15 +79,15 @@ activate eMed_FA
 
 alt Geplante Abgaben erfolgreich erstellt
 
-  alt e-Med groupIdentifier leer
-    eMed_FA -> eMed_FA: e-Med groupIdentifier erzeugen\n+ in geplanten Abgaben ergänzen
+  alt e-Med GroupIdentifier leer
+    eMed_FA -> eMed_FA: e-Med GroupIdentifier erzeugen\n+ in geplanten Abgaben ergänzen
   end
 
   note over eMed_FA
   Geplante Abgabe 1 + 2 gespeichert
   end note
 
-  eMed_FA -->> GDA_1: OK (Ressourcen inkl. e-Med groupIdentifier)
+  eMed_FA -->> GDA_1: OK (Ressourcen inkl. e-Med GroupIdentifier)
   
 
 else Fehler bei Erstellung Geplante Abgaben
@@ -96,10 +96,10 @@ else Fehler bei Erstellung Geplante Abgaben
 
 end
 
-GDA_1 ->> e_Rezept: Trigger e-Rezept erstellen (inkl. e-Med groupIdentifier)
+GDA_1 ->> e_Rezept: Trigger e-Rezept erstellen (inkl. e-Med GroupIdentifier)
 note over GDA_1
 Erstellung e-Rezept inkl. 
-e-Med groupIdentifier auslösen
+e-Med GroupIdentifier auslösen
 end note
 activate e_Rezept
 

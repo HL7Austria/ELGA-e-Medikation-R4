@@ -82,7 +82,7 @@ par Erstellung e-Rezept
   activate e_Rezept
   note over GDA_1
   Erstellung e-Rezept auslösen,
-  ohne e-Med groupIdentifier
+  ohne e-Med GroupIdentifier
   end note
 
   alt e-Rezept erfolgreich erstellt
@@ -105,15 +105,15 @@ else gleichzeitige Erstellung <i>Geplante Abgabe</i>
 
   alt Geplante Abgaben erfolgreich erstellt
 
-    alt e-Med groupIdentifier leer
-      eMed_FA -> eMed_FA: e-Med groupIdentifier erzeugen\n+ geplanten Abgaben hinzufügen
+    alt e-Med GroupIdentifier leer
+      eMed_FA -> eMed_FA: e-Med GroupIdentifier erzeugen\n+ geplanten Abgaben hinzufügen
     end
 
     note over eMed_FA
     Geplante Abgabe 1 + 2 gespeichert
     end note
 
-    eMed_FA -->> GDA_1: OK (Ressourcen inkl. e-Med groupIdentifier)
+    eMed_FA -->> GDA_1: OK (Ressourcen inkl. e-Med GroupIdentifier)
 
   else Fehler bei Erstellung Geplante Abgaben
     eMed_FA -->> GDA_1: Fehler 
@@ -123,12 +123,12 @@ else gleichzeitige Erstellung <i>Geplante Abgabe</i>
 
 end
 
-GDA_1 ->> e_Rezept: e-Rezept mit e-Med groupIdentifier verknüpfen
+GDA_1 ->> e_Rezept: e-Rezept mit e-Med GroupIdentifier verknüpfen
   activate e_Rezept
-  e_Rezept -> e_Rezept: e-Med groupIdentifier\nergänzen
+  e_Rezept -> e_Rezept: e-Med GroupIdentifier\nergänzen
   note over e_Rezept
     Bestehendes e-Rezept mit
-    e-Med groupIdentifier verknüpft
+    e-Med GroupIdentifier verknüpft
   end note
   e_Rezept -->> GDA_1: OK
   deactivate e_Rezept
