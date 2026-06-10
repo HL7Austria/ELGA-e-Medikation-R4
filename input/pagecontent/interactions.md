@@ -116,24 +116,16 @@ Es muss erneut ein [Plan-Read](interactions.html#plan-read) ausgeführt werden u
 
 
 1. **GDA 1** möchte den Medikationsplan seiner Patientin bearbeiten und führt ein POST [$plan-read](OperationDefinition-AtEmed.List.Planread.html) auf das Collection Bundle des Medikationsplans aus.
-2. Die Fachanwendung prüft, ob ein Medikationsplan für den/die Patient:in existiert (siehe [Plan-Read](interactions.html#plan-read)). Annahme: Es ist bereits ein Medikationsplan vorhanden. 
-3. Die Fachanwendung erstellt ein **Auslieferungs-Medikationsplan-Collection-Bundle** (Siehe [Plan-Read](interactions.html#plan-read))
-4. Die Fachanwendung liefert das Collection Bundle inkl. ETag "123" an den GDA 1.
-5. GDA 1 bearbeitet den Medikationsplan.
-6. **GDA 2** führt ein POST [$plan-read](OperationDefinition-AtEmed.List.Planread.html) auf den Medikationsplan aus, während GDA 1 das von der Fachanwendung übermittelte Collection Bundle bearbeitet.
-7. Die Fachanwendung prüft erfolgreich, ob ein Medikationsplan für den/die Patient:in existiert. 
-8. Die Fachanwendung erstellt, genau wie für GDA 1, ein **Auslieferungs-Medikationsplan-Collection-Bundle** (siehe [Plan-Read](interactions.html#plan-read)) 
-9. Die Fachanwendung liefert das Collection Bundle inkl. ETag "123" an den GDA 2.
-10. GDA 2 **bearbeitet zeitgleich** mit GDA 1 den Medikationsplan.
-11. **GDA 2 sendet zuerst** mittels POST [$plan-write](OperationDefinition-AtEmed.List.Write.html) ein [Medikationsplan-Transaction-Bundle](design_choices.html#medikationsplan-transaction-bundle-atemedbundlemedikationsplantx-transaction-bundle) mit dem aktualisierten Medikationsplan und übermittelt den ETag "123".
-12. Die Fachanwendung prüft, ob der im Header übermittelte **ETag** mit dem ETag der Fachanwendung **übereinstimmt**. Beide haben den Wert "123".
-13. Die Fachanwendung validert den neuen Plan bezüglich (keine unzulässigen Zustandsübergänge)
-14. Die Prüfung verläuft erfolgreich, der **neue Medikationsplan** wird **persistiert** inkl. neuer ETag "124".
-15. GDA 2 erhält eine Meldung, dass der Medikationsplan erfolgreich aktualisiert wurde.
-16. GDA 1 sendet mittels POST [$plan-write](OperationDefinition-AtEmed.List.Write.html) ein [Medikationsplan-Transaction-Bundle](design_choices.html#medikationsplan-transaction-bundle-atemedbundlemedikationsplantx-transaction-bundle) mit dem aktualisierten Medikationsplan und übermittelt den ETag "123".
-17. Die Prüfung auf Übereinstimmung der ETags von GDA 1 mit dem der Fachanwendung schlägt fehl.
-18. Die Fachanwendung **lehnt das Speichern ab**.
-19. GDA 1 erhält eine **Fehlermeldung** und muss ein erneutes Plan-Read ausführen, welches das Generieren eines neuen *Auslieferungs-Medikationsplan-Collection-Bundle* auslöst und mit dem aktuellen ETag übermittelt wird.
+2. Die Fachanwendung erstellt ein **Auslieferungs-Medikationsplan-Collection-Bundle** (siehe [Plan-Read](interactions.html#plan-read)) inkl. ETag "123" und liefert es an den GDA 1. GDA 1 bearbeitet den Medikationsplan.
+3. **GDA 2** führt ein POST [$plan-read](OperationDefinition-AtEmed.List.Planread.html) auf den Medikationsplan aus, während GDA 1 das von der Fachanwendung übermittelte Collection Bundle bearbeitet. 
+4. Die Fachanwendung erstellt ein **Auslieferungs-Medikationsplan-Collection-Bundle** (siehe [Plan-Read](interactions.html#plan-read)) inkl. ETag "123" und liefert es an den GDA 2.
+GDA 2 **bearbeitet zeitgleich** mit GDA 1 den Medikationsplan.
+5. **GDA 2 sendet zuerst** mittels POST [$plan-write](OperationDefinition-AtEmed.List.Write.html) ein [Medikationsplan-Transaction-Bundle](design_choices.html#medikationsplan-transaction-bundle-atemedbundlemedikationsplantx-transaction-bundle) mit dem aktualisierten Medikationsplan und übermittelt den ETag "123".
+6. Die Fachanwendung prüft, ob der im Header übermittelte **ETag** mit dem ETag der Fachanwendung **übereinstimmt**. Beide haben den Wert "123", der **neue Medikationsplan** wird **persistiert**.
+7. GDA 2 erhält eine Meldung, dass der Medikationsplan erfolgreich aktualisiert wurde.
+8. GDA 1 sendet mittels POST [$plan-write](OperationDefinition-AtEmed.List.Write.html) ein [Medikationsplan-Transaction-Bundle](design_choices.html#medikationsplan-transaction-bundle-atemedbundlemedikationsplantx-transaction-bundle) mit dem aktualisierten Medikationsplan und übermittelt den ETag "123".
+9. Die Prüfung auf Übereinstimmung der ETags von GDA 1 mit dem der Fachanwendung schlägt fehl, da dieser ETag bereits zum Schreiben verwendet wurde. Die Fachanwendung **lehnt das Speichern ab**.
+10. GDA 1 erhält eine **Fehlermeldung** und muss ein erneutes Plan-Read ausführen, welches das Generieren eines neuen *Auslieferungs-Medikationsplan-Collection-Bundle* auslöst und mit dem aktuellen ETag übermittelt wird.
 
 
 ##### Sequenzdiagramm Abgelehntes Plan-Write
@@ -143,4 +135,7 @@ Es muss erneut ein [Plan-Read](interactions.html#plan-read) ausgeführt werden u
 
 
 #### Groupidentifier-Create
-siehe "Ablauf - Bezug e-Med groupIdentifier".
+siehe "Ablauf - Bezug e-Med GroupIdentifier".
+
+#### Prescription-Search
+In Arbeit.
