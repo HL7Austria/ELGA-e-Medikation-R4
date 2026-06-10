@@ -2,9 +2,11 @@ Profile: AtElgaEmedMedicationDispenseDurchgefuehrteAbgabe
 Parent: MedicationDispense
 Id: at-elga-emed-medikationdispense-durchgefuehrteabgabe
 Title: "AT ELGA e-Medikation MedicationDispense Durchgeführte Abgabe"
-Description: "Dokumentiert eine durchgeführte Abgabe eines Arzneimittels (\"MedicationDispense\"-Ressource). 
-In der durchgeführten Abgabe können Abweichungen hinsichtlich des Medikaments und dessen Dosierung dokumentiert werden.
-Sofern eine zugehörige geplante Abgabe vorliegt, muss diese mit dem zugehörigen Planeintrag referenziert werden. Eine mögliche Substitution des Medikaments ist implizit, durch die Referenz auf die zugehörige geplante Abgabe, ersichtlich."
+Description: "Dokumentiert eine \"Durchgeführte Abgabe\" eines Arzneimittels (\"MedicationDispense\"-Ressource). 
+Die \"Durchgeführte Abgabe\" enthält die abgegebene Medikation und deren Dosierung und dient somit der Nachvollziehbarkeit der abgegebenen Arzneimittel in der e-Medikation. 
+Es können Abweichungen zur \"Geplanten Abgabe\" hinsichtlich des Medikaments und dessen Dosierung dokumentiert werden.
+Sofern eine zugehörige \"Geplanten Abgabe\" vorliegt, muss diese mit dem zugehörigen Planeintrag referenziert werden. Eine mögliche Substitution des Medikaments ist implizit, durch die Referenz auf die zugehörige \"Geplante Abgabe\", ersichtlich.
+Der aktuelle Status einer \"Durchgeführten Abgabe\" wird mittels \"status\"- und \"type\"-Element dokumentiert. Es werden R5-Backport-Extensions verwendet."
 * . ^short = "Durchgeführte Abgabe eines Arzneimittels mit oder ohne Bezug zur geplanten Abgabe. Verwendet R5 Backport Extensions."
 
 // TODO Check CDA
