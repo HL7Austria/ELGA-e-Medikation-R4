@@ -4,16 +4,16 @@
 
 ### Sub_UC_eMed_09_01 - Durchgeführte Abgabe erfassen
 
-Der GDA (Apotheke bzw. Arzt mit Hausapotheke) kann eine [Durchgeführte Abgabe](design_choices.html#durchgeführte-abgabe-AtElgaEmedMedicationDispenseDurchgefuehrteAbgabe-medicationdispense) für einen ELGA-Teilnehmer erfassen, um die Abgabe eines Medikamentes medizinisch zu dokumentieren.
+Der GDA (Apotheke bzw. Arzt mit Hausapotheke) kann eine [Durchgeführte Abgabe](dStructureDefinition-at-elga-emed-medikationdispense-durchgefuehrteabgabe.html) für einen ELGA-Teilnehmer erfassen, um die Abgabe eines Medikamentes medizinisch zu dokumentieren.
 
-Sofern eine zugehörige [Geplante Abgabe](design_choices.html#geplante-abgabe-atelgaemedmedicationrequestgeplanteabgabe-medicationrequest) vorliegt, **muss** diese im Element *MedicationDispense.authorizingPrescription\[geplanteAbgabe\]* referenziert werden. Der zugehörige Planeintrag wird in *MedicationDispense.authorizingPrescription\[planeintrag\]* referenziert.
+Sofern eine zugehörige [Geplante Abgabe](StructureDefinition-at-elga-emed-medicationrequest-geplanteabgabe.html) vorliegt, **muss** diese im Element *MedicationDispense.authorizingPrescription\[geplanteAbgabe\]* referenziert werden. Der zugehörige Planeintrag wird in *MedicationDispense.authorizingPrescription\[planeintrag\]* referenziert.
 
-Die in der *Geplanten Abgabe* dokumentierte [Rezeptart](workflowmanagement.html#gültigkeit-von-geplanten-abgaben-basierend-auf-der-rezeptart) (bzw. eine evtl. Einschränkung durch den GDA (Arzt) im Element *MedicationRequest.numberOfRepeatsAllowed*), legt fest wieviele Abgaben durchgeführt werden dürfen. 
+Die in der *Geplanten Abgabe* dokumentierte [Rezeptart](workflowmanagement.html#gültigkeit-von-geplanten-abgaben-basierend-auf-der-rezeptart) (bzw. eine evtl. Einschränkung durch den GDA (Arzt) im Element *MedicationRequest.numberOfRepeatsAllowed*), legt fest wieviele Einlösungen durchgeführt werden dürfen. 
 
-Der aktuelle Status einer *Durchgeführten Abgabe* wird mittels *MedicationDispense.status* und *MedicationDispense.type* dokumentiert (siehe [Status des MedicationDispense in der durchgeführten Abgabe](workflowmanagement.html#status-des-medicationdispense-in-der-durchgeführten-abgabe)) und kann sich auf den Status der zugehörigen *Geplanten Abgabe* auswirken. 
-Via *MedicationDispense.type* können Einzelabge, Teilabgaben, Besorgerprozess, Leerabgaben, sowie Notabgabe, Rezeptnachbringung und OTC-Abgabe dokumentiert werden, siehe Tabelle [Durchgeführte Abgabe - Varianten der (Teil-)Abgabe](workflowmanagement.html#varianten-der-teil-abgabe). Bei Teilabgaben, Abgaben gemäß dem Besorgerprozess und Leerabgaben muss eine vorgegeben Abfolge an zur Verfügung stehenden *types* eingehalten werden.
+Der aktuelle Status einer *Durchgeführten Abgabe* wird mittels *MedicationDispense.status* und *MedicationDispense.type* dokumentiert (siehe [Status des MedicationDispense in der Durchgeführten Abgabe](workflowmanagement.html#status-des-medicationdispense-in-der-durchgeführten-abgabe)) und kann sich auf den Status der zugehörigen *Geplanten Abgabe* auswirken. 
+Via *MedicationDispense.type* können Einzelabgabe, Teilabgaben, Besorgerprozess und Leerabgaben dokumentiert werden, siehe Tabelle [Durchgeführte Abgabe - Varianten der (Teil-)Abgabe](workflowmanagement.html#varianten-der-teil-abgabe). Bei Teilabgaben, Abgaben gemäß dem Besorgerprozess und Leerabgaben muss eine vorgegeben Abfolge an zur Verfügung stehenden *types* eingehalten werden.
 
-Die abgegebene Packungsmenge (*MedicationDispense.quantity*) ist verpflichtend anzugeben, wird aber nicht durch die Fachanwendung im Kontext einer möglichen zugrundeliegenden Geplanten Abgabe geprüft. Ob eine Einlösung als vollständig gilt, hängt nicht von der Anzahl der abgegebenen Packungen ab, sondern davon, ob ein *MedicationDispense.type* der *complete* beinhaltet, gesetzt wurde.
+Die abgegebene Packungsmenge (*MedicationDispense.quantity*) ist verpflichtend anzugeben, wird jedoch nicht durch die Fachanwendung im Kontext einer möglichen zugrundeliegenden *Geplanten Abgabe* geprüft. Ob eine Einlösung als vollständig gilt, hängt nicht von der Anzahl der abgegebenen Packungen ab, sondern davon, ob ein *MedicationDispense.type*, der *complete* beinhaltet, gesetzt wurde.
 
 
 #### Sub_UC_eMed_09_01_01 Vollständige Abgabe (Einzelabgabe)
@@ -117,12 +117,7 @@ AtElgaEmedMedicationDispenseDurchgefuehrteAbgabe
 ```
 
 
-
-
-
-
-
-#### Sub_UC_eMed_09_01_0x Durchgeführte Abgabe ohne Bezug zu einer Geplanten Abgabe erfassen (OTC Abgabe / rezeptfrei)
+#### Sub_UC_eMed_09_01_04 Durchgeführte Abgabe ohne Bezug zu einer Geplanten Abgabe erfassen (ohne Verordnung / OTC Abgabe)
 
 In folgenden Fällen liegt bei der Erfassung einer *Durchgeführten Abgabe* keine zugehörige *Durchgeführte Abgabe* vor:
 - Notabgabe (Rezept wird nachgebracht)
@@ -130,36 +125,22 @@ In folgenden Fällen liegt bei der Erfassung einer *Durchgeführten Abgabe* kein
 - OTC Medikation (nicht rezeptpflichtig):
     - für wechselwirkungsrelevante Medikamente (aus ASP-Liste) soll eine *Durchgeführte Abgabe* erstellt werden
 
+In Arbeit.
 <br>
 
-#### Sub_UC_eMed_09_01_0x Durchgeführte Abgabe mit Besorgerprozess erfassen
 
-- "Besorgerprozess": Medikament von Apotheke bestellt oder Magistrale Zubereitung in Vorbereitung
-- "Besorgerprozess": bestelltes Medikament wird ausgehändigt
-
-<!-- Geplante Abgabe kann nicht mehr in einer anderen Apotheke eingelöst werden 
-und Teilabgabe -->
-
-<br>
-
-#### Sub_UC_eMed_09_01_0x Durchgeführte Abgabe als Teilabgaben erfassen
-
-- 1. Teilabgabe 
-- Weitere Teilabgabe
-- Letzte Teilabgabe
-
-<br>
-
-#### Sub_UC_eMed_09_01_0x Durchgeführte Abgabe als Leerabgabe erfassen
+#### Sub_UC_eMed_09_01_05 Durchgeführte Abgabe als Leerabgabe erfassen
 
 - Leerabgabe bei Einzelabgabe
 - Leerabgabe beendet Teilabgaben
 
+In Arbeit.
+
 <br>
 
-#### Sub_UC_eMed_09_01_0x Durchgeführte Abgabe Nacherfassen (Rezept wird nachgebracht)
+#### Sub_UC_eMed_09_01_06 Durchgeführte Abgabe Nacherfassen (Rezept wird nachgebracht)
 
-Eine *Durchgeführte Abgabe* muss nacherfasst werden, wenn das Arzneimittel bereits abgegeben wurde, 
+Eine *Durchgeführte Abgabe* kann nacherfasst werden, wenn das Arzneimittel bereits abgegeben wurde, 
     - aber eine Speicherung zum Zeitpunkt der Abgabe aus technischen Gründen nicht möglich war
     - der Arzneimittelbezug aus dem Ausland erfolgt ist (Element *recorded* abweichend von *whenHandedOver*)
     - wenn ein e-Rezept-Eintrag oder ein Papierrezept vorhanden ist und keine Geplante Abgabe in e-Medikation eingetragen wurden.
@@ -168,7 +149,7 @@ In Arbeit.
 
 <br>
 
-#### Sub_UC_eMed_09_01_0x Durchgeführte Abgabe mit Substitution eines Medikaments erfassen
+#### Sub_UC_eMed_09_01_07 Durchgeführte Abgabe mit Substitution eines Medikaments erfassen
 
 Eine Substitution eines Medikaments ist nur implizit ersichtich, durch die Referenz auf die zugehörige Geplante Abgabe.
 
