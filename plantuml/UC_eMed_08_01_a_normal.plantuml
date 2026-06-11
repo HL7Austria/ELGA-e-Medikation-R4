@@ -1,6 +1,6 @@
 @startuml
 
-title Geplante Abgabe für bestehende Medikationsplaneinträge erstellen\nVariante C: Nachträgliche Verknüpfung des e-Rezepts mit dem e-Med GroupIdentifier
+title Geplante Abgabe für bestehende Medikationsplaneinträge erstellen\nVariante A: Vorab-Ermittlung des GroupIdentifiers (Normalfall)
 
 skinparam borderColor #000000
 skinparam backgroundColor #f5f5f5
@@ -68,67 +68,49 @@ end note
 
 == <i>Geplante Abgaben</i> vorbereiten und schreiben ==
 
+
+
+GDA_1 -> eMed_FA: POST $groupidentifier-create​ 
+
+note over GDA_1
+e-Med GroupIdentifier für "Rezeptklammer"
+anfordern
+end note
+
+activate eMed_FA
+eMed_FA -> eMed_FA: e-Med GroupIdentifier erzeugen
+eMed_FA -->> GDA_1: e-Med GroupIdentifier
+deactivate eMed_FA
+
 note over GDA_1
 Erstellte <i>Geplante Abgaben</i> referenzieren 
-zugehörige Medikationsplaneinträge;
-groupIdentifier für "Rezeptklammer"
-bleibt leer
+zugehörige Medikationsplaneinträge und
+enthalten e-Med GroupIdentifier
 end note
+
+
 
 par Erstellung e-Rezept
 
-  GDA_1 -> e_Rezept: Trigger e-Rezept erstellen
+  GDA_1 ->> e_Rezept: Trigger e-Rezept erstellen
   activate e_Rezept
-  note over GDA_1
-  Erstellung e-Rezept auslösen,
-  ohne e-Med GroupIdentifier
-  end note
-
-  alt #9fc79f81 e-Rezept erstellt
-    e_Rezept --> GDA_1: OK
-
-  else #f7373766 e-Rezept Fehler
-    e_Rezept --> GDA_1: Fehler 
-    deactivate e_Rezept
-  end
-
+  e_Rezept -->> GDA_1: OK
+  deactivate e_Rezept
+    
 else gleichzeitige Erstellung <i>Geplante Abgabe</i>
-  
-  GDA_1 -> eMed_FA: POST Transaction Bundle GeplAbgabe
-  
+
+  GDA_1 ->> eMed_FA: POST $prescription-write
   activate eMed_FA
   note over GDA_1
-    Transaction Bundle mit Geplanten
-    Abgaben an Fachanwendung übermitteln
+  Transaction Bundle mit Geplanten
+  Abgaben an Fachanwendung übermitteln
   end note
-
-  alt #9fc79f81 Geplante Abgaben erstellt
-
-    eMed_FA -> eMed_FA: e-Med GroupIdentifier erzeugen\n+ geplanten Abgaben hinzufügen
-
-    note over eMed_FA
-    Geplante Abgabe 1 + 2 
-    gespeichert
-    end note
-
-    eMed_FA -> GDA_1: OK (Ressourcen inkl. e-Med GroupIdentifier)
-
-  else #f7373766 Geplante Abgabe Fehler
-    eMed_FA --> GDA_1: Fehler 
-    deactivate eMed_FA
-
-  end
+  
+  eMed_FA -->> GDA_1: OK  
+  note over eMed_FA
+  <i>Geplante Abgaben</i> erstellt
+  end note
 
 end
-
-GDA_1 -> e_Rezept: e-Rezept mit e-Med GroupIdentifier verknüpfen
-  activate e_Rezept
-  e_Rezept -> e_Rezept: e-Med GroupIdentifier\nergänzen
-  note over e_Rezept
-    Bestehendes e-Rezept mit
-    e-Med GroupIdentifier verknüpft
-  end note
-  e_Rezept --> GDA_1: OK
-  deactivate e_Rezept
 
 @enduml

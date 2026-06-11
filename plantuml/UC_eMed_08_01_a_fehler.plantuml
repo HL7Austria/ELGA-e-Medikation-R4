@@ -1,6 +1,6 @@
 @startuml
 
-title Geplante Abgabe für bestehende Medikationsplaneinträge erstellen\nVariante A: Vorab-Ermittlung des GroupIdentifiers
+title Geplante Abgabe für bestehende Medikationsplaneinträge erstellen\nVariante A: Vorab-Ermittlung des GroupIdentifiers (Fehlerfall)
 
 skinparam borderColor #000000
 skinparam backgroundColor #f5f5f5
@@ -49,7 +49,7 @@ box "\n       e-Med Fachanwendung       " #C48778
   participant eMed_FA as "e-Med FA"
 end box
 
-box "\n    e-Rezept  " #cbb272
+box "\n    e-Rezept  " #c5ae74
   participant e_Rezept as "e-Rezept"
 end box
 
@@ -98,10 +98,10 @@ par Erstellung e-Rezept
   Erstellung e-Rezept auslösen
   end note
 
-  alt e-Rezept erfolgreich erstellt
+  alt #9fc79f81 e-Rezept erstellt
     e_Rezept -->> GDA_1: OK
     
-  else Fehler bei Erstellung e-Rezept
+  else #f7373766 e-Rezept Fehler
     e_Rezept -->> GDA_1: Fehler 
     deactivate e_Rezept
     GDA_1 ->> eMed_FA: POST $prescription-discard​
@@ -122,21 +122,20 @@ else gleichzeitige Erstellung <i>Geplante Abgabe</i>
   Abgaben an Fachanwendung übermitteln
   end note
   
-  alt <i>Geplante Abgabe</i> erfolgreich erstellt
+  alt #9fc79f81 <i>Geplante Abgabe</i> erstellt
     eMed_FA -->> GDA_1: OK
 
     note over eMed_FA
       Geplante Abgabe 1 + 2 gespeichert
     end note
 
-  else Fehler bei Erstellung <i>Geplante Abgabe</i>
+  else #f7373766 <i>Geplante Abgabe</i> Fehler
     eMed_FA -->> GDA_1: Fehler
 
-    alt Fehler in Geplanter Abgabe beheben und erneut übermitteln
+    alt #9fc79f81 Geplante Abgabe erneut übermitteln
       GDA_1 ->> eMed_FA: POST $prescription-write
 
-    else Fehler nicht behebbar
-      eMed_FA -->> GDA_1: Fehler 
+    else #f7373766 Fehler nicht behebbar
       deactivate eMed_FA
       GDA_1 ->> e_Rezept: e-Rezept von e-Med GroupIdentifier entkoppeln
       deactivate GDA_1 
