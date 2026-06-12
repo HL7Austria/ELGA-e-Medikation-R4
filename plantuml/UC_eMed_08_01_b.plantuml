@@ -9,6 +9,10 @@ skinparam roundCorner 10
 skinparam defaultFontName "Arial"
 skinparam defaultFontSize 14
 skinparam defaultFontColor #000000
+skinparam HyperlinkColor #0000EE
+skinparam HyperlinkUnderline false
+skinparam BoxPadding 20
+skinparam BoxBorderColor #555555
 
 skinparam note {
   BackgroundColor #e0e5f0-#d1d9e6
@@ -19,9 +23,6 @@ skinparam note {
   FontColor #111827
   Shadowing true
 }
-
-skinparam HyperlinkColor #0000EE
-skinparam HyperlinkUnderline false
 
 skinparam sequence {
   ParticipantBorderColor #555555
@@ -38,26 +39,24 @@ skinparam sequence {
   GroupBorderThickness 2
 }
 
-skinparam BoxPadding 20
-skinparam BoxBorderColor #555555
+!define COLOR_GDA_1 #3588a74c
+!define COLOR_GDA_2 #ca89ca5f
+!define COLOR_PATIENT #a2ae6482
+!define COLOR_APO #4fd8d25d
+!define COLOR_EMED_FA #a14c3778
+!define COLOR_E_REZEPT #f5bd2f77
+!define COLOR_OK #ffffff26
+!define COLOR_ERROR #7f151533
 
-box "\n  GDA 1  " #9fbac4
-  actor GDA_1 as "GDA 1"
-end box
-
-box "\n       e-Med Fachanwendung       " #C48778
-  participant eMed_FA as "e-Med FA"
-end box
-
-box "\n    e-Rezept  " #cbb272
-  participant e_Rezept as "e-Rezept"
-end box
+actor GDA_1 as "GDA 1" COLOR_GDA_1
+participant eMed_FA as "e-Med FA" COLOR_EMED_FA
+participant e_Rezept as "e-Rezept" COLOR_E_REZEPT
 
 autonumber
 
 == Medikationsplan abrufen ==
 
-activate GDA_1
+activate GDA_1 COLOR_GDA_1
 ref over GDA_1, eMed_FA : [[interactions.html#sequenzdiagramm-plan-read Plan-Read]]
 
 note over GDA_1
@@ -74,42 +73,40 @@ groupIdentifier für "Rezeptklammer"
 bleibt leer
 end note
 
-GDA_1 ->> eMed_FA: POST Transaction Bundle GeplAbgabe
-activate eMed_FA
+GDA_1 -> eMed_FA: POST Transaction Bundle GeplAbgabe
+activate eMed_FA COLOR_EMED_FA
 
-alt Geplante Abgaben erfolgreich erstellt
+alt COLOR_OK Geplante Abgaben erstellt
 
-  alt e-Med GroupIdentifier leer
-    eMed_FA -> eMed_FA: e-Med GroupIdentifier erzeugen\n+ in geplanten Abgaben ergänzen
-  end
+  eMed_FA -> eMed_FA: e-Med GroupIdentifier erzeugen\n+ in geplanten Abgaben ergänzen
 
   note over eMed_FA
   Geplante Abgabe 1 + 2 gespeichert
   end note
 
-  eMed_FA -->> GDA_1: OK (Ressourcen inkl. e-Med GroupIdentifier)
+  eMed_FA --> GDA_1: OK (Ressourcen inkl. e-Med GroupIdentifier)
   
 
-else Fehler bei Erstellung Geplante Abgaben
-  eMed_FA -->> GDA_1: Fehler 
+else COLOR_ERROR Geplante Abgaben Fehler
+  eMed_FA --> GDA_1: Fehler 
   deactivate eMed_FA
 
 end
 
-GDA_1 ->> e_Rezept: Trigger e-Rezept erstellen (inkl. e-Med GroupIdentifier)
+GDA_1 -> e_Rezept: Trigger e-Rezept erstellen (inkl. e-Med GroupIdentifier)
 note over GDA_1
 Erstellung e-Rezept inkl. 
 e-Med GroupIdentifier auslösen
 end note
-activate e_Rezept
+activate e_Rezept COLOR_E_REZEPT
 
-alt e-Rezept erfolgreich erstellt
-  e_Rezept -->> GDA_1: OK
+alt COLOR_OK e-Rezept erstellt
+  e_Rezept --> GDA_1: OK
 
-else Fehler bei Erstellung e-Rezept
-  e_Rezept -->> GDA_1: Fehler 
+else COLOR_ERROR e-Rezept Fehler
+  e_Rezept --> GDA_1: Fehler 
   deactivate e_Rezept
-  GDA_1 ->> eMed_FA: <i>Geplante Abgabe</i> verwerfen ($discard)
+  GDA_1 -> eMed_FA: <i>Geplante Abgabe</i> verwerfen ($discard)
 
   note over eMed_FA
   Siehe Use Case "<i>Geplante Abgabe</i> verwerfen"
