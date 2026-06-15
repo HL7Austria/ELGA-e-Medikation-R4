@@ -140,6 +140,16 @@ Medikament wurde abgegeben oder reserviert, das formale Rezept wird später nach
 
 <br>
 
+#### Sub_UC_eMed_09_01_05 Durchgeführte Abgabe als Leerabgabe erfassen
+
+Der GDA (Apotheker bzw. Arzt mit Hausapotheke) kann eine [Durchgeführte Abgabe](StructureDefinition-at-elga-emed-medikationdispense-durchgefuehrteabgabe.html) als *Leerabgabe* erfassen, wenn der Patient angibt, dass er das Arzneimittel einer *Geplanten Abgabe* nicht benötigt (z. B. weil es bereits vorrätig ist) oder es generell nicht (mehr) einnimmt. Hierfür setzt er  MedicationDispense.status auf *cancelled*. 
+
+Eine *Leerabgabe* zählt als konsumierte Einlösung der zugehörigen *Geplanten Abgabe* und reduziert die Anzahl der verbleibenden möglichen Einlösungen um eins.
+
+Die *Geplante Abgabe* bleibt nach einer Leerabgabe weiterhin im Status *active*, bis alle zulässigen Einlösungen durchgeführt wurden oder die Gültigkeit zeitlich abläuft.
+
+Nur wenn alle möglichen Einlösungen als *cancelled* erfasst wurden, **MUSS** die zugehörige *Geplante Abgabe* automatisch auf den Status *cancelled* gesetzt werden. In allen anderen Fällen **MUSS** der Status der *Geplanten Abgabe* auf *completed* gesetzt werden, sobald keine weiteren Einlösungen mehr möglich sind.
+
 
 #### Sub_UC_eMed_09_01_05 Durchgeführte Abgabe als Leerabgabe erfassen
 
@@ -149,10 +159,8 @@ Die Anzahl der möglichen Einlösungen einer *Geplanten Abgabe* reduziert sich n
 
 <!-- TODO: ODER: Eine Leerabgabe beendet alle weiteren möglichen Einlösungen mit RFC (Refill - Complete), die zugehörige *Geplante Abgabe* erhält den Status *completed*. -->
 
-
 <!-- Kann wieder rückgängig gemacht werden (durch Storno). (S31. v2
 Absetzdatum + GDA relevant (statusChanged R6)  -->
-
 
 Wenn die letzte *Durchgeführte Abgabe* danach verworfen wird (Status *entered-in-error*), wird der Status der *Geplanten Abgabe* durch die Fachanwendung wieder auf *active* gesetzt.
 
@@ -178,23 +186,23 @@ AtElgaEmedMedicationDispenseDurchgefuehrteAbgabe
 <br>
 
 
-#### Sub_UC_eMed_09_01_07 Durchgeführte Abgabe mit Substitution eines Medikaments erfassen
+#### Sub_UC_eMed_09_01_07 Durchgeführte Abgabe mit Substitution eines Arzneimittels erfassen
 
-Eine Substitution eines Medikaments ist nur implizit ersichtich, durch die Referenz auf die zugehörige Geplante Abgabe.
+Eine Substitution eines Arzneimittels ist nur implizit ersichtich, durch die Referenz auf die zugehörige Geplante Abgabe.
 
 <!-- Begrüdung verpflichtend? -->
 <br>
 
 ### Sub_UC_eMed_09_02 - Durchgeführte Abgabe verwerfen
 
-Ein GDA (Apotheke) kann von ihm erstellte [Durchgeführte Abgabe](design_choices.html#durchgeführte-abgabe-AtElgaEmedMedicationDispenseDurchgefuehrteAbgabe-medicationdispense), die sich im Status *completed* oder *cancelled* befindet, aufgrund eines Fehlers verwerfen. 
+Ein GDA (Apotheke) kann von ihm erstellte [Durchgeführte Abgaben](design_choices.html#durchgeführte-abgabe-AtElgaEmedMedicationDispenseDurchgefuehrteAbgabe-medicationdispense), die sich im Status *completed* oder *cancelled* befinden, aufgrund eines Fehlers verwerfen. 
 
 Um eine *Durchgeführte Abgabe* zu verwerfen, ruft der GDA diese mittels GET MedicationDispense ab und bearbeitet diese wie folgt:
 - Der Status wird auf *entered-in-error* gesetzt,
-- der verantwortliche GDA (*requester*) und das Datum in *authoredOn* werden entsprechend aktualisiert.
+- der verantwortliche GDA (*requester*) und das Datum in *recorded* werden entsprechend aktualisiert.
 
 Eine verworfene *Durchgeführte Abgabe* kann nicht mehr bearbeitet werden und ist nur noch aber über die Historie einsehbar.
-Wenn eine verworfene *Durchgeführte Abgabe* Teil eines e-Rezepts mit weiteren Geplanten Abgaben ist (gleicher groupIdentifier), wirkt sich dies nicht auf den Status der anderen Geplanten Abgaben aus.
+Wenn eine verworfene *Durchgeführte Abgabe* Teil eines e-Rezepts mit weiteren *Geplanten Abgaben* ist (gleicher *e-Med GroupIdentifier*), wirkt sich dies nicht auf den Status der anderen Geplanten Abgaben aus.
 <!-- TODO prüfen -->
 
 <!-- TODO: Suchparameter nach stornierten Durchgeführten Abgaben? -->
@@ -207,8 +215,8 @@ Der ELGA-Teilnehmer kann eine *Durchgeführte Abgabe* endgültig löschen.
 
 Die Löschung der *Durchgeführten Abgabe* umfasst:
 
-- die fachliche Entfernung der betreffenden MedicationDispense-Ressource sowie
-- die Entfernung aller zugehörigen historischen Ressourcenversionen (_history).
+- die fachliche Entfernung der betreffenden *MedicationDispense-Ressource* sowie
+- die Entfernung aller zugehörigen historischen Ressourcenversionen (*_history*).
 
 Zum Löschen einer *Durchgeführte Abgabe* ruft der ELGA-Teilnehmer die betreffende *Durchgeführte Abgabe* im ELGA-Portal auf. Dieses führt zunächst eine Leseoperation auf die betreffende MedicationDispense-Ressource aus (GET MedicationDispense/[id]) und löscht anschließend die betreffende Geplante Abgabe mittels DELETE (DELETE [base]/MedicationDispense/[id]).
 
