@@ -1,6 +1,6 @@
 Profile: AtElgaEmedMedicationDispenseDurchgefuehrteAbgabe
 Parent: MedicationDispense
-Id: at-elga-emed-medikationdispense-durchgefuehrteabgabe
+Id: at-elga-emed-medicationdispense-durchgefuehrteabgabe
 Title: "AT ELGA e-Medikation MedicationDispense Durchgeführte Abgabe"
 Description: "Dokumentiert eine \"Durchgeführte Abgabe\" eines Arzneimittels (\"MedicationDispense\"-Ressource). 
 Die \"Durchgeführte Abgabe\" enthält die abgegebene Medikation und deren Dosierung und dient somit der Nachvollziehbarkeit der abgegebenen Arzneimittel in der e-Medikation. 
