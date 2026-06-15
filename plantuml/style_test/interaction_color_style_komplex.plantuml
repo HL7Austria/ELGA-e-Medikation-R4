@@ -18,10 +18,10 @@ skinparam note {
   BackgroundColor #e0e5f0-#d1d9e6
   BorderColor #8b95a5
   BorderThickness 1
-  RoundCorner 8
+  RoundCorner 0
   Padding 6
   FontColor #111827
-  Shadowing true
+  Shadowing false
 }
 
 skinparam sequence {
@@ -39,34 +39,15 @@ skinparam sequence {
   GroupBorderThickness 2
 }
 
-' !define COLOR_GDA_1 #9fbac4
-' !define COLOR_GDA_2 #beaebe
-' !define COLOR_PATIENT #5dad5c6b
-' !define COLOR_APO #51bcb7
-' !define COLOR_EMED_FA #b5482d
-' !define COLOR_E_REZEPT #f5bd2f
-' !define COLOR_OK #ffffff26
-' !define COLOR_ERROR #7f151533
+!define COLOR_GDA_1    #0078D460
+!define COLOR_GDA_2    #8764B860
+!define COLOR_PATIENT  #00950560
+!define COLOR_APO      #00B7C360
+!define COLOR_EMED_FA  #f5a40360
+!define COLOR_E_REZEPT #E7485660
 
-
-!define COLOR_GDA_1 #3588a74c
-!define COLOR_GDA_2 #ca89ca5f
-!define COLOR_PATIENT #a2ae6482
-!define COLOR_APO #4fd8d25d
-!define COLOR_EMED_FA #a14c3778
-!define COLOR_E_REZEPT #f5bd2f77
-!define COLOR_OK #ffffff26
-!define COLOR_ERROR #7f151533
-
-' !define COLOR_GDA_1 #ffffff26
-' !define COLOR_GDA_2 #ffffff26
-' !define COLOR_PATIENT #ffffff26
-' !define COLOR_APO #ffffff26
-' !define COLOR_EMED_FA #ffffff26
-' !define COLOR_E_REZEPT #ffffff26
-' !define COLOR_OK #ffffff26
-' !define COLOR_ERROR #ffffff26
-
+!define COLOR_OK       #50E6FF25
+!define COLOR_ERROR    #FF8C0035
 
 actor GDA_1 as "GDA 1" COLOR_GDA_1
 actor GDA_2 as "GDA 2" COLOR_GDA_2

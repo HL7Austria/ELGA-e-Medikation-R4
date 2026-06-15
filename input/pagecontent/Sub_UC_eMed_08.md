@@ -44,13 +44,13 @@ Liefert die e-Medikation Fachanwendung einen Fehler zurück, kann nach Fehlerkor
 ###### Variante A: Normalfall
 
 <br>
-{% include_relative plantuml/UC_eMed_08_01_a_normal.svg %}{: style="width:80%; hight:80%;" }
+{% include_relative plantuml/UC_eMed_08_01_a_normal.svg %}{: style="max-width:80%; height:auto;" }
 <br>
 
 ###### Variante A: Fehlerfall
 
 <br>
-{% include_relative plantuml/UC_eMed_08_01_a_fehler.svg %}{: style="width:80%; hight:80%;" }
+{% include_relative plantuml/UC_eMed_08_01_a_fehler.svg %}{: style="max-width:80%; height:auto;" }
 <br>
 
 ##### Variante B: Sequentielles Erstellen von Geplanter Abgabe und e-Rezept 
@@ -62,7 +62,7 @@ Im Anschluss kann der Trigger zur Erstellung des e-Rezepts inkl. *e-Med GroupIde
 
 
 <br>
-{% include_relative plantuml/UC_eMed_08_01_b.svg %}{: style="width:80%; hight:80%;" }
+{% include_relative plantuml/UC_eMed_08_01_b.svg %}{: style="max-width:80%; height:auto;" }
 <br>
 
 ##### Variante C: Nachträgliche Verknüpfung des e-Rezepts mit dem e-Med GroupIdentifier
@@ -71,7 +71,7 @@ Der Trigger zu Erstellung des e-Rezepts und [Prescription-Write](interactions.ht
 Die e-Medikation Fachanwendung ergänzt diesen und liefert ihn an den Client zurück (wie in Variante B), der Client führt im Anschluss eine nachträgliche Verknüfung des bereits erstellten e-Rezepts mit den geplanten Abgaben mittels *e-Med GroupIdentifier* durch.
 
 <br>
-{% include_relative plantuml/UC_eMed_08_01_c.svg %}{: style="width:80%; hight:80%;" }
+{% include_relative plantuml/UC_eMed_08_01_c.svg %}{: style="max-width:80%; height:auto;" }
 <br>
 
 
