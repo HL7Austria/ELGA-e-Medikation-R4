@@ -5,7 +5,7 @@ Description: "ValueSet für zulässige Ausprägungen eines Status einer durchgef
                                                                 // CDA Abgabe:
 * $cs-medication-dispense-status#completed              // abgegeben
 * $cs-medication-dispense-status#entered-in-error       // storniert
-* $cs-medication-dispense-status#stopped                // abgesetzt
-//* $cs-medication-dispense-status#in-progress
+* $cs-medication-dispense-status#cancelled                // abgesetzt
+//* $cs-medication-dispense-status#in-progress  
 
  
