@@ -2,6 +2,8 @@
 
 title Plan-Write-Error
 
+'skinparam actorStyle awesome
+
 skinparam borderColor #000000
 skinparam backgroundColor #f5f5f5
 skinparam shadowing false
@@ -39,15 +41,15 @@ skinparam sequence {
   GroupBorderThickness 2
 }
 
-!define COLOR_GDA_1    #0078D460
-!define COLOR_GDA_2    #8764B860
-!define COLOR_PATIENT  #00950560
-!define COLOR_APO      #00B7C360
-!define COLOR_EMED_FA  #f5a40360
-!define COLOR_E_REZEPT #E7485660
+!define COLOR_GDA_1    #15608280
+!define COLOR_GDA_2    #96607D80
+!define COLOR_PATIENT  #196B2480
+!define COLOR_APO      #0F9ED590
+!define COLOR_EMED_FA  #E9713280
+!define COLOR_E_REZEPT #C0504D80
 
-!define COLOR_OK       #50E6FF25
-!define COLOR_ERROR    #FF8C0035
+!define COLOR_OK       #0F9ED525
+!define COLOR_ERROR    #E9713235
 
 actor GDA_1 as "GDA 1" COLOR_GDA_1
 participant eMed_FA as "e-Med FA" COLOR_EMED_FA

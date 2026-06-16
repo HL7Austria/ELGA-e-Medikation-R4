@@ -1,6 +1,8 @@
 @startuml
 title Patient Journey – e-Medikation
 
+'skinparam actorStyle awesome
+
 skinparam borderColor #000000
 skinparam backgroundColor #f5f5f5
 skinparam shadowing false
