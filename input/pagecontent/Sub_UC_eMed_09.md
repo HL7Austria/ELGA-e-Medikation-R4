@@ -60,7 +60,7 @@ Für jede Teilabgabe **MUSS** eine *Durchgeführte Abgabe* erstellt werden. Dabe
 * *MedicationDispense.type* **MUSS**
     * bei der ersten Teilabgabe den Wert *FFP (First Fill – Part Fill)*,
     * bei jeder weiteren Teilabgabe den Wert *RFP (Refill Fill – Part Fill)* und
-    * bei der letzten Teilabgabe (*vollständige Teilabgabe*), d. h. sobald die in der *Geplanten Abgabe* vorgesehene Arzneimenge vollständig abgegeben wurde, den Wert *RFC (Refill – Complete)*
+    * bei der letzten Teilabgabe (*vollständige Teilabgabe*), d. h. sobald die in der *Geplanten Abgabe* verordnete Arzneimenge vollständig abgegeben wurde, den Wert *RFC (Refill – Complete)*
   enthalten.
 * *MedicationDispense.status* **MUSS** den Wert *completed* besitzen.
 * *MedicationDispense.quantity* **MUSS** die Anzahl der tatsächlich abgegebenen Packungen enthalten. 
@@ -98,9 +98,9 @@ AtElgaEmedMedicationDispenseDurchgefuehrteAbgabe
 
 #### Sub_UC_eMed_09_01_03 - Besorgerprozess
 
-Ein Besorgerprozess liegt vor, wenn das in der *Geplanten Abgabe* vorgesehenen Arzneimittel vor der Abgabe vollständig bestellt oder zubereitet werden müssen. 
+Ein Besorgerprozess liegt vor, wenn das in der *Geplanten Abgabe* verordnete Arzneimittel vollständig bestellt oder zubereitet werden muss. 
 
-Werden hingegen bereits verfügbare Arzneimittel teilweise abgegeben und lediglich der verbleibende Teil bestellt oder zubereitet, liegt eine Teilabgabe vor (siehe [Sub_UC_eMed_09_01_02 Teilabgaben](Sub_UC_eMed_09.html#sub_uc_emed_09_01_02-teilabgaben)).
+Werden hingegen Arzneimittel teilweise bereits abgegeben (und nur ein Teil bestellt oder zubereitet), liegt eine Teilabgabe vor (siehe [Sub_UC_eMed_09_01_02 Teilabgaben](Sub_UC_eMed_09.html#sub_uc_emed_09_01_02-teilabgaben)).
 
 Zu Beginn des Besorgerprozesses **MUSS**, entsprechend den Regeln für Teilabgaben, eine *Durchgeführte Abgabe* mit: 
 * *MedicationDispense.type = FFP (First Fill – Part Fill)*, *MedicationDispense.status = completed* erstellt werden. 
