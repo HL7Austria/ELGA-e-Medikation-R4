@@ -27,7 +27,7 @@ Version des Medikationsplans inklusive aller relevanten Ressourcen (List, Medica
 Dient einerseits der 1. Persistierung nach einem Plan-Write und 2. der Auslieferung des Medikationsplans bei einem Plan-Read-Zugriff an den GDA.
 
 ##### Persistiertes Medikationsplan-Collection-Bundle
-Nachdem die Fachanwendung beim [Plan-Write](interactions.html#plan-write), mittels *Medikationsplan-Transaction-Bundle* alle Ressourcen aktualisiert hat, erstellt diese ein *Medikationsplan-Collection-Bundle* zur **Persistierung**, welches den vom GDA übermittelten Medikationsplan **unverändert** (keine Statusänderungen oder Entfernung entsprechend markierten Planeinträgen) abbildet und die Gesamtheit aller referenzierten Ressourcen enthält. Dies stellt sicher, dass in den historischen Versionen des Medikationsplans alle relevanten Informationen verfügbar sind.
+Nachdem die Fachanwendung beim [Plan-Write](interactions.html#plan-write), mittels *Medikationsplan-Transaction-Bundle* alle Ressourcen aktualisiert hat, erstellt diese ein *Medikationsplan-Collection-Bundle* zur **Persistierung**, welches den vom GDA übermittelten Medikationsplan **unverändert** (keine Statusänderungen oder Entfernung entsprechend markierter Planeinträge) abbildet und die Gesamtheit aller referenzierten Ressourcen enthält. Dies stellt sicher, dass in den historischen Versionen des Medikationsplans alle relevanten Informationen verfügbar sind.
 
 ##### Auslieferungs-Medikationsplan-Collection-Bundle
 Bei einem [Plan-Read](interactions.html#plan-read) wird von der Fachanwendung ein **Auslieferungs-Bundle** bereitgestellt und wie folgt **angepasst**: 
