@@ -6,6 +6,8 @@ In diesem Abschnitt werden die Anwendungsfälle im Rahmen der e-Medikation besch
 
 ### Liste der Anwendungsfälle
 
+<!-- TODO: Usecase Diagramm hierhin verschieben -->
+
 Die folgenden Anwendungsfälle werden beschrieben:
 
 - [UC_eMed_05 - Medikationsplan lesen](UC_eMed_05.html)
