@@ -223,18 +223,123 @@ Eine [Durchgeführte Abgabe](design_choices.html#durchgeführte-abgabe-AtElgaEme
 
 Im Element *MedicationDispense.type* einer durchgeführten Abgabe wird die Art der Abgabe dokumentiert, welche von der [Rezeptart](workflowmanagement.html#gültigkeit-von-geplanten-abgaben-basierend-auf-der-rezeptart) (Anzahl Einlösungen) und vom Use Case abhängt.
 
-| Use Case (pro Einlösung)                                   | Geplante Abgabe (MedicationRequest.status)                   | Beschreibung                                                                                          | Durchgeführte Abgabe (MedicationDispense)                                                             | Beschreibung                                                                                                                                                                               |
-| ---------------------------------------------------------- | ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Vollständige Abgabe<br>Sub_UC_eMed_09_01_01 | completed, wenn letzte Einlösung abgeschlossen, sonst active | Geplante Abgabe wird nach erfolgter Dispense automatisch auf completed gesetzt                        | type: FFC (First Fill - Complete)<br>quantity:  x Packungen<br>status: „complete“                            | Dispense abgeschlossen; Kann nicht mehr verändert werden.                                                                                                                                  |
-| "Besorgerprozess": Medikament von Apotheke bestellt<br>Sub_UC_eMed_09_01_02| active                                                       | Geplante Abgabe bleibt active                                                                         | type: FFP (First Fill - Part Fill)<br>quantity:  0 Packungen (wurden  ausgegeben)<br>status: „preparation?“   | Medikament bestellt oder Magistrale Zubereitung in Vorbereitung. Geplante Abgabe kann nicht mehr in einer anderen Apotheke abgegeben werden                                                |
-| "Besorgerprozess": bestelltes Medikament wird ausgehändigt<br>Sub_UC_eMed_09_01_02 | completed                                                     | wenn Dispense completed, dann auch Geplante Abgabe completed                                            | type: RFC (Refill - Complete)<br>quantity:  x Packungen<br>status: „complete“                                | Durchgeführte Abgabe abgeschlossen                                                                                                                                                         |
-| 1\. Teilabgabe                                             | active                                                       | Geplante Abgabe bleibt active                                                                         | type: FFP (First Fill - Part Fill)<br>quantity:  x Packungen<br>status: „complete“                           | 1\. Teilabgabe                                                                                                                                                                             |
-| Weitere Teilabgabe                                         | active                                                       | Geplante Abgabe bleibt active                                                                         | type: RFP (Refill - Part Fill)<br>quantity:  x Packungen<br>status: „complete“                               | weitere Teilabgabe                                                                                                                                                                         |
-| Vollständige Teilabgabe                                          | completed                                                     | nach der letzten Teilabgabe wird die Geplante Abgabe automatisch auf completed gesetzt                 | type:  RFC (Refill - Complete)<br>quantity:  x Packungen<br>status: „complete“                               | letzte Teilabgabe                                                                                                                                                                          |
-| Leerabgabe bei Einzelabgabe                               | completed                                                     | die Geplante Abgabe wird automatisch auf completed gesetzt                                             | type: FFC (First Fill - Complete) bzw. RFC (Refill Complete)<br>quantity:  0 Packungen<br>status: „cancelled“ | Das Medikament einer geplanten Abgabe wird vom Patienten nicht benötigt und daher als Leerabgabe vermerkt.                                                                                 |
-| Leerabgabe beendet Teilabgaben                             | completed                                                     | nach einer Leerabgabe bei einer  Teilabgabe wird die Geplante Abgabe automatisch auf completed gesetzt | type: RFC (Refill - Complete)<br>quantity:  0 Packungen<br>status: „cancelled“                                | Das Medikament einer geplanten Abgabe wird vom Patienten nicht benötigt und daher als Leerabgabe vermerkt. Dieser Einlösevorgang ist damit beendet.                                        |
-| Notabgabe                                                  |  -                                                           | keine Geplante Abgabe vorhanden                                                                       | type: EM (Emergency Supply)<br>quantity:  x Packungen<br>status: „complete“                                  | Das Medikament wurde ohne zugrundeliegende Geplante Abgabe abgegeben.<br>Es wird kein Rezept nachgereicht                                                                                  |
-| Rezept wird nachgebracht                                   |  -                                                           | keine Geplante Abgabe vorhanden                                                                       | type: SO (Script Owing)<br>quantity:  x Packungen<br>status: „complete“                                      | Medikament wurde abgegeben oder reserviert, das formale Rezept wird später nachgereicht.  Planeintrag + Geplante Abgabe für wechselwirkungsrelevante Medikamente soll nacherfasst werden. |
-| OTC Abgabe (rezeptfrei)                                    |  -                                                           | keine Geplante Abgabe vorhanden                                                                       | type: OTC (hinzufügen)<br>quantity:  x Packungen<br>status: „complete“                                       | Rezeptfreies Medikament wurde abgegeben. Ein Planeintrag für wechselwirkungsrelevante Medikamente soll nacherfasst werden.                                                                |
+<br>
+[![diagram](diagram_durchgefuehrte_abgaben_abgabearten.drawio.svg){: style="width: 100%"}](diagram_durchgefuehrte_abgaben_abgabearten.drawio.svg)
+
+<br>
+
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-un1u{background-color:#D4EDF8;border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-h29a{background-color:#BFBFBF;border-color:inherit;font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-hp7q{background-color:#F2F2F2;border-color:inherit;font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-xd5p{background-color:#D4EDF8;border-color:inherit;font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+</style>
+<table class="tg" style="undefined;table-layout: fixed; width: 1327px"><colgroup>
+<col style="width: 296px">
+<col style="width: 188px">
+<col style="width: 330px">
+<col style="width: 233px">
+<col style="width: 280px">
+</colgroup>
+<thead>
+  <tr>
+    <th class="tg-h29a">Abgabenart</th>
+    <th class="tg-h29a">Geplante Abgabe&nbsp;&nbsp;&nbsp;(MedicationRequest-Status)</th>
+    <th class="tg-h29a">Beschreibung</th>
+    <th class="tg-h29a">Durchgeführte&nbsp;&nbsp;&nbsp;Abgabe (MedicationDispense-Status)</th>
+    <th class="tg-h29a">Beschreibung</th>
+  </tr></thead>
+<tbody>
+  <tr>
+    <td class="tg-xd5p">Einzelabgabe&nbsp;&nbsp;&nbsp;(einmalige Einlösemöglichkeit)</td>
+    <td class="tg-un1u">completed</td>
+    <td class="tg-un1u">Sofern "Geplante Abgabe" vorhanden, wird diese nach erfolgter Abgabe automatisch auf "completed" gesetzt.</td>
+    <td class="tg-un1u">type: FFC  (First Fill - Complete)<br>quantity: x Packungen <br>status: „completed“</td>
+    <td class="tg-un1u">Abgabe abgeschlossen</td>
+  </tr>
+  <tr>
+    <td class="tg-xd5p">Vollständige Einzelabgabe (bei mehrmaliger Einlösemöglichkeit)</td>
+    <td class="tg-un1u">active<br>     <br>wenn letzte Einlösung abgeschlossen: completed</td>
+    <td class="tg-un1u">"Geplante Abgabe" bleibt nach erfolgter Abgabe "active" und wird erst nach der letzten möglichen Einlösung von der Fachanwendung automatisch auf "completed" gesetzt. </td>
+    <td class="tg-un1u">type: FFC (First Fill - Complete)<br>quantity: x Packungen <br>status: „completed“</td>
+    <td class="tg-un1u">je Einlösung wird eine "Durchgeführte Abgabe" erstellt</td>
+  </tr>
+  <tr>
+    <td class="tg-hp7q">1. Teilabgabe </td>
+    <td class="tg-0pky">active</td>
+    <td class="tg-0pky">"Geplante Abgabe" bleibt "active"</td>
+    <td class="tg-0pky">type: FFP (First Fill - Part Fill)<br>quantity: x Packungen <br>status: „completed“</td>
+    <td class="tg-0pky">Je Teilabgabe wird eine "Durchgeführte Abgabe" erstellt. Geplante Abgabe kann nicht mehr in einer anderen Apotheke abgegeben werden</td>
+  </tr>
+  <tr>
+    <td class="tg-hp7q">Weitere Teilabgabe</td>
+    <td class="tg-0pky">active</td>
+    <td class="tg-0pky">"Geplante Abgabe" bleibt "active"</td>
+    <td class="tg-0pky">type: RFP (Refill - Part Fill)<br>quantity: x Packungen <br>status: „completed“</td>
+    <td class="tg-0pky"> </td>
+  </tr>
+  <tr>
+    <td class="tg-hp7q">Letzte Teilabgabe</td>
+    <td class="tg-0pky">completed</td>
+    <td class="tg-0pky">*Geplante&nbsp;&nbsp;&nbsp;Abgabe* bleibt *active*, solange weitere Einlösungen möglich. Danach setzt&nbsp;&nbsp;&nbsp;die Fachanwendung den Status der *Geplanten Abgabe* auf *completed*.</td>
+    <td class="tg-0pky">type:  RFC (Refill - Complete)<br>quantity:  x Packungen <br>status: „completed“</td>
+    <td class="tg-0pky"> </td>
+  </tr>
+  <tr>
+    <td class="tg-xd5p">"Besorgerprozess": Arzneimittel von Apotheke bestellt&nbsp;&nbsp;&nbsp;/ zubereitet (ohne Abgabe) </td>
+    <td class="tg-un1u">active</td>
+    <td class="tg-un1u">"Geplante&nbsp;&nbsp;&nbsp;Abgabe" bleibt "active"</td>
+    <td class="tg-un1u">type: FFP (First Fill - Part Fill)<br>quantity: 0 Packungen (wurden  ausgegeben) <br>     status: „completed“</td>
+    <td class="tg-un1u">Arzneimittel bestellt oder Magistrale Zubereitung in Vorbereitung. Geplante Abgabe kann nicht mehr in einer anderen Apotheke abgegeben werden</td>
+  </tr>
+  <tr>
+    <td class="tg-xd5p">"Besorgerprozess": Arzneimittel nach Teilabgaben von&nbsp;&nbsp;&nbsp;Apotheke bestellt (ohne Abgabe)</td>
+    <td class="tg-un1u">active</td>
+    <td class="tg-un1u">"Geplante&nbsp;&nbsp;&nbsp;Abgabe" bleibt "active"</td>
+    <td class="tg-un1u">type: FFP (Refill – Part Fill)<br>quantity: 0 Packungen (wurden  ausgegeben) <br>status: „completed“</td>
+    <td class="tg-un1u"> </td>
+  </tr>
+  <tr>
+    <td class="tg-hp7q">Leerabgabe beendet Einzelabgabe</td>
+    <td class="tg-0pky">cancelled</td>
+    <td class="tg-0pky">wenn&nbsp;&nbsp;&nbsp;alle möglichen Einlösungen *cancelled* gespeichert wurden, wird die&nbsp;&nbsp;&nbsp;zugehörige *Geplante Abgabe* automatisch auf *cancelled* gesetzt, sonst auf&nbsp;&nbsp;&nbsp;*completed*.</td>
+    <td class="tg-0pky">type: FFC (First Fill - Complete)<br>quantity: 0 Packungen <br>status: „cancelled“</td>
+    <td class="tg-0pky">Das Arzneimittel einer geplanten Abgabe wird vom Patienten nicht benötigt und daher als Leerabgabe vermerkt.</td>
+  </tr>
+  <tr>
+    <td class="tg-hp7q">Leerabgabe beendet Teilabgaben</td>
+    <td class="tg-0pky">completed oder   <br>cancelled</td>
+    <td class="tg-0pky">wenn&nbsp;&nbsp;&nbsp;alle möglichen Einlösungen *cancelled* gespeichert wurden, wird die&nbsp;&nbsp;&nbsp;zugehörige *Geplante Abgabe* automatisch auf *cancelled* gesetzt, sonst auf&nbsp;&nbsp;&nbsp;*completed*.</td>
+    <td class="tg-0pky">type: RFC (Refill - Complete)<br>quantity: 0 Packungen<br>status: „cancelled“</td>
+    <td class="tg-0pky">Teilabgabe wird vom Patienten nicht benötigt und daher als Leerabgabe vermerkt. Dieser Einlösevorgang ist damit beendet.</td>
+  </tr>
+  <tr>
+    <td class="tg-xd5p">Notabgabe</td>
+    <td class="tg-un1u"> -</td>
+    <td class="tg-un1u">keine&nbsp;&nbsp;&nbsp;"Geplante Abgabe" vorhanden</td>
+    <td class="tg-un1u">type: FFC (First Fill - Complete)     <br>quantity: x Packungen <br>status: „completed“</td>
+    <td class="tg-un1u">Das Medikament wurde ohne zugrundeliegende "Geplante Abgabe" abgegeben. <br></td>
+  </tr>
+  <tr>
+    <td class="tg-xd5p">Rezept wird nachgebracht</td>
+    <td class="tg-un1u"> -</td>
+    <td class="tg-un1u">keine&nbsp;&nbsp;&nbsp;"Geplante Abgabe" vorhanden</td>
+    <td class="tg-un1u">type: FFC (First Fill - Complete)<br>quantity: x Packungen <br>status: „completed“</td>
+    <td class="tg-un1u">Medikament wurde abgegeben, das formale Rezept wird später nachgereicht. Planeintrag kann nacherfasst werden.</td>
+  </tr>
+  <tr>
+    <td class="tg-xd5p">OTC Abgabe (rezeptfrei)</td>
+    <td class="tg-un1u"> -</td>
+    <td class="tg-un1u">keine&nbsp;&nbsp;&nbsp;"Geplante Abgabe" vorhanden</td>
+    <td class="tg-un1u">type: FFC (First Fill - Complete)<br>quantity:  x Packungen <br>status: „completed“</td>
+    <td class="tg-un1u">Rezeptfreies Medikament wurde abgegeben. Ein Planeintrag für Wechselwirkungsrelevante Medikamente soll nacherfasst werden.</td>
+  </tr>
+</tbody></table>
 
 <br>
