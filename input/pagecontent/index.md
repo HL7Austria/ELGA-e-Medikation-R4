@@ -4,12 +4,12 @@
 
 Der vorliegende **FHIR Implementation Guide e‑Medikation Version 4** ersetzt die bestehende, auf CDA basierende Version 2 der e‑Medikation. 
 - Mit Version 4 wird die bestehende Umsetzung der e‑Medikation um die Funktionalität des e‑Medikationsplans ergänzt. 
-- Darüber hinaus sollen alle geplanten und Durchgeführten Abgaben von Medikamenten in der e-Abgabe als Teil von e-Medikation abgebildet werden.
+- Darüber hinaus sollen alle *Geplanten* und *Durchgeführten Abgaben* von Medikamenten in der e-Abgabe als Teil von e-Medikation abgebildet werden.
 
 Der **e‑Medikationsplan** bietet Behandler:innen und Patient:innen eine vollständige, strukturierte Übersicht über die aktuelle sowie die historische Medikation. Zentrales Element ist die Verordnung, welche im jeweiligen e‑Medikationsplaneintrag mit sämtlichen relevanten Einnahmedetails digital abgebildet wird. Diese Verordnung bildet die Grundlage für die Folgeprozesse Weiterverordnung, Rezeptierung und Abgabe.
-Die Einsicht in Geplante und Durchgeführte Abgaben (mit und ohne Medikationsplanbezug) in **e-Abgabe** soll die Vollständigkeit der Information zur Medikation gewährleisten.
+Die Einsicht in *Geplante* und *Durchgeführte Abgaben* (mit und ohne Medikationsplanbezug) in **e-Abgabe** soll die Vollständigkeit der Information zur Medikation gewährleisten.
 
-Die Einführung des E-Medikationsplans gewährleistet, dass alle für die Therapieentscheidung relevanten Informationen verfügbar sind, Doppelverordnungen vermieden werden und die Patient:innensicherheit erhöht wird. Darüber hinaus fungiert der e‑Medikationsplan als Datengrundlage für die automatisierte Übernahme relevanter Medikationsinformationen in die ELGA Patient Summary.
+Die Einführung des E-Medikationsplans gewährleistet, dass alle für die Therapieentscheidung relevanten Informationen verfügbar sind, Doppelverordnungen vermieden werden und die Patient:innensicherheit erhöht wird. Darüber hinaus fungiert der e‑Medikationsplan als Datengrundlage für die automatisierte Übernahme relevanter Medikationsinformationen in die *ELGA Patient Summary*.
 
 [![diagram](e_medikation_overview_start.png){: style="width: 60%"}](e_medikation_overview_start.png)
 
