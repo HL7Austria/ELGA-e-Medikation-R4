@@ -151,7 +151,7 @@ ELGA-Teilnehmer:innen können die Verfügbarkeit von geplanten Abgaben wie folgt
 
 ### Gesetzliche Speicherfristen von geplanten Abgabe (UC_eMed_08_H06)
 
-Geplante Abgaben werden nach Ablauf der gesetzlichen Speicherfrist (5 Jahre) gelöscht. 
+*Geplante Abgaben* werden nach Ablauf der gesetzlichen Speicherfrist (5 Jahre) gelöscht. 
 
 
 ### Durchgeführte Abgabe erfassen (UC_eMed_09_H01)
