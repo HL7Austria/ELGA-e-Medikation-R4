@@ -25,6 +25,8 @@ contact:
         value: https://elga.gv.at
         use: work
 
+
+
 # The dependencies property corresponds to IG.dependsOn. The key is the
 # package id and the value is the version (or dev/current). For advanced
 # use cases, the value can be an object with keys for id, uri, and version.
@@ -117,6 +119,30 @@ pages:
   # known_issues.md:
   #   title: Known Issues
 
+
+# The parameters property represents IG.definition.parameter. Rather
+# than a list of code/value pairs (as in the ImplementationGuide
+# resource), the code is the YAML key. If a parameter allows repeating
+# values, the value in the YAML should be a sequence/array.
+# For parameters defined by core FHIR see:
+# http://build.fhir.org/codesystem-guide-parameter-code.html
+# For parameters defined by the FHIR Tools IG see:
+# http://build.fhir.org/ig/FHIR/fhir-tools-ig/branches/master/CodeSystem-ig-parameters.html
+#
+# parameters:
+#   generate-uml: source
+
+#
+# ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
+# │ The menu property will be used to generate the input/menu.xml file. The menu is represented    │
+# │ as a simple structure where the YAML key is the menu item name and the value is the URL.       │
+# │ The IG publisher currently only supports one level deep on sub-menus. To provide a             │
+# │ custom menu.xml file, do not include this property and include a `menu.xml` file in            │
+# │ input/includes. To use a provided input/includes/menu.xml file, delete the "menu"              │
+# │ property below.                                                                                │
+# ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+
 menu:
   Home: index.html
   Inhaltsverzeichnis: toc.html
@@ -134,12 +160,13 @@ menu:
   Anwendungsfälle:
     # Überblick: overview_use_case.html
     Patient Journey: patient_journey.html
+    Technische Use Cases: overview_sub_use_case.html
     # UC_eMed_05 Medikationsplan lesen: UC_eMed_05.html
     # UC_eMed_06 Medikationsplan schreiben: UC_eMed_06.html
     # UC_eMed_07 Geplante und durchgeführte Abgaben lesen: UC_eMed_07.html
     # UC_eMed_08 Geplante Abgabe schreiben: UC_eMed_08.html
     # UC_eMed_09 Durchgeführte Abgabe schreiben: UC_eMed_09.html
-    Technische Use Cases: overview_sub_use_case.html
+    
   # Mappings: mapping.html
   Artifacts: artifacts.html
   # About:
