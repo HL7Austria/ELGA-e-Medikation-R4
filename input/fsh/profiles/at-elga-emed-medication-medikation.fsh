@@ -2,7 +2,7 @@ Profile: AtElgaEmedMedicationMedikation
 Parent: Medication
 Id: at-elga-emed-medication-medikation
 Title: "AT ELGA e-Medikation Medication Medikation"
-Description: "Bildet ein Arzneimittel in der \"Medication\"-Ressource ab. Wird grundsätzlich verwendet in Planeintrag, geplante Abgabe und durchgeführte Abgabe."
+Description: "Bildet ein Arzneimittel in der \"Medication\"-Ressource ab. Wird grundsätzlich verwendet in Planeintrag, Geplanter Abgabe und Durchgeführter Abgabe."
 // TODO: Medication aktuell nur geprüft im Kontext Planeintrag.
 // Unterschieden werden folgende Fälle:
 // 1. Arzneimittel besitzt eine PZN und wird über diese identifiziert, die weiteren Informationen werden durch die Fachanwendung angereichert.
@@ -36,7 +36,7 @@ Description: "Bildet ein Arzneimittel in der \"Medication\"-Ressource ab. Wird g
 * manufacturer 0..0 
 //* manufacturer only Reference(HL7ATCoreOrganization)
 * manufacturer ^short = "Der Hersteller des Arzneimittels. Keine Verwendung im Kontext Planeintrag." 
-//TODO: Prüfen, ob im Kontext durchgeführte Abgabe und magistraler Zubereitung erforderlich; HL7ATCoreOrganization schränkt auf Organisationen gemäß GDA-Index ein."
+//TODO: Prüfen, ob im Kontext Durchgeführte Abgabe und magistraler Zubereitung erforderlich; HL7ATCoreOrganization schränkt auf Organisationen gemäß GDA-Index ein."
 
 * form 0..1 MS 
 * form from $cs-emed-doseform (required)

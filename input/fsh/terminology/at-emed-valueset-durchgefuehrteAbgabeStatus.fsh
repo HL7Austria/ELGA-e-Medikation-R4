@@ -1,6 +1,6 @@
 ValueSet: DurchgefuehrteAbgabeStatusVS
 Title: "ELGA e-Med Durchgeführte Abgabe Status Value Set"
-Description: "ValueSet für zulässige Ausprägungen eines Status einer durchgeführten Abgabe (MedicationDispense)."
+Description: "ValueSet für zulässige Ausprägungen eines Status einer Durchgeführten Abgabe (MedicationDispense)."
 * ^experimental = true
                                                                 // CDA Abgabe:
 * $cs-medication-dispense-status#completed              // abgegeben

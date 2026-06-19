@@ -88,15 +88,15 @@ Apotheke -> System: Durchgeführte Abgabe Cortisonsalbe in Vorbereitung
 
 == 1.3.2026: Abgabe in der Apotheke, Teil 2 ==
 Patient -> Apotheke: Cortisonsalbe abholen
-Apotheke -> System: Geplante und offene durchgeführte Abgabe abrufen
-System --> Apotheke: Geplante und offene durchgeführte Abgabe
+Apotheke -> System: Geplante und offene *Durchgeführte Abgabe* abrufen
+System --> Apotheke: Geplante und offene *Durchgeführte Abgabe*
 
-Apotheke -> System: offene durchgeführte Abgabe Cortisonsalbe abschließen
+Apotheke -> System: offene *Durchgeführte Abgabe* Cortisonsalbe abschließen
 Apotheke -> Patient: Cortisonsalbe aushändigen
 
 == 5.3.2026: Abruf Medikationsplan durch Patienten ==
-Patient -> System: Medikationsplan + geplante und durchgeführte Abgaben anzeigen
-System --> Patient: Medikationsplan mit 2 Einträgen + geplante und durchgeführte Abgaben anzeigen
+Patient -> System: Medikationsplan + Geplante und Durchgeführte Abgaben anzeigen
+System --> Patient: Medikationsplan mit 2 Einträgen + Geplante und Durchgeführte Abgaben anzeigen
 
 == 10.3.2026: Kontrolltermin ==
 Patient -> Arzt: Kontrolltermin

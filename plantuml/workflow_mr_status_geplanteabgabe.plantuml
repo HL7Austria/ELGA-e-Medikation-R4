@@ -1,5 +1,5 @@
 @startuml
-title MedicationRequest.status (geplante Abgabe)
+title MedicationRequest.status (Geplante Abgabe)
 
 (*) --> [offen] active
 active --> [Geplante\nAbgabe\nabgelaufen\n(automatisch)] stopped

@@ -1,7 +1,7 @@
 Instance: At-Emed-Journey-03-Mr-Geplante-Abgabe   
 InstanceOf: AtElgaEmedMedicationRequestGeplanteAbgabe
 Title: "Beispiel Journey 03: Geplante Abgabe"
-Description: "Bildet eine geplante Abgabe des Medikaments EBETREXAT und zugehörigen Dosierungsanweisungen ab (MedicationRequest)."
+Description: "Bildet eine Geplante Abgabe des Medikaments EBETREXAT und zugehörigen Dosierungsanweisungen ab (MedicationRequest)."
 Usage: #example
 
 * contained[+] = ContainedMedication03

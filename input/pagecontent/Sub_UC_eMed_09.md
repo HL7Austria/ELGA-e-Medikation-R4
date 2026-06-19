@@ -21,7 +21,7 @@ Die unterschiedlichen Arten der Abgabe und deren Abfolge sind dargestellt unter 
 
 #### Sub_UC_eMed_09_01_01 - Vollständige Einzelabgabe erfassen 
 
-Eine vollständige Einzelabgabe liegt vor, wenn die in der *Geplanten Abgabe* verordneten Arzneimenge vollständig abgegeben wird (existiert keine zugehörige *Geplante Abgabe* gilt [Sub_UC_eMed_09_01_05 - Abgabe ohne Bezug zu einer Geplanten Abgabe erfassen](Sub_UC_eMed_09.html#sub_uc_emed_09_01_05---abgabe-ohne-bezug-zu-einer-geplanten-abgabe-erfassen)).
+Eine vollständige Einzelabgabe liegt vor, wenn die in der *Geplanten Abgabe* verordneten Arzneimenge vollständig abgegeben wird (existiert keine zugehörige *Geplante Abgabe* gilt [Sub_UC_eMed_09_01_05 - Durchgeführte Abgabe ohne Bezug zu einer Geplanten Abgabe erfassen](Sub_UC_eMed_09.html#sub_uc_emed_09_01_05---durchgeführte-abgabe-ohne-bezug-zu-einer-geplanten-abgabe-erfassen)).
 
 Bei einer vollständigen Einzelabgabe **MUSS** eine *Durchgeführte Abgabe* wie folgt erstellt werden:
 * *MedicationDispense.type = FFC (First Fill – Complete)* und *MedicationDispense.status = completed* 
@@ -133,7 +133,7 @@ Die Anzahl der möglichen Einlösungen einer *Geplanten Abgabe* reduziert sich n
 <!-- Kann wieder rückgängig gemacht werden (durch Storno). (S31. v2 Absetzdatum + GDA relevant (statusChanged R6)  -->
 
 
-#### Sub_UC_eMed_09_01_05 - Abgabe ohne Bezug zu einer Geplanten Abgabe erfassen
+#### Sub_UC_eMed_09_01_05 - Durchgeführte Abgabe ohne Bezug zu einer Geplanten Abgabe erfassen
 
 In folgenden Fällen liegt bei der Erfassung einer *Durchgeführten Abgabe* keine zugehörige *Geplante Abgabe* vor:
 * Abgabe von nicht verordneten Arzneimitteln (Abgabe von wechselwirkungsrelevanten OTC)
@@ -145,7 +145,7 @@ Analog zu [Sub_UC_eMed_09_01_01 - Vollständige Einzelabgabe erfassen](Sub_UC_eM
 Sofern für die *Durchgeführten Abgabe* im nachhinein ein *Planeintrag* erstellt wird, **KANN** mit $reference-plan der *Planeintrag* (in *MedicationDispense.authorizingPrescription\[planeintrag\]*) referenziert werden. 
 
 
-#### Sub_UC_eMed_09_01_06 - Geplanten Abgabe nacherfassen
+#### Sub_UC_eMed_09_01_06 - Durchgeführte Abgabe nacherfassen
 
 Bei der Nacherfassung bereits abgegebener Arzneimittel (z.B. wenn eine Speicherung zum Zeitpunkt der Abgabe aus technischen Gründen nicht möglich war oder bei Arzneimittelbezug aus dem Ausland), wird als Erfassungsdatum der Zeitpunkt der Nacherfassung gesetzt, während als Abgabedatum das tatsächliche Datum der Abgabe in der Vergangenheit eingetragen wird.
 
@@ -160,13 +160,11 @@ AtElgaEmedMedicationDispenseDurchgefuehrteAbgabe
     whenHandedOver: Der Zeitpunkt, zu dem das abgegebene Produkt ausgehändigt wurde
 ```
 
-
 #### Sub_UC_eMed_09_01_07 Substitution eines Arzneimittels erfassen
 
 Eine Substitution eines Arzneimittels ist nur implizit ersichtich, durch die Referenz auf die zugehörige *Geplante Abgabe* bzw. den *Planeintrag*.
 
 <!-- Begrüdung verpflichtend? -->
-<br>
 
 ### Sub_UC_eMed_09_02 - Durchgeführte Abgabe verwerfen
 
@@ -182,7 +180,6 @@ Wenn eine verworfene *Durchgeführte Abgabe* Teil eines e-Rezepts mit weiteren *
 
 <!-- TODO: Suchparameter nach stornierten Durchgeführten Abgaben? -->
 <!-- TODO: Wenn stornierte *Durchgeführte Abgabe* Teil eines e-Rezepts mit weiteren geplanten Abgaben ist: Auswirkungen? keene -->
-<br>
 
 ### Sub_UC_eMed_09_03 - Durchgeführte Abgabe löschen (durch ELGA-Teilnehmer)
 

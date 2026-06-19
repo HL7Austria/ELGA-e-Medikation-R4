@@ -32,7 +32,7 @@ Es werden R5-Backport-Extensions verwendet."
 
 * status 1..1 MS
 * status from GeplanteAbgabeStatusVS (required)
-* status ^short = "Status der geplanten Abgabe. Mögliche Ausprägung: [active | completed | entered-in-error | stopped]. Bedeutung: active: offene, geplante Abgabe | completed: geplante Abgabe abgeschlossen | entered-in-error: nach fehlerhafter Eingabe; Storno nur möglich, wenn noch keine zugehörige Abgabe durchgeführt wurde | stopped: Verwendung zu prüfen (Status soll analog zu e-Rezept abgebildet werden)"
+* status ^short = "Status der geplanten Abgabe. Mögliche Ausprägung: [active | completed | entered-in-error | stopped]. Bedeutung: active: offene, Geplante Abgabe | completed: Geplante Abgabe abgeschlossen | entered-in-error: nach fehlerhafter Eingabe; Storno nur möglich, wenn noch keine zugehörige Abgabe durchgeführt wurde | stopped: Verwendung zu prüfen (Status soll analog zu e-Rezept abgebildet werden)"
 //(nicht verwendet: on-hold, cancelled, draft, unknown)
 // completed: evtl. implizit mittels Custom Operation gesetzt, nachdem alle Abgaben durchgeführt wurden (Rezept komplett eingelöst) (TODO: techn. prüfen)
 
@@ -41,10 +41,10 @@ Es werden R5-Backport-Extensions verwendet."
 
 * intent 1..1 MS
 * intent = #order 
-* intent ^short = "Die geplante Abgabe stellt einen Auftrag zur Durchführung und eine Autorisierung des Verfassers dar; daher ist intent immer \"order\"."
+* intent ^short = "Die Geplante Abgabe stellt einen Auftrag zur Durchführung und eine Autorisierung des Verfassers dar; daher ist intent immer \"order\"."
 
 // Slicing Kategorie:  
-// - Kategorie zur Unterscheidung der MedicationRequests: Planeintrag und geplante Abgabe
+// - Kategorie zur Unterscheidung der MedicationRequests: Planeintrag und Geplante Abgabe
 // - Kategorie zur Unterscheidung von Kassenrezept und Privatrezept
 * category ^slicing.discriminator.type = #value
 * category ^slicing.discriminator.path = "coding.code"
@@ -64,7 +64,7 @@ Es werden R5-Backport-Extensions verwendet."
 * priority ^short = "Priorität der geplanten Abgabe. Keine Verwendung in der geplanten Abgabe."
 
 * doNotPerform 0..0
-* doNotPerform ^short = "Gibt an, ob die geplante Abgabe untersagt ist. Keine Verwendung in der geplanten Abgabe."
+* doNotPerform ^short = "Gibt an, ob die Geplante Abgabe untersagt ist. Keine Verwendung in der geplanten Abgabe."
 
 * reported[x] 0..0
 * reported[x] ^short = "Keine Verwendung in der geplanten Abgabe."
@@ -81,10 +81,10 @@ Arzneimittel mit und ohne PZN einheitlich dokumentiert werden können."
 // --- Subject ---
 * subject only Reference(AtElgaCorePatient) 
 * subject 1..1 MS
-* subject ^short = "Patient, für den die geplante Abgabe ausgestellt werden soll (über Zentralen Patientenindex identifiziert und Teilnehmer von ELGA e-Medikation)."
+* subject ^short = "Patient, für den die Geplante Abgabe ausgestellt werden soll (über Zentralen Patientenindex identifiziert und Teilnehmer von ELGA e-Medikation)."
 
 * encounter 0..0
-* encounter ^short = "Aufenthalt/Begegnung, während dessen die geplante Abgabe erstellt wurde. Keine Verwendung in der geplanten Abgabe."
+* encounter ^short = "Aufenthalt/Begegnung, während dessen die Geplante Abgabe erstellt wurde. Keine Verwendung in der geplanten Abgabe."
 
 * supportingInformation 0..0
 * supportingInformation ^short = "Referenz auf zusätzliche Informationen (Ressource Any)
@@ -98,7 +98,7 @@ Keine Verwendung in der geplanten Abgabe."
 // -- Requester ---
 * requester 1..1 MS 
 * requester only Reference(AtElgaCorePractitioner or AtElgaCorePractitionerRole or HL7ATCoreOrganization) 
-* requester ^short = "Der Arzt oder die Ärztin, die die geplante Abgabe erstellt hat und für den Inhalt verantwortlich ist 
+* requester ^short = "Der Arzt oder die Ärztin, die die Geplante Abgabe erstellt hat und für den Inhalt verantwortlich ist 
 (eindeutig identifiziert über den GDA-Index und berechtigt auf die ELGA e-Medikation des Patienten zuzugreifen)."
 //TODO: HL7ATCore-Practitioner-Profile profilieren."
 
@@ -125,14 +125,14 @@ geplanten Abgabe ganz oder teilweise eingehalten wird. Keine Verwendung in der g
 
 * basedOn 1..1 MS
 * basedOn only Reference(AtElgaEmedMedicationRequestPlaneintrag) 
-* basedOn ^short = "Referenz auf die (aktuelle) Version des zugrundeliegenden Medikationsplaneintrags, auf dem diese geplante Abgabe basiert."
+* basedOn ^short = "Referenz auf die (aktuelle) Version des zugrundeliegenden Medikationsplaneintrags, auf dem diese Geplante Abgabe basiert."
 // TODO: zu prüfen: zusätzliche logische Referenz: reference.identifier 
 // {Medikationsplaneintrag-ID}_{Medikationsplaneintrag-ID_Version}."
 
 * groupIdentifier 1..1 MS
 * groupIdentifier ^short = "Als groupIdentifier dient die eMED-ID, die auch im e-Rezept mitgeführt wird. 
 Werden von einem:r Arzt:Ärtztin mehrere Arzneimittel gleichzeitig verordnet, wird für jedes Arzneimittel eine 
-geplante Abgabe mit demselben groupIdentifier erstellt (bildet 'Rezept-Klammer')."
+Geplante Abgabe mit demselben groupIdentifier erstellt (bildet 'Rezept-Klammer')."
 //TODO: eMED-ID Wording ist evtl. aufgrund des Parallelbetriebs noch anzupassen"
 
 * courseOfTherapyType 0..0 
@@ -162,9 +162,9 @@ geplante Abgabe mit demselben groupIdentifier erstellt (bildet 'Rezept-Klammer')
 * dispenseRequest.dispenseInterval ^short = "Mindestzeitraum zwischen den Abgaben. Keine Verwendung in der geplanten Abgabe."
 
 * dispenseRequest.validityPeriod 1..1 MS 
-* dispenseRequest.validityPeriod ^short = "Gültigkeitszeitraum einer geplante Abgabe (abhängig von Rezeptart): Kassenrezept: ab Erstelldatum 1 Monat, bei Teilabgabe verlängert sich Gültigkeitsdauer auf 3 Monate („Besorger“-Prozess). Privatrezept: ab Erstelldatum max. 365 Tage, die Gültigkeitsdauer kann vom Arzt definiert werden. Substitutionsrezept: Max. Gültigkeitsdauer 12 Monate."
+* dispenseRequest.validityPeriod ^short = "Gültigkeitszeitraum einer Geplante Abgabe (abhängig von Rezeptart): Kassenrezept: ab Erstelldatum 1 Monat, bei Teilabgabe verlängert sich Gültigkeitsdauer auf 3 Monate („Besorger“-Prozess). Privatrezept: ab Erstelldatum max. 365 Tage, die Gültigkeitsdauer kann vom Arzt definiert werden. Substitutionsrezept: Max. Gültigkeitsdauer 12 Monate."
 * dispenseRequest.validityPeriod ^definition = """
-Zeitraum in dem die geplante Abgabe eingelöst werden kann.
+Zeitraum in dem die Geplante Abgabe eingelöst werden kann.
 Der Gültigkeitszeitraum ist abhängig von der **Rezeptart**: 
 * **Kassenrezept**: ab Erstelldatum einen Monat gültig (vom Ausstellungszeitpunkt bis zum gleichen Tag des Folgemonats 23:59 Uhr); validityPeriod.start kein Datum in der Zukunft; bei einer Teilabgabe verlängert sich die gesamte Gültigkeitsdauer auf 3 Monate („Besorger“-Prozess).
 * **Privatrezept**: ab Erstelldatum maximal 365 Tage gültig, wenn die erste Einlösung innerhalb von 1 Monat ab Erstelldatum erfolgt (sonst Status abgelaufen). validityPeriod.start kein Datum in der Zukunft; Die Gültigkeitsdauer (validityPeriod.end) kann vom Arzt definiert werden.
@@ -172,7 +172,7 @@ Der Gültigkeitszeitraum ist abhängig von der **Rezeptart**:
 """
 // TODO: Techn. Prüfung der Gültigkeitszeiträume
 // Falls das validityPeriod.start dem authoredOn-Datum entspricht, kann das start-Datum entfallen.
-// zu prüfen: Kann beim Kassenrezept validityPeriod.start in der Vergangenheit liegen, wenn die geplante Abgabe in nachhinein erstellt wurde (z.B. wenn Arzt auf Urlaub und eine Notfallabgabe in der Apotheke durchgeführt wurde)?
+// zu prüfen: Kann beim Kassenrezept validityPeriod.start in der Vergangenheit liegen, wenn die Geplante Abgabe in nachhinein erstellt wurde (z.B. wenn Arzt auf Urlaub und eine Notfallabgabe in der Apotheke durchgeführt wurde)?
 
 
 * dispenseRequest.numberOfRepeatsAllowed 1..1 MS   // repeatNumber 1..1 im CDA
@@ -194,13 +194,13 @@ Dies gilt für Arzneimittel mit PZN und magistralen Zubereitungen."
 * dispenseRequest.expectedSupplyDuration.value ^short = "Dauer, für die die bereitgestellte Menge des Medikaments voraussichtlich ausreicht. Keine Verwendung in der geplanten Abgabe."
 
 * dispenseRequest.performer 0..0 
-* dispenseRequest.performer ^short = "Apotheke oder andere Einrichtung, die die geplante Abgabe einlösen soll. Keine Verwendung in der geplanten Abgabe."
+* dispenseRequest.performer ^short = "Apotheke oder andere Einrichtung, die die Geplante Abgabe einlösen soll. Keine Verwendung in der geplanten Abgabe."
 
 * substitution 0..0  
-* substitution ^short = "Gibt an, ob das Arzneimittel substituiert werden darf (Absicht des Arztes, der die geplante Abgabe erstellt). Keine Verwendung in der geplanten Abgabe." 
+* substitution ^short = "Gibt an, ob das Arzneimittel substituiert werden darf (Absicht des Arztes, der die Geplante Abgabe erstellt). Keine Verwendung in der geplanten Abgabe." 
 
 * priorPrescription 0..0 
-* priorPrescription ^short = "Im Falle einer Änderung wird auf die ersetzte geplante Abgabe verwiesen. Keine Verwendung in der geplanten Abgabe."
+* priorPrescription ^short = "Im Falle einer Änderung wird auf die ersetzte Geplante Abgabe verwiesen. Keine Verwendung in der geplanten Abgabe."
 
 * detectedIssue 0..0
 * detectedIssue ^short = "Klinisches Problem mit Maßnahme, mittels Referenz auf Ressouce DetectedIssue. Keine Verwendung in der geplanten 
