@@ -56,28 +56,41 @@ participant e_Rezept as "e-Rezept" COLOR_E_REZEPT
 
 autonumber
 
-== Geplante Abgaben abrufen ==
+== e-Rezept, Geplante Abgabe + Medikationsplan abrufen ==
 
-GDA_1 -> eMed_FA: GET MedicationDispense, Status=active
-activate GDA_1 COLOR_GDA_1
-activate eMed_FA COLOR_EMED_FA
-eMed_FA --> GDA_1: Geplante Abgaben
-deactivate eMed_FA
-note over GDA_1
-GDA erhält alle offenen 
-Geplanten Abgaben des Patienten
-end note
+par e-Rezept abrufen
+  GDA_1 -> e_Rezept: e-Rezepte mit e-card abrufen
+  activate GDA_1 COLOR_GDA_1
+  activate e_Rezept COLOR_E_REZEPT
+  e_Rezept --> GDA_1: e-Rezepte
+  deactivate e_Rezept
+  note over GDA_1
+  GDA erhält alle relevanten 
+  e-Rezepte zu dem Patienten
+  end note
 
-== Medikationsplan abrufen ==
+else Geplante Abgaben abrufen
+  GDA_1 -> eMed_FA: GET MedicationDispense, Status=active | relevanter Zeitraum 
+  activate GDA_1 COLOR_GDA_1
+  activate eMed_FA COLOR_EMED_FA
+  eMed_FA --> GDA_1: Geplante Abgaben
+  deactivate eMed_FA
+  note over GDA_1
+  GDA erhält alle offenen 
+  Geplanten Abgaben des Patienten
+  end note
 
-ref over GDA_1, eMed_FA : [[interactions.html#sequenzdiagramm-plan-read Plan-Read]]
-note over GDA_1
-GDA erhält Medikationsplan und 
-kann die Geplanten Abgaben im Kontext 
-der bestehenden Gesamtmedikation prüfen.
-end note
+  == Medikationsplan abrufen ==
 
-== Durchgeführte Abgaben vorbereiten und schreiben ==
+  ref over GDA_1, eMed_FA : [[interactions.html#sequenzdiagramm-plan-read Plan-Read]]
+  note over GDA_1
+  GDA erhält Medikationsplan und 
+  kann die Geplanten Abgaben im Kontext 
+  der bestehenden Gesamtmedikation prüfen.
+  end note
+end
+
+== e-Rezept aktualisieren und Durchgeführte Abgaben vorbereiten und schreiben  ==
 
 note over GDA_1
 <i>Durchgeführte Abgaben</i> erstellen 
