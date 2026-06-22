@@ -99,7 +99,7 @@ AtElgaEmedMedicationDispenseDurchgefuehrteAbgabe
 
 #### Sub_UC_eMed_09_01_03 - Besorgerprozess
 
-Ein Besorgerprozess liegt vor, wenn das in der *Geplanten Abgabe* verordnete Arzneimittel **vollständig bestellt oder zubereitet** werden muss (es findet noch **keine Abgabe** statt). Die *Geplanten Abgabe* kann daraufhin nicht mehr in einer anderen Apotheke eingelöst werden.
+Ein Besorgerprozess liegt vor, wenn das in der *Geplanten Abgabe* verordnete Arzneimittel **bestellt oder zubereitet** werden muss (es findet noch **keine Abgabe** statt). Die *Geplanten Abgabe* kann daraufhin nicht mehr in einer anderen Apotheke eingelöst werden.
 
 Entsprechend den Regeln für Teilabgaben **MUSS** eine *Durchgeführte Abgabe* wie folgt erstellt werden: 
 * *MedicationDispense.type* **MUSS** enthalten:
