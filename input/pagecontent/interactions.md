@@ -105,9 +105,8 @@ Es muss erneut ein [Plan-Read](interactions.html#plan-read) ausgeführt werden u
 <br>
 
 
-##### Diagramm Plan-Read- und Write-Logik
-<br>
-[![diagram](class_diagram_planread_planwrite.drawio.svg){: style="width: 80%"}](class_diagram_planread_planwrite.drawio.svg)
+<!-- ##### Diagramm Plan-Read- und Write-Logik -->
+<!-- [![diagram](class_diagram_planread_planwrite.drawio.svg){: style="width: 80%"}](class_diagram_planread_planwrite.drawio.svg) -->
 
 
 ##### Abgelehntes Plan-Write
