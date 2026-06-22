@@ -51,9 +51,7 @@ skinparam sequence {
 !define COLOR_ERROR    #E9713235
 
 actor GDA_1 as "GDA 1" COLOR_GDA_1
-
 participant eMed_FA as "e-Med FA" COLOR_EMED_FA
-
 participant e_Rezept as "e-Rezept" COLOR_E_REZEPT
 
 autonumber
@@ -87,24 +85,47 @@ note over GDA_1
 und <i>Medikationsplaneinträge</i>)
 end note
 
-GDA_1 -> eMed_FA: POST Transaction Bundle MedicationDispense
-activate eMed_FA COLOR_EMED_FA
 
-alt COLOR_OK Durchgeführte Abgaben erfolgreich erstellt
+par Aktualisierung e-Rezept
 
-  note over eMed_FA
-  <i>Durchgeführte Abgaben</i>
-  gespeichert
-  end note
+  GDA_1 -> e_Rezept: Trigger e-Rezept aktualisieren
+  
+  alt COLOR_OK e-Rezept aktualisiert
+    e_Rezept --> GDA_1: OK
 
-  eMed_FA --> GDA_1: OK 
+  else COLOR_ERROR e-Rezept Fehler
+    e_Rezept --> GDA_1: Fehler 
+    deactivate e_Rezept
+ 
+    GDA_1 -> eMed_FA: POST $dispense-discard​
+    
+    note over GDA_1
+    Siehe Use Case 
+    "<i>Durchgeführte Abgabe</i> verwerfen"
+    end note
+  end
 
-else COLOR_ERROR Fehler bei Erstellung Durchgeführte Abgaben
-  eMed_FA --> GDA_1: Fehler 
-  deactivate eMed_FA
 
+    
+else gleichzeitige Erstellung <i>Durchgeführte Abgaben</i>
+
+  GDA_1 -> eMed_FA: POST Transaction Bundle MedicationDispense
+  activate eMed_FA COLOR_EMED_FA
+
+  alt COLOR_OK Durchgeführte Abgaben erstellt
+
+    note over eMed_FA
+    <i>Durchgeführte Abgaben</i>
+    gespeichert
+    end note
+
+    eMed_FA --> GDA_1: OK 
+
+  else COLOR_ERROR Fehler bei Erstellung Durchgeführte Abgaben
+    eMed_FA --> GDA_1: Fehler 
+    deactivate eMed_FA
+
+  end
 end
-
-GDA_1 -> e_Rezept:  e-Rezept ?
 
 @enduml
