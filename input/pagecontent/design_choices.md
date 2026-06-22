@@ -34,6 +34,21 @@ Bei einem [Plan-Read](interactions.html#plan-read) wird von der Fachanwendung ei
 Neue oder gänderte Planeinträge erhalten das List.entry.flag unchanged, zum Entfernen markierte Planeinträge (mit List.entry.flag *removed*) werden aus dem Medikationsplan entfernt.
 Wurden alle Planeinträge entfernt, erhält der Medikationsplan das List.emptyReason *nilknown*.
 
+#### Geplante Abgabe Transaction-Bundle: AtEmedBundleGeplanteAbgabeTX (*Transaction Bundle*)
+
+Ein Bundle vom Typ Transaction, das beim Speichern von [Geplanten Abgaben](design_choices.html#geplante-abgabe-atelgaemedmedicationrequestgeplanteabgabe-medicationrequest) mittels [Prescription-Write](interactions.html#prescription-write) auf den Medikationsplan an die Fachanwendung übermittelt wird. 
+
+Die im Bundle enthaltenen *Geplanten Abgaben* müssen mit dem gleichen *e-Med GroupIdentifier* gekennzeichnet sein. Fehlt dieser, wird er von der Fachanwendung ergänzt. 
+
+Profil in Arbeit.
+
+
+
+<!-- 
+TODO: Erklärung Planreferenz in Durchgeführte Abgabe, damit ersichtlich, wenn Abgabe (Arznei/Dosierung) abweichend (/Substituion) -->
+
+
+
 
 <!-- #### Medikationsplan-Transaction-Bundle: AtEmedBundleMedikationsplanTx (*Transaction Bundle*)
 
@@ -50,16 +65,6 @@ Werden mehrere Medikamente gleichzeitig verordnet (und sollen demselben e-Rezept
 
 Der aktuelle Status einer geplanten Abgabe wird im *status*-Element dokumentiert (siehe [Status des MedicationRequests in der geplanten Abgabe](workflowmanagement.html#status-des-medicationrequests-in-der-geplanten-abgabe)).   -->
 
-
-
-#### Geplante Abgabe Transaction-Bundle: AtEmedBundleGeplanteAbgabeTX (*Transaction Bundle*)
-
-Ein Bundle vom Typ Transaction, das beim Speichern von [Geplanten Abgaben](design_choices.html#geplante-abgabe-atelgaemedmedicationrequestgeplanteabgabe-medicationrequest) mittels [Prescription-Write](interactions.html#prescription-write) auf den Medikationsplan an die Fachanwendung übermittelt wird. 
-
-Die im Bundle enthaltenen *Geplanten Abgaben* müssen mit dem gleichen *e-Med GroupIdentifier* gekennzeichnet sein. Fehlt dieser, wird er von der Fachanwendung ergänzt. 
-
-Profil in Arbeit.
-
 <!-- #### *Durchgeführte Abgabe*: AtElgaEmedMedicationDispenseDurchgefuehrteAbgabe (*MedicationDispense*)
 
 Eine *Durchgeführte Abgabe* einer Medikation wird durch eine *MedicationDispense*-Ressource abgebildet. 
@@ -70,4 +75,3 @@ In der *Durchgeführten Abgabe* können Abweichungen von der *Geplanten Abgabe* 
 Eine mögliche Substitution des Medikaments ist implizit, durch die Referenz auf die zugehörige Geplante Abgabe, ersichtlich. Es werden R5-Backport-Extensions verwendet.
 
 Der aktuelle Status einer *Durchgeführten Abgabe* wird mittels *status*- und *type*-Element dokumentiert (siehe [Status des MedicationDispense in der Durchgeführten Abgabe](workflowmanagement.html#status-des-medicationdispense-in-der-durchgeführten-abgabe)).   -->
-
