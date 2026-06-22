@@ -3,13 +3,13 @@ title MedicationRequest.status (Planeintrag)
 
 (*) -d-> [neuer Planeintrag] active
 (*) -d-> [neuer Planeintrag\npausiert] "on-hold"
-"on-hold" -l-> [           aktivieren        ] active 
-"on-hold" -d-> [stornieren] "entered-in-error"
+"on-hold" -l-> [    aktivieren   ] active 
 "on-hold" -d-> [absetzen] stopped
 "on-hold" -d-> [beenden] completed
+"on-hold" -d-> [stornieren] "entered-in-error"
 active -d-> [absetzen] stopped
 active -d-> [beenden] completed  
-active -r-> [          pausieren       ] "on-hold"
+active -r-> [    pausieren   ] "on-hold"
 active -d-> [stornieren] "entered-in-error"
 stopped -d-> (*)
 "entered-in-error" -d-> (*)
