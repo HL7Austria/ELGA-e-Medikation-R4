@@ -98,8 +98,14 @@ pages:
     #   title: UC_eMed_09 - Durchgeführte Abgabe schreiben
     overview_sub_use_case.md:
       title: Technische Use Cases
+    Sub_UC_eMed_05.md:
+      title: ​Technische Use Cases für Medikationsplan lesen (UC_eMed_05)
     Sub_UC_eMed_06.md:
       title: ​Technische Use Cases für Medikationsplan schreiben (UC_eMed_06)
+    Sub_UC_eMed_07_01.md:
+      title: ​Technische Use Cases für Geplante Abgaben lesen (UC_eMed_07)
+    Sub_UC_eMed_07_02.md:
+      title: ​Technische Use Cases für Durchgeführte Abgaben lesen (UC_eMed_07)
     Sub_UC_eMed_08.md:
       title: ​Technische Use Cases für Geplante Abgabe schreiben (UC_eMed_08)
     Sub_UC_eMed_09.md:
@@ -161,12 +167,13 @@ menu:
     # Überblick: overview_use_case.html
     Patient Journey: patient_journey.html
     Technische Use Cases: overview_sub_use_case.html
-    # UC_eMed_05 Medikationsplan lesen: UC_eMed_05.html
-    # UC_eMed_06 Medikationsplan schreiben: UC_eMed_06.html
-    # UC_eMed_07 Geplante und Durchgeführte Abgaben lesen: UC_eMed_07.html
-    # UC_eMed_08 Geplante Abgabe schreiben: UC_eMed_08.html
-    # UC_eMed_09 Durchgeführte Abgabe schreiben: UC_eMed_09.html
-    
+      # UC_eMed_05 Medikationsplan lesen: UC_eMed_05.html
+      # UC_eMed_06 Medikationsplan schreiben: UC_eMed_06.html
+      # UC_eMed_07 Geplante und Durchgeführte Abgaben lesen: UC_eMed_07.html
+      # UC_eMed_08 Geplante Abgabe schreiben: UC_eMed_08.html
+      # UC_eMed_09 Durchgeführte Abgabe schreiben: UC_eMed_09.html
+
+
   # Mappings: mapping.html
   Artifacts: artifacts.html
   # About:
