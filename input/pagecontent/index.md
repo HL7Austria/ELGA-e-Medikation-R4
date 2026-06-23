@@ -13,6 +13,6 @@ Die Einführung des E-Medikationsplans gewährleistet, dass alle für die Therap
 
 [![diagram](e_medikation_overview_start.png){: style="width: 60%"}](e_medikation_overview_start.png)
 
-Die technische Umsetzung des E-Medikationsplans sowie der e-Abgabe erfolgt auf Basis des HL7® FHIR®-Standards, um eine nachhaltige, interoperable und kosteneffiziente Lösung zu gewährleisten. Die vorliegende Implementierung leistet einen Beitrag zur Weiterentwicklung sowohl der österreichischen eHealth-Strategie als auch der Anforderungen des European Health Data Space (EHDS). In Anbetracht der ab 2029 vorgesehenen Sekundärnutzung medizinischer Daten im EHDS werden durch diesen Implementation Guide die technischen Grundlagen geschaffen, um eine datenschutzkonforme Nutzung von Medikationsdaten für gemeinwohlorientierte Forschung und gesundheitspolitische Steuerung zu ermöglichen.
+Die technische Umsetzung des E-Medikationsplans sowie der e-Abgabe erfolgt auf Basis des HL7® FHIR®-Standards, um eine nachhaltige, interoperable und kosteneffiziente Lösung zu gewährleisten. Die vorliegende Implementierung leistet einen Beitrag zur Weiterentwicklung sowohl der österreichischen eHealth-Strategie als auch der Anforderungen des European Health Data Space (EHDS).
 
 Der Implementation Guide umfasst zudem die Definition der FHIR-APIs für die Integration der e-Medikation in die ELGA-Infrastruktur.
