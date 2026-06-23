@@ -1,0 +1,87 @@
+@startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam roundcorner 10
+skinparam ArrowThickness 2
+skinparam ArrowColor #5B6B7A
+
+skinparam packageStyle rectangle
+
+title Datenfluss der Collection Bundles
+
+rectangle "e-Medikation Fachanwendung" as APP {
+
+object "Persistiertes Collection Bundle v.1" as B1 #EAF3FF {
+List v.1
+----
+<color:#28A745>entry[1] MedicationRequest 1 · new</color>
+entry[2] MedicationRequest 2 · unchanged
+
+subject: Patient 1
+source: Practitioner 1
+
+----
+MedicationRequest 1 v.1
+id: abc
+requester: Practitioner 1
+
+----
+MedicationRequest 2 v.1
+id: def
+requester: Practitioner 1
+}
+
+object "Persistiertes Collection Bundle v.2" as B2 #EAF3FF {
+List v.2
+----
+<color:#005CC5>entry[1] MedicationRequest 1 · changed</color>
+entry[2] MedicationRequest 2 · unchanged
+
+subject: Patient 1
+<color:#005CC5>source: Practitioner 2</color>
+
+----
+<color:#005CC5>MedicationRequest 1 v.2</color>
+id: abc
+<color:#005CC5>requester: Practitioner 2</color>
+
+----
+MedicationRequest 2 v.1
+id: def
+requester: Practitioner 1
+}
+}
+
+rectangle "GDA-Software (Practitioner 2)" as GDA {
+
+object "Auslieferungs-\nCollection Bundle v.1" as DELIVERY #FFF5E8 {
+List v.1
+----
+entry[1] MedicationRequest 1 · unchanged
+entry[2] MedicationRequest 2 · unchanged
+
+subject: Patient
+source: Practitioner 1
+}
+
+object "Transaction Bundle v.1" as TX #E8FFF0 {
+List v.2
+----
+<color:#005CC5>entry[1] MedicationRequest 1 · changed</color>
+entry[2] MedicationRequest 2 · unchanged
+
+subject: Patient
+<color:#005CC5>source: Practitioner 2</color>
+
+----
+<color:#005CC5>MedicationRequest 1 v.2</color>
+id: abc
+<color:#005CC5>requester: Practitioner 2</color>
+}
+}
+
+B1 -down-> DELIVERY : $plan-read
+DELIVERY --> TX : Interne Bearbeitung
+TX -up-> B2 : $plan-write
+
+@enduml
