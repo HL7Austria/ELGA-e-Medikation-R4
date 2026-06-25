@@ -165,14 +165,14 @@ menu:
     Transaktionen: interactions.html
   Anwendungsfälle:
     # Überblick: overview_use_case.html
+    Überblick Technische Use Cases: overview_sub_use_case.html
+    Medikationsplan lesen: Sub_UC_eMed_05.html
+    Medikationsplan schreiben: Sub_UC_eMed_06.html
+    Geplante Abgaben lesen: Sub_UC_eMed_07_01.html
+    Durchgeführte Abgaben lesen: Sub_UC_eMed_07_02.html
+    Geplante Abgabe schreiben: Sub_UC_eMed_08.html
+    Durchgeführte Abgabe schreiben: Sub_UC_eMed_09.html
     Patient Journey: patient_journey.html
-    Technische Use Cases: overview_sub_use_case.html
-      # UC_eMed_05 Medikationsplan lesen: UC_eMed_05.html
-      # UC_eMed_06 Medikationsplan schreiben: UC_eMed_06.html
-      # UC_eMed_07 Geplante und Durchgeführte Abgaben lesen: UC_eMed_07.html
-      # UC_eMed_08 Geplante Abgabe schreiben: UC_eMed_08.html
-      # UC_eMed_09 Durchgeführte Abgabe schreiben: UC_eMed_09.html
-
 
   # Mappings: mapping.html
   Artifacts: artifacts.html
@@ -279,8 +279,6 @@ groups:
       - StructureDefinition/at-elga-emed-bundle-medikationsplantx
       - StructureDefinition/at-elga-emed-list-medikationsplan
       - StructureDefinition/at-elga-emed-medicationrequest-planeintrag
-      - StructureDefinition/at-elga-emed-medication-medikation
-      - StructureDefinition/at-elga-emed-substance-wirkstoff
   GeplanteAbgabe:
     name: Geplante Abgabe
     description: Geplante Abgabe
@@ -291,6 +289,13 @@ groups:
     description: Durchgeführte Abgabe
     resources:
       - StructureDefinition/at-elga-emed-medicationdispense-durchgefuehrteabgabe
+  Medikation:
+    name: Medikation
+    description: Medikation
+    resources:
+      - StructureDefinition/at-elga-emed-medication-medikation
+      - StructureDefinition/at-elga-emed-substance-wirkstoff
+
 
 # The ImplementationGuide resource defines several other properties
 # not represented above. These properties can be used as-is and
