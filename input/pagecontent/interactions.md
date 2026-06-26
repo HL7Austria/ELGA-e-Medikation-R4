@@ -4,8 +4,11 @@
 
 Im Folgenden werden standardisierte Interaktionen für den lesenden und schreibenden Zugriff auf die e-Medikation eines Patienten bzw. einer Patientin erläutert, die für alle technischen Use Cases relevant sind.
 
+<!-- <br>
+[![diagram](eMed_Interactions.png){: style="width: 60%"}](eMed_Interactions.png) -->
+
 <br>
-[![diagram](eMed_Interactions.png){: style="width: 60%"}](eMed_Interactions.png)
+<div>{% include_relative plantuml/interaction_overview.svg %}</div>
 <br>
 
 ### Medikationsplan
