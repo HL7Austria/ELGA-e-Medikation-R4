@@ -42,7 +42,7 @@ skinparam interface {
 
 left to right direction
 
-'title REST-Schnittstellenübersicht: https://[server]/
+title REST-Schnittstellen: https://[server]/
 
 interface "DurchgAbgabe/MedicationDispense/" as IDurchgAbgabe {
   «GET» (dispense-search) [GDA, PAT]

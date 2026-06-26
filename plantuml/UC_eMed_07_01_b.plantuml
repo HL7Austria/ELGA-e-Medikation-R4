@@ -1,6 +1,6 @@
 @startuml
 
-title Durchgeführte Abgabe erstellen\nVariante A: Zugriff mittels e-Rezept
+title Geplante Abgaben lesen\nVariante B: Zugriff mittels e-Rezept
 
 'skinparam actorStyle awesome
 
@@ -50,36 +50,44 @@ skinparam sequence {
 !define COLOR_OK       #0F9ED525
 !define COLOR_ERROR    #E9713235
 
-actor GDA_1 as "GDA 1" COLOR_GDA_1
+'actor GDA_1 as "GDA 1" COLOR_GDA_1
+actor GDA_Apo as "Apotheke" COLOR_APO
 participant eMed_FA as "e-Med FA" COLOR_EMED_FA
-participant e_Rezept as "e-Rezept" COLOR_E_REZEPT
+'participant e_Rezept as "e-Rezept" COLOR_E_REZEPT
 
 autonumber
 
-== e-Rezept + Geplante Abgaben abrufen ==
+== Geplante Abgaben abrufen  ==
+'== e-Rezept + Geplante Abgaben abrufen ==
 
-par e-Rezept abrufen
-  GDA_1 -> e_Rezept: e-Rezept mittels e-Rezept-ID (QR-Code) abrufen
-  activate GDA_1 COLOR_GDA_1
-  activate e_Rezept COLOR_E_REZEPT
-  e_Rezept --> GDA_1: e-Rezepte
-  deactivate e_Rezept
-  note over GDA_1
-  GDA erhält alle relevanten 
-  e-Rezepte zu dem Patienten
+' par e-Rezept abrufen
+'   GDA_Apo -> e_Rezept: e-Rezept mittels e-Rezept-ID (QR-Code) abrufen
+'   activate GDA_Apo COLOR_APO
+'   activate e_Rezept COLOR_E_REZEPT
+'   e_Rezept --> GDA_Apo: e-Rezept 
+'   deactivate e_Rezept
+
+' else 
+GDA_Apo -> eMed_FA: GET MedicationRequest mit Suchkriterium category = "Geplante Abgabe"\nund e-Med Groupidentifier (QR-Code)
+activate GDA_Apo COLOR_APO
+activate eMed_FA COLOR_EMED_FA
+alt COLOR_OK e-Med GroupIdentifier gültig
+  note over eMed_FA
+  Prüfung des e-Med GroupIdentifiers, ob
+  - noch nicht abgelaufen
+  - weitere Einlösung möglich
   end note
-
-else Geplante Abgaben abrufen
-  GDA_1 -> eMed_FA: GET MedicationDispense mit e-Med Groupidentifier (QR-Code)
-  activate GDA_1 COLOR_GDA_1
-  activate eMed_FA COLOR_EMED_FA
-  eMed_FA --> GDA_1: Geplante Abgaben
+  eMed_FA --> GDA_Apo: Geplante Abgaben
+else COLOR_ERROR nicht gültig
+  eMed_FA --> GDA_Apo: Fehler
   deactivate eMed_FA
-  note over GDA_1
-  GDA erhält alle offenen 
-  Geplanten Abgaben des Patienten
-  end note
-
+  deactivate GDA_Apo
 end
+note over GDA_Apo
+GDA erhält ausschließlich die 
+Geplanten Abgaben, die dem im 
+QR-Code des e-Rezepts enthaltenen 
+e-Med GroupIdentifier zugeordnet sind.
+end note
 
 @enduml

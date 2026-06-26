@@ -1,6 +1,6 @@
 @startuml
 
-title Durchgeführte Abgabe erstellen\nVariante A: ELGA-Teilnehmer authentifiziert mittels e-card
+title Durchgeführte Abgabe schreiben\nVariante A: Zugriff mittels e-card
 
 'skinparam actorStyle awesome
 
@@ -11,7 +11,7 @@ skinparam roundCorner 10
 skinparam defaultFontName "Arial"
 skinparam defaultFontSize 14
 skinparam defaultFontColor #000000
-skinparam HyperlinkColor #0000EE
+skinparam HyperlinkColor #0000EE 
 skinparam HyperlinkUnderline false
 skinparam BoxPadding 20
 skinparam BoxBorderColor #555555
@@ -44,56 +44,28 @@ skinparam sequence {
 !define COLOR_GDA_2    #96607D80
 !define COLOR_PATIENT  #196B2480
 !define COLOR_APO      #0F9ED590
-!define COLOR_EMED_FA  #E9713280
-!define COLOR_E_REZEPT #C0504D80
+!define COLOR_EMED_FA  #e97232bd
+!define COLOR_E_REZEPT #cd3732a9
 
 !define COLOR_OK       #0F9ED525
 !define COLOR_ERROR    #E9713235
 
-actor GDA_1 as "GDA 1" COLOR_GDA_1
+actor GDA_Apo as "Apotheke" COLOR_APO
 participant eMed_FA as "e-Med FA" COLOR_EMED_FA
 participant e_Rezept as "e-Rezept" COLOR_E_REZEPT
 
 autonumber
 
+activate GDA_Apo COLOR_APO 
+
 == e-Rezept, Geplante Abgabe + Medikationsplan abrufen ==
 
-par e-Rezept abrufen
-  GDA_1 -> e_Rezept: e-Rezepte mit e-card abrufen
-  activate GDA_1 COLOR_GDA_1
-  activate e_Rezept COLOR_E_REZEPT
-  e_Rezept --> GDA_1: e-Rezepte
-  deactivate e_Rezept
-  note over GDA_1
-  GDA erhält alle relevanten 
-  e-Rezepte zu dem Patienten
-  end note
-
-else Geplante Abgaben abrufen
-  GDA_1 -> eMed_FA: GET MedicationDispense, Status=active | relevanter Zeitraum 
-  activate GDA_1 COLOR_GDA_1
-  activate eMed_FA COLOR_EMED_FA
-  eMed_FA --> GDA_1: Geplante Abgaben
-  deactivate eMed_FA
-  note over GDA_1
-  GDA erhält alle offenen 
-  Geplanten Abgaben des Patienten
-  end note
-
-  == Medikationsplan abrufen ==
-
-  ref over GDA_1, eMed_FA : [[interactions.html#sequenzdiagramm-plan-read Plan-Read]]
-  note over GDA_1
-  GDA erhält Medikationsplan und 
-  kann die Geplanten Abgaben im Kontext 
-  der bestehenden Gesamtmedikation prüfen.
-  end note
-end
+  ref over GDA_Apo, eMed_FA : [[Sub_UC_eMed_07_01.html#sub_uc_emed_07_01_a-zugriff-mittels-e-card Geplante Abgaben lesen - Zugriff mittels e-card]]
 
 == e-Rezept aktualisieren und Durchgeführte Abgaben vorbereiten und schreiben  ==
 
-note over GDA_1
-<i>Durchgeführte Abgaben</i> erstellen 
+note over GDA_Apo
+<i>Durchgeführte Abgaben</i> erstellen  
 (referenzieren zugehörige <i>Geplante Abgaben</i> 
 und <i>Medikationsplaneinträge</i>)
 end note
@@ -101,18 +73,19 @@ end note
 
 par Aktualisierung e-Rezept
 
-  GDA_1 -> e_Rezept: Trigger e-Rezept aktualisieren
+  GDA_Apo -> e_Rezept: Trigger e-Rezept aktualisieren
+  activate e_Rezept COLOR_E_REZEPT
   
   alt COLOR_OK e-Rezept aktualisiert
-    e_Rezept --> GDA_1: OK
+    e_Rezept --> GDA_Apo: OK
 
   else COLOR_ERROR e-Rezept Fehler
-    e_Rezept --> GDA_1: Fehler 
+    e_Rezept --> GDA_Apo: Fehler 
     deactivate e_Rezept
  
-    GDA_1 -> eMed_FA: POST $dispense-discard​
+    GDA_Apo -> eMed_FA: POST $dispense-discard​
     
-    note over GDA_1
+    note over GDA_Apo
     Siehe Use Case 
     "<i>Durchgeführte Abgabe</i> verwerfen"
     end note
@@ -122,7 +95,7 @@ par Aktualisierung e-Rezept
     
 else gleichzeitige Erstellung <i>Durchgeführte Abgaben</i>
 
-  GDA_1 -> eMed_FA: POST Transaction Bundle MedicationDispense
+  GDA_Apo -> eMed_FA: POST Transaction Bundle MedicationDispense
   activate eMed_FA COLOR_EMED_FA
 
   alt COLOR_OK Durchgeführte Abgaben erstellt
@@ -132,10 +105,10 @@ else gleichzeitige Erstellung <i>Durchgeführte Abgaben</i>
     gespeichert
     end note
 
-    eMed_FA --> GDA_1: OK 
+    eMed_FA --> GDA_Apo: OK 
 
   else COLOR_ERROR Fehler bei Erstellung Durchgeführte Abgaben
-    eMed_FA --> GDA_1: Fehler 
+    eMed_FA --> GDA_Apo: Fehler 
     deactivate eMed_FA
 
   end

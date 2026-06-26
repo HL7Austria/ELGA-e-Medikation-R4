@@ -1,6 +1,6 @@
 @startuml
 
-title Durchgeführte Abgaben lesen\nVariante A: Zugriff mittels e-card
+title Geplante Abgaben lesen\nVariante A: Zugriff mittels e-card
 
 'skinparam actorStyle awesome
 
@@ -50,25 +50,44 @@ skinparam sequence {
 !define COLOR_OK       #0F9ED525
 !define COLOR_ERROR    #E9713235
 
-actor GDA_1 as "GDA:\nArzt/\nApotheker" COLOR_GDA_1
+actor GDA_1 as "GDA\nArzt/\nApotheker" COLOR_GDA_1
 participant eMed_FA as "e-Med FA" COLOR_EMED_FA
 ' participant e_Rezept as "e-Rezept" COLOR_E_REZEPT
 
 autonumber
 
-== Durchgeführte Abgabe abrufen ==
+== Geplante Abgabe + Medikationsplan abrufen ==
+'== e-Rezept, Geplante Abgabe + Medikationsplan abrufen ==
 
-GDA_1 -> eMed_FA: GET MedicationDispense für bestimmten Zeitraum 
-activate GDA_1 COLOR_GDA_1
-activate eMed_FA COLOR_EMED_FA
-eMed_FA --> GDA_1: Durchgeführte Abgaben
-deactivate eMed_FA
-deactivate GDA_1
-note over GDA_1
-GDA erhält alle relevanten 
-Durchgeführten Abgaben des Patienten 
-im bestimmten Zeitraum 
-end note
+'par e-Rezept abrufen
+  ' GDA_1 -> e_Rezept: e-Rezepte mit e-card abrufen
+  ' activate GDA_1 COLOR_GDA_1
+  ' activate e_Rezept COLOR_E_REZEPT
+  ' e_Rezept --> GDA_1: e-Rezepte
+  ' deactivate e_Rezept
+' else
 
+par Geplante Abgaben abrufen
+  GDA_1 -> eMed_FA: GET MedicationRequest mit Suchkriterium category = "Geplante Abgabe"\nmit status = active oder für relevanten Zeitraum
+  activate GDA_1 COLOR_GDA_1
+  activate eMed_FA COLOR_EMED_FA 
+  eMed_FA --> GDA_1: Geplante Abgaben
+  deactivate eMed_FA
+  note over GDA_1
+  GDA erhält alle offenen bzw. 
+  im relevanten Zeitraum vorliegenden
+  Geplanten Abgaben des Patienten 
+  end note
+
+else Medikationsplan abrufen
+
+  ref over GDA_1, eMed_FA : [[interactions.html#sequenzdiagramm-plan-read Plan-Read]]
+  note over GDA_1
+  GDA erhält Medikationsplan und 
+  kann die Geplanten Abgaben im Kontext 
+  der bestehenden Gesamtmedikation prüfen
+  end note
+  deactivate GDA_1
+end
 
 @enduml
