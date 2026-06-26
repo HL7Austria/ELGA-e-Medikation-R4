@@ -2,9 +2,35 @@
 
 <!-- Technische Use Cases für Durchgeführte Abgabe schreiben (UC_eMed_09) -->
 
-### Sub_UC_eMed_09_01 - Durchgeführte Abgabe erfassen
+### Sub_UC_eMed_09_01 - Durchgeführte Abgabe schreiben
 
-Der GDA (Apotheke bzw. Arzt mit Hausapotheke) dokumentiert die Abgabe eines Arzneimittels für einen ELGA-Teilnehmer in einer [Durchgeführten Abgabe](StructureDefinition-at-elga-emed-medicationdispense-durchgefuehrteabgabe.html):
+In Arbeit: Zugriffsarten.
+
+<!-- #### Variante A: Zugriff mittels e-card
+
+<br>
+
+[![overview](plantuml/UC_eMed_09_01_a.svg){: .mx-auto style="width:80%;"}](plantuml/UC_eMed_09_01_a.svg)
+
+<br>
+
+
+#### Variante B: Zugriff mittels e-Rezept
+
+<br>
+
+[![overview](plantuml/UC_eMed_09_01_a.svg){: .mx-auto style="width:80%;"}](plantuml/UC_eMed_09_01_b.svg)
+
+<br> -->
+
+<!-- Erfolgt die Arzneimittelabgabe in der Apotheke nach Identifikation des ELGA-Teilnehmers mittels e-card, erhält der Apotheker lesenden Zugriff auf alle offenen Geplanten Abgaben und kann entsprechende Abgaben durchführen und dokumentieren. Zusätzlich kann der Apotheker evtl. Wechselwirkungen mit Hilfe des Medikationsplan des ELGA Teilnehmers prüfen und er kann weitere durchgeführten Abgaben (z.B. OTC oder Notabgaben) in der e-Medikation des ELGA-Teilnehmers speichern.
+Zusätzlich kann der Apotheker den Medikationsplan des ELGA-Teilnehmers abrufen, um evtl. Wechselwirkungen zu prüfen und weitere *Durchgeführte Abgaben* (z.B. OTC oder Notabgaben) in der e-Medikation des ELGA-Teilnehmers speichern. -->
+
+<!-- ohne ecard: Der GDA erhält in diesem Fall keinen Zugriff auf weitere offene *Geplante Abgaben*, kann den *Medikationsplan* des ELGA-Teilnehmers zwecks Wechselwirkungsprüfung nicht einsehen und kann auch keine weiteren *Durchgeführten Abgaben* (z.B. OTC oder Notabgaben) in der e-Medikation des ELGA-Teilnehmers speichern. -->
+
+### Ablauf Durchgeführte Abgabe schreiben
+
+Ein berechtigter GDA (siehe [Rollen und Berechtigungen](actors.html#rollen-und-berechtigungen)) dokumentiert die Abgabe eines Arzneimittels für einen ELGA-Teilnehmer in einer [Durchgeführten Abgabe](StructureDefinition-at-elga-emed-medicationdispense-durchgefuehrteabgabe.html):
 * Wenn eine zugehörige [Geplante Abgabe](StructureDefinition-at-elga-emed-medicationrequest-geplanteabgabe.html) vorliegt, **MUSS** diese im Element *MedicationDispense.authorizingPrescription\[geplanteAbgabe\]* referenziert werden. Der zugehörige [Planeintrag](StructureDefinition-at-elga-emed-medicationrequest-planeintrag.html) **MUSS** über *MedicationDispense.authorizingPrescription\[planeintrag\]* referenziert werden.
 <!-- TODO: ist kommt die Referenz auf den Planeintrag zustande? Automatisch durch die Fachanwendung oder durch den GDA? -> ergänzen in Relevante Elmente -->
     * Die maximale Anzahl an *Durchgeführten Abgaben* wird durch die Anzahl der zulässigen Einlösungen der zugehörigen *Geplanten Abgabe* bestimmt.

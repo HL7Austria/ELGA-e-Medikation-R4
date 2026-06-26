@@ -66,9 +66,9 @@ activate GDA_Apo COLOR_APO
 == e-Rezept aktualisieren und Durchgeführte Abgaben vorbereiten und schreiben  ==
 
 note over GDA_Apo
-<i>Durchgeführte Abgaben</i> erstellen 
-(referenzieren zugehörige <i>Geplante Abgaben</i> 
-und <i>Medikationsplaneinträge</i>)
+Durchgeführte Abgaben erstellen 
+(referenzieren zugehörige Geplante Abgaben 
+und Medikationsplaneinträge)
 end note
 
 
