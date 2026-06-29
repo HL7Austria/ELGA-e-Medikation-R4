@@ -68,7 +68,7 @@ autonumber
 ' else
 
 par Geplante Abgaben abrufen
-  GDA_1 -> eMed_FA: GET MedicationRequest mit Suchkriterium category = "Geplante Abgabe"\nmit status = active oder für relevanten Zeitraum
+  GDA_1 -> eMed_FA: GET MedicationRequest mit Suchkriterien:\n- category = "Geplante Abgabe"\n- status = active | relevanter Zeitraum
   activate GDA_1 COLOR_GDA_1
   activate eMed_FA COLOR_EMED_FA 
   eMed_FA --> GDA_1: Geplante Abgaben

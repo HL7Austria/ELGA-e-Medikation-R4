@@ -68,7 +68,7 @@ autonumber
 '   deactivate e_Rezept
 
 ' else 
-GDA_Apo -> eMed_FA: GET MedicationRequest mit Suchkriterium category = "Geplante Abgabe"\nund e-Med Groupidentifier (QR-Code)
+GDA_Apo -> eMed_FA: GET MedicationRequest mit Suchkriterien:\n- category = "Geplante Abgabe" UND \n- e-Med Groupidentifier (QR-Code)
 activate GDA_Apo COLOR_APO
 activate eMed_FA COLOR_EMED_FA
 alt COLOR_OK e-Med GroupIdentifier gültig
