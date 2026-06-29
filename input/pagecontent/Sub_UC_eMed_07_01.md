@@ -24,7 +24,8 @@ Zusätzlich kann der Apotheker lesend auf den *Medikationsplan* des ELGA-Teilneh
 <!-- TODO: Link auf Medikationsplan lesen einfügen -->
 <!-- Der Zugriff auf e-Rezept kann parallel erfolgen. -->
 
-[![overview](plantuml/UC_eMed_07_01_a.svg){: .mx-auto style="width:60%;"}](plantuml/UC_eMed_07_01_a.svg)
+[![overview](plantuml/UC_eMed_07_01_a.svg){: .mx-auto style="width:50%;"}](plantuml/UC_eMed_07_01_a.svg)
+
 
 <br>
 
@@ -35,7 +36,7 @@ Erfolgt die Arzneimittelabgabe in der Apotheke auf Basis eines vorgelegten e‑R
 <!-- TODO: und bereits gespeicherte Durchgeführte Abgaben ? -->
 Der GDA erhält in diesem Fall keinen Zugriff auf andere offene *Geplante Abgaben*, kann den *Medikationsplan* des ELGA-Teilnehmers zwecks Wechselwirkungsprüfung nicht einsehen und kann auch keine weiteren *Durchgeführten Abgaben* (z.B. OTC oder Notabgaben) in der e-Medikation des ELGA-Teilnehmers speichern.
 
-[![overview](plantuml/UC_eMed_07_01_b.svg){: .mx-auto style="width:70%;"}](plantuml/UC_eMed_07_01_b.svg)
+[![overview](plantuml/UC_eMed_07_01_b.svg){: .mx-auto style="width:50%;"}](plantuml/UC_eMed_07_01_b.svg)
 
 <!-- ##### Custom Operations -->
 

@@ -45,14 +45,14 @@ Liefert die e-Medikation Fachanwendung einen Fehler zurück, kann nach Fehlerkor
 
 ###### Variante A: Normalfall
 
-[![overview](plantuml/UC_eMed_08_01_a_normal.svg){: .mx-auto style="width:70%;"}](plantuml/UC_eMed_08_01_a_normal.svg)
+[![overview](plantuml/UC_eMed_08_01_a_normal.svg){: .mx-auto style="width:60%;"}](plantuml/UC_eMed_08_01_a_normal.svg)
 
 <br>
 
 
 ###### Variante A: Fehlerfall
 
-[![overview](plantuml/UC_eMed_08_01_a_fehler.svg){: .mx-auto style="width:70%;"}](plantuml/UC_eMed_08_01_a_fehler.svg)
+[![overview](plantuml/UC_eMed_08_01_a_fehler.svg){: .mx-auto style="width:60%;"}](plantuml/UC_eMed_08_01_a_fehler.svg)
 
 <br>
 
@@ -65,7 +65,7 @@ Im Anschluss kann der Trigger zur Erstellung des e-Rezepts inkl. *e-Med GroupIde
 
 <br>
 
-[![overview](plantuml/UC_eMed_08_01_b.svg){: .mx-auto style="width:70%;"}](plantuml/UC_eMed_08_01_b.svg)
+[![overview](plantuml/UC_eMed_08_01_b.svg){: .mx-auto style="width:60%;"}](plantuml/UC_eMed_08_01_b.svg)
 
 <br>
 
@@ -76,7 +76,7 @@ Die e-Medikation Fachanwendung ergänzt diesen und liefert ihn an den Client zur
 
 <br>
 
-[![overview](plantuml/UC_eMed_08_01_c.svg){: .mx-auto style="width:70%;"}](plantuml/UC_eMed_08_01_c.svg)
+[![overview](plantuml/UC_eMed_08_01_c.svg){: .mx-auto style="width:60%;"}](plantuml/UC_eMed_08_01_c.svg)
 
 <br>
 

@@ -21,7 +21,7 @@ Im Folgenden wird exemplarisch der lesende Zugriff auf *Durchgeführte Abgaben* 
 Erfolgt der Zugriff in der Apotheke nach Identifikation des ELGA-Teilnehmers mittels e-card, erhält der GDA Zugriff auf alle *Durchgeführten Abgaben*.
 <!-- TODO: definition "relevant": default: Status offen / relevanter Zeitraum? -->
 
-[![overview](plantuml/UC_eMed_07_02_a.svg){: .mx-auto style="width:60%;"}](plantuml/UC_eMed_07_02_a.svg)
+[![overview](plantuml/UC_eMed_07_02_a.svg){: .mx-auto style="width:50%;"}](plantuml/UC_eMed_07_02_a.svg)
 
 <br>
 
@@ -35,7 +35,7 @@ Diese werden über den im QR‑Code enthaltenen gemeinsamen *e‑Med GroupIdenti
 - der *e‑Med GroupIdentifier* noch gültig ist (d.h. noch zugehörige offene *Geplante Abgaben* vorliegen). 
 <!-- TODO: *Durchgeführte Abgaben* müssen mit dem *e-Med GroupIdentifier* ergänzt werden -->
 
-[![overview](plantuml/UC_eMed_07_02_b.svg){: .mx-auto style="width:70%;"}](plantuml/UC_eMed_07_02_b.svg)
+[![overview](plantuml/UC_eMed_07_02_b.svg){: .mx-auto style="width:50%;"}](plantuml/UC_eMed_07_02_b.svg)
 
 <br>
 <!-- ##### Custom Operations -->
