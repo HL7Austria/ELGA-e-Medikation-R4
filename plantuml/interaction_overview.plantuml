@@ -75,15 +75,14 @@ interface "/" as IEmed {
 ' --- SYSTEMKOMPONENTE (ZENTRALER SERVER) ---
 
 component "ELGA\ne-Medikation" as Server {
-  port "MedicationDispense\n(Durchgeführte Abgaben)" as p5
-  port "MedicationRequest\n(Planeinträge und\nGeplante Abgaben)" as p4
+  port "MedicationDispense\n(Durchgeführte Abgaben)" as p3
+  port "MedicationRequest\n(Planeinträge und\nGeplante Abgaben)" as p2
   port "eMed" as p1
 }
 
 
-
-p5 -up- IDurchgAbgabe
-p4 -up- IMedicationRequest
+p3 -up- IDurchgAbgabe
+p2 -up- IMedicationRequest
 p1 -up- IEmed
 
 
