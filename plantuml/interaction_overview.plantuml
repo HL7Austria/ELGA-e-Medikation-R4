@@ -55,17 +55,15 @@ interface "/Patient/[id]/MedicationDispense/" as IDurchgAbgabe {
 interface "/Patient/[id]/MedicationRequest/" as IMedicationRequest {
   «POST» $prescription-write [GDA]
   «POST» $prescription-discard [GDA]
+  «POST» $plan-read [GDA, PAT]
+  «POST» $plan-write [GDA]
+  «POST» $patient-plan-write [PAT]
+  «POST» $plan-delete [PAT]
   «GET» ?category=GeplAbgabe [GDA, PAT]
   «GET» ?category=Planeintrag [GDA, PAT] 
   «DELETE» (delete) [PAT]
 } 
 
-interface "/Patient/[id]/List/" as IList {
-  «POST» $plan-read [GDA, PAT]
-  «POST» $plan-write [GDA]
-  «POST» $patient-plan-write [PAT]
-  «POST» $plan-delete [PAT]
-}
 
 interface "/" as IEmed {
   «POST» $groupidentifier-create [GDA]
@@ -79,7 +77,6 @@ interface "/" as IEmed {
 component "ELGA\ne-Medikation" as Server {
   port "MedicationDispense\n(Durchgeführte Abgaben)" as p5
   port "MedicationRequest\n(Planeinträge und\nGeplante Abgaben)" as p4
-  port "List\n(Medikationsplan)" as p2
   port "eMed" as p1
 }
 
@@ -87,7 +84,6 @@ component "ELGA\ne-Medikation" as Server {
 
 p5 -up- IDurchgAbgabe
 p4 -up- IMedicationRequest
-p2 -up- IList
 p1 -up- IEmed
 
 
