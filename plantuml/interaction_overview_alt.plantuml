@@ -52,13 +52,16 @@ interface "Patient/[id]/MedicationDispense/" as IDurchgAbgabe {
   «DELETE» (delete) [PAT]
 }
 
-interface "Patient/[id]/MedicationRequest/" as IMedicationRequest {
-  «GET» ?category=GeplAbgabe [GDA, PAT]
-  «GET» ?category=Planeintrag [GDA, PAT] 
+interface "GeplAbgabe/Patient/[id]/MedicationRequest/" as IGeplAbgabe {
+  «GET» (prescription-read) [GDA, PAT]
   «POST» $prescription-write [GDA]
   «POST» $prescription-discard [GDA]
   «DELETE» (delete) [PAT]
 } 
+
+interface "eMPEintrag/Patient/[id]/MedicationRequest/" as IPlaneintrag {
+  «GET» (plan-entry-read) [GDA, PAT]
+}
 
 interface "Patient/[id]/Bundle/" as IBundle {
   «GET» (plan-history-read) [GDA, PAT] 
@@ -71,22 +74,24 @@ interface "Patient/[id]/Bundle/" as IBundle {
 interface "/" as IEmed {
   «POST» $groupidentifier-create [GDA]
   «POST» $groupidentifier-prescription-search [GDA]
-  «POST» $groupidentifier-dispense-search [GDA]
+  «POST» $groupidentifier-despensation-search [GDA]
 }
 
 ' --- SYSTEMKOMPONENTE (ZENTRALER SERVER) ---
 
 component "ELGA\ne-Medikation" as Server {
-  port "MedicationDispense\n(Durchgeführte Abgaben)" as p5
-  port "MedicationRequest\n(Planeinträge und\nGeplante Abgaben)" as p4
-  port "Bundle\n(Medikationsplan)" as p2
+  port "Durchgeführte\nAbgaben" as p5
+  port "Geplante\nAbgaben" as p4
+  port "Plan-\neinträge" as p3 
+  port "Medikationsplan" as p2
   port "eMed" as p1
 }
 
 
 
 p5 -up- IDurchgAbgabe
-p4 -up- IMedicationRequest
+p4 -up- IGeplAbgabe
+p3 -up- IPlaneintrag
 p2 -up- IBundle
 p1 -up- IEmed
 

@@ -42,29 +42,25 @@ skinparam interface {
 
 left to right direction
 
-title REST-Schnittstellen: https://[server]/
+title REST-Schnittstellen: https://[server]
 
-interface "Patient/[id]/MedicationDispense/" as IDurchgAbgabe {
-  «GET» (dispense-read) [GDA, PAT]
+interface "/Patient/[id]/MedicationDispense/" as IDurchgAbgabe {
   «POST» $dispense-write [GDA]
   «POST» $dispense-discard [GDA]
   «POST» $reference-plan [GDA]
+  «GET» (dispense-read) [GDA, PAT]
   «DELETE» (delete) [PAT]
 }
 
-interface "GeplAbgabe/Patient/[id]/MedicationRequest/" as IGeplAbgabe {
-  «GET» (prescription-read) [GDA, PAT]
+interface "/Patient/[id]/MedicationRequest/" as IMedicationRequest {
   «POST» $prescription-write [GDA]
   «POST» $prescription-discard [GDA]
+  «GET» ?category=GeplAbgabe [GDA, PAT]
+  «GET» ?category=Planeintrag [GDA, PAT] 
   «DELETE» (delete) [PAT]
 } 
 
-interface "eMPEintrag/Patient/[id]/MedicationRequest/" as IPlaneintrag {
-  «GET» (plan-entry-read) [GDA, PAT]
-}
-
-interface "Patient/[id]/Bundle/" as IBundle {
-  «GET» (plan-history-read) [GDA, PAT] 
+interface "/Patient/[id]/List/" as IList {
   «POST» $plan-read [GDA, PAT]
   «POST» $plan-write [GDA]
   «POST» $patient-plan-write [PAT]
@@ -74,25 +70,24 @@ interface "Patient/[id]/Bundle/" as IBundle {
 interface "/" as IEmed {
   «POST» $groupidentifier-create [GDA]
   «POST» $groupidentifier-prescription-search [GDA]
-  «POST» $groupidentifier-despensation-search [GDA]
+  «POST» $groupidentifier-dispense-search [GDA]
+  «POST» $plan-history-read [GDA, PAT] 
 }
 
 ' --- SYSTEMKOMPONENTE (ZENTRALER SERVER) ---
 
 component "ELGA\ne-Medikation" as Server {
-  port "Durchgeführte\nAbgaben" as p5
-  port "Geplante\nAbgaben" as p4
-  port "Plan-\neinträge" as p3 
-  port "Medikationsplan" as p2
+  port "MedicationDispense\n(Durchgeführte Abgaben)" as p5
+  port "MedicationRequest\n(Planeinträge und\nGeplante Abgaben)" as p4
+  port "List\n(Medikationsplan)" as p2
   port "eMed" as p1
 }
 
 
 
 p5 -up- IDurchgAbgabe
-p4 -up- IGeplAbgabe
-p3 -up- IPlaneintrag
-p2 -up- IBundle
+p4 -up- IMedicationRequest
+p2 -up- IList
 p1 -up- IEmed
 
 
