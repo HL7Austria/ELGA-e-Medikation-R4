@@ -13,69 +13,6 @@ Im Folgenden werden standardisierte Interaktionen für den lesenden und schreibe
 
 ### Medikationsplan
 
-#### Plan-History-Read 
-<!-- plan-history-search​ -->
-
-Beim Plan-History-Read stellt die Fachanwendung **die aktuelle oder historische Version(en)** des Medikationsplans ([persistiertes Medikationsplan-Collection-Bundle](design_choices.html#persistiertes-medikationsplan-collection-bundle) inkl. aller referenzierten Ressourcen) **unverändert** bereit.
-
-
-##### Ablauf
-
-1. Der GDA führt ein **GET** auf das [persistierte Medikationsplan-Collection-Bundle](design_choices.html#persistiertes-medikationsplan-collection-bundle) aus, das den Medikationsplan mit allen zugehörigen relevanten Ressourcen enthält.
-2. Die Fachanwendung prüft, ob ein Medikationsplan für den/die Patient:in existiert.
-3. Ist **kein Medikationsplan vorhanden**, wird ein **leeres Ergebnis** zurückgegeben.
-4. Ist ein Medikationsplan vorhanden, wird das zuletzt [persistierte Medikationsplan-Collection-Bundle](design_choices.html#persistiertes-medikationsplan-collection-bundle) zurückgeliefert. <br>
-Das **Collection Bundle** enthält:<br>
-* die List-Ressource des Medikationsplans <br>
-* alle referenzierten Ressourcen (z. B. MedicationRequest, Patient, Practitioner) vollständig (inline)
-
-Beim Plan-History-Read erfolgt **keine Veränderung** von Flags, Status oder Inhalten durch die Fachanwendung.<br>
-Der Zugriff dient ausschließlich der Anzeige bzw. Informationsabfrage von aktuellen bzw. historischen Planversionen.
-
-##### Sequenzdiagramm Plan-History-Read
-<br>
-<div>{% include_relative plantuml/interaction_planhistoryread.svg %}</div>
-<br>
-
-**Beispiele für Zugriffe mittels Suchparameter:**
-* **Aktuelle Planversion** mit dem Suchparameter Patient abrufen: GET [base]/Bundle?type=collection&_count=1&_sort=-timestamp&list.subject={bPK-GH}
-* **Alle Planversionen** mit dem Suchparameter Patient abrufen: GET [base]/Bundle?type=collection&_sort=-timestamp&list.subject={bPK-GH}
-* Abfrage aller **historischen Medikationsplan-Versionen** eines Patienten, die nach dem angegebenen Datum gespeichert wurden und Plan-Einträge enthalten, die als **storniert, beendet oder abgesetzt** gekennzeichnet sind: GET [base]/Bundle?type=collection&_sort=-timestamp&timestamp=ge2025-01-01&list.subject={bPK-GH}&list.entry.flag=removed
-
-<!-- list.code= 736378000 in Abfragen ergänzen -->
-
-#### Plan-Read
-
-Plan-Read dient dem **Abruf des Medikationsplans und der Vorbereitung einer nachfolgenden Änderung**.
-
-##### Ablauf
-
-1. Der GDA führt ein POST [$plan-read](OperationDefinition-AtEmed.List.Planread.html) auf das Collection Bundle aus, das den Medikationsplan mit allen zugehörigen relevanten Ressourcen enthält.
-2. Die Fachanwendung prüft, ob ein Medikationsplan für den/die Patient:in existiert.
-3. Ist **kein Medikationsplan vorhanden**, wird dieser erstellt (siehe [Sub_UC_06_01 - Initial erstellter Medikationsplan](Sub_UC_eMed_06.html#sub_uc_06_01---initial-erstellter-medikationsplan)) und 
-4. ein leerer Medikationsplan mit dem emptyReason *notstarted* wird zurückgeliefert.
-5. Existiert bereits ein Medikationsplan (d.h. es wurde bereits ein [Medikationsplan-Collection-Bundle persistiert](design_choices.html#persistiertes-medikationsplan-collection-bundle)), wird von der Fachanwendung aus diesem ein [Collection Bundle zur Auslieferung](design_choices.html#auslieferungs-medikationsplan-collection-bundle) bereitgestellt. Die Inhalte werden von der Fachanwendung wie folgt aufbereitet:<br>
-* Falls der vorherige GDA neue Medikationsplaneinträge hinzugefügt oder bestehende geändert hat (List.entry.flag haben den Wert **new** oder **changed**), werden diese auf **unchanged** gesetzt.<br>
-* Falls der vorherige GDA Medikationsplaneinträge beendet hat (deren List.entry.flag haben den Wert **removed**), werden diese Einträge aus der Liste **entfernt**.<br>
-* Falls der vorherige GDA **alle vorhandenen Einträge** mit removed gekennzeichnet hat, wird List.emptyReason mit *nilknown* zurückgeliefert, um nachfolgenden GDA zu signalisieren, dass der Patient zum Zeitpunkt des letzten Schreibens keine Medikamente eingenommen hat bzw. einnehmen sollte.<br>
-* Einträge mit abgelaufenem Behandlungszeitraum bleiben erhalten.<br>
-<!-- * fachlich zu prüfen (TODO): Einträge mit abgelaufenem Behandlungszeitraum und courseOfTherapyType **acute** automatisch entfernen -->
-6. Die Fachanwendung liefert das [Auslieferungs-Medikationsplan-Collection-Bundle](design_choices.html#auslieferungs-medikationsplan-collection-bundle) an den GDA:<br>
-* inkl. ETag für [Optimistic Locking](https://hl7.org/fhir/http.html#concurrency)
-* inkl. List und aller referenzierten Ressourcen (inline)<br>
-* Ziel ist ein neutraler, weiterbearbeitbarer Zustand für den abrufenden GDA<br>
-7. Der GDA bearbeitet den Medikationsplan (er fügt Einträge hinzu, ändert bestehende oder entfernt diese).
-
-
-##### Custom Operations
-
-[$plan-read](OperationDefinition-AtEmed.List.Planread.html)
-
-
-##### Sequenzdiagramm Plan-Read
-<br>
-<div>{% include_relative plantuml/interaction_planread.svg %}</div>
-<br>
 
 
 #### Plan-Write
