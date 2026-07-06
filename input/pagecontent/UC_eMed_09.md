@@ -71,7 +71,7 @@ Ein:e ELGA-Teilnehmer:in soll einzelne Abgabeneinträge unwiderruflich löschen 
 Die Abgabe von EU-Rezepten ist nicht Teil des Systems. 
 
 ### User Interface Beschreibungen 
-Mockup folgt.
+Mockup folgt .
 
 ### Hinweise 
 
