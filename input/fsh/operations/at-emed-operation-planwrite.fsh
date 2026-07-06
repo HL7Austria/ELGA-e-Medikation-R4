@@ -31,7 +31,7 @@ Usage: #definition
 * parameter[+]
 * parameter[=].name = #return
 * parameter[=].use = #out
-* parameter[=].min = 1
+* parameter[=].min = 0
 * parameter[=].max = "1"
 * parameter[=].documentation = "Der *return* Parameter gibt Auskunft über den Erfolg der Operation."
 * parameter[=].type = #Resource
