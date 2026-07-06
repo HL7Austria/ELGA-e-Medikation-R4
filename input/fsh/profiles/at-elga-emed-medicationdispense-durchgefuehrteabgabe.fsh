@@ -22,8 +22,9 @@ Der aktuelle Status einer \"Durchgeführten Abgabe\" wird mittels \"status\"- un
 
 // ENDE Extensions  ******************
 
-* identifier 0..0 
-* identifier ^short = "Durchgeführte-Abgabe-ID. Keine Verwendung in der Durchgeführten Abgabe." // TODO: Verwendung zu prüfen, ws: vermutlich keine notwendigkeit
+* identifier 0..1 MS
+* identifier ^short = "Verpflichtende Angabe des 'e-Med Groupidentifiers' der Geplanten Abgabe, sofern diese existiert."
+// "Durchgeführte-Abgabe-ID. Keine Verwendung in der Durchgeführten Abgabe." // TODO: Verwendung zu prüfen, ws: vermutlich keine notwendigkeit
 
 * partOf 0..0 
 * partOf ^short = "Auslösendes Ereignis (Referenz auf Procedure-Ressource). Keine Verwendung in der Durchgeführten Abgabe."
