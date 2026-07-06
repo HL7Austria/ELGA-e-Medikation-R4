@@ -47,7 +47,7 @@ Eine Einlösung gilt als vollständig, wenn für *MedicationDispense.type* den W
 <!-- prüfen: Übermittlung in einem Transaction Bundle ? -->
 Im Anschluss übermittelt der GDA mit POST $dispense-write die *Durchgeführten Abgaben* in einem Transaction Bundle.
 
-Die unterschiedlichen Arten der Abgabe und deren Abfolge sind dargestellt unter [Durchgeführte Abgabe - Varianten der (Teil-)Abgabe](workflowmanagement.html#varianten-der-teil-abgabe)).
+Die unterschiedlichen Arten der Abgabe und deren Abfolge sind dargestellt unter [Durchgeführte Abgabe - Varianten der (Teil-)Abgabe](workflowmanagement.html#varianten-der-teil-abgabe).
 
 
 #### Sub_UC_eMed_09_01_01 - Vollständige Einzelabgabe erfassen 
