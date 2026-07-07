@@ -2,8 +2,6 @@
 
 <!-- Transaktionen -->
 
-Im Folgenden werden standardisierte Interaktionen für den lesenden und schreibenden Zugriff auf die e-Medikation eines Patienten bzw. einer Patientin erläutert, die für alle technischen Use Cases relevant sind.
-
 <!-- <br>
 [![diagram](eMed_Interactions.png){: style="width: 60%"}](eMed_Interactions.png) -->
 
@@ -11,70 +9,5 @@ Im Folgenden werden standardisierte Interaktionen für den lesenden und schreibe
 <div>{% include_relative plantuml/interaction_overview.svg %}</div>
 <br>
 
-### Medikationsplan
 
 
-
-#### Plan-Write
-
-Plan-Write ist eine eigenständige Operation, die ausschließlich im Kontext eines **zuvor ausgeführten** [Plan-Read](interactions.html#plan-read) erfolgen darf.
-
-##### Ablauf
-
-1. Der GDA übermittelt via POST [$plan-write](OperationDefinition-AtEmed.List.Write.html) den aktualisierten Medikationsplan als [Medikationsplan-Transaction-Bundle](design_choices.html#medikationsplan-transaction-bundle-atemedbundlemedikationsplantx-transaction-bundle) inkl. ETag für [Optimistic Locking](https://hl7.org/fhir/http.html#concurrency):
-* alle **neuen und geänderten und zu entfernenden Ressourcen** sind **inline** im Bundle enthalten,
-* alle unveränderten Ressourcen werden nur referenziert.
-2. Die Fachanwendung prüft, ob der im Header übermittelte **ETag** mit dem ETag der Fachanwendung **übereinstimmt** (d.h. es wurde zwischenzeitlich kein Medikationsplan gespeichert).
-3. Stimmt der ETag nicht überein, lehnt die Fachanwendung das Speichern des Medikationsplans ab.
-Es muss erneut ein [Plan-Read](interactions.html#plan-read) ausgeführt werden und die Aktualisierungen übernommen werden bzw. Fehler behoben werden, bevor ein neuerlicher Speicherversuch vorgenommen werden kann.
-4. Wenn kein Fehler auftritt, validiert die Fachanwendung den neuen Plan und stellt sicher, dass keine unzulässigen Zustandsübergänge vorgenommen wurden.
-5. Bei erfolgreicher Prüfung:
-* werden die übermittelten Änderungen in die Ressourcen übernommen.
-* Auf Basis der aktualisierten Ressourcen erstellt die Fachanwendung ein neues [Medikationsplan-Collection-Bundle](design_choices.html#persistiertes-medikationsplan-collection-bundle), das als **neuer Medikationsplan persistiert** wird.
-6. Der GDA erhält eine Meldung, dass der Medikationsplan erfolgreich aktualisiert wurde.
-
-
-##### Custom Operations
-
-[$plan-write](OperationDefinition-AtEmed.List.Write.html)
-
-
-##### Sequenzdiagramm Plan-Write
-<br>
-<div>{% include_relative plantuml/interaction_planwrite.svg %}</div>
-<br>
-
-
-<!-- ##### Diagramm Plan-Read- und Write-Logik -->
-<!-- [![diagram](class_diagram_planread_planwrite.drawio.svg){: style="width: 80%"}](class_diagram_planread_planwrite.drawio.svg) -->
-
-
-##### Abgelehntes Plan-Write
-
-##### Ablauf
-
-
-1. **GDA 1** möchte den Medikationsplan seiner Patientin bearbeiten und führt ein POST [$plan-read](OperationDefinition-AtEmed.List.Planread.html) auf das Collection Bundle des Medikationsplans aus.
-2. Die Fachanwendung erstellt ein **Auslieferungs-Medikationsplan-Collection-Bundle** (siehe [Plan-Read](interactions.html#plan-read)) inkl. ETag "123" und liefert es an den GDA 1. GDA 1 bearbeitet den Medikationsplan.
-3. **GDA 2** führt ein POST [$plan-read](OperationDefinition-AtEmed.List.Planread.html) auf den Medikationsplan aus, während GDA 1 das von der Fachanwendung übermittelte Collection Bundle bearbeitet. 
-4. Die Fachanwendung erstellt ein **Auslieferungs-Medikationsplan-Collection-Bundle** (siehe [Plan-Read](interactions.html#plan-read)) inkl. ETag "123" und liefert es an den GDA 2.
-GDA 2 **bearbeitet zeitgleich** mit GDA 1 den Medikationsplan.
-5. **GDA 2 sendet zuerst** mittels POST [$plan-write](OperationDefinition-AtEmed.List.Write.html) ein [Medikationsplan-Transaction-Bundle](design_choices.html#medikationsplan-transaction-bundle-atemedbundlemedikationsplantx-transaction-bundle) mit dem aktualisierten Medikationsplan und übermittelt den ETag "123".
-6. Die Fachanwendung prüft, ob der im Header übermittelte **ETag** mit dem ETag der Fachanwendung **übereinstimmt**. Beide haben den Wert "123", der **neue Medikationsplan** wird **persistiert**.
-7. GDA 2 erhält eine Meldung, dass der Medikationsplan erfolgreich aktualisiert wurde.
-8. GDA 1 sendet mittels POST [$plan-write](OperationDefinition-AtEmed.List.Write.html) ein [Medikationsplan-Transaction-Bundle](design_choices.html#medikationsplan-transaction-bundle-atemedbundlemedikationsplantx-transaction-bundle) mit dem aktualisierten Medikationsplan und übermittelt den ETag "123".
-9. Die Prüfung auf Übereinstimmung der ETags von GDA 1 mit dem der Fachanwendung schlägt fehl, da dieser ETag bereits zum Schreiben verwendet wurde. Die Fachanwendung **lehnt das Speichern ab**.
-10. GDA 1 erhält eine **Fehlermeldung** und muss ein erneutes Plan-Read ausführen, welches das Generieren eines neuen *Auslieferungs-Medikationsplan-Collection-Bundle* auslöst und mit dem aktuellen ETag übermittelt wird.
-
-
-##### Sequenzdiagramm Abgelehntes Plan-Write
-<br>
-<div>{% include_relative plantuml/interaction_planwrite_error.svg %}</div>
-<br>
-
-
-#### Groupidentifier-Create
-siehe "Ablauf - Bezug e-Med GroupIdentifier".
-
-#### Prescription-Search
-In Arbeit.

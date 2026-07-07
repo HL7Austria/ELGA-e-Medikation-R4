@@ -2,7 +2,59 @@
 
 <!-- Technische Use Cases für Medikationsplan schreiben (UC_eMed_06) -->
 
-#### Sub_UC_eMed_06_01 - Initial erstellter Medikationsplan 
+
+#### Sub_UC_eMed_06_01 - Medikationsplan schreiben
+
+Ein berechtigter GDA (siehe [Rollen und Berechtigungen](actors.html#rollen-und-berechtigungen)) kann den Medikationsplan eines ELGA-Teilnehmers bearbeiten.
+
+Ein ELGA-Teilnehmer kann Medikationsplaneinträge bzw. Medikationspläne über das Zugangsportal unwiderruflich löschen. 
+
+Alle Schreibvorgänge auf einem Medikationsplan folgen demselben technischen Grundablauf:
+
+1. Der aktuelle Medikationsplan wird mittels [$plan-read](interactions.html#plan-read) abgerufen.
+2. Die im Collection Bundle enthaltenen Ressourcen werden entsprechend des gewünschten Schreibszenarios angepasst.
+3. Der aktualisierte Medikationsplan wird mittels [$plan-write](OperationDefinition-AtEmed.List.Write.html) als Transaction Bundle an die Fachanwendung übermittelt.
+
+Die nachfolgenden technischen Sub-Usecases beschreiben, welche **Ressourcen und Elemente** in den jeweiligen Schreibszenarien angepasst werden, welche **Operationen** zur Anwendung kommen sowie welche **Inhalte im Transaction Bundle** zu übermitteln sind.
+Der technische Schreibvorgang sowie die Integritätsprüfung mittels ETag sind für alle Schreiboperationen identisch und werden im folgenden Abschnitt beschrieben.
+
+
+#### Plan-Write
+
+Alle Schreiboperationen auf einem Medikationsplan erfolgen mittels der Operation [$plan-write](OperationDefinition-AtEmed.List.Write.html). Voraussetzung ist ein zuvor erfolgreich ausgeführter [$plan-read](interactions.html#plan-read), dessen Ergebnis bearbeitet und anschließend als Medikationsplan-Transaction-Bundle zurückgesendet wird.
+
+Die Fachanwendung verwendet den im Request übermittelten ETag zur Integritätsprüfung (Optimistic Locking), um konkurrierende Änderungen am Medikationsplan zu erkennen.
+<!-- TODO: Link zur Beschreibung im ELGA-Core ergänzen -->
+
+
+##### Ablauf
+
+1. Der GDA übermittelt via POST [$plan-write](OperationDefinition-AtEmed.List.Write.html) den aktualisierten Medikationsplan als [Medikationsplan-Transaction-Bundle](design_choices.html#medikationsplan-transaction-bundle-atemedbundlemedikationsplantx-transaction-bundle) inkl. ETag für [Optimistic Locking](https://hl7.org/fhir/http.html#concurrency):
+* alle **neuen und geänderten und zu entfernenden Ressourcen** sind **inline** im Bundle enthalten,
+* alle unveränderten Ressourcen werden nur referenziert.
+2. Die Fachanwendung prüft, ob der im Header übermittelte **ETag** mit dem ETag der Fachanwendung **übereinstimmt** (d.h. es wurde zwischenzeitlich kein Medikationsplan gespeichert).
+3. Stimmt der ETag nicht überein, lehnt die Fachanwendung das Speichern des Medikationsplans ab.
+Es muss erneut ein [Plan-Read](interactions.html#plan-read) ausgeführt werden und die Aktualisierungen übernommen werden bzw. Fehler behoben werden, bevor ein neuerlicher Speicherversuch vorgenommen werden kann.
+4. Wenn kein Fehler auftritt, validiert die Fachanwendung den neuen Plan und stellt sicher, dass keine unzulässigen Zustandsübergänge vorgenommen wurden.
+5. Bei erfolgreicher Prüfung:
+* werden die übermittelten Änderungen in die Ressourcen übernommen.
+* Auf Basis der aktualisierten Ressourcen erstellt die Fachanwendung ein neues [Medikationsplan-Collection-Bundle](design_choices.html#persistiertes-medikationsplan-collection-bundle), das als **neuer Medikationsplan persistiert** wird.
+6. Der GDA erhält eine Meldung, dass der Medikationsplan erfolgreich aktualisiert wurde.
+
+
+##### Custom Operations
+
+[$plan-write](OperationDefinition-AtEmed.List.Write.html)
+
+
+##### Sequenzdiagramm Plan-Write
+
+<br>
+<div>{% include_relative plantuml/interaction_planwrite.svg %}</div>
+<br>
+
+
+#### Sub_UC_eMed_06_0x - Initial erstellter Medikationsplan 
 
 Die initiale Erstellung des Medikationsplans erfolgt durch die e-Medikation-Fachanwendung.
 
@@ -13,6 +65,10 @@ Der GDA erhält in diesem Fall ein Collection Bundle mit einem leeren Medikation
 Dieser Status *emptyReason* **kennzeichnet ausschließlich den Initialzustand** (keine Einträge im Medikationsplan) und trifft keine Aussage darüber, ob der Patient Medikamente einnimmt.
 
 Auch der Patient kann die Erstellung eines Medikationsplans auslösen, indem er diesen über das ELGA Portal aufruft (siehe auch [Plan-Read](interactions.html#plan-read)).
+
+
+
+
 
 
 ##### Ablauf
