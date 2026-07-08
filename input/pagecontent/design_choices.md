@@ -4,13 +4,10 @@
 
 Die folgende Abbildung zeigt den Aufbau des Medikationsplans sowie das Zusammenwirken der dabei verwendeten FHIR-Ressourcen.
 
-Zentrale Ressource ist der Medikationsplan (
-    List*), der die einzelnen Medikationsplaneinträge (*MedicationRequest*) referenziert. Aus diesen Planeinträgen werden geplante Abgaben (*MedicationRequest*) abgeleitet, auf deren Grundlage durchgeführte Abgaben (*MedicationDispense*) dokumentiert werden.
-
-Die Abbildung verdeutlicht die Beziehungen zwischen den verwendeten Profilen sowie den Informationsfluss von der Planung einer Medikation bis zur tatsächlichen Arzneimittelabgabe.
+Zentrale Ressource ist der Medikationsplan (*List*), der die einzelnen Medikationsplaneinträge (*MedicationRequest*) referenziert. Basierend auf diesen Planeinträgen werden *Geplante Abgaben* (*MedicationRequest*) erstellt, auf deren Grundlage *Durchgeführte Abgaben* (*MedicationDispense*) dokumentiert werden können.
 
 <br>
-[![diagram](Uebersicht_e_Medikation_Ressourcen.svg){: style="width: 80%"}](Uebersicht_e_Medikation_Ressourcen.svg)
+[![diagram](Uebersicht_e_Medikation_Ressourcen.svg){: style="width: 100%"}](Uebersicht_e_Medikation_Ressourcen.svg)
 
 
 
