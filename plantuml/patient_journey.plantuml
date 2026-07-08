@@ -8,7 +8,7 @@ skinparam backgroundColor #f5f5f5
 skinparam shadowing false
 skinparam roundCorner 10
 skinparam defaultFontName "Arial"
-skinparam defaultFontSize 14
+'skinparam defaultFontSize 14
 skinparam defaultFontColor #000000
 
 skinparam note {

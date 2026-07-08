@@ -8,7 +8,7 @@ skinparam backgroundColor #f5f5f5
 skinparam shadowing false
 skinparam roundCorner 10
 skinparam defaultFontName "Arial"
-skinparam defaultFontSize 14
+'skinparam defaultFontSize 14
 skinparam defaultFontColor #000000
 skinparam HyperlinkColor #0000EE
 skinparam HyperlinkUnderline false
@@ -59,8 +59,9 @@ autonumber
 activate GDA_1 COLOR_GDA_1
 
 note over GDA_1
-Vorbedingung: Nach einem Plan-Read
-wird der Medikationsplan bearbeit.
+Vorbedingung:
+Der Medikationsplan wurde mittels
+$plan-read gelesen und bearbeitet.
 end note
 
 == Medikationsplan schreiben ==
@@ -68,17 +69,17 @@ end note
 GDA_1 -> eMed_FA: POST $plan-write Medikationsplan-Transaction-Bundle + ETag
 
 activate eMed_FA COLOR_EMED_FA
-eMed_FA -> eMed_FA: ETag im Header ==\nETag der Fachanwendung?
+eMed_FA -> eMed_FA: Prüfung des ETag\n(Optimistic Locking)
 
 alt COLOR_OK gültig 
-  eMed_FA -> eMed_FA: Validierung des neuen Plans\n(keine unzulässigen Zustandsübergänge)
-  eMed_FA -> eMed_FA: Persistiert neue Version des\nMedikationsplans
+  eMed_FA -> eMed_FA: Validierung des\nTransaction Bundles\nund der Zustandsübergänge
+  eMed_FA -> eMed_FA: Erzeugt neues Collection Bundle\nund persistiert den Medikationsplan
   
   note over eMed_FA
   Neuer Medikationsplan gespeichert
   end note
 
-  eMed_FA --> GDA_1: OK
+  eMed_FA --> GDA_1: Plan erfolgreich gespeichert
 
 else COLOR_ERROR ungültig 
 

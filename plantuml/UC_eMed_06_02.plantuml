@@ -1,6 +1,6 @@
 @startuml
 
-title Leerer Medikationsplan (keine Medikation einnehmen)
+title Leerer Medikationsplan (keine Medikation)
 
 'skinparam actorStyle awesome
 
@@ -9,7 +9,7 @@ skinparam backgroundColor #f5f5f5
 skinparam shadowing false
 skinparam roundCorner 10
 skinparam defaultFontName "Arial"
-skinparam defaultFontSize 14
+'skinparam defaultFontSize 14
 skinparam defaultFontColor #000000
 skinparam HyperlinkColor #0000EE
 skinparam HyperlinkUnderline false
@@ -59,13 +59,13 @@ autonumber
 GDA_1 -> eMed_FA: POST $plan-read
 activate GDA_1 COLOR_GDA_1
 
-note over GDA_1, eMed_FA
-Medikationsplan abrufen,
-mit der Intention zu schreiben
+note over GDA_1
+Abruf des Medikationsplans
+zur Bearbeitung
 end note
 
 activate eMed_FA COLOR_EMED_FA
-eMed_FA -> eMed_FA: Prüfung auf bestehenden\nMedikationsplan
+eMed_FA -> eMed_FA: Existiert bereits\nein Medikationsplan?
 
 eMed_FA -> eMed_FA: Wenn Plan vorhanden +\nalle List.enty.flags im Medikationsplan = "removed":\nFachanwendung setzt List.emptyReason = "nilknown"
 
