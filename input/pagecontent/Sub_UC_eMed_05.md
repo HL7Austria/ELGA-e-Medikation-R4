@@ -74,7 +74,6 @@ Nachfolgend kann der Medikationsplan vom GDA bearbeitet werden und ein Plan-Writ
 
 ##### Sequenzdiagramm Plan-Read
 
-<br>
 <div>{% include_relative plantuml/UC_eMed_05_02.svg %}</div>
 <br>
 
