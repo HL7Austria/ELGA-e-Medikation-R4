@@ -77,7 +77,7 @@ else COLOR_OK Leerer Medikationsplan persistiert mit List.emptyReason = "nilknow
   eMed_FA -> GDA_1: Collection Bundle\n(List.emptyReason = nilknown)\n+ ETag
 note over eMed_FA
 Keine Transformation 
-notwendig.
+erforderlich.
 end note
 
 else COLOR_ERROR kein Medikationsplan persistiert

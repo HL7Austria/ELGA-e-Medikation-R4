@@ -56,7 +56,7 @@ participant eMed_FA as "e-Med FA" COLOR_EMED_FA
 
 autonumber
 
-== Medikationsplan abrufen ==
+== Aktuellen Medikationsplan lesen ==
 
 GDA_1 -> eMed_FA: POST $plan-read
 activate GDA_1 COLOR_GDA_1
@@ -67,24 +67,24 @@ zur Bearbeitung
 end note
 
 activate eMed_FA COLOR_EMED_FA
-eMed_FA -> eMed_FA: Existiert bereits\n ein leerer Medikationsplan?
+eMed_FA -> eMed_FA: Existiert ein persistierter\nMedikationsplan?
 
-
-alt COLOR_OK Medikationsplan persistiert mit\nList.emptyReason = "nilknown" | "notstarted"
+alt COLOR_OK ja: leerer Medikationsplan persistiert mit\nList.emptyReason = "nilknown" | "notstarted"
 
   eMed_FA -> eMed_FA: Erzeugt Auslieferungs-\nCollection Bundle
   note over eMed_FA
-  Keine Transformation
-  notwendig. List.emptyReason 
-  bleibt unverändert.
+  Keine Transformation erforderlich. 
+  List.emptyReason bleibt unverändert.
   end note
   eMed_FA -> GDA_1: Auslieferungs-Collection Bundle\n(mit List.emptyReason\n+ ETag 
 
 
 else COLOR_ERROR sonst
-  note over eMed_FA
+
+  ref over GDA_1,eMed_FA
   Siehe Ablauf Plan-Read.
-  end note
+  end ref
+
   deactivate eMed_FA
 end
 

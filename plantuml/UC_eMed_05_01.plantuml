@@ -57,17 +57,17 @@ participant eMed_FA as "e-Med FA" COLOR_EMED_FA
 
 autonumber
 
-== Medikationsplan lesen ==
+== Historischen Medikationsplan lesen ==
 
 GDA_1 -> eMed_FA: GET Medikationsplan-Collection-Bundle
 activate GDA_1 COLOR_GDA_1
 
 activate eMed_FA COLOR_EMED_FA
-eMed_FA -> eMed_FA: Existiert der\nMedikationsplan?
+eMed_FA -> eMed_FA: Existiert der angeforderte\nMedikationsplan?
 
-alt COLOR_OK Medikationsplan vorhanden
+alt COLOR_OK ja: Medikationsplan vorhanden
   eMed_FA -> GDA_1: Medikationsplan-Collection-Bundle
-else COLOR_ERROR kein Medikationsplan vorhanden
+else COLOR_ERROR nein: kein Medikationsplan vorhanden
   eMed_FA --> GDA_1: leeres Ergebnis
   deactivate GDA_1
   deactivate eMed_FA

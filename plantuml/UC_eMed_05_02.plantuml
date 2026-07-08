@@ -48,6 +48,7 @@ skinparam sequence {
 !define COLOR_E_REZEPT #cd3732a9
 
 !define COLOR_OK       #0F9ED525
+!define COLOR_OK_2     #34738d4e
 !define COLOR_ERROR    #E9713235
 
 actor GDA_1 as "GDA 1" COLOR_GDA_1
@@ -56,7 +57,7 @@ participant eMed_FA as "e-Med FA" COLOR_EMED_FA
 
 autonumber
 
-== Medikationsplan abrufen ==
+== Aktuellen Medikationsplan lesen ==
 
 GDA_1 -> eMed_FA: POST $plan-read
 activate GDA_1 COLOR_GDA_1
@@ -67,9 +68,9 @@ zur Bearbeitung
 end note
 
 activate eMed_FA COLOR_EMED_FA
-eMed_FA -> eMed_FA: Existiert bereits\n ein Medikationsplan?
+eMed_FA -> eMed_FA: Existiert ein persistierter\nMedikationsplan?
 
-alt COLOR_OK Medikationsplan persistiert (kein emptyReason)
+alt COLOR_OK ja: Medikationsplan persistiert (kein emptyReason)
   eMed_FA -> eMed_FA: Erzeugt Auslieferungs-\nCollection Bundle\nTransformation:\n- new|changed → unchanged\n- removed -> aus List und Bundle entfernen\nwenn alle List.entry entfernt:\n- setzt List.emptyReason = nilknown
   note over eMed_FA
   Das persistierte 
@@ -79,12 +80,19 @@ alt COLOR_OK Medikationsplan persistiert (kein emptyReason)
 
   eMed_FA --> GDA_1: Auslieferungs-Collection Bundle\n+ ETag 
 
-else COLOR_ERROR kein Medikationsplan persistiert
+else COLOR_OK_2 ja: leerer Medikationsplan persistiert (emptyReason = notstarted | nilknown)
 
-  note over eMed_FA
+  ref over GDA_1,eMed_FA
+  Siehe Sub_UC_eMed_05_04 - 
+  Leeren Medikationsplan lesen
+  end ref
+
+else COLOR_ERROR nein: kein Medikationsplan persistiert
+
+  ref over GDA_1,eMed_FA
   Siehe Sub_UC_eMed_05_03 - 
   Initial erstellter Medikationsplan
-  end note
+  end ref
 
   deactivate eMed_FA
 end
