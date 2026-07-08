@@ -1,4 +1,4 @@
-{% include styleheader.md %}
+
 
 <!-- Technische Use Cases für Medikationsplan schreiben (UC_eMed_06) -->
 
@@ -11,40 +11,43 @@ Ein ELGA-Teilnehmer kann Medikationsplaneinträge bzw. Medikationspläne über d
 
 Alle Schreibvorgänge auf einem Medikationsplan folgen demselben technischen Grundablauf:
 
-1. Der aktuelle Medikationsplan wird mittels [$plan-read](interactions.html#plan-read) abgerufen.
-2. Die im Collection Bundle enthaltenen Ressourcen werden entsprechend des gewünschten Schreibszenarios angepasst.
-3. Der aktualisierte Medikationsplan wird mittels [$plan-write](OperationDefinition-AtEmed.List.Write.html) als Transaction Bundle an die Fachanwendung übermittelt.
+1. Die aktuelle Bearbeitungssicht des Medikationsplans wird mittels [$plan-read](OperationDefinition-AtEmed.List.PlanRead.html) abgerufen (siehe [Sub_UC_eMed_05_01 - Medikationsplan lesen](Sub_UC_eMed_05.html#plan-read)).
+2. Die im zurückgelieferten [Auslieferungs-Medikationsplan-Collection-Bundle](design_choices.html#auslieferungs-medikationsplan-collection-bundle) enthaltenen Ressourcen werden entsprechend des gewünschten Schreibszenarios bearbeitet.
+3. Der aktualisierte Medikationsplan wird mittels [$plan-write](OperationDefinition-AtEmed.List.PlanWrite.html) als Transaction Bundle an die Fachanwendung übermittelt.
 
-Die nachfolgenden technischen Sub-Usecases beschreiben, welche **Ressourcen und Elemente** in den jeweiligen Schreibszenarien angepasst werden, welche **Operationen** zur Anwendung kommen sowie welche **Inhalte im Transaction Bundle** zu übermitteln sind.
-Der technische Schreibvorgang sowie die Integritätsprüfung mittels ETag sind für alle Schreiboperationen identisch und werden im folgenden Abschnitt beschrieben.
+Die nachfolgenden technischen Sub-Usecases beschreiben, welche **Ressourcen und Elemente** in den jeweiligen Szenarien angepasst werden, welche **Operationen** zur Anwendung kommen sowie welche **Inhalte im Transaction Bundle** zu übermitteln sind.
+Der technische Schreibvorgang sowie die Integritätsprüfung mittels *ETag* sind für alle Schreiboperationen identisch und werden im folgenden Abschnitt beschrieben.
 
 
 #### Plan-Write
 
-Alle Schreiboperationen auf einem Medikationsplan erfolgen mittels der Operation [$plan-write](OperationDefinition-AtEmed.List.Write.html). Voraussetzung ist ein zuvor erfolgreich ausgeführter [$plan-read](interactions.html#plan-read), dessen Ergebnis bearbeitet und anschließend als Medikationsplan-Transaction-Bundle zurückgesendet wird.
+Alle Schreiboperationen auf einem Medikationsplan erfolgen mittels der Operation [$plan-write](OperationDefinition-AtEmed.List.PlanWrite.html). Voraussetzung ist ein zuvor erfolgreich ausgeführtes [$plan-read](OperationDefinition-AtEmed.List.PlanRead.html), dessen Ergebnis bearbeitet und anschließend als Medikationsplan-Transaction-Bundle zurückgesendet wird.
 
-Die Fachanwendung verwendet den im Request übermittelten ETag zur Integritätsprüfung (Optimistic Locking), um konkurrierende Änderungen am Medikationsplan zu erkennen.
-<!-- TODO: Link zur Beschreibung im ELGA-Core ergänzen -->
+Die Fachanwendung verwendet den im Request übermittelten *ETag* zur Integritätsprüfung (Optimistic Locking), um konkurrierende Änderungen am Medikationsplan zu erkennen.
+<!-- TODO: Link zur ETag-Beschreibung im ELGA-Core ergänzen -->
 
 
 ##### Ablauf
 
-1. Der GDA übermittelt via POST [$plan-write](OperationDefinition-AtEmed.List.Write.html) den aktualisierten Medikationsplan als [Medikationsplan-Transaction-Bundle](design_choices.html#medikationsplan-transaction-bundle-atemedbundlemedikationsplantx-transaction-bundle) inkl. ETag für [Optimistic Locking](https://hl7.org/fhir/http.html#concurrency):
-* alle **neuen und geänderten und zu entfernenden Ressourcen** sind **inline** im Bundle enthalten,
-* alle unveränderten Ressourcen werden nur referenziert.
-2. Die Fachanwendung prüft, ob der im Header übermittelte **ETag** mit dem ETag der Fachanwendung **übereinstimmt** (d.h. es wurde zwischenzeitlich kein Medikationsplan gespeichert).
-3. Stimmt der ETag nicht überein, lehnt die Fachanwendung das Speichern des Medikationsplans ab.
-Es muss erneut ein [Plan-Read](interactions.html#plan-read) ausgeführt werden und die Aktualisierungen übernommen werden bzw. Fehler behoben werden, bevor ein neuerlicher Speicherversuch vorgenommen werden kann.
-4. Wenn kein Fehler auftritt, validiert die Fachanwendung den neuen Plan und stellt sicher, dass keine unzulässigen Zustandsübergänge vorgenommen wurden.
-5. Bei erfolgreicher Prüfung:
-* werden die übermittelten Änderungen in die Ressourcen übernommen.
-* Auf Basis der aktualisierten Ressourcen erstellt die Fachanwendung ein neues [Medikationsplan-Collection-Bundle](design_choices.html#persistiertes-medikationsplan-collection-bundle), das als **neuer Medikationsplan persistiert** wird.
-6. Der GDA erhält eine Meldung, dass der Medikationsplan erfolgreich aktualisiert wurde.
+##### Ablauf
+
+1. Der GDA übermittelt den aktualisierten Medikationsplan mittels POST [$plan-write](OperationDefinition-AtEmed.List.PlanWrite.html) als [Medikationsplan-Transaction-Bundle](design_choices.html#medikationsplan-transaction-bundle-atemedbundlemedikationsplantx-transaction-bundle). Der Request enthält zusätzlich den *ETag* des zuvor gelesenen Medikationsplans zur Durchführung des [Optimistic Locking](https://hl7.org/fhir/http.html#concurrency).
+    * Alle **neuen**, **geänderten** und **zu entfernenden** Ressourcen sind **inline** im Transaction Bundle enthalten.
+    * Unveränderte Ressourcen werden ausschließlich referenziert.
+2. Die Fachanwendung vergleicht den übermittelten **ETag** mit dem ETag des aktuell gespeicherten Medikationsplans.
+3. Stimmen die *ETags* überein, validiert die Fachanwendung das Transaction Bundle und prüft insbesondere die Zulässigkeit der enthaltenen Zustandsübergänge.
+4. Ist die Validierung erfolgreich,
+    * werden die übermittelten Änderungen übernommen,
+    * wird aus dem aktualisierten Ressourcenbestand ein neues [Medikationsplan-Collection-Bundle](design_choices.html#persistiertes-medikationsplan-collection-bundle) erzeugt und
+    * dieses als **neuer Medikationsplans persistiert**.
+5. Die Fachanwendung bestätigt die erfolgreiche Aktualisierung des Medikationsplans.
+6. Stimmen die *ETags* nicht überein, wird der Schreibvorgang abgelehnt. Vor einem erneuten Schreibversuch muss ein [$plan-read](OperationDefinition-AtEmed.List.PlanRead.html) durchgeführt und der Medikationsplan auf Basis der aktuellen Version erneut bearbeitet werden.
+
 
 
 ##### Custom Operations
 
-[$plan-write](OperationDefinition-AtEmed.List.Write.html)
+[$plan-write](OperationDefinition-AtEmed.List.PlanWrite.html)
 
 
 ##### Sequenzdiagramm Plan-Write
@@ -54,50 +57,22 @@ Es muss erneut ein [Plan-Read](interactions.html#plan-read) ausgeführt werden u
 <br>
 
 
-#### Sub_UC_eMed_06_0x - Initial erstellter Medikationsplan 
-
-Die initiale Erstellung des Medikationsplans erfolgt durch die e-Medikation-Fachanwendung.
-
-Ruft ein GDA den Medikationsplan eines Patienten zum Zweck der Bearbeitung ab ($plan-read), prüft die Fachanwendung, ob bereits ein Medikationsplan vorhanden ist: existiert noch kein Plan, wird dieser im Hintergrund automatisch initial angelegt (siehe [Plan-Read](interactions.html#plan-read)).
-
-Der GDA erhält in diesem Fall ein Collection Bundle mit einem leeren Medikationsplan (List) mit **emptyReason** ***notstarted*** zurück. Der enthaltene list.identifer dient der zur späteren Integritätsprüfung beim Schreibvorgang.
-
-Dieser Status *emptyReason* **kennzeichnet ausschließlich den Initialzustand** (keine Einträge im Medikationsplan) und trifft keine Aussage darüber, ob der Patient Medikamente einnimmt.
-
-Auch der Patient kann die Erstellung eines Medikationsplans auslösen, indem er diesen über das ELGA Portal aufruft (siehe auch [Plan-Read](interactions.html#plan-read)).
 
 
 
+#### Sub_UC_eMed_06_02 - Leerer Medikationsplan (keine Medikation)
 
+Ein Medikationsplan mit **List.emptyReason = nilknown** dokumentiert, dass für den Patienten derzeit **keine Medikation vorgesehen** ist.
 
+Der Medikationsplan erhält diesen Status in folgenden Fällen:
 
-##### Ablauf
-
-<div>{% include_relative plantuml/UC_eMed_06_01.svg %}</div>
-
-
-##### Relevante Elemente (List)
-
-```JSON
-AtElgaEmedListMedikationsplan
-    identifier: von der Fachanwendung übermittelt (Integritätsprüfung) 
-    status: current
-    mode: working
-    date: Datum der Erstellung durch die Fachanwendung
-    source: Intitiale Erstellung durch die Fachanwendung
-    emptyReason: notstarted    // noch keine Medikationsplaneinträge erfasst
-```
-
-
-#### Sub_UC_eMed_06_02 - Leerer Medikationsplan (keine Medikation einnehmen)
-
-Ein leerer Medikationsplan mit dem Wert **emptyReason** ***nilknown*** bedeutet, dass der Patient derzeit keine Medikamente einnehmen soll. Der Medikatonsplan erhält diesen Status, wenn:
-- ein GDA zuvor die **gesamte Medikation abgesetzt, storniert oder gelöscht** hat, dh. alle Medikationsplaneinträge auf Listenebene das flag *removed* erhalten haben. Beim nächsten Plan-Read erkennt dies die Fachanwendung und versieht das zur Auslieferung vorbereitete Collection Bundle mit den emptyReason *nilknown*. 
+- Ein GDA hat zuvor **alle Medikationsplaneinträge abgesetzt, beendet oder storniert**, sodass sämtliche Einträge der *List* das *List.entry.flag = removed* besitzen. Beim nächsten [$plan-read](OperationDefinition-AtEmed.List.PlanRead.html) erkennt die Fachanwendung diesen Zustand und liefert den Medikationsplan mit *List.emptyReason = nilknown* aus.
 <!-- (TODO: Invariante zur Überprüfung) -->
-- ein GDA dokumentieren möchte, dass der Patient keine Medikamente einnehmen soll. Wenn die Liste zuvor das emptyReason *notstarted* hatte, kann der GDA den Status *nilknown* setzen.
+- Ein GDA möchte explizit dokumentieren, dass derzeit keine Medikation vorgesehen ist. Befindet sich der Medikationsplan noch im Initialzustand (*List.emptyReason = notstarted*), kann der GDA den Wert auf *nilknown* ändern.
 
-Dient der Unterscheidung von Medikationsplänen, die noch nie befüllt wurden, und solchen, die explizit dokumentieren, dass der Patient keine Medikamente einnehmen soll.
-<br>
+Der Wert *nilknown* dient der Unterscheidung zwischen einem **noch nie befüllten Medikationsplan** (*notstarted*) und einem Medikationsplan, für den **bewusst keine Medikation dokumentiert** ist (*nilknown*).
+
+
 
 ##### Ablauf
 
