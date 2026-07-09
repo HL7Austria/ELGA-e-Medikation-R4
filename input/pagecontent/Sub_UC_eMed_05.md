@@ -52,19 +52,23 @@ Hierfür erzeugt die Fachanwendung aus dem zuletzt persistierten Medikationsplan
 
 1. Der Client führt einen **POST** [$plan-read](OperationDefinition-AtEmed.List.Planread.html) aus.
 2. Die Fachanwendung prüft, ob bereits ein Medikationsplan für den Patienten existiert.
-3. Existiert bereits ein [persistiertes Medikationsplan-Collection-Bundle](design_choices.html#persistiertes-medikationsplan-collection-bundle), wird daraus ein *Auslieferungs-Medikationsplan-Collection-Bundle* erzeugt. Dabei werden folgende Transformationen durchgeführt:
+3. Existiert dieser ([persistiertes Medikationsplan-Collection-Bundle](design_choices.html#persistiertes-medikationsplan-collection-bundle)) und ist nicht leer (nicht mit einem emptyReason gekennzeichnet), wird daraus ein *Auslieferungs-Medikationsplan-Collection-Bundle* erzeugt. Dabei werden folgende Transformationen durchgeführt:
 * *List.entry.flag = new* und *changed* werden auf *unchanged* gesetzt.
-* Einträge mit *List.entry.flag = removed* werden aus der *List.entry* und aus dem Bundle entfernt.
-* Wurden durch das Entfernen aller mit *removed* gekennzeichneten Einträge sämtliche Einträge entfernt, wird *List.emptyReason = nilknown* gesetzt. 
+* Einträge mit *List.entry.flag = removed* werden aus der *List.entry* und aus dem Bundle entfernt. 
 * Einträge mit abgelaufenem Behandlungszeitraum bleiben erhalten.
 * Das persistierte Medikationsplan-Collection-Bundle bleibt unverändert.
-4. Die Fachanwendung liefert das [Auslieferungs-Medikationsplan-Collection-Bundle](design_choices.html#auslieferungs-medikationsplan-collection-bundle) zurück. Dieses enthält:
+
+4. Die Fachanwendung prüft, ob nach dem Entfernen aller mit *removed* gekennzeichneten Listeneinträge noch Planeinträge vorhanden sind.
+5. Sind noch Einträge vorhanden, liefert die Fachanwendung das [Auslieferungs-Medikationsplan-Collection-Bundle](design_choices.html#auslieferungs-medikationsplan-collection-bundle) zurück. Dieses enthält:
 * den HTTP *ETag* der zugrunde liegenden persistierten Version für [Optimistic Locking](https://hl7.org/fhir/http.html#concurrency)
-* die *List*-Ressource mit sämtlichen referenzierten Ressourcen vollständig (inline) bzw. im Fall einer leeren Liste *List.emptyReason = nilknown* zurück.
-5. Existiert **kein Medikationsplan**, wird dieser gemäß [Sub_UC_eMed_05_03 - Initial erstellter Medikationsplan](Sub_UC_eMed_05.html#sub_uc_emed_05_03---initial-erstellter-medikationsplan) automatisch initial erstellt. 
+* die *List*-Ressource mit sämtlichen referenzierten Ressourcen vollständig (inline) 
+6. Wurden sämtliche Einträge entfernt, wird *List.emptyReason = nilknown* gesetzt und das[Auslieferungs-Medikationsplan-Collection-Bundle](design_choices.html#auslieferungs-medikationsplan-collection-bundle) mit einer leeren Liste *List.emptyReason = nilknown* zurückgeliefert.
+7. Wurde ein leerer Medikationsplan persistiert (*List.emptyReason = nilknown*) (siehe [Sub_UC_eMed_06_02 - Leerer Medikationsplan (keine Medikation)](Sub_UC_eMed_06.html#sub_uc_emed_06_02---leerer-medikationsplan-keine-medikation)) oder nach derm initialen Abruf keine Planänderung vorgenommen (*List.emptyReason = notstarted*), ist keine Transformation erforderlich und das erzeugte [Auslieferungs-Medikationsplan-Collection-Bundle](design_choices.html#auslieferungs-medikationsplan-collection-bundle) wird unverändert inkl. *ETag* zurückgeliefert.
+8. Existiert **kein Medikationsplan**, wird dieser gemäß [Sub_UC_eMed_05_03 - Initial erstellter Medikationsplan](Sub_UC_eMed_05.html#sub_uc_emed_05_03---initial-erstellter-medikationsplan) automatisch initial erstellt. 
 <!-- TODO: Wird dieser initiale Plan persistiert? -> Wird daraus ein Auslieferungsbundle erstellt? -->
 
 Nachfolgend kann der Medikationsplan vom GDA bearbeitet werden und ein Plan-Write erfolgen.
+
 
 
 ##### Custom Operations
@@ -115,12 +119,4 @@ AtElgaEmedListMedikationsplan
     source: Intitiale Erstellung durch die Fachanwendung
     emptyReason: notstarted    // noch keine Medikationsplaneinträge erfasst
 ```
-
-#### Sub_UC_eMed_05_04 - Leeren Medikationsplan lesen
-
-Wurde explizit ein leerer Medikationsplan persistiert (*List.emptyReason = nilknown*) (siehe [Sub_UC_eMed_06_02 - Leerer Medikationsplan (keine Medikation)](Sub_UC_eMed_06.html#sub_uc_emed_06_02---leerer-medikationsplan-keine-medikation)), wird dieser nach einem Plan-Read unverändert inkl. *ETag* zurückgeliefert.
-<!-- TODO: Wird daraus ein Auslieferungsbundle erstellt? -->
-<br>
-<div>{% include_relative plantuml/UC_eMed_05_04.svg %}</div>
-<br>
 
