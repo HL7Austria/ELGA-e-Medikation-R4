@@ -1,5 +1,5 @@
 @startuml
-title Medikationsplan schreiben
+title Plan-Write
 
 'skinparam actorStyle awesome
 
@@ -64,7 +64,6 @@ Auslieferungs-Medikationsplan-Collection-Bundle
 mittels $plan-read gelesen und bearbeitet.
 end note
 
-== Plan-Write ==
 
 GDA_1 -> eMed_FA: POST $plan-write (Medikationsplan-Transaction-Bundle + ETag)
 
