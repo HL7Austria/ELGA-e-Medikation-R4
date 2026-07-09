@@ -79,11 +79,11 @@ group COLOR_OK alt: Medikationsplan persistiert? [ja: Planeinträge vorhanden (k
   eMed_FA -> eMed_FA: Sind nach der Transformation\nListeneinträge vorhanden? 
 
   group COLOR_OK alt: Planeinträge vorhanden? [ja]
-    eMed_FA --> GDA_1: Auslieferungs-Collection Bundle\n+ ETag 
+    eMed_FA -> GDA_1: Auslieferungs-Collection Bundle\n+ ETag 
 
   else COLOR_ERROR nein: Leerer Medikationsplan 
     
-    eMed_FA --> eMed_FA: List.emptyReason = nilknown setzen
+    eMed_FA -> eMed_FA: List.emptyReason = nilknown setzen
     eMed_FA -> GDA_1: Auslieferungs-Collection Bundle\nmit List.emptyReason = nilknown\n+ ETag       
 
   end
