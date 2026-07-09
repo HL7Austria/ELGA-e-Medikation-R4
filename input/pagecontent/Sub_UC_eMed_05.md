@@ -30,7 +30,11 @@ Beim Plan-History-Read erfolgt **keine Änderung** der Medikationspläne durch d
 <br>
 Der Zugriff dient ausschließlich der Anzeige bzw. Informationsabfrage persistierter Medikationsplanversionen.
 
-##### Sequenzdiagramm Plan-History-Read
+##### Custom Operations
+
+*$plan-history-read*: in Arbeit.
+
+##### Sequenzdiagramm
 
 <div>{% include_relative plantuml/UC_eMed_05_01.svg %}</div>
 <br>
@@ -71,13 +75,12 @@ Hierfür erzeugt die Fachanwendung aus dem zuletzt persistierten Medikationsplan
 Nachfolgend kann der Medikationsplan vom GDA bearbeitet werden und ein Plan-Write erfolgen.
 
 
-
 ##### Custom Operations
 
 [$plan-read](OperationDefinition-AtEmed.List.Planread.html)
 
 
-##### Sequenzdiagramm Plan-Read
+##### Sequenzdiagramm 
 
 <div>{% include_relative plantuml/UC_eMed_05_02.svg %}</div>
 <br>
@@ -104,7 +107,7 @@ Die Initialisierung kann sowohl durch ein GDA-System als auch durch den ELGA-Tei
 6. Dieses wird mit demselben *List.emptyReason = notstarted* sowie dem zugehörigen ETag an den Client zurückgeliefert.
 
 
-##### Sequenzdiagramm Plan-Read - Initial erstellter Medikationsplan
+##### Sequenzdiagramm
 
 <div>{% include_relative plantuml/UC_eMed_05_03.svg %}</div>
 
