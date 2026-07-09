@@ -52,23 +52,20 @@ Alle Schreiboperationen erfolgen über die Custom Operation [$plan-write](Operat
 <br>
 
 
-#### Sub_UC_eMed_06_02 - Leerer Medikationsplan (keine Medikation)
+#### Sub_UC_eMed_06_02 - Leeren Medikationsplan dokumentieren
 
 Ein Medikationsplan mit **List.emptyReason = nilknown** dokumentiert, dass für den Patienten derzeit **keine Medikation vorgesehen** ist.
 
-Der Medikationsplan erhält diesen Status in folgenden Fällen:
-
-- Ein GDA hat zuvor **alle Medikationsplaneinträge abgesetzt, beendet oder storniert**, sodass sämtliche Einträge der *List* das *List.entry.flag = removed* besitzen. Beim nächsten [$plan-read](OperationDefinition-AtEmed.List.PlanRead.html) erkennt die Fachanwendung diesen Zustand und liefert den Medikationsplan mit *List.emptyReason = nilknown* aus.
-<!-- (TODO: Invariante zur Überprüfung) -->
-- Ein GDA möchte explizit dokumentieren, dass derzeit keine Medikation vorgesehen ist. Befindet sich der Medikationsplan noch im Initialzustand (*List.emptyReason = notstarted*), kann der GDA den Wert auf *nilknown* ändern.
-
 Der Wert *nilknown* dient der Unterscheidung zwischen einem **noch nie befüllten Medikationsplan** (*notstarted*) und einem Medikationsplan, für den **bewusst keine Medikation dokumentiert** ist (*nilknown*).
 
+Der Medikationsplan erhält den Status **List.emptyReason = nilknown** in folgenden Fällen:
 
+- Ein GDA hat **alle Medikationsplaneinträge abgesetzt, beendet oder storniert** oder ein ELGA-Teilnehmer hat **alle Medikationsplaneinträge unwiderruflich gelöscht**, sodass sämtliche Einträge der *List* das *List.entry.flag = removed* besitzen.
+Beim nächsten [$plan-read](OperationDefinition-AtEmed.List.PlanRead.html) erkennt die Fachanwendung diesen Zustand und liefert den Medikationsplan mit *List.emptyReason = nilknown* aus.
 
-##### Ablauf
+<!-- (TODO: Invariante zur Überprüfung) -->
+- Ein GDA möchte explizit dokumentieren, dass derzeit keine Medikation vorgesehen ist, der Medikationsplan befindet sich aber noch im Initialzustand (*List.emptyReason = notstarted*). In diesem Fall kann der GDA *List.emptyReason* zu *nilknown* ändern und im Anschluss ein *Plan-Write* ausführen.
 
-<div>{% include_relative plantuml/UC_eMed_06_02.svg %}</div>
 
 ##### Relevante Elemente (List)
 
