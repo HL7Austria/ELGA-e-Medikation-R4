@@ -59,16 +59,15 @@ interface "/Patient/[id]/MedicationRequest/" as IMedicationRequest {
   «POST» $plan-write [GDA]
   «POST» $patient-plan-write [PAT]
   «POST» $plan-delete [PAT]
-  «GET» ?category=GeplAbgabe [GDA, PAT]
-  «GET» ?category=Planeintrag [GDA, PAT] 
+  «GET» ?category=GeplAbgabe [GDA, PAT] (prescription-search)
+  «GET» ?category=Planeintrag [GDA, PAT] (planentry-search)
   «DELETE» (delete) [PAT]
 } 
 
 
 interface "/" as IEmed {
   «POST» $groupidentifier-create [GDA]
-  «POST» $groupidentifier-prescription-search [GDA]
-  «POST» $groupidentifier-dispense-search [GDA]
+  «POST» $groupidentifier-search [GDA]
   «POST» $plan-history-read [GDA, PAT] 
 }
 
