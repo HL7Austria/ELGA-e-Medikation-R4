@@ -7,43 +7,38 @@
 
 Ein berechtigter GDA (siehe [Rollen und Berechtigungen](actors.html#rollen-und-berechtigungen)) kann den Medikationsplan eines ELGA-Teilnehmers bearbeiten.
 
-Ein ELGA-Teilnehmer kann Medikationsplaneinträge bzw. Medikationspläne über das Zugangsportal unwiderruflich löschen. 
+Ein ELGA-Teilnehmer kann Medikationsplaneinträge bzw. Medikationspläne über das Zugangsportal unwiderruflich löschen.
 
 Alle Schreibvorgänge auf einem Medikationsplan folgen demselben technischen Grundablauf:
 
-1. Die aktuelle Bearbeitungssicht des Medikationsplans wird mittels [$plan-read](OperationDefinition-AtEmed.List.PlanRead.html) abgerufen (siehe [Sub_UC_eMed_05_01 - Medikationsplan lesen](Sub_UC_eMed_05.html#plan-read)).
-2. Die im zurückgelieferten [Auslieferungs-Medikationsplan-Collection-Bundle](design_choices.html#auslieferungs-medikationsplan-collection-bundle) enthaltenen Ressourcen werden entsprechend des gewünschten Schreibszenarios bearbeitet.
-3. Der aktualisierte Medikationsplan wird mittels [$plan-write](OperationDefinition-AtEmed.List.PlanWrite.html) als Transaction Bundle an die Fachanwendung übermittelt.
+1. Die aktuelle Bearbeitungssicht des Medikationsplans wird mittels [$plan-read](OperationDefinition-AtEmed.List.PlanRead.html) abgerufen (siehe [Sub_UC_eMed_05_02 - Aktuellen Medikationsplan lesen (Plan-Read)](Sub_UC_eMed_05.html#sub_uc_emed_05_02---aktuellen-medikationsplan-lesen-plan-read)).
+2. Die im [Auslieferungs-Medikationsplan-Collection-Bundle](design_choices.html#auslieferungs-medikationsplan-collection-bundle) enthaltenen Ressourcen werden entsprechend des gewünschten Schreibszenarios bearbeitet.
+3. Der aktualisierte Medikationsplan wird mittels [$plan-write](OperationDefinition-AtEmed.List.PlanWrite.html) als [Transaction Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplantx.html) an die Fachanwendung übermittelt.
 
-Die nachfolgenden technischen Sub-Usecases beschreiben, welche **Ressourcen und Elemente** in den jeweiligen Szenarien angepasst werden, welche **Operationen** zur Anwendung kommen sowie welche **Inhalte im Transaction Bundle** zu übermitteln sind.
-Der technische Schreibvorgang sowie die Integritätsprüfung mittels *ETag* sind für alle Schreiboperationen identisch und werden im folgenden Abschnitt beschrieben.
-
+Die nachfolgenden technischen Use Cases beschreiben die jeweils erforderlichen Änderungen an den Ressourcen sowie die Inhalte des Medikationsplan-Transaction-Bundles. Der technische Ablauf von *$plan-write* einschließlich der Integritätsprüfung mittels *ETag* ist für alle Schreiboperationen identisch und wird im folgenden Abschnitt beschrieben.
 
 #### Plan-Write
 
-Alle Schreiboperationen auf einem Medikationsplan erfolgen mittels der Operation [$plan-write](OperationDefinition-AtEmed.List.PlanWrite.html). Voraussetzung ist ein zuvor erfolgreich ausgeführtes [$plan-read](OperationDefinition-AtEmed.List.PlanRead.html), dessen Ergebnis bearbeitet und anschließend als Medikationsplan-Transaction-Bundle zurückgesendet wird.
+Alle Schreiboperationen erfolgen über die Custom Operation [$plan-write](OperationDefinition-AtEmed.List.PlanWrite.html). Die Fachanwendung verwendet den im Request übermittelten *ETag* zur Integritätsprüfung (Optimistic Locking), um konkurrierende Änderungen am Medikationsplan zu erkennen.
 
-Die Fachanwendung verwendet den im Request übermittelten *ETag* zur Integritätsprüfung (Optimistic Locking), um konkurrierende Änderungen am Medikationsplan zu erkennen.
 <!-- TODO: Link zur ETag-Beschreibung im ELGA-Core ergänzen -->
 
 
 ##### Ablauf
 
-##### Ablauf
-
-1. Der GDA übermittelt den aktualisierten Medikationsplan mittels POST [$plan-write](OperationDefinition-AtEmed.List.PlanWrite.html) als [Medikationsplan-Transaction-Bundle](design_choices.html#medikationsplan-transaction-bundle-atemedbundlemedikationsplantx-transaction-bundle). Der Request enthält zusätzlich den *ETag* des zuvor gelesenen Medikationsplans zur Durchführung des [Optimistic Locking](https://hl7.org/fhir/http.html#concurrency).
-    * Alle **neuen**, **geänderten** und **zu entfernenden** Ressourcen sind **inline** im Transaction Bundle enthalten.
-    * Unveränderte Ressourcen werden ausschließlich referenziert.
-2. Die Fachanwendung vergleicht den übermittelten **ETag** mit dem ETag des aktuell gespeicherten Medikationsplans.
-3. Stimmen die *ETags* überein, validiert die Fachanwendung das Transaction Bundle und prüft insbesondere die Zulässigkeit der enthaltenen Zustandsübergänge.
+1. Der GDA übermittelt den aktualisierten Medikationsplan mittels **POST** [$plan-write](OperationDefinition-AtEmed.List.PlanWrite.html) als [Medikationsplan-Transaction-Bundle](design_choices.html#medikationsplan-transaction-bundle-atemedbundlemedikationsplantx-transaction-bundle). Der Request enthält:
+    * alle **neuen**, **geänderten** und **zu entfernenden** Ressourcen sind **inline** im Transaction Bundle enthalten
+    * den *ETag* des zuvor abgerufenen Auslieferungs-Medikationsplan-Collection-Bundles (zur Durchführung des [Optimistic Locking](https://hl7.org/fhir/http.html#concurrency))
+    * unveränderte Ressourcen werden ausschließlich referenziert
+2. Die Fachanwendung prüft den übermittelten *ETag* gegen den *ETag* der aktuell persistierten Medikationsplan-Version.
+3. Ist der *ETag* gültig, validiert die Fachanwendung das Medikationsplan-Transaction-Bundle einschließlich der zulässigen Zustandsübergänge.
 4. Ist die Validierung erfolgreich,
-    * werden die übermittelten Änderungen übernommen,
-    * wird aus dem aktualisierten Ressourcenbestand ein neues [Medikationsplan-Collection-Bundle](design_choices.html#persistiertes-medikationsplan-collection-bundle) erzeugt und
-    * dieses als **neuer Medikationsplans persistiert**.
-5. Die Fachanwendung bestätigt die erfolgreiche Aktualisierung des Medikationsplans.
-6. Stimmen die *ETags* nicht überein, wird der Schreibvorgang abgelehnt. Vor einem erneuten Schreibversuch muss ein [$plan-read](OperationDefinition-AtEmed.List.PlanRead.html) durchgeführt und der Medikationsplan auf Basis der aktuellen Version erneut bearbeitet werden.
-
-
+    * werden die übermittelten Änderungen auf den aktuellen Ressourcenbestand angewendet,
+    * wird daraus ein neues [Medikationsplan-Collection-Bundle](design_choices.html#persistiertes-medikationsplan-collection-bundle) erzeugt und
+    * dieses als neue Medikationsplan-Version **persistiert**.
+5. Die Fachanwendung bestätigt die erfolgreiche Aktualisierung des Medikationsplans mit **HTTP 200 OK**.
+6. Schlägt die Validierung fehl, wird der Schreibvorgang mit einer geeigneten **HTTP-4xx**-Antwort und einem **OperationOutcome** abgelehnt.
+7. Stimmt der *ETag* nicht mit der aktuell persistierten Medikationsplan-Version überein, wird der Schreibvorgang mit **HTTP 412 Precondition Failes** und einem **OperationOutcome** abgelehnt. Vor einem erneuten Schreibversuch muss der Medikationsplan mittels [$plan-read](OperationDefinition-AtEmed.List.PlanRead.html) erneut abgerufen und auf Basis der aktuellen Version bearbeitet werden.
 
 ##### Custom Operations
 
@@ -53,11 +48,8 @@ Die Fachanwendung verwendet den im Request übermittelten *ETag* zur Integrität
 ##### Sequenzdiagramm Plan-Write
 
 <br>
-<div>{% include_relative plantuml/interaction_planwrite.svg %}</div>
+<div>{% include_relative plantuml/UC_eMed_06_01.svg %}</div>
 <br>
-
-
-
 
 
 #### Sub_UC_eMed_06_02 - Leerer Medikationsplan (keine Medikation)

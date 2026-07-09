@@ -1,5 +1,5 @@
 @startuml
-title Plan-Write
+title Medikationsplan schreiben
 
 'skinparam actorStyle awesome
 
@@ -60,34 +60,55 @@ activate GDA_1 COLOR_GDA_1
 
 note over GDA_1
 Vorbedingung:
-Der Medikationsplan wurde mittels
-$plan-read gelesen und bearbeitet.
+Auslieferungs-Medikationsplan-Collection-Bundle
+mittels $plan-read gelesen und bearbeitet.
 end note
 
-== Medikationsplan schreiben ==
+== Plan-Write ==
 
-GDA_1 -> eMed_FA: POST $plan-write Medikationsplan-Transaction-Bundle + ETag
+GDA_1 -> eMed_FA: POST $plan-write (Medikationsplan-Transaction-Bundle + ETag)
 
 activate eMed_FA COLOR_EMED_FA
+note over GDA_1
+Neue, geänderte und zu entfernende
+Ressourcen sind inline enthalten.
+Unveränderte Ressourcen werden
+ausschließlich referenziert.
+end note
+
 eMed_FA -> eMed_FA: Prüfung des ETag\n(Optimistic Locking)
 
-alt COLOR_OK gültig 
-  eMed_FA -> eMed_FA: Validierung des\nTransaction Bundles\nund der Zustandsübergänge
-  eMed_FA -> eMed_FA: Erzeugt neues Collection Bundle\nund persistiert den Medikationsplan
+group COLOR_OK alt: ETag gültig? [ja]
+
+  eMed_FA -> eMed_FA: Validierung des\nTransaction Bundles\ninkl. Zustandsübergänge
   
-  note over eMed_FA
-  Neuer Medikationsplan gespeichert
-  end note
+  group COLOR_OK alt: Validierung erfolgreich? [ja]
+        
+    eMed_FA -> eMed_FA: Übernimmt Änderungen\nauf Ressourcenbestand
+    eMed_FA -> eMed_FA: Erzeugt und persisistiert ein\nneues Medikationsplan-\nCollection Bundle
 
-  eMed_FA --> GDA_1: Plan erfolgreich gespeichert
+    note over eMed_FA
+    Neuer Medikationsplan gespeichert
+    end note
 
-else COLOR_ERROR ungültig 
+    eMed_FA --> GDA_1: HTTP 200 OK
 
-  eMed_FA --> GDA_1: Fehler 
+  else COLOR_ERROR nein 
+  
+   eMed_FA --> GDA_1: Fehler (HTTP 4xx)\nOperationOutcome
+
+   end
+
+else COLOR_ERROR nein 
+
+  eMed_FA -> GDA_1: Fehler (HTTP 412 Precondition Failed)\nOperationOutcome
+
+    note over eMed_FA
+    ETag stimmt nicht überein.
+    end note
 
   deactivate GDA_1
   deactivate eMed_FA
 end
-
 
 @enduml
