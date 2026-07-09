@@ -56,7 +56,7 @@ participant eMed_FA as "e-Med FA" COLOR_EMED_FA
 
 autonumber
 
-== Erstmaliges Medikationsplan lesen ==
+== Erstmaliges Plan-Read ==
 
 GDA_1 -> eMed_FA: POST $plan-read
 activate GDA_1 COLOR_GDA_1

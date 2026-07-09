@@ -17,15 +17,16 @@ Beim Plan-History-Read stellt die Fachanwendung eine [persistierte Version des M
 
 ##### Ablauf
 
-1. Der GDA führt ein **GET** auf das [persistierte Medikationsplan-Collection-Bundle](design_choices.html#persistiertes-medikationsplan-collection-bundle) aus.
-2. Die Fachanwendung prüft, ob bereits ein Medikationsplan existiert.
-3. Existiert ein Medikationsplan, wird das angeforderte persistierte Medikationsplan-Collection-Bundle zurückgeliefert.<br>
-Das **Collection Bundle** enthält:<br>
+1. Der Client führt einen **POST** $plan-history-read aus.
+2. Die Fachanwendung prüft, ob Medikationspläne [persistierte Medikationsplan-Collection-Bundles](design_choices.html#persistiertes-medikationsplan-collection-bundle) entsprechend den Suchparametern existieren.
+3. Existieren ein oder mehrere Medikationsplan-Collection-Bundles, werden diese als Bundle (type=searchset) zurückgeliefert.
+Jedes **Medikationsplan-Collection-Bundle** enthält:<br>
 * die List-Ressource des Medikationsplans <br>
 * alle referenzierten Ressourcen vollständig (inline).
-4. Existiert **kein Medikationsplan**, wird ein **leeres Ergebnis** zurückgegeben.
+4. Existiert **kein** Medikationsplan-Collection-Bundle, wird ein **leeres Bundle** (type=searchset) zurückgegeben.
+5. Im Fehlerfall erfolgt eine entsprechende Meldung an den Client.
 
-Beim Plan-History-Read erfolgt **keine Änderung** am Medikationsplan durch die Fachanwendung. Insbesondere werden keine Inhalte, Statusinformationen oder Kennzeichnungen (Flags) verändert.
+Beim Plan-History-Read erfolgt **keine Änderung** der Medikationspläne durch die Fachanwendung. Insbesondere werden keine Inhalte, Statusinformationen oder Kennzeichnungen (Flags) verändert.
 <br>
 Der Zugriff dient ausschließlich der Anzeige bzw. Informationsabfrage persistierter Medikationsplanversionen.
 
