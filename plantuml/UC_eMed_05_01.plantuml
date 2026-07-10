@@ -48,6 +48,7 @@ skinparam sequence {
 !define COLOR_E_REZEPT #cd3732a9
 
 !define COLOR_OK       #0F9ED525
+!define COLOR_OK_2     #34738d4e
 !define COLOR_ERROR    #E9713235
 
 
@@ -67,7 +68,7 @@ eMed_FA -> eMed_FA: Prüfung auf existierende\nMedikationsplan-Collection-Bundle
 
 group COLOR_OK alt: Medikationsplan-Collection-Bundles gefunden? [ja: Collection-Bundles entsprechend Suchparametern]
   eMed_FA -> GDA_1: Bundle (type=searchset) mit zumindest einem\nMedikationsplan-Collection-Bundle 
-else COLOR_OK nein: kein Medikationsplan-Collection-Bundle entsprechend Suchparametern
+else COLOR_OK_2 nein: kein Medikationsplan-Collection-Bundle entsprechend Suchparametern
   eMed_FA -> GDA_1: Bundle (type=searchset) ohne Einträge
 else COLOR_ERROR Fehler
   eMed_FA -> GDA_1: OperationOutcome
