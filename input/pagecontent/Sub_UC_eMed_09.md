@@ -27,11 +27,11 @@ Erfolgt der Zugriff über den *e-Med GroupIdentifier* (z.B. codiert auf dem Papi
 
 ### Ablauf 
 
-<br>
+<!-- <br>
 
 [![overview](plantuml/UC_eMed_09_01.svg){: .mx-auto style="width:50%;"}](plantuml/UC_eMed_09_01.svg)
 
-<br>
+<br> -->
 
 
 Der GDA dokumentiert die Durchgeführte Abgabe wie folgt:
