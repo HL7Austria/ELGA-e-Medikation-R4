@@ -2,7 +2,7 @@
 
 <!-- Technische Use Cases für Medikationsplan lesen (UC_eMed_05) -->
 
-Ein berechtigter GDA (siehe [Rollen und Berechtigungen](actors.html#rollen-und-berechtigungen)) kann den Medikationsplan eines ELGA-Teilnehmers lesen.
+Ein [berechtigter GDA](actors.html#rollen-und-berechtigungen) kann den Medikationsplan eines ELGA-Teilnehmers lesen.
 
 Ein ELGA-Teilnehmer kann seinen Medikationsplan über das Zugangsportal einsehen.
 
