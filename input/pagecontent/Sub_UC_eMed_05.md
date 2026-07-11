@@ -8,46 +8,10 @@ Ein ELGA-Teilnehmer kann seinen Medikationsplan über das Zugangsportal einsehen
 
 Für den lesenden Zugriff werden zwei Zugriffsarten unterschieden:
 
-* **Plan-History-Read** zum Abruf historischer, unveränderlicher Versionen eines persistierten Medikationsplans.
 * **Plan-Read** zum Abruf des aktuellen Medikationsplans. Hierfür wird aus dem persistierten Medikationsplan ein temporäres Auslieferungs-Medikationsplan-Collection-Bundle erzeugt, das für eine mögliche Bearbeitung aufbereitet ist. Der Abruf erfolgt mit der Custom Operation [$plan-read](OperationDefinition-AtElgaEmed.List.Planread.html).
+* **Plan-History-Read** zum Abruf historischer, unveränderlicher Versionen eines persistierten Medikationsplans.
 
-#### Sub_UC_eMed_05_01 - Historische Medikationsplanversion lesen (Plan-History-Read)
-
-Beim Plan-History-Read stellt die Fachanwendung eine [persistierte Version des Medikationsplan-Collection-Bundles](design_choices.html#persistiertes-medikationsplan-collection-bundle) einschließlich aller referenzierten Ressourcen **unverändert** bereit.
-
-##### Ablauf
-
-1. Der Client führt einen **POST** $plan-history-read aus.
-2. Die Fachanwendung prüft, ob Medikationspläne [persistierte Medikationsplan-Collection-Bundles](design_choices.html#persistiertes-medikationsplan-collection-bundle) entsprechend den Suchparametern existieren.
-3. Existieren ein oder mehrere Medikationsplan-Collection-Bundles, werden diese als Bundle (type=searchset) zurückgeliefert.
-Jedes **Medikationsplan-Collection-Bundle** enthält:<br>
-* die List-Ressource des Medikationsplans <br>
-* alle referenzierten Ressourcen vollständig (inline).
-4. Existiert **kein** Medikationsplan-Collection-Bundle, wird ein **leeres Bundle** (type=searchset) zurückgegeben.
-5. Im Fehlerfall erfolgt eine entsprechende Meldung an den Client.
-
-Beim Plan-History-Read erfolgt **keine Änderung** der Medikationspläne durch die Fachanwendung. Insbesondere werden keine Inhalte, Statusinformationen oder Kennzeichnungen (Flags) verändert.
-<br>
-Der Zugriff dient ausschließlich der Anzeige bzw. Informationsabfrage persistierter Medikationsplanversionen.
-
-##### Custom Operations
-
-*$plan-history-read*: in Arbeit.
-
-##### Sequenzdiagramm
-
-<div>{% include_relative plantuml/UC_eMed_05_01.svg %}</div>
-<br>
-
-###### Beispiele für Zugriffe mittels Suchparameter
-
-* **Aktuelle Planversion** mit dem Suchparameter Patient abrufen: GET [base]/Bundle?type=collection&_count=1&_sort=-timestamp&list.subject={bPK-GH}
-* **Alle Planversionen** mit dem Suchparameter Patient abrufen: GET [base]/Bundle?type=collection&_sort=-timestamp&list.subject={bPK-GH}
-* Abfrage aller **historischen Medikationsplan-Versionen** eines Patienten, die nach dem angegebenen Datum persistiert wurden und Plan-Einträge enthalten, die als **storniert, beendet oder abgesetzt** gekennzeichnet sind: GET [base]/Bundle?type=collection&_sort=-timestamp&timestamp=ge2025-01-01&list.subject={bPK-GH}&list.entry.flag=removed 
-
-<!-- list.code= 736378000 in Abfragen ergänzen -->
-
-#### Sub_UC_eMed_05_02 - Aktuellen Medikationsplan lesen (Plan-Read)
+#### Sub_UC_eMed_05_01 - Aktuellen Medikationsplan lesen (Plan-Read)
 
 Plan-Read dient dem **Abruf des Medikationsplans** in einem für die Bearbeitung durch den GDA **aufbereiteten Zustand**.
 Hierfür erzeugt die Fachanwendung aus dem zuletzt persistierten Medikationsplan ein Auslieferungs-Medikationsplan-Collection-Bundle. Der Abruf erfolgt über die Custom Operation [$plan-read](OperationDefinition-AtElgaEmed.List.Planread.html).
@@ -84,6 +48,44 @@ Nachfolgend kann der Medikationsplan vom GDA bearbeitet werden und ein Plan-Writ
 
 <div>{% include_relative plantuml/UC_eMed_05_02.svg %}</div>
 <br>
+
+
+
+#### Sub_UC_eMed_05_02 - Historische Medikationsplanversion lesen (Plan-History-Read)
+
+Beim Plan-History-Read stellt die Fachanwendung eine [persistierte Version des Medikationsplan-Collection-Bundles](design_choices.html#persistiertes-medikationsplan-collection-bundle) einschließlich aller referenzierten Ressourcen **unverändert** bereit.
+
+##### Ablauf
+
+1. Der Client führt einen **POST** $plan-history-read aus.
+2. Die Fachanwendung prüft, ob Medikationspläne [persistierte Medikationsplan-Collection-Bundles](design_choices.html#persistiertes-medikationsplan-collection-bundle) entsprechend den Suchparametern existieren.
+3. Existieren ein oder mehrere Medikationsplan-Collection-Bundles, werden diese als Bundle (type=searchset) zurückgeliefert.
+Jedes **Medikationsplan-Collection-Bundle** enthält:<br>
+* die List-Ressource des Medikationsplans <br>
+* alle referenzierten Ressourcen vollständig (inline).
+4. Existiert **kein** Medikationsplan-Collection-Bundle, wird ein **leeres Bundle** (type=searchset) zurückgegeben.
+5. Im Fehlerfall erfolgt eine entsprechende Meldung an den Client.
+
+Beim Plan-History-Read erfolgt **keine Änderung** der Medikationspläne durch die Fachanwendung. Insbesondere werden keine Inhalte, Statusinformationen oder Kennzeichnungen (Flags) verändert.
+<br>
+Der Zugriff dient ausschließlich der Anzeige bzw. Informationsabfrage persistierter Medikationsplanversionen.
+
+##### Custom Operations
+
+*$plan-history-read*: in Arbeit.
+
+##### Sequenzdiagramm
+
+<div>{% include_relative plantuml/UC_eMed_05_01.svg %}</div>
+<br>
+
+###### Beispiele für Zugriffe mittels Suchparameter
+
+* **Aktuelle Planversion** mit dem Suchparameter Patient abrufen: GET [base]/Bundle?type=collection&_count=1&_sort=-timestamp&list.subject={bPK-GH}
+* **Alle Planversionen** mit dem Suchparameter Patient abrufen: GET [base]/Bundle?type=collection&_sort=-timestamp&list.subject={bPK-GH}
+* Abfrage aller **historischen Medikationsplan-Versionen** eines Patienten, die nach dem angegebenen Datum persistiert wurden und Plan-Einträge enthalten, die als **storniert, beendet oder abgesetzt** gekennzeichnet sind: GET [base]/Bundle?type=collection&_sort=-timestamp&timestamp=ge2025-01-01&list.subject={bPK-GH}&list.entry.flag=removed 
+
+<!-- list.code= 736378000 in Abfragen ergänzen -->
 
 
 #### Sub_UC_eMed_05_03 - Initial erstellter Medikationsplan

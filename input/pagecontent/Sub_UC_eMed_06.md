@@ -8,7 +8,7 @@ Ein ELGA-Teilnehmer kann Medikationsplaneinträge bzw. Medikationspläne über d
 
 Alle Schreibvorgänge auf einem Medikationsplan folgen demselben technischen Grundablauf:
 
-1. Die aktuelle Bearbeitungssicht des Medikationsplans wird mittels [$plan-read](OperationDefinition-AtElgaEmed.List.PlanRead.html) abgerufen (siehe [Sub_UC_eMed_05_02 - Aktuellen Medikationsplan lesen (Plan-Read)](Sub_UC_eMed_05.html#sub_uc_emed_05_02---aktuellen-medikationsplan-lesen-plan-read)).
+1. Die aktuelle Bearbeitungssicht des Medikationsplans wird mittels [$plan-read](OperationDefinition-AtElgaEmed.List.PlanRead.html) abgerufen (siehe [Sub_UC_eMed_05_01 - Aktuellen Medikationsplan lesen (Plan-Read)](Sub_UC_eMed_05.html#sub_uc_emed_05_01---aktuellen-medikationsplan-lesen-plan-read)).
 2. Die im [Auslieferungs-Medikationsplan-Collection-Bundle](design_choices.html#auslieferungs-medikationsplan-collection-bundle) enthaltenen Ressourcen werden entsprechend des gewünschten Schreibszenarios bearbeitet.
 3. Der aktualisierte Medikationsplan wird mittels [$plan-write](OperationDefinition-AtElgaEmed.List.PlanWrite.html) als [Transaction Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplantx.html) an die Fachanwendung übermittelt.
 
