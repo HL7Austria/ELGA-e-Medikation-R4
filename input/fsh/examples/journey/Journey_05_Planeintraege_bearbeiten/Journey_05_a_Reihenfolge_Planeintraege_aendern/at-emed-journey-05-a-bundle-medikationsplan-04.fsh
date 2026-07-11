@@ -1,5 +1,5 @@
 Instance: At-Emed-Journey-05-a-Bundle-Medikationsplan
-InstanceOf: AtEmedBundleMedikationsplan   
+InstanceOf: AtElgaEmedBundleMedikationsplan   
 Title: "Beispiel Journey 05-a: Collection Bundle mit geänderter Reihenfolge der Planeinträge."
 Description: "Beispiel eines Collection Bundles, mit geänderter Reihenfolge der Medikationsplaneinträge."
 Usage: #example

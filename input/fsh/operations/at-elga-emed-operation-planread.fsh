@@ -1,11 +1,11 @@
-Instance: AtEmedListPlanRead
+Instance: AtElgaEmedListPlanRead
 InstanceOf: OperationDefinition
 Title: "e-Med Operation für Plan-Read"
 Description: "Die $plan-read Operation wird aufgerufen, wenn ein Medikationsplan mit der Intention zu schreiben gelesen wird."
 Usage: #definition
 
-* id = "AtEmed.List.PlanRead"
-* name = "AtEmed_List_PlanRead"
+* id = "AtElgaEmed.List.PlanRead"
+* name = "AtElgaEmed_List_PlanRead"
 * status = #draft
 * kind = #operation
 * affectsState = true  // Ändert den Zustand am Server; zu klären Version-ID
@@ -35,4 +35,4 @@ Usage: #definition
 * parameter[=].max = "1"
 * parameter[=].documentation = "Der *return* Parameter gibt Auskunft über den Erfolg der Operation."
 * parameter[=].type = #Bundle
-* parameter[=].targetProfile[+] = Canonical(AtEmedBundleMedikationsplan)  // Collection Bundle
+* parameter[=].targetProfile[+] = Canonical(AtElgaEmedBundleMedikationsplan)  // Collection Bundle

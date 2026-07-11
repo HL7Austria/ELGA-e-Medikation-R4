@@ -1,11 +1,11 @@
 //ohne Kontakt
-Instance: AtEmedGroupIdentifierCreate
+Instance: AtElgaEmedGroupIdentifierCreate
 InstanceOf: OperationDefinition
 Title: "eMed Operation für GroupIdentifier-Create"
 Description: "Die $groupidentifier-create Operation wird aufgerufen, wenn ein neuer GroupIdentifer (ohne Patientenbezug) vom Server angefordert werden soll."
 Usage: #definition
 * id = "at-emed-operation-groupidentifier-create"
-* name = "AtEmedGroupIdentifierCreate"
+* name = "AtElgaEmedGroupIdentifierCreate"
 * status = #draft
 * kind = #operation
 * affectsState = true  // Ändert den Zustand am Server;

@@ -9,7 +9,7 @@ Ein ELGA-Teilnehmer kann seinen Medikationsplan über das Zugangsportal einsehen
 Für den lesenden Zugriff werden zwei Zugriffsarten unterschieden:
 
 * **Plan-History-Read** zum Abruf historischer, unveränderlicher Versionen eines persistierten Medikationsplans.
-* **Plan-Read** zum Abruf des aktuellen Medikationsplans. Hierfür wird aus dem persistierten Medikationsplan ein temporäres Auslieferungs-Medikationsplan-Collection-Bundle erzeugt, das für eine mögliche Bearbeitung aufbereitet ist. Der Abruf erfolgt mit der Custom Operation [$plan-read](OperationDefinition-AtEmed.List.Planread.html).
+* **Plan-Read** zum Abruf des aktuellen Medikationsplans. Hierfür wird aus dem persistierten Medikationsplan ein temporäres Auslieferungs-Medikationsplan-Collection-Bundle erzeugt, das für eine mögliche Bearbeitung aufbereitet ist. Der Abruf erfolgt mit der Custom Operation [$plan-read](OperationDefinition-AtElgaEmed.List.Planread.html).
 
 #### Sub_UC_eMed_05_01 - Historische Medikationsplanversion lesen (Plan-History-Read)
 
@@ -50,12 +50,12 @@ Der Zugriff dient ausschließlich der Anzeige bzw. Informationsabfrage persistie
 #### Sub_UC_eMed_05_02 - Aktuellen Medikationsplan lesen (Plan-Read)
 
 Plan-Read dient dem **Abruf des Medikationsplans** in einem für die Bearbeitung durch den GDA **aufbereiteten Zustand**.
-Hierfür erzeugt die Fachanwendung aus dem zuletzt persistierten Medikationsplan ein Auslieferungs-Medikationsplan-Collection-Bundle. Der Abruf erfolgt über die Custom Operation [$plan-read](OperationDefinition-AtEmed.List.Planread.html).
+Hierfür erzeugt die Fachanwendung aus dem zuletzt persistierten Medikationsplan ein Auslieferungs-Medikationsplan-Collection-Bundle. Der Abruf erfolgt über die Custom Operation [$plan-read](OperationDefinition-AtElgaEmed.List.Planread.html).
 
 
 ##### Ablauf
 
-1. Der Client führt einen **POST** [$plan-read](OperationDefinition-AtEmed.List.Planread.html) aus.
+1. Der Client führt einen **POST** [$plan-read](OperationDefinition-AtElgaEmed.List.Planread.html) aus.
 2. Die Fachanwendung prüft, ob bereits ein Medikationsplan für den Patienten existiert.
 3. Existiert dieser ([persistiertes Medikationsplan-Collection-Bundle](design_choices.html#persistiertes-medikationsplan-collection-bundle)) und ist nicht leer (nicht mit einem emptyReason gekennzeichnet), wird daraus ein *Auslieferungs-Medikationsplan-Collection-Bundle* erzeugt. Dabei werden folgende Transformationen durchgeführt:
 * *List.entry.flag = new* und *changed* werden auf *unchanged* gesetzt.
@@ -77,7 +77,7 @@ Nachfolgend kann der Medikationsplan vom GDA bearbeitet werden und ein Plan-Writ
 
 ##### Custom Operations
 
-[$plan-read](OperationDefinition-AtEmed.List.Planread.html)
+[$plan-read](OperationDefinition-AtElgaEmed.List.Planread.html)
 
 
 ##### Sequenzdiagramm 
@@ -88,7 +88,7 @@ Nachfolgend kann der Medikationsplan vom GDA bearbeitet werden und ein Plan-Writ
 
 #### Sub_UC_eMed_05_03 - Initial erstellter Medikationsplan
 
-Die initiale Erstellung eines Medikationsplans erfolgt ausschließlich durch die e-Medikation-Fachanwendung. Sie wird ausgelöst, wenn im Rahmen eines erstmaligen Aufrufs von [$plan-read](OperationDefinition-AtEmed.List.PlanRead.html) noch kein Medikationsplan für den ELGA-Teilnehmer existiert.
+Die initiale Erstellung eines Medikationsplans erfolgt ausschließlich durch die e-Medikation-Fachanwendung. Sie wird ausgelöst, wenn im Rahmen eines erstmaligen Aufrufs von [$plan-read](OperationDefinition-AtElgaEmed.List.PlanRead.html) noch kein Medikationsplan für den ELGA-Teilnehmer existiert.
 
 Der dabei erzeugte initiale Medikationsplan besitzt den Wert *List.emptyReason = notstarted*. Dieser kennzeichnet ausschließlich den **Initialzustand** des Medikationsplans. Er bedeutet, dass bisher noch keine Medikationsplaneinträge erfasst wurden, trifft jedoch keine Aussage darüber, ob der Patient Medikamente einnimmt.
 
@@ -97,7 +97,7 @@ Die Initialisierung kann sowohl durch ein GDA-System als auch durch den ELGA-Tei
 
 ##### Ablauf
 
-1. Ein Client führt für einen ELGA-Teilnehmer erstmalig ein **POST** [$plan-read](OperationDefinition-AtEmed.List.Planread.html) aus.
+1. Ein Client führt für einen ELGA-Teilnehmer erstmalig ein **POST** [$plan-read](OperationDefinition-AtElgaEmed.List.Planread.html) aus.
 2. Die Fachanwendung prüft, ob bereits ein Medikationsplan für den Patienten existiert.
 3. Existiert noch kein persistierter Medikationsplan, erstellt die Fachanwendung ein persistiertes Medikationsplan-Collection-Bundle mit:
 * Die enthaltene *List* besitzt den Wert *emptyReason = notstarted*.

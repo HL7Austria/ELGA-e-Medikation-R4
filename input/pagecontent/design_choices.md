@@ -50,7 +50,7 @@ Wurden alle Planeinträge entfernt, erhält der Medikationsplan das List.emptyRe
 
 Ein Bundle vom Typ Transaction, das beim Speichern von [Geplanten Abgaben](design_choices.html#geplante-abgabe-atelgaemedmedicationrequestgeplanteabgabe-medicationrequest) mittels [Prescription-Write](interactions.html#prescription-write) auf den Medikationsplan an die Fachanwendung übermittelt wird. 
 
-Die im Bundle enthaltenen *Geplanten Abgaben* müssen mit dem gleichen *e-Med GroupIdentifier* gekennzeichnet sein. Fehlt dieser, wird er von der Fachanwendung ergänzt. 
+Die im Bundle enthaltenen *Geplanten Abgaben* müssen mit dem gleichen *e-Med GroupIdentifier* gekennzeichnet sein. Fehlt dieser bei allen geplanten Abgaben im Transaction Bundle, wird er von der Fachanwendung ergänzt. 
 
 Profil in Arbeit.
 
