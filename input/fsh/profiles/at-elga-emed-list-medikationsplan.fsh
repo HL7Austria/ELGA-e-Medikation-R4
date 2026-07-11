@@ -3,7 +3,7 @@ Parent: AtElgaCoreList
 Id: at-elga-emed-list-medikationsplan
 Title: "AT ELGA e-Medikation List Medikationsplan"
 Description: "Der Medikationsplan eines ELGA-Teilnehmers bzw. einer ELGA-Teilnehmerin wird durch eine List-Ressource abgebildet. 
-Diese enthält 0..* Einträge (List.entry), wobei jedes Entry genau eine Referenz auf einen Medikationsplaneintrag (MedicationRequest) in List.entry.item beinhaltet.
+Diese enthält 0..* Einträge (List.entry), wobei jeder Entry genau eine Referenz auf einen Medikationsplaneintrag (MedicationRequest) in List.entry.item beinhaltet.
 Die Reihenfolge der Einträge kann durch den GDA festgelegt werden. Jeder Listeneintrag enthält im Element List.entry.flag den Änderungsstatus des jeweiligen Medikationsplaneintrags."
 
 

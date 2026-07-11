@@ -16,7 +16,7 @@ Zentrale Ressource ist der Medikationsplan (*List*), der die einzelnen Medikatio
 
 #### Medikationsplan: AtElgaEmedListMedikationsplan (*List*)
 
-Der Medikationsplan eines ELGA-Teilnehmers bzw. einer ELGA-Teilnehmerin wird durch eine *List*-Ressource abgebildet. Diese enthält 0..* Einträge (*List.entry*), wobei jedes Entry genau eine Referenz (*Reference*) auf einen Medikationsplaneintrag (*MedicationRequest*) in *List.entry.item* beinhaltet.
+Der Medikationsplan eines ELGA-Teilnehmers bzw. einer ELGA-Teilnehmerin wird durch eine *List*-Ressource abgebildet. Diese enthält 0..* Einträge (*List.entry*), wobei jeder Entry genau eine Referenz (*Reference*) auf einen Medikationsplaneintrag (*MedicationRequest*) in *List.entry.item* beinhaltet.
 
 Die Reihenfolge der Einträge kann durch den GDA festgelegt werden. Jeder Listeneintrag enthält im Element *List.entry.flag* den Änderungsstatus des jeweiligen Medikationsplaneintrags (siehe [Status der List.entry.flag (Medikationsplan)](workflowmanagement.html#status-der-list-entry-flag-medikationsplan)).
 
@@ -30,13 +30,13 @@ Der Medikationsplaneintrag kann in weiterer Folge als Grundlage für die Erstell
 
 Der aktuelle Status eines Medikationsplaneintrags wird im *status*-Element dokumentiert (siehe [Status des MedicationRequests im Medikationsplaneintrag](workflowmanagement.html#status-des-medicationrequests-im-medikationsplaneintrag)).  
 
-Abhängig vom List.entry.flag kann der Medikationsplaneintrag nur eingeschränkte Status einnehmen (siehe [Konsistenzregeln zwischen List.entry.flags und MedicationRequest-Status](workflowmanagement.html#konsistenzregeln-zwischen-listentryflags-und-medicationrequest-status)).
+Abhängig vom List.entry.flag kann der Medikationsplaneintrag nur bestimmte Statuswerte annehmen (siehe [Konsistenzregeln zwischen List.entry.flags und MedicationRequest-Status](workflowmanagement.html#konsistenzregeln-zwischen-listentryflags-und-medicationrequest-status)).
 
 
-#### Medikationsplan-Collection-Bundle: AtEmedBundleMedikationsplan (*Collection Bundle*)
+#### Medikationsplan-Collection-Bundle: AtElgaEmedBundleMedikationsplan (*Collection Bundle*)
 
 Version des Medikationsplans inklusive aller relevanten Ressourcen (List, MedicationRequests, Patient, Practitioners) wird durch eine *Bundle*-Ressource vom Typ Collection abgebildet.
-Dient einerseits der 1. Persistierung nach einem Plan-Write und 2. der Auslieferung des Medikationsplans bei einem Plan-Read-Zugriff an den GDA.
+Dient einerseits der Persistierung nach einem Plan-Write und andererseits der Auslieferung des Medikationsplans bei einem Plan-Read-Zugriff an den GDA.
 
 ##### Persistiertes Medikationsplan-Collection-Bundle
 Nachdem die Fachanwendung beim [Plan-Write](interactions.html#plan-write), mittels *Medikationsplan-Transaction-Bundle* alle Ressourcen aktualisiert hat, erstellt diese ein *Medikationsplan-Collection-Bundle* zur **Persistierung**, welches den vom GDA übermittelten Medikationsplan **unverändert** (keine Statusänderungen oder Entfernung entsprechend markierter Planeinträge) abbildet und die Gesamtheit aller referenzierten Ressourcen enthält. Dies stellt sicher, dass in den historischen Versionen des Medikationsplans alle relevanten Informationen verfügbar sind.
@@ -46,7 +46,7 @@ Bei einem [Plan-Read](interactions.html#plan-read) wird von der Fachanwendung ei
 Neue oder gänderte Planeinträge erhalten das List.entry.flag unchanged, zum Entfernen markierte Planeinträge (mit List.entry.flag *removed*) werden aus dem Medikationsplan entfernt.
 Wurden alle Planeinträge entfernt, erhält der Medikationsplan das List.emptyReason *nilknown*.
 
-#### Geplante Abgabe Transaction-Bundle: AtEmedBundleGeplanteAbgabeTX (*Transaction Bundle*)
+#### Geplante Abgabe Transaction-Bundle: AtElgaEmedBundleGeplanteAbgabeTX (*Transaction Bundle*)
 
 Ein Bundle vom Typ Transaction, das beim Speichern von [Geplanten Abgaben](design_choices.html#geplante-abgabe-atelgaemedmedicationrequestgeplanteabgabe-medicationrequest) mittels [Prescription-Write](interactions.html#prescription-write) auf den Medikationsplan an die Fachanwendung übermittelt wird. 
 
@@ -62,7 +62,7 @@ TODO: Erklärung Planreferenz in Durchgeführte Abgabe, damit ersichtlich, wenn 
 
 
 
-<!-- #### Medikationsplan-Transaction-Bundle: AtEmedBundleMedikationsplanTx (*Transaction Bundle*)
+<!-- #### Medikationsplan-Transaction-Bundle: AtElgaEmedBundleMedikationsplanTx (*Transaction Bundle*)
 
 Ein Bundle vom Typ Transaction, das beim [Plan-Write](interactions.html#plan-write) an die Fachanwendung übermittelt wird. 
 Das Bundle enthält den [Medikationsplan](design_choices.html#medikationsplan-atelgaemedlistmedikationsplan-list) mit Referenzen auf die *Medikationsplaneinträge*. Alle neuen bzw. geänderten und zu entfernenden Medikationsplaneinträge müssen inline im Bundle enthalten sein, alle unveränderten Ressourcen werden referenziert.
