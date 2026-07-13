@@ -47,7 +47,7 @@ Nachfolgend kann der Medikationsplan vom GDA bearbeitet werden und ein Plan-Writ
 
 ##### Sequenzdiagramm 
 <!-- TODO: Diagramm anpassen und Komplexität verringern! -->
-<div>{% include_relative plantuml/UC_eMed_05_02.svg %}</div>
+<div>{% include_relative plantuml/UC_eMed_05_01.svg %}</div>
 <br>
 
 
@@ -77,7 +77,7 @@ Der Zugriff dient ausschließlich der Anzeige bzw. Informationsabfrage persistie
 
 ##### Sequenzdiagramm
 
-<div>{% include_relative plantuml/UC_eMed_05_01.svg %}</div>
+<div>{% include_relative plantuml/UC_eMed_05_02.svg %}</div>
 <br>
 
 ###### Beispiele für Zugriffe mittels Suchparameter
