@@ -205,14 +205,115 @@ Eine [Durchgeführte Abgabe](design_choices.html#durchgeführte-abgabe-AtElgaEme
 #### Abhängigkeiten der *Geplanten Abgabe* und der *Durchgeführten Abgaben*
 
 
-| Use Case                                              | Planeintrag (MedicationRequest-Status) | Beschreibung                                                            | *Geplante Abgabe* (MedicationRequest-Status) | Status Verordnung CDA | Beschreibung                                                                                                                                                       | *Durchgeführte Abgabe* (MedicationDispense-Status) | Status Abgabe CDA      | Beschreibung                                                                                                                                                                                                                                                                                  | Use Case                        |
-| ----------------------------------------------------- | -------------------------------------- | ----------------------------------------------------------------------- | ------------------------------------------ | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------ | ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
-| *Geplante Abgabe* basierend auf Planeintrag erfassen    | active                                 | Planeintrag bleibt active, unabhängig von Status der gepanten Abgabe (\*) | active                                     | OFFEN                 | z.B. 6 Einlösungen bei Privatrezept                                                                                                                                |                                                  |                        | noch keine bzw. noch nicht alle mögl. Einlösungen erfolgt (mit Status completed)                                                                                                                                                                                                               |                                 |
-| *Geplante Abgabe* beenden (durch Fachanwendung)         | active                                 | Planeintrag bleibt active, unabhängig von Status der gepanten Abgabe (\*) | completed                                  | EINGELÖST             | auf Basis der Durchgeführten Abgaben automatisch gesetzt durch Fachanwendung; dh. Alle möglichen Einlösungen sind abgechlossen (entweder completed oder cancelled) | completed                                        | ABGEGEBEN              | alle möglichen Einlösungen erfolgt                                                                                                                                                                                                                                                            | *Durchgeführte Abgabe* erfassen   |
-| *Geplante Abgabe* verwerfen                             | active                                 | Planeintrag bleibt active, unabhängig von Status der gepanten Abgabe (\*) | entered-in-error                           | STORNIERT             | bei fehlerhafter Eingabe, wenn noch keine Abgabe durchgeführt                                                                                                      |                                                  |                        | keine Durchgeführten Abgaben vorhanden                                                                                                                                                                                                                                                        |                                 |
-| *Geplante Abgabe* abgelaufen (durch Fachanwendung)      | active                                 | Planeintrag bleibt active, unabhängig von Status der gepanten Abgabe (\*) | stopped                                    | ABGELAUFEN            | automatisch erkannt durch Fachanwendung                                                                                                                            | kein relevanter Status                           | kein relevanter Status | noch keine bzw. noch nicht alle mögl. Einlösungen erfolgt<br>Zu abgelaufenen geplanten Abgaben können keine Abgaben mehr gespeichert werden. Die (nachträgliche) Speicherung von Abgaben zu einem abgelaufenen Rezept kann im Anlassfall allerdings ohne Verordnungsbezug erfolgen.           |                                 |
-| *Geplante Abgabe* nicht abgegeben (durch Fachanwendung) | active                                 | Planeintrag bleibt active, unabhängig von Status der gepanten Abgabe (\*) | cancelled                                  | NICHT_ABGEGEBEN       | automatisch, wenn alle Einlösungen im MedicationDispense den Status "cancelled" erhalten haben                                                                     | cancelled                                        | ABGESETZT              | Apotheker dokumentiert in der Durchgeführten Abgabe, dass der Patient das Medikament in der geplanten Abgabe nicht einnimmt (mit Packungen 0) (entspricht der Leerabgabe).<br>Kann wieder rückgängig gemacht werden (durch Storno) | *Durchgeführten Abgabe* abgesetzt |
-|                                                       |                                        |                                                                         |                                            |                       |                                                                                                                                                                    | entered-in-error                                 | STORNIERT              | bei fehlerhafter Eingabe                                                                                                                                                                                                                                                                      | *Durchgeführte Abgabe* verwerfen  |
+<style> 
+/*TODO: falls table-responsive verwendet werden soll, sollte dieser style ausgelagert werden damit er auf allen pages verfügbar ist*/
+.table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    max-height: 800px;
+    overflow-y: auto;
+}
+.table-responsive > table { width: 100%; }
+.table-responsive th, .table-responsive td { padding: 15px; background: #f5f5f5; }
+.table-responsive table { border-collapse: separate; border-spacing: 3px; }
+/* Sticky header */
+.table-responsive th { position: sticky; top: 0; background: rgb(228, 228, 228); z-index: 2; }
+</style>
+
+
+<div class="table-responsive">
+<table>
+  <thead>
+    <tr>
+      <th>Use Case - Geplante Abgabe</th>
+      <th>Planeintrag (MedicationRequest-Status)</th>
+      <th>Beschreibung</th>
+      <th><em>Geplante Abgabe</em> (MedicationRequest-Status)</th>
+      <th>Status Verordnung CDA</th>
+      <th>Beschreibung</th>
+      <th><em>Durchgeführte Abgabe</em> (MedicationDispense-Status)</th>
+      <th>Status Abgabe CDA</th>
+      <th>Beschreibung</th>
+      <th>Use Case - Durchgeführte Abgabe</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><em>Geplante Abgabe</em> basierend auf Planeintrag erfassen</td>
+      <td>active</td>
+      <td>Planeintrag bleibt active, unabhängig von Status der gepanten Abgabe (*)</td>
+      <td>active</td>
+      <td>OFFEN</td>
+      <td>z.B. 6 Einlösungen bei Privatrezept</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>noch keine bzw. noch nicht alle mögl. Einlösungen erfolgt (mit Status completed)</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td><em>Geplante Abgabe</em> beenden (durch Fachanwendung)</td>
+      <td>active</td>
+      <td>Planeintrag bleibt active, unabhängig von Status der gepanten Abgabe (*)</td>
+      <td>completed</td>
+      <td>EINGELÖST</td>
+      <td>auf Basis der Durchgeführten Abgaben automatisch gesetzt durch Fachanwendung; dh. Alle möglichen Einlösungen sind abgechlossen (entweder completed oder cancelled)</td>
+      <td>completed</td>
+      <td>ABGEGEBEN</td>
+      <td>alle möglichen Einlösungen erfolgt</td>
+      <td><em>Durchgeführte Abgabe</em> erfassen</td>
+    </tr>
+    <tr>
+      <td><em>Geplante Abgabe</em> verwerfen</td>
+      <td>active</td>
+      <td>Planeintrag bleibt active, unabhängig von Status der gepanten Abgabe (*)</td>
+      <td>entered-in-error</td>
+      <td>STORNIERT</td>
+      <td>bei fehlerhafter Eingabe, wenn noch keine Abgabe durchgeführt</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>keine Durchgeführten Abgaben vorhanden</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td><em>Geplante Abgabe</em> abgelaufen (durch Fachanwendung)</td>
+      <td>active</td>
+      <td>Planeintrag bleibt active, unabhängig von Status der gepanten Abgabe (*)</td>
+      <td>stopped</td>
+      <td>ABGELAUFEN</td>
+      <td>automatisch erkannt durch Fachanwendung</td>
+      <td>kein relevanter Status</td>
+      <td>kein relevanter Status</td>
+      <td>noch keine bzw. noch nicht alle mögl. Einlösungen erfolgt<br/>Zu abgelaufenen geplanten Abgaben können keine Abgaben mehr gespeichert werden. Die (nachträgliche) Speicherung von Abgaben zu einem abgelaufenen Rezept kann im Anlassfall allerdings ohne Verordnungsbezug erfolgen.</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td><em>Geplante Abgabe</em> nicht abgegeben (durch Fachanwendung)</td>
+      <td>active</td>
+      <td>Planeintrag bleibt active, unabhängig von Status der gepanten Abgabe (*)</td>
+      <td>cancelled</td>
+      <td>NICHT_ABGEGEBEN</td>
+      <td>automatisch, wenn alle Einlösungen im MedicationDispense den Status "cancelled" erhalten haben</td>
+      <td>cancelled</td>
+      <td>ABGESETZT</td>
+      <td>Apotheker dokumentiert in der Durchgeführten Abgabe, dass der Patient das Medikament in der geplanten Abgabe nicht einnimmt (mit Packungen 0) (entspricht der Leerabgabe).<br/>Kann wieder rückgängig gemacht werden (durch Storno)</td>
+      <td><em>Durchgeführten Abgabe</em> abgesetzt</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>entered-in-error</td>
+      <td>STORNIERT</td>
+      <td>bei fehlerhafter Eingabe</td>
+      <td><em>Durchgeführte Abgabe</em> verwerfen</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 <br>(\*) solange ein evtl. Behandlungszeitraum nicht überschritten
 
