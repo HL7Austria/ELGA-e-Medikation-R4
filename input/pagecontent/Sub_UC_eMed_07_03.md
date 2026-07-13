@@ -15,7 +15,7 @@ Der Zugriff mit *e-Med GroupIdentifier* ermöglicht ausschließlich einen einges
 
 ##### Ablauf
 
-1. Der GDA führt die Custom Operation **POST** [$groupidentifier-search](OperationDefinition-AtEmed.GroupIdentifier.Search.html) aus und übermittelt einen *e-Med GroupIdentifier*.
+1. Der GDA führt die Custom Operation **POST** [$groupidentifier-search](OperationDefinition-AtElgaEmed.GroupIdentifier.Search.html) aus und übermittelt einen *e-Med GroupIdentifier*.
 2. Die Fachanwendung führt eine **syntaktische Prüfung** des übermittelten *e-Med GroupIdentifier* durch.
 3. Ist der *e-Med GroupIdentifier* syntaktisch gültig, ermittelt die Fachanwendung alle *MedicationRequest*-Ressourcen mit:
    * *category = Geplante Abgabe*

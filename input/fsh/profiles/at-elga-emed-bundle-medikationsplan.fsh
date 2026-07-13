@@ -1,4 +1,4 @@
-Profile: AtEmedBundleMedikationsplan
+Profile: AtElgaEmedBundleMedikationsplan
 Parent: Bundle
 Id: at-elga-emed-bundle-medikationsplan
 Title: "AT ELGA e-Medikation Collection Bundle Medikationsplan"

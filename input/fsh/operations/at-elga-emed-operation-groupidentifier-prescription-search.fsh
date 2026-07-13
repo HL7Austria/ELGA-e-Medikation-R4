@@ -1,11 +1,11 @@
 //ohne Kontakt nur mit groupIdentifier
-Instance: AtEmedGroupIdentifierPrescriptionSearch
+Instance: AtElgaEmedGroupIdentifierPrescriptionSearch
 InstanceOf: OperationDefinition
 Title: "eMed Operation für GroupIdentifier Prescription Search"
 Description: "Die $groupidentifier-prescription-search Operation wird aufgerufen, wenn ein Zugriff auf geplante Abgaben mittels e-Med Groupidentifier erfolgen soll."
 Usage: #definition
 * id = "at-emed-operation-groupidentifier-prescription-search"
-* name = "AtEmedGroupIdentifierPrescriptionSearch"
+* name = "AtElgaEmedGroupIdentifierPrescriptionSearch"
 * status = #draft
 * kind = #operation
 * affectsState = false  // Ändert den Zustand am Server;

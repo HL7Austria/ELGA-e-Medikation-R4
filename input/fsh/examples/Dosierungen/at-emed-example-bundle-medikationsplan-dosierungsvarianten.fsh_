@@ -1,5 +1,5 @@
 Instance: At-Emed-Example-Bundle-Medikationsplan-Dosierungsvarianten
-InstanceOf: AtEmedBundleMedikationsplan   
+InstanceOf: AtElgaEmedBundleMedikationsplan   
 Title: "Beispiel Collection Bundle: Medikationsplan mit Dosierungsvarianten"
 Description: "Beispiel eines Collection Bundles:  Medikationsplan mit Dosierungsvarianten."
 Usage: #example

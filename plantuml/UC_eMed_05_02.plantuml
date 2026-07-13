@@ -1,5 +1,5 @@
 @startuml
-title Plan-Read
+title Plan-History-Read
 
 'skinparam actorStyle awesome
 
@@ -51,67 +51,37 @@ skinparam sequence {
 !define COLOR_OK_2     #34738d4e
 !define COLOR_ERROR    #E9713235
 
+
 actor GDA_1 as "GDA 1" COLOR_GDA_1
 participant eMed_FA as "e-Med FA" COLOR_EMED_FA
 
 
 autonumber
 
-== Aktuellen Medikationsplan lesen ==
+== Historische Medikationspläne lesen ==
 
-GDA_1 -> eMed_FA: POST $plan-read
+GDA_1 -> eMed_FA: POST $plan-history-read
 activate GDA_1 COLOR_GDA_1
 
-note over GDA_1
-Abruf des Medikationsplans
-zur Bearbeitung
-end note
-
 activate eMed_FA COLOR_EMED_FA
-eMed_FA -> eMed_FA: Existiert ein persistierter\nMedikationsplan?
+eMed_FA -> eMed_FA: Prüfung auf existierende\nMedikationsplan-Collection-Bundles
 
-group COLOR_OK alt: Medikationsplan persistiert? [ja: Planeinträge vorhanden (kein emptyReason)]
-  eMed_FA -> eMed_FA: Erzeugt Auslieferungs-\nCollection Bundle\nTransformation:\n- new|changed → unchanged\n- removed -> aus List und Bundle entfernen
-  note over eMed_FA 
-  Das persistierte Medikationsplan-
-  Collection Bundle bleibt unverändert.
-  end note
-  eMed_FA -> eMed_FA: Sind nach der Transformation\nListeneinträge vorhanden? 
-
-  group COLOR_OK alt: Planeinträge vorhanden? [ja]
-    eMed_FA -> GDA_1: Auslieferungs-Collection Bundle\n+ ETag 
-
-  else COLOR_ERROR nein: Leerer Medikationsplan 
-    
-    eMed_FA -> eMed_FA: List.emptyReason = nilknown setzen
-    eMed_FA -> GDA_1: Auslieferungs-Collection Bundle\nmit List.emptyReason = nilknown\n+ ETag       
-
-  end
-
-else COLOR_OK_2 ja: leerer Medikationsplan (mit emptyReason = notstarted | nilknown) 
-
-  eMed_FA -> eMed_FA: Erzeugt Auslieferungs-\nCollection Bundle
-  note over eMed_FA
-  Keine Transformation erforderlich. 
-  List.emptyReason bleibt unverändert.
-  end note
-  eMed_FA -> GDA_1: Auslieferungs-Collection Bundle\n(mit List.emptyReason)\n+ ETag 
-
-
-else COLOR_ERROR nein: kein Medikationsplan persistiert
-
-  ref over GDA_1,eMed_FA
-  Siehe Sub_UC_eMed_05_03 - 
-  Initial erstellter Medikationsplan
-  end ref
-
+group COLOR_OK alt: Medikationsplan-Collection-Bundles gefunden? [ja: Collection-Bundles entsprechend Suchparametern]
+  eMed_FA -> GDA_1: Bundle (type=searchset) mit zumindest einem\nMedikationsplan-Collection-Bundle 
+else COLOR_OK_2 nein: kein Medikationsplan-Collection-Bundle entsprechend Suchparametern
+  eMed_FA -> GDA_1: Bundle (type=searchset) ohne Einträge
+else COLOR_ERROR Fehler
+  eMed_FA -> GDA_1: OperationOutcome
+  deactivate GDA_1
   deactivate eMed_FA
 end
 
-note over GDA_1
-Nachfolgend kann der 
-Medikationsplan bearbeitet werden 
-und ein Plan-Write erfolgen.
+note over eMed_FA
+Die Fachanwendung liefert die den Suchparamentern 
+entsprechenden, persistierten Medikationspläne 
+(unverändert, inkl. aller referenzierten Ressourcen) 
+oder ein leeres Bundle zurück.
 end note
+
 
 @enduml
