@@ -80,12 +80,14 @@ Der Zugriff dient ausschließlich der Anzeige bzw. Informationsabfrage persistie
 <div>{% include_relative plantuml/UC_eMed_05_02.svg %}</div>
 <br>
 
-###### Beispiele für Zugriffe mittels Suchparameter
-<!-- TODO: wenn plan-history-read eine Operation bleibt stimmt dieser Teil nicht mehr -> dann würden Operation IN Parameter zum Einsatz kommen-->
+
+###### Beispiele für Zugriffe
+In Arbeit
+ <!--TODO: wenn plan-history-read eine Operation bleibt stimmt dieser Teil nicht mehr -> dann würden Operation IN Parameter zum Einsatz kommen
 * **Aktuelle Planversion** mit dem Suchparameter Patient abrufen: GET [base]/Bundle?type=collection&_count=1&_sort=-timestamp&list.subject={bPK-GH}
 * **Alle Planversionen** mit dem Suchparameter Patient abrufen: GET [base]/Bundle?type=collection&_sort=-timestamp&list.subject={bPK-GH}
 * Abfrage aller **historischen Medikationsplan-Versionen** eines Patienten, die nach dem angegebenen Datum persistiert wurden und Plan-Einträge enthalten, die als **storniert, beendet oder abgesetzt** gekennzeichnet sind: GET [base]/Bundle?type=collection&_sort=-timestamp&timestamp=ge2025-01-01&list.subject={bPK-GH}&list.entry.flag=removed 
-
+-->
 <!-- list.code= 736378000 in Abfragen ergänzen -->
 
 
