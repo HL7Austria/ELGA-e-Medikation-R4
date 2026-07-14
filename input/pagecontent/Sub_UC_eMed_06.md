@@ -37,7 +37,8 @@ Alle Schreiboperationen erfolgen über die Custom Operation [$plan-write](Operat
 
 ##### Custom Operations
 
-[$plan-write](OperationDefinition-AtElgaEmed.List.PlanWrite.html)
+* [$plan-write](OperationDefinition-AtEmed.List.PlanWrite.html)
+* [$plan-read](OperationDefinition-AtEmed.List.PlanRead.html) 
 
 
 ##### Sequenzdiagramm Plan-Write
@@ -64,6 +65,8 @@ Beim nächsten [$plan-read](OperationDefinition-AtElgaEmed.List.PlanRead.html) e
 
 ##### Relevante Elemente (List)
 
+Der GDA übermittelt ein Medikationsplan-Transaction-Bundle mit:
+
 ```JSON
 AtElgaEmedListMedikationsplan
     identifier: von der Fachanwendung übermittelt (Integritätsprüfung) 
@@ -74,29 +77,32 @@ AtElgaEmedListMedikationsplan
     emptyReason: nilknown   // Patient nimmt derzeit kein Medikation ein
 ```
 
+##### Beispiel
+
+In Arbeit.
+<!-- JSON Link -->
 
 #### Sub_UC_eMed_06_03 - Medikationsplaneintrag in Medikationsplan hinzufügen
 
-Der GDA kann dem Medikationsplan ein oder mehrere Medikationsplaneinträge hinzufügen. Dabei muss er dokumentieren, ob es sich bei dem Eintrag um Fremdmedikation handelt (d.h. ein anderer Arzt hat das Medikament ursprünglich verordnet).
+Der GDA kann dem Medikationsplan ein oder mehrere Medikationsplaneinträge hinzufügen. 
+Dabei muss er dokumentieren, ob die Verordnung von ihm selbst stammt oder er Fremdmedikation oder Selbstmedikation des Patienten dokumentiert.
 
-Hierfür führt der GDA ein $plan-read aus und bearbeitet das von der Fachanwendung übermittelte Collection Bundle:
-- Im Element *List.source* wird mit dem aktuellen GDA, das Datum in *date* aktualisiert.
+Hierfür führt der GDA ein *$plan-read* aus und bearbeitet das von der Fachanwendung übermittelte Collection Bundle:
+- Das Element *List.source* wird mit dem aktuellen GDA, das Datum in *date* aktualisiert.
 - Entsprechende Medikationsplaneinträge (*MedicationRequests*) werden neu erstellt und in der *List*-Ressouce referenziert:
-    - Das List.entry.flag des referenzierten MedicationRequests erhält den Wert *new*, 
+    - Das *List.entry.flag* des referenzierten MedicationRequests erhält den Wert *new*, 
     - der MedicationRequest kann den Status *active* oder *on-hold* erhalten (siehe [Konsistenzregeln zwischen List.entry.flags und MedicationRequest-Status](workflowmanagement.html#konsistenzregeln-zwischen-listentryflags-und-medicationrequest-status)).
-    - für die Dokumentation des Arzneimittels ist Medication Ressource zu verwenden, diese muss immer im MedicationRequest enthalten sein (contained)
+    - *intent = order* und *category = "Medikationsplaneintrag"* sind für alle Planeinträge verpflichtend zu dokumentieren
+    - *reported* erhält den Wert *true*, wenn Fremdmedikation oder Eigenmedikation des Patienten vorliegt, anderenfalls den Wert *false*
+    - für die Dokumentation des Arzneimittels ist *Medication*-Ressource zu verwenden, diese muss immer im MedicationRequest enthalten sein (contained)
     - der Behandlungszeitraum im MedicationRequest kann sich auf das aktuelle Datum beziehen oder in der Zukunft liegen
 
-Im Anschluss übermittelt der GDA (via POST $plan-write) den aktualisierten Medikationsplan in einem Transaction Bundle:
-- alle neuen MedicationRequests sind inline im Bundle enthalten
+
+Im Anschluss übermittelt der GDA mit *POST $plan-write* den aktualisierten Medikationsplan in einem *Transaction Bundle*:
+- alle neuen *MedicationRequests* sind inline im Bundle enthalten
 - die unveränderten Ressourcen sind nicht im Bundle enthalten, sondern werden in der Liste nur referenziert
 
-Anmerkung: Beim nächsten Plan-Read ändert die Fachanwendung im zur Auslieferung bereitgestellten Collection Bundle den Status der Einträge mit *new* automatisch auf *unchanged*. 
-
-##### Ablauf
-
-<div>{% include_relative plantuml/UC_eMed_06_03.svg %}</div>
-
+Anmerkung: Beim nächsten Plan-Read ändert die Fachanwendung im zur Auslieferung bereitgestellten *Collection Bundle* den Status der Einträge mit *new* automatisch auf *unchanged*. 
 
 ##### Relevante Elemente (List)
 
@@ -105,8 +111,8 @@ AtElgaEmedListMedikationsplan
     identifier: von der Fachanwendung übermittelt (Integritätsprüfung) 
     status: current
     mode: working
-    date: Datum der Bearbeitung des Medikationsplans
-    source: veranwortlicher GDA 
+    date: Datum der aktuellen Bearbeitung des Medikationsplans
+    source: für die Bearbeitung veranwortlicher GDA 
     entry[0]:  // 1. Medikationsplaneintrag wird hinzufgefügt
         flag: new
         date: Datum der Aufnahme des Medikationsplaneintrags  // in diesem Fall gleich mit dem Datum der Bearbeitung des Medikationsplans
@@ -123,48 +129,49 @@ AtElgaEmedListMedikationsplan
 AtElgaEmedMedicationRequestPlaneintrag
     identifier: neue Medikationsplaneintrag-ID
     status: active | on-hold
-    reportedBoolean: true | false  // true, wenn Fremdmedikation
+    intent: order                       // fester Wert
+    category: "Medikationsplaneintrag"  // fester Wert
+    reportedBoolean: true | false       // true, wenn Fremdmedikation
     medicationReference.reference: Medikation mit PZN oder Magistrale Anwendung // Contained Medication 
     authoredOn: Datum der Erstellung des Medikationsplaneintrags    
-    requester: veranwortlicher GDA  // wird auf Übereinstimmung mit List.source geprüft
+    requester: veranwortlicher GDA      // wird auf Übereinstimmung mit List.source geprüft
     dosageInstruction: Dosierung + Einnahmezeitraum (ab sofort | in der Zukunft)
 ```
-<!-- TODO: muss PZN mit Displayname angegeben werden? oder reicht auch nur pzn. eher nur pzn -> server ergänzt und gibt ausgefülltes zurück -> client kann nochmal prüfen; adapter mach das derzeit so -->
-<!-- wenn software beides angeben kann müsste es ergänzt werden. -->
+<!-- TODO: muss PZN mit Displayname dokumentiert werden? wenn ja, muss geprüft werden. sonst durch Server ergänzt und zwecks Prüfung zurückgeben. -->
 
 <!-- TODO: noch offen für AtElgaEmedMedicationRequestPlaneintrag: -->
 <!-- ergänzen: * courseOfTherapyType: Gesamtmuster der Medikamentengabe continuous | acute | seasonal. -->
 
 
-##### Auswirkung der Zugriffsart auf List-Status und Bundles: neuer Medikationsplaneintrag
+##### Beispiel
 
-Siehe [Auswirkung der Zugriffsart auf List.entry.flags und Bundle-Inhalte](workflowmanagement.html#auswirkung-der-zugriffsart-auf-listentryflags-und-bundle-inhalte).
+In Arbeit.
+<!-- JSON Link -->
+
+##### Ablauf
+
+<div>{% include_relative plantuml/UC_eMed_06_03.svg %}</div>
 
 
 #### Sub_UC_eMed_06_04 - Medikationsplaneintrag im Medikationsplan beibehalten
 
-Der GDA kann im Medikationsplan ein oder mehrere Medikationsplaneinträge beibehalten und unverändert zur Kennntis nehmen.
+Der GDA kann ein oder mehrere Medikationsplaneinträge im Medikationsplan beibehalten und unverändert zur Kennntis nehmen.
 
-Hierfür führt der GDA ein $plan-read aus und lässt die entsprechenen Medikationsplaneinträge (*MedicationRequests*) des von der Fachanwendung übermittelten Collection Bundles **unverändert** (im Status *active* oder *on-hold*). Ist der Behandlungszeitraum der Medikationsplaneinträge abgelaufen, muss dieser angepasst werden (siehe *Sub_UC_eMed_06_05 - Medikationsplaneintrag im Medikationsplan ändern*). 
+Hierfür führt der GDA ein *$plan-read* aus und bearbeitet das von der Fachanwendung übermittelte Collection Bundle:
+- Das Element *List.source* wird mit dem aktuellen GDA, das Datum in *date* aktualisiert.
+- Die zu behaltenden Medikationsplaneinträge (*MedicationRequests*) des von der Fachanwendung übermittelten Collection Bundles bleiben **unverändert** (im Status *active* oder *on-hold*). 
+- Ist der Behandlungszeitraum der Medikationsplaneinträge abgelaufen, muss dieser angepasst werden (siehe *Sub_UC_eMed_06_05 - Medikationsplaneintrag im Medikationsplan ändern*), da die Fachanwendung die Speicherung abgelaufener Planeinträge ablehnt.
 
-Im Element *List.source* wird mit dem aktuellen GDA, das Datum in *date* aktualisiert.
+Der GDA übermittelt mit *POST $plan-write* den aktualisierten Medikationsplan in einem *Transaction Bundle*:
+- die unveränderten Ressourcen sind nicht im Bundle enthalten, sondern werden in der Liste nur referenziert.
 
-Der GDA übermittelt (via POST $plan-write) den aktualisierten Medikationsplan in einem Transaction Bundle:
-- die unveränderten Ressourcen sind nicht im Bundle enthalten, sondern werden in der Liste nur referenziert
-
-##### Ablauf
-
-Siehe [Plan-Read](interactions.html#plan-read) und [Plan-Write](interactions.html#plan-write).  
 
 ##### Relevante Elemente (List)
 
 ```JSON
 AtElgaEmedListMedikationsplan
-    identifier: von der Fachanwendung übermittelt (Integritätsprüfung) 
-    status: current
-    mode: working
-    date: Datum der Bearbeitung des Medikationsplans
-    source: Veranwortlicher GDA 
+    date: Datum der aktuellen Bearbeitung des Medikationsplans
+    source: für die Bearbeitung veranwortlicher GDA 
     entry[0]:  // 1. Medikationsplaneintrag bleibt unverändert
         flag: unchanged 
         date: Datum der Aufnahme des Medikationsplaneintrags // in diesem Fall unterschiedlich mit dem Datum der Bearbeitung des Medikationsplans
@@ -178,42 +185,31 @@ AtElgaEmedMedicationRequestPlaneintrag
     // unverändert (verantwortlicher GDA, Datum, Status bleiben bestehen)
 ```
 
-
-##### Auswirkung der Zugriffsart auf List-Status und Bundles: Medikationsplaneintrag beibehalten
-
-Siehe [Auswirkung der Zugriffsart auf List.entry.flags und Bundle-Inhalte](workflowmanagement.html#auswirkung-der-zugriffsart-auf-listentryflags-und-bundle-inhalte).
-
-
 #### Sub_UC_eMed_06_05 - Medikationsplaneintrag pausieren
 
-Ein GDA kann die Therapie eines Patienten vorübergehend unterbrechen (die Wiederaufnahme ist vorgesehen).
+Ein GDA kann die Therapie eines Patienten vorübergehend unterbrechen (die Wiederaufnahme ist vorgesehen). Eine Freitext-Begründung kann dokumentiert werden.
 
-Hierfür führt der GDA ein $plan-read aus und bearbeitet das von der Fachanwendung übermittelte Collection Bundle:
-- Im Element *List.source* wird mit dem aktuellen GDA, das Datum in *date* aktualisiert.
-- Die zu pausierenden Medikationsplaneinträge (*MedicationRequests*) und das entsprechende Entry der *List*-Ressouce werden angepasst:
-    - Das List.entry.flag des referenzierten MedicationRequests erhält den Wert *changed*, 
-    - der MedicationRequest erhält den Status *on-hold* (siehe [Konsistenzregeln zwischen List.entry.flags und MedicationRequest-Status](workflowmanagement.html#konsistenzregeln-zwischen-listentryflags-und-medicationrequest-status))
-- der Behandlungszeitraum im MedicationRequest kann sich auf das aktuelle Datum beziehen oder in der Zukunft liegen
+Hierfür führt der GDA ein *$plan-read* aus und bearbeitet das von der Fachanwendung übermittelte Collection Bundle. Die zu pausierenden Medikationsplaneinträge (*MedicationRequests*) und das entsprechende Entry der *List*-Ressouce werden angepasst:
+- Das Element *List.source* wird mit dem aktuellen GDA, das Datum in *date* aktualisiert.
+- Das *List.entry.flag* des referenzierten MedicationRequests erhält den Wert *changed*, 
+- der MedicationRequest erhält den Status *on-hold* (siehe [Konsistenzregeln zwischen List.entry.flags und MedicationRequest-Status](workflowmanagement.html#konsistenzregeln-zwischen-listentryflags-und-medicationrequest-status))
+- In *statusReason.text* kann ein Grund für die Pausierung als Freitext dokumentiert werden.
+- *reportedBoolean* wird auf *true* gesetzt, wenn die Information über die Pausierung vom Patienten berichtet wurde und auf *false*, wenn die Pausierung vom GDA angeordnet wurde – unabhängig davon, welcher Status zuvor dokumentiert war.
+- der Behandlungszeitraum im MedicationRequest kann sich auf das aktuelle Datum beziehen oder in der Zukunft liegen.
 
-Im Anschluss übermittelt der GDA (via POST $plan-write) den aktualisierten Medikationsplan in einem Transaction Bundle:
+Im Anschluss übermittelt der GDA mit *POST $plan-write* den aktualisierten Medikationsplan in einem *Transaction Bundle*:
 - alle geänderten Ressourcen sind inline im Bundle enthalten
 - die unveränderten Ressourcen sind nicht im Bundle enthalten, sondern werden in der Liste nur referenziert.
 
-Anmerkung: Beim nächsten Plan-Read ändert die Fachanwendung im zur Auslieferung bereitgestellten Collection Bundle den Status der Einträge mit *changed* automatisch auf *unchanged*. 
+Anmerkung: Beim nächsten *Plan-Read* ändert die Fachanwendung im zur Auslieferung bereitgestellten *Collection Bundle* den Status der Einträge mit *changed* automatisch auf *unchanged*. 
 
-##### Ablauf
-
-Siehe [Plan-Read](interactions.html#plan-read) und [Plan-Write](interactions.html#plan-write).  
 
 ##### Relevante Elemente (List)
 
 ```JSON
 AtElgaEmedListMedikationsplan
-    identifier: von der Fachanwendung übermittelt (Integritätsprüfung) 
-    status: current
-    mode: working
-    date: Datum der Bearbeitung des Medikationsplans
-    source: Veranwortlicher GDA 
+    date: Datum der aktuellen Bearbeitung des Medikationsplans
+    source: für die Bearbeitung veranwortlicher GDA 
     entry[0]:  // 1. Medikationsplaneintrag wird pausiert
         flag: changed 
         date: Datum der Änderung des Medikationsplaneintrags  // in diesem Fall gleich mit dem Datum der Bearbeitung des Medikationsplans
@@ -230,12 +226,14 @@ AtElgaEmedListMedikationsplan
 AtElgaEmedMedicationRequestPlaneintrag
     identifier: Medikationsplaneintrag-ID bleibt bestehen
     status: on-hold
-    statusReason.text: Freitextbegrüdung  
+    statusReason.text: Freitextbegrüdung  // optional
     reportedBoolean: false  // Fremdmedikation
     authoredOn: Datum der Pausierung des Medikationsplaneintrags    
     requester: für die Pausierung verantwortlicher GDA 
     priorPrescription: Referenz auf ersetzten Medikationsplaneintrag
 ```
+<!-- reportedBoolean: false  // auch wenn zuvor Fremdmedikation = true war? -->
+
 ##### Auswirkung der Zugriffsart auf List-Status und Bundles: Medikationsplaneintrag ändern
 
 Siehe [Auswirkung der Zugriffsart auf List.entry.flags und Bundle-Inhalte](workflowmanagement.html#auswirkung-der-zugriffsart-auf-listentryflags-und-bundle-inhalte).

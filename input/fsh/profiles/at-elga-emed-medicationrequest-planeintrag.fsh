@@ -62,12 +62,9 @@ Der Medikationsplaneintrag kann in weiterer Folge als Grundlage für die Erstell
 //* reported[x] 1..1 MS
 * reportedReference 0..0  
 //* reportedReference only Reference(Patient or Practitioner or PractitionerRole) 
-* reportedReference ^short = "Im Falle einer Fremdmedikation Angabe einer Referenz auf: (Patient | Practitioner | PractitionerRole | RelatedPerson | Organization). Keine Verwendung im Medikationsplan."
-// TODO: Klären ob hier der GDA eindeutig identifiziert sein muss (im GDA-I vorhanden) oder analog zu e-Impfpass Freitext sein kann. Juristisch Verantwortlichkeit für Korrektheit des Eintrags zu klären."
 
 * reportedBoolean 1..1 MS
-* reportedBoolean ^short = "TRUE im Falle der Dokumentation von Fremdmedikation (ein anderer Arzt hat das Medikament ursprünglich verordnet), sonst FALSE."
-
+* reportedBoolean ^short = "Quelle der Information. Mögliche Ausprägungen: [ true | false ]. Bedeutung: false: Verordnung durch den Planeintrag erstellenden GDA | true: Fremdmedikation oder Eigenmedikation des Patienten."
 
 // --- Medication immer als Medication-Resource (mit oder ohne PZN, damit Handelsname angegeben werden kann und historisch verfügbar bleibt)
 * medication[x] 1..1 MS  

@@ -1,6 +1,6 @@
 @startuml
 
-title Planeintrag in Medikationsplan hinzufügen
+title Medikationsplaneintrag in\nMedikationsplan hinzufügen
 
 'skinparam actorStyle awesome
 
@@ -68,14 +68,10 @@ GDA erhält den aktuellen Medikationsplan
 im Auslieferungs-Bundle 
 end note
 
-== Medikationsplan vorbereiten und schreiben ==
+== Medikationsplan bearbeiten und und schreiben ==
 
 GDA_1 -> GDA_1: Neuen Planeintrag erstellen
 GDA_1 -> GDA_1: Planeintrag mit List.entry.flag\n"new" dem Medikationsplan hinzufügen
-
-note over GDA_1
-Medikationsplaneintrag hinzufügen
-end note
 
 ref over GDA_1, eMed_FA : [[interactions.html#plan-write Plan-Write]]
 
