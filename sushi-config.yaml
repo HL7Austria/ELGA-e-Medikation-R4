@@ -143,6 +143,11 @@ pages:
 # parameters:
 #   generate-uml: source
 
+parameters:
+  generate-turtle: false
+  excludettl: true
+  no-ig-database: true
+
 #
 # ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
 # │ The menu property will be used to generate the input/menu.xml file. The menu is represented    │
