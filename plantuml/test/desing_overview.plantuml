@@ -1,0 +1,107 @@
+@startuml
+'left to right direction
+
+skinparam shadowing false
+skinparam roundCorner 8
+skinparam packageStyle rectangle
+skinparam defaultFontName Arial
+skinparam defaultFontSize 12
+
+skinparam class {
+    BackgroundColor White
+    BorderColor Black
+}
+
+package "Medikationsplan" {
+  left to right direction
+
+  class "List\n(Medikationsplan)" as List {
+    id = 123
+    meta.versionId = 5
+    --
+    'identifier = 123
+    subject --> Patient/4711
+    source --> Practitioner/99
+    --
+    entry[Planeintrag 1]
+    entry[Planeintrag 2]
+  }
+
+  class "MedicationRequest\nPlaneintrag 1" as PLANEINTRAG_1 {
+      id = 111
+      meta.versionId = 3
+      --
+      status = active
+  }
+
+  class "MedicationRequest\nPlaneintrag 2" as PLANEINTRAG_2 {
+    id = 222
+    meta.versionId = 1
+    --
+    status = active
+  }
+
+  class Patient {
+    id = 4711
+  }
+
+  class Practitioner {
+    id = 99
+  }
+
+    List --> Patient
+    List --> Practitioner
+
+    List ..> PLANEINTRAG_1 : item\nMedicationRequest/111/_history/3
+    List ..> PLANEINTRAG_2 : item\nMedicationRequest/222/_history/1
+
+}
+
+package "Geplante Abgaben" {
+
+    class "MedicationRequest\nGeplante Abgabe" as GEPL_ABGABE_1 {
+      id = 9001
+      meta.versionId = 1
+      --
+      status = active
+      groupIdentifier
+    }
+
+    GEPL_ABGABE_1 .l.> PLANEINTRAG_1 : basedOn\nMedicationRequest/111/_history/3
+
+}
+
+package "Durchgeführte Abgaben" {
+
+    class "MedicationDispense" as DURCHG_ABGABE_1 {
+    id = 7001
+    meta.versionId = 1
+    --
+    status = completed
+    groupIdentifier
+  }
+
+  'PLANEINTRAG_1 --r[hidden]> GEPL_ABGABE_1
+
+  DURCHG_ABGABE_1 --> GEPL_ABGABE_1 : authorizingPrescription
+
+  DURCHG_ABGABE_1 .l.> PLANEINTRAG_1 : extension:planeEntry\nMedicationRequest/111/_history/3
+
+}
+
+legend right
+
+<b>Referenzen</b>
+
+────► normale Referenz
+
+- - -► versionsspezifische Referenz
+
+MedicationRequest/{id}/_history/{version}
+
+Patient und Practitioner
+werden immer aktuell referenziert.
+
+endlegend
+
+@enduml

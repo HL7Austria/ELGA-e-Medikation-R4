@@ -1,0 +1,44 @@
+@startuml
+title Historie eines Medikationsplaneintrags
+
+'left to right direction
+
+skinparam shadowing false
+skinparam roundCorner 8
+skinparam packageStyle rectangle
+
+rectangle "MedicationRequest\nPlaneintrag\nid = 100\nversion = 1\nDosierung:\n1-0-1" as V1
+
+rectangle "MedicationRequest\nPlaneintrag\nid = 100\nversion = 2\nDosierung:\n2-0-2" as V2
+
+rectangle "MedicationRequest\nPlaneintrag\nid = 100\nversion = 3\nStatus:\non-hold" as V3
+
+V1 --> V2 : PUT
+V2 --> V3 : PUT
+
+rectangle "Geplante Abgabe A" as RX1
+rectangle "Geplante Abgabe B" as RX2
+rectangle "Durchgeführte Abgabe" as DISP
+
+RX1 ..> V1 : basedOn
+RX2 ..> V2 : basedOn
+
+DISP --> RX2 : authorizingPrescription
+DISP ..> V2 : planeEntry
+
+note bottom
+Der Planeintrag besitzt immer dieselbe FHIR-id (100).
+
+Jede Änderung erzeugt eine neue Version.
+
+Neue Geplante Abgaben referenzieren immer die
+zum Erstellungszeitpunkt aktuelle Version
+des Planeintrags.
+
+Durchgeführte Abgaben referenzieren sowohl
+die Geplante Abgabe als auch dieselbe Version
+des Planeintrags.
+
+end note
+
+@enduml

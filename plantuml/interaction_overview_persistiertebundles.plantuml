@@ -45,44 +45,36 @@ left to right direction
 
 title REST-Schnittstellen: https://[server]
 
-
-interface "/" as IEmed {
-  «POST» $groupidentifier-create [GDA]
-  «POST» $groupidentifier-search [GDA]
-}
-
-interface "/Patient/[id]/List/" as IList {
-  «POST» $plan-read [GDA, PAT]
-  «POST» $plan-write [GDA]
-  «POST» $patient-plan-write [PAT]
-  «POST» $plan-delete [PAT]
-  «GET» _history?_include=* [GDA, PAT] (plan-history-search)
-
-  «GET» _history?_include=*&[item=MedicationRequest/{id}]&[subject=Patient/{id}]&{date}
-  «GET» _history?_elements=date,source [GDA, PAT] (plan-history-search)
+interface "/Patient/[id]/MedicationDispense/" as IDurchgAbgabe {
+  «POST» $dispense-write [GDA]
+  «POST» $dispense-discard [GDA]
+  «POST» $reference-plan [GDA]
+  «GET» (dispense-read) [GDA, PAT]
+  «DELETE» (delete) [PAT]
 }
 
 interface "/Patient/[id]/MedicationRequest/" as IMedicationRequest {
   «POST» $prescription-write [GDA]
   «POST» $prescription-discard [GDA]
+  «POST» $plan-read [GDA, PAT]
+  «POST» $plan-write [GDA]
+  «POST» $patient-plan-write [PAT]
+  «POST» $plan-delete [PAT]
   «GET» ?category=GeplAbgabe [GDA, PAT] (prescription-search)
   «GET» ?category=Planeintrag [GDA, PAT] (planentry-search)
   «DELETE» (delete) [PAT]
 } 
 
-interface "/Patient/[id]/MedicationDispense/" as IDurchgAbgabe {
-  «POST» $dispense-write [GDA]
-  «POST» $dispense-discard [GDA]
-  «POST» $reference-plan [GDA]
-  «GET» (dispense-search) [GDA, PAT]
-  «DELETE» (delete) [PAT]
-}
 
+interface "/" as IEmed {
+  «POST» $groupidentifier-create [GDA]
+  «POST» $groupidentifier-search [GDA]
+  «POST» $plan-history-read [GDA, PAT] 
+}
 
 ' --- SYSTEMKOMPONENTE (ZENTRALER SERVER) ---
 
 component "ELGA\ne-Medikation" as Server {
-  port "List\n(Medikationsplan)" as p4
   port "MedicationDispense\n(Durchgeführte Abgaben)" as p3
   port "MedicationRequest\n(Planeinträge und\nGeplante Abgaben)" as p2
   port "eMed" as p1
@@ -91,7 +83,6 @@ component "ELGA\ne-Medikation" as Server {
 
 p3 -up- IDurchgAbgabe
 p2 -up- IMedicationRequest
-p4 -up- IList
 p1 -up- IEmed
 
 
