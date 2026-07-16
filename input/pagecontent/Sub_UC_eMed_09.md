@@ -11,17 +11,33 @@ Erfolgt die Autorisierung des ELGA-Teilnehmers mittels Kontaktbestätigung (z. B
 Erfolgt der Zugriff über den *e-Med GroupIdentifier* (z.B. codiert auf dem Papierrezept), kann der GDA ausschließlich *Durchgeführte Abgaben* in der e-Medikation speichern, die sich auf die dem *e-Med GroupIdentifier* zugeordneten Geplanten Abgaben beziehen.
 
 
-<!-- #### Variante A: Zugriff mittels e-card
+#### Variante A: Zugriff mittels Kontaktbestätigung
 
-<br>
+In Arbeit.
+<!-- <br>
 [![overview](plantuml/UC_eMed_09_01_a.svg){: .mx-auto style="width:80%;"}](plantuml/UC_eMed_09_01_a.svg)
-<br>
-
-#### Variante B: Zugriff mittels e-Rezept
-
-<br>
-[![overview](plantuml/UC_eMed_09_01_a.svg){: .mx-auto style="width:80%;"}](plantuml/UC_eMed_09_01_b.svg)
 <br> -->
+
+<!-- darf jede zulässige MedicationDispense schreiben
+OTC möglich
+Referenz auf Planeintrag optional
+Referenz auf geplante Abgabe optional -->
+
+#### Variante B: Zugriff mittels e-Med GroupIdentifier
+
+In Arbeit.
+<!-- <br>
+[![overview](plantuml/UC_eMed_09_01_a.svg){: .mx-auto style="width:80%;"}](plantuml/UC_eMed_09_01_b.svg)
+<br> --> -->
+
+<!-- Custom Operation $groupidentifier-search
+liefert ausschließlich offene geplante Abgaben dieses GroupIdentifiers
+es dürfen ausschließlich MedicationDispense erzeugt werden,
+die sich auf eine dieser geplanten Abgaben beziehen,
+und denselben GroupIdentifier besitzen.
+OTC nicht zulässig.
+kein Zugriff auf Medikationsplan.
+keine weiteren Suchoperationen. -->
 
 
 

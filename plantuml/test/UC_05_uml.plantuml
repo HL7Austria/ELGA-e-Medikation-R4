@@ -1,0 +1,100 @@
+@startuml
+left to right direction
+skinparam shadowing false
+skinparam roundCorner 8
+skinparam defaultFontName Arial
+skinparam packageStyle rectangle
+skinparam rectangleBorderColor black
+skinparam rectangleBackgroundColor white
+
+rectangle "CLIENT\n\n[Transaction Bundle]" as client {
+
+object "Medikationsplan\nList v.2" as listClient {
+id = 124
+status = active
+subject = Patient A
+source = Dr B
+entry[1] = urn:uuid:1
+flag = new
+entry[2] = urn:uuid:2
+flag = new
+}
+
+object "FullUrl: urn:uuid:1\n\nPlaneintrag\nMedicationRequest" as mr1 {
+status = active
+category = Planeintrag
+subject = Patient A
+requester = Dr B
+...
+}
+
+object "FullUrl: urn:uuid:2\n\nPlaneintrag\nMedicationRequest" as mr2 {
+status = active
+category = Planeintrag
+subject = Patient A
+requester = Dr B
+...
+}
+
+listClient --> mr1
+listClient --> mr2
+
+note left of listClient
+Dr. B legt
+2 neue
+Planeinträge an.
+end note
+
+}
+
+rectangle "e-Medikation FACHANWENDUNG" as server #FFF8F2 {
+
+object "Medikationsplan\nList v.2" as listServer {
+id =124
+entry[1] =111
+flag = new
+entry[2] =112
+flag = new
+}
+
+object "Planeintrag\nMedicationRequest v.1" as mr11 {
+id =111
+status = active
+subject = Patient A
+...
+}
+
+object "Planeintrag\nMedicationRequest v.1" as mr12 {
+id =112
+status = active
+subject = Patient A
+...
+}
+
+object "Patient" as patient {
+id=555
+}
+
+object "Practitioner" as pract {
+id=91
+}
+
+listServer --> mr11
+listServer --> mr12
+
+mr11 ..> patient
+mr12 ..> patient
+
+mr11 ..> pract
+mr12 ..> pract
+
+note bottom of listServer
+Fachanwendung legt
+neue Ressourcen an.
+end note
+
+}
+
+client --> server : $plan-write
+
+@enduml
