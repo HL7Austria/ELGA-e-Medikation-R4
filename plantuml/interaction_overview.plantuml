@@ -56,18 +56,16 @@ interface "/Patient/[id]/List/" as IList {
   «POST» $plan-write [GDA]
   «POST» $patient-plan-write [PAT]
   «POST» $plan-delete [PAT]
-  «GET» _history?_include=* [GDA, PAT] (plan-history-search)
-
-  «GET» _history?_include=*&[item=MedicationRequest/{id}]&[subject=Patient/{id}]&{date}
-  «GET» _history?_elements=date,source [GDA, PAT] (plan-history-search)
+  «GET» (plan-history-search)
+  «GET» (plan-history-directory-search)
 }
 
 interface "/Patient/[id]/MedicationRequest/" as IMedicationRequest {
   «POST» $prescription-write [GDA]
   «POST» $prescription-discard [GDA]
-  «GET» ?category=GeplAbgabe [GDA, PAT] (prescription-search)
-  «GET» ?category=Planeintrag [GDA, PAT] (planentry-search)
-  «DELETE» (delete) [PAT]
+  «GET» (prescription-search)
+  «GET» (planentry-search)
+  «DELETE» (prescription-delete) [PAT]
 } 
 
 interface "/Patient/[id]/MedicationDispense/" as IDurchgAbgabe {
@@ -75,7 +73,7 @@ interface "/Patient/[id]/MedicationDispense/" as IDurchgAbgabe {
   «POST» $dispense-discard [GDA]
   «POST» $reference-plan [GDA]
   «GET» (dispense-search) [GDA, PAT]
-  «DELETE» (delete) [PAT]
+  «DELETE» (dispense-delete) [PAT]
 }
 
 
