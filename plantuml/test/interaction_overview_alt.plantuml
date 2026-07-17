@@ -1,0 +1,119 @@
+@startuml
+allowmixing
+' !include "https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/v3.0.0/icons/font-awesome-5/user_doctor.puml"
+
+' title diagramm
+' ICON_DOC(doctor,LIVE,user_doctor,black) #RoyalBlue
+
+' stethoscope	GOV_STETHOSCOPE
+' balance_scale	FA5_BALANCE_SCALE
+' flask	FA5_FLASK
+' hand_holding_medical	FA5_HAND_HOLDING_MEDICAL
+' heartbeat	FA5_HEARTBEAT
+' comment_medical	FA5_COMMENT_MEDICAL
+' clinic_medical	FA5_CLINIC_MEDICAL
+
+
+skinparam componentStyle uml2
+skinparam packageStyle rectangle
+
+skinparam borderColor #555555
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam roundCorner 4
+skinparam defaultFontName "Arial"
+skinparam defaultFontSize 12
+skinparam defaultFontColor #000000
+
+!define COLOR_EMED_FA  #e97232bd
+
+' Styling für UML-Komponenten und Schnittstellen (Klassischer UML-Stil)
+skinparam component {
+  BackgroundColor COLOR_EMED_FA
+  'BorderColor #0366D6
+  'FontColor #000000
+  'FontStyle bold
+}
+
+skinparam interface {
+  'BackgroundColor #FFFFFF
+  'BorderColor #005CC5
+}
+
+left to right direction
+
+title REST-Schnittstellen: https://[server]/
+
+interface "Patient/[id]/MedicationDispense/" as IDurchgAbgabe {
+  «GET» (dispense-read) [GDA, PAT]
+  «POST» $dispense-write [GDA]
+  «POST» $dispense-discard [GDA]
+  «POST» $reference-plan [GDA]
+  «DELETE» (delete) [PAT]
+}
+
+interface "GeplAbgabe/Patient/[id]/MedicationRequest/" as IGeplAbgabe {
+  «GET» (prescription-read) [GDA, PAT]
+  «POST» $prescription-write [GDA]
+  «POST» $prescription-discard [GDA]
+  «DELETE» (delete) [PAT]
+} 
+
+interface "eMPEintrag/Patient/[id]/MedicationRequest/" as IPlaneintrag {
+  «GET» (plan-entry-read) [GDA, PAT]
+}
+
+interface "Patient/[id]/Bundle/" as IBundle {
+  «GET» (plan-history-read) [GDA, PAT] 
+  «POST» $plan-read [GDA, PAT]
+  «POST» $plan-write [GDA]
+  «POST» $patient-plan-write [PAT]
+  «POST» $plan-delete [PAT]
+}
+
+interface "/" as IEmed {
+  «POST» $groupidentifier-create [GDA]
+  «POST» $groupidentifier-prescription-search [GDA]
+  «POST» $groupidentifier-despensation-search [GDA]
+}
+
+' --- SYSTEMKOMPONENTE (ZENTRALER SERVER) ---
+
+component "ELGA\ne-Medikation" as Server {
+  port "Durchgeführte\nAbgaben" as p5
+  port "Geplante\nAbgaben" as p4
+  port "Plan-\neinträge" as p3 
+  port "Medikationsplan" as p2
+  port "eMed" as p1
+}
+
+
+
+p5 -up- IDurchgAbgabe
+p4 -up- IGeplAbgabe
+p3 -up- IPlaneintrag
+p2 -up- IBundle
+p1 -up- IEmed
+
+
+legend right
+  **Legende Berechtigungen:**
+  [GDA] = Gesundheitsdiensteanbieter
+  [PAT] = PATIENT: ELGA-Teilnehmer:in
+end legend
+
+' --- ARCHITEKTUR-NOTIZEN ---
+
+' note bottom of Server
+'   **UML 2.0 Component Specification**
+'   Zentrales e-Medikations-System kapselt persistierte
+'   Collection Bundles (v.1 / v.2) und Transaction Bundles.
+' end note
+
+' note right of IBundle
+'   **Ressourcen-Kontext:**
+'   Enthält MedicationRequest,
+'   Patient, Practitioner.
+' end note
+
+@enduml
