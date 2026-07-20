@@ -16,7 +16,7 @@ Die nachfolgenden technischen Use Cases beschreiben die jeweils erforderlichen �
 
 #### Sub_UC_eMed_06_01 - Medikationsplan schreiben (Plan-Write)
 
-Alle Schreiboperationen erfolgen über die Custom Operation [$plan-write](OperationDefinition-AtElgaEmed.List.PlanWrite.html). Die Fachanwendung verwendet den im Request übermittelten *ETag* zur Integritätsprüfung (Optimistic Locking), um konkurrierende Änderungen am Medikationsplan zu erkennen.
+Alle Schreiboperationen erfolgen über die Custom Operation [$plan-write](OperationDefinition-AtElgaEmed.List.PlanWrite.html). Die Fachanwendung verwendet den im Request übermittelten *ETag* zur Integritätsprüfung ([Optimistic Locking](https://hl7.org/fhir/http.html#concurrency)), um konkurrierende Änderungen am Medikationsplan zu erkennen.
 <!-- TODO: Link zur ETag-Beschreibung im ELGA-Core ergänzen -->
 
 ##### Ablauf
