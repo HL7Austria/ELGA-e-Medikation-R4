@@ -62,11 +62,9 @@ Abschließend erzeugt die Fachanwendung aus der aktuellen Version der *List*-Res
 Die persistierten Ressourcen werden dabei nicht verändert.
 
 
-
 ##### Prüfung des Planzustands und Erzeugung des Collection-Bundles
 
 <div>{% include_relative plantuml/UC_eMed_01_01_plancheck.svg %}</div>
-
 
 
 ##### Custom Operation
@@ -97,23 +95,21 @@ Beim Plan-History-Read erfolgt **keine Änderung** der Medikationspläne durch d
 <br>
 Der Zugriff dient ausschließlich der Anzeige bzw. Informationsabfrage persistierter Medikationsplanversionen.
 
-##### Operation
-
-«GET» plan-history-search
-
 ##### Sequenzdiagramm
 
 <div>{% include_relative plantuml/UC_eMed_01_02.svg %}</div>
 <br>
 
+##### Operation
+
+«GET» plan-history-search
+
 
 ###### Beispiele für Zugriffe
 In Arbeit
- <!--TODO: wenn plan-history-read eine Operation bleibt stimmt dieser Teil nicht mehr -> dann würden Operation IN Parameter zum Einsatz kommen
-* **Aktuelle Planversion** mit dem Suchparameter Patient abrufen: GET [base]/Bundle?type=collection&_count=1&_sort=-timestamp&list.subject={bPK-GH}
-* **Alle Planversionen** mit dem Suchparameter Patient abrufen: GET [base]/Bundle?type=collection&_sort=-timestamp&list.subject={bPK-GH}
-* Abfrage aller **historischen Medikationsplan-Versionen** eines Patienten, die nach dem angegebenen Datum persistiert wurden und Plan-Einträge enthalten, die als **storniert, beendet oder abgesetzt** gekennzeichnet sind: GET [base]/Bundle?type=collection&_sort=-timestamp&timestamp=ge2025-01-01&list.subject={bPK-GH}&list.entry.flag=removed 
--->
+<!-- * **Aktuelle Planversion** mit dem Suchparameter Patient abrufen: GET [base]/Bundle?type=collection&_count=1&_sort=-timestamp&list.subject={bPK-GH} -->
+<!-- * **Alle Planversionen** mit dem Suchparameter Patient abrufen: GET [base]/Bundle?type=collection&_sort=-timestamp&list.subject={bPK-GH} -->
+<!-- * Abfrage aller **historischen Medikationsplan-Versionen** eines Patienten, die nach dem angegebenen Datum persistiert wurden und Plan-Einträge enthalten, die als **storniert, beendet oder abgesetzt** gekennzeichnet sind: GET [base]/Bundle?type=collection&_sort=-timestamp&timestamp=ge2025-01-01&list.subject={bPK-GH}&list.entry.flag=removed  -->
 <!-- list.code= 736378000 in Abfragen ergänzen -->
 
 
@@ -130,9 +126,9 @@ Die Initialisierung kann sowohl durch ein GDA-System als auch durch den ELGA-Tei
 
 1. Ein Client führt für einen ELGA-Teilnehmer erstmalig ein **POST** [$plan-read](OperationDefinition-AtElgaEmed.List.Planread.html) aus.
 2. Die Fachanwendung prüft, ob bereits ein Medikationsplan für den Patienten existiert.
-3. Existiert noch kein Medikationsplan, erstellt die Fachanwendung initial eine List-Ressource mit `emptyReason = notstarted`.
+3. Existiert noch kein Medikationsplan, erstellt die Fachanwendung initial eine List-Ressource mit *emptyReason = notstarted*.
 4. Die erzeugten Ressourcen werden persistiert.
-5. Für das Plan-Read erzeugt die Fachanwendung daraus ein temporäres Auslieferungs-Medikationsplan-Collection-Bundle.
+5. Für das Plan-Read erzeugt die Fachanwendung daraus ein temporäres Collection-Bundle zur Auslieferung.
 6. Dieses wird mit demselben *List.emptyReason = notstarted* sowie dem zugehörigen ETag an den Client zurückgeliefert.
 
 

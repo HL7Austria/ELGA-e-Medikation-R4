@@ -72,7 +72,8 @@ activate eMed_FA COLOR_EMED_FA
 ref over eMed_FA
 Prüfung des Planzustands
 und Erzeugung des
-Auslieferungs-Collection Bundles
+Collection Bundles zur 
+Auslieferung
 end ref
 
 eMed_FA --> GDA_1: Collection Bundle\n+ ETag
