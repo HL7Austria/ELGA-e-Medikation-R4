@@ -1,0 +1,38 @@
+@startuml
+title Prüfung des Planzustands und Erzeugung des Auslieferungs-Collection-Bundles
+
+start
+
+:POST $plan-read;
+
+if (Medikationsplan\nvorhanden?) then (Nein)
+
+  :List.emptyReason=\nnotstarted;
+  note
+  Initialen Medikationsplan
+  erstellen
+  (Sub_UC_eMed_01_03); 
+  end note
+
+else (Ja)
+
+  if (Planeinträge\nvorhanden?) then (Ja)
+
+    :Transformationen\ndurchführen;
+
+    if (noch Planeinträge\nvorhanden?) then (Ja)
+    else (Nein)
+      :List.emptyReason=\nnilknown;
+    endif
+
+  else (Nein)
+    -[#black]-> keine\nTransformation;
+  endif
+
+endif
+
+:Auslieferungs-\nCollection Bundle\nerzeugen;
+
+stop
+
+@enduml

@@ -8,7 +8,7 @@ Ein ELGA-Teilnehmer kann Medikationsplaneinträge bzw. Medikationspläne über d
 
 Alle Schreibvorgänge auf einem Medikationsplan folgen demselben technischen Grundablauf:
 
-1. Die aktuelle Bearbeitungssicht des Medikationsplans wird mittels [$plan-read](OperationDefinition-AtElgaEmed.List.PlanRead.html) abgerufen (siehe [Sub_UC_eMed_05_01 - Aktuellen Medikationsplan lesen (Plan-Read)](Sub_UC_eMed_05.html#sub_uc_emed_05_01---aktuellen-medikationsplan-lesen-plan-read)).
+1. Die aktuelle Bearbeitungssicht des Medikationsplans wird mittels [$plan-read](OperationDefinition-AtElgaEmed.List.PlanRead.html) abgerufen (siehe [Sub_UC_eMed_01_01 - Aktuellen Medikationsplan lesen (Plan-Read)](Sub_UC_eMed_01.html#Sub_UC_eMed_01_01---aktuellen-medikationsplan-lesen-plan-read)).
 2. Die im [Auslieferungs-Medikationsplan-Collection-Bundle](design_choices.html#auslieferungs-medikationsplan-collection-bundle) enthaltenen Ressourcen werden entsprechend des gewünschten Schreibszenarios bearbeitet.
 3. Der aktualisierte Medikationsplan wird mittels [$plan-write](OperationDefinition-AtElgaEmed.List.PlanWrite.html) als [Transaction Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplantx.html) an die Fachanwendung übermittelt.
 
@@ -160,7 +160,12 @@ Der GDA kann ein oder mehrere Medikationsplaneinträge im Medikationsplan beibeh
 Hierfür führt der GDA ein *$plan-read* aus und bearbeitet das von der Fachanwendung übermittelte Collection Bundle:
 - Das Element *List.source* wird mit dem aktuellen GDA, das Datum in *date* aktualisiert.
 - Die zu behaltenden Medikationsplaneinträge (*MedicationRequests*) des von der Fachanwendung übermittelten Collection Bundles bleiben **unverändert** (im Status *active* oder *on-hold*). 
-- Ist der Behandlungszeitraum der Medikationsplaneinträge abgelaufen, muss dieser angepasst werden (siehe *Sub_UC_eMed_06_05 - Medikationsplaneintrag im Medikationsplan ändern*), da die Fachanwendung die Speicherung abgelaufener Planeinträge ablehnt.
+
+<!-- * Planeinträge mit abgelaufenen Behandlungszeitraum bleiben bestehen, werden aber mit (*List.entry.flag = removed*) markiert. 
+    * Nimmt der GDA keine Änderung daran vor, werden diese beim nächsten Plan-Read automatisch aus dem Medikationsplan entfernt. 
+    * Möchte der GDA den Planeintrag beibehalten, muss er entsprechende Anpassungen vornehmen (zumindest den Behandlungszeitraum anpassen) und *List.entry.flag* auf *changed* setzen, da die Fachanwendung das Speichern sonst ablehenen würde. -->
+    - Ist der Behandlungszeitraum der Medikationsplaneinträge abgelaufen, muss dieser angepasst werden (siehe *Sub_UC_eMed_06_05 - Medikationsplaneintrag im Medikationsplan ändern*), da die Fachanwendung die Speicherung abgelaufener Planeinträge ablehnt.
+
 
 Der GDA übermittelt mit *POST $plan-write* den aktualisierten Medikationsplan in einem *Transaction Bundle*:
 - die unveränderten Ressourcen sind nicht im Bundle enthalten, sondern werden in der Liste nur referenziert.
@@ -425,6 +430,11 @@ Um Planeinträge zu beenden bearbeitet der GDA nach einem $plan-read das von der
 - Abgelaufene Medikationsplaneinträge (*MedicationRequest*) und das entsprechende Entry der *List*-Ressouce werden angepasst:
     - Das List.entry.flag des referenzierten MedicationRequests erhält den Wert *removed*, 
     - der MedicationRequest erhält den Status *completed* (siehe [Konsistenzregeln zwischen List.entry.flags und MedicationRequest-Status](workflowmanagement.html#konsistenzregeln-zwischen-listentryflags-und-medicationrequest-status))
+
+<!-- * Planeinträge mit abgelaufenen Behandlungszeitraum bleiben bestehen, werden aber mit (*List.entry.flag = removed*) markiert. 
+    * Nimmt der GDA keine Änderung daran vor, werden diese beim nächsten Plan-Read automatisch aus dem Medikationsplan entfernt. 
+    * Möchte der GDA den Planeintrag beibehalten, muss er entsprechende Anpassungen vornehmen (zumindest den Behandlungszeitraum anpassen) und *List.entry.flag* auf *changed* setzen, da die Fachanwendung das Speichern sonst ablehenen würde. -->
+
 
 Der GDA übermittelt (via POST $plan-write) den aktualisierten Medikationsplan in einem Transaction Bundle:
 - alle geänderten Ressourcen (inkl. der beendeten) sind inline im Bundle enthalten

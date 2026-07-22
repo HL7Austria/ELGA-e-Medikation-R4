@@ -44,11 +44,14 @@ Im Kontext des Medikationsplans kann dieses Element folgende Statuswerte annehme
 
 | MedicationRequest.status | Beschreibung |
 |---------------|------|
-| **active** | Planeintrag dokumentiert aktive Therapie: Medikation soll aktuell vom Patienten eingenommen werden |
-| **on-hold** | Planeintrag ist pausiert: Therapie wurde vorübergehend unterbrochen, Wiederaufnahme ist vorgesehen |
-| **completed** | Die im Planeintrag beschriebenen Maßnahmen wurden wie geplant durchgeführt. Der Planeintrag wird damit abgeschlossen.|
-| **stopped** | Die im Planeintrag beschriebenen Maßnahmen werden dauerhaft gestoppt, bevor alle geplanten Einnahmen oder Verabreichungen durchgeführt wurden. Der Planeintrag wird damit abgeschlossen. |
-| **entered-in-error** | Planeintrag ist storniert: Kennzeichnung eines fehlerhaften Planeintrages. Der Planeintrag wird damit abgeschlossen. |
+| **active** | Der Planeintrag dokumentiert eine aktuell einzunehmende Medikation. |
+| **on-hold** | Der Planeintrag dokumentiert ein pausierte Medikation (aktuell nicht einzunehmen). |
+<!-- | **completed** | Die im Planeintrag beschriebenen Maßnahmen wurden wie geplant durchgeführt. Der Planeintrag wird damit abgeschlossen.| -->
+<!-- | **stopped** | Die im Planeintrag beschriebenen Maßnahmen werden dauerhaft gestoppt, bevor alle geplanten Einnahmen oder Verabreichungen durchgeführt wurden. Der Planeintrag wird damit abgeschlossen. | -->
+| **stopped** | Der Planeintrag dokumentiert eine beendete (abgesetzte) Medikation (nicht mehr einzunehmen), unabhängig davon, ob bereits alle Einnahmen oder Verabreichungen durchgeführt wurden. Der Planeintrag wird damit abgeschlossen (Endzustand). (\*)
+| **entered-in-error** | Der Planeintrag ist storniert. Der Planeintrag wird damit abgeschlossen (Endzustand). |
+
+(\*) Abweichung vom verpflichtenden Value-Set [medicationrequest-status](https://hl7.org/fhir/R4/valueset-medicationrequest-status.html): Der Status *stopped* vereint die Defintionen von *completed* und *stopped* und entspricht dem Stataus *ended* aus FHIR R6. 
 
 <br>
 <div>{% include_relative plantuml/workflow_mr_status_planeintrag.svg %}</div>
@@ -118,16 +121,16 @@ Da der Status eines Medikationsplaneintrags im Medikationsplan auf **zwei Ebenen
       <td><span style="font-weight:bold">on-hold</span></td>
       <td><span style="font-weight:normal">Bestehender Planeintrag wird geändert und pausiert</span></td>
     </tr>
-    <tr>
+    <!-- <tr>
       <td rowspan="3"><span style="font-weight:normal">Bestehenden Planeintrag aus Medikationsplan entfernen</span></td>
       <td><span style="font-weight:bold">removed</span></td>
       <td><span style="font-weight:bold">completed</span></td>
       <td><span style="font-weight:normal">Bestehender Planeintrag wird beendet. Die Therapie wurde wie geplant durchgeführt und ist abgeschlossen.</span></td>
-    </tr>
+    </tr> -->
     <tr>
       <td><span style="font-weight:bold">removed</span></td>
       <td><span style="font-weight:bold">stopped</span></td>
-      <td><span style="font-weight:normal">Bestehender Planeintrag wird vor Ablauf des Behandlungszeitraums dauerhaft gestoppt. Die Medikation wurde, bevor alle geplanten Einnahmen oder Verabreichungen durchgeführt wurden, abgesetzt.</span></td>
+      <td><span style="font-weight:normal">Bestehender Planeintrag wird <!-- vor Ablauf des Behandlungszeitraums --> dauerhaft gestoppt. Die Medikation wurde <!-- >, bevor alle geplanten Einnahmen oder Verabreichungen durchgeführt wurden, --> abgesetzt.</span></td>
     </tr>
     <tr>
       <td><span style="font-weight:bold">removed</span></td>

@@ -7,7 +7,7 @@ Am Beispiel einer fiktiven Patient Journey wird veranschaulicht, wie sich der Me
 
 Dr. Musterärztin möchte ihrem Patienten Max Mustermann mehrere Medikamente verschreiben. Daher ruft sie seinen Medikationsplan ab, um eine Übersicht über seine gesamte, aktuell von ihm einzunehmende Medikation zu erhalten [^1]. 
 
-[^1]: [Sub_UC_eMed_05_01 - Medikationsplan lesen - Plan-Read](Sub_UC_eMed_05.html#plan-read)
+[^1]: [Sub_UC_eMed_01_01 - Medikationsplan lesen - Plan-Read](Sub_UC_eMed_01.html#plan-read)
 
 Da für Herrn Mustermann noch nie ein Medikationsplan abgerufen wurde, erstellt die Fachanwendung automatisch einen leeren Medikationsplan. Darin enthalten sind die Informationen zum [Patienten](Patient-At-Emed-Example-Patient-01.html), die erstellende e-Medikation-Fachwanwendung ([Device](Device-At-Emed-Example-Device-01.html)), das Datum der Erstellung und der Grund, warum der Plan noch leer ist (EmptyReason *notstarted*).
 
