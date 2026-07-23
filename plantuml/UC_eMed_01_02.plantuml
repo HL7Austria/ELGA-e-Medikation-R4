@@ -1,5 +1,5 @@
 @startuml
-title Historische Medikationsplanversionen lesen (List/_history)
+title Plan-History-Search
 
 'skinparam actorStyle awesome
 
