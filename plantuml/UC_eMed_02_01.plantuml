@@ -1,6 +1,5 @@
 @startuml
-
-title Initial erstellter Medikationsplan
+title Plan-Write
 
 'skinparam actorStyle awesome
 
@@ -54,43 +53,61 @@ skinparam sequence {
 actor GDA_1 as "GDA 1" COLOR_GDA_1
 participant eMed_FA as "e-Med FA" COLOR_EMED_FA
 
+
 autonumber
 
-== Erstmaliges Plan-Read ==
-
-GDA_1 -> eMed_FA: POST $plan-read
 activate GDA_1 COLOR_GDA_1
 
 note over GDA_1
-Abruf des Medikationsplans
-zur Bearbeitung
+Vorbedingung:
+Auslieferungs-Medikationsplan-Collection-Bundle
+mittels $plan-read gelesen und bearbeitet.
 end note
 
+
+GDA_1 -> eMed_FA: POST $plan-write (Medikationsplan-Transaction-Bundle + ETag)
+
 activate eMed_FA COLOR_EMED_FA
-eMed_FA -> eMed_FA: Existiert ein\nMedikationsplan?
+note over GDA_1
+Neue, geänderte und zu entfernende
+Ressourcen sind inline enthalten.
+Unveränderte Ressourcen werden
+ausschließlich referenziert.
+end note
 
-alt COLOR_OK nein: kein Medikationsplan persistiert 
+eMed_FA -> eMed_FA: Prüfung des ETag\n(Optimistic Locking)
 
-  eMed_FA -> eMed_FA: Erzeugt initiale List\n(emptyReason = notstarted)
-  eMed_FA -> eMed_FA: Persistiert List-Version
-  eMed_FA -> eMed_FA: Erzeugt temporäres\nCollection Bundle 
+group COLOR_OK alt: ETag gültig? [ja]
+
+  eMed_FA -> eMed_FA: Validierung des\nTransaction Bundles\ninkl. Zustandsübergänge
   
-  note over eMed_FA
-  Keine Transformation
-  erforderlich.
-  end note
-  eMed_FA -> GDA_1: Collection Bundle\n(List.emptyReason = notstarted)\n+ ETag 
+  group COLOR_OK alt: Validierung erfolgreich? [ja]
+        
+    eMed_FA -> eMed_FA: Übernimmt Änderungen\nauf Ressourcenbestand
+    eMed_FA -> eMed_FA: Erzeugt und persisistiert ein\nneues Medikationsplan-\nCollection Bundle
+
+    note over eMed_FA
+    Neuer Medikationsplan gespeichert
+    end note
+
+    eMed_FA --> GDA_1: HTTP 200 OK
+
+  else COLOR_ERROR nein 
+  
+   eMed_FA --> GDA_1: Fehler (HTTP 4xx)\nOperationOutcome
+
+   end
+
+else COLOR_ERROR nein 
+
+  eMed_FA -> GDA_1: Fehler (HTTP 412 Precondition Failed)\nOperationOutcome
+
+    note over eMed_FA
+    ETag stimmt nicht überein.
+    end note
+
+  deactivate GDA_1
   deactivate eMed_FA
-
-
-else COLOR_ERROR ja: Medikationsplan persistiert 
-
-  ref over GDA_1,eMed_FA
-  Siehe Ablauf Plan-Read.
-  end ref
-
-deactivate GDA_1
 end
-
 
 @enduml

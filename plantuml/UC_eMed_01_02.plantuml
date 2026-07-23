@@ -1,5 +1,5 @@
 @startuml
-title Plan-History-Read
+title Historische Medikationsplanversionen lesen (List/_history)
 
 'skinparam actorStyle awesome
 
@@ -60,15 +60,15 @@ autonumber
 
 == Historische Medikationspläne lesen ==
 
-GDA_1 -> eMed_FA: POST $plan-history-read
+GDA_1 -> eMed_FA: GET /Patient/{id}/List/_history\n(mit Suchparametern)
 activate GDA_1 COLOR_GDA_1
 
 activate eMed_FA COLOR_EMED_FA
-eMed_FA -> eMed_FA: Prüfung auf existierende\nMedikationsplan-Collection-Bundles
+eMed_FA -> eMed_FA: Ermittlung der passenden\nhistorischen List-Versionen\nund Rekonstruktion der\nhistorischen Medikationspläne
 
-group COLOR_OK alt: Medikationsplan-Collection-Bundles gefunden? [ja: Collection-Bundles entsprechend Suchparametern]
-  eMed_FA -> GDA_1: Bundle (type=searchset) mit zumindest einem\nMedikationsplan-Collection-Bundle 
-else COLOR_OK_2 nein: kein Medikationsplan-Collection-Bundle entsprechend Suchparametern
+group COLOR_OK alt: Historische List-Version(en) gefunden?
+  eMed_FA -> GDA_1: Bundle (type=searchset) mit einem oder mehreren\nMedikationsplan-Collection-Bundles
+else COLOR_OK_2 nein
   eMed_FA -> GDA_1: Bundle (type=searchset) ohne Einträge
 else COLOR_ERROR Fehler
   eMed_FA -> GDA_1: OperationOutcome
@@ -76,12 +76,12 @@ else COLOR_ERROR Fehler
   deactivate eMed_FA
 end
 
-note over eMed_FA
-Die Fachanwendung liefert die den Suchparamentern 
-entsprechenden, persistierten Medikationspläne 
-(unverändert, inkl. aller referenzierten Ressourcen) 
-oder ein leeres Bundle zurück.
-end note
 
+note over eMed_FA
+Die Fachanwendung liefert die den
+Suchparametern entsprechenden historischen
+Medikationspläne als Collection Bundles in
+einem Bundle vom Typ searchset zurück.
+end note
 
 @enduml

@@ -72,11 +72,17 @@ activate eMed_FA COLOR_EMED_FA
 ref over eMed_FA
 Prüfung des Planzustands
 und Erzeugung des
-Collection Bundles zur 
-Auslieferung
+Collection Bundles
 end ref
 
-eMed_FA --> GDA_1: Collection Bundle\n+ ETag
+group COLOR_OK alt: Collection Bundles zur Auslieferung erstellt? [ja]
+  eMed_FA --> GDA_1: Collection Bundle\n+ ETag 
+else COLOR_ERROR nein: Fehler
+  eMed_FA -> GDA_1: OperationOutcome
+  deactivate GDA_1
+  deactivate eMed_FA
+end
+
 
 note over GDA_1
 Nachfolgend kann der
