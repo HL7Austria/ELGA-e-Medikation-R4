@@ -1,6 +1,6 @@
 {% include styleheader.md %}
 
-<!-- Anwendungsfall UC_eMed_06: Medikationsplan schreiben -->
+<!-- Anwendungsfall UC_eMed_02: Medikationsplan schreiben -->
 
 ### Beschreibung
 

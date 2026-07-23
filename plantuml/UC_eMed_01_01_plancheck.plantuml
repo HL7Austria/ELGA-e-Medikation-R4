@@ -1,0 +1,79 @@
+@startuml
+title Prüfung des Planzustands und Erzeugung des Collection Bundles
+
+skinparam borderColor #000000
+skinparam backgroundColor #f5f5f5
+skinparam shadowing false
+skinparam roundCorner 10
+skinparam defaultFontName "Arial"
+skinparam defaultFontSize 14
+skinparam defaultFontColor #000000
+skinparam HyperlinkColor #0000EE
+skinparam HyperlinkUnderline false
+skinparam BoxPadding 20
+skinparam BoxBorderColor #555555
+
+skinparam note {
+  BackgroundColor #e0e5f0-#d1d9e6
+  BorderColor #8b95a5
+  BorderThickness 1
+  RoundCorner 0
+  Padding 6
+  FontColor #111827
+  Shadowing false
+}
+
+skinparam activity {
+  BackgroundColor #ffffff
+  BorderColor #555555
+  BorderThickness 1
+  FontColor #000000
+  FontSize 14
+  DiamondBackgroundColor #eef2ff
+  DiamondBorderColor #111827
+  DiamondFontColor #000000
+  StartColor #111827
+  EndColor #111827
+  ArrowColor #111827
+  ArrowThickness 1
+}
+
+start
+
+if (Medikationsplan\nvorhanden?) then (Nein)
+
+  :List.emptyReason =\nnotstarted;
+
+  note right
+    Initialen Medikationsplan
+    erstellen
+    (Sub_UC_eMed_01_03)
+  end note
+
+else (Ja)
+
+  if (Planeinträge\nvorhanden?) then (Ja)
+
+    :Transformationen\ndurchführen;
+
+    if (noch Planeinträge\nvorhanden?) then (Ja)
+
+    else (Nein)
+
+      :List.emptyReason =\nnilknown;
+
+    endif
+
+  else (Nein)
+
+    :keine\nTransformation;
+
+  endif
+
+endif
+
+:Collection Bundle\nzur Auslieferung\nerzeugen;
+
+stop
+
+@enduml

@@ -120,7 +120,7 @@ Einzelne geplante bzw. durchgeführte Abgaben können Korrekturvermerke (inkl. F
 <div class="hinweisbox">
   ℹ️   
   Möglichkeiten zur Darstellung der geplanten Abgaben im Client-System:<br>
-  siehe UC_eMed_05 Medikationsplan lesen 
+  siehe UC_eMed_01 Medikationsplan lesen 
 </div>
 
 ### Export der geplanten und durchgeführten Abgaben (UC_eMed_07_H04)

@@ -9,47 +9,177 @@
 <div>{% include_relative plantuml/interaction_overview.svg %}</div>
 <br>
 
+<style>
+table thead th {
+  border: none !important;
+}
+</style>
 
-### `/`
+<table class="table table-striped table-bordered">
 
-| Operation | HTTP | Rollen | Beschreibung |
-|-----------|------|---------|--------------|
-| `$groupidentifier-create` | POST | GDA | Erzeugen eines neuen e-Med GroupIdentifiers für Geplante Abgaben |
-| `$groupidentifier-search` | POST | GDA | Geplante und Durchgeführte Abgaben mittels e-Med GroupIdentifier lesen |
+<thead>
+<tr>
+<th style="width:10%">HTTP</th>
+<th style="width:30%">Endpunkt</th>
+<th style="width:25%">Operation</th>
+<th style="width:25%">Beschreibung</th>
+<th style="width:10%; text-align:center;">Rollen</th>
+</tr>
+</thead>
 
----
+<tbody>
 
-### `/Patient/{id}/List`
+<tr>
+<td><strong>POST</strong></td>
+<td><code>/</code></td>
+<td><code>$groupidentifier-create</code></td>
+<td>Erzeugen eines neuen e-Med GroupIdentifiers für Geplante Abgaben</td>
+<td>GDA</td>
+</tr>
 
-| Operation | HTTP | Rollen | Beschreibung |
-|-----------|------|---------|--------------|
-| `$plan-read` | POST | GDA, PAT | Aktuelle Medikationsplanversion lesen |
-| `$plan-write` | POST | GDA | Neue Version eines Medikationsplans schreiben |
-| `$patient-plan-write` | POST | PAT | Medikationsplaneinträge löschen |
-| `$plan-delete` | POST | PAT | Aktuelle oder historische Medikationsplanversion löschen |
-| `plan-history-search` | GET | GDA, PAT | Historische Medikationsplanversion(en) lesen<br>(`_history?_include=*` bzw.<br>`_include=*&item=MedicationRequest/{id}&subject=Patient/{id}&date=...`) |
-| `plan-history-directory-search` | GET | GDA, PAT | Verzeichnis historischer Medikationspläne abrufen<br>(`_history?_elements=date,source`) |
+<tr>
+<td><strong>POST</strong></td>
+<td><code>/</code></td>
+<td><code>$groupidentifier-search</code></td>
+<td>Geplante und durchgeführte Abgaben mittels e-Med GroupIdentifier lesen</td>
+<td>GDA</td>
+</tr>
 
----
+<tr style="border-top:3px solid #666;">
+<td><strong>POST</strong></td>
+<td><code>/Patient/{id}/List</code></td>
+<td><code>$plan-read</code></td>
+<td>Aktuelle Medikationsplanversion lesen</td>
+<td>GDA, PAT</td>
+</tr>
 
-### `/Patient/{id}/MedicationRequest`
+<tr>
+<td><strong>POST</strong></td>
+<td><code>/Patient/{id}/List</code></td>
+<td><code>$plan-write</code></td>
+<td>Neue Version eines Medikationsplans schreiben</td>
+<td>GDA</td>
+</tr>
 
-| Operation | HTTP | Rollen | Beschreibung |
-|-----------|------|---------|--------------|
-| `$prescription-write` | POST | GDA | Geplante Abgabe schreiben |
-| `$prescription-discard` | POST | GDA | Eigene geplante Abgabe verwerfen |
-| `prescription-search` | GET | GDA, PAT | Geplante Abgaben suchen<br>(`?category=GeplAbgabe`) |
-| `planentry-search` | GET | GDA, PAT | Medikationsplaneinträge suchen<br>(`?category=Planeintrag`) |
-| `prescription-delete` | DELETE | PAT | Geplante Abgabe löschen |
+<tr>
+<td><strong>POST</strong></td>
+<td><code>/Patient/{id}/List</code></td>
+<td><code>$patient-plan-write</code></td>
+<td>Medikationsplaneinträge löschen</td>
+<td>PAT</td>
+</tr>
 
----
+<tr>
+<td><strong>POST</strong></td>
+<td><code>/Patient/{id}/List</code></td>
+<td><code>$plan-delete</code></td>
+<td>Aktuelle oder historische Medikationsplanversion löschen</td>
+<td>PAT</td>
+</tr>
 
-### `/Patient/{id}/MedicationDispense`
+<tr>
+<td><strong>GET</strong></td>
+<td><code>/Patient/{id}/List</code></td>
+<td><code>plan-history-search</code></td>
+<td>
+Historische Medikationsplanversion(en) lesen<br>
+(<code>_history?_include=*</code> bzw.<br>
+<code>_include=*&amp;item=MedicationRequest/{id}&amp;subject=Patient/{id}&amp;date=...</code>)
+</td>
+<td>GDA, PAT</td>
+</tr>
 
-| Operation | HTTP | Rollen | Beschreibung |
-|-----------|------|---------|--------------|
-| `$dispense-write` | POST | GDA | Durchgeführte Abgabe schreiben |
-| `$dispense-discard` | POST | GDA | Eigene durchgeführte Abgabe verwerfen |
-| `$reference-plan` | POST | GDA | Referenz auf Medikationsplan erstellen |
-| `dispense-search` | GET | GDA, PAT | Durchgeführte Abgaben suchen |
-| `dispense-delete` | DELETE | PAT | Durchgeführte Abgabe löschen |
+<tr>
+<td><strong>GET</strong></td>
+<td><code>/Patient/{id}/List</code></td>
+<td><code>plan-history-directory-search</code></td>
+<td>
+Verzeichnis historischer Medikationspläne abrufen<br>
+(<code>_history?_elements=date,source</code>)
+</td>
+<td>GDA, PAT</td>
+</tr>
+
+<tr style="border-top:3px solid #666;">
+<td><strong>POST</strong></td>
+<td><code>/Patient/{id}/MedicationRequest</code></td>
+<td><code>$prescription-write</code></td>
+<td>Geplante Abgabe schreiben</td>
+<td>GDA</td>
+</tr>
+
+<tr>
+<td><strong>POST</strong></td>
+<td><code>/Patient/{id}/MedicationRequest</code></td>
+<td><code>$prescription-discard</code></td>
+<td>Eigene geplante Abgabe verwerfen</td>
+<td>GDA</td>
+</tr>
+
+<tr>
+<td><strong>GET</strong></td>
+<td><code>/Patient/{id}/MedicationRequest</code></td>
+<td><code>prescription-search</code></td>
+<td>Geplante Abgaben suchen (<code>?category=GeplAbgabe</code>)</td>
+<td>GDA, PAT</td>
+</tr>
+
+<tr>
+<td><strong>GET</strong></td>
+<td><code>/Patient/{id}/MedicationRequest</code></td>
+<td><code>planentry-search</code></td>
+<td>Medikationsplaneinträge suchen (<code>?category=Planeintrag</code>)</td>
+<td>GDA, PAT</td>
+</tr>
+
+<tr>
+<td><strong>DELETE</strong></td>
+<td><code>/Patient/{id}/MedicationRequest</code></td>
+<td><code>prescription-delete</code></td>
+<td>Geplante Abgabe löschen</td>
+<td>PAT</td>
+</tr>
+
+<tr style="border-top:3px solid #666;">
+<td><strong>POST</strong></td>
+<td><code>/Patient/{id}/MedicationDispense</code></td>
+<td><code>$dispense-write</code></td>
+<td>Durchgeführte Abgabe schreiben</td>
+<td>GDA</td>
+</tr>
+
+<tr>
+<td><strong>POST</strong></td>
+<td><code>/Patient/{id}/MedicationDispense</code></td>
+<td><code>$dispense-discard</code></td>
+<td>Eigene durchgeführte Abgabe verwerfen</td>
+<td>GDA</td>
+</tr>
+
+<tr>
+<td><strong>POST</strong></td>
+<td><code>/Patient/{id}/MedicationDispense</code></td>
+<td><code>$reference-plan</code></td>
+<td>Referenz auf Medikationsplan erstellen</td>
+<td>GDA</td>
+</tr>
+
+<tr>
+<td><strong>GET</strong></td>
+<td><code>/Patient/{id}/MedicationDispense</code></td>
+<td><code>dispense-search</code></td>
+<td>Durchgeführte Abgaben suchen</td>
+<td>GDA, PAT</td>
+</tr>
+
+<tr>
+<td><strong>DELETE</strong></td>
+<td><code>/Patient/{id}/MedicationDispense</code></td>
+<td><code>dispense-delete</code></td>
+<td>Durchgeführte Abgabe löschen</td>
+<td>PAT</td>
+</tr>
+
+</tbody>
+
+</table>
