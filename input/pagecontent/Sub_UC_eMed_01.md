@@ -6,13 +6,16 @@ Ein [berechtigter GDA](actors.html#rollen-und-berechtigungen) kann den Medikatio
 
 Ein:e ELGA-Teilnehmer:in kann seinen:ihren Medikationsplan über das Zugangsportal einsehen.
 
+Sowohl berechtigte GDA als auch ELGA-Teilnehmer können auf einzelne Planeinträge lesend zugreifen und diese durchsuchen ([Planentry-Search](Sub_UC_eMed_01.html#sub_uc_emed_01_04---medikationsplaneinträge-lesen-planentry-search)).
+
 Die fachlichen Anforderungen werden im [UC_eMed_01 Medikationsplan lesen](Sub_UC_eMed_01.hml) beschrieben.
 
-Für den lesenden Zugriff werden zwei Zugriffsarten unterschieden:
+Für den lesenden Zugriff auf Medikationspläne werden zwei Zugriffsarten unterschieden:
 
 * [Plan-Read](Sub_UC_eMed_01.html#sub_uc_emed_01_01---aktuellen-medikationsplan-lesen-plan-read) zum Abruf des aktuellen Medikationsplans, der für eine mögliche Bearbeitung aufbereitet ist. 
 
 * [Plan-History-Search](Sub_UC_eMed_01.html#sub_uc_emed_01_02---historische-medikationsplanversion-lesen-plan-history-search) zum Abruf historischer Versionen des Medikationsplans. 
+
 
 
 #### Sub_UC_eMed_01_01 - Aktuellen Medikationsplan lesen (Plan-Read)
@@ -79,7 +82,12 @@ Die persistierten Ressourcen werden dabei nicht verändert.
 
 Beim Plan-History-Search rekonstruiert die Fachanwendung historische Versionen des Medikationsplans aus versionierten List-Ressourcen sowie den von diesen referenzierten Ressourcenversionen und liefert diese unverändert aus. Dadurch entspricht jedes ausgelieferte Collection Bundle exakt dem historischen Stand des Medikationsplans zum jeweiligen Zeitpunkt.
 
-Der Abruf erfolgt mittels **GET** unter Angabe geeigneter Suchparameter.
+Der Abruf erfolgt mittels **GET** unter Angabe geeigneter Suchparameter:
+* **Erstellungszeitraum** von Medikationsplanversionen
+* **Medikation** im Medikationsplan (PZN, Arzneimittelname oder Wirkstoff)
+* **Einnahmezeitraum** einer Medikation im Medikationsplan
+<!-- TODO: ergänzen: * id + Version eines enthaltenen Planeintrags ! Damit man von Planeintrag auf die referenzierenden Planversionen kommt -->
+<!-- TODO: weitere-parameter -->
 
 Die erzeugten Collection Bundles dienen ausschließlich der Auslieferung und werden nicht persistiert.
 
@@ -104,26 +112,21 @@ Der Zugriff dient ausschließlich der Anzeige bzw. Informationsabfrage persistie
 <br> 
 
 
-###### Beispiele für Zugriffe
+###### Beispiele für Suchanfragen
 In Arbeit.
 <!-- * **Aktuelle Planversion** mit dem Suchparameter Patient abrufen: GET [base]/Bundle?type=collection&_count=1&_sort=-timestamp&list.subject={bPK-GH} -->
 <!-- * **Alle Planversionen** mit dem Suchparameter Patient abrufen: GET [base]/Bundle?type=collection&_sort=-timestamp&list.subject={bPK-GH} -->
 <!-- * Abfrage aller **historischen Medikationsplan-Versionen** eines Patienten, die nach dem angegebenen Datum persistiert wurden und Plan-Einträge enthalten, die als **storniert, beendet oder abgesetzt** gekennzeichnet sind: GET [base]/Bundle?type=collection&_sort=-timestamp&timestamp=ge2025-01-01&list.subject={bPK-GH}&list.entry.flag=removed  -->
 <!-- list.code= 736378000 in Abfragen ergänzen -->
 
-
 <!-- * Aktuelle Medikationsplanversion lesen:
 GET [base]/Patient/{id}/List -->
-
 <!-- * Historische Versionen eines Medikationsplans lesen:
 GET [base]/Patient/{id}/List/_history -->
-
 <!-- * Historische Medikationsplanversionen lesen, die ab einem bestimmten Datum erstellt wurden:
 GET [base]/Patient/{id}/List/_history?date=ge2025-01-01 -->
-
 <!-- * Historische Medikationsplanversionen lesen, die einen bestimmten Planeintrag enthalten:
 GET [base]/Patient/{id}/List/_history?_include=*&item=MedicationRequest/{id} -->
-
 <!-- * Historische Medikationsplanversionen lesen, die nach einem bestimmten Datum erstellt wurden und einen bestimmten Planeintrag enthalten:
 GET [base]/Patient/{id}/List/_history?_include=*&item=MedicationRequest/{id}&date=ge2025-01-01 -->
 
@@ -152,26 +155,56 @@ Die Initialisierung kann sowohl durch ein GDA-System als auch durch den ELGA-Tei
 [![overview](plantuml/UC_eMed_01_03.svg){: .mx-auto style="width:60%;"}](plantuml/UC_eMed_01_03.svg)
 <br> 
 
-##### Relevante Elemente (List)
 
-```JSON
-AtElgaEmedListMedikationsplan
-    identifier: von der Fachanwendung übermittelt (Integritätsprüfung) 
-    status: current
-    mode: working
-    date: Datum der Erstellung durch die Fachanwendung
-    source: Intitiale Erstellung durch die Fachanwendung
-    emptyReason: notstarted    // noch keine Medikationsplaneinträge erfasst
-```
+#### Sub_UC_eMed_01_04 - Medikationsplaneinträge lesen (Planentry-Search)
+
+Der **Planentry-Search** dient der gezielten Suche nach Medikationsplaneinträgen eines ELGA-Teilnehmers. Als Medikationsplaneintrag gilt eine im Medikationsplan referenzierte Version einer *MedicationRequest*-Ressource mit *category = "Planeintrag"*.
+
+Die Suche ermöglicht berechtigten GDA sowie ELGA-Teilnehmer:innen den Zugriff auf aktuelle und historische Medikationsplaneinträge unabhängig von einer bestimmten Medikationsplanversion.
+
+Der Abruf erfolgt mittels **GET** unter Angabe geeigneter Suchparameter:
+
+* **Medikation** (PZN, Arzneimittelname oder Wirkstoff)
+* **Einnahmezeitraum**
+* **Erstellungszeitpunkt**
+* **Status** des Medikationsplaneintrags (z.B. *active* oder *on-hold*)
+<!-- TODO: search-parameter -->
+
+Die Suchergebnisse ermöglichen die Nachverfolgung von Änderungen an Medikationsplaneinträgen, beispielsweise hinsichtlich Präparat, Dosierung oder Einnahmeanweisung.
+
+Die gefundenen Medikationsplaneinträge können anschließend als Ausgangspunkt für weitere Abfragen verwendet werden, um jene Ressourcen zu ermittelnt, die genau auf diese Planeintragversion referenzieren:
+
+* der zugehörigen Medikationsplanversionen mittels [Plan-History-Search](Sub_UC_eMed_01.html#sub_uc_emed_01_02---historische-medikationsplanversion-lesen-plan-history-search)
+* *Geplante Abgaben* (*Prescription-Search*) <!-- TODO Link -->
+* *Durchgeführte Abgaben* (*Dispense-Search*) <!-- TODO Link -->
 
 
+##### Ablauf
 
+1. Der Client führt ein **GET** auf den Planentry-Search-Endpunkt mit den gewünschten Suchparametern aus (*MedicationRequest* mit *category = "Planeintrag"*).
+2. Die Fachanwendung ermittelt anhand der Suchparameter die passenden Medikationsplaneinträge.
+4. Die Fachanwendung liefert die Suchergebnisse als Bundle vom Typ *searchset* zurück.
+6. Werden keine passenden Medikationsplaneinträge gefunden, enthält das zurückgelieferte *searchset* keine Einträge.
+7. Im Fehlerfall wird ein entsprechendes *OperationOutcome* zurückgegeben.
 
-<!-- #### Sub_UC_eMed_01_04 - Medikationsplaneinträge abrufen (Plan-Read) -->
+##### Sequenzdiagramm
 
-<!-- TODO: eigene Site weil ander Endpunkt? -->
+<br>
+[![overview](plantuml/UC_eMed_01_04.svg){: .mx-auto style="width:60%;"}](plantuml/UC_eMed_01_04.svg)
+<br> 
 
-<!-- GET	/Patient/{id}/MedicationRequest	planentry-search	Medikationsplaneinträge suchen (?category=Planeintrag)	GDA, PAT
+##### Beispiele für Suchanfragen
 
-Filtermöglichkeit nach:
-o	Nur „aktive“ und “pausierte” Medikationsplaneinträge (Status: active bzw. on-hold) -->
+In Arbeit. 
+<!-- * Alle aktiven Medikationsplaneinträge eines Patienten:
+  `GET /Patient/{id}/MedicationRequest?status=active` -->
+
+<!-- * Medikationsplaneinträge zu einem bestimmten Arzneimittel:
+  `GET /Patient/{id}/MedicationRequest?medication=<PZN>` -->
+
+<!-- * Medikationsplaneinträge innerhalb eines Erstellungszeitraums:
+  `GET /Patient/{id}/MedicationRequest?authoredon=ge2026-01-01&authoredon=le2026-12-31` -->
+<!-- 
+* Historische und aktuelle Medikationsplaneinträge eines bestimmten Wirkstoffs:
+  `GET /Patient/{id}/MedicationRequest?ingredient=<Wirkstoff>` -->
+
