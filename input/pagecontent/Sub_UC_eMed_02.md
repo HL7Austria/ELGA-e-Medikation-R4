@@ -81,18 +81,14 @@ AtElgaEmedListMedikationsplan
 * [$plan-read](OperationDefinition-AtEmed.List.PlanRead.html) 
 
 
-##### Sequenzdiagramm
-
-<br>
-[![overview](plantuml/UC_eMed_02_03.svg){: .mx-auto style="width:60%;"}](plantuml/UC_eMed_02_03.svg)
-<br> 
-
-
-#### Allgemeiner Ablauf - Planeinträge bearbeiten
+#### Sequenzdiagramm - Allgemeiner Ablauf von Planeinträge bearbeiten
 
 Im Weiteren wird beschrieben, wie Planeinträge bearbeitet werden können. Das Sequenzdiagramm zeigt den allgemeinen Ablauf.
 
-<div>{% include_relative plantuml/UC_eMed_02_03.svg %}</div>
+<br>
+[![overview](plantuml/UC_eMed_02_03.svg){: .mx-auto style="width:40%;"}](plantuml/UC_eMed_02_03.svg)
+<br> 
+
 
 #### Sub_UC_eMed_02_03 - Planeintrag in Medikationsplan hinzufügen
 

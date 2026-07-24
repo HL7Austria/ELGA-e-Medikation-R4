@@ -1,6 +1,6 @@
 @startuml
 
-title Planeinträge in Medikationsplan\nbearbeiten und speichern 
+title Planeinträge bearbeiten 
 
 'skinparam actorStyle awesome
 
