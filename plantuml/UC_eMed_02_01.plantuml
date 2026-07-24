@@ -60,10 +60,9 @@ activate GDA_1 COLOR_GDA_1
 
 note over GDA_1
 Vorbedingung:
-Auslieferungs-Medikationsplan-Collection-Bundle
-mittels $plan-read gelesen und bearbeitet.
+Medikationsplan mittels 
+$plan-read gelesen und bearbeitet.
 end note
-
 
 GDA_1 -> eMed_FA: POST $plan-write (Medikationsplan-Transaction-Bundle + ETag)
 
@@ -84,23 +83,23 @@ group COLOR_OK alt: ETag gültig? [ja]
   group COLOR_OK alt: Validierung erfolgreich? [ja]
         
     eMed_FA -> eMed_FA: Übernimmt Änderungen\nauf Ressourcenbestand
-    eMed_FA -> eMed_FA: Erzeugt und persisistiert ein\nneues Medikationsplan-\nCollection Bundle
 
     note over eMed_FA
-    Neuer Medikationsplan gespeichert
+    Neuer Medikationsplan 
+    gespeichert
     end note
 
     eMed_FA --> GDA_1: HTTP 200 OK
 
-  else COLOR_ERROR nein 
+  else COLOR_ERROR nein: Fehler
   
-   eMed_FA --> GDA_1: Fehler (HTTP 4xx)\nOperationOutcome
+   eMed_FA --> GDA_1: OperationOutcome
 
    end
 
-else COLOR_ERROR nein 
+else COLOR_ERROR nein: Fehler 
 
-  eMed_FA -> GDA_1: Fehler (HTTP 412 Precondition Failed)\nOperationOutcome
+  eMed_FA -> GDA_1: OperationOutcome
 
     note over eMed_FA
     ETag stimmt nicht überein.
