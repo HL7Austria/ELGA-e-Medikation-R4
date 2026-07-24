@@ -4,7 +4,7 @@ Description: "Codesystem für zulässige Ausprägungen der MedicationRequest Kat
 * ^status = #active
 * ^experimental = true
 
-* #1 "Medikationsplaneintrag"
+* #1 "Planeintrag"
 * #2 "Geplante Abgabe"
 
 
