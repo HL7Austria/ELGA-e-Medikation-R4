@@ -26,7 +26,7 @@ Der Zugriff mit *e-Med GroupIdentifier* ermöglicht ausschließlich einen einges
    * *status = completed | cancelled*
 5. Die Fachanwendung liefert ein **Bundle** vom Typ *searchset* mit den ermittelten *MedicationRequest*- und *MedicationDispense*-Ressourcen zurück.
 6. Ergibt die Suche **keine offene Geplante Abgabe**, liefert die Fachanwendung ein **leeres Bundle** vom Typ *searchset* zurück.
-7. Ist der *e-Med GroupIdentifier* syntaktisch ungültig, lehnt die Fachanwendung die Operation ab und liefert ein entsprechendes *OperationOutcome* zurück.
+7. Ist der *e-Med GroupIdentifier* syntaktisch ungültig, lehnt die Fachanwendung die Operation ab und liefert einen entsprechenden *OperationOutcome* zurück.
 
 ##### Sequenzdiagramm
 

@@ -54,7 +54,7 @@ else (Ja)
 
   if (Planeinträge\nvorhanden?) then (Ja)
 
-    :Transformationen\ndurchführen;
+    :Transformationen durchführen\n(+ Einträge mit Flag "Removed"\nentfernen);
 
     if (noch Planeinträge\nvorhanden?) then (Ja)
 
@@ -72,7 +72,7 @@ else (Ja)
 
 endif
 
-:Collection Bundle\nzur Auslieferung\nerzeugen;
+:Bundle zur Auslieferung\nerzeugen;
 
 stop
 
