@@ -7,8 +7,8 @@ Für jeden Use Case werden im Kapitel *Relevante Elemente* die wichtigsten Eleme
 
 # Liste der technischen Use Cases
 
-- [Technische Usecases zu Medikationsplan lesen (UC_eMed_05)](Sub_UC_eMed_05.html)
-- [Technische Usecases zu Medikationsplan schreiben (UC_eMed_06)](Sub_UC_eMed_06.html)
+- [Technische Usecases zu Medikationsplan lesen (UC_eMed_01)](Sub_UC_eMed_01.html)
+- [Technische Usecases zu Medikationsplan schreiben (UC_eMed_02)](Sub_UC_eMed_02.html)
 - [Technische Usecases zu Geplante Abgaben lesen (UC_eMed_07)](Sub_UC_eMed_07_01.html)
 - [Technische Usecases zu Durchgeführte Abgaben lesen (UC_eMed_07)](Sub_UC_eMed_07_02.html)
 - [Technische Usecases zu Geplante und Durchgeführte Abgaben mit e-Med GroupIdentifier lesen (UC_eMed_07)](Sub_UC_eMed_07_03.html)

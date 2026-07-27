@@ -1,8 +1,5 @@
 @startuml
-
-title Initial erstellter Medikationsplan
-
-'skinparam actorStyle awesome
+title Planentry-Search
 
 skinparam borderColor #000000
 skinparam backgroundColor #f5f5f5
@@ -42,13 +39,11 @@ skinparam sequence {
 }
 
 !define COLOR_GDA_1    #15608280
-!define COLOR_GDA_2    #96607D80
 !define COLOR_PATIENT  #196B2480
-!define COLOR_APO      #0F9ED590
 !define COLOR_EMED_FA  #e97232bd
-!define COLOR_E_REZEPT #cd3732a9
 
 !define COLOR_OK       #0F9ED525
+!define COLOR_OK_2     #34738d4e
 !define COLOR_ERROR    #E9713235
 
 actor GDA_1 as "GDA 1" COLOR_GDA_1
@@ -56,41 +51,32 @@ participant eMed_FA as "e-Med FA" COLOR_EMED_FA
 
 autonumber
 
-== Erstmaliges Plan-Read ==
+== Medikationsplaneinträge lesen ==
 
-GDA_1 -> eMed_FA: POST $plan-read
+GDA_1 -> eMed_FA: GET [base]/Patient/[id]/MedicationRequest/_history\n(category="Planeintrag" & Suchparameter)
 activate GDA_1 COLOR_GDA_1
 
-note over GDA_1
-Abruf des Medikationsplans
-zur Bearbeitung
-end note
-
 activate eMed_FA COLOR_EMED_FA
-eMed_FA -> eMed_FA: Existiert ein persistierter\nMedikationsplan?
+eMed_FA -> eMed_FA: Ermittlung der passenden\nMedicationRequest-Versionen\nanhand der Suchparameter
 
-alt COLOR_OK nein: kein Medikationsplan persistiert 
-
-  eMed_FA -> eMed_FA: Erzeugt leeren Medikationsplan\nList mit emptyReason = "notstarted"
-  eMed_FA -> eMed_FA: Persistiert\nMedikationsplan-\nCollection Bundle
-  eMed_FA -> eMed_FA: Erzeugt Auslieferungs-\nCollection Bundle
-  
-  note over eMed_FA
-  Keine Transformation
-  erforderlich.
-  end note
-  eMed_FA -> GDA_1: Auslieferungs-Collection Bundle\n(List.emptyReason = notstarted)\n+ ETag 
+group COLOR_OK alt: Medikationsplaneintrag/-einträge gefunden?
+  eMed_FA -> GDA_1: Bundle (type=searchset) mit einem oder mehreren\nMedicationRequest-Einträgen
+else COLOR_OK_2 nein
+  eMed_FA -> GDA_1: Bundle (type=searchset) ohne Einträge
+else COLOR_ERROR Fehler
+  eMed_FA -> GDA_1: OperationOutcome
+  deactivate GDA_1
   deactivate eMed_FA
-
-
-else COLOR_ERROR ja: Medikationsplan persistiert 
-
-  ref over GDA_1,eMed_FA
-  Siehe Ablauf Plan-Read.
-  end ref
-
-deactivate GDA_1
 end
 
+note over eMed_FA
+Die Fachanwendung liefert die den 
+Suchparametern entsprechenden 
+Medikationsplaneinträge als 
+Bundle vom Typ searchset zurück.
+end note
+
+deactivate GDA_1
+deactivate eMed_FA
 
 @enduml

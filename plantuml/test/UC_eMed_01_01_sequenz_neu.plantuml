@@ -101,7 +101,7 @@ else COLOR_OK_2 ja: leerer Medikationsplan (mit emptyReason = notstarted | nilkn
 else COLOR_ERROR nein: kein Medikationsplan persistiert
 
   ref over GDA_1,eMed_FA
-  Siehe Sub_UC_eMed_05_03 - 
+  Siehe Sub_UC_eMed_01_03 - 
   Initial erstellter Medikationsplan
   end ref
 

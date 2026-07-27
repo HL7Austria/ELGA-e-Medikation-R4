@@ -86,10 +86,10 @@ pages:
     # title: Überblick & Anwendungsbeispiel
     patient_journey.md:
       title: Patient Journey
-    # UC_eMed_05.md:
-    #   title: UC_eMed_05 - Medikationsplan lesen
-    # UC_eMed_06.md:
-    #   title: UC_eMed_06 - Medikationsplan schreiben
+    # .md:
+    #   title: UC_eMed_01 - Medikationsplan lesen
+    # UC_eMed_02.md:
+    #   title: UC_eMed_02 - Medikationsplan schreiben
     # UC_eMed_07.md:
     #   title: UC_eMed_07 - Geplante und Durchgeführte Abgaben lesen
     # UC_eMed_08.md:
@@ -98,10 +98,10 @@ pages:
     #   title: UC_eMed_09 - Durchgeführte Abgabe schreiben
     overview_sub_use_case.md:
       title: Technische Use Cases
-    Sub_UC_eMed_05.md:
-      title: ​Technische Use Cases für Medikationsplan lesen (UC_eMed_05)
-    Sub_UC_eMed_06.md:
-      title: ​Technische Use Cases für Medikationsplan schreiben (UC_eMed_06)
+    Sub_UC_eMed_01.md:
+      title: ​Technische Use Cases für Medikationsplan lesen (UC_eMed_01)
+    Sub_UC_eMed_02.md:
+      title: ​Technische Use Cases für Medikationsplan schreiben (UC_eMed_02)
     Sub_UC_eMed_07_01.md:
       title: ​Technische Use Cases für Geplante Abgaben lesen (UC_eMed_07)
     Sub_UC_eMed_07_02.md:
@@ -176,8 +176,8 @@ menu:
   Anwendungsfälle:
     # Überblick: overview_use_case.html
     Überblick Technische Use Cases: overview_sub_use_case.html
-    Medikationsplan lesen: Sub_UC_eMed_05.html
-    Medikationsplan schreiben: Sub_UC_eMed_06.html
+    Medikationsplan lesen: Sub_UC_eMed_01.html
+    Medikationsplan schreiben: Sub_UC_eMed_02.html
     Geplante Abgaben lesen: Sub_UC_eMed_07_01.html
     Durchgeführte Abgaben lesen: Sub_UC_eMed_07_02.html
     Geplante Abgaben und Durchgeführte Abgaben mit e-Med GroupIdentifier lesen: Sub_UC_eMed_07_03.html
