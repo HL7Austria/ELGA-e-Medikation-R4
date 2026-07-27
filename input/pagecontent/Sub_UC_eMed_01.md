@@ -168,6 +168,7 @@ Der Abruf erfolgt mittels **GET** unter Angabe geeigneter Suchparameter:
 * **Einnahmezeitraum**
 * **Erstellungszeitpunkt**
 * **Status** des Medikationsplaneintrags (z.B. *active* oder *on-hold*)
+* **Historisch oder aktuell** (_history)
 <!-- TODO: search-parameter -->
 
 Die Suchergebnisse ermöglichen die Nachverfolgung von Änderungen an Medikationsplaneinträgen, beispielsweise hinsichtlich Präparat, Dosierung oder Einnahmeanweisung.
