@@ -98,7 +98,7 @@ Die erzeugten Collection Bundles dienen ausschließlich der Auslieferung und wer
 3. Für jede gefundene List-Version rekonstruiert die Fachanwendung den historischen Medikationsplan, indem sie die zugehörigen historischen Versionen der referenzierten Ressourcen ermittelt, und erzeugt daraus ein Collection Bundle.
 4. Die Fachanwendung liefert ein Bundle vom Typ *searchset* zurück, das alle erzeugten Collection Bundles enthält.
 5. Werden keine passenden historischen Medikationsplanversionen gefunden, enthält das zurückgelieferte *searchset* keine Einträge.
-6. Im Fehlerfall wird ein entsprechendes *OperationOutcome* zurückgegeben.
+6. Im Fehlerfall wird einen entsprechenden *OperationOutcome* zurückgegeben.
 
 Beim Plan-History-Search erfolgt **keine Änderung** der Medikationspläne durch die Fachanwendung. Insbesondere werden keine Inhalte, Statusinformationen oder Kennzeichnungen (Flags) verändert.
 
@@ -185,7 +185,7 @@ Die gefundenen Medikationsplaneinträge können anschließend als Ausgangspunkt 
 2. Die Fachanwendung ermittelt anhand der Suchparameter die passenden Medikationsplaneinträge.
 4. Die Fachanwendung liefert die Suchergebnisse als Bundle vom Typ *searchset* zurück.
 6. Werden keine passenden Medikationsplaneinträge gefunden, enthält das zurückgelieferte *searchset* keine Einträge.
-7. Im Fehlerfall wird ein entsprechendes *OperationOutcome* zurückgegeben.
+7. Im Fehlerfall wird ein entsprechender *OperationOutcome* zurückgegeben.
 
 ##### Sequenzdiagramm
 
