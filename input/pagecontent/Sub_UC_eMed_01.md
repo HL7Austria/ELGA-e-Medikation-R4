@@ -93,12 +93,12 @@ Die erzeugten Collection Bundles dienen ausschließlich der Auslieferung und wer
 
 ##### Ablauf
 
-1. Der Client führt ein GET auf */Patient/{id}/List/_history* mit den gewünschten Suchparametern aus.
+1. Der Client führt ein GET auf *[base]/Patient/[id]/List/_history* mit den gewünschten Suchparametern aus.
 2. Die Fachanwendung ermittelt anhand der Suchparameter die passenden historischen Versionen der List-Ressource.
 3. Für jede gefundene List-Version rekonstruiert die Fachanwendung den historischen Medikationsplan, indem sie die zugehörigen historischen Versionen der referenzierten Ressourcen ermittelt, und erzeugt daraus ein Collection Bundle.
 4. Die Fachanwendung liefert ein Bundle vom Typ *searchset* zurück, das alle erzeugten Collection Bundles enthält.
 5. Werden keine passenden historischen Medikationsplanversionen gefunden, enthält das zurückgelieferte *searchset* keine Einträge.
-6. Im Fehlerfall wird ein entsprechendes *OperationOutcome* zurückgegeben.
+6. Im Fehlerfall wird einen entsprechenden *OperationOutcome* zurückgegeben.
 
 Beim Plan-History-Search erfolgt **keine Änderung** der Medikationspläne durch die Fachanwendung. Insbesondere werden keine Inhalte, Statusinformationen oder Kennzeichnungen (Flags) verändert.
 
@@ -120,15 +120,15 @@ In Arbeit.
 <!-- list.code= 736378000 in Abfragen ergänzen -->
 
 <!-- * Aktuelle Medikationsplanversion lesen:
-GET [base]/Patient/{id}/List -->
+GET [base]/Patient/[id]/List -->
 <!-- * Historische Versionen eines Medikationsplans lesen:
-GET [base]/Patient/{id}/List/_history -->
+GET [base]/Patient/[id]/List/_history -->
 <!-- * Historische Medikationsplanversionen lesen, die ab einem bestimmten Datum erstellt wurden:
-GET [base]/Patient/{id}/List/_history?date=ge2025-01-01 -->
+GET [base]/Patient/[id]/List/_history?date=ge2025-01-01 -->
 <!-- * Historische Medikationsplanversionen lesen, die einen bestimmten Planeintrag enthalten:
-GET [base]/Patient/{id}/List/_history?_include=*&item=MedicationRequest/{id} -->
+GET [base]/Patient/[id]/List/_history?_include=*&item=MedicationRequest/[id] -->
 <!-- * Historische Medikationsplanversionen lesen, die nach einem bestimmten Datum erstellt wurden und einen bestimmten Planeintrag enthalten:
-GET [base]/Patient/{id}/List/_history?_include=*&item=MedicationRequest/{id}&date=ge2025-01-01 -->
+GET [base]/Patient/[id]/List/_history?_include=*&item=MedicationRequest/[id]&date=ge2025-01-01 -->
 
 
 #### Sub_UC_eMed_01_03 - Initial erstellter Medikationsplan
@@ -168,6 +168,7 @@ Der Abruf erfolgt mittels **GET** unter Angabe geeigneter Suchparameter:
 * **Einnahmezeitraum**
 * **Erstellungszeitpunkt**
 * **Status** des Medikationsplaneintrags (z.B. *active* oder *on-hold*)
+* **Historisch oder aktuell** (_history)
 <!-- TODO: search-parameter -->
 
 Die Suchergebnisse ermöglichen die Nachverfolgung von Änderungen an Medikationsplaneinträgen, beispielsweise hinsichtlich Präparat, Dosierung oder Einnahmeanweisung.
@@ -185,7 +186,7 @@ Die gefundenen Medikationsplaneinträge können anschließend als Ausgangspunkt 
 2. Die Fachanwendung ermittelt anhand der Suchparameter die passenden Medikationsplaneinträge.
 4. Die Fachanwendung liefert die Suchergebnisse als Bundle vom Typ *searchset* zurück.
 6. Werden keine passenden Medikationsplaneinträge gefunden, enthält das zurückgelieferte *searchset* keine Einträge.
-7. Im Fehlerfall wird ein entsprechendes *OperationOutcome* zurückgegeben.
+7. Im Fehlerfall wird ein entsprechender *OperationOutcome* zurückgegeben.
 
 ##### Sequenzdiagramm
 
@@ -197,14 +198,14 @@ Die gefundenen Medikationsplaneinträge können anschließend als Ausgangspunkt 
 
 In Arbeit. 
 <!-- * Alle aktiven Medikationsplaneinträge eines Patienten:
-  `GET /Patient/{id}/MedicationRequest?status=active` -->
+  `GET /Patient/[id]/MedicationRequest?status=active` -->
 
 <!-- * Medikationsplaneinträge zu einem bestimmten Arzneimittel:
-  `GET /Patient/{id}/MedicationRequest?medication=<PZN>` -->
+  `GET /Patient/[id]/MedicationRequest?medication=<PZN>` -->
 
 <!-- * Medikationsplaneinträge innerhalb eines Erstellungszeitraums:
-  `GET /Patient/{id}/MedicationRequest?authoredon=ge2026-01-01&authoredon=le2026-12-31` -->
+  `GET /Patient/[id]/MedicationRequest?authoredon=ge2026-01-01&authoredon=le2026-12-31` -->
 <!-- 
 * Historische und aktuelle Medikationsplaneinträge eines bestimmten Wirkstoffs:
-  `GET /Patient/{id}/MedicationRequest?ingredient=<Wirkstoff>` -->
+  `GET /Patient/[id]/MedicationRequest?ingredient=<Wirkstoff>` -->
 
