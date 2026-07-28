@@ -1,6 +1,6 @@
 @startuml
 
-title Medikationsplaneintrag in\nMedikationsplan hinzufügen
+title Planeinträge bearbeiten 
 
 'skinparam actorStyle awesome
 
@@ -64,14 +64,20 @@ activate GDA_1 COLOR_GDA_1
 ref over GDA_1, eMed_FA : [[interactions.html#sequenzdiagramm-plan-read Plan-Read]]
 
 note over GDA_1
-GDA erhält den aktuellen Medikationsplan 
-im Auslieferungs-Bundle 
+GDA erhält den aktuellen 
+Medikationsplan als 
+Collection Bundle 
 end note
 
 == Medikationsplan bearbeiten und und schreiben ==
 
-GDA_1 -> GDA_1: Neuen Planeintrag erstellen
-GDA_1 -> GDA_1: Planeintrag mit List.entry.flag\n"new" dem Medikationsplan hinzufügen
+GDA_1 -> GDA_1: Planeinträge bearbeiten
+GDA_1 -> GDA_1: List.entry\nanpassen
+
+note over GDA_1
+siehe Use Case 
+Beschreibungen
+end note
 
 ref over GDA_1, eMed_FA : [[interactions.html#plan-write Plan-Write]]
 
