@@ -133,9 +133,25 @@ Der Medikationsplaneintrag kann in weiterer Folge als Grundlage für die Erstell
 * note 0..* MS 
 * note ^short = "Zusätzliche Informationen zum Medikationsplaneintrag." // TODO: fachlich prüfen, an welchen Stellen überall Freitext erforderlich sein soll/muss. Auch im Kontext zu entered-in-error Informationen."
 
+* dosageInstruction ^slicing.discriminator.type = #value
+* dosageInstruction ^slicing.discriminator.path = "extension.value"
+* dosageInstruction ^slicing.rules = #closed
+* dosageInstruction ^slicing.ordered = false
+* dosageInstruction 1..* MS
+* dosageInstruction contains   
+    otherDosage 0.. MS and
+    timedDosage 0.. MS and
+    frequencyDosage 0.. MS and
+    freitextDosage 0.. MS and
+    standardDosage 0.. MS
 // DOSAGE
-* dosageInstruction 1..* MS // bsp von linkedcare usw. analysieren
-* dosageInstruction only AtElgaEmedDosageDosierung
+* dosageInstruction[otherDosage] only AtElgaEmedDosageOtherAdministration
+* dosageInstruction[timedDosage] only AtElgaEmedDosageTimedAdministration
+* dosageInstruction[frequencyDosage] only AtElgaEmedDosageFrequencyAdministration
+* dosageInstruction[freitextDosage] only AtElgaEmedDosageFreeTextAdministration
+* dosageInstruction[standardDosage] only AtElgaEmedDosageStandardAdministration
+
+//TODO Dosage und AtElgaEmedDosageDosierung entfernen sobald Dosierungen fertig sind
 * dosageInstruction ^short  = "Angabe der Dosierinformationen strukturiert oder als Freitext." //TODO: Inhalte AtElgaEmedDosageDosierung fachlich prüfen.
 
 * dispenseRequest 0..0 

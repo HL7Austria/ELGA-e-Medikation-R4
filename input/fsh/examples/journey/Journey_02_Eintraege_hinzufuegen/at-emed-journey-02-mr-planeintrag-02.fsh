@@ -27,12 +27,14 @@ Usage: #example
 * subject = Reference(At-Emed-Example-Patient-01)
 * authoredOn = "2026-02-27T10:20:00+00:00"
 * requester = Reference(At-Emed-Example-Practitioner-01)
- 
-* dosageInstruction.patientInstruction = "Abends sehr dünn auf die betroffene Stelle auftragen."
-* dosageInstruction.timing.repeat.frequency = 1
-* dosageInstruction.timing.repeat.period = 1
-* dosageInstruction.timing.repeat.periodUnit = #d
-* dosageInstruction.route = https://termgit.elga.gv.at/CodeSystem-medikationartanwendung.html#100000073566 "Anwendung auf der Haut"
+
+* dosageInstruction[otherDosage].extension[DosageCategory].valueCodeableConcept = AtElgaEmedCodeSystemDosageCategory#other 
+* dosageInstruction[otherDosage].sequence = 1
+* dosageInstruction[otherDosage].patientInstruction = "Abends sehr dünn auf die betroffene Stelle auftragen."
+* dosageInstruction[otherDosage].timing.repeat.frequency = 1
+* dosageInstruction[otherDosage].timing.repeat.period = 1
+* dosageInstruction[otherDosage].timing.repeat.periodUnit = #d
+* dosageInstruction[otherDosage].route = https://termgit.elga.gv.at/CodeSystem-medikationartanwendung.html#100000073566 "Anwendung auf der Haut"
 
 // Contained Medication *********************************************************************
 Instance: contained-medication-journey-02-magistral

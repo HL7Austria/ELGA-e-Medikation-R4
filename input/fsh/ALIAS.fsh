@@ -25,7 +25,7 @@ Alias: $vs-emed-mengenart = https://termgit.elga.gv.at/ValueSet-elga-medikationm
 //Dosierungen
 Alias: $cs-medikationartanwendung = https://termgit.elga.gv.at/CodeSystem/medikationartanwendung   // Anwendung auf der Haut, 	zur Inhalation ...
 Alias: $vs-einnahmezeitpunkte = https://termgit.elga.gv.at/ValueSet/elga-einnahmezeitpunkte        // Mittags, morgens: dosageInstruction.timing.repeat.when
-     
+Alias: $cs-event-timing = http://hl7.org/fhir/event-timing
 Alias: $vs-medikationfrequenz = https://termgit.elga.gv.at/ValueSet/elga-medikationfrequenz         // Tag, Monat, Woche, Jahr
 
 

@@ -7,7 +7,9 @@ Description: "AT ELGA e-Medikation Dosage Dosierung"
 // Medication IG DE https://ig.fhir.de/igs/medication/index.html
 //* obeys DosageStructuredOrFreeTextWarning and DosageStructuredRequiresBoth and DosageDoseUnitSameCode and DosageWarnungViererschemaInText and FreeTextSingleDosageOnlyWarning
 
-* sequence 0..1 MS
+* extension contains AtElgaEmedExtensionDosageCategory named DosageCategory 1..
+
+* sequence 1..1 MS
 * sequence ^short = "Die Reihenfolge der Dosierungsanweisungen. Entfällt bei Einzeldosierung."
 
 * text 0..1 MS
@@ -15,7 +17,9 @@ Description: "AT ELGA e-Medikation Dosage Dosierung"
 
 * additionalInstruction 0..*  // 0..1
 * additionalInstruction ^short = "Codierte Anweisungen oder Warnhinweise für den Patienten, z.B. zur Einnahme oder zur Aufbewahrung des Arzneimittels. (ex):
-https://hl7.org/fhir/R4/valueset-additional-instruction-codes.html." // TODO: Nur wenn nicht ohnehin im Beipackzettel enthalten oder zusätzlich? Evtl. f. magistrale Zubereitungen, da kein Beipackzettel."
+https://hl7.org/fhir/R4/valueset-additional-instruction-codes.html." 
+// TODO: Nur wenn nicht ohnehin im Beipackzettel enthalten oder zusätzlich? Evtl. f. magistrale Zubereitungen, da kein Beipackzettel."
+// TODO: unwahrscheinlich, dass dies strukturiert als code erfasst wird - evtl. als Dropdown mit vorgefertigten Möglichkeiten
 
 * patientInstruction 0..1
 * patientInstruction ^short = "Freitext Anweisungen für den Patienten, z.B. zur Einnahme oder zur Aufbewahrung des Arzneimittels."
@@ -76,3 +80,5 @@ bei nicht-zählbaren Einheiten muss die Einheit angegeben werden (z.B. mg)."
 
 /* Invarianten ***********************************************************************/
  // TODO
+
+ //TODO: Invariante: wenn es mehrere Dosages mit der gleichen Sequenznummer gibt und die periodUnit 'd' ist darf es jede Tageszeit nur einmal geben

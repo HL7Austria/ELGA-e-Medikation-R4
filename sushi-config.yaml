@@ -307,6 +307,15 @@ groups:
     resources:
       - StructureDefinition/at-elga-emed-medication-medikation
       - StructureDefinition/at-elga-emed-substance-wirkstoff
+  Dosierungen:
+    name: Dosierungen
+    description: Dosierungsvarianten
+    resources:
+     - StructureDefinition/at-elga-emed-dosage-dosierung
+     - StructureDefinition/at-elga-emed-dosage-standard-administration
+     - StructureDefinition/at-elga-emed-dosage-freetext-administration
+     - StructureDefinition/at-elga-emed-dosage-frequency-administration
+     - StructureDefinition/at-elga-emed-dosage-timed-administration
 
 
 # The ImplementationGuide resource defines several other properties
