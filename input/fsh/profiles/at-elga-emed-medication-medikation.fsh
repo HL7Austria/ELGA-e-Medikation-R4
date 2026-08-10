@@ -17,7 +17,7 @@ Description: "Bildet ein Arzneimittel in der \"Medication\"-Ressource ab. Wird g
 * identifier ^short = "Eindeutiger Identifikator für das Arzneimittel. Wird nicht benötigt, da PZN, sofern vorhanden, im Code angegeben wird."
 
 * code 0..1 MS
-* code from $cs-asp-liste (required) 
+* code from $cs-asp-liste (required) //TODO this needs to be a ValueSet not a CodeSystem
 * code ^short = "Code des Arzneimittels. Hier muss die Pharmazentralnummer (PZN) aus der ASP-Liste angegeben werden, sofern vorhanden."
 // TODO: Slicing für meherere Codings
 // Gem. CDA V3: 
