@@ -72,11 +72,11 @@ activate eMed_FA COLOR_EMED_FA
 ref over eMed_FA
 Prüfung des Planzustands
 und Erzeugung des
-Collection Bundles
+Medikationsplan-Collection-Bundles
 end ref
 
-group COLOR_OK alt: Collection Bundles zur Auslieferung erstellt? [ja]
-  eMed_FA --> GDA_1: Collection Bundle\n+ ETag 
+group COLOR_OK alt: Medikationsplan-Collection-Bundle erstellt? [ja]
+  eMed_FA --> GDA_1: Medikationsplan-Collection-Bundle\n+ ETag 
 else COLOR_ERROR nein: Fehler
   eMed_FA -> GDA_1: OperationOutcome
   deactivate GDA_1
