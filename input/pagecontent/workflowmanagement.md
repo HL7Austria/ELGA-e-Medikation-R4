@@ -46,12 +46,13 @@ Im Kontext des Medikationsplans kann dieses Element folgende Statuswerte annehme
 |---------------|------|
 | **active** | Der Planeintrag dokumentiert eine aktuell einzunehmende Medikation. |
 | **on-hold** | Der Planeintrag dokumentiert ein pausierte Medikation (aktuell nicht einzunehmen). |
-<!-- | **completed** | Die im Planeintrag beschriebenen Maßnahmen wurden wie geplant durchgeführt. Der Planeintrag wird damit abgeschlossen.| -->
-<!-- | **stopped** | Die im Planeintrag beschriebenen Maßnahmen werden dauerhaft gestoppt, bevor alle geplanten Einnahmen oder Verabreichungen durchgeführt wurden. Der Planeintrag wird damit abgeschlossen. | -->
-| **stopped** | Der Planeintrag dokumentiert eine beendete (abgesetzte) Medikation (nicht mehr einzunehmen), unabhängig davon, ob bereits alle Einnahmen oder Verabreichungen durchgeführt wurden. Der Planeintrag wird damit abgeschlossen (Endzustand). (\*)
+| **stopped** | Der Planeintrag ist nicht länger aktiv. Die Medikation wird nicht weiter verordnet. Dies gilt unabhängig davon, ob der Behandlungszeitraum abgelaufen ist, die Medikation vorzeitig abgesetzt wurde. Der Planeintrag wird damit abgeschlossen (Endzustand). (\*)
 | **entered-in-error** | Der Planeintrag ist storniert. Der Planeintrag wird damit abgeschlossen (Endzustand). |
 
 (\*) Abweichung vom verpflichtenden Value-Set [medicationrequest-status](https://hl7.org/fhir/R4/valueset-medicationrequest-status.html): Der Status *stopped* vereint die Defintionen von *completed* und *stopped* und entspricht dem Stataus *ended* aus FHIR R6. 
+
+<!-- **completed**  Die im Planeintrag beschriebenen Maßnahmen wurden wie geplant durchgeführt. Der Planeintrag wird damit abgeschlossen. -->
+<!-- **stopped**  Die im Planeintrag beschriebenen Maßnahmen werden dauerhaft gestoppt, bevor alle geplanten Einnahmen oder Verabreichungen durchgeführt wurden. Der Planeintrag wird damit abgeschlossen. -->
 
 <br>
 <div>{% include_relative plantuml/workflow_mr_status_planeintrag.svg %}</div>
