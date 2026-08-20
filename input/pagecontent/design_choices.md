@@ -11,7 +11,7 @@ Die Fachanwendung persistiert ausschließlich die einzelnen FHIR-Ressourcen. His
 <br>
 [![diagram](Uebersicht_e_Medikation_Ressourcen.drawio.svg){: style="width: 100%"}](Uebersicht_e_Medikation_Ressourcen.drawio.svg)
 
-<!-- TODO Pfeile zu Patient und Practitioner? -->
+<!-- TODO Pfeile zu Patient und Practitioner? Umrandung Medikationsplan-Collection-Bundle strichliert -->
 
 ### Relevante Profile
 
