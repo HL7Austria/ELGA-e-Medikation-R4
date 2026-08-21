@@ -133,6 +133,8 @@ Der Medikationsplaneintrag kann in weiterer Folge als Grundlage für die Erstell
 * note 0..* MS 
 * note ^short = "Zusätzliche Informationen zum Medikationsplaneintrag." // TODO: fachlich prüfen, an welchen Stellen überall Freitext erforderlich sein soll/muss. Auch im Kontext zu entered-in-error Informationen."
 
+* dosageInstruction.extension contains AtElgaEmedExtensionDosageRepeatSequencesBoolean named repeatsBoolean 0..1
+//TODO Invariante sodass die Extension nur erlaubt ist, wenn es mehrere Dosages gibt
 * dosageInstruction ^slicing.discriminator.type = #value
 * dosageInstruction ^slicing.discriminator.path = "extension.value"
 * dosageInstruction ^slicing.rules = #closed

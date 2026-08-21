@@ -14,6 +14,7 @@ Id: at-elga-emed-dosage-standard-administration
 * timing.repeat.periodMax 0..0
 
 * timing.repeat.timeOfDay 0..0 // kann der Aussage von .when widersprechen
+* timing.repeat.offset 0..0
 
 * obeys frequencySameAsWhenCount
 * obeys weekdaysRequireWeeklyPeriod
