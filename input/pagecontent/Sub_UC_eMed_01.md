@@ -82,7 +82,7 @@ Die persistierten Ressourcen werden dabei nicht verändert.
 
 Beim Plan-History-Search rekonstruiert die Fachanwendung historische Versionen des Medikationsplans aus versionierten List-Ressourcen sowie den von diesen referenzierten Ressourcenversionen und liefert diese unverändert aus. Dadurch entspricht jedes ausgelieferte Collection Bundle exakt dem historischen Stand des Medikationsplans zum jeweiligen Zeitpunkt.
 
-Der Abruf erfolgt mittels **GET** unter Angabe geeigneter Suchparameter:
+Der Abruf erfolgt mittels **GET** auf den *List*-Ressourcen-Endpunkt unter Angabe geeigneter Suchparameter:
 * **Erstellungszeitraum** von Medikationsplanversionen
 * **Medikation** im Medikationsplan (PZN, Arzneimittelname oder Wirkstoff)
 * **Einnahmezeitraum** einer Medikation im Medikationsplan
@@ -209,3 +209,9 @@ In Arbeit.
 * Historische und aktuelle Medikationsplaneinträge eines bestimmten Wirkstoffs:
   `GET /Patient/[id]/MedicationRequest?ingredient=<Wirkstoff>` -->
 
+
+#### Sub_UC_eMed_01_05 - Verzeichnis historischer Medikationspläne lesen (Plan-History-Directory-Search)
+
+In Arbeit. 
+<!-- GET	/Patient/[id]/List	plan-history-directory-search	Verzeichnis historischer Medikationspläne abrufen
+(_history?_elements=date,source) -->
