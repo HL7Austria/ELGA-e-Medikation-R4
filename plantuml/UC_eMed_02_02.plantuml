@@ -71,8 +71,8 @@ end note
 
 == Medikationsplan bearbeiten und und schreiben ==
 
-GDA_1 -> GDA_1: Planeinträge bearbeiten
-GDA_1 -> GDA_1: List.entry\nanpassen
+GDA_1 -> GDA_1: Planeinträge (MedicationRequests)\nbearbeiten
+GDA_1 -> GDA_1: Medikationsplan (List)\nanpassen
 
 note over GDA_1
 siehe Use Case 
