@@ -105,7 +105,6 @@ group GROUP_ARZT 27.2.2026 · Arztbesuch
 
   Außerdem hat er einen leichten
   Hautausschlag bemerkt.
-  bemerkt.
   end note
 
   activate Arzt_1 COLOR_GDA_1
@@ -139,6 +138,7 @@ group GROUP_ARZT 27.2.2026 · Arztbesuch
   eMed_FA --> Arzt_1: Leerer Medikationsplan
 
   deactivate eMed_FA
+  '  deactivate Patient
 
   == Medikationsplaneinträge hinzufügen ==
 
@@ -148,7 +148,7 @@ group GROUP_ARZT 27.2.2026 · Arztbesuch
   klärt den Patienten über die 
   Anwendung auf:
   - gegen arterielle Hypertonie:
-  Ramipril 5 mg, 
+  Ramipril 5 mg Tabletten, 
   1 x täglich morgens, 
   als Dauermedikation
   - gegen Hautausschlag:
@@ -183,13 +183,13 @@ group GROUP_ARZT 27.2.2026 · Arztbesuch
 
   deactivate eMed_FA
   deactivate Arzt_1
-  deactivate Patient
+  '  deactivate Patient
 
 end
 
 group GROUP_APO 28.2.2026 · Abgabe in der Apotheke (Besorgerprozess)
 
-  activate Patient COLOR_PATIENT
+  '  activate Patient COLOR_PATIENT
   note over Patient
   Herr Mustermann möchte in 
   der Apotheke die Medikamente
@@ -240,13 +240,13 @@ group GROUP_APO 28.2.2026 · Abgabe in der Apotheke (Besorgerprozess)
   Apotheke -> eMed_FA: Durchgeführte Abgaben speichern
 
   deactivate Apotheke
-  deactivate Patient
+  '  deactivate Patient
 
 end
 
 group GROUP_APO 1.3.2026 · Abgabe in der Apotheke (Besorgerprozess abschließen)
 
-  activate Patient COLOR_PATIENT
+  '  activate Patient COLOR_PATIENT
 
   note over Patient
   Herr Mustermann möchte in
@@ -279,12 +279,12 @@ group GROUP_APO 1.3.2026 · Abgabe in der Apotheke (Besorgerprozess abschließen
   Apotheke -> eMed_FA: Durchgeführte Abgabe speichern\n(Besorgerprozess abschließen)
 
   deactivate Apotheke
-  deactivate Patient
+  '  deactivate Patient
 end
 
 group GROUP_PAT 2.3.2026 · Patient ruft Medikationsplan ab
 
-  activate Patient COLOR_PATIENT
+  '  activate Patient COLOR_PATIENT
 
   note over Patient
   Herr Mustermann erinnert sich 
@@ -301,13 +301,13 @@ group GROUP_PAT 2.3.2026 · Patient ruft Medikationsplan ab
   eMed_FA --> Patient: Aktueller Medikationsplan
 
   deactivate eMed_FA
-  deactivate Patient
+  '  deactivate Patient
 end
 
 
 group GROUP_ARZT 3.3.2026 · Präoperativer Hausarzttermin
 
-  activate Patient COLOR_PATIENT
+  '  activate Patient COLOR_PATIENT
 
   note over Patient
   Bei Herrn Mustermann steht eine
@@ -345,12 +345,12 @@ group GROUP_ARZT 3.3.2026 · Präoperativer Hausarzttermin
   ' deactivate eMed_FA
 
   deactivate Arzt_1
-  deactivate Patient
+  '  deactivate Patient
 end
 
 group GROUP_KH 5.3.2026 · Geplante Leistenbruchoperation
 
-  activate Patient COLOR_PATIENT
+  '  activate Patient COLOR_PATIENT
 
   note over Patient
   Herr Mustermann kommt zur
@@ -387,12 +387,12 @@ group GROUP_KH 5.3.2026 · Geplante Leistenbruchoperation
 
   Arzt_2 -> eMed_FA: neue Geplante Abgabe Metamizol-Tropfen erstellen und speichern
   deactivate Arzt_2
-  deactivate Patient
+  '  deactivate Patient
 end
 
 group GROUP_APO 7.3.2026 · Teilabgabe in der Apotheke
 
-  activate Patient COLOR_PATIENT
+  '  activate Patient COLOR_PATIENT
 
   note over Patient
   Herr Mustermann möchte in 
@@ -410,7 +410,7 @@ group GROUP_APO 7.3.2026 · Teilabgabe in der Apotheke
   eMed_FA --> Apotheke: Medikationsplan\n+ Geplante Abgabe
   deactivate eMed_FA
 
-  note over Patient
+  note over Apotheke
   Es ist nur noch ein Fläschchen 
   Metamizol verfügbar. Die 
   Apothekerin händigt das Fläschchen 
@@ -431,12 +431,12 @@ group GROUP_APO 7.3.2026 · Teilabgabe in der Apotheke
   Apotheke -> Patient: Metamizol-Tropfen (1 Fläschchen) aushändigen
 
   deactivate Apotheke
-  deactivate Patient
+  '  deactivate Patient
 end
 
 group GROUP_APO 9.3.2026 · Teilabgabe in der Apotheke abschließen
 
-  activate Patient COLOR_PATIENT
+  '  activate Patient COLOR_PATIENT
 
   note over Patient
   Herr Mustermann wurde von der 
@@ -457,7 +457,7 @@ group GROUP_APO 9.3.2026 · Teilabgabe in der Apotheke abschließen
 
   note over Apotheke
   Die Apothekerin ruft die e-Medikation
-  erneut ab und schließt dann die 
+  erneut ab, schließt dann die 
   Teilabgabe ab, indem sie
   eine weitere Durchgeführte Abgabe
   erstellt und übergibt dem 
@@ -469,12 +469,12 @@ group GROUP_APO 9.3.2026 · Teilabgabe in der Apotheke abschließen
   Apotheke -> Patient: Metamizol-Tropfen aushändigen
 
   deactivate Apotheke
-  deactivate Patient
+  '  deactivate Patient
 end
 
 group GROUP_ARZT 12.3.2026 · Nachkontrolle bei der Urlaubsvertretung von Dr. Hausärztin 
 
-  activate Patient COLOR_PATIENT
+  '  activate Patient COLOR_PATIENT
 
   note over Patient
   Herr Mustermann hat die 
@@ -507,7 +507,7 @@ group GROUP_ARZT 12.3.2026 · Nachkontrolle bei der Urlaubsvertretung von Dr. Ha
   2 × täglich 10 Tropfen
   für wenige Tage (nach Bedarf)
 
-  Ramipril kann wieder eingenommen
+  Ramipril soll wieder eingenommen
   werden.
   end note
 
@@ -530,12 +530,12 @@ group GROUP_ARZT 12.3.2026 · Nachkontrolle bei der Urlaubsvertretung von Dr. Ha
   ' deactivate eMed_FA
 
   deactivate Arzt_3
-  deactivate Patient
+  '  deactivate Patient
 end
 
 group GROUP_ARZT 20.3.2026 · Kontrolltermin bei Dr. Hausärztin 
 
-  activate Patient COLOR_PATIENT
+  '  activate Patient COLOR_PATIENT
 
   note over Patient
   Herr Mustermann erscheint zur
