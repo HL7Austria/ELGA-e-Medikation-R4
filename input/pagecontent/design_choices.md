@@ -6,21 +6,21 @@ Die folgende Abbildung zeigt den Aufbau des Medikationsplans sowie das Zusammenw
 
 Zentrale Ressource ist der Medikationsplan (*List*), der die einzelnen Medikationsplaneinträge (*MedicationRequest*) referenziert. Basierend auf diesen Planeinträgen werden *Geplante Abgaben* (*MedicationRequest*) erstellt, auf deren Grundlage *Durchgeführte Abgaben* (*MedicationDispense*) dokumentiert werden können.
 
-Die Fachanwendung persistiert ausschließlich die einzelnen FHIR-Ressourcen. Historische Zustände werden durch versionierte Ressourcen und versionierte Referenzen abgebildet. Collection Bundles dienen ausschließlich der Auslieferung eines Medikationsplans und werden bei Bedarf aus den entsprechenden Ressourcenversionen erzeugt.
+Die Fachanwendung persistiert ausschließlich die einzelnen FHIR-Ressourcen. Historische Zustände werden durch versionierte Ressourcen und versionierte Referenzen abgebildet. Medikationsplan-Searchset-Bundles dienen ausschließlich der Auslieferung eines Medikationsplans und werden bei Bedarf aus den entsprechenden Ressourcenversionen erzeugt.
 
 <br>
 [![diagram](Uebersicht_e_Medikation_Ressourcen.drawio.svg){: style="width: 100%"}](Uebersicht_e_Medikation_Ressourcen.drawio.svg)
 
-<!-- TODO Pfeile zu Patient und Practitioner? Umrandung Medikationsplan-Collection-Bundle strichliert -->
+<!-- TODO Pfeile zu Patient und Practitioner? Umrandung Medikationsplan-Searchset-Bundle strichliert -->
 
 ### Relevante Profile
 
  
 #### Medikationsplan: AtElgaEmedListMedikationsplan (*List*)
 
-Der Medikationsplan eines ELGA-Teilnehmers bzw. einer ELGA-Teilnehmerin wird durch eine *List*-Ressource abgebildet. Diese enthält 0..* Einträge (*List.entry*), wobei jeder Entry genau eine Referenz (*Reference*) auf einen Medikationsplaneintrag (*MedicationRequest*) in *List.entry.item* beinhaltet.
+Der Medikationsplan eines ELGA-Teilnehmers wird durch eine *List*-Ressource abgebildet. Diese enthält 0..* Einträge (*List.entry*), wobei jeder Entry genau eine Referenz (*Reference*) auf einen Planeintrag (*MedicationRequest*) in *List.entry.item* beinhaltet.
 
-Die Reihenfolge der Einträge kann durch den GDA festgelegt werden. Jeder Listeneintrag enthält im Element *List.entry.flag* den Änderungsstatus des jeweiligen Medikationsplaneintrags (siehe [Status der List.entry.flag (Medikationsplan)](workflowmanagement.html#status-der-list-entry-flag-medikationsplan)).
+Die Reihenfolge der Einträge kann durch den GDA festgelegt werden. Jeder Listeneintrag enthält im Element *List.entry.flag* den Änderungsstatus des jeweiligen Planeintrags (siehe [Status der List.entry.flag (Medikationsplan)](workflowmanagement.html#status-der-list-entry-flag-medikationsplan)).
 
 Die List-Ressource bildet gemeinsam mit den referenzierten Ressourcenversionen die Grundlage für den Aufbau des aktuellen bzw. eines historischen Medikationsplans.
 
@@ -30,27 +30,28 @@ Die List-Ressource bildet gemeinsam mit den referenzierten Ressourcenversionen d
 
 #### Medikationsplaneintrag bzw. Planeintrag: AtElgaEmedMedicationRequestPlaneintrag (*MedicationRequest*)
 
-Ein Medikationsplaneintrag im Medikationsplan wird durch eine *MedicationRequest*-Ressource der Kategorie "Medikationsplaneintrag" abgebildet. Die Ressource enthält genau ein Medikament mit der zugehörigen Dosierung, wobei das Medikament verpflichtend in einer contained *Medication*-Ressource, also inline (innerhalb der Ressource), dokumentiert wird.
-Der Medikationsplaneintrag kann in weiterer Folge als Grundlage für die Erstellung einer *Geplanten Abgabe* dienen. Es werden R5-Backport-Extensions verwendet.
+Ein Planeintrag im Medikationsplan wird durch eine *MedicationRequest*-Ressource der Kategorie "Planeintrag" abgebildet. Die Ressource enthält genau ein Medikament mit der zugehörigen Dosierung, wobei das Medikament verpflichtend in einer contained *Medication*-Ressource innerhalb des MedicationRequests dokumentiert wird.
+Der Planeintrag kann in weiterer Folge als Grundlage für die Erstellung einer *Geplanten Abgabe* dienen. 
 
-Der aktuelle Status eines Medikationsplaneintrags wird im *status*-Element dokumentiert (siehe [Status des MedicationRequests im Medikationsplaneintrag](workflowmanagement.html#status-des-medicationrequests-im-medikationsplaneintrag)).  
+Der aktuelle Status eines Planeintrags wird im *status*-Element dokumentiert (siehe [Status des MedicationRequests im Planeintrag](workflowmanagement.html#status-des-medicationrequests-im-medikationsplaneintrag)).  
 
-Abhängig vom List.entry.flag kann der Medikationsplaneintrag nur bestimmte Statuswerte annehmen (siehe [Konsistenzregeln zwischen List.entry.flags und MedicationRequest-Status](workflowmanagement.html#konsistenzregeln-zwischen-listentryflags-und-medicationrequest-status)).
-
-
-#### Medikationsplan-Collection-Bundle: AtElgaEmedBundleMedikationsplan (*Collection Bundle*)
-
-Das Medikationsplan-Collection-Bundle dient ausschließlich der Auslieferung eines Medikationsplans an Clients. Es wird von der Fachanwendung bei Bedarf aus einer List-Ressource sowie den von dieser referenzierten Ressourcenversionen erzeugt und **nicht persistiert**.
+Abhängig vom List.entry.flag kann der Planeintrag nur bestimmte Statuswerte annehmen (siehe [Konsistenzregeln zwischen List.entry.flags und MedicationRequest-Status](workflowmanagement.html#konsistenzregeln-zwischen-listentryflags-und-medicationrequest-status)).
 
 
+#### Medikationsplan-Searchset-Bundle: AtElgaEmedBundleMedikationsplan (*Medikationsplan-Searchset-Bundle*)
 
-#### Geplante Abgabe Transaction-Bundle: AtElgaEmedBundleGeplanteAbgabeTX (*Transaction Bundle*)
+Das Medikationsplan-Searchset-Bundle dient ausschließlich der Auslieferung eines Medikationsplans. Es wird von der Fachanwendung bei Bedarf aus einer List-Ressource sowie den von dieser referenzierten Ressourcenversionen erzeugt und **nicht persistiert**.
+
+<!-- TODO: Iste ein Medikationsplan-Searchset-Bundle nur das Ergebnis von Plan-Read oder auch Teil des Ergebnis von Plan-History-Read (in einem Searchset-Bundle)? -->
+
+
+<!-- #### Geplante Abgabe Transaction-Bundle: AtElgaEmedBundleGeplanteAbgabeTX (*Transaction Bundle*)
 
 Ein Bundle vom Typ Transaction, das beim Speichern von [Geplanten Abgaben](design_choices.html#geplante-abgabe-atelgaemedmedicationrequestgeplanteabgabe-medicationrequest) mittels [Prescription-Write](interactions.html#prescription-write) auf den Medikationsplan an die Fachanwendung übermittelt wird. 
 
 Die im Bundle enthaltenen *Geplanten Abgaben* müssen mit dem gleichen *e-Med GroupIdentifier* gekennzeichnet sein. Fehlt dieser bei allen *Geplanten Abgaben* im Transaction Bundle, wird er von der Fachanwendung ergänzt. 
 
-Profil in Arbeit.
+Profil in Arbeit. -->
 
 
 <!-- 
@@ -69,7 +70,7 @@ Das Transaction Bundle dient der Aktualisierung aller enthaltenen Ressourcen und
 
 <!-- #### *Geplante Abgabe*: AtElgaEmedMedicationRequestGeplanteAbgabe (*MedicationRequest*)
 
-Eine *Geplante Abgabe* einer Medikation aus dem zugrundeliegenden Medikationsplaneintrag wird durch eine *MedicationRequest*-Ressource der Kategorie *Geplante Abgabe* abgebildet. Sie enthält die verordnete Medikation und deren Dosierung und spielgelt die Inhalte des e-Rezepts wider. *Geplante Abgaben* dienen somit der Nachvollziehbarkeit der rezeptierten Arzneimittel in der e-Medikation. 
+Eine *Geplante Abgabe* einer Medikation aus dem zugrundeliegenden Planeintrag wird durch eine *MedicationRequest*-Ressource der Kategorie *Geplante Abgabe* abgebildet. Sie enthält die verordnete Medikation und deren Dosierung und spielgelt die Inhalte des e-Rezepts wider. *Geplante Abgaben* dienen somit der Nachvollziehbarkeit der rezeptierten Arzneimittel in der e-Medikation. 
 Werden mehrere Medikamente gleichzeitig verordnet (und sollen demselben e-Rezept zugeordnet sein), wird für jedes Medikament eine Geplante Abgabe mit demselben e-Med GroupIdentifier erstellt (bildet 'Rezept-Klammer'). Es werden R5-Backport-Extensions verwendet.
 
 Der aktuelle Status einer geplanten Abgabe wird im *status*-Element dokumentiert (siehe [Status des MedicationRequests in der geplanten Abgabe](workflowmanagement.html#status-des-medicationrequests-in-der-geplanten-abgabe)).   -->
