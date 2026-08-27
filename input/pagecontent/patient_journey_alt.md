@@ -12,7 +12,7 @@ Dr. Musterärztin möchte ihrem Patienten Max Mustermann mehrere Medikamente ver
 Da für Herrn Mustermann noch nie ein Medikationsplan abgerufen wurde, erstellt die Fachanwendung automatisch einen leeren Medikationsplan. Darin enthalten sind die Informationen zum [Patienten](Patient-At-Emed-Example-Patient-01.html), die erstellende e-Medikation-Fachwanwendung ([Device](Device-At-Emed-Example-Device-01.html)), das Datum der Erstellung und der Grund, warum der Plan noch leer ist (EmptyReason *notstarted*).
 
    * **Leerer Medikationsplan:**
-     * [Collection Bundle](Bundle-At-Emed-Journey-01-Bundle-Medikationsplan.html) 
+     * [Medikationsplan-Searchset-Bundle](Bundle-At-Emed-Journey-01-Bundle-Medikationsplan.html) 
         
 Dr. Musterärztin ergänzt das Medikament Ebetrexat (10 mg, Tabletten) und erklärt dem Patienten, dass er morgens und abends je eine Tablette einnehmen soll und worauf er bei der Einnahme zu achten hat. Sie dokumentiert dies in seinem Medikationsplan. <br>
 Weiters verschreibt sie ihrem Patienten eine magistrale Zubereitung einer Cortison-Salbe, die er eine Woche lang abends auftragen soll.<br>
@@ -56,7 +56,7 @@ Herr Mustermann sucht erneut die Apotheke auf, um die magistrale Zubereitung abz
 Ein paar Tage später, ist sich Herr Mustermann nicht mehr sicher, welches Medikament er wie einnehmen soll und ruft in seiner ELGA seinen Medikationsplan auf. 
 
    * Medikationsplan mit 2 Medikationsplaneinträgen anzeigen:
-     * Beispiel: [Collection Bundle](Bundle-At-Emed-Journey-02-Bundle-Medikationsplan.html)
+     * Beispiel: [Medikationsplan-Searchset-Bundle](Bundle-At-Emed-Journey-02-Bundle-Medikationsplan.html)
 
 
 ### 10.3.2026: Kontrolltermin
@@ -70,13 +70,13 @@ Die Cortisonsalbe ist nicht mehr nötig, daher soll der Patient diese absetzen. 
      * Beispiel: [Transaction Bundle](Bundle-At-Emed-Journey-05-b-Bundle-Tx-Medikationsplan.html)
   
    <!-- * Medikationsplan (Variante ohne Filter: abgelaufenen Einträge anzeigen): -->
-     <!-- * Beispiel: [Collection Bundle](Bundle-At-Emed-Journey-05-b-Bundle-Medikationsplan.html) -->
+     <!-- * Beispiel: [Medikationsplan-Searchset-Bundle](Bundle-At-Emed-Journey-05-b-Bundle-Medikationsplan.html) -->
      
 
 <!-- Weil er es für sinnvoll hält, ändert er die Reihenfolge der Planeinträge. Die Medikationsplaneinträge ändern sich inhaltlich dadurch nicht. -->
 
    <!-- * Medikationsplan mit geänderter Reihenfolge anzeigen: -->
-  <!-- * Beispiel: [Collection Bundle](Bundle-At-Emed-Journey-05-a-Bundle-Medikationsplan.html) -->
+  <!-- * Beispiel: [Medikationsplan-Searchset-Bundle](Bundle-At-Emed-Journey-05-a-Bundle-Medikationsplan.html) -->
 
 
 <br>
