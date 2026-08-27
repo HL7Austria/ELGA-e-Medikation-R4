@@ -7,11 +7,11 @@ skinparam ArrowColor #5B6B7A
 
 skinparam packageStyle rectangle
 
-title Datenfluss der Collection Bundles
+title Datenfluss der Medikationsplan-Searchset-Bundles
 
 rectangle "e-Medikation Fachanwendung" as APP {
 
-object "Persistiertes Collection Bundle v.1" as B1 #EAF3FF {
+object "Persistiertes Medikationsplan-Searchset-Bundle v.1" as B1 #EAF3FF {
 List v.1
 ----
 <color:#28A745>entry[1] MedicationRequest 1 · new</color>
@@ -31,7 +31,7 @@ id: def
 requester: Practitioner 1
 }
 
-object "Persistiertes Collection Bundle v.2" as B2 #EAF3FF {
+object "Persistiertes Medikationsplan-Searchset-Bundle v.2" as B2 #EAF3FF {
 List v.2
 ----
 <color:#005CC5>entry[1] MedicationRequest 1 · changed</color>
@@ -54,7 +54,7 @@ requester: Practitioner 1
 
 rectangle "GDA-Software (Practitioner 2)" as GDA {
 
-object "Auslieferungs-\nCollection Bundle v.1" as DELIVERY #FFF5E8 {
+object "Medikationsplan-\nSearchset-Bundle v.1" as DELIVERY #FFF5E8 {
 List v.1
 ----
 entry[1] MedicationRequest 1 · unchanged

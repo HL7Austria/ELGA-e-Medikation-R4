@@ -1,7 +1,7 @@
 Instance: At-Emed-Journey-02-Bundle-Medikationsplan
 InstanceOf: AtElgaEmedBundleMedikationsplan   
-Title: "Beispiel Journey 02: Collection Bundle"
-Description: "Beispiel eines Collection Bundles, das einen Mediaktionsplan (List) mit 2 Planeinträgen (MedicationRequests) referenziert."
+Title: "Beispiel Journey 02: Medikationsplan-Searchset-Bundle"
+Description: "Beispiel eines Medikationsplan-Searchset-Bundles, das einen Mediaktionsplan (List) mit 2 Planeinträgen (MedicationRequests) referenziert."
 Usage: #example
 
 * identifier.system = "http://system-to-be-defined.com"

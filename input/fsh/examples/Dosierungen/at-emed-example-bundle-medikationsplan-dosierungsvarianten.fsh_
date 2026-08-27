@@ -1,7 +1,7 @@
 Instance: At-Emed-Example-Bundle-Medikationsplan-Dosierungsvarianten
 InstanceOf: AtElgaEmedBundleMedikationsplan   
-Title: "Beispiel Collection Bundle: Medikationsplan mit Dosierungsvarianten"
-Description: "Beispiel eines Collection Bundles:  Medikationsplan mit Dosierungsvarianten."
+Title: "Beispiel Medikationsplan-Searchset-Bundle: Medikationsplan mit Dosierungsvarianten"
+Description: "Beispiel eines Medikationsplan-Searchset-Bundles:  Medikationsplan mit Dosierungsvarianten."
 Usage: #example
 
 * identifier.system = "http://system-to-be-defined.com"
