@@ -72,11 +72,11 @@ activate eMed_FA COLOR_EMED_FA
 ref over eMed_FA
 Prüfung des Planzustands
 und Erzeugung des
-Medikationsplan-Collection-Bundles
+Medikationsplan-Searchset-Bundles
 end ref
 
-group COLOR_OK alt: Medikationsplan-Collection-Bundle erstellt? [ja]
-  eMed_FA --> GDA_1: Medikationsplan-Collection-Bundle\n+ ETag 
+group COLOR_OK alt: Medikationsplan-Searchset-Bundle erstellt? [ja]
+  eMed_FA --> GDA_1: Medikationsplan-Searchset-Bundle\n+ ETag 
 else COLOR_ERROR nein: Fehler
   eMed_FA -> GDA_1: OperationOutcome
   deactivate GDA_1
@@ -85,10 +85,8 @@ end
 
 
 note over GDA_1
-Nachfolgend kann der
-Medikationsplan bearbeitet
-und mittels Plan-Write
-gespeichert werden.
+Medikationsplan zur 
+Bearbeitung bereit.
 end note
 
 

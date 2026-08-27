@@ -165,10 +165,10 @@ group GROUP_APO 1.3.2026 · Abgabe in der Apotheke (Besorgerprozess abschließen
   Patient -> Apotheke: Dexpanthenol-Salbe abholen
 
   activate Apotheke COLOR_APO
-  Apotheke -> eMed_FA: e-Medikation abrufen
+  Apotheke -> eMed_FA: aktuellen Medikationsplan,\nGeplante und Durchgeführte\nAbgaben abrufen
 
   activate eMed_FA COLOR_EMED_FA
-  eMed_FA -> Apotheke: AktuellerMedikationsplan\n+ Geplante und Durchgeführte\nAbgaben
+  eMed_FA -> Apotheke: AktuellerMedikationsplan +\nGeplante und Durchgeführte\nAbgaben
   deactivate eMed_FA
 
   Apotheke -> Patient: Dexpanthenol-Salbe aushändigen
@@ -203,7 +203,7 @@ group GROUP_ARZT 3.3.2026 · Präoperativer Hausarzttermin
 
   activate Arzt_1 COLOR_GDA_1
 
-  Arzt_1 -> eMed_FA: e-Medikation abrufen
+  Arzt_1 -> eMed_FA: aktuellen Medikationsplan,\nGeplante und Durchgeführte\nAbgaben abrufen
 
   activate eMed_FA COLOR_EMED_FA
   eMed_FA -> Arzt_1: Aktueller Medikationsplan
@@ -229,7 +229,7 @@ group GROUP_KH 5.3.2026 · Geplante Leistenbruchoperation
 
   activate Arzt_2 COLOR_GDA_2
 
-  Arzt_2 -> eMed_FA: Medikationsplan abrufen
+  Arzt_2 -> eMed_FA: aktuellen Medikationsplan,\nGeplante und Durchgeführte\nAbgaben abrufen
 
   activate eMed_FA COLOR_EMED_FA
   eMed_FA -> Arzt_2: Aktueller Medikationsplan
@@ -250,7 +250,7 @@ group GROUP_APO 7.3.2026 · Teilabgabe in der Apotheke
 
   activate Apotheke COLOR_APO
 
-  Apotheke -> eMed_FA: e-Medikation abrufen
+  Apotheke -> eMed_FA: aktuellen Medikationsplan,\nGeplante und Durchgeführte\nAbgaben abrufen
 
   activate eMed_FA COLOR_EMED_FA
   eMed_FA -> Apotheke: Medikationsplan\n+ Geplante Abgabe

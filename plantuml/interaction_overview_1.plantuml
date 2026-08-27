@@ -97,7 +97,7 @@ end legend
 ' note bottom of Server
 '   **UML 2.0 Component Specification**
 '   Zentrales e-Medikations-System kapselt persistierte
-'   Collection Bundles (v.1 / v.2) und Transaction Bundles.
+'   Medikationsplan-Searchset-Bundles (v.1 / v.2) und Transaction Bundles.
 ' end note
 
 ' note right of IBundle
