@@ -1,5 +1,9 @@
 Am Beispiel einer fiktiven Patient Journey wird veranschaulicht, wie sich der Medikationsplan eines Patienten mit den zugehörigen **Geplanten Abgaben** und den **Durchgeführten Abgaben** verändern kann.
 
+<!-- TODO: nicht-sunshine-cases: patient ohne ecard in apotheke, 
+Einträge durch patient löschen, stornieren, rezept wieder öffnen, wenn teilabgabe storniert -->
+
+
 **27.2.2026: Arztbesuch**
 
 Herr Mustermann kommt wegen Kopfschmerzen und Schwindelgefühl zu seiner Hausärztin. Außerdem hat er einen leichten Hautausschlag bemerkt.
@@ -17,7 +21,7 @@ Da für Herrn Mustermann noch nie ein Medikationsplan abgerufen wurde, erstellt 
 
 * **Leerer Medikationsplan:**
 
-  * [Collection Bundle](Bundle-At-Emed-Journey-01-Bundle-Medikationsplan.html)
+  * [Medikationsplan-Searchset-Bundle](Bundle-At-Emed-Journey-01-Bundle-Medikationsplan.html)
 
 Dr. Hausärztin erstellt zwei Medikationsplaneinträge und klärt den Patienten über die Anwendung auf: gegen die arterielle Hypertonie **Ramipril 5 mg Tabletten**, 1 x täglich morgens (Dauermedikation) und gegen den Hautausschlag **Dexpanthenol-5-%-Salbe**, 2 × täglich für 1 Woche, dünn aufzutragen.
 
@@ -71,7 +75,7 @@ Herr Mustermann erinnert sich nicht, welches Medikament er wie einnehmen soll un
 
 * **Aktuellen Medikationsplan anzeigen:**
 
-  * Beispiel [Collection Bundle](Bundle-At-Emed-Journey-07-Bundle-Medikationsplan.html) 
+  * Beispiel [Medikationsplan-Searchset-Bundle](Bundle-At-Emed-Journey-07-Bundle-Medikationsplan.html) 
 
 **3.3.2026: Präoperativer Hausarzttermin**
 
