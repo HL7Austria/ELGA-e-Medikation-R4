@@ -2,7 +2,7 @@
 
 <!-- Technische Use Cases für Geplante und Durchgeführte Abgaben lesen (UC_eMed_07) -->
 
-### Sub_UC_eMed_07_03 - Geplante und Durchgeführte Abgaben mit e-Med GroupIdentifier lesen (Groupidentifier-Search)
+### Sub_UC_eMed_07_03 - Geplante und Durchgeführte Abgaben mittels e-Med GroupIdentifier lesen (Groupidentifier-Search)
 
 
 <!-- nur offene, mit gültigem GI (noch nicht eingelöst oder abgelaufen) -->
