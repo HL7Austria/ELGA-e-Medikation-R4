@@ -1,5 +1,5 @@
 Profile: AtElgaEmedMedicationRequestPlaneintrag
-Parent: MedicationRequest
+Parent: AtElgaEmedMedicationRequestBase
 Id: at-elga-emed-medicationrequest-planeintrag
 Title: "At ELGA e-Medikation MedicationRequest Planeintrag"
 Description: "Ein Medikationsplaneintrag im Medikationsplan eines ELGA-Teilnehmers bzw. einer ELGA-Teilnehmerin wird durch eine \"MedicationRequest\"-Ressource abgebildet.

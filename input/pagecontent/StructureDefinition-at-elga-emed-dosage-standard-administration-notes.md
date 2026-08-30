@@ -421,29 +421,96 @@ Dosage [1]
 
 <ul>
   <li>
-    <code>1-0-0-1</code> täglich:
+    <b>1-0-0-1 | Täglich: 1-0-0-1</b>
     <code>frequency = 2</code>, <code>period = 1</code>,
-    <code>periodUnit = d</code>, <code>when = [MORN, NIGHT]</code>.
+    <code>periodUnit = d</code>, <code>when = [MORN, NIGHT]</code>
   </li>
   <li>
-    <code>1-0-0-1</code> alle zwei Tage:
+    <b>Alle 2 Tage: 1-0-0-1 | Alle 2 Tage: 1-0-0-1</b>
     <code>frequency = 2</code>, <code>period = 2</code>,
-    <code>periodUnit = d</code>, <code>when = [MORN, NIGHT]</code>.
+    <code>periodUnit = d</code>, <code>when = [MORN, NIGHT]</code>
+  </li>
+   <li>
+    <b>Alle X Tage: 1-0-0-1 | Alle X Tage: 1-0-0-1</b>
+    <code>frequency = 2</code>, <code>period = X</code>,
+    <code>periodUnit = d</code>, <code>when = [MORN, NIGHT]</code>
   </li>
   <li>
-    <code>1-0-0-1</code> montags und freitags:
+    <b>Mo 1-0-0-1, Fr 1-0-0-1 | Wöchentlich: 1-0-0-1 am Montag, 1-0-0-1 am Freitag</b>
     <code>frequency = 4</code>, <code>period = 1</code>,
     <code>periodUnit = wk</code>, <code>dayOfWeek = [mon, fri]</code>,
-    <code>when = [MORN, NIGHT]</code>.
+    <code>when = [MORN, NIGHT]</code>
   </li>
   <li>
-    <code>1-0-0-1</code> alle zwei Wochen:
+    <b>Mo 1-0-0-1, Fr 1-0-0-0 |Wöchentlich: 1-0-0-1 am Montag, 1-0-0-0 am Freitag</b>
+    <br>
+    Dosage 1:
+    <br>
+    <code>frequency = 2</code>, <code>period = 1</code>,
+    <code>periodUnit = wk</code>, <code>dayOfWeek = [mon]</code>,
+    <code>when = [MORN, NIGHT]</code>
+    <br>
+    Dosage 2:
+    <br>
+    <code>frequency = 1</code>, <code>period = 1</code>,
+    <code>periodUnit = wk</code>, <code>dayOfWeek = [fri]</code>,
+    <code>when = [MORN]</code>
+  </li>
+  <li>
+    <b>Alle 2 Wochen: Mo 1-0-0-1 | alle 2 Wochen: 1-0-0-1 am Montag</b>
     <code>frequency = 2</code>, <code>period = 2</code>,
-    <code>periodUnit = wk</code>, <code>when = [MORN, NIGHT]</code>.
+    <code>periodUnit = wk</code>, <code>when = [MORN, NIGHT]</code>
   </li>
   <li>
-    Bedarfsmedikation mit Tageszeiten, beispielsweise
-    <code>1-0-0-1 täglich bei Bedarf</code>
+    <b>Alle 2 Wochen: Mo 1-0-0-1, Fr 1-0-0-0 | Alle 2 Wochen: 1-0-0-1 am Montag, 1-0-0-1 am Freitag</b>
+    <code>frequency = 4</code>, <code>period = 2</code>,
+    <code>periodUnit = wk</code>, <code>dayOfWeek = [mon, fri]</code>,
+    <code>when = [MORN, NIGHT]</code>
+  </li>
+  <li>
+    <b>Bei Bedarf 1-0-0-1 | Bei Bedarf, täglich: 1-0-0-1</b>
+    <code>asNeeded = true</code>,
+    <code>frequency = 2</code>, <code>period = 1</code>,
+    <code>periodUnit = d</code>, <code>when = [MORN, NIGHT]</code>
+  </li>
+    <li>
+    <b>Bei Bedarf, alle 2 Tage: 1-0-0-1 | Bei Bedarf, alle 2 Tage: 1-0-0-1</b>
+    <code>asNeeded = true</code>,
+    <code>frequency = 2</code>, <code>period = 2</code>,
+    <code>periodUnit = d</code>, <code>when = [MORN, NIGHT]</code>
+  </li>
+  <li>
+    <b>Alle 3 Wochen: Mo 1-0-0-1, Fr 1-0-0-1 | Alle 3 Wochen: 1-0-0-1 am Montag, 1-0-0-1 am Freitag</b>
+    <code>frequency = 4</code>, <code>period = 3</code>,
+    <code>periodUnit = wk</code>, <code>dayOfWeek = [mon, fri]</code>,
+    <code>when = [MORN, NIGHT]</code>
+  </li>
+  <li>
+    <b>1-0-0-1 1., 1-0-0-1 10. des Monats | Monatlich: 1-0-0-1 am 1., 1-0-0-1 am 10. des Monats</b>
+    <code>frequency = 4</code>, <code>period = 1</code>,
+    <code>periodUnit = mo</code>, <code>extension:DayOfMonth = 1 & 10</code>,
+    <code>when = [MORN, NIGHT]</code>
+  </li>
+  <li>
+    <b>1-0-0-1 1., 0-0-1-0 15. des Monats | Monatlich: 1-0-0-1 am 1. und 0-1-0-0 am 15. des Monats</b>
+    <br>
+    Dosage 1:
+    <br>
+    <code>frequency = 2</code>, <code>period = 1</code>,
+    <code>periodUnit = mo</code>, <code>extension:DayOfMonth = 1</code>,
+    <code>when = [MORN, NIGHT]</code>
+    <br>
+    Dosage 2:
+    <br>
+    <code>frequency = 1</code>, <code>period = 1</code>,
+    <code>periodUnit = mo</code>, <code>extension:DayOfMonth = 1</code>,
+    <code>when = [NOON]</code>
+  </li>
+   <li>
+    <b>Alle 3 Monate: 1-0-0-0 am 1. des Monats</b>
+  </li>
+  <li>
+    <b>Alle 2 Monate: 1-0-0-0 am 1. des Monats, 1-0-0-0 am 15. des Monats</b>
   </li>
 </ul>
 
@@ -596,7 +663,7 @@ zugehörigen Einnahmezeitpunkten.
 
 <p>
 Beispiel für zwei monatliche Dosage-Einträge derselben Sequenz:
-<code>1-0-0-0 am 1. des Monats monatlich; 1-0-0-0 am 15. des Monats monatlich | Monatlich am 1. des Monats 1 Stück morgens und am 15. des Monats 1 Stück morgens</code>.
+<code>1-0-0-0 am 1. des Monats, 1-0-0-0 am 15. des Monats monatlich | Monatlich am 1. des Monats 1 Stück morgens und am 15. des Monats 1 Stück morgens</code>.
 </p>
 
 <h5 class="no-number">Intervalle</h5>
