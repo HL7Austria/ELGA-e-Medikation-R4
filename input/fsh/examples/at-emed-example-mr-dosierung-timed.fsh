@@ -1,0 +1,40 @@
+Instance: At-Emed-Example-Mr-Dosierung-Timed
+InstanceOf: AtElgaEmedMedicationRequestPlaneintrag
+Title: "Beispiel Medikationsplaneintrag mit Dosierung mit Timed Administration"
+Description: "Medikationsplaneintrag mit Dosierung mit Timed Administration"
+Usage: #example
+
+* contained[+] = contained-medication-zeit-01
+* identifier.value = "4712_202602280800000" // Eintrag_ID = {ID}_{Zeitstempel}
+* courseOfTherapyType = $cs-medication-request-courseOfTherapyType#acute
+
+// R5 Backports
+* extension[effectiveDosePeriod].valuePeriod.start = "2026-02-27"
+* extension[effectiveDosePeriod].valuePeriod.end = "2026-03-06"
+* extension[renderedDosageInstruction].valueMarkdown = "täglich: 08:00 Uhr — je 1 Stück"
+
+* status = $cs-medication-request-status#active
+* intent = #order
+* category = MedicationRequestCategoryCS#1 "Medikationsplaneintrag" 
+* reportedBoolean = false
+
+// Referenz auf Contained Medication Ressource
+* medicationReference.reference = "#contained-medication-zeit-01"
+
+* subject = Reference(At-Emed-Example-Patient-01)
+* authoredOn = "2026-02-27T10:20:00+00:00"
+* requester = Reference(At-Emed-Example-Practitioner-01)
+
+* dosageInstruction[timedDosage].extension[DosageCategory].valueCodeableConcept = AtElgaEmedCodeSystemDosageCategory#timed
+* dosageInstruction[timedDosage].sequence = 1
+* dosageInstruction[timedDosage].timing.repeat.timeOfDay = "08:00:00"
+* dosageInstruction[timedDosage].doseAndRate.doseQuantity = $cs-ucum#{Stueck} "Stück"
+
+
+// Contained Medication *********************************************************************
+Instance: contained-medication-zeit-01
+InstanceOf: AtElgaEmedMedicationMedikation
+Title: "Beispiel Medikation EBETREXAT"
+Usage: #inline
+//* id = "contained-medication-zeit-01"
+* code = $cs-asp-liste#2443061 "EBETREXAT TBL 10MG"

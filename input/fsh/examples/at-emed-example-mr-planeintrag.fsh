@@ -30,20 +30,22 @@ Usage: #example
 //* reasonCode = $cs-sct#59621000 "Essentielle Hypertonie"
 * note.text = "Freitext Informationen zum Medikationsplaneintrag."
 
-* dosageInstruction.text = "1 Kapsel täglich morgens"
-* dosageInstruction.patientInstruction = "Nehmen Sie die Kapsel jeden Morgen mit ausreichend Flüssigkeit ein."
-//* dosageInstruction.additionalInstruction = $sct#1153465004 "Education about overdosing"
-* dosageInstruction.timing.repeat.frequency = 1
-* dosageInstruction.timing.repeat.period = 1
-* dosageInstruction.timing.repeat.periodUnit = #d
-// * dosageInstruction.timing.period = 4
-// * dosageInstruction.timing.periodMax = 6
-// * dosageInstruction.timing.periodUnit = "h"
-// * dosageInstruction.asNeededCodeableConcept = $sct#56018004 "wheezing"
-* dosageInstruction.route = https://termgit.elga.gv.at/CodeSystem-medikationartanwendung.html#100000073619 "zum Einnehmen"
-* dosageInstruction.doseAndRate.doseQuantity = 5 'mg' "mg"
-// * dosageInstruction.maxDosePerPeriod.numerator = 6 '{spray}' "{spray}"
-// * dosageInstruction.maxDosePerPeriod.denominator = 1 '{day}' "{day}"
+* dosageInstruction[otherDosage].extension[DosageCategory].valueCodeableConcept = AtElgaEmedCodeSystemDosageCategory#other
+* dosageInstruction[otherDosage].sequence = 1
+* dosageInstruction[otherDosage].text = "1 Kapsel täglich morgens"
+* dosageInstruction[otherDosage].patientInstruction = "Nehmen Sie die Kapsel jeden Morgen mit ausreichend Flüssigkeit ein."
+//* dosageInstruction[otherDosage].additionalInstruction = $sct#1153465004 "Education about overdosing"
+* dosageInstruction[otherDosage].timing.repeat.frequency = 1
+* dosageInstruction[otherDosage].timing.repeat.period = 1
+* dosageInstruction[otherDosage].timing.repeat.periodUnit = #d
+// * dosageInstruction[otherDosage].timing.period = 4
+// * dosageInstruction[otherDosage].timing.periodMax = 6
+// * dosageInstruction[otherDosage].timing.periodUnit = "h"
+// * dosageInstruction[otherDosage].asNeededCodeableConcept = $sct#56018004 "wheezing"
+* dosageInstruction[otherDosage].route = https://termgit.elga.gv.at/CodeSystem-medikationartanwendung.html#100000073619 "zum Einnehmen"
+* dosageInstruction[otherDosage].doseAndRate.doseQuantity = 5 'mg' "mg"
+// * dosageInstruction[otherDosage].maxDosePerPeriod.numerator = 6 '{spray}' "{spray}"
+// * dosageInstruction[otherDosage].maxDosePerPeriod.denominator = 1 '{day}' "{day}"
 
 
 

@@ -34,6 +34,8 @@ Usage: #example
 
 * note.text = "Freitext zur geplanten Abgabe (Info von Arzt an Apotheke)."
 
+* dosageInstruction.extension[DosageCategory].valueCodeableConcept = AtElgaEmedCodeSystemDosageCategory#other
+* dosageInstruction.sequence = 1
 * dosageInstruction.patientInstruction = "Nehmen Sie die Kapsel nach dem Essen mit ausreichend Flüssigkeit ein."
 * dosageInstruction.timing.repeat.frequency = 2
 * dosageInstruction.timing.repeat.period = 1

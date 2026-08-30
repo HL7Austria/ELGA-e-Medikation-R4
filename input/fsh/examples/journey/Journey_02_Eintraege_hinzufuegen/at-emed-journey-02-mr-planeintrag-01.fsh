@@ -27,14 +27,16 @@ Usage: #example
 
 * note.text = "Freitext Informationen zum Medikationsplaneintrag."
 
-* dosageInstruction.patientInstruction = "Nehmen Sie die Kapsel nach dem Essen mit ausreichend Flüssigkeit ein."
-* dosageInstruction.timing.repeat.frequency = 2
-* dosageInstruction.timing.repeat.period = 1
-* dosageInstruction.timing.repeat.periodUnit = #d
-* dosageInstruction.timing.repeat.when[0] = $cs-timing#ACM "Morgens"   
-* dosageInstruction.timing.repeat.when[+] = $cs-timing#ACV "Abends"  
-* dosageInstruction.doseAndRate.doseQuantity = $cs-ucum#{Stueck} "Stück"
-* dosageInstruction.route = $cs-medikationartanwendung#100000073619 "zum Einnehmen"
+* dosageInstruction[otherDosage].extension[DosageCategory].valueCodeableConcept = AtElgaEmedCodeSystemDosageCategory#other
+* dosageInstruction[otherDosage].sequence = 1
+* dosageInstruction[otherDosage].patientInstruction = "Nehmen Sie die Kapsel nach dem Essen mit ausreichend Flüssigkeit ein."
+* dosageInstruction[otherDosage].timing.repeat.frequency = 2
+* dosageInstruction[otherDosage].timing.repeat.period = 1
+* dosageInstruction[otherDosage].timing.repeat.periodUnit = #d
+* dosageInstruction[otherDosage].timing.repeat.when[0] = $cs-timing#ACM "Morgens"   
+* dosageInstruction[otherDosage].timing.repeat.when[+] = $cs-timing#ACV "Abends"  
+* dosageInstruction[otherDosage].doseAndRate.doseQuantity = $cs-ucum#{Stueck} "Stück"
+* dosageInstruction[otherDosage].route = $cs-medikationartanwendung#100000073619 "zum Einnehmen"
 //* dosageInstruction.doseAndRate.doseQuantity = 10 'mg' "mg"
 
 

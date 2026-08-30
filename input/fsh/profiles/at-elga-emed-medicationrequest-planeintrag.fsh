@@ -1,5 +1,5 @@
 Profile: AtElgaEmedMedicationRequestPlaneintrag
-Parent: MedicationRequest
+Parent: AtElgaEmedMedicationRequestBase
 Id: at-elga-emed-medicationrequest-planeintrag
 Title: "At ELGA e-Medikation MedicationRequest Planeintrag"
 Description: "Ein Medikationsplaneintrag im Medikationsplan eines ELGA-Teilnehmers bzw. einer ELGA-Teilnehmerin wird durch eine \"MedicationRequest\"-Ressource abgebildet.
@@ -135,9 +135,27 @@ Der Medikationsplaneintrag kann in weiterer Folge als Grundlage für die Erstell
 * note 0..* MS 
 * note ^short = "Zusätzliche Informationen zum Medikationsplaneintrag." // TODO: fachlich prüfen, an welchen Stellen überall Freitext erforderlich sein soll/muss. Auch im Kontext zu entered-in-error Informationen."
 
+// TODO: Invariante für repeating sequences * dosageInstruction.extension contains AtElgaEmedExtensionDosageRepeat??? named repeatCycle 0..1
+//TODO Invariante sodass die Extension nur erlaubt ist, wenn es mehrere Dosages gibt
+* dosageInstruction ^slicing.discriminator.type = #value
+* dosageInstruction ^slicing.discriminator.path = "extension.value"
+* dosageInstruction ^slicing.rules = #closed
+* dosageInstruction ^slicing.ordered = false
+* dosageInstruction 1..* MS
+* dosageInstruction contains   
+    otherDosage 0.. MS and
+    timedDosage 0.. MS and
+    frequencyDosage 0.. MS and
+    freitextDosage 0.. MS and
+    standardDosage 0.. MS
 // DOSAGE
-* dosageInstruction 1..* MS // bsp von linkedcare usw. analysieren
-* dosageInstruction only AtElgaEmedDosageDosierung
+* dosageInstruction[otherDosage] only AtElgaEmedDosageOtherAdministration
+* dosageInstruction[timedDosage] only AtElgaEmedDosageTimedAdministration
+* dosageInstruction[frequencyDosage] only AtElgaEmedDosageFrequencyAdministration
+* dosageInstruction[freitextDosage] only AtElgaEmedDosageFreeTextAdministration
+* dosageInstruction[standardDosage] only AtElgaEmedDosageStandardAdministration
+
+//TODO Dosage und AtElgaEmedDosageDosierung entfernen sobald Dosierungen fertig sind
 * dosageInstruction ^short  = "Angabe der Dosierinformationen strukturiert oder als Freitext." //TODO: Inhalte AtElgaEmedDosageDosierung fachlich prüfen.
 
 * dispenseRequest 0..0 

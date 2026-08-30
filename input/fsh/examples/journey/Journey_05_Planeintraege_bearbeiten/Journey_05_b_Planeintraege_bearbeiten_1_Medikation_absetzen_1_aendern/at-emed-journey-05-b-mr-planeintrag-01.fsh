@@ -26,12 +26,14 @@ Usage: #example
 * authoredOn = "2026-03-10T13:20:00+00:00"
 * requester = Reference(At-Emed-Example-Practitioner-01)
 
-* dosageInstruction.timing.repeat.frequency = 1
-* dosageInstruction.timing.repeat.period = 1
-* dosageInstruction.timing.repeat.periodUnit = #d
-* dosageInstruction.timing.repeat.when[0] = $cs-timing#ACM "Morgens"   // morgens
+* dosageInstruction[otherDosage].extension[DosageCategory].valueCodeableConcept = AtElgaEmedCodeSystemDosageCategory#other
+* dosageInstruction[otherDosage].sequence = 1
+* dosageInstruction[otherDosage].timing.repeat.frequency = 1
+* dosageInstruction[otherDosage].timing.repeat.period = 1
+* dosageInstruction[otherDosage].timing.repeat.periodUnit = #d
+* dosageInstruction[otherDosage].timing.repeat.when[0] = $cs-timing#ACM "Morgens"   // morgens
 //* dosageInstruction.timing.repeat.when[+] = $cs-timing#ACV "Abends"  // abends
-* dosageInstruction.doseAndRate.doseQuantity = $cs-ucum#{Stueck} "Stück"
+* dosageInstruction[otherDosage].doseAndRate.doseQuantity = $cs-ucum#{Stueck} "Stück"
 
 
 // Contained Medication *********************************************************************
