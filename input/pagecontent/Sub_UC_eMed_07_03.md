@@ -7,7 +7,7 @@
 
 <!-- nur offene, mit gültigem GI (noch nicht eingelöst oder abgelaufen) -->
 
-Erfolgt die Arzneimittelabgabe basierend auf einem *e-Med GroupIdentifier* (z.B. mit DataMatrix-Code eines e-Rezepts), erhält ein [berechtigter GDA](actors.html#rollen-und-berechtigungen) ausschließlich lesenden Zugriff auf die zugehörigen *Geplanten* und *Durchgeführten Abgaben*. Diese werden über den im DataMatrix-Code enthaltenen gemeinsamen *e‑Med GroupIdentifier* in der e‑Medikation Fachanwendung identifiziert und abgerufen.
+Erfolgt die Arzneimittelabgabe basierend auf einem *e-Med GroupIdentifier* (z.B. mit DataMatrix-Code eines e-Rezepts), erhält ein [berechtigter GDA](actors.html#rollen-und-berechtigungen) ausschließlich lesenden Zugriff auf die zugehörigen *Geplanten* und *Durchgeführten Abgaben*. Diese werden über den im DataMatrix-Code enthaltenen *e‑Med GroupIdentifier* identifiziert und abgerufen.
 
 Der Zugriff mit *e-Med GroupIdentifier* ermöglicht ausschließlich einen eingeschränkten ELGA-Zugriff. Der GDA erhält in diesem Fall keinen Zugriff auf weitere offene *Geplante* oder *Durchgeführte Abgaben*, kann den *Medikationsplan* des ELGA-Teilnehmers nicht einsehen und kann auch keine zusätzlichen *Durchgeführten Abgaben* (z.B. OTC oder Notabgaben) in der e-Medikation des ELGA-Teilnehmers dokumentieren.
 
@@ -21,19 +21,24 @@ Der Zugriff mit *e-Med GroupIdentifier* ermöglicht ausschließlich einen einges
    * *category = Geplante Abgabe*
    * dem übermittelten *e-Med GroupIdentifier*
    * *status = active*
-4. Ergibt die Suche mindestens eine offene *Geplante Abgabe*, ermittelt die Fachanwendung zusätzlich alle zugehörigen *MedicationDispense*-Ressourcen mit:
+4. TODO?: Ergibt die Suche mindestens eine offene *Geplante Abgabe*, ermittelt die Fachanwendung zusätzlich alle zugehörigen *MedicationDispense*-Ressourcen mit:
    * dem übermittelten *e-Med GroupIdentifier*
    * *status = completed | cancelled*
 5. Die Fachanwendung liefert ein **Bundle** vom Typ *searchset* mit den ermittelten *MedicationRequest*- und *MedicationDispense*-Ressourcen zurück.
-6. Ergibt die Suche **keine offene Geplante Abgabe**, liefert die Fachanwendung ein **leeres Bundle** vom Typ *searchset* zurück.
+6. Ergibt die Suche **keine offene Geplanten oder durchgeführten Abgaben**, liefert die Fachanwendung ein **leeres Bundle** vom Typ *searchset* zurück.
 7. Ist der *e-Med GroupIdentifier* syntaktisch ungültig, lehnt die Fachanwendung die Operation ab und liefert einen entsprechenden *OperationOutcome* zurück.
 
 ##### Sequenzdiagramm
 
 [![overview](plantuml/UC_eMed_07_03.svg){: .mx-auto style="width:50%;"}](plantuml/UC_eMed_07_03.svg)
 
+<!--TODO: je nach Entscheidung, ob wirklich nur bei gefundenen geplanten auch die durchgeführten gesucht werden muss evtl. das Diagramm angepasst werden. -->
+
+
 ##### Custom Operations
 
- $groupidentifier-search: in Arbeit.
-
-
+<div class="dragon">
+<p class="note-to-balloters">
+Offene Punkte: <br>$groupidentifier-search: in Arbeit.
+</p>
+</div>

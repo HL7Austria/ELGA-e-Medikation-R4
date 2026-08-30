@@ -7,6 +7,14 @@
 }
 </style>
 
+<div class="dragon">
+<p class="note-to-balloters">
+Offene Punkte:<br>
+In Arbeit.
+(doseAndRate in Textdarstellung,...)
+</p>
+</div>
+
 
 <h3 class="no-number">Regeln für Standarddosierungen im Tageszeitenschema</h3>
 

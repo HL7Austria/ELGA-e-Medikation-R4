@@ -8,7 +8,7 @@ Ein [berechtigter GDA](actors.html#rollen-und-berechtigungen) kann *Durchgeführ
 
 ELGA-Teilnehmer können *Durchgeführte Abgaben* über das ELGA-Portal einsehen. 
 
-Sofern ein zugehöriges e-Rezept vorliegt, spiegeln die *Durchgeführten Abgaben* den Status der Abgaben des e-Rezepts Anwendung wider.
+*Durchgeführten Abgaben* spiegeln den Status der Abgaben des e-Rezepts wider.
 
 Der Standardzugriff auf *Durchgeführte Abgaben* erfolgt mittels Kontaktbestätigung des ELGA-Teilnehmers (z.B. über die e-card). Dadurch erhält der GDA lesenden Zugriff auf alle *Durchgeführten Abgaben*. 
 Zusätzlich kann der GDA lesend auf *Geplante Abgaben* und den *Medikationsplan* zugreifen, um die *Durchgeführten Abgaben* im Kontext der gesamten Medikation zu beurteilen.
@@ -27,18 +27,34 @@ Bei der **Dispense-Search** stellt die Fachanwendung alle *MedicationDispense*-R
 4. Kann die Anfrage nicht verarbeitet werden, antwortet die Fachanwendung mit einer geeigneten **HTTP-4xx**-Antwort und einem **OperationOutcome**.
 5. Optional kann der GDA zusätzlich den *Medikationsplan* oder *Geplante Abgaben* abrufen.
 
+
 ##### Sequenzdiagramm
 
 [![overview](plantuml/UC_eMed_07_02.svg){: .mx-auto style="width:50%;"}](plantuml/UC_eMed_07_02.svg)
 
+<!-- im Diagramm die Optionale Box über das GET schieben -->
+
 
 ###### Suchparameter
 
+<div class="dragon">
+<p class="note-to-balloters">
+Offene Punkte: <br>
+Suchparameter
+</p>
+</div>
+
 Mögliche Suchparamter: (in Arbeit)
-- identifier (e-Med GroupIdentifier)
-- [status](ValueSet-DurchgefuehrteAbgabeStatusVS.html) [completed | cancelled | entered-in-error]
+- Zeitraum der Erfassung der durchgeführten Abgabe
+- Medikation: PZN/Name bzw. Wirkstoff
+- [status](ValueSet-DurchgefuehrteAbgabeStatusVS.html) der durchgeführten Abgabe [completed | cancelled | entered-in-error]
 - [type](ValueSet-DurchgefuehrteAbgabeTypVS.html) (Abgabeart)
-- recorded (Datum und Uhrzeit der Erfassung)
+- Durchgeführte Abgaben zu einer geplanten Abgabe
+- id des Planeintrags auf welchem die durchgeführte Abgabe basiert
+- alle durchgeführten Abgaben zu einem groupIdentifier
+
+
+
 <!-- Todo: entered-in-error nicht, weil nur eigene verworfen werden können? -->
 
 
