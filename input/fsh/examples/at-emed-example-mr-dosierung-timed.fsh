@@ -6,10 +6,11 @@ Usage: #example
 
 * contained[+] = contained-medication-zeit-01
 * identifier.value = "4712_202602280800000" // Eintrag_ID = {ID}_{Zeitstempel}
+* courseOfTherapyType = $cs-medication-request-courseOfTherapyType#acute
 
 // R5 Backports
-// * extension[effectiveDosePeriod].valuePeriod.start = "2026-02-27"
-// * extension[effectiveDosePeriod].valuePeriod.end = "2026-03-06"
+* extension[effectiveDosePeriod].valuePeriod.start = "2026-02-27"
+* extension[effectiveDosePeriod].valuePeriod.end = "2026-03-06"
 * extension[renderedDosageInstruction].valueMarkdown = "täglich: 08:00 Uhr — je 1 Stück"
 
 * status = $cs-medication-request-status#active

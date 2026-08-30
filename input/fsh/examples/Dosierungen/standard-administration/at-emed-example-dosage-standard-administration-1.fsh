@@ -6,9 +6,11 @@ Usage: #example
 
 * contained[+] = AtEmedExampleMedicationIbuprofen200
 
+* courseOfTherapyType = $cs-medication-request-courseOfTherapyType#acute
+
 // R5 Backports
-// * extension[effectiveDosePeriod].valuePeriod.start = "2026-02-27"
-// * extension[effectiveDosePeriod].valuePeriod.end = "2026-03-06"
+* extension[effectiveDosePeriod].valuePeriod.start = "2026-02-27"
+* extension[effectiveDosePeriod].valuePeriod.end = "2026-03-06"
 * extension[renderedDosageInstruction].valueMarkdown = "1-0-1-0 täglich | Täglich 1 Stück morgens und 1 Stück abends"
 
 * identifier.value = "4712_202602280800000" // Eintrag_ID = {ID}_{Zeitstempel}
