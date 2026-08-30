@@ -31,6 +31,7 @@ Alias: $vs-medikationfrequenz = https://termgit.elga.gv.at/ValueSet/elga-medikat
 
 //medication request
 Alias: $cs-medication-request-status = http://hl7.org/fhir/CodeSystem/medicationrequest-status
+Alias: $cs-medication-request-courseOfTherapyType = http://terminology.hl7.org/CodeSystem/medicationrequest-course-of-therapy
 
 // medication request - geplante verordung:
 Alias: $vs-medication-rezeptart = 	https://termgit.elga.gv.at/ValueSet/elga-medikationrezeptart

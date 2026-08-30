@@ -94,7 +94,7 @@ Das Wochentagsschema bleibt über den gesamten Behandlungszeitraum gleich.
 ### Beispiel
 
 * Medikationsplaneinträge ändern:
-     * Beispiel: [Collection Bundle](Bundle-At-Emed-Example-Bundle-Medikationsplan-Dosierungsvarianten.html)
+     * Beispiel: [Medikationsplan-Searchset-Bundle](Bundle-At-Emed-Example-Bundle-Medikationsplan-Dosierungsvarianten.html)
   
 <!-- [Visualisierungsbeispiel](at-emed-example-searchset-medikationsplan-dosierungsvarianten-1.jpg) -->
 

@@ -1,6 +1,6 @@
 @startuml
 
-title Planeinträge bearbeiten 
+title Medikationsplan bearbeiten 
 
 'skinparam actorStyle awesome
 
@@ -66,13 +66,13 @@ ref over GDA_1, eMed_FA : [[interactions.html#sequenzdiagramm-plan-read Plan-Rea
 note over GDA_1
 GDA erhält den aktuellen 
 Medikationsplan als 
-Collection Bundle 
+Medikationsplan-Searchset-Bundle 
 end note
 
 == Medikationsplan bearbeiten und und schreiben ==
 
-GDA_1 -> GDA_1: Planeinträge bearbeiten
-GDA_1 -> GDA_1: List.entry\nanpassen
+GDA_1 -> GDA_1: Planeinträge (MedicationRequests)\nbearbeiten
+GDA_1 -> GDA_1: Medikationsplan (List)\nanpassen
 
 note over GDA_1
 siehe Use Case 

@@ -1,5 +1,5 @@
 @startuml
-title Prüfung des Planzustands und Erzeugung des Collection Bundles
+title Prüfung des Planzustands und Erzeugung des Medikationsplan-Searchset-Bundles
 
 skinparam borderColor #000000
 skinparam backgroundColor #f5f5f5
@@ -72,7 +72,7 @@ else (Ja)
 
 endif
 
-:Bundle zur Auslieferung\nerzeugen;
+:Medikationsplan-Searchset-Bundle\nzur Auslieferung bereit;
 
 stop
 

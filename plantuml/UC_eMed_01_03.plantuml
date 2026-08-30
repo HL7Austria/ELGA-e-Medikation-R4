@@ -73,13 +73,13 @@ alt COLOR_OK nein: kein Medikationsplan persistiert
 
   eMed_FA -> eMed_FA: Erzeugt initiale List\n(emptyReason = notstarted)
   eMed_FA -> eMed_FA: Persistiert List-Version
-  eMed_FA -> eMed_FA: Erzeugt temporäres\nCollection Bundle 
+  eMed_FA -> eMed_FA: Erzeugt temporäres\nMedikationsplan-Searchset-Bundle
   
   note over eMed_FA
   Keine Transformation
   erforderlich.
   end note
-  eMed_FA -> GDA_1: Collection Bundle\n(List.emptyReason = notstarted)\n+ ETag 
+  eMed_FA -> GDA_1: Medikationsplan-Searchset-Bundle\n(List.emptyReason = notstarted)\n+ ETag 
   deactivate eMed_FA
 
 

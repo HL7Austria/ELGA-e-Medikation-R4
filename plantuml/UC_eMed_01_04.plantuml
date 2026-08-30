@@ -69,13 +69,6 @@ else COLOR_ERROR Fehler
   deactivate eMed_FA
 end
 
-note over eMed_FA
-Die Fachanwendung liefert die den 
-Suchparametern entsprechenden 
-Medikationsplaneinträge als 
-Bundle vom Typ searchset zurück.
-end note
-
 deactivate GDA_1
 deactivate eMed_FA
 

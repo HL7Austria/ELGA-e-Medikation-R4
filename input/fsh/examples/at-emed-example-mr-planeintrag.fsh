@@ -6,9 +6,9 @@ Usage: #example
 
 * contained[+] = ContainedMedication01
 
+* courseOfTherapyType = $cs-medication-request-courseOfTherapyType#continuous
 // R5 Backports
 * extension[effectiveDosePeriod].valuePeriod.start = "2026-02-27"
-* extension[effectiveDosePeriod].valuePeriod.end = "2026-03-06"
 * extension[renderedDosageInstruction].valueMarkdown = "1 Kapsel täglich morgens"
 
 //* meta[+].profile = "http://hl7.eu/fhir/mpd/StructureDefinition/MedicationRequest-eu-mpd"

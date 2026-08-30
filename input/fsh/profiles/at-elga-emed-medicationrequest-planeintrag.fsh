@@ -10,7 +10,7 @@ Der Medikationsplaneintrag kann in weiterer Folge als Grundlage für die Erstell
 * . ^short = "Medikationsplaneintrag"
 
 // Extensions
-* extension contains $medicationRequest-effectiveDosePeriod-r5 named effectiveDosePeriod 0..1
+* extension contains $medicationRequest-effectiveDosePeriod-r5 named effectiveDosePeriod 1..1
 * extension[effectiveDosePeriod] ^short = "Zeitraum, in dem die Medikation eingenommen werden soll."
 * extension[effectiveDosePeriod] ^definition = "Zeitraum, über den die Medikation eingenommen werden soll. Wenn mehrere dosageInstruction-Zeilen vorhanden sind (z. B. bei einer ausschleichenden Dosierung), entspricht dieser Zeitraum dem frühesten Startdatum und dem spätesten Enddatum der dosageInstructions."
 
@@ -122,10 +122,12 @@ Der Medikationsplaneintrag kann in weiterer Folge als Grundlage für die Erstell
 * groupIdentifier 0..0
 * groupIdentifier ^short = "Erst bei der geplanten Abgabe (Rezepterstellung) relevant." // TODO: Evtl ein Verweis auf erstellte Rezepte? Würde Extension erfordern, da Kardinalität nur 0..1 zulässig"
 
-* courseOfTherapyType 0..1 MS 
+* courseOfTherapyType 1..1 MS 
 * courseOfTherapyType ^short = "Gesamtmuster der Medikamentengabe. Mögliche Ausprägungen: [continuous | acute ]" //TODO: seasonal evtl. durch Dosierungsinformationen abgedeckt
 // Invariante, die prüft: wenn continuous, dann kein Enddatum für Behandlungszeitraum.
 // TODO: seasonal entfernen
+* obeys e-med-continuous-medication-effectiveDosePeriod
+* obeys e-med-acute-medication-effectiveDosePeriod
 
 * insurance 0..0
 * insurance ^short = "Keine Verwendung im Medikationsplaneintrag."
@@ -177,3 +179,15 @@ Der Medikationsplaneintrag kann in weiterer Folge als Grundlage für die Erstell
 // Description: "dateTime muss mindestens aus Tag, Monat und Jahr bestehen"
 // * severity = #error
 // * expression = "toString().matches('^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\\\.[0-9]+)?(Z|(\\\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?$')"
+
+
+Invariant: e-med-continuous-medication-effectiveDosePeriod
+Description: "Eine Dauermedikation (courseOfTherapyType = #continuous) darf kein Enddatum besitzen."
+* severity = #error
+* expression = "courseOfTherapyType.where(coding.code='continuous' and coding.system = 'http://terminology.hl7.org/CodeSystem/medicationrequest-course-of-therapy').exists() implies extension.where(url = 'http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationRequest.effectiveDosePeriod').value.ofType(Period).end.exists().not()"
+
+
+Invariant: e-med-acute-medication-effectiveDosePeriod
+Description: "Eine Akutmedikation (courseOfTherapyType = #acute) muss ein Enddatum besitzen."
+* severity = #error
+* expression = "courseOfTherapyType.where(coding.code='acute' and coding.system = 'http://terminology.hl7.org/CodeSystem/medicationrequest-course-of-therapy').exists() implies extension.where(url = 'http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationRequest.effectiveDosePeriod').value.ofType(Period).end.exists()"

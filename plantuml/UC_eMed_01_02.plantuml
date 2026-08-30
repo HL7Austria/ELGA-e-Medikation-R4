@@ -67,7 +67,7 @@ activate eMed_FA COLOR_EMED_FA
 eMed_FA -> eMed_FA: Ermittlung der passenden\nhistorischen List-Versionen\nund Rekonstruktion der\nhistorischen Medikationspläne
 
 group COLOR_OK alt: Historische List-Version(en) gefunden?
-  eMed_FA -> GDA_1: Bundle (type=searchset) mit einem oder mehreren\nMedikationsplan-Collection-Bundles
+  eMed_FA -> GDA_1: Bundle (type=searchset) mit einem oder mehreren\nMedikationsplan-Searchset-Bundles
 else COLOR_OK_2 nein
   eMed_FA -> GDA_1: Bundle (type=searchset) ohne Einträge
 else COLOR_ERROR Fehler
@@ -80,7 +80,7 @@ end
 note over eMed_FA
 Die Fachanwendung liefert die den
 Suchparametern entsprechenden historischen
-Medikationspläne als Collection Bundles in
+Medikationspläne als Medikationsplan-Searchset-Bundles in
 einem Bundle vom Typ searchset zurück.
 end note
 

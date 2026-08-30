@@ -70,18 +70,18 @@ activate eMed_FA COLOR_EMED_FA
 eMed_FA -> eMed_FA: Existiert bereits\n ein Medikationsplan?
 
 alt COLOR_OK Medikationsplan persistiert
-  eMed_FA -> eMed_FA: Erzeugt Auslieferungs-\nCollection Bundle\nTransformation:\n- new|changed → unchanged\n- removed -> aus List und Bundle entfernen\nwenn alle List.entry entfernt:\n- setzt List.emptyReason = nilknown
+  eMed_FA -> eMed_FA: Erzeugt Medikationsplan-\nSearchset-Bundle\nTransformation:\n- new|changed → unchanged\n- removed -> aus List und Bundle entfernen\nwenn alle List.entry entfernt:\n- setzt List.emptyReason = nilknown
   note over eMed_FA
   Das persistierte 
   Medikationsplan-Collection-
   Bundle bleibt unverändert.
   end note
 
-  eMed_FA --> GDA_1: Auslieferungs-\nCollection Bundle\n+ ETag
+  eMed_FA --> GDA_1: Medikationsplan-\nSearchset-Bundle\n+ ETag
 
 else COLOR_ERROR kein Medikationsplan persistiert
   eMed_FA -> eMed_FA: Erzeugt leeren Medikationsplan\n mit List.emptyReason = "notstarted"
-  eMed_FA -> GDA_1: Collection Bundle\n(List.emptyReason = notstarted)\n+ ETag
+  eMed_FA -> GDA_1: Medikationsplan-Searchset-Bundle\n(List.emptyReason = notstarted)\n+ ETag
   deactivate eMed_FA
 end
 

@@ -1,7 +1,7 @@
 Instance: At-Emed-Journey-05-a-Bundle-Medikationsplan
 InstanceOf: AtElgaEmedBundleMedikationsplan   
-Title: "Beispiel Journey 05-a: Collection Bundle mit geänderter Reihenfolge der Planeinträge."
-Description: "Beispiel eines Collection Bundles, mit geänderter Reihenfolge der Medikationsplaneinträge."
+Title: "Beispiel Journey 05-a: Medikationsplan-Searchset-Bundle mit geänderter Reihenfolge der Planeinträge."
+Description: "Beispiel eines Medikationsplan-Searchset-Bundles, mit geänderter Reihenfolge der Medikationsplaneinträge."
 Usage: #example
 
 * identifier.system = "http://system-to-be-defined.com"

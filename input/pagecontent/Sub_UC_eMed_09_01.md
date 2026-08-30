@@ -5,7 +5,7 @@
 
 In Arbeit.
 
-### Sub_UC_eMed_09_01 - Geplante und Durchgeführte Abgaben mit e-Med GroupIdentifier schreiben
+### Sub_UC_eMed_09_01 - Geplante und Durchgeführte Abgaben mittels e-Med GroupIdentifier schreiben
 
 In Arbeit.
 

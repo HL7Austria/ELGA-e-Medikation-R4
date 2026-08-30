@@ -5,6 +5,7 @@ Description: "Bildet einen Medikationsplaneintrag mit einer Referenz auf eine ma
 Usage: #example
 
 * contained[+] = contained-medication-journey-02-magistral
+* courseOfTherapyType = $cs-medication-request-courseOfTherapyType#acute
 
 // R5 Backports
 * extension[effectiveDosePeriod].valuePeriod.start = "2026-02-27"

@@ -67,7 +67,7 @@ ref over GDA_1, eMed_FA : [[interactions.html#sequenzdiagramm-plan-read Plan-Rea
 
 note over GDA_1
 GDA erhält Medikationsplan 
-(Auslieferungs-Collection-Bundle)
+(Medikationsplan-Searchset-Bundle)
 end note
 
 == <i>Geplante Abgaben</i> vorbereiten und schreiben ==

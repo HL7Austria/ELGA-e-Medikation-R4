@@ -35,4 +35,4 @@ Usage: #definition
 * parameter[=].max = "1"
 * parameter[=].documentation = "Der *return* Parameter gibt Auskunft über den Erfolg der Operation."
 * parameter[=].type = #Bundle
-* parameter[=].targetProfile[+] = Canonical(AtElgaEmedBundleMedikationsplan)  // Collection Bundle
+* parameter[=].targetProfile[+] = Canonical(AtElgaEmedBundleMedikationsplan)  // Medikationsplan-Searchset-Bundle
