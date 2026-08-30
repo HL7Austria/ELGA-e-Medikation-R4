@@ -50,16 +50,15 @@
 <h4 class="no-number">Regeln für tägliche Dosierungen</h4>
 
 <p>
-  Bei einer Wiederholung pro Tag (täglich)
-  (<code>timing.repeat.periodUnit = d</code>) muss
-  <code>timing.repeat.frequency</code> der Anzahl der angegebenen
-  Tageszeiten entsprechen.
+  Bei Dosierungen mit <code>timing.repeat.periodUnit = d</code> entspricht <code>timing.repeat.frequency</code> der Anzahl der angegebenen Tageszeiten.
+  Bei <code>period = 1</code> wird die Dosierung als täglich dargestellt;
+  bei <code>period &gt; 1</code> als Intervall in Tagen.
 </p>
 
 <p><strong>Beispiel: 1 Stück morgens und 1 Stück nachts</strong></p>
 
 <ul>
-<li>Textdarstellung: <code>1-0-0-1 täglich | Täglich 1 Stück morgens und 1 Stück nachts</code></li>
+<li>Textdarstellung: <code>1-0-0-1 | Täglich: 1-0-0-1</code></li>
 <li><code>Dosage.timing.repeat.frequency / period / periodUnit</code> = <code>2 / 1 / d</code></li>
 <li><code>Dosage.timing.repeat.when</code> = <code>[MORN, NIGHT]</code></li>
 <li><code>doseQuantity.value</code> = <code>1</code>, <code>doseQuantity.unit</code> = <code>Stück</code></li>
@@ -123,12 +122,16 @@
   Tageszeiten und der Anzahl der Wochentage.
 </p>
 
-<p>Beispiel: 4 mal pro Woche - morgens und nachts, jeweils montags und freitags.</p>
+<p><strong>Beispiel: montags und freitags jeweils 1-0-0-1</strong></p>
 
 <ul>
-<li><code>Dosage.timing.repeat.frequency / period / periodUnit</code> = <code>4 / 1 / wk</code></li>
-<li><code>Dosage.timing.repeat.dayOfWeek</code> = <code>mon</code> (Montag), <code>fri</code> (Freitag)</li>
-<li><code>Dosage.timing.repeat.when</code> = <code>MORN</code> (morgens), <code>NIGHT</code> (nachts)</li>
+  <li>
+    Textdarstellung:
+    <code>Mo 1-0-0-1, Fr 1-0-0-1 | Wöchentlich: 1-0-0-1 am Montag, 1-0-0-1 am Freitag</code>
+  </li>
+  <li><code>Dosage.timing.repeat.frequency / period / periodUnit</code> = <code>4 / 1 / wk</code></li>
+  <li><code>Dosage.timing.repeat.dayOfWeek</code> = <code>mon</code> (Montag), <code>fri</code> (Freitag)</li>
+  <li><code>Dosage.timing.repeat.when</code> = <code>MORN</code> (morgens), <code>NIGHT</code> (nachts)</li>
 </ul>
 
 <div class="tabs">
@@ -176,7 +179,7 @@ timing
 
 <p>
   Werden Kalendertage des Monats in <code>timing.repeat.extension:timing-dayOfMonth</code> angegeben, muss
-  <code>timing.repeat.periodUnit</code> den Wert <code>m</code> haben.
+  <code>timing.repeat.periodUnit</code> den Wert <code>mo</code> haben.
   Die <code>frequency</code> entspricht dann dem Produkt aus der Anzahl der
   dayOfMonth Extensions und der Anzahl der Tageszeiten.
 </p>
@@ -442,7 +445,7 @@ Dosage [1]
     <code>when = [MORN, NIGHT]</code>
   </li>
   <li>
-    <b>Mo 1-0-0-1, Fr 1-0-0-0 |Wöchentlich: 1-0-0-1 am Montag, 1-0-0-0 am Freitag</b>
+    <b>Mo 1-0-0-1, Fr 1-0-0-0 | Wöchentlich: 1-0-0-1 am Montag, 1-0-0-0 am Freitag</b>
     <br>
     Dosage 1:
     <br>
@@ -457,18 +460,19 @@ Dosage [1]
     <code>when = [MORN]</code>
   </li>
   <li>
-    <b>Alle 2 Wochen: Mo 1-0-0-1 | alle 2 Wochen: 1-0-0-1 am Montag</b>
+    <b>Alle 2 Wochen: Mo 1-0-0-1 | Alle 2 Wochen: 1-0-0-1 am Montag</b>
     <code>frequency = 2</code>, <code>period = 2</code>,
-    <code>periodUnit = wk</code>, <code>when = [MORN, NIGHT]</code>
+    <code>periodUnit = wk</code>, <code>dayOfWeek = [mon]</code>,
+    <code>when = [MORN, NIGHT]</code>
   </li>
   <li>
-    <b>Alle 2 Wochen: Mo 1-0-0-1, Fr 1-0-0-0 | Alle 2 Wochen: 1-0-0-1 am Montag, 1-0-0-1 am Freitag</b>
+    <b>Alle 2 Wochen: Mo 1-0-0-1, Fr 1-0-0-1 | Alle 2 Wochen: 1-0-0-1 am Montag, 1-0-0-1 am Freitag</b>
     <code>frequency = 4</code>, <code>period = 2</code>,
     <code>periodUnit = wk</code>, <code>dayOfWeek = [mon, fri]</code>,
     <code>when = [MORN, NIGHT]</code>
   </li>
   <li>
-    <b>Bei Bedarf 1-0-0-1 | Bei Bedarf, täglich: 1-0-0-1</b>
+    <b>Bei Bedarf: 1-0-0-1 | Bei Bedarf, täglich: 1-0-0-1</b>
     <code>asNeeded = true</code>,
     <code>frequency = 2</code>, <code>period = 1</code>,
     <code>periodUnit = d</code>, <code>when = [MORN, NIGHT]</code>
@@ -486,13 +490,13 @@ Dosage [1]
     <code>when = [MORN, NIGHT]</code>
   </li>
   <li>
-    <b>1-0-0-1 1., 1-0-0-1 10. des Monats | Monatlich: 1-0-0-1 am 1., 1-0-0-1 am 10. des Monats</b>
+    <b>1-0-0-1 am 1. des Monats, 1-0-0-1 am 10. des Monats | Monatlich: 1-0-0-1 am 1., 1-0-0-1 am 10. des Monats</b>
     <code>frequency = 4</code>, <code>period = 1</code>,
     <code>periodUnit = mo</code>, <code>extension:DayOfMonth = 1 & 10</code>,
     <code>when = [MORN, NIGHT]</code>
   </li>
   <li>
-    <b>1-0-0-1 1., 0-0-1-0 15. des Monats | Monatlich: 1-0-0-1 am 1. und 0-1-0-0 am 15. des Monats</b>
+    <b>1-0-0-1 am 1. des Monats, 0-1-0-0 am 15. des Monats | Monatlich: 1-0-0-1 am 1. und 0-1-0-0 am 15. des Monats</b>
     <br>
     Dosage 1:
     <br>
@@ -503,7 +507,7 @@ Dosage [1]
     Dosage 2:
     <br>
     <code>frequency = 1</code>, <code>period = 1</code>,
-    <code>periodUnit = mo</code>, <code>extension:DayOfMonth = 1</code>,
+    <code>periodUnit = mo</code>, <code>extension:DayOfMonth = 15</code>,
     <code>when = [NOON]</code>
   </li>
    <li>
@@ -540,141 +544,158 @@ Dosage [1]
     <code>1-1-1-1 alle 2 Stunden</code>: Dieses Profil ist für
     Tageszeitenschemata vorgesehen und nicht für stündliche Intervalle. Dosierschemata mit Zeitintervallen sind in diesem Profil TBD LINK definiert.
   </li>
+  <li>
+    <code>Alle 2 Wochen: Mo 1-0-0-1, Fr 1-0-0-0</code> als einzelner
+    <code>Dosage</code>-Eintrag mit <code>dayOfWeek = [mon, fri]</code> und
+    <code>when = [MORN, NIGHT]</code>: nicht zulässig. Unterschiedliche
+    Tageszeitenschemata je Wochentag erfordern getrennte
+    <code>Dosage</code>-Einträge mit derselben <code>sequence</code>.
+  </li>
+
+  <li>
+    <code>1-0-0-1 am 1. des Monats, 0-1-0-0 am 15. des Monats</code> als
+    einzelner <code>Dosage</code>-Eintrag mit zwei Kalendertagen: nicht zulässig,
+    wenn die Tageszeitenschemata unterschiedlich sind. In diesem Fall sind zwei
+    <code>Dosage</code>-Einträge erforderlich.
+  </li>
 </ul>
 
 
 <h3 class="no-number">Bildung der Textdarstellung</h3>
 
 <p>
-Die Textdarstellung wird je Einnahmeregel gebildet. Alle <code>Dosage</code>-Einträge
-mit derselben <code>sequence</code> und derselben Dosierungskategorie gehören zu
-derselben Einnahmeregel. Unterschiedliche Sequenznummern ergeben getrennte
-Einnahmeregeln.
+Die Textdarstellung wird je Einnahmeregel gebildet. Alle
+<code>Dosage</code>-Einträge mit derselben <code>sequence</code> und derselben
+Dosierungskategorie gehören zu derselben Einnahmeregel. Unterschiedliche
+Sequenznummern ergeben getrennte Einnahmeregeln.
 </p>
 
 <p>
-Die Darstellung besteht, sofern möglich, aus Kurz- und Langform. Beide Teile werden
-durch <code> | </code> getrennt.
+Die Darstellung besteht, sofern möglich, aus Kurz- und Langform. Beide Teile
+werden durch <code> | </code> getrennt.
 </p>
 
 <h4 class="no-number">Grundsatz</h4>
 
 <p>
-Die Langform verwendet ausschließlich Werte, die unmittelbar in den jeweiligen
-<code>Dosage</code>-Einträgen vorhanden sind. Insbesondere werden keine
-Gesamtmengen berechnet: Weder werden <code>frequency</code> und
-<code>doseQuantity.value</code> miteinander multipliziert, noch werden Mengen aus
-mehreren Dosage-Einträgen zu einer Gesamtmenge addiert.
+Die Textdarstellung verwendet das Tageszeitenschema
+<code>MORN-NOON-EVE-NIGHT</code>. Die vier Positionen stehen für morgens,
+mittags, abends und nachts. Nicht belegte Tageszeiten werden mit
+<code>0</code> dargestellt.
 </p>
 
 <p>
-Die Mengenangabe vor einem Einnahmezeitpunkt entspricht deshalb immer direkt
-<code>doseAndRate.doseQuantity.value</code> und
-<code>doseAndRate.doseQuantity.unit</code> des betreffenden Dosage-Eintrags.
+Die Menge in einer Position entspricht unmittelbar dem Wert von
+<code>doseAndRate.doseQuantity.value</code> des zugehörigen
+<code>Dosage</code>-Eintrags. Mengen werden nicht über mehrere
+<code>Dosage</code>-Einträge hinweg addiert oder aus
+<code>frequency</code>-Werten berechnet.
 </p>
 
 <h4 class="no-number">Kurzform</h4>
 
 <p>
-Die Kurzform verwendet vier feste Positionen in der Reihenfolge
-<strong>morgens – mittags – abends – nachts</strong>:
-<code>MORN-NOON-EVE-NIGHT</code>. Jede Position enthält die an dieser Tageszeit
-einzunehmende Menge; nicht belegte Positionen werden als <code>0</code> dargestellt.
-</p>
-
-<p>
-Dosage-Einträge derselben Einnahmeregel werden für die Kurzform anhand ihrer
-Tageszeit zusammengeführt. Beispielsweise ergibt ein Eintrag mit
-<code>when = [MORN]</code> und <code>doseQuantity.value = 1</code> sowie ein
-Eintrag mit <code>when = [EVE]</code> und <code>doseQuantity.value = 2</code>
-die Kurzform <code>1-0-2-0</code>.
+Die Kurzform gibt das Tageszeitenschema für jede zeitlich unterschiedliche
+Ausprägung der Einnahmeregel an.
 </p>
 
 <ul>
-<li><code>MORN</code> entspricht der ersten Position, zum Beispiel <code>1-0-0-0</code>.</li>
-<li><code>NOON</code> entspricht der zweiten Position, zum Beispiel <code>0-1-0-0</code>.</li>
-<li><code>EVE</code> entspricht der dritten Position, zum Beispiel <code>0-0-1-0</code>.</li>
-<li><code>NIGHT</code> entspricht der vierten Position, zum Beispiel <code>0-0-0-1</code>.</li>
-<li>Bei einer täglichen Regel wird <code>täglich</code> angefügt, beispielsweise <code>1-0-0-1 täglich</code>.</li>
-<li>Bei einem täglichen Intervall wird die Periode angefügt, beispielsweise <code>1-0-0-1 alle 2 Tage</code>.</li>
-<li>Bei ausgewählten Wochentagen werden die strukturierten Wochentagscodes angefügt, beispielsweise <code>1-0-0-1 mon, fri wöchentlich</code>.</li>
-<li>Bei ausgewählten Kalendertagen werden diese angefügt, beispielsweise <code>1-0-0-0 am 1. des Monats monatlich</code>.</li>
+  <li>
+    Bei täglicher Dosierung wird nur das Tageszeitenschema ausgegeben,
+    beispielsweise <code>1-0-0-1</code>.
+  </li>
+  <li>
+    Bei einem Intervall in Tagen steht die Intervallangabe vor dem
+    Tageszeitenschema, beispielsweise <code>Alle 2 Tage: 1-0-0-1</code>.
+  </li>
+  <li>
+    Bei Wochentagen steht die Wochentagsabkürzung vor dem jeweiligen
+    Tageszeitenschema, beispielsweise
+    <code>Mo 1-0-0-1, Fr 1-0-0-1</code>.
+  </li>
+  <li>
+    Bei Wochenintervallen steht die Intervallangabe vor den Wochentagen,
+    beispielsweise <code>Alle 2 Wochen: Mo 1-0-0-1</code>.
+  </li>
+  <li>
+    Bei Kalendertagen steht der Kalendertag nach dem jeweiligen
+    Tageszeitenschema, beispielsweise
+    <code>1-0-0-0 am 1. des Monats</code>.
+  </li>
 </ul>
 
 <h4 class="no-number">Langform</h4>
 
 <p>
-Die Langform nennt die Mengen je Einnahmezeitpunkt. Die Einnahmezeitpunkte werden
-in der Reihenfolge <strong>morgens – mittags – abends – nachts</strong> dargestellt.
-Anschließend folgen gegebenenfalls Wochentage oder Kalendertage.
+Die Langform beginnt mit der Wiederholungsangabe. Anschließend wird das
+Tageszeitenschema je Wochentag oder Kalendertag ausgegeben. Zwischen
+Wiederholungsangabe und Dosierschema steht ein Doppelpunkt.
 </p>
 
 <h5 class="no-number">Tägliche Dosierung</h5>
 
+<pre><code>Täglich: {MORN-NOON-EVE-NIGHT}</code></pre>
+
 <p>
-Für eine tägliche Dosierung mit <code>period = 1</code> wird die gemeinsame
-Wiederholung einmal als <code>täglich</code> ausgegeben. Alle Dosage-Einträge
-derselben Einnahmeregel werden anschließend in einer Zeile dargestellt. Dabei wird
-keine Gesamtmenge und keine Gesamtfrequenz berechnet.
+Beispiel:
+<code>1-0-0-1 | Täglich: 1-0-0-1</code>.
 </p>
 
-<pre><code>Täglich {Menge} {Einheit} morgens und {Menge} {Einheit} nachts</code></pre>
+<h5 class="no-number">Tagesintervall</h5>
+Bei einer <code>period</code> >1:
+<pre><code>Alle {period} Tage: {MORN-NOON-EVE-NIGHT}</code></pre>
 
 <p>
-Beispiel mit einer Dosierung:
-<code>1-0-0-1 täglich | Täglich 1 Stück morgens und 1 Stück nachts</code>.
-</p>
-
-<p>
-Beispiel mit unterschiedlichen Mengen in mehreren Dosage-Einträgen derselben
-Sequenz:
-<code>2-0-1-2 täglich | Täglich 2 Stück morgens, 1 Stück abends und 2 Stück nachts</code>.
+Beispiel:
+<code>Alle 2 Tage: 1-0-0-1 | Alle 2 Tage: 1-0-0-1</code>.
 </p>
 
 <h5 class="no-number">Wöchentliche Dosierung</h5>
 
-<p>
-Für eine wöchentliche Dosierung mit <code>period = 1</code> wird die Wiederholung
-einmal als <code>Wöchentlich</code> ausgegeben. Die Wochentage stehen vor den
-zugehörigen Einnahmezeitpunkten.
-</p>
-
-<pre><code>Wöchentlich montags {Menge} {Einheit} morgens und {Menge} {Einheit} nachts</code></pre>
-<code> Mo: 1-0-0-1 | Wöchentlich montags 1 Stück morgens und 1 Stück nachts</code>.
-<p>
-Beispiel für einen wöchentlichen Dosage-Eintrag and mehreren Wochentagen:
-<code> Mo: 1-0-0-1, Fr: 1-0-0-1 wöchentlich | Wöchentlich montags und freitags 1 Stück morgens und 1 Stück nachts</code>.
-</p>
+<pre><code>Wöchentlich: {MORN-NOON-EVE-NIGHT} am {Wochentag}</code></pre>
 
 <p>
-Beispiel für zwei wöchentliche Dosage-Einträge derselben Sequenz:
-<code>Mo: 1-0-0-1 , Fr: 1-0-0-0  wöchentlich | Wöchentlich montags 1 Stück morgens und 1 Stück nachts und freitags 1 Stück morgens</code>.
+Beispiel:
+<code>Mo 1-0-0-1, Fr 1-0-0-1 | Wöchentlich: 1-0-0-1 am Montag, 1-0-0-1 am Freitag</code>.
+</p>
+
+<h5 class="no-number">Wochenintervall</h5>
+Bei einer <code>period</code> >1:
+<pre><code>Alle {period} Wochen: {MORN-NOON-EVE-NIGHT} am {Wochentag}</code></pre>
+
+<p>
+Beispiel:
+<code>Alle 2 Wochen: Mo 1-0-0-1 | Alle 2 Wochen: 1-0-0-1 am Montag</code>.
 </p>
 
 <h5 class="no-number">Monatliche Dosierung</h5>
 
-<p>
-Für eine monatliche Dosierung mit <code>period = 1</code> wird die Wiederholung
-einmal als <code>Monatlich</code> ausgegeben. Der Kalendertag steht vor den
-zugehörigen Einnahmezeitpunkten.
-</p>
-
-<pre><code>Monatlich am {dayOfMonth}. des Monats {Menge} {Einheit} morgens</code></pre>
-
-<p>
-Beispiel für zwei monatliche Dosage-Einträge derselben Sequenz:
-<code>1-0-0-0 am 1. des Monats, 1-0-0-0 am 15. des Monats monatlich | Monatlich am 1. des Monats 1 Stück morgens und am 15. des Monats 1 Stück morgens</code>.
-</p>
-
-<h5 class="no-number">Intervalle</h5>
-
-<p>
-Ist <code>period</code> größer als <code>1</code>, wird das Intervall anstelle der
-einfachen Wiederholung ausgegeben, beispielsweise <code>Alle 2 Tage</code>,
-<code>Alle 2 Wochen</code> oder <code>Alle 2 Monate</code>.
-</p>
+<pre><code>Monatlich: {MORN-NOON-EVE-NIGHT} am {extension:dayOfMonth}. des Monats</code></pre>
 
 <p>
 Beispiel:
-<code>1-0-0-1 alle 2 Tage | Alle 2 Tage 1 Stück morgens und 1 Stück nachts</code>.
+<code>1-0-0-1 am 1. des Monats, 1-0-0-1 am 10. des Monats | Monatlich: 1-0-0-1 am 1. des Monats, 1-0-0-1 am 10. des Monats</code>.
+</p>
+
+<h5 class="no-number">Monatsintervall</h5>
+Bei einer <code>period</code> >1:
+<pre><code>Alle {period} Monate: {MORN-NOON-EVE-NIGHT} am {extension:dayOfMonth}. des Monats</code></pre>
+
+<p>
+Beispiel:
+<code>Alle 3 Monate: 1-0-0-0 am 1. des Monats</code>.
+</p>
+
+<h5 class="no-number">Bedarfsdosierung</h5>
+
+<p>
+Bei einer Bedarfsdosierung mit <code>asNeeded = true</code> wird <code>Bei Bedarf</code> der jeweiligen Wiederholungsangabe vorangestellt.
+</p>
+
+<pre><code>Bei Bedarf, täglich: {MORN-NOON-EVE-NIGHT}</code></pre>
+
+<p>
+Beispiele:
+<code>Bei Bedarf: 1-0-0-1 | Bei Bedarf, täglich: 1-0-0-1</code> und
+<code>Bei Bedarf, alle 2 Tage: 1-0-0-1 | Bei Bedarf, alle 2 Tage: 1-0-0-1</code>.
 </p>
