@@ -2,6 +2,9 @@
 
 <!-- Anwendungsfall UC_eMed_02: Medikationsplan schreiben -->
 
+Link zu PDF ergänzen.
+
+<!-- 
 ### Beschreibung
 
 Als GDA möchte ich den Medikationsplan von einem:einer ELGA-Teilnehmer:in bearbeiten können, um eine Übersicht über die gesamte aktuell einzunehmende Medikation zur Verfügung zu stellen. 
@@ -83,7 +86,7 @@ Die zuletzt erfasste Medikationsplanversion wird als Basis für die Bearbeitung 
 
 ###### Neue Medikationsplaneinträge hinzufügen 
 * Manuelles Erfassen neuer Einträge mittels Angabe aller erforderlichen Informationen 
-* Als Eingabe-Unterstützung für Benutzer:innen: Übernahme der Daten einer durchgeführten Abgabe ohne zugehörige geplante Abgabe; vor der Speicherung des neuen Medikationsplaneintrages können diese nochmals vom GDA verändert werden (UC_eMed_07 Geplante und durchgeführte Abgaben lesen) 
+* Als Eingabe-Unterstützung für Benutzer:innen: Übernahme der Daten einer durchgeführten Abgabe ohne zugehörige geplante Abgabe; vor der Speicherung des neuen Medikationsplaneintrages können diese nochmals vom GDA verändert werden (UC_eMed_03 Geplante und durchgeführte Abgaben lesen) 
 
 ###### Bestehende Medikationsplaneinträge unverändert beibehalten / zur Kenntnis nehmen 
 * Beibehalten / zur Kenntnisnahme von bestehenden Medikationsplaneinträgen der zuletzt erfassten Medikationsplanversion 
@@ -121,7 +124,7 @@ ODER
 * verworfene Einträge werden nicht mehr im Medikationsplan angezeigt, können aber über die Versionshistorie aufgerufen werden und werden darin als „irrtümlich erfasst“ ausgewiesen 
 * eine Richtigstellung der fehlerhaften Angabe erfolgt in einem neuen Medikationsplaneintrag (sofern notwendig) 
 
-ℹ️ Benutzer:innen erhalten einen Hinweis, sofern bereits geplante Abgaben existieren, die auf den verworfenen Medikationsplaneintrag referenzieren. Es soll eine einfache Möglichkeit geschaffen werden, in diesem Zuge auch die zugehörigen Abgaben zu verwerfen (vgl. UC_eMed_08 Geplante Abgabe schreiben) 
+ℹ️ Benutzer:innen erhalten einen Hinweis, sofern bereits geplante Abgaben existieren, die auf den verworfenen Medikationsplaneintrag referenzieren. Es soll eine einfache Möglichkeit geschaffen werden, in diesem Zuge auch die zugehörigen Abgaben zu verwerfen (vgl. UC_eMed_04 Geplante Abgabe schreiben) 
 
 ###### Bestehende Medikationsplaneinträge pausieren oder reaktivieren 
 
@@ -173,12 +176,12 @@ Die medizinisch verantwortliche Person bzw. der:die Verordner:in kann im Regelfa
 
 Beim Erfassen von Fremdmedikation entspricht der:die eingeloggte Benutzer:in allerdings nicht der medizinisch verantwortlichen, sondern nur der erfassenden Person und es muss hierfür eine Ausnahmelogik implementiert werden. 
 
-<!-- #### Ablauf des Einnahmezeitraums eines Medikaments  -->
+#### Ablauf des Einnahmezeitraums eines Medikaments 
 
-<!-- Zu ergänzen: Mechanismus beim Ablauf des Einnahmezeitraums  -->
-<!-- * Automatisches Entfernen abgelaufener Medikamente (aber: Nachvollziehbarkeit?) ODER  -->
-<!-- * Bestätigung durch GDA bei nächster Bearbeitung des Medikationsplan (aber: Zusatzaufwand bzw. fachliche Relevanz?) ODER  -->
-<!-- * Beibehalten abgelaufener Medikationsplaneinträge und Ausblenden im Clientsystem  -->
+Zu ergänzen: Mechanismus beim Ablauf des Einnahmezeitraums 
+* Automatisches Entfernen abgelaufener Medikamente (aber: Nachvollziehbarkeit?) ODER  
+* Bestätigung durch GDA bei nächster Bearbeitung des Medikationsplan (aber: Zusatzaufwand bzw. fachliche Relevanz?) ODER  
+* Beibehalten abgelaufener Medikationsplaneinträge und Ausblenden im Clientsystem 
 
 ##### ℹ️ Kennzeichnung abgelaufener Medikamente im Clientsystem 
 
@@ -192,4 +195,4 @@ Medikationspläne werden nach Ablauf der gesetzlichen Speicherfrist gelöscht:
 
 ### Abgrenzungen 
 
-Keine.
+Keine. -->

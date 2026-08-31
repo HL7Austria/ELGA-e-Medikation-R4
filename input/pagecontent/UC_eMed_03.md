@@ -1,8 +1,10 @@
 {% include styleheader.md %}
 
-<!-- Anwendungsfall UC_eMed_07: Geplante und durchgeführte Abgaben lesen -->
+<!-- Anwendungsfall UC_eMed_03: Geplante und durchgeführte Abgaben lesen -->
 
-### Beschreibung
+Link zu PDF ergänzen.
+
+<!-- ### Beschreibung
 
 GDA sollen alle geplanten und durchgeführten Abgaben von ELGA-Teilnehmer:innen mit Behandlungsbezug einsehen können, um sich einen Überblick zu den verordneten und abgegebenen Medikamenten zu verschaffen. 
 
@@ -63,7 +65,7 @@ Mockup folgt.
 ### Anzeige geplanter Abgaben (UC_eMed_07_H01)
 
 Die geplanten Abgaben können gelesen werden: 
-* Inhalte der geplanten Abgaben, siehe UC_eMed_08 Geplante Abgabe schreiben 
+* Inhalte der geplanten Abgaben, siehe UC_eMed_04 Geplante Abgabe schreiben 
 * Geplante Abgaben können Korrekturvermerke enthalten, siehe UC_eMed_07_H03 
 * Ausgeblendete geplante Abgaben werden in der Abgabenübersicht nicht angezeigt 
 * Geplante Abgaben stehen nach einer unwiderruflichen Löschung nicht mehr zur Verfügung
@@ -92,7 +94,7 @@ Die geplanten Abgaben können gelesen werden:
 ### Anzeige durchgeführter Abgaben (UC_eMed_07_H02)
 
 Die durchgeführten Abgaben können gelesen werden: 
-* Inhalte der durchgeführten Abgaben, siehe UC_eMed_09 Durchgeführte Abgabe schreiben 
+* Inhalte der durchgeführten Abgaben, siehe UC_eMed_05 Durchgeführte Abgabe schreiben 
 * Durchgeführte Abgaben können Korrekturvermerke enthalten 
 * Ausgeblendete durchgeführte Abgaben werden in der Abgabenübersicht nicht angezeigt 
 * Durchgeführte Abgaben stehen nach einer unwiderruflichen Löschung nicht mehr zur Verfügung 
@@ -144,4 +146,4 @@ Zur Anzeige der geplanten und durchgeführten Abgaben wird von der ELGA GmbH ein
 
 * Dieses "e-Medikation Stylesheet" stellt alle notwendigen/vorhanden Informationen dar - Daten zur Person, aktuelle und vergangene Medikationsplaneinträge, geplante und durchgeführte Abgaben, etc. 
 
-Neben der Verwendung des e-Medikation Stylesheets kann auch eine eigene Ansicht der geplanten/durchgeführten Abgaben in den Softwaresystemen umgesetzt werden. 
+Neben der Verwendung des e-Medikation Stylesheets kann auch eine eigene Ansicht der geplanten/durchgeführten Abgaben in den Softwaresystemen umgesetzt werden.  -->

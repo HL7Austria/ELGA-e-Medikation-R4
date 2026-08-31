@@ -1,8 +1,10 @@
 {% include styleheader.md %}
 
-<!-- Anwendungsfall UC_eMed_08: Geplante Abgabe schreiben -->
+<!-- Anwendungsfall UC_eMed_04: Geplante Abgabe schreiben -->
 
-### Beschreibung
+Link zu PDF ergänzen.
+
+<!-- ### Beschreibung
 
 GDA sollen eine geplante Abgabe für eine:n ELGA-Teilnehmer:in erfassen oder korrigieren können, um diese zum Zweck der medizinischen Dokumentation festzuhalten. <br>
 ELGA-Teilnehmer:in sollen einzelne Abgabeneinträge unwiderruflich löschen können. 
@@ -154,7 +156,7 @@ ELGA-Teilnehmer:innen können die Verfügbarkeit von geplanten Abgaben wie folgt
 *Geplante Abgaben* werden nach Ablauf der gesetzlichen Speicherfrist (5 Jahre) gelöscht. 
 
 
-### Durchgeführte Abgabe erfassen (UC_eMed_09_H01)
+### Durchgeführte Abgabe erfassen (UC_eMed_05_H01)
 
 Es können durchgeführte Abgaben zu einer geplanten Abgabe (sofern vorhanden) erfassen werden: 
 * je geplanter Abgabe kann es mehrere durchgeführte Abgaben geben (z.B. Privatrezepte)
@@ -170,4 +172,4 @@ Eine durchgeführte Abgabe beinhaltet u.a. folgende Informationen:
 * Einnahmezeitraum (befristet, unbefristet) 
 * Abgegeben durch 
 * Hinweise
-* Indikation  
+* Indikation   -->

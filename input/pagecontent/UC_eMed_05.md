@@ -1,8 +1,10 @@
 {% include styleheader.md %}
 
-<!-- Anwendungsfall UC_eMed_09: Durchgeführte Abgabe schreiben -->
+<!-- Anwendungsfall UC_eMed_05: Durchgeführte Abgabe schreiben -->
 
-### Beschreibung
+Link zu PDF ergänzen.
+
+<!-- ### Beschreibung
 
 GDA (Apotheke) sollen eine durchgeführte Abgabe für eine:n ELGA-Teilnehmer:in erfassen oder korrigieren können, um diese zum Zweck der medizinischen Dokumentation festzuhalten.  <br>
 Ein:e ELGA-Teilnehmer:in soll einzelne Abgabeneinträge unwiderruflich löschen können. 
@@ -75,7 +77,7 @@ Mockup folgt.
 
 ### Hinweise 
 
-### Durchgeführte Abgabe bearbeiten (UC_eMed_09_H02)
+### Durchgeführte Abgabe bearbeiten (UC_eMed_05_H02)
 
 * Durchgeführte Abgaben, die von einem GDA erfasst wurden, können nachträglich von diesem GDA überarbeitet werden 
 
@@ -89,14 +91,14 @@ Mockup folgt.
   * Vorversionen werden nicht gelöscht, sondern als solche markiert 
 
 
-### Durchgeführte Abgabe: Korrekturvermerk setzen (UC_eMed_09_H03)
+### Durchgeführte Abgabe: Korrekturvermerk setzen (UC_eMed_05_H03)
 
 * Der GDA kann fremderfasste durchgeführte Abgaben nachträglich mittels Korrekturvermerk korrigieren, sofern diese fehlerhaft sind. 
 
 <div class="hinweisbox">
   ℹ️   
   Hinweis zur Änderung selbst erfasster Abgabeneinträge:<br>
-  Sofern selbst erfasste Einträge korrigiert werden müssen, ist dies über eine erneute Bearbeitung der durchgeführten Abgabe möglich, vgl. UC_eMed_09_H02 
+  Sofern selbst erfasste Einträge korrigiert werden müssen, ist dies über eine erneute Bearbeitung der durchgeführten Abgabe möglich, vgl. UC_eMed_05_H02 
 </div> 
 
 * Ein Korrekturvermerk beinhaltet folgende Aspekte:  
@@ -104,27 +106,27 @@ Mockup folgt.
   * es wird ein Freitext-Kommentar als Begründung zur inkorrekten durchgeführten Abgabe erfasst 
   * es besteht die Möglichkeit bereits korrigierte durchgeführte Abgaben mit einem weiteren Korrekturvermerk zu versehen. Dabei wird der jeweilige Korrekturvermerk als inkorrekt markiert. 
 
-### Verfügbarkeit von geplanten Abgaben (UC_eMed_09_H04)
+### Verfügbarkeit von geplanten Abgaben (UC_eMed_05_H04)
 
 ELGA-Teilnehmer:innen können die Verfügbarkeit von durchgeführten Abgaben wie folgt steuern: 
 * Unwiderrufliches Löschen eines Abgabeeintrags zu einer durchgeführten Medikamentenabgabe über das ELGA-Portal 
 * Ausblenden (Sperren) eines Abgabeeintrags für alle Gesundheitsdiensteanbieter mit der Option, später die Sichtbarkeit wiederherzustellen 
 
-### Zuordnung von durchgeführter zu geplanter Abgabe (UC_eMed_09_H05)
+### Zuordnung von durchgeführter zu geplanter Abgabe (UC_eMed_05_H05)
 
 * Sofern in einer Apotheke der QR-Code auf einem Papierrezept gescannt wird, welches der:die ELGA-Teilnehmer vorlegt, bzw. die ID vom e-Rezept abgelesen wird, erhält der GDA Lesezugriff auf die zugehörige geplante Abgabe 
-* Beim Speichern der durchgeführten Abgabe soll eine Zuordnung zur geplanten Abgabe sichergestellt werden (anhand der eindeutigen ID der geplanten Abgabe; Transport über das (e)-Rezept), siehe UC_eMed_08 Geplante Abgabe schreiben 
+* Beim Speichern der durchgeführten Abgabe soll eine Zuordnung zur geplanten Abgabe sichergestellt werden (anhand der eindeutigen ID der geplanten Abgabe; Transport über das (e)-Rezept), siehe UC_eMed_04 Geplante Abgabe schreiben 
 * Ist keine geplante Abgabe vorhanden, muss zur Dokumentation einer durchgeführten Abgabe eine Kontaktbestätigung vorliegen bzw. ausgelöst werden, vgl. H06
 
-### Substitution (UC_eMed_09_H06)
+### Substitution (UC_eMed_05_H06)
 
-* Bei der Abgabe eines von der geplanten Abgabe abweichenden Präparats sind alle Informationen der IST-Abgabe (vgl. UC_eMed_08 Geplante Abgabe schreiben) mit einer Verknüpfung zur ursprünglich geplanten SOLL-Abgabe zu speichern. 
+* Bei der Abgabe eines von der geplanten Abgabe abweichenden Präparats sind alle Informationen der IST-Abgabe (vgl. UC_eMed_04 Geplante Abgabe schreiben) mit einer Verknüpfung zur ursprünglich geplanten SOLL-Abgabe zu speichern. 
 * Signatur und Einnahmezeitraum müssen nur im Zusammenhang mit einer Substitution gespeichert werden. 
 
-### Abgabe ohne ELGA-Kontaktbestätigung (UC_eMed_09_H07)
+### Abgabe ohne ELGA-Kontaktbestätigung (UC_eMed_05_H07)
 
 Das Speichern einer durchgeführten Abgabe kann auch ohne ELGA-Kontaktbestätigung erfolgen, wenn diese als geplante Abgabe (eindeutige ID) in der e-Medikation gespeichert wurde. Damit wird in den Apotheken ermöglicht, dass keine zusätzliche Identifizierungsmaßnahme des:der ELGA-Teilnehmer:in notwendig ist, wodurch der administrative Aufwand in Apotheken reduziert und Datenvollständigkeit gewährleistet wird.   
 
-### Gesetzliche Speicherfristen von durchgeführten Abgaben (UC_eMed_09_H08)
+### Gesetzliche Speicherfristen von durchgeführten Abgaben (UC_eMed_05_H08)
 
-Durchgeführte Abgaben werden nach Ablauf der gesetzlichen Speicherfrist (5 Jahre) gelöscht. 
+Durchgeführte Abgaben werden nach Ablauf der gesetzlichen Speicherfrist (5 Jahre) gelöscht.  -->
