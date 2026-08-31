@@ -145,7 +145,7 @@ Da der Status eines Medikationsplaneintrags im Medikationsplan auf **zwei Ebenen
 
 #### Status des MedicationRequests in der geplanten Abgabe
 
-Eine [Geplante Abgabe](design_choices.html#geplante-abgabe-atelgaemedmedicationrequestgeplanteabgabe-medicationrequest) kann, abhängig vom jeweiligen ([Use Case für Geplante Abgabe schreiben](Sub_UC_eMed_08.html#%E2%80%8Btechnische-use-cases-für-geplante-abgabe-schreiben-uc_emed_08)), unterschiedliche Status einnehmen (Element *status*):<br><br>
+Eine [Geplante Abgabe](design_choices.html#geplante-abgabe-atelgaemedmedicationrequestgeplanteabgabe-medicationrequest) kann, abhängig vom jeweiligen ([Use Case für Geplante Abgabe schreiben](Sub_UC_eMed_04.html#%E2%80%8Btechnische-use-cases-für-geplante-abgabe-schreiben-uc_emed_08)), unterschiedliche Status einnehmen (Element *status*):<br><br>
 
 <!-- Folgende Status sollen gemäß e-Rezept abgebildet werden: OFFEN, EINGELÖST, STORNIERT, ABGELAUFEN, NICHT_ABGEGEBEN<br> -->
 
@@ -188,7 +188,7 @@ Eine [Geplante Abgabe](design_choices.html#geplante-abgabe-atelgaemedmedicationr
 
 #### Status des MedicationDispense in der Durchgeführten Abgabe
 
-Eine [Durchgeführte Abgabe](design_choices.html#durchgeführte-abgabe-AtElgaEmedMedicationDispenseDurchgefuehrteAbgabe-medicationdispense) kann, abhängig vom jeweiligen [Use Case für Durchgeführte Abgabe schreiben](Sub_UC_eMed_09.html), unterschiedliche Status einnehmen (Element *status*). 
+Eine [Durchgeführte Abgabe](design_choices.html#durchgeführte-abgabe-AtElgaEmedMedicationDispenseDurchgefuehrteAbgabe-medicationdispense) kann, abhängig vom jeweiligen [Use Case für Durchgeführte Abgabe schreiben](Sub_UC_eMed_05.html), unterschiedliche Status einnehmen (Element *status*). 
 
 
 | MedicationDispense.status | Beschreibung |
