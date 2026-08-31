@@ -9,12 +9,12 @@ Für jeden Use Case werden im Kapitel *Relevante Elemente* die wichtigsten Eleme
 
 - [Technische Usecases zu Medikationsplan lesen (UC_eMed_01)](Sub_UC_eMed_01.html)
 - [Technische Usecases zu Medikationsplan schreiben (UC_eMed_02)](Sub_UC_eMed_02.html)
-- [Technische Usecases zu Geplante Abgaben lesen (UC_eMed_07)](Sub_UC_eMed_07_01.html)
-- [Technische Usecases zu Durchgeführte Abgaben lesen (UC_eMed_07)](Sub_UC_eMed_07_02.html)
-- [Technische Usecases zu Geplante und Durchgeführte Abgaben mit e-Med GroupIdentifier lesen (UC_eMed_07)](Sub_UC_eMed_07_03.html)
-- [Technische Usecases zu Geplante Abgabe schreiben (UC_eMed_08)](Sub_UC_eMed_08.html)
-- [Technische Usecases zu Durchgeführte Abgabe schreiben (UC_eMed_09)](Sub_UC_eMed_09.html)
-- [Technische Usecases zu Geplante und Durchgeführte Abgaben mit e-Med GroupIdentifier schreiben (UC_eMed_09)](Sub_UC_eMed_09_01.html)
+- [Technische Usecases zu Geplante Abgaben lesen (UC_eMed_03)](Sub_UC_eMed_03_01.html)
+- [Technische Usecases zu Durchgeführte Abgaben lesen (UC_eMed_03)](Sub_UC_eMed_03_02.html)
+- [Technische Usecases zu Geplante und Durchgeführte Abgaben mit e-Med GroupIdentifier lesen (UC_eMed_03)](Sub_UC_eMed_03_03.html)
+- [Technische Usecases zu Geplante Abgabe schreiben (UC_eMed_04)](Sub_UC_eMed_04.html)
+- [Technische Usecases zu Durchgeführte Abgabe schreiben (UC_eMed_05)](Sub_UC_eMed_05.html)
+- [Technische Usecases zu Geplante und Durchgeführte Abgaben mit e-Med GroupIdentifier schreiben (UC_eMed_05)](Sub_UC_eMed_05_01.html)
 
 
 ### Use Case Diagramm
