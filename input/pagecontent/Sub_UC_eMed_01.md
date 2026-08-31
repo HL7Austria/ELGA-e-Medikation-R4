@@ -90,14 +90,6 @@ Beim Plan-History-Search rekonstruiert die Fachanwendung historische Versionen d
 
 Alle diese Ressourcen sind Teil des resultierenden Searchset-Bundles.
 
-<div class="dragon">
-<p class="note-to-balloters">
-Offene Frage:<br>
-- Ist Plan-History-Search ein GET mit _include=* oder eine Custom Operation?<br>
-- Können bei einem GET _history beliebige Suchparameter definiert werden?<br>
-</p>
-</div>
-
 Der Abruf erfolgt mittels **GET** auf den *List*-Ressourcen-Endpunkt unter Angabe geeigneter Suchparameter:
 * **Erstellungszeitraum** von Medikationsplanversionen
 * **Medikation** im Medikationsplan (PZN, Arzneimittelname oder Wirkstoff)
@@ -109,6 +101,14 @@ Der Abruf erfolgt mittels **GET** auf den *List*-Ressourcen-Endpunkt unter Angab
 <!-- TODO: weitere-parameter? -->
 
 Die erzeugten Medikationsplan-Searchset-Bundles dienen ausschließlich der Auslieferung und werden nicht persistiert.
+
+<div class="dragon">
+<p class="note-to-balloters">
+Offene Frage:<br>
+- Ist Plan-History-Search ein GET mit _include=* oder eine Custom Operation?<br>
+- Können bei einem GET _history beliebige Suchparameter definiert werden?<br>
+</p>
+</div>
 
 ##### Ablauf
 
@@ -151,19 +151,18 @@ GET [base]/Patient/[id]/List/_history?_include=*&item=MedicationRequest/[id]&dat
 
 #### Sub_UC_eMed_01_03 - Initial erstellter Medikationsplan
 
-<div class="dragon">
-<p class="note-to-balloters">
-Offene Punkte:<br>
-Erstellung getriggert durch Berechtigungssystem beim ersten Aufruf eines Patienten (nicht mehr Teil von $plan-read?).
-</p>
-</div>
-
 Die initiale Erstellung eines Medikationsplans erfolgt ausschließlich durch die e-Medikation-Fachanwendung. Sie wird ausgelöst, wenn im Rahmen eines erstmaligen Aufrufs von [$plan-read](OperationDefinition-AtElgaEmed.List.PlanRead.html) noch kein Medikationsplan für den ELGA-Teilnehmer existiert.
 
 Der dabei erzeugte initiale Medikationsplan besitzt den Wert *List.emptyReason = notstarted*. Dieser kennzeichnet ausschließlich den **Initialzustand** des Medikationsplans und bedeutet, dass bisher noch keine Medikationsplaneinträge erfasst wurden. Er trifft jedoch keine Aussage darüber, ob der Patient Medikamente einnimmt.
 
 Die Initialisierung kann sowohl durch ein GDA-System als auch durch den ELGA-Teilnehmer über das Portal ausgelöst werden, indem erstmals ein **Plan-Read** durchgeführt wird.
 
+<div class="dragon">
+<p class="note-to-balloters">
+Offene Punkte:<br>
+Soll die Erstellung durch das Berechtigungssystem beim ersten Aufruf eines Patienten getriggert werden (nicht mehr Teil von $plan-read)?
+</p>
+</div>
 
 ##### Ablauf 
 
@@ -187,7 +186,9 @@ Die Initialisierung kann sowohl durch ein GDA-System als auch durch den ELGA-Tei
 
 Die Suche ermöglicht berechtigten GDA sowie ELGA-Teilnehmern den Zugriff auf aktuelle und historische Medikationsplaneinträge unabhängig von einer bestimmten Medikationsplanversion.
 
-Der Abruf erfolgt mittels **GET** unter Angabe geeigneter Suchparameter:
+Die Historie ermöglicht die Nachverfolgung von Änderungen an Medikationsplaneinträgen, beispielsweise hinsichtlich Präparat, Dosierung oder Einnahmeanweisung.
+
+Der Abruf erfolgt mittels **GET** unter Angabe geeigneter Suchparameter:<br>
 <!-- TODO: search-parameter -->
 
 * **Medikation** (PZN, Arzneimittelname oder Wirkstoff)
@@ -204,8 +205,7 @@ Offene Frage:<br>
 </p>
 </div>
 
-Die Historie ermöglicht die Nachverfolgung von Änderungen an Medikationsplaneinträgen, beispielsweise hinsichtlich Präparat, Dosierung oder Einnahmeanweisung.
-
+<br>
 Die gefundenen Medikationsplaneinträge können anschließend als Ausgangspunkt für weitere Abfragen verwendet werden, um jene Ressourcen zu ermittelnt, die genau auf diese Planeintragsversion referenzieren:
 
 * die zugehörigen Medikationsplanversionen mittels [Plan-History-Search](Sub_UC_eMed_01.html#sub_uc_emed_01_02---historische-medikationsplanversion-lesen-plan-history-search)
@@ -251,6 +251,11 @@ In Arbeit.
 
 #### Sub_UC_eMed_01_05 - Verzeichnis historischer Medikationspläne lesen (Plan-History-Directory-Search)
 
-In Arbeit. 
 <!-- GET	/Patient/[id]/List	plan-history-directory-search	Verzeichnis historischer Medikationspläne abrufen
 (_history?_elements=date,source) -->
+
+<div class="dragon">
+<p class="note-to-balloters">
+Offene Punkte: <br>$plan-history-directory-search: in Arbeit.
+</p>
+</div>
