@@ -60,7 +60,7 @@ activate GDA_Apo COLOR_APO
 
 == e-Rezept + Geplante Abgaben abrufen ==
 
-  ref over GDA_Apo, eMed_FA : [[Sub_UC_eMed_07_01.html#sub_uc_emed_07_01_b-zugriff-mittels-e-rezept Geplante Abgaben lesen - Zugriff mittels e-Rezept]]
+  ref over GDA_Apo, eMed_FA : [[Sub_UC_eMed_03_01.html#sub_uc_emed_07_01_b-zugriff-mittels-e-rezept Geplante Abgaben lesen - Zugriff mittels e-Rezept]]
 
 
 == e-Rezept aktualisieren und Durchgeführte Abgaben vorbereiten und schreiben  ==

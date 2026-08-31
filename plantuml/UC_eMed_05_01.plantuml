@@ -59,14 +59,14 @@ autonumber
 activate GDA_Apo COLOR_APO 
 
 alt Zugriff mit Kontakt (z.B. e-card)
-  ref over GDA_Apo, eMed_FA : [[Sub_UC_eMed_07_01.html#sub_uc_emed_07_01_a-zugriff-mittels-e-card Geplante Abgaben lesen - Zugriff mittels e-card]]
+  ref over GDA_Apo, eMed_FA : [[Sub_UC_eMed_03_01.html#sub_uc_emed_07_01_a-zugriff-mittels-e-card Geplante Abgaben lesen - Zugriff mittels e-card]]
   note over GDA_Apo
   Alle offenen e-Rezepte +
   alle offenen Geplanten Abgaben + 
   Medikationsplan abrufen
   end note
 else Zugriff ohne Kontakt (e-Rezept)
-  ref over GDA_Apo, eMed_FA : [[Sub_UC_eMed_07_01.html#sub_uc_emed_07_01_b-zugriff-mittels-e-rezept Geplante Abgaben lesen - Zugriff mittels e-Rezept]]
+  ref over GDA_Apo, eMed_FA : [[Sub_UC_eMed_03_01.html#sub_uc_emed_07_01_b-zugriff-mittels-e-rezept Geplante Abgaben lesen - Zugriff mittels e-Rezept]]
   note over GDA_Apo
   Zugehörige Geplante Abgaben mit
   e-Med Groupidentifier 
