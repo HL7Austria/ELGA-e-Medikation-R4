@@ -90,30 +90,30 @@ pages:
     #   title: UC_eMed_01 - Medikationsplan lesen
     # UC_eMed_02.md:
     #   title: UC_eMed_02 - Medikationsplan schreiben
-    # UC_eMed_07.md:
-    #   title: UC_eMed_07 - Geplante und Durchgeführte Abgaben lesen
-    # UC_eMed_08.md:
-    #   title: UC_eMed_08 - Geplante Abgabe schreiben
-    # UC_eMed_09.md:
-    #   title: UC_eMed_09 - Durchgeführte Abgabe schreiben
+    # UC_eMed_03.md:
+    #   title: UC_eMed_03 - Geplante und Durchgeführte Abgaben lesen
+    # UC_eMed_04.md:
+    #   title: UC_eMed_04 - Geplante Abgabe schreiben
+    # UC_eMed_05.md:
+    #   title: UC_eMed_05 - Durchgeführte Abgabe schreiben
     overview_sub_use_case.md:
       title: Technische Use Cases
     Sub_UC_eMed_01.md:
       title: ​Technische Use Cases für Medikationsplan lesen (UC_eMed_01)
     Sub_UC_eMed_02.md:
       title: ​Technische Use Cases für Medikationsplan schreiben (UC_eMed_02)
-    Sub_UC_eMed_07_01.md:
-      title: ​Technische Use Cases für Geplante Abgaben lesen (UC_eMed_07)
-    Sub_UC_eMed_07_02.md:
-      title: ​Technische Use Cases für Durchgeführte Abgaben lesen (UC_eMed_07)
-    Sub_UC_eMed_07_03.md:
-      title: ​Technische Use Cases für Geplante und Durchgeführte Abgaben mittels e-Med GroupIdentifier lesen (UC_eMed_07)
-    Sub_UC_eMed_08.md:
-      title: ​Technische Use Cases für Geplante Abgabe schreiben (UC_eMed_08)
-    Sub_UC_eMed_09.md:
-      title: ​Technische Use Cases für Durchgeführte Abgabe schreiben (UC_eMed_09)
-    Sub_UC_eMed_09_01.md:
-      title: ​Technische Use Cases für Durchgeführte Abgaben mittels e-Med GroupIdentifier schreiben (UC_eMed_09)
+    Sub_UC_eMed_03_01.md:
+      title: ​Technische Use Cases für Geplante Abgaben lesen (UC_eMed_03)
+    Sub_UC_eMed_03_02.md:
+      title: ​Technische Use Cases für Durchgeführte Abgaben lesen (UC_eMed_03)
+    Sub_UC_eMed_03_03.md:
+      title: ​Technische Use Cases für Geplante und Durchgeführte Abgaben mittels e-Med GroupIdentifier lesen (UC_eMed_03)
+    Sub_UC_eMed_04.md:
+      title: ​Technische Use Cases für Geplante Abgabe schreiben (UC_eMed_04)
+    Sub_UC_eMed_05.md:
+      title: ​Technische Use Cases für Durchgeführte Abgabe schreiben (UC_eMed_05)
+    Sub_UC_eMed_05_01.md:
+      title: ​Technische Use Cases für Durchgeführte Abgaben mittels e-Med GroupIdentifier schreiben (UC_eMed_05)
 
   # mapping.md:
   #   title: Mappings
@@ -178,12 +178,12 @@ menu:
     Überblick Technische Use Cases: overview_sub_use_case.html
     Medikationsplan lesen: Sub_UC_eMed_01.html
     Medikationsplan schreiben: Sub_UC_eMed_02.html
-    Geplante Abgaben lesen: Sub_UC_eMed_07_01.html
-    Durchgeführte Abgaben lesen: Sub_UC_eMed_07_02.html
-    Geplante Abgaben und Durchgeführte Abgaben mit e-Med GroupIdentifier lesen: Sub_UC_eMed_07_03.html
-    Geplante Abgabe schreiben: Sub_UC_eMed_08.html
-    Durchgeführte Abgabe schreiben: Sub_UC_eMed_09.html
-    Geplante Abgaben und Durchgeführte Abgaben mit e-Med GroupIdentifier schreiben: Sub_UC_eMed_09_01.html
+    Geplante Abgaben lesen: Sub_UC_eMed_03_01.html
+    Durchgeführte Abgaben lesen: Sub_UC_eMed_03_02.html
+    Geplante Abgaben und Durchgeführte Abgaben mit e-Med GroupIdentifier lesen: Sub_UC_eMed_03_03.html
+    Geplante Abgabe schreiben: Sub_UC_eMed_04.html
+    Durchgeführte Abgabe schreiben: Sub_UC_eMed_05.html
+    Geplante Abgaben und Durchgeführte Abgaben mit e-Med GroupIdentifier schreiben: Sub_UC_eMed_05_01.html
     Patient Journey: patient_journey.html
 
   # Mappings: mapping.html
