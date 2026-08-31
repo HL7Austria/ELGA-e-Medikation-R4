@@ -57,23 +57,23 @@ participant eMed_FA as "e-Med FA" COLOR_EMED_FA
 
 autonumber
 
-opt Zusätzliche Informationen abrufen
+' opt Zusätzliche Informationen abrufen
 
-    ref over GDA_1,eMed_FA
-    Plan-Read
-    end ref
+'     ref over GDA_1,eMed_FA
+'     Plan-Read
+'     end ref
 
-    ref over GDA_1,eMed_FA
-    Dispense-Search
-    end ref
+'     ref over GDA_1,eMed_FA
+'     Dispense-Search
+'     end ref
 
-    note over GDA_1
-    Optionaler Abruf des Medikationsplans
-    und der Durchgeführten Abgaben zur 
-    fachlichen Beurteilung.
-    end note
+'     note over GDA_1
+'     Optionaler Abruf des Medikationsplans
+'     und der Durchgeführten Abgaben zur 
+'     fachlichen Beurteilung.
+'     end note
 
-end
+' end
 
 activate GDA_1 COLOR_GDA_1
 
@@ -100,6 +100,25 @@ else COLOR_ERROR Fehler
   eMed_FA --> GDA_1: HTTP 4xx OperationOutcome
   deactivate eMed_FA
   
+end
+
+
+opt Zusätzliche Informationen abrufen
+
+    ref over GDA_1,eMed_FA
+    Plan-Read
+    end ref
+
+    ref over GDA_1,eMed_FA
+    Dispense-Search
+    end ref
+
+    note over GDA_1
+    Optionaler Abruf des Medikationsplans
+    und der Durchgeführten Abgaben zur 
+    fachlichen Beurteilung.
+    end note
+
 end
 
 

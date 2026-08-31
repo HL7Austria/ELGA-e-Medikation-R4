@@ -10,26 +10,24 @@ ELGA-Teilnehmer können *Geplante Abgaben* über das Zugangsportal einsehen.
 
 *Geplanten Abgaben* spiegeln den aktuellen Status der Verordnungen des e-Rezepts wider.
 
-Der Standardzugriff erfolgt nach Kontaktbestätigung des ELGA-Teilnehmers (z.B. mittels e-card). Der GDA erhält dadurch lesenden Zugriff auf die e-Medikation inkl. aller *Geplanten Abgaben* und kann entsprechende Arzneimittelabgaben durchführen und dokumentieren (siehe [Sub_UC_eMed_09_01 - Durchgeführte Abgabe schreiben](Sub_UC_eMed_09.html#sub_uc_emed_09_01---durchgeführte-abgabe-schreiben)). Zusätzlich kann der GDA auf *Durchgeführte Abgaben* und den *Medikationsplan* zugreifen, um die *Geplanten Abgaben* im Kontext der gesamten Medikation zu beurteilen.
+Der **Standardzugriff** erfolgt nach **Kontaktbestätigung** des ELGA-Teilnehmers (z.B. mittels e-card). Der GDA erhält dadurch lesenden Zugriff auf die e-Medikation inkl. aller *Geplanten Abgaben* und kann entsprechende Arzneimittelabgaben durchführen und dokumentieren (siehe [Sub_UC_eMed_09_01 - Durchgeführte Abgabe schreiben](Sub_UC_eMed_09.html#sub_uc_emed_09_01---durchgeführte-abgabe-schreiben)). Zusätzlich kann der GDA auf *Durchgeführte Abgaben* und den *Medikationsplan* zugreifen, um die *Geplanten Abgaben* im Kontext der gesamten Medikation zu beurteilen.
 <!-- TODO: Link auf Medikationsplan lesen einfügen -->
 
-Der Zugriff mittels *e-Med GroupIdentifier* (z.B. mittels DataMatrix-Code eines e-Rezepts) ermöglicht ausschließlich einen eingeschränkten ELGA-Zugriff und wird in [Sub_UC_eMed_07_03 - Geplante und Durchgeführte Abgaben mit e-Med GroupIdentifier lesen](Sub_UC_eMed_07_03.html) beschrieben.
+Als **alternative Zugriffsart** zur Kontaktbestätigung steht der **Zugriff mittels *e-Med GroupIdentifier*** (z.B. über den DataMatrix-Code eines e-Rezepts) zur Verfügung (*Groupidentifier-Search*). Dieser ermöglicht ausschließlich einen eingeschränkten ELGA-Zugriff und wird in [Sub_UC_eMed_07_03 - Geplante und Durchgeführte Abgaben mit e-Med GroupIdentifier lesen](Sub_UC_eMed_07_03.html) beschrieben.
 
-Bei der **Prescription-Search** stellt die Fachanwendung alle *MedicationRequest*-Ressourcen mit der Kategorie *Geplante Abgabe* des ELGA-Teilnehmers bereit, die den angegebenen Suchkriterien entsprechen. Die Suche kann insbesondere nach Status und Zeitraum eingeschränkt werden.
-<!-- TODO: default: Status offen / relevanter Zeitraum? Gültigkeits- oder Erstellungszeitraum? -->
-
+Bei **Prescription-Search** stellt die Fachanwendung alle *MedicationRequest*-Ressourcen mit der Kategorie *Geplante Abgabe* des ELGA-Teilnehmers bereit, die den angegebenen Suchkriterien entsprechen. 
 
 ##### Ablauf
 
 1. Der GDA führt ein **GET** auf **MedicationRequest** mit der Kategorie **Geplante Abgabe** aus. Folgende Suchparameter werden unterstützt: 
-    - Zeitraum der Erfassung der geplanten Abgabe
+    - Zeitraum der Erfassung der *Geplanten Abgabe*
     - Medikation: PZN/Name bzw. Wirkstoff
-        - Bei Angabe eines Wirkstoffs werden Wirkstoff-Angaben und Magistrale Zubereitungen durchsucht.
-    - Einnahmezeitraum der Medikation der geplanten Abgabe (extension:effectiveDosePeriod)
-    - Status der Geplanten Abgabe
-    - Geplante Abgabe zu einer Durchgeführten Abgabe (TODO Reverse-Include?)
-    - id des Planeintrags auf welchem die Geplante Abgabe basiert
-    - alle geplanten Abgaben zu einem groupIdentifier
+        <!-- - Bei Angabe eines Wirkstoffs werden Wirkstoff-Angaben und Magistrale Zubereitungen durchsucht. -->
+    - Einnahmezeitraum der Medikation der *Geplanten Abgabe* (extension:effectiveDosePeriod)
+    - Status der *Geplanten Abgabe*
+    - *Geplante Abgabe* zu einer *Durchgeführten Abgabe* 
+    - id des Planeintrags, auf welchem die *Geplante Abgabe* basiert
+    - alle *Geplanten Abgaben* zu einem *e-Med groupIdentifier*
 
 2. Die Fachanwendung ermittelt alle den Suchkriterien entsprechenden *Geplanten Abgaben*.
 3. Die Fachanwendung liefert das Suchergebnis als **Bundle (type = searchset)** mit sämtlichen den Suchkriterien entsprechenden *MedicationRequest*-Ressourcen.
@@ -40,7 +38,7 @@ Bei der **Prescription-Search** stellt die Fachanwendung alle *MedicationRequest
 <div class="dragon">
 <p class="note-to-balloters">
 Offene Frage:<br>
-ad: Geplante Abgabe zu einer Durchgeführten Abgabe:<br>
+ad: *Geplante Abgabe* zu einer Durchgeführten Abgabe:<br>
 - Reverse-Include erlaubt oder eigene Operation?
 </p>
 </div>
