@@ -14,7 +14,7 @@ Für jeden Use Case werden im Kapitel *Relevante Elemente* die wichtigsten Eleme
 - [Technische Usecases zu Geplante und Durchgeführte Abgaben mit e-Med GroupIdentifier lesen (UC_eMed_03)](Sub_UC_eMed_03_03.html)
 - [Technische Usecases zu Geplante Abgabe schreiben (UC_eMed_04)](Sub_UC_eMed_04.html)
 - [Technische Usecases zu Durchgeführte Abgabe schreiben (UC_eMed_05)](Sub_UC_eMed_05.html)
-- [Technische Usecases zu Geplante und Durchgeführte Abgaben mit e-Med GroupIdentifier schreiben (UC_eMed_05)](Sub_UC_eMed_05_01.html)
+<!-- - [Technische Usecases zu Geplante und Durchgeführte Abgaben mit e-Med GroupIdentifier schreiben (UC_eMed_05)](Sub_UC_eMed_05_01.html) -->
 
 
 ### Use Case Diagramm
