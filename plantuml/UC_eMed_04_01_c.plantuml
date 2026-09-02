@@ -1,6 +1,6 @@
 @startuml
 
-title Geplante Abgabe für bestehende Medikationsplaneinträge erstellen\nVariante C: Nachträgliche Verknüpfung des e-Rezepts mit dem e-Med GroupIdentifier
+title Variante C: Nachträgliche Verknüpfung des e-Rezepts mit dem e-Med GroupIdentifier
 
 'skinparam actorStyle awesome
 
@@ -108,7 +108,7 @@ else gleichzeitige Erstellung <i>Geplante Abgabe</i>
 
   alt COLOR_OK Geplante Abgaben erstellt
 
-    eMed_FA -> eMed_FA: e-Med GroupIdentifier erzeugen\n+ geplanten Abgaben hinzufügen
+    eMed_FA -> eMed_FA: e-Med GroupIdentifier erzeugen\n+ Geplanten Abgaben hinzufügen
 
     note over eMed_FA
     Geplante Abgabe 1 + 2 
