@@ -17,10 +17,7 @@ Ein lesender Zugriff auf weitere *Geplante Abgaben* oder *Durchgeführte Abgaben
 1. Der GDA führt die Custom Operation **POST** [$groupidentifier-search](OperationDefinition-AtElgaEmed.GroupIdentifier.Search.html) aus und übermittelt einen *e-Med GroupIdentifier*.
 2. Die Fachanwendung führt eine **Prüfung** des übermittelten *e-Med GroupIdentifier* durch.
 3. Ist der *e-Med GroupIdentifier* gültig, ermittelt die Fachanwendung alle *MedicationRequest*-Ressourcen der Kategorie *Geplante Abgabe*, die dem übermittelten *e-Med GroupIdentifier* entsprechen.
-   <!-- * *status = active*: nur offene  ? -->
-<!-- 4. Ergibt die Suche mindestens eine offene *Geplante Abgabe*, ermittelt die Fachanwendung zusätzlich alle zugehörigen *MedicationDispense*-Ressourcen mit:
-   * dem übermittelten e-Med GroupIdentifier
-   * status = completed oder cancelled -->
+   <!-- 4 Ergibt die Suche mindestens eine offene Geplante Abgabe, ermittelt die Fachanwendung zusätzlich alle zugehörigen MedicationDispense*-Ressourcen mit: dem übermittelten e-Med GroupIdentifier und status = completed oder cancelled -->
 4. Die Fachanwendung ermittelt zusätzlich alle *MedicationDispense*-Ressourcen, die dem übermittelten *e-Med GroupIdentifier* entsprechen.
 5. Die Fachanwendung liefert die ermittelten *MedicationRequest*- und *MedicationDispense*-Ressourcen als **Bundle** vom Typ *searchset* zurück.
 6. Ergibt die Suche keine passenden *Geplanten Abgaben* oder *Durchgeführten Abgaben*, liefert die Fachanwendung ein **leeres Bundle** vom Typ *searchset* zurück.
