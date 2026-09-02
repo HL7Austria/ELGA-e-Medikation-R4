@@ -220,7 +220,7 @@ Umsetzung Teilnehmerrechte
 </p>
 </div>
 
-
+<br>
 Der ELGA-Teilnehmer kann eine *Geplante Abgabe* endgültig löschen. Bereits dokumentierte zugehörige *Durchgeführte Abgaben* sowie bestehende Planeinträge bleiben davon unberührt.
 
 Die Löschung der *Geplanten Abgabe* umfasst:
