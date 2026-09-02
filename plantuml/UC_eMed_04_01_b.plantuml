@@ -1,6 +1,6 @@
 @startuml
 
-title Geplante Abgabe für bestehende Medikationsplaneinträge erstellen\nVariante B: Sequentielles Erstellen von Geplanter Abgabe und e-Rezept 
+title Variante B: Sequentielles Erstellen von Geplanter Abgabe und e-Rezept 
 
 'skinparam actorStyle awesome
 
@@ -109,10 +109,10 @@ alt COLOR_OK e-Rezept erstellt
 else COLOR_ERROR e-Rezept Fehler
   e_Rezept --> GDA_1: Fehler 
   deactivate e_Rezept
-  GDA_1 -> eMed_FA: <i>Geplante Abgabe</i> verwerfen ($discard)
+  GDA_1 -> eMed_FA: <i>Geplante Abgabe</i> stornieren ($prescription-discard​)
 
   note over eMed_FA
-  Siehe Use Case "<i>Geplante Abgabe</i> verwerfen"
+  Siehe Use Case "<i>Geplante Abgabe</i> stornieren"
   end note
   deactivate GDA_1
 end

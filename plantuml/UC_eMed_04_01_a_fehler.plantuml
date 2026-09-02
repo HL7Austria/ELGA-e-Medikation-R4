@@ -1,6 +1,6 @@
 @startuml
 
-title Geplante Abgabe für bestehende Medikationsplaneinträge erstellen\nVariante A: Vorab-Ermittlung des GroupIdentifiers (Fehlerfall)
+title Variante A: Vorab-Ermittlung des GroupIdentifiers (Fehlerfall)
 
 'skinparam actorStyle awesome
 
@@ -105,7 +105,7 @@ par Erstellung e-Rezept
     GDA_1 -> eMed_FA: POST $prescription-discard​
     
     note over GDA_1
-    Siehe Use Case "<i>Geplante Abgabe</i> verwerfen"
+    Siehe Use Case "<i>Geplante Abgabe</i> stornieren"
     end note
   end
 
