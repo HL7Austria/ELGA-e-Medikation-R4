@@ -3,11 +3,11 @@ title MedicationRequest.status (Geplante Abgabe)
 
 (*) --> [offen] active
 active --> [Geplante\nAbgabe\nabgelaufen\n(automatisch)] stopped
-active --> [Alle\nmöglichen\nEinlösungen\ndurchgeführt\n(automatisch)] completed
-active --> [Geplante\nAbgabe\nverwerfen] entered-in-error
-active --> [Alle\nmöglichen\nEinlösungen\nLeerabgaben\n(automatisch)] cancelled
-completed --> [durchgeführte\nAbgabe\nverworfen\n(automatisch)] active
-cancelled --> [durchgeführte\nAbgabe\nverworfen\n(automatisch)] active
+active --> [alle\nmöglichen\nEinlösungen\ndurchgeführt\n(automatisch)] completed
+active --> [Geplante\nAbgabe\nstornieren] entered-in-error
+active --> [alle\nmöglichen\nEinlösungen\nLeerabgaben\n(automatisch)] cancelled
+completed --> [letzte\nDurchgeführte\nAbgabe\nstorniert\n(automatisch)] active
+cancelled --> [letzte\ngecancellte\nDurchgeführte\nAbgabe\nstorniert\n(automatisch)] active
 stopped --> (*)
 "entered-in-error" --> (*)
 completed --> (*)
