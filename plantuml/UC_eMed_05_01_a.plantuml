@@ -77,11 +77,11 @@ end note
 GDA_Apo -> GDA_Apo: Für jene Arzneimittel,\ndie abgegeben werden sollen:\n<i>Durchgeführte Abgaben</i>\nerstellen
 
 note over GDA_Apo
-Existiert eine zugehörige
-<i>Geplanten Abgabe</i> werden
+Existiert zugehörige
+<i>Geplante Abgabe</i> muss
 diese sowie der zugehörige
 <i>Medikationsplaneintrag</i>
-referenziert.
+referenziert werden
 end note
 
 GDA_Apo -> eMed_FA: POST $dispense-write\n(Transaction Bundle MedicationDispense)
@@ -102,7 +102,7 @@ alt COLOR_OK Durchgeführte Abgaben erstellt
     <i>Durchgeführte Abgaben</i>
     werden gespeichert.
     Abhängig von Abgabeart und 
-    Anzahl der Einlösungen kann 
+    Anzahl Einlösungen kann 
     eine automatische Statusänderung 
     der zugehörigen <i>Geplanten Abgabe</i>
     erfolgen.
