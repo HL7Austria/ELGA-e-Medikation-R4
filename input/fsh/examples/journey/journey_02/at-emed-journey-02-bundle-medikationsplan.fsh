@@ -1,0 +1,16 @@
+Instance: At-Emed-Journey-02-Bundle-Medikationsplan
+InstanceOf: AtElgaEmedBundleMedikationsplan   
+Title: "Beispiel Journey 02: Medikationsplan-Searchset-Bundle"
+Description: "Beispiel eines Medikationsplan-Searchset-Bundles, das einen Mediaktionsplan (List) mit 2 Planeinträgen (MedicationRequests) referenziert."
+Usage: #example
+
+* type = #searchset
+* timestamp = "2026-02-27T08:10:00+00:00"
+// Liste 
+* entry[Medikationsplan].resource = At-Emed-Journey-02-List-Medikationsplan
+* entry[Medikationsplan].fullUrl = "urn:uuid:62e2daa5-c34b-4b97-8044-fd893bc99a56"
+// Medikationsplaneinträge
+* entry[Medikationsplaneintrag][+].resource = At-Emed-Journey-02-Mr-Planeintrag-01
+* entry[Medikationsplaneintrag][=].fullUrl = "urn:uuid:62e2daa5-c34b-4b97-8044-fd893bc99a57"
+* entry[Medikationsplaneintrag][+].resource = At-Emed-Journey-02-Mr-Planeintrag-02
+* entry[Medikationsplaneintrag][=].fullUrl = "urn:uuid:62e2daa5-c34b-4b97-8044-fd893bc99a58"
