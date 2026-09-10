@@ -4,7 +4,7 @@ Title: "Beispiel Journey 02: Geplante Abgabe"
 Description: "Bildet eine Geplante Abgabe des Arzneimittels Ramipril mit den Dosierungsanweisungen des zugehörigen Planeintrags ab."
 Usage: #example
 
-* contained[+] = contained-medication-journey-02-01
+* contained[+] = contained-medication-journey-02-01-01
 
 // R5 Backports
 // * extension[effectiveDosePeriod].valuePeriod.start = "2026-02-27"
@@ -56,9 +56,9 @@ Usage: #example
 
 
 // Contained Medication *********************************************************************
-Instance: contained-medication-journey-02-01
+Instance: contained-medication-journey-02-01-01
 InstanceOf: AtElgaEmedMedicationMedikation
 Title: "Beispiel Medikation Ramipril"
 Usage: #inline
-//* id = "contained-medication-journey-02-01"
+//* id = "contained-medication-journey-02-01-01"
 * code = $cs-asp-liste#2450836 "RAMIPRIL HEX TBL 5MG"
