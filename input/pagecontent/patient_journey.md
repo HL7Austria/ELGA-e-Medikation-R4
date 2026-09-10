@@ -8,30 +8,34 @@ Einträge durch patient löschen, stornieren, rezept wieder öffnen, wenn teilab
 
 Herr Mustermann kommt wegen Kopfschmerzen und Schwindelgefühl zu seiner Hausärztin. Außerdem hat er einen leichten Hautausschlag bemerkt.
 
-Dr. Hausärztin stellt eine leichte arterielle Hypertonie fest und ruft die e-Medikation (aktueller Medikationsplan, Geplante und Durchgeführte Abgaben) ab, um einen Überblick über seine aktuelle Medikation zu erhalten [^1].
-
-[^1]: 
-* [Sub_UC_eMed_01_01 - Aktuellen Medikationsplan lesen (Plan-Read)](Sub_UC_eMed_01.html#sub_uc_emed_01_01---aktuellen-medikationsplan-lesen-plan-read)
-
-* [Sub_UC_eMed_03_01 - Geplante Abgaben lesen (Prescription-Search)](Sub_UC_eMed_03_01.html#sub_uc_emed_07_01---geplante-abgaben-lesen-prescription-search)
-
-* [Sub_UC_eMed_03_02 - Durchgeführte Abgaben lesen (Dispense-Search)](Sub_UC_eMed_03_02.html#sub_uc_emed_07_02---durchgeführte-abgaben-lesen-dispense-search)
+Dr. Hausärztin stellt eine leichte arterielle Hypertonie fest und ruft die e-Medikation (den aktuellen *Medikationsplan*,  *Geplante Abgaben* und *Durchgeführte Abgaben*) des Patienten  ab, um einen Überblick über seine aktuelle Medikation zu erhalten. 
 
 Da für Herrn Mustermann noch nie ein Medikationsplan abgerufen wurde, erstellt die Fachanwendung automatisch einen leeren Medikationsplan. Darin enthalten sind die Informationen zum [Patienten](Patient-At-Emed-Example-Patient-01.html), die erstellende e-Medikation-Fachanwendung ([Device](Device-At-Emed-Example-Device-01.html)), das Datum der Erstellung und die Information, dass der Medikationsplan noch nicht gestartet wurde (*EmptyReason = notstarted*).
 
-* **Leerer Medikationsplan:**
+* Beispieldokumente: 
+  * **Leerer Medikationsplan:** (EmptyReason = notstarted)
+    * [Medikationsplan-Searchset-Bundle](Bundle-At-Emed-Journey-01-Bundle-Medikationsplan.html)
+* Verwendete **Use Cases**: 
+  * [Sub_UC_eMed_01_01 - Aktuellen Medikationsplan lesen (Plan-Read)](Sub_UC_eMed_01.html#sub_uc_emed_01_01---aktuellen-medikationsplan-lesen-plan-read)
+  * [Sub_UC_eMed_03_01 - Geplante Abgaben lesen (Prescription-Search)](Sub_UC_eMed_03_01.html#sub_uc_emed_07_01---geplante-abgaben-lesen-prescription-search)
+  * [Sub_UC_eMed_03_02 - Durchgeführte Abgaben lesen (Dispense-Search)](Sub_UC_eMed_03_02.html#sub_uc_emed_07_02---durchgeführte-abgaben-lesen-dispense-search)
+  * [Sub_UC_eMed_01_03 - Initial erstellter Medikationsplan](Sub_UC_eMed_01.html#sub_uc_emed_01_03---initial-erstellter-medikationsplan)
 
-  * [Medikationsplan-Searchset-Bundle](Bundle-At-Emed-Journey-01-Bundle-Medikationsplan.html)
-
-Dr. Hausärztin erstellt zwei Medikationsplaneinträge und klärt den Patienten über die Anwendung auf: gegen die arterielle Hypertonie **Ramipril 5 mg Tabletten**, 1 x täglich morgens (Dauermedikation) und gegen den Hautausschlag **Dexpanthenol-5-%-Salbe**, 2 × täglich für 1 Woche, dünn aufzutragen.
-
+<br>
+Dr. Hausärztin erstellt zwei Medikationsplaneinträge und klärt den Patienten über die Anwendung auf: gegen die arterielle Hypertonie **Ramipril 5 mg Tabletten**, 1 x täglich morgens (Dauermedikation) und gegen den Hautausschlag **Dexpanthenol-5-%-Salbe**, 2 × täglich für 3 Wochen, dünn aufzutragen.<br>
 Sie speichert den neuen Medikationsplan.
 
-* **Medikationsplan mit neuen Planeinträgen aktualisieren:** Beispiel in Arbeit.
+* Beispieldokumente: 
+  * **Planeinträge erstellen:** 
+    * [Planeintrag 1: Ramipril 5 mg Tabletten, 1 x täglich morgens (Dauermedikation)](MedicationRequest-At-Emed-Journey-02-Mr-Planeintrag-01.html)
+    * [Planeintrag 2: Dexpanthenol-5-%-Salbe, 2 × täglich für 3 Wochen, dünn auftragen](MedicationRequest-At-Emed-Journey-02-Mr-Planeintrag-02.html)
+  * **Medikationsplan aktualisieren:**
+    * [Medikationsplan ergänzt mit 2 Planeinträgen](List-At-Emed-Journey-02-List-Medikationsplan.html)
+  * **Transaction Bundle:**
+    * [Transaction Bundle](Bundle-At-Emed-Journey-02-Bundle-Tx-Medikationsplan.html)
 
-  * [Transaction Bundle](Bundle-At-Emed-Journey-02-Bundle-Tx-Medikationsplan.html)
-
-Im neu erstellten Medikationsplan sind die neuen Planeinträge sowie das Datum der Bearbeitung und als verantwortliche Ärztin Dr. Hausärztin ([Practitioner 1](Practitioner-At-Emed-Example-Practitioner-01.html)) ersichtlich.
+<br>
+Im aktualisierten Medikationsplan sind die neuen Planeinträge sowie das Datum der Bearbeitung und als verantwortliche Ärztin ([Dr. Hausärztin](Practitioner-At-Emed-Example-Practitioner-01.html)) ersichtlich.
 
 Dr. Hausärztin erstellt für beide Medikamente eine *Geplante Abgabe* (Rezeptierung), sodass Herr Mustermann die Medikamente in der Apotheke abholen kann.
 
