@@ -15,7 +15,7 @@ Usage: #example
 * status = $cs-medication-request-status#active
 //* intent = https://hl7.org/fhir/R4/valueset-medicationrequest-intent#order
 * intent = #order
-* category = MedicationRequestCategoryCS#1 "Medikationsplaneintrag" 
+* category = MedicationRequestCategoryCS#1 "Planeintrag" 
 * reportedBoolean = false
 
 // Referenz auf Contained Medication Ressource
