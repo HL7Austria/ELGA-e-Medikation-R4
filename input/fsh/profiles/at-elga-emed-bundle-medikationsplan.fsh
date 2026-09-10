@@ -2,16 +2,16 @@ Profile: AtElgaEmedBundleMedikationsplan
 Parent: Bundle
 Id: at-elga-emed-bundle-medikationsplan
 Title: "AT ELGA e-Medikation Medikationsplan-Searchset-Bundle Medikationsplan"
-Description: "Das Bundle vom Typ Collection bestehend aus: 
-- 1..1 Medikationsplan (List): Liste mit Referenzen auf Medikationsplaneinträge und zur Abbildung von Reihenfolge und Änderungsstatus 
+Description: "Das Bundle vom Typ Searchset bestehend aus: 
+- 1..1 Medikationsplan (List): Liste mit Referenzen auf Medikationsplaneinträge und zur Abbildung von Reihenfolge und Änderungsstatus
 - 0..* Medikationsplaneinträge (MedicationRequests): Medikation und Dosierung"
 
 * identifier 0..1 MS
 * identifier ^short = "Persistenter Identifikator für das Bundle." //TODO: Verwendung prüfen
 
 * type 1..1 MS
-* type = #collection
-* type ^short = "Art des Bundles. Für Medikationspläne immer \"collection\"."
+* type = #searchset
+* type ^short = "Art des Bundles. Für Medikationspläne immer \"searchset\"."
 
 * timestamp 1..1 MS
 * timestamp ^short = "Zeitpunkt der Erstellung des Bundles." //TODO: Verwendung prüfen
@@ -32,13 +32,13 @@ Description: "Das Bundle vom Typ Collection bestehend aus:
 * entry[Medikationsplan].resource 1..1
 * entry[Medikationsplan].resource only AtElgaEmedListMedikationsplan
 // Medikationsplaneinträge
-* entry[Medikationsplaneintrag].resource 1..1   //TODO prüfen
+* entry[Medikationsplaneintrag].resource 1..1  
 * entry[Medikationsplaneintrag].resource only AtElgaEmedMedicationRequestPlaneintrag
 // * entry[MagistraleZubereitung].resource 1..1
 // * entry[MagistraleZubereitung].resource only AtElgaEmedMedicationMedikation
 
 * entry.link 0..0
-* entry.link ^short = "Verweise auf weiterführende Informationen zu diesem Entry." //TODO: Verwendung prüfen
+// * entry.link ^short = "Verweise auf weiterführende Informationen zu diesem Entry." //TODO: Verwendung prüfen
 
 * entry.fullUrl ^short = "Eindeutige URL für den Eintrag im Bundle." //TODO: Verwendung prüfen
 
