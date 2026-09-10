@@ -93,6 +93,10 @@ Hierfür führt der GDA ein *$plan-read* aus und bearbeitet die von der Fachanwe
     - *courseOfTherapyType* dokumentiert verpflichtend die Art der Medikation. Mögliche Ausprägungen sind *continuous* für Dauermedikation und *acute* für Akutmedikation. Bei Aktumedikation ist in *extension:effectiveDosePeriod* verpflichtend ein Enddatum für den Einnahmezeitraum zu dokumentieren. Bei Dauermedikation darf an dieser Stelle kein Enddatum dokumentiert werden.
     - dosageInstruction: in Arbeit. <!-- TODO: Link zu Dosierungen-Page + Dokumentation von Arzneimittel (PZN und Magistral) ergänzen -->
 
+    <!-- TODO: Stand 7.9.2026: 
+    Planeintrag und Geplante Abgabe müssen immer gleiche Medikation + Dosierung enthalten. Im Planeintrag dürfen auch nur Wirkstoffe stehen, die Geplante Abgabe enthält dann auch nur diese (die gl. Angaben). Grund: im e-Rezept (Grundlage für die Apo) soll auch Wirkstoffverschreibung möglich sein. Apo sucht dann passendes Präparat aus.
+    Wann noch Wirkstoffverschreibung: Wenn Arzneimittel nicht in ASP-Liste (z.b. Ausländisches ) -> dann kein Workaround mit Magistrale Zubereitung mehr nötig. -->
+
 <div class="dragon">
 <p class="note-to-balloters">
 Offener Punkt:<br>
@@ -610,6 +614,12 @@ Ausüben der Teilnehmerrechte in Arbeit.
 </p>
 </div>
 
+<!-- TODO: stand 7.9.2026:
+Beim Löschen eines Planeintrags werden alle Planeintragsversionen gelöscht.
+Alle auf den Planeintrag referenzierende Ressourcen enthalten somit tote Links.
+Evtl Code "Data Absent Reason" (Anja?) für patient modified.
+Autor der Liste könnte dann GDA bleiben vs. Patient wird Autor. -->
+
 <!-- Der:die ELGA-Teilnehmer:in kann via Zugangsportal in der **aktuellen Version** seines:ihres Medikationsplans einzelne oder alle Planeinträge unwiderruflich löschen. Durch das Löschen wird durch die Fachanwendung eine neue Medikationsplanversion erzeugt. Wurden alle Planeinträge gelöscht, erhält die neue Medikationsplanversion das emptyReason *nilknown* (siehe [Sub_UC_eMed_02_02 - Leerer Medikationsplan (keine Medikation einnehmen)](Sub_UC_eMed_02.html#Sub_UC_eMed_02_02---leerer-medikationsplan-keine-medikation-einnehmen)).
 
 Hierfür ruft der:die ELGA-Teilnehmer:in zunächst den aktuellen Medikationsplan mittels *$plan-read* ab und wählt die zu löschenden Planeinträge aus. 
@@ -695,6 +705,8 @@ Ausüben der Teilnehmerrechte in Arbeit.
 </p>
 </div>
 
+
+
 <!-- Der:die ELGA-Teilnehmer:in kann über das Zugangsportal die *aktuelle Medikationsplanversion* sowie *einzelne oder mehrere historische Medikationsplanversionen* unwiderruflich löschen.
 
 Hierfür muss der:die ELGA-Teilnehmer:in zunächst mittels *Plan-History-Search* oder *Plan-History-Directory-Search* über das Zugangsportal die betreffenden Medikationsplanversionen bzw. deren Identifikatoren ermitteln.
@@ -702,6 +714,7 @@ Anschließend markiert der:die ELGA-Teilnehmer:in die zu löschenden Medikations
 
 Beim Löschen einer Medikationsplanversion wird die betreffende *List*-Ressource gelöscht, einschließlich auch die von der Medikationsplanversion referenzierten versionierten Planeinträge (*MedicationRequest*-Ressourcen). 
 
+<!-- TODO: stand 7.9.2026: Wird der aktuelle Plan gelöscht, ist das Ergebnis ein leerer Plan mit Status notstarted. Autor Patient oder Fachanwendung? -->
 
 
 ##### Custom Operations
