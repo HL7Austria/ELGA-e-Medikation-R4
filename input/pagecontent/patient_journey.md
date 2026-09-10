@@ -42,8 +42,11 @@ Dr. Hausärztin erstellt für beide Medikamente eine *Geplante Abgabe* (Rezeptie
 
 * **Geplante Abgaben erstellen:**
 
-  * Beispiel [MedicationRequest](MedicationRequest-At-Emed-Journey-03-Mr-Geplante-Abgabe.html)
+  * Beispiel [in Arbeit](MedicationRequest-At-Emed-Journey-03-Mr-Geplante-Abgabe.html)
 
+<br>
+[![overview](plantuml/patient_journey_01.svg){: .mx-auto style="width:100%;"}](plantuml/patient_journey.svg)
+<br> 
 
 **28.2.2026: Abgabe in der Apotheke (Besorgerprozess)**
 
