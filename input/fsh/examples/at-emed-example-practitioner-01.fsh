@@ -1,7 +1,7 @@
 Instance: At-Emed-Example-Practitioner-01
 InstanceOf: AtElgaCorePractitioner
-Title: "Beispiel Ärztin 01"
-Description: "Beispiel einer behandelnden Ärztin."
+Title: "Beispiel Allgemeinmedizinerin 01"
+Description: "Beispiel einer behandelnden Allgemeinmedizinerin."
 Usage: #example
 
 //* meta.profile = "http://hl7.at/fhir/HL7ATCoreProfiles/4.0.1/StructureDefinition/at-core-practitioner"
@@ -12,7 +12,7 @@ Usage: #example
 * identifier[=].value = "987654321"
 * identifier[=].assigner.display = "Dachverband der österreichischen Sozialversicherungsträger"
 * active = true
-* name.family = "Musterärztin"
+* name.family = "Hausärztin"
 * name.given = "Melanie"
 * name.prefix = "Prof. Dr."
 * telecom[0].system = #email
