@@ -1,4 +1,6 @@
-Am Beispiel einer fiktiven Patient Journey wird veranschaulicht, wie sich der Medikationsplan eines Patienten mit den zugehörigen **Geplanten Abgaben** und den **Durchgeführten Abgaben** verändern kann.
+{% include styleheader.md %}
+
+Am Beispiel einer fiktiven Patient Journey wird veranschaulicht, wie sich der **Medikationsplan** eines Patienten mit den zugehörigen **Geplanten Abgaben** und den **Durchgeführten Abgaben** verändern kann.
 
 <!-- TODO: nicht-sunshine-cases: patient ohne ecard in apotheke, 
 Einträge durch patient löschen, stornieren, rezept wieder öffnen, wenn teilabgabe storniert -->
@@ -10,29 +12,122 @@ Herr Mustermann kommt wegen Kopfschmerzen und Schwindelgefühl zu seiner Hausär
 
 Dr. Hausärztin stellt eine leichte arterielle Hypertonie fest und ruft die e-Medikation (den aktuellen *Medikationsplan*,  *Geplante Abgaben* und *Durchgeführte Abgaben*) des Patienten  ab, um einen Überblick über seine aktuelle Medikation zu erhalten. 
 
-Da für Herrn Mustermann noch nie ein Medikationsplan abgerufen wurde, erstellt die Fachanwendung automatisch einen leeren Medikationsplan. Darin enthalten sind die Informationen zum [Patienten](Patient-At-Emed-Example-Patient-01.html), die erstellende e-Medikation-Fachanwendung ([Device](Device-At-Emed-Example-Device-01.html)), das Datum der Erstellung und die Information, dass der Medikationsplan noch nicht gestartet wurde (*EmptyReason = notstarted*).
+Da für Herrn Mustermann noch nie ein Medikationsplan abgerufen wurde, erstellt die Fachanwendung automatisch einen leeren Medikationsplan. Darin enthalten sind die Informationen zum Patienten, die erstellende e-Medikation-Fachanwendung, das Datum der Erstellung und die Information, dass der Medikationsplan noch nicht gestartet wurde (*EmptyReason = notstarted*).
 
-* Beispieldokumente: 
-  * **Leerer Medikationsplan:** (EmptyReason = notstarted)
-    * [Medikationsplan-Searchset-Bundle](Bundle-At-Emed-Journey-01-Bundle-Medikationsplan.html)
-* Verwendete **Use Cases**: 
-  * [Sub_UC_eMed_01_01 - Aktuellen Medikationsplan lesen (Plan-Read)](Sub_UC_eMed_01.html#sub_uc_emed_01_01---aktuellen-medikationsplan-lesen-plan-read)
-  * [Sub_UC_eMed_03_01 - Geplante Abgaben lesen (Prescription-Search)](Sub_UC_eMed_03_01.html#sub_uc_emed_07_01---geplante-abgaben-lesen-prescription-search)
-  * [Sub_UC_eMed_03_02 - Durchgeführte Abgaben lesen (Dispense-Search)](Sub_UC_eMed_03_02.html#sub_uc_emed_07_02---durchgeführte-abgaben-lesen-dispense-search)
-  * [Sub_UC_eMed_01_03 - Initial erstellter Medikationsplan](Sub_UC_eMed_01.html#sub_uc_emed_01_03---initial-erstellter-medikationsplan)
 
-<br>
+<div class="tabs">
+<!-- Beispiel-Ressourcen-Tab -->
+<div class="tab">
+<input type="radio" id="tab-beispiele-1" name="tab-group-patient-journey-1" checked="true" />
+<label for="tab-beispiele-1">Beispiele</label>
+<div class="content-in-tab">
+<ul>
+<li><strong>Leerer Medikationsplan:</strong> (EmptyReason = notstarted)<ul>
+<li><a href="Bundle-At-Emed-Journey-01-Bundle-Medikationsplan.html">Medikationsplan-Searchset-Bundle</a></li>
+<li><a href="Patient-At-Emed-Example-Patient-01.html">Patient</a></li>
+<li><a href="Device-At-Emed-Example-Device-01.html">Device</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<!-- Usecases-Tab -->
+<div class="tab">
+<input type="radio" id="tab-usecases-1" name="tab-group-patient-journey-1" />
+<label for="tab-usecases-1">Use Cases</label>
+<div class="content-in-tab">
+<ul>
+<li><a href="Sub_UC_eMed_01.html#sub_uc_emed_01_01---aktuellen-medikationsplan-lesen-plan-read">Sub_UC_eMed_01_01 - Aktuellen Medikationsplan lesen (Plan-Read)</a></li>
+<li><a href="Sub_UC_eMed_03.html#sub_uc_emed_07_01---geplante-abgaben-lesen-prescription-search">Sub_UC_eMed_03 - Geplante Abgaben lesen (Prescription-Search)</a></li>
+<li><a href="Sub_UC_eMed_03.html#sub_uc_emed_07_02---durchgeführte-abgaben-lesen-dispense-search">Sub_UC_eMed_03 - Durchgeführte Abgaben lesen (Dispense-Search)</a></li>
+<li><a href="Sub_UC_eMed_01.html#sub_uc_emed_01_03---initial-erstellter-medikationsplan">Sub_UC_eMed_01_03 - Initial erstellter Medikationsplan</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- Request-Response-Box Plan-Read -->
+<div class="tabs">
+  <div class="tab">
+    <input type="radio" id="tab-request-1-plan-read" name="tab-group-request-1-plan-read" checked="true" />
+    <label for="tab-request-1-plan-read" class="request-tab">Request</label>
+    <div class="content-in-tab">
+      <div class="request-panel">
+        <div class="request-code">
+          <span class="request-method-post">POST</span>
+          <code class="request-url">[base]/$plan-read</code>
+        </div>
+        <div class="request-meta">
+          <strong>Headers:</strong>
+          <code class="request-header">Content-Type: application/fhir+json</code>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tab">
+    <input type="radio" id="tab-body-1-plan-read" name="tab-group-request-1-plan-read" />
+    <label for="tab-body-1-plan-read">Request Body</label>
+    <div class="content-in-tab">TODO Beispielressource einfügen</div>
+  </div>
+</div>
+
+
+
 Dr. Hausärztin erstellt zwei Medikationsplaneinträge und klärt den Patienten über die Anwendung auf: gegen die arterielle Hypertonie **Ramipril 5 mg Tabletten**, 1 x täglich morgens (Dauermedikation) und gegen den Hautausschlag **Dexpanthenol-5-%-Salbe**, 2 × täglich für 3 Wochen, dünn aufzutragen.<br>
 Sie speichert den neuen Medikationsplan.
 
-* Beispieldokumente: 
-  * **Planeinträge erstellen:** 
-    * [Planeintrag 1: Ramipril 5 mg Tabletten, 1 x täglich morgens (Dauermedikation)](MedicationRequest-At-Emed-Journey-02-Mr-Planeintrag-01.html)
-    * [Planeintrag 2: Dexpanthenol-5-%-Salbe, 2 × täglich für 3 Wochen, dünn auftragen](MedicationRequest-At-Emed-Journey-02-Mr-Planeintrag-02.html)
-  * **Medikationsplan aktualisieren:**
-    * [Medikationsplan ergänzt mit 2 Planeinträgen](List-At-Emed-Journey-02-List-Medikationsplan.html)
-  * **Transaction Bundle:**
-    * [Transaction Bundle](Bundle-At-Emed-Journey-02-Bundle-Tx-Medikationsplan.html)
+<div class="tabs">
+<!-- Beispiel-Ressourcen-Tab -->
+<div class="tab">
+<input type="radio" id="tab-beispiele-2" name="tab-group-patient-journey-2" checked="true" />
+<label for="tab-beispiele-2">Beispiele</label>
+<div class="content-in-tab">
+<ul>
+<li><strong>Planeinträge erstellen:</strong> <ul>
+<li><a href="MedicationRequest-At-Emed-Journey-02-Mr-Planeintrag-01.html">Planeintrag 1: Ramipril 5 mg Tabletten, 1 x täglich morgens (Dauermedikation)</a></li>
+<li><a href="MedicationRequest-At-Emed-Journey-02-Mr-Planeintrag-02.html">Planeintrag 2: Dexpanthenol-5-%-Salbe, 2 × täglich für 3 Wochen, dünn auftragen</a></li>
+</ul>
+</li>
+<li><strong>Medikationsplan aktualisieren:</strong><ul>
+<li><a href="List-At-Emed-Journey-02-List-Medikationsplan.html">Medikationsplan ergänzt mit 2 Planeinträgen</a></li>
+</ul>
+</li>
+<li><strong>Transaction Bundle:</strong><ul>
+<li><a href="Bundle-At-Emed-Journey-02-Bundle-Tx-Medikationsplan.html">Transaction Bundle</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<!-- Requests-Tab -->
+<div class="tab">
+<input type="radio" id="tab-requests-2" name="tab-group-patient-journey-2" />
+<label for="tab-requests-2">Requests</label>
+<div class="content-in-tab">
+In Arbeit.
+</div>
+</div>
+<!-- Usecases-Tab -->
+<div class="tab">
+<input type="radio" id="tab-usecases-2" name="tab-group-patient-journey-2" />
+<label for="tab-usecases-2">Use Cases</label>
+<div class="content-in-tab">
+<ul>
+<li><a href="Sub_UC_eMed_02.html#sub_uc_emed_02_02---planeintrag-in-medikationsplan-hinzufügen">Sub_UC_eMed_02_02 - Planeintrag in Medikationsplan hinzufügen</a></li>
+<li><a href="Sub_UC_eMed_02.html#sub_uc_emed_02_01---medikationsplan-schreiben-plan-write">Sub_UC_eMed_02_01 - Medikationsplan schreiben (Plan-Write)</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- * **Planeinträge erstellen:** 
+  * [Planeintrag 1: Ramipril 5 mg Tabletten, 1 x täglich morgens (Dauermedikation)](MedicationRequest-At-Emed-Journey-02-Mr-Planeintrag-01.html)
+  * [Planeintrag 2: Dexpanthenol-5-%-Salbe, 2 × täglich für 3 Wochen, dünn auftragen](MedicationRequest-At-Emed-Journey-02-Mr-Planeintrag-02.html)
+* **Medikationsplan aktualisieren:**
+  * [Medikationsplan ergänzt mit 2 Planeinträgen](List-At-Emed-Journey-02-List-Medikationsplan.html)
+* **Transaction Bundle:**
+  * [Transaction Bundle](Bundle-At-Emed-Journey-02-Bundle-Tx-Medikationsplan.html) -->
 
 <br>
 Im aktualisierten Medikationsplan sind die neuen Planeinträge sowie das Datum der Bearbeitung und als verantwortliche Ärztin ([Dr. Hausärztin](Practitioner-At-Emed-Example-Practitioner-01.html)) ersichtlich.
@@ -40,12 +135,14 @@ Im aktualisierten Medikationsplan sind die neuen Planeinträge sowie das Datum d
 Dr. Hausärztin erstellt für beide Medikamente eine *Geplante Abgabe* (Rezeptierung), sodass Herr Mustermann die Medikamente in der Apotheke abholen kann.
 
 
+
+
 * **Geplante Abgaben erstellen:**
 
   * Beispiel [in Arbeit](MedicationRequest-At-Emed-Journey-03-Mr-Geplante-Abgabe.html)
 
 <br>
-[![overview](plantuml/patient_journey_01.svg){: .mx-auto style="width:100%;"}](plantuml/patient_journey.svg)
+[![overview](plantuml/patient_journey_01.svg){: .mx-auto style="width:50%;"}](plantuml/patient_journey.svg)
 <br> 
 
 **28.2.2026: Abgabe in der Apotheke (Besorgerprozess)**
