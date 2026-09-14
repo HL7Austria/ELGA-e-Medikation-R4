@@ -114,6 +114,11 @@ width: 100%;}
   grid-row: 1;
 }
 
+.tabs .tab label {
+  font-size: 11px;
+  padding: 4px 8px;
+}
+
 /* Hidden tabs must not take up space */
 .content-in-tab {
   display: none;
@@ -122,7 +127,7 @@ width: 100%;}
   width: 100%;
   box-sizing: border-box;
   background: #ffffff;
-  padding: 20px;
+  padding: 8px 8px;  /*10px;*/
   border: 1px solid #cccccc;
   /* Maximum visible panel height */
   max-height: 700px;
@@ -146,8 +151,8 @@ width: 100%;}
   padding: 1rem;
   border-radius: 4px;
   margin-bottom: 0.8rem;
-  font-size: 0.95em;
-  line-height: 1.5;
+  font-size: 0.8em;
+  line-height: 1;
   overflow-x: auto;
 }
 
@@ -156,7 +161,7 @@ width: 100%;}
 }
 
 .content-in-tab:has(.request-panel) {
-  padding: 8px 12px;
+  padding: 10px;
 }
 
 .content-in-tab:has(pre) {
@@ -164,5 +169,20 @@ width: 100%;}
   overflow: auto;  
   max-height: calc(100vh - 120px); 
 }
+
+/* .tab label.request-tab {
+  --tab-height: 120px;
+} */
+
+.tabs:has(input[id^="tab-body-"]:checked) {
+  min-height: 520px;
+}
+
+
+.tab label.body-tab {
+  --tab-height: 500px; 
+}
+
+
 
 </style>
