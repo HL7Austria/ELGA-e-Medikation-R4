@@ -128,7 +128,7 @@ Der Planeintrag kann in weiterer Folge als Grundlage für die Erstellung einer \
 * insurance ^short = "Keine Verwendung im Planeintrag."
 
 * note 0..* MS 
-* note ^short = "Zusätzliche Informationen zum Planeintrag." // TODO: fachlich prüfen, an welchen Stellen überall Freitext erforderlich sein soll/muss. Auch im Kontext zu entered-in-error Informationen."
+* note ^short = "Zusätzliche Informationen zum Planeintrag." // TODO: fachlich prüfen, an welchen Stellen Freitext erforderlich sein soll/muss. Auch im Kontext zu entered-in-error Informationen."
 
 // TODO: Invariante für repeating sequences * dosageInstruction.extension contains AtElgaEmedExtensionDosageRepeat??? named repeatCycle 0..1
 //TODO Invariante sodass die Extension nur erlaubt ist, wenn es mehrere Dosages gibt
