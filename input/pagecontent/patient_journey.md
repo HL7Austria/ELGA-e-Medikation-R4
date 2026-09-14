@@ -46,31 +46,30 @@ Da für Herrn Mustermann noch nie ein Medikationsplan abgerufen wurde, erstellt 
 </div>
 </div>
 
-<!-- Request-Response-Box Plan-Read -->
+<!-- Request-Response-Box Plan-Read
 <div class="tabs">
   <div class="tab">
     <input type="radio" id="tab-request-1-plan-read" name="tab-group-request-1-plan-read" checked="true" />
-    <label for="tab-request-1-plan-read" class="request-tab">Request</label>
-    <div class="content-in-tab">
-      <div class="request-panel">
-        <div class="request-code">
+    <label for="tab-request-1-plan-read">Request</label>
+    <div class="request-panel"> 
+      <div class="request-code">
           <span class="request-method-post">POST</span>
           <code class="request-url">[base]/$plan-read</code>
-        </div>
-        <div class="request-meta">
-          <strong>Headers:</strong>
-          <code class="request-header">Content-Type: application/fhir+json</code>
-        </div>
       </div>
+      <div class="request-meta">
+        <strong>Headers:</strong>
+        <code class="request-header">Content-Type: application/fhir+json</code>
+      </div>
+    </div> 
+  </div>
+    <div class="tab">
+    <input type="radio" id="tab-response-1-plan-read" name="tab-group-request-1-plan-read" />
+    <label for="tab-response-1-plan-read">Response</label>
+    <div class="content-in-tab">
+    TODO Beispielressource einfügen
     </div>
   </div>
-  <div class="tab">
-    <input type="radio" id="tab-body-1-plan-read" name="tab-group-request-1-plan-read" />
-    <label for="tab-body-1-plan-read">Request Body</label>
-    <div class="content-in-tab">TODO Beispielressource einfügen</div>
-  </div>
-</div>
-
+</div> -->
 
 
 Dr. Hausärztin erstellt zwei Medikationsplaneinträge und klärt den Patienten über die Anwendung auf: gegen die arterielle Hypertonie **Ramipril 5 mg Tabletten**, 1 x täglich morgens (Dauermedikation) und gegen den Hautausschlag **Dexpanthenol-5-%-Salbe**, 2 × täglich für 3 Wochen, dünn aufzutragen.<br>
@@ -97,14 +96,6 @@ Sie speichert den neuen Medikationsplan.
 </ul>
 </li>
 </ul>
-</div>
-</div>
-<!-- Requests-Tab -->
-<div class="tab">
-<input type="radio" id="tab-requests-2" name="tab-group-patient-journey-2" />
-<label for="tab-requests-2">Requests</label>
-<div class="content-in-tab">
-In Arbeit.
 </div>
 </div>
 <!-- Usecases-Tab -->
@@ -138,8 +129,8 @@ Dr. Hausärztin erstellt für beide Medikamente eine *Geplante Abgabe* (Rezeptie
 
 
 * **Geplante Abgaben erstellen:**
-
-  * Beispiel [in Arbeit](MedicationRequest-At-Emed-Journey-03-Mr-Geplante-Abgabe.html)
+  * Beispiel [Geplante Abgabe zu Planeintrag 1 (Ramipril)](MedicationRequest-At-Emed-Journey-03-Mr-Geplante-Abgabe-01.html)
+  <!-- * Beispiel [Geplante Abgabe zu Planeintrag 2 (...)](MedicationRequest-At-Emed-Journey-03-Mr-Geplante-Abgabe-02.html) -->
 
 <br>
 [![overview](plantuml/patient_journey_01.svg){: .mx-auto style="width:50%;"}](plantuml/patient_journey.svg)
