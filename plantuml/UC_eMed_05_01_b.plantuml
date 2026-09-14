@@ -56,7 +56,7 @@ autonumber
 
 activate GDA_Apo COLOR_APO 
 
-ref over GDA_Apo, eMed_FA : [[Sub_UC_eMed_03_03.html#sub_uc_emed_03_03---geplante-und-durchgeführte-abgaben-mittels-e-med-groupidentifier-lesen-groupidentifier-search Groupidentifier-Search]]
+ref over GDA_Apo, eMed_FA : [[Sub_UC_eMed_03.html#sub_uc_emed_03_03---geplante-und-durchgeführte-abgaben-mittels-e-med-groupidentifier-lesen-groupidentifier-search Groupidentifier-Search]]
 note over GDA_Apo
 <i>Geplante Abgaben</i> und 
 <i>Durchgeführte Abgaben</i> zum 

@@ -84,8 +84,8 @@ group GROUP_ARZT 27.2.2026 · Arztbesuch
   activate eMed_FA COLOR_EMED_FA  
   eMed_FA -> Arzt_1: leerer Medikationsplan\n(*EmptyReason = notstarted*)
 
-  ' Arzt_1 -> eMed_FA: Geplante Abgaben lesen: [[Sub_UC_eMed_03_01.html#sub_uc_emed_03_01---geplante-abgaben-lesen-prescription-search Prescription-Search]]
-  Arzt_1 -> eMed_FA: Durchgeführte Abgaben lesen: [[Sub_UC_eMed_03_02.html#sub_uc_emed_03_02---durchgeführte-abgaben-lesen-dispense-search Dispense-Search]]
+  ' Arzt_1 -> eMed_FA: Geplante Abgaben lesen: [[Sub_UC_eMed_03.html#sub_uc_emed_03_01---geplante-abgaben-lesen-prescription-search Prescription-Search]]
+  Arzt_1 -> eMed_FA: Durchgeführte Abgaben lesen: [[Sub_UC_eMed_03.html#sub_uc_emed_03_02---durchgeführte-abgaben-lesen-dispense-search Dispense-Search]]
   eMed_FA -> Arzt_1: Durchgeführte Abgaben: leeres Ergebnis
 
 

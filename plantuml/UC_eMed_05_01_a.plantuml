@@ -60,8 +60,8 @@ autonumber
 activate GDA_Apo COLOR_APO
 
 ref over GDA_Apo, eMed_FA: [[Sub_UC_eMed_01.html#sub_uc_emed_01_01---aktuellen-medikationsplan-lesen-plan-read Aktuellen Medikationsplan lesen (Plan-Read)]]
-ref over GDA_Apo, eMed_FA: [[Sub_UC_eMed_03_01.html#sub_uc_emed_03_01---geplante-abgaben-lesen-prescription-search Geplante Abgaben lesen (Prescription-Search)]]
-ref over GDA_Apo, eMed_FA: [[Sub_UC_eMed_03_02.html#sub_uc_emed_03_02---durchgeführte-abgaben-lesen-dispense-search Durchgeführte Abgaben lesen (Dispense-Search)]]
+ref over GDA_Apo, eMed_FA: [[Sub_UC_eMed_03.html#sub_uc_emed_03_01---geplante-abgaben-lesen-prescription-search Geplante Abgaben lesen (Prescription-Search)]]
+ref over GDA_Apo, eMed_FA: [[Sub_UC_eMed_03.html#sub_uc_emed_03_02---durchgeführte-abgaben-lesen-dispense-search Durchgeführte Abgaben lesen (Dispense-Search)]]
 
 note over GDA_Apo
 <i>Medikationsplan</i>, 
