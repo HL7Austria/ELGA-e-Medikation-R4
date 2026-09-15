@@ -9,8 +9,8 @@ Usage: #example
 
 * extension[renderedDosageInstruction].valueMarkdown = "1-0-0-1 | Täglich: 1-0-0-0" 
 * extension[recorded].valueDateTime = "2026-02-28T11:00:00+00:00" 
+* extension[groupIdentifier].valueIdentifier.value = "WYE82A2G8EEW"
 
-//* identifier = "WYE82A2G8EEW"  // TODO e-Med GroupIdentifier
 * status = #completed
 
 // Referenz auf Contained Medication Ressource
