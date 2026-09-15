@@ -56,8 +56,6 @@ InstanceOf: AtElgaEmedMedicationMedikation
 Title: "Beispiel Journey 02: Magistrale Anwendung (Dexpanthenol-Salbe)"
 Usage: #inline
 
-// * text.status = #additional
-// * text.div = "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n<p>Freitext-Informationen zur magistralen Anwendung.</p>\n</div>"
 //* status = #active
 //* manufacturer = Reference(AtElgaEmed-Example-Organization-Apo-01) "Amadeus Apotheke"
 * form.coding = https://termgit.elga.gv.at/CodeSystem/medikationdarreichungsform#100000073713 "Salbe"
