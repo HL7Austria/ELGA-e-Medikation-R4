@@ -145,25 +145,6 @@ Geplante Abgabe mit demselben groupIdentifier erstellt (bildet 'Rezept-Klammer')
 * note ^short = "Zusätzliche Informationen zur geplanten Abgabe (Kommunikation zwischen Arzt und Apotheke, die nicht die Dosierung betreffen)." 
 //TODO: prüfen was CDA derzeit zulässt; HL7 Consultation, ob Feld benötigt" 
 
-// TODO: Invariante für repeating sequences * dosageInstruction.extension contains AtElgaEmedExtensionDosageRepeat??? named repeatCycle 0..1
-//TODO Invariante sodass die Extension nur erlaubt ist, wenn es mehrere Dosages gibt
-* dosageInstruction ^slicing.discriminator.type = #value
-* dosageInstruction ^slicing.discriminator.path = "extension.value"
-* dosageInstruction ^slicing.rules = #closed
-* dosageInstruction ^slicing.ordered = false
-* dosageInstruction 1..* MS
-* dosageInstruction contains   
-    otherDosage 0.. MS and
-    timedDosage 0.. MS and
-    frequencyDosage 0.. MS and
-    freitextDosage 0.. MS and
-    standardDosage 0.. MS
-// DOSAGE
-* dosageInstruction[otherDosage] only AtElgaEmedDosageOtherAdministration
-* dosageInstruction[timedDosage] only AtElgaEmedDosageTimedAdministration
-* dosageInstruction[frequencyDosage] only AtElgaEmedDosageFrequencyAdministration
-* dosageInstruction[freitextDosage] only AtElgaEmedDosageFreeTextAdministration
-* dosageInstruction[standardDosage] only AtElgaEmedDosageStandardAdministration
 
 //TODO Dosage und AtElgaEmedDosageDosierung entfernen sobald Dosierungen fertig sind
 * dosageInstruction ^short  = "Angabe der Dosierinformationen strukturiert oder als Freitext." //TODO: Inhalte AtElgaEmedDosageDosierung fachlich prüfen.

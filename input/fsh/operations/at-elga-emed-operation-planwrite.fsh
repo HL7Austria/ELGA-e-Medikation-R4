@@ -36,3 +36,6 @@ Usage: #definition
 * parameter[=].documentation = "Der *return* Parameter gibt Auskunft über den Erfolg der Operation."
 * parameter[=].type = #Resource
 * parameter[=].targetProfile[+] = Canonical(OperationOutcome)
+
+
+// beim plan-write muss extension:patientModified false sein

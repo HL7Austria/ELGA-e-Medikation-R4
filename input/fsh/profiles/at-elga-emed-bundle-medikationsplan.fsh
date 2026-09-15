@@ -27,7 +27,9 @@ Description: "Das Bundle vom Typ Searchset bestehend aus:
 
 * entry contains 
     Medikationsplan 1..1 and    
-    Medikationsplaneintrag 0..*
+    Medikationsplaneintrag 0..* and
+    Patient 0..1 and //Todo change to 1..1
+    Source 0..*
 // Liste
 * entry[Medikationsplan].resource 1..1
 * entry[Medikationsplan].resource only AtElgaEmedListMedikationsplan
@@ -36,6 +38,12 @@ Description: "Das Bundle vom Typ Searchset bestehend aus:
 * entry[Medikationsplaneintrag].resource only AtElgaEmedMedicationRequestPlaneintrag
 // * entry[MagistraleZubereitung].resource 1..1
 // * entry[MagistraleZubereitung].resource only AtElgaEmedMedicationMedikation
+
+* entry[Patient].resource 1..1
+* entry[Patient].resource only AtElgaCorePatient
+
+* entry[Source].resource 1..1
+* entry[Source].resource only AtElgaCorePractitioner or AtElgaEmedDeviceFachanwendung or AtElgaCorePractitionerRole or AtElgaCorePatient
 
 * entry.link 0..0
 // * entry.link ^short = "Verweise auf weiterführende Informationen zu diesem Entry." //TODO: Verwendung prüfen

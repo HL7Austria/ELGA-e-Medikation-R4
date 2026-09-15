@@ -9,8 +9,7 @@ Jeder Listeneintrag enthält im Element List.entry.flag den Änderungsstatus des
 
 //TODO: Invariante, dass überall in der List der gleiche Patient enthalten sein muss
 
-* identifier 0..1 MS   //TODO: optional lassen? 
-* identifier ^short = "Logischer Identfier der Liste (des Medikationsplans)." 
+* extension contains AtElgaEmedExtensionPatientModified named PatientModified 0..1
 
 * status 1..1 MS
 * status from ElgaListStatusVS (required)
