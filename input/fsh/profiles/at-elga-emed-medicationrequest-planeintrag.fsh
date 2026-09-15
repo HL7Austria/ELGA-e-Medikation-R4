@@ -36,8 +36,11 @@ Der Planeintrag kann in weiterer Folge als Grundlage für die Erstellung einer \
 * status ^short = "Status des Planeintrags. Mögliche Ausprägungen: [active | on-hold | completed | stopped | entered-in-error]. Bedeutung: active: Planeintrag einer aktiven Medikation, die eingenommen werden soll | on-hold: Planeintrag ist pausiert, die Therapie ist unterbrochen (Wiederaufnahme vorgesehen) | completed: Therapie gemäß Planeintrag wie geplant durchgeführt und abgeschlossen | stopped: Therapie gemäß Planeintrag vorzeitig gestoppt und abgeschlossen | entered-in-error: Fehlerhafter Planeintrag storniert und abgeschlossen."
 
 * statusReason MS
-* statusReason.coding 0..0    //(ex) https://hl7.org/fhir/R4/valueset-medicationrequest-status-reason.html."
-* statusReason.coding ^short = "Keine codierte Begründung für den Status des Planeintrags." 
+* statusReason 0..1    //(ex) https://hl7.org/fhir/R4/valueset-medicationrequest-status-reason.html."
+//TODO statusReason muss 1..1 sein - derzeit 0..1 bis Beispiele angepasst sind
+* statusReason from AtElgaEmedValueSetPlaneintragStatusReasonVS
+* statusReason.coding ^short = "Codierte Begründung für den Status des Planeintrags."
+* statusReason.coding.code 1..1
 * statusReason.text 0..1  MS
 * statusReason.text ^short = "Begründung für den Status des Planeintrags (Freitext), z.B. warum ein Medikament abgesetzt wurde." 
 // TODO: müssen bei bestimmten Status (z.B. stopped) zwingend Begründungen angegeben werden? Evtl. Invariante erstellen.
@@ -130,25 +133,6 @@ Der Planeintrag kann in weiterer Folge als Grundlage für die Erstellung einer \
 * note 0..* MS 
 * note ^short = "Zusätzliche Informationen zum Planeintrag." // TODO: fachlich prüfen, an welchen Stellen Freitext erforderlich sein soll/muss. Auch im Kontext zu entered-in-error Informationen."
 
-// TODO: Invariante für repeating sequences * dosageInstruction.extension contains AtElgaEmedExtensionDosageRepeat??? named repeatCycle 0..1
-//TODO Invariante sodass die Extension nur erlaubt ist, wenn es mehrere Dosages gibt
-* dosageInstruction ^slicing.discriminator.type = #value
-* dosageInstruction ^slicing.discriminator.path = "extension.value"
-* dosageInstruction ^slicing.rules = #closed
-* dosageInstruction ^slicing.ordered = false
-* dosageInstruction 1..* MS
-* dosageInstruction contains   
-    otherDosage 0.. MS and
-    timedDosage 0.. MS and
-    frequencyDosage 0.. MS and
-    freitextDosage 0.. MS and
-    standardDosage 0.. MS
-// DOSAGE
-* dosageInstruction[otherDosage] only AtElgaEmedDosageOtherAdministration
-* dosageInstruction[timedDosage] only AtElgaEmedDosageTimedAdministration
-* dosageInstruction[frequencyDosage] only AtElgaEmedDosageFrequencyAdministration
-* dosageInstruction[freitextDosage] only AtElgaEmedDosageFreeTextAdministration
-* dosageInstruction[standardDosage] only AtElgaEmedDosageStandardAdministration
 
 //TODO Dosage und AtElgaEmedDosageDosierung entfernen sobald Dosierungen fertig sind
 * dosageInstruction ^short  = "Angabe der Dosierinformationen strukturiert oder als Freitext." //TODO: Inhalte AtElgaEmedDosageDosierung fachlich prüfen.

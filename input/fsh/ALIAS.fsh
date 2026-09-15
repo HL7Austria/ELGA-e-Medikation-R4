@@ -8,8 +8,6 @@ Alias: $medicationRequest-effectiveDosePeriod-r5 = http://hl7.org/fhir/5.0/Struc
 //Alias: $ihe-ext-medicationrequest-offlabeluse = https://profiles.ihe.net/PHARM/MPD/StructureDefinition/ihe-ext-offLabel
 Alias: $medicationDispense-recorded-r5 = http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationDispense.recorded
 
-
-
 // general
 Alias: $cs-loinc = http://loinc.org
 Alias: $cs-sct = http://snomed.info/sct
@@ -32,6 +30,7 @@ Alias: $vs-medikationfrequenz = https://termgit.elga.gv.at/ValueSet/elga-medikat
 //medication request
 Alias: $cs-medication-request-status = http://hl7.org/fhir/CodeSystem/medicationrequest-status
 Alias: $cs-medication-request-courseOfTherapyType = http://terminology.hl7.org/CodeSystem/medicationrequest-course-of-therapy
+Alias: $cs-medication-request-status-reason = http://terminology.hl7.org/CodeSystem/medicationrequest-status-reason
 
 // medication request - geplante verordung:
 Alias: $vs-medication-rezeptart = 	https://termgit.elga.gv.at/ValueSet/elga-medikationrezeptart
@@ -43,6 +42,10 @@ Alias: $cs-list-empty-reason = http://terminology.hl7.org/CodeSystem/list-empty-
 // medicationdispense
 Alias: $cs-medication-dispense-status = http://hl7.org/fhir/ValueSet/medicationdispense-status
 Alias: $cs-medication-dispense-type = http://terminology.hl7.org/ValueSet/v3-ActPharmacySupplyType
+
+//systems
+Alias: $sys-eMed-groupIdentifier = http://tbd.com
+
 
 // FHIR
 //Alias: $cs-event-timing = http://hl7.org/fhir/event-timing

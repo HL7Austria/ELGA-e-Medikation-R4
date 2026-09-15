@@ -20,6 +20,11 @@ Der aktuelle Status einer \"Durchgeführten Abgabe\" wird mittels \"status\"- un
 * extension[recorded] ^short = "Datum und Uhrzeit, zu denen die Abgabe erfasst wurde. Dies muss nicht unbedingt mit dem Zeitpunkt übereinstimmen, zu dem das Medikament dem Patienten ausgehändigt wurde (z.B. bei Nacherfassung der Abgabe)."
 
 
+* extension contains AtElgaEmedExtensionGroupIdentifier named groupIdentifier 0..1
+* extension[groupIdentifier] ^short = "Als groupIdentifier dient die eMED-ID, die auch im e-Rezept mitgeführt wird."
+
+// Invariante: wenn eine Referenz auf eine geplante Abgabe existiert dann muss auch der groupIdentifier befüllt sein.
+
 // ENDE Extensions  ******************
 
 * identifier 0..1 MS

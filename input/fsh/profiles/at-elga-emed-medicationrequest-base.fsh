@@ -4,9 +4,25 @@ Id: at-elga-emed-medicationrequest-base
 Title: "At ELGA e-Medikation MedicationRequest Base"
 Description: "Die Basis für alle in eMed verwendeten MedicationRequests"
 
-
-
-
+// TODO: Invariante für repeating sequences * dosageInstruction.extension contains AtElgaEmedExtensionDosageRepeat??? named repeatCycle 0..1
+//TODO Invariante sodass die Extension nur erlaubt ist, wenn es mehrere Dosages gibt
+* dosageInstruction ^slicing.discriminator.type = #value
+* dosageInstruction ^slicing.discriminator.path = "extension.value"
+* dosageInstruction ^slicing.rules = #closed
+* dosageInstruction ^slicing.ordered = false
+* dosageInstruction 1..* MS
+* dosageInstruction contains   
+    otherDosage 0.. MS and
+    timedDosage 0.. MS and
+    frequencyDosage 0.. MS and
+    freitextDosage 0.. MS and
+    standardDosage 0.. MS
+// DOSAGE
+* dosageInstruction[otherDosage] only AtElgaEmedDosageOtherAdministration
+* dosageInstruction[timedDosage] only AtElgaEmedDosageTimedAdministration
+* dosageInstruction[frequencyDosage] only AtElgaEmedDosageFrequencyAdministration
+* dosageInstruction[freitextDosage] only AtElgaEmedDosageFreeTextAdministration
+* dosageInstruction[standardDosage] only AtElgaEmedDosageStandardAdministration
 
 * obeys allDosagesSameCategory
 * obeys FirstDosageSequenceNumberExists
