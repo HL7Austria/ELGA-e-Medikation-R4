@@ -6,7 +6,7 @@ Am Beispiel einer fiktiven Patient Journey wird veranschaulicht, wie sich der **
 Einträge durch patient löschen, stornieren, rezept wieder öffnen, wenn teilabgabe storniert -->
 
 
-**27.2.2026: Arztbesuch**
+### 27.2.2026: Erstbesuch: Neue Medikation
 
 Herr Mustermann kommt wegen Kopfschmerzen und Schwindelgefühl zu seiner Hausärztin. Außerdem hat er einen leichten Hautausschlag bemerkt.
 
@@ -14,11 +14,10 @@ Dr. Hausärztin stellt eine leichte arterielle Hypertonie fest und ruft die e-Me
 
 Da für Herrn Mustermann noch nie ein Medikationsplan abgerufen wurde, erstellt die Fachanwendung automatisch einen leeren Medikationsplan. Darin enthalten sind die Informationen zum Patienten, die erstellende e-Medikation-Fachanwendung, das Datum der Erstellung und die Information, dass der Medikationsplan noch nicht gestartet wurde (*EmptyReason = notstarted*). 
 
-
 <div class="tabs">
   <div class="tab">
-    <input type="radio" id="tab-beispiele-1" name="tab-group-patient-journey-1" checked="true">
-    <label for="tab-beispiele-1">Beispiele</label>
+    <input type="radio" id="tab-beispiele-1-1" name="tab-group-patient-journey-1-1" checked="true">
+    <label for="tab-beispiele-1-1">Beispiele</label>
     <div class="content-in-tab">
       <ul>
         <li>
@@ -39,8 +38,8 @@ Da für Herrn Mustermann noch nie ein Medikationsplan abgerufen wurde, erstellt 
     </div>
   </div>
   <div class="tab">
-    <input type="radio" id="tab-usecases-1" name="tab-group-patient-journey-1">
-    <label for="tab-usecases-1">Use Cases</label>
+    <input type="radio" id="tab-usecases-1-1" name="tab-group-patient-journey-1-1">
+    <label for="tab-usecases-1-1">Use Cases</label>
     <div class="content-in-tab">
       <ul>
         <li>
@@ -66,14 +65,13 @@ prescription-search
 dispense-search
  -->
 
-
 Dr. Hausärztin erstellt zwei Medikationsplaneinträge und klärt den Patienten über die Anwendung auf: gegen die arterielle Hypertonie **Ramipril 5 mg Tabletten**, 1 x täglich morgens (Dauermedikation) und gegen den Hautausschlag **Dexpanthenol-5-%-Salbe**, 2 × täglich für 3 Wochen, dünn aufzutragen.<br>
 Sie speichert den neuen Medikationsplan.
 
 <div class="tabs">
   <div class="tab">
-    <input type="radio" id="tab-beispiele-2" name="tab-group-patient-journey-2" checked="true">
-    <label for="tab-beispiele-2">Beispiele</label>
+    <input type="radio" id="tab-beispiele-2-1" name="tab-group-patient-journey-2-1" checked="true">
+    <label for="tab-beispiele-2-1">Beispiele</label>
     <div class="content-in-tab">
       <ul>
         <li>
@@ -110,8 +108,8 @@ Sie speichert den neuen Medikationsplan.
     </div>
   </div>
   <div class="tab">
-    <input type="radio" id="tab-usecases-2" name="tab-group-patient-journey-2">
-    <label for="tab-usecases-2">Use Cases</label>
+    <input type="radio" id="tab-usecases-2-1" name="tab-group-patient-journey-2-1">
+    <label for="tab-usecases-2-1">Use Cases</label>
     <div class="content-in-tab">
       <ul>
         <li>
@@ -131,15 +129,15 @@ prescription-search
 dispense-search
  -->
 
-<br>
 Im aktualisierten Medikationsplan sind die neuen Planeinträge sowie das Datum der Bearbeitung und als verantwortliche Ärztin Dr. Hausärztin ersichtlich.
 
-Dr. Hausärztin erstellt für beide Medikamente eine *Geplante Abgabe* (Rezeptierung), sodass Herr Mustermann die Medikamente in der Apotheke abholen kann. Die Ärztin übergibt dem Patienten ein Rezept mit beiden Arzeimitteln.
+Dr. Hausärztin erstellt für beide Medikamente ein Rezept (Papier oder e-Rezept) und dokumentiert den Rezeptiervorgang in einer *Geplante Abgabe* in der e-Medikation. Herr Mustermann kann nun mit dem Rezept die Medikamente in der Apotheke abholen. 
+
 
 <div class="tabs">
   <div class="tab">
-    <input type="radio" id="tab-beispiele-3" name="tab-group-patient-journey-3" checked="true">
-    <label for="tab-beispiele-3">Beispiele</label>
+    <input type="radio" id="tab-beispiele-2-2" name="tab-group-patient-journey-2-2" checked="true">
+    <label for="tab-beispiele-2-2">Beispiele</label>
     <div class="content-in-tab">
       <ul>
         <li>
@@ -157,7 +155,8 @@ Dr. Hausärztin erstellt für beide Medikamente eine *Geplante Abgabe* (Rezeptie
           <strong>Transaction Bundle:</strong>
           <ul>
             <li>
-              <a href="Bundle-At-Emed-Journey-02-Bundle-Tx-Medikationsplan.html">Transaction Bundle TODO</a>
+              Transaction Bundle in Arbeit. 
+              <!-- TODO -->
             </li>
           </ul>
         </li>
@@ -165,15 +164,83 @@ Dr. Hausärztin erstellt für beide Medikamente eine *Geplante Abgabe* (Rezeptie
     </div>
   </div>
   <div class="tab">
-    <input type="radio" id="tab-usecases-3" name="tab-group-patient-journey-3">
-    <label for="tab-usecases-3">Use Cases</label>
+    <input type="radio" id="tab-usecases-2-2" name="tab-group-patient-journey-2-2">
+    <label for="tab-usecases-2-2">Use Cases</label>
     <div class="content-in-tab">
       <ul>
+        <li>
+          <a href="Sub_UC_eMed_01.html#sub_uc_emed_01_01---aktuellen-medikationsplan-lesen-plan-read">Sub_UC_eMed_01_01 - Aktuellen Medikationsplan lesen (Plan-Read)</a>
+        </li>
+        <li>
+          <a href="Sub_UC_eMed_03.html#sub_uc_emed_07_01---geplante-abgaben-lesen-prescription-search">Sub_UC_eMed_03_01 - Geplante Abgaben lesen (Prescription-Search)</a>
+        </li>
+        <li>
+          <a href="Sub_UC_eMed_03.html#sub_uc_emed_07_02---durchgeführte-abgaben-lesen-dispense-search">Sub_UC_eMed_03_02 - Durchgeführte Abgaben lesen (Dispense-Search)</a>
+        </li>
         <li>
           <a href="Sub_UC_eMed_04.html#sub_uc_emed_04_01---geplante-abgabe-erstellen-prescription-write">Sub_UC_eMed_04_01 - Geplante Abgabe erstellen (Prescription-Write)</a>
         </li>
         <li>
-          <a href="Sub_UC_eMed_04.html#variante-a-vorab-ermittlung-des-e-med-groupidentifiers-groupidentifier-create">Sub_UC_eMed_04_02 - e-Med Groupidentifier beziehen (Variante A)</a>
+          <a href="Sub_UC_eMed_04.html#variante-a-vorab-ermittlung-des-e-med-groupidentifiers-groupidentifier-create">Sub_UC_eMed_04_02 - e-Med GroupIdentifier beziehen (Variante A)</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<br>
+[![overview](plantuml/patient_journey_01_02.svg){: .mx-auto style="width:50%;"}](plantuml/patient_journey_01_02.svg)
+<br> 
+
+### 28.2.2026: Abgabe in der Apotheke (Besorgerprozess)
+
+Herr Mustermann sucht eine Apotheke auf, um die verordneten Medikamente abzuholen und legt dazu seine e-card vor, wodurch die Apotheke Zugriff auf seine ELGA e-Medikation erhält.
+
+Die Apothekerin prüft das Rezept (Papierrezept oder ruft e-Rezept ab), ruft bestehende *Geplante Abgaben*, *Durchgeführte Abgaben* und den *Medikationsplan* ab und prüft die Medikation hinsichtlich Wechselwirkungen. 
+
+Sie händigt das Medikament Ramipril aus, erklärt die Einnahme und erstellt eine *Durchgeführte Abgabe* (vollständig).
+
+Die Dexpanthenol-Salbe muss noch hergestellt werden. Die Apothekerin erstellt eine Durchgeführte Abgabe mit der Kennzeichnung MedicationDispense.type = FFP (First Fill – Part Fill) und MedicationDispense.quantity = 0. 
+
+Die Dexpanthenol-Salbe muss noch hergestellt werden. Die Apothekerin erstellt eine *Durchgeführte Abgabe* und dokumentiert darin entsprechend dem Besorgerprozess *MedicationDispense.type = First Fill – Part Fill* und *MedicationDispense.quantity = 0*.
+
+Anschließend speichert sie die neuen *Durchgeführte Abgaben* in der e-Medikation.
+
+* **Durchgeführte Abgaben erstellen (Vollständige Abgabe, Besorgerprozess):**
+
+<div class="tabs">
+  <div class="tab">
+    <input type="radio" id="tab-beispiele-3-1" name="tab-group-patient-journey-3-1" checked="true">
+    <label for="tab-beispiele-3-1">Beispiele</label>
+    <div class="content-in-tab">
+      <ul>
+        <li>
+          <strong>Durchgeführte Abgaben erstellen:</strong> (Vollständige Abgabe, Besorgerprozess)
+          <ul>
+            <li>
+              <a href="MedicationDispense-At-Emed-Journey-03-Md-Durchgefuehrte-Abgabe-01.html">Durchgeführte Abgabe (vollständig) (Ramipril)</a>
+            </li>
+            <li>
+              <a href="MedicationDispense-At-Emed-Journey-03-Md-Durchgefuehrte-Abgabe-02.html">Durchgeführte Abgabe (Besorgerprozess) (Dexpanthenol-Salbe)</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="tab">
+    <input type="radio" id="tab-usecases-3-1" name="tab-group-patient-journey-3-1">
+    <label for="tab-usecases-3-1">Use Cases</label>
+    <div class="content-in-tab">
+      <ul>
+        <li>
+          <a href="Sub_UC_eMed_05.html#zugriffsvariante-a-durchgeführte-abgabe-mit-kontakt-schreiben">Sub_UC_eMed_05_01 - Durchgeführte Abgabe schreiben (Dispense-Write)(Variante A: Zugriff mit Kontakt)</a>
+        </li>
+        <li>
+          <a href="Sub_UC_eMed_05.html#sub_uc_emed_05_01_01---vollständige-einzelabgabe-erfassen">Sub_UC_eMed_05_01_01 - Vollständige Einzelabgabe erfassen</a>
+        </li>
+        <li>
+          <a href="Sub_UC_eMed_05.html#sub_uc_emed_05_01_03---besorgerprozess">Sub_UC_eMed_05_01_03 - Besorgerprozess</a>
         </li>
       </ul>
     </div>
@@ -181,30 +248,11 @@ Dr. Hausärztin erstellt für beide Medikamente eine *Geplante Abgabe* (Rezeptie
 </div>
 
 
-
 <br>
-[![overview](plantuml/patient_journey_01.svg){: .mx-auto style="width:50%;"}](plantuml/patient_journey_01.svg)
+[![overview](plantuml/patient_journey_03.svg){: .mx-auto style="width:50%;"}](plantuml/patient_journey_03.svg)
 <br> 
 
-
-
-
-**28.2.2026: Abgabe in der Apotheke (Besorgerprozess)**
-
-Herr Mustermann sucht eine [Apotheke](Organization-At-Emed-Example-Organization-Apo-01.html) auf, um die verordneten Medikamente abzuholen und authentifiziert sich mit seiner e-card.
-
-Die Apothekerin ruft *Geplante, Durchgeführte Abgaben* und den *Medikationsplan* ab, und prüft die Medikation hinsichtlich Wechselwirkungen.
-
-Sie händigt das Medikament Ramipril aus, erklärt die Einnahme und erstellt eine *Durchgeführte Abgabe*.
-
-Die Dexpanthenol-Salbe muss noch hergestellt werden. Die Apothekerin erstellt eine *Durchgeführte Abgabe* und kennzeichnet sie entsprechend dem Besorgerprozess mit *MedicationDispense.type = FFP (First Fill – Part Fill)* und *MedicationDispense.quantity = 0*.
-
-Anschließend speichert sie die neuen *Durchgeführte Abgaben* in der e-Medikation.
-
-* **Durchgeführte Abgaben erstellen (Vollständige Abgabe, Besorgerprozess):**
-
-  * Beispiel [MedicationDispense](MedicationDispense-At-Emed-Journey-05-MedicationDispense.html)
-
+  
 **1.3.2026: Abgabe in der Apotheke (Besorgerprozess abschließen)**
 
 Herr Mustermann möchte in der Apotheke die Dexpanthenol-Salbe abholen und steckt seine e-card.
