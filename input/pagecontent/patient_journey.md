@@ -192,21 +192,19 @@ Dr. Hausärztin erstellt für beide Medikamente ein Rezept (Papier oder e-Rezept
 [![overview](plantuml/patient_journey_01_02.svg){: .mx-auto style="width:50%;"}](plantuml/patient_journey_01_02.svg)
 <br> 
 
-### 28.2.2026: Abgabe in der Apotheke (Besorgerprozess)
+### 28.2.2026: Abgabe in der Apotheke
 
 Herr Mustermann sucht eine Apotheke auf, um die verordneten Medikamente abzuholen und legt dazu seine e-card vor, wodurch die Apotheke Zugriff auf seine ELGA e-Medikation erhält.
 
 Die Apothekerin prüft das Rezept (Papierrezept oder ruft e-Rezept ab), ruft bestehende *Geplante Abgaben*, *Durchgeführte Abgaben* und den *Medikationsplan* ab und prüft die Medikation hinsichtlich Wechselwirkungen. 
 
-Sie händigt das Medikament Ramipril aus, erklärt die Einnahme und erstellt eine *Durchgeführte Abgabe* (vollständig).
+Sie händigt das Medikament Ramipril aus, erklärt die Einnahme und erstellt eine *Durchgeführte Abgabe* (**Vollständige Abgabe**).
 
-Die Dexpanthenol-Salbe muss noch hergestellt werden. Die Apothekerin erstellt eine Durchgeführte Abgabe mit der Kennzeichnung MedicationDispense.type = FFP (First Fill – Part Fill) und MedicationDispense.quantity = 0. 
+Die Dexpanthenol-Salbe muss noch hergestellt werden. Die Apothekerin erstellt eine Durchgeführte Abgabe mit dem *Type = "First Fill – Part Fill"* und der abgegebenen Menge (*quantity*) Null. 
 
-Die Dexpanthenol-Salbe muss noch hergestellt werden. Die Apothekerin erstellt eine *Durchgeführte Abgabe* und dokumentiert darin entsprechend dem Besorgerprozess *MedicationDispense.type = First Fill – Part Fill* und *MedicationDispense.quantity = 0*.
+Die Dexpanthenol-Salbe muss noch hergestellt werden. Die Apothekerin erstellt eine *Durchgeführte Abgabe* und dokumentiert darin entsprechend dem **Besorgerprozess** *type = First Fill – Part Fill* und *MedicationDispense.quantity = 0*.
 
 Anschließend speichert sie die neuen *Durchgeführte Abgaben* in der e-Medikation.
-
-* **Durchgeführte Abgaben erstellen (Vollständige Abgabe, Besorgerprozess):**
 
 <div class="tabs">
   <div class="tab">
