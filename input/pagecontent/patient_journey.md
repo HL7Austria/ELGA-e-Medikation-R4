@@ -221,6 +221,18 @@ Anschließend speichert sie die neuen *Durchgeführte Abgaben* in der e-Medikati
             <li>
               <a href="MedicationDispense-At-Emed-Journey-03-Md-Durchgefuehrte-Abgabe-02.html">Durchgeführte Abgabe (Besorgerprozess) (Dexpanthenol-Salbe)</a>
             </li>
+            <li>
+              <a href="Organization-At-Emed-Example-Organization-Apo-01.html">Apotheke (Organization)</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <strong>Transaction Bundle:</strong>
+          <ul>
+            <li>
+              Transaction Bundle in Arbeit. 
+              <!-- TODO -->
+            </li>
           </ul>
         </li>
       </ul>
@@ -231,6 +243,15 @@ Anschließend speichert sie die neuen *Durchgeführte Abgaben* in der e-Medikati
     <label for="tab-usecases-3-1">Use Cases</label>
     <div class="content-in-tab">
       <ul>
+      <li>
+          <a href="Sub_UC_eMed_01.html#sub_uc_emed_01_01---aktuellen-medikationsplan-lesen-plan-read">Sub_UC_eMed_01_01 - Aktuellen Medikationsplan lesen (Plan-Read)</a>
+        </li>
+        <li>
+          <a href="Sub_UC_eMed_03.html#sub_uc_emed_07_01---geplante-abgaben-lesen-prescription-search">Sub_UC_eMed_03_01 - Geplante Abgaben lesen (Prescription-Search)</a>
+        </li>
+        <li>
+          <a href="Sub_UC_eMed_03.html#sub_uc_emed_07_02---durchgeführte-abgaben-lesen-dispense-search">Sub_UC_eMed_03_02 - Durchgeführte Abgaben lesen (Dispense-Search)</a>
+        </li>
         <li>
           <a href="Sub_UC_eMed_05.html#zugriffsvariante-a-durchgeführte-abgabe-mit-kontakt-schreiben">Sub_UC_eMed_05_01 - Durchgeführte Abgabe schreiben (Dispense-Write)(Variante A: Zugriff mit Kontakt)</a>
         </li>
