@@ -13,7 +13,7 @@ ELGA-Teilnehmer können *Geplante Abgaben* über das Zugangsportal einsehen.
 Der **Standardzugriff** (*Prescription-Search*) erfolgt nach **Kontaktbestätigung** des ELGA-Teilnehmers (z.B. mittels e-card). Der GDA erhält dadurch lesenden Zugriff auf die e-Medikation inkl. aller *Geplanten Abgaben* und kann entsprechende Arzneimittelabgaben durchführen und dokumentieren (siehe [Sub_UC_eMed_05_01 - Durchgeführte Abgabe schreiben](Sub_UC_eMed_05.html#Sub_UC_eMed_05_01---durchgeführte-abgabe-schreiben)). Zusätzlich kann der GDA auf *Durchgeführte Abgaben* und den *Medikationsplan* zugreifen, um die *Geplanten Abgaben* im Kontext der gesamten Medikation zu beurteilen. 
 <!-- TODO: Link auf Medikationsplan lesen einfügen -->
 
-Als **alternative Zugriffsart** zur Kontaktbestätigung steht der **Zugriff mittels *e-Med GroupIdentifier*** (z.B. über den DataMatrix-Code eines e-Rezepts) zur Verfügung (*Groupidentifier-Search*). Dieser ermöglicht ausschließlich einen eingeschränkten ELGA-Zugriff auf die dem e-Med GroupIdentifier zugeordneten *Geplanten Abgaben* und *Durchgeführten Abgaben* und wird in [Sub_UC_eMed_03 - Geplante und Durchgeführte Abgaben mit e-Med GroupIdentifier lesen](Sub_UC_eMed_03.html) beschrieben.
+Als **alternative Zugriffsart** zur Kontaktbestätigung steht der **Zugriff mittels *e-Med GroupIdentifier*** (z.B. über den DataMatrix-Code eines e-Rezepts) zur Verfügung (*GroupIdentifier-Search*). Dieser ermöglicht ausschließlich einen eingeschränkten ELGA-Zugriff auf die dem e-Med GroupIdentifier zugeordneten *Geplanten Abgaben* und *Durchgeführten Abgaben* und wird in [Sub_UC_eMed_03 - Geplante und Durchgeführte Abgaben mit e-Med GroupIdentifier lesen](Sub_UC_eMed_03.html) beschrieben.
 
 Bei **Prescription-Search** stellt die Fachanwendung alle *MedicationRequest*-Ressourcen mit der Kategorie *Geplante Abgabe* des ELGA-Teilnehmers bereit, die den angegebenen Suchkriterien entsprechen. 
 
@@ -78,7 +78,7 @@ Der **Standardzugriff** (*Dispense-Search*) auf *Durchgeführte Abgaben* erfolgt
 Zusätzlich kann der GDA lesend auf *Geplante Abgaben* und den *Medikationsplan* zugreifen, um die *Durchgeführten Abgaben* im Kontext der gesamten Medikation zu beurteilen.
 <!-- TODO: Link auf Medikationsplan lesen + Geplante Abgaben lesen einfügen -->
 
-Als **alternative Zugriffsart** zur Kontaktbestätigung steht der **Zugriff mittels *e-Med GroupIdentifier*** (z.B. über den DataMatrix-Code eines e-Rezepts) zur Verfügung (*Groupidentifier-Search*). Dieser ermöglicht ausschließlich einen eingeschränkten ELGA-Zugriff auf die dem e-Med GroupIdentifier zugeordneten *Geplanten Abgaben* und *Durchgeführten Abgaben* und wird in [Sub_UC_eMed_03 - Geplante und Durchgeführte Abgaben mit e-Med GroupIdentifier lesen](Sub_UC_eMed_03.html) beschrieben.
+Als **alternative Zugriffsart** zur Kontaktbestätigung steht der **Zugriff mittels *e-Med GroupIdentifier*** (z.B. über den DataMatrix-Code eines e-Rezepts) zur Verfügung (*GroupIdentifier-Search*). Dieser ermöglicht ausschließlich einen eingeschränkten ELGA-Zugriff auf die dem e-Med GroupIdentifier zugeordneten *Geplanten Abgaben* und *Durchgeführten Abgaben* und wird in [Sub_UC_eMed_03 - Geplante und Durchgeführte Abgaben mit e-Med GroupIdentifier lesen](Sub_UC_eMed_03.html) beschrieben.
 
 Bei **Dispense-Search** stellt die Fachanwendung alle *MedicationDispense*-Ressourcen des ELGA-Teilnehmers bereit, die den angegebenen Suchkriterien entsprechen. 
 
@@ -137,7 +137,7 @@ Mögliche Suchparamter: (in Arbeit)
 
 <!-- Todo: entered-in-error nicht, weil nur eigene verworfen werden können? -->
 
-### Sub_UC_eMed_03_03 - Geplante und Durchgeführte Abgaben mittels e-Med GroupIdentifier lesen (Groupidentifier-Search)
+### Sub_UC_eMed_03_03 - Geplante und Durchgeführte Abgaben mittels e-Med GroupIdentifier lesen (GroupIdentifier-Search)
 
 Erfolgt die Arzneimittelabgabe **ohne Kontaktbestätigung** des ELGA-Teilnehmers, sondern auf Basis eines *e-Med GroupIdentifier* (z.B. über den DataMatrix-Code eines e-Rezepts), erhält ein [berechtigter GDA](actors.html#rollen-und-berechtigungen) einen eingeschränkten ELGA-Zugriff. 
 

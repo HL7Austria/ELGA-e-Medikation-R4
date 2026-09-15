@@ -15,7 +15,7 @@ Basierend auf darin enthaltenen Planeinträgen erstellt der GDA neue *Geplante A
 - Der Status der neuen *Geplanten Abgabe* muss *offen* sein (**active**, siehe [Status des MedicationRequests in der geplanten Abgabe](workflowmanagement.html#status-des-medicationrequests-in-der-geplanten-abgabe)) 
 - Die **Rezeptart** muss verpflichtend ausgewählt werden (*Kassenrezept, Privatrezept* oder *Substitutionsrezept*)
 - Die **Medikation** soll fachlich jener des Planeintrags entsprechen. Enthält der Planeintrag ausschließlich Wirkstoffe, ist verpflichtend ein entsprechendes Medikament aus der ASP-Liste (inkl. PZN) bzw. eine magistrale Zubereitung zu dokumentieren. 
-- Werden mehrere Medikamente gleichzeitig verordnet und demselben e-Rezept zugeordnet, muss jede zugehörige *Geplante Abgabe* mit demselben **e-Med GroupIdentifier** versehen werden. Diese  eindeutige Kennung ('Rezept-Klammer') ermöglicht es berechtigten Akteure, die zusammengehörigen *Geplanten Abgaben* und *Durchgeführten Abgaben* abzurufen. Der hierfür verwendete *e-Med GroupIdentifier* kann über unterschiedliche Varianten bezogen werden (siehe [Sub_UC_eMed_04_02 - e-Med Groupidentifier beziehen](Sub_UC_eMed_04.html#sub_uc_emed_04_02---e-med-groupidentifier-beziehen)) und bleibt solange gültig, bis die letztmögliche Einlösung der *Geplanten Abgaben* erfolgt ist. 
+- Werden mehrere Medikamente gleichzeitig verordnet und demselben e-Rezept zugeordnet, muss jede zugehörige *Geplante Abgabe* mit demselben **e-Med GroupIdentifier** versehen werden. Diese  eindeutige Kennung ('Rezept-Klammer') ermöglicht es berechtigten Akteure, die zusammengehörigen *Geplanten Abgaben* und *Durchgeführten Abgaben* abzurufen. Der hierfür verwendete *e-Med GroupIdentifier* kann über unterschiedliche Varianten bezogen werden (siehe [Sub_UC_eMed_04_02 - e-Med GroupIdentifier beziehen](Sub_UC_eMed_04.html#sub_uc_emed_04_02---e-med-groupidentifier-beziehen)) und bleibt solange gültig, bis die letztmögliche Einlösung der *Geplanten Abgaben* erfolgt ist. 
 <!-- TODO: oder die *Geplante Abgabe* den Status *active* hat? -->
 In einem übermittelten Bundle dürfen nur *Geplante Abgaben* mit demselben *e-Med GroupIdentifier* enthalten sein. Fehlt dieser, ergänzt ihn die Fachanwendung. Werden mehrere e-Rezepte gleichzeitig erstellt, muss für jedes e-Rezept ein eigenes Bundle mit den jeweils zugehörigen *Geplanten Abgaben* erstellt werden.
 - **Dosierangaben** können optional angepasst werden.
@@ -63,11 +63,11 @@ Offene Punkte: <br>$prescription-write: in Arbeit.
 
 <!-- #### Ablauf und Bezug e-Med GroupIdentifier -->
 
-### Sub_UC_eMed_04_02 - e-Med Groupidentifier beziehen
+### Sub_UC_eMed_04_02 - e-Med GroupIdentifier beziehen
 
 Der Ablauf zur Erstellung von *Geplanten Abgaben* und der Bezug des *e-Med GroupIdentifiers* kann unterschiedlich erfolgen. Exemplarisch werden drei Varianten angeführt.
 
-##### Variante A: Vorab-Ermittlung des e-Med GroupIdentifiers (Groupidentifier-Create)
+##### Variante A: Vorab-Ermittlung des e-Med GroupIdentifiers (GroupIdentifier-Create)
 
 Der *e-Med GroupIdentifier* ("Rezeptklammer") wird via POST *$groupidentifier-create* vorab von der Fachanwendung bezogen, in den *Geplanten Abgaben* ergänzt und zur Erstellung des e-Rezepts an die e-Rezept-Anwendung mitgegeben, um dieses mit den *Geplanten Abgaben* zu verknüpfen.
 Der Trigger zu Erstellung des e-Rezepts und [Prescription-Write](interactions.html#prescription-write) können parallel erfolgen (siehe Normalfall). 
