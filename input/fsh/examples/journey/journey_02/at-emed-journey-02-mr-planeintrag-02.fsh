@@ -10,9 +10,8 @@ Usage: #example
 // R5 Backports
 * extension[effectiveDosePeriod].valuePeriod.start = "2026-02-27"
 * extension[effectiveDosePeriod].valuePeriod.end = "2026-03-20"
-* extension[renderedDosageInstruction].valueMarkdown = "1-0-1-0 täglich | 2 × täglich für 3 Wochen"  // TODO prüfen
+* extension[renderedDosageInstruction].valueMarkdown = "1-0-1-0 | Täglich 1-0-1-0 für 3 Wochen" 
 
-//* identifier.value = "4713_202602280800000" // Eintrag_ID = {ID}_{Zeitstempel}
 * status = $cs-medication-request-status#active
 * intent = https://hl7.org/fhir/R4/valueset-medicationrequest-intent#order
 * category = MedicationRequestCategoryCS#1 "Planeintrag" 
@@ -36,7 +35,7 @@ Usage: #example
 * dosageInstruction[standardDosage].timing.repeat.when[+] = $cs-timing#EVE "Abends" 
 * dosageInstruction[standardDosage].timing.repeat.boundsDuration.value = 3
 * dosageInstruction[standardDosage].timing.repeat.boundsDuration.unit = "wk"
-// * dosageInstruction[standardDosage].doseAndRate.doseQuantity.value = 2
+// * dosageInstruction[standardDosage].doseAndRate.doseQuantity.value = 2        // TODO: Angabe für Salbe
 // * dosageInstruction[standardDosage].doseAndRate.doseQuantity.system = $cs-ucum
 // * dosageInstruction[standardDosage].doseAndRate.doseQuantity = $cs-ucum#Stueck "Stück"
 * dosageInstruction[standardDosage].route = https://termgit.elga.gv.at/CodeSystem-medikationartanwendung.html#100000073566 "Anwendung auf der Haut"

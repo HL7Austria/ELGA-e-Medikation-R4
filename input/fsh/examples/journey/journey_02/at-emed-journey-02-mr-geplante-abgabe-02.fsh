@@ -9,8 +9,7 @@ Usage: #example
 // R5 Backports
 * extension[effectiveDosePeriod].valuePeriod.start = "2026-02-27"
 * extension[effectiveDosePeriod].valuePeriod.end = "2026-03-20"
-* extension[renderedDosageInstruction].valueMarkdown = "1-0-1-0 täglich | 2 × täglich für 3 Wochen"  // TODO prüfen
-
+* extension[renderedDosageInstruction].valueMarkdown = "1-0-1-0 | Täglich 1-0-1-0" 
 
 //* identifier.value = "WYE82A2G8EEW_4712202602270810000"
 * status = $cs-medication-request-status#active

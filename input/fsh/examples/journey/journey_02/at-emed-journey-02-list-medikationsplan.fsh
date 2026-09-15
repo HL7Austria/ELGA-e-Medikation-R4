@@ -4,10 +4,9 @@ Title: "Beispiel Journey 02: Medikationsplan"
 Description: "Beispiel eines Medikationsplans (List), der 2 Planeinträge (MedicationRequests) referenziert und Informationen über Reihenfolge und Änderungsstatus speichert."
 Usage: #example
 
-* identifier.value = "123"
 * status = #current
 * mode = #working
-* code = $cs-sct#736378000 "Medikationsplan"  // "Medikationsplan"
+* code = $cs-sct#736378000 "Medikationsplan"
 * subject = Reference(At-Emed-Example-Patient-01)
 * date = "2026-02-27T08:10:00+00:00"
 * source = Reference(At-Emed-Example-Practitioner-01)

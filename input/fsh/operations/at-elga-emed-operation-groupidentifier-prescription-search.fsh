@@ -2,7 +2,7 @@
 Instance: AtElgaEmedGroupIdentifierPrescriptionSearch
 InstanceOf: OperationDefinition
 Title: "eMed Operation für GroupIdentifier Prescription Search"
-Description: "Die $groupidentifier-prescription-search Operation wird aufgerufen, wenn ein Zugriff auf geplante Abgaben mittels e-Med Groupidentifier erfolgen soll."
+Description: "Die $groupidentifier-prescription-search Operation wird aufgerufen, wenn ein Zugriff auf geplante Abgaben mittels e-Med GroupIdentifier erfolgen soll."
 Usage: #definition
 * id = "at-emed-operation-groupidentifier-prescription-search"
 * name = "AtElgaEmedGroupIdentifierPrescriptionSearch"

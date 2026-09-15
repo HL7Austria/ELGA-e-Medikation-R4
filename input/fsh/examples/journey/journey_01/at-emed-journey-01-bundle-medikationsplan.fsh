@@ -7,4 +7,8 @@ Usage: #example
 * type = #searchset
 * timestamp = "2026-02-27T08:00:00+00:00" 
 * entry[Medikationsplan].resource = At-Emed-Journey-01-List-Medikationsplan
-* entry[Medikationsplan].fullUrl = "urn:uuid:62e2daa5-c34b-4b97-8044-fd893bc99a55"
+* entry[Medikationsplan].fullUrl = "https://example.elga.com/List/At-Emed-Journey-01-List-Medikationsplan"
+// * entry[Patient].resource = At-Emed-Example-Patient-01
+// * entry[Patient].fullUrl = "urn:uuid:9a10ac0d-6063-4272-9ed7-0539582e1d3c"  // TODO
+// * entry[Source].resource = At-Emed-Example-Device-01
+// * entry[Source].fullUrl = "urn:uuid:5fb18c43-c408-4b18-aecf-04f019af0a16"  // TODO 

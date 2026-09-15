@@ -8,7 +8,7 @@ Usage: #example
 
 // R5 Backports
 * extension[effectiveDosePeriod].valuePeriod.start = "2026-02-27"
-* extension[renderedDosageInstruction].valueMarkdown = "1-0-0-0 täglich | Täglich 1 Stück morgens" // TODO prüfen
+* extension[renderedDosageInstruction].valueMarkdown = "1-0-0-1 | Täglich: 1-0-0-0" 
 
 //* identifier.value = "WYE82A2G8EEW_4713202602270810000"
 
@@ -38,7 +38,7 @@ Usage: #example
 * dosageInstruction[standardDosage].timing.repeat.period = 1
 * dosageInstruction[standardDosage].timing.repeat.periodUnit = #d
 * dosageInstruction[standardDosage].timing.repeat.when[0] = $cs-event-timing#MORN  
-* dosageInstruction[standardDosage].doseAndRate.doseQuantity = $cs-ucum#Stueck "Stück"
+* dosageInstruction[standardDosage].doseAndRate.doseQuantity = $cs-ucum#{Stueck} "Stück"
 * dosageInstruction[standardDosage].route = $cs-medikationartanwendung#100000073619 "zum Einnehmen"
 //* dosageInstruction.doseAndRate.doseQuantity = 10 'mg' "mg"
 
