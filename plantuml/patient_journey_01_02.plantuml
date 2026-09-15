@@ -80,29 +80,29 @@ group GROUP_ARZT 27.2.2026 · Arztbesuch
 
   ' == Medikationsplan erstmals abrufen ==
 
-  Arzt_1 -> eMed_FA: aktuellen Medikationsplan lesen: [[Sub_UC_eMed_01.html#sub_uc_emed_01_01---aktuellen-medikationsplan-lesen-plan-read $plan-read]]
+  Arzt_1 -> eMed_FA: aktuellen Medikationsplan lesen: $plan-read
   activate eMed_FA COLOR_EMED_FA  
-  eMed_FA -> Arzt_1: leerer Medikationsplan\n(*EmptyReason = notstarted*)
+  eMed_FA -> Arzt_1: leerer Medikationsplan\n(EmptyReason = notstarted)
   deactivate eMed_FA
-  Arzt_1 -> eMed_FA: Geplante Abgaben lesen: [[Sub_UC_eMed_03.html#sub_uc_emed_03_01---geplante-abgaben-lesen-prescription-search Prescription-Search]]
+  Arzt_1 -> eMed_FA: Geplante Abgaben lesen: Prescription-Search
   activate eMed_FA COLOR_EMED_FA 
-  eMed_FA -> Arzt_1: Geplante Abgaben: leeres Ergebnis
+  eMed_FA -> Arzt_1: leeres Ergebnis
   deactivate eMed_FA
-  Arzt_1 -> eMed_FA: Durchgeführte Abgaben lesen: [[Sub_UC_eMed_03.html#sub_uc_emed_03_02---durchgeführte-abgaben-lesen-dispense-search Dispense-Search]]
+  Arzt_1 -> eMed_FA: Durchgeführte Abgaben lesen: Dispense-Search
   activate eMed_FA COLOR_EMED_FA 
-  eMed_FA -> Arzt_1: Durchgeführte Abgaben: leeres Ergebnis
+  eMed_FA -> Arzt_1: leeres Ergebnis
   deactivate eMed_FA
   '  deactivate Patient
 
   ' == Medikationsplaneinträge hinzufügen ==
   Arzt_1 -> Arzt_1: neue Planeinträge erstellen +\nMedikationsplan bearbeiten
-  Arzt_1 -> eMed_FA: neuen Medikationsplan schreiben: [[Sub_UC_eMed_02.html#sub_uc_emed_02_01---medikationsplan-schreiben-plan-write $plan-write]]
+  Arzt_1 -> eMed_FA: neuen Medikationsplan schreiben: $plan-write
   activate eMed_FA COLOR_EMED_FA
   eMed_FA -> Arzt_1: Medikationsplan 
   deactivate eMed_FA
 
-  Arzt_1 -> Arzt_1: Geplante Abgaben erstellen
-  Arzt_1 -> eMed_FA: Geplante Abgaben schreiben: [[Sub_UC_eMed_04.html#sub_uc_emed_04_01---geplante-abgabe-erstellen-prescription-write $dispense-write]]
+  Arzt_1 -> Arzt_1: Geplante Abgaben erstellen\n(Rampipril + Dexpanthenol-Salbe)
+  Arzt_1 -> eMed_FA: Geplante Abgaben schreiben: $dispense-write
   activate eMed_FA COLOR_EMED_FA
   eMed_FA -> Arzt_1: Geplante Abgaben
   deactivate eMed_FA

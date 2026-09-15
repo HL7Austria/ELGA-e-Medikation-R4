@@ -1,6 +1,6 @@
 @startuml
 
-title Groupidentifier-Search
+title GroupIdentifier-Search
 
 'skinparam actorStyle awesome
 
