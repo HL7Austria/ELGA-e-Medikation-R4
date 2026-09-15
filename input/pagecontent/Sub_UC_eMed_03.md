@@ -2,7 +2,7 @@
 
 <!-- Technische Use Cases für Geplante und Durchgeführte Abgaben lesen (UC_eMed_03) -->
 
-### Sub_UC_eMed_03 - Geplante Abgaben lesen (Prescription-Search)
+### Sub_UC_eMed_03_01 - Geplante Abgaben lesen (Prescription-Search)
 
 Ein [berechtigter GDA](actors.html#rollen-und-berechtigungen) kann [Geplante Abgaben](StructureDefinition-at-elga-emed-medicationrequest-geplanteabgabe.html) eines ELGA-Teilnehmers abrufen, um verordnete (rezeptierte) Arzneimittel einzusehen.
 
@@ -66,7 +66,7 @@ Mögliche Suchparamter: (in Arbeit)
 - groupIdentifier -->
 
 
-### Sub_UC_eMed_03 - Durchgeführte Abgaben lesen (Dispense-Search)
+### Sub_UC_eMed_03_02 - Durchgeführte Abgaben lesen (Dispense-Search)
 
 Ein [berechtigter GDA](actors.html#rollen-und-berechtigungen) kann *Durchgeführte Abgaben* eines ELGA-Teilnehmers abrufen, um bereits dokumentierte Arzneimittelabgaben einzusehen.
 
@@ -137,7 +137,7 @@ Mögliche Suchparamter: (in Arbeit)
 
 <!-- Todo: entered-in-error nicht, weil nur eigene verworfen werden können? -->
 
-### Sub_UC_eMed_03 - Geplante und Durchgeführte Abgaben mittels e-Med GroupIdentifier lesen (Groupidentifier-Search)
+### Sub_UC_eMed_03_03 - Geplante und Durchgeführte Abgaben mittels e-Med GroupIdentifier lesen (Groupidentifier-Search)
 
 Erfolgt die Arzneimittelabgabe **ohne Kontaktbestätigung** des ELGA-Teilnehmers, sondern auf Basis eines *e-Med GroupIdentifier* (z.B. über den DataMatrix-Code eines e-Rezepts), erhält ein [berechtigter GDA](actors.html#rollen-und-berechtigungen) einen eingeschränkten ELGA-Zugriff. 
 
