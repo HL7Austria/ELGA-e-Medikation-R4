@@ -134,7 +134,7 @@ Abgaben ohne Geplante Abgabe geben kann (z.B. Notfall oder OTC-Medikation)."
 * whenPrepared 0..0 //1 MS
 * whenPrepared ^short = "Zeitpunkt, zu dem das Produkt verpackt und geprüft wurde."
 
-* whenHandedOver 1..1 MS  
+* whenHandedOver 0..1 MS  // geändert von  1..1 akl
 * whenHandedOver ^short = "Der Zeitpunkt, zu dem das abgegebene Produkt dem Patienten oder seinem Vertreter zur Verfügung gestellt wurde."
 
 * destination 0..0
