@@ -3,6 +3,7 @@ Title: "ELGA Dosage Category Status CodeSystem"
 Description: "Zulässige Ausprägungen der Kategorie einer Dosierung in ELGA."
 * ^status = #active
 * ^experimental = true
+* ^caseSensitive = false
 * #timed "Timed Administration"
 * #frequency "Frequency Administration"
 * #other "Other" //Temporary for testing purposes
