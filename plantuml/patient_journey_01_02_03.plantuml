@@ -80,15 +80,15 @@ group GROUP_ARZT 27.2.2026 · Arztbesuch
 
   ' == Medikationsplan erstmals abrufen ==
 
-  Arzt_1 -> eMed_FA: aktuellen Medikationsplan lesen: $plan-read
+  Arzt_1 -> eMed_FA: aktuellen Medikationsplan abrufen:\n$plan-read 
   activate eMed_FA COLOR_EMED_FA  
   eMed_FA -> Arzt_1: leerer Medikationsplan\n(EmptyReason = notstarted)
   deactivate eMed_FA
-  Arzt_1 -> eMed_FA: Geplante Abgaben lesen: Prescription-Search
+  Arzt_1 -> eMed_FA: offene Geplante Abgaben abrufen:\nPrescription-Search (status=active)
   activate eMed_FA COLOR_EMED_FA 
   eMed_FA -> Arzt_1: leeres Ergebnis
   deactivate eMed_FA
-  Arzt_1 -> eMed_FA: Durchgeführte Abgaben lesen: Dispense-Search
+  Arzt_1 -> eMed_FA: Durchgeführte Abgaben abrufen:\nDispense-Search
   activate eMed_FA COLOR_EMED_FA 
   eMed_FA -> Arzt_1: leeres Ergebnis
   deactivate eMed_FA
@@ -96,13 +96,13 @@ group GROUP_ARZT 27.2.2026 · Arztbesuch
 
   ' == Medikationsplaneinträge hinzufügen ==
   Arzt_1 -> Arzt_1: neue Planeinträge erstellen +\nMedikationsplan bearbeiten
-  Arzt_1 -> eMed_FA: neuen Medikationsplan schreiben: $plan-write
+  Arzt_1 -> eMed_FA: neuen Medikationsplan speichern: $plan-write
   activate eMed_FA COLOR_EMED_FA
   eMed_FA -> Arzt_1: Medikationsplan 
   deactivate eMed_FA
 
-  Arzt_1 -> Arzt_1: Geplante Abgaben erstellen\n(Rampipril + Dexpanthenol-Salbe)
-  Arzt_1 -> eMed_FA: Geplante Abgaben schreiben: $dispense-write
+  Arzt_1 -> Arzt_1: 2 Geplante Abgaben erstellen\n(Rampipril + Dexpanthenol-Salbe)
+  Arzt_1 -> eMed_FA: Geplante Abgaben speichern: $dispense-write
   activate eMed_FA COLOR_EMED_FA
   eMed_FA -> Arzt_1: Geplante Abgaben
   deactivate eMed_FA

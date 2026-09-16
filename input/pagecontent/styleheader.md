@@ -183,6 +183,10 @@ width: 100%;}
   --tab-height: 500px; 
 }
 
+/* Abstand zwischen Überschriften und Tabs verleinern */
+h4 + .tabs {  
+  margin-top: 5px;
+}
 
 
 </style>

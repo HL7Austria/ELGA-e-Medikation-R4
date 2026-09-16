@@ -64,42 +64,38 @@ actor Arzt_1 as "Dr. Hausärztin" COLOR_GDA_1
 actor Apotheke as "Amadeus Apotheke" COLOR_APO
 participant eMed_FA as "e-Medikation" COLOR_EMED_FA
 
-
 !define GROUP_ARZT          #96607D30
 !define GROUP_APO           #0F9ED530
 !define GROUP_KH           #beaf3c30
 !define GROUP_PAT           #196B2430
 
-
 autonumber
 
 
-group GROUP_APO 28.2.2026 · Abgabe in der Apotheke (Besorgerprozess)
+group GROUP_APO 1.3.2026 · Abgabe in der Apotheke (Besorgerprozess Teil 2)
 
-  Patient -> Apotheke: Medikamente abholen
+  Patient -> Apotheke: Dexpanthenol-Salbe abholen
   activate Patient COLOR_PATIENT
   activate Apotheke COLOR_APO
-  Apotheke -> eMed_FA: Medikationsplan lesen: $plan-read
+  Apotheke -> eMed_FA: Medikationsplan abrufen:\n$plan-read
   activate eMed_FA COLOR_EMED_FA  
-  eMed_FA -> Apotheke: Medikationsplan
+  eMed_FA -> Apotheke: Medikationsplan mit 2 Planeinträgen\n(Rampipril + Dexpanthenol-Salbe)
   deactivate eMed_FA
-  Apotheke -> eMed_FA: Geplante Abgaben lesen: Prescription-Search
+  Apotheke -> eMed_FA: offene Geplante Abgaben abrufen:\nPrescription-Search (status=active)
   activate eMed_FA COLOR_EMED_FA 
-  eMed_FA -> Apotheke: 2 Geplante Abgaben\n(Rampipril + Dexpanthenol-Salbe)
+  eMed_FA -> Apotheke: 1 Geplante Abgaben\n(Dexpanthenol-Salbe)
   deactivate eMed_FA
-  Apotheke -> eMed_FA: Durchgeführte Abgaben lesen: Dispense-Search
+  Apotheke -> eMed_FA: Durchgeführte Abgaben abrufen:\nDispense-Search
   activate eMed_FA COLOR_EMED_FA 
-  eMed_FA -> Apotheke: leeres Ergebnis
+  eMed_FA -> Apotheke: 1 Durchgeführte Abgabe\n(Besorgerprozess für Dexpanthenol-Salbe)
   deactivate eMed_FA
 
-  Apotheke -> Apotheke: Durchgeführte Abgabe\nfür Ramipril erstellen
-  Apotheke -> Patient: Ramipril aushändigen
-  Apotheke -> Apotheke: Durchgeführte Abgabe\nfür Dexpanthenol-Salbe erstellen\n(Besorgerprozess)
-  Apotheke -> eMed_FA: Durchgeführte Abgaben\nspeichern
+  Apotheke -> Apotheke: Durchgeführte Abgabe\nfür Dexpanthenol-Salbe erstellen\n(Besorgerprozess beenden)
+  Apotheke -> eMed_FA: Durchgeführte Abgabe\nspeichern
   activate eMed_FA COLOR_EMED_FA
-  eMed_FA -> Apotheke: Durchgeführte Abgaben
+  eMed_FA -> Apotheke: Durchgeführte Abgabe
   deactivate eMed_FA
-  Apotheke -> Patient: Abholzettel aushändigen 
+  Apotheke -> Patient: Dexpanthenol-Salbe aushändigen 
   deactivate Apotheke
   deactivate Patient
 
