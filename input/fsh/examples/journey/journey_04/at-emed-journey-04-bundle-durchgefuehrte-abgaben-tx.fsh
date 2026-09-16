@@ -1,7 +1,7 @@
 Instance: At-Emed-Journey-04-Bundle-Durchgefuehrte-Abgaben-Tx
 InstanceOf: AtElgaEmedBundleDurchgefuehrteAbgabenTx 
 Title: "Beispiel Journey 04: Transaction Bundle"
-Description: "Beispiel eines Transaction Bundles, das einen Mediaktionsplan (List) mit 2 Planeinträgen (MedicationRequests) beinhaltet."
+Description: "Beispiel eines Transaction Bundles mit Durchgeführten Abgaben."
 Usage: #example
 
 * type = #transaction

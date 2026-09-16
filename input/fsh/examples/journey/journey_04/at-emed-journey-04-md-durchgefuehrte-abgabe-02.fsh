@@ -19,7 +19,7 @@ Usage: #example
 * subject = Reference(At-Emed-Example-Patient-01)
 * performer.actor = Reference(At-Emed-Example-Organization-Apo-01)
 
-* authorizingPrescription[geplanteAbgabe] = Reference(MedicationRequest/At-Emed-Journey-02-Mr-Geplante-Abgabe-02) "GeplanteAbgabe 1"
+* authorizingPrescription[geplanteAbgabe] = Reference(MedicationRequest/At-Emed-Journey-03-Mr-Geplante-Abgabe-02) "GeplanteAbgabe 1"
 * authorizingPrescription[planeintrag] = Reference(MedicationRequest/At-Emed-Journey-02-Mr-Planeintrag-02) "Planeintrag 1"
 
 * type = #FFP
