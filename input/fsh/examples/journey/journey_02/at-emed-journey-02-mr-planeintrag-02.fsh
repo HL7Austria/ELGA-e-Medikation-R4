@@ -4,7 +4,7 @@ Title: "Beispiel Journey 02: Medikationsplaneintrag 2"
 Description: "Bildet einen Medikationsplaneintrag mit einer magistralen Zubereitung (Dexpanthenol-Salbe)und zugehörigen Dosierungsanweisungen ab."
 Usage: #example
 
-* contained[+] = contained-medication-journey-02-magistral
+* contained[+] = contained-medication-journey-02-02-magistral
 * courseOfTherapyType = $cs-medication-request-courseOfTherapyType#acute
 
 // R5 Backports
@@ -18,7 +18,7 @@ Usage: #example
 * reportedBoolean = false
 
 // Referenz auf Contained Medication Ressource
-* medicationReference.reference = "#contained-medication-journey-02-magistral"
+* medicationReference.reference = "#contained-medication-journey-02-02-magistral"
 
 * subject = Reference(At-Emed-Example-Patient-01)
 * authoredOn = "2026-02-27T08:10:00+00:00"
@@ -41,7 +41,7 @@ Usage: #example
 * dosageInstruction[standardDosage].route = https://termgit.elga.gv.at/CodeSystem-medikationartanwendung.html#100000073566 "Anwendung auf der Haut"
 
 // Contained Medication *********************************************************************
-Instance: contained-medication-journey-02-magistral
+Instance: contained-medication-journey-02-02-magistral
 InstanceOf: AtElgaEmedMedicationMedikation
 Title: "Beispiel Journey 02: Magistrale Zubereitung (Dexpanthenol-Salbe)"
 Usage: #inline
