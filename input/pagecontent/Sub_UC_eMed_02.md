@@ -23,7 +23,7 @@ Alle Schreibvorgänge auf dem **aktuellen** Medikationsplan folgen demselben tec
 
 1. Der aktuelle Medikationsplan **MUSS** mittels [$plan-read](OperationDefinition-AtElgaEmed.List.PlanRead.html) abgerufen werden (siehe [Sub_UC_eMed_01_01 - Aktuellen Medikationsplan lesen (Plan-Read)](Sub_UC_eMed_01.html#Sub_UC_eMed_01_01---aktuellen-medikationsplan-lesen-plan-read)).
 2. Die durch $plan-read im Medikationsplan-Searchset-Bundle bereitgestellten Ressourcen werden entsprechend des gewünschten Schreibszenarios bearbeitet.
-3. Der aktualisierte Medikationsplan **MUSS** mittels [$plan-write](OperationDefinition-AtElgaEmed.List.PlanWrite.html) als Transaction Bundle ([Medikationsplan-Transaction-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplantx.html)) an die Fachanwendung übermittelt werden.
+3. Der aktualisierte Medikationsplan **MUSS** mittels [$plan-write](OperationDefinition-AtElgaEmed.List.PlanWrite.html) als Transaction Bundle ([Medikationsplan-Transaction-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplan-tx.html)) an die Fachanwendung übermittelt werden.
 
 Die nachfolgenden technischen Use Cases beschreiben die jeweils erforderlichen Änderungen an den Ressourcen sowie die Inhalte des Medikationsplan-Transaction-Bundles. Der technische Ablauf von *$plan-write* einschließlich der Integritätsprüfung mittels *ETag* ist für alle Schreiboperationen identisch und wird im folgenden Abschnitt beschrieben.
 
