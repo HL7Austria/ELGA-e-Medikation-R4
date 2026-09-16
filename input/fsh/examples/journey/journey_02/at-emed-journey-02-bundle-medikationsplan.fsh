@@ -7,10 +7,14 @@ Usage: #example
 * type = #searchset
 * timestamp = "2026-02-27T08:10:00+00:00"
 // Liste 
-* entry[Medikationsplan].resource = At-Emed-Journey-02-List-Medikationsplan
-* entry[Medikationsplan].fullUrl = "urn:uuid:62e2daa5-c34b-4b97-8044-fd893bc99a56"
+* entry[Medikationsplan].resource = At-Emed-Journey-02-List-Medikationsplan 
+* entry[Medikationsplan].fullUrl = "https://example.elga.com/List/At-Emed-Journey-02-List-Medikationsplan"
 // Medikationsplaneinträge
 * entry[Medikationsplaneintrag][+].resource = At-Emed-Journey-02-Mr-Planeintrag-01
-* entry[Medikationsplaneintrag][=].fullUrl = "urn:uuid:62e2daa5-c34b-4b97-8044-fd893bc99a57"
+* entry[Medikationsplaneintrag][=].fullUrl = "https://example.elga.com/MedicationRequest/At-Emed-Journey-02-Mr-Planeintrag-01"
 * entry[Medikationsplaneintrag][+].resource = At-Emed-Journey-02-Mr-Planeintrag-02
-* entry[Medikationsplaneintrag][=].fullUrl = "urn:uuid:62e2daa5-c34b-4b97-8044-fd893bc99a58"
+* entry[Medikationsplaneintrag][=].fullUrl = "https://example.elga.com/MedicationRequest/At-Emed-Journey-02-Mr-Planeintrag-02"
+* entry[Patient].resource = At-Emed-Example-Patient-01
+* entry[Patient].fullUrl = "https://example.elga.com/Patient/At-Emed-Example-Patient-01"
+* entry[Authors].resource = At-Emed-Example-Practitioner-01
+* entry[Authors].fullUrl = "https://example.elga.com/Practitioner/At-Emed-Example-Practitioner-01"
