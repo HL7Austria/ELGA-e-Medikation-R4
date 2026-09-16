@@ -1,10 +1,10 @@
-Instance: at-emed-journey-02-mr-geplante-abgabe-02   
+Instance: At-Emed-Journey-03-Mr-Geplante-Abgabe-02   
 InstanceOf: AtElgaEmedMedicationRequestGeplanteAbgabe
-Title: "Beispiel Journey 02: Geplante Abgabe 2"
+Title: "Beispiel Journey 03: Geplante Abgabe 2"
 Description: "Bildet eine Geplante Abgabe mit einer magistralen Zubereitung (Dexpanthenol-Salbe) mit den Dosierungsanweisungen des zugehörigen Planeintrags ab."
 Usage: #example
 
-* contained[+] = contained-medication-journey-02-magistral-01
+* contained[+] = contained-medication-journey-03-02-magistral
 
 // R5 Backports
 * extension[effectiveDosePeriod].valuePeriod.start = "2026-02-27"
@@ -18,7 +18,7 @@ Usage: #example
 * category[recipetype] = $cs-medication-rezeptart#1 "Kassenrezept"
 
 // Referenz auf Inline Medication Ressource
-* medicationReference.reference = #contained-medication-journey-02-magistral-01"
+* medicationReference.reference = #contained-medication-journey-03-02-magistral"
 
 * subject = Reference(At-Emed-Example-Patient-01)
 * authoredOn = "2026-02-27T10:20:00+00:00"
@@ -51,7 +51,7 @@ Usage: #example
 * dispenseRequest.quantity.unit = "Packung"
 
 // Contained Medication *********************************************************************
-Instance: contained-medication-journey-02-magistral-01
+Instance: contained-medication-journey-03-02-magistral
 InstanceOf: AtElgaEmedMedicationMedikation
 Title: "Beispiel Journey 02: Magistrale Anwendung (Dexpanthenol-Salbe)"
 Usage: #inline

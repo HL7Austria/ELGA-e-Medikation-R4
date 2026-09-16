@@ -1,6 +1,6 @@
-Profile: AtElgaEmedBundlegeplanteAbgabenTx
+Profile: AtElgaEmedBundleGeplanteAbgabenTx
 Parent: Bundle
-Id: at-elga-emed-bundle-geplanteabgabentx
+Id: at-elga-emed-bundle-geplanteabgaben-tx
 Title: "AT ELGA e-Medikation Transaction Bundle geplante Abgaben"
 Description: "Das Bundle vom Typ Transaction dient dem schreibenden Zugriff und besteht aus allen geplanten Abgaben, 
 die gemeinsam geschrieben werden sollen. Es müssen entweder alle oder keine der geplanten Abgaben einen groupIdentifier enthalten. 
@@ -18,7 +18,7 @@ Ist kein groupIdentifier enthalten so erhalten alle geplanten Abgaben im Transac
 * entry ^slicing.discriminator[+].type = #type   
 * entry ^slicing.discriminator[=].path = "resource"
 * entry ^slicing.rules = #closed  // als Entries sind nur List und MedicationRequest erlaubt
-* entry ^slicing.ordered = true  // erstes Entry soll die Liste sein
+//* entry ^slicing.ordered = true  // erstes Entry soll die Liste sein
 * entry contains 
     geplanteAbgaben 1..*
 * entry[geplanteAbgaben].resource 1..1
