@@ -28,8 +28,8 @@ Description: "Das Bundle vom Typ Searchset bestehend aus:
 * entry contains 
     Medikationsplan 1..1 and    
     Medikationsplaneintrag 0..* and
-    Patient 0..1 and //Todo change to 1..1
-    Source 0..*
+    Patient 1..1 and
+    Authors 1..*
 // Liste
 * entry[Medikationsplan].resource 1..1
 * entry[Medikationsplan].resource only AtElgaEmedListMedikationsplan
@@ -42,12 +42,10 @@ Description: "Das Bundle vom Typ Searchset bestehend aus:
 * entry[Patient].resource 1..1
 * entry[Patient].resource only AtElgaCorePatient
 
-* entry[Source].resource 1..1
-* entry[Source].resource only AtElgaCorePractitioner or AtElgaEmedDeviceFachanwendung or AtElgaCorePractitionerRole or AtElgaCorePatient
+* entry[Authors].resource 1..1
+* entry[Authors].resource only AtElgaCorePractitioner or AtElgaEmedDeviceFachanwendung or AtElgaCorePractitionerRole or AtElgaCorePatient
 
 * entry.link 0..0
-// * entry.link ^short = "Verweise auf weiterführende Informationen zu diesem Entry." //TODO: Verwendung prüfen
 
+* entry.fullUrl 1..1
 * entry.fullUrl ^short = "Eindeutige URL für den Eintrag im Bundle." //TODO: Verwendung prüfen
-
-// TODO Fachlich abklären, ob Patient und Practitioner auch im Bundle enthalten sein müssen -> damit in der History verfügbar 

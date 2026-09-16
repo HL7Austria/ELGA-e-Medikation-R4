@@ -1,32 +1,35 @@
-Instance: At-Emed-Journey-03-Md-Durchgefuehrte-Abgabe-01
-InstanceOf: AtElgaEmedMedicationDispenseDurchgefuehrteAbgabe   
-Title: "Beispiel Journey 03: Durchgeführte Abgabe 1"
-Description: "Bildet eine durchgeführte Abgabe mit dem Arzneimittel Ramipril gemäß Geplanter Abgabe."
+Instance: At-Emed-Journey-03-Mr-Geplante-Abgabe-01   
+InstanceOf: AtElgaEmedMedicationRequestGeplanteAbgabe
+Title: "Beispiel Journey 03: Geplante Abgabe 1"
+Description: "Bildet eine Geplante Abgabe des Arzneimittels Ramipril mit den Dosierungsanweisungen des zugehörigen Planeintrags ab."
 Usage: #example
-
 
 * contained[+] = contained-medication-journey-03-01
 
+// R5 Backports
+* extension[effectiveDosePeriod].valuePeriod.start = "2026-02-27"
 * extension[renderedDosageInstruction].valueMarkdown = "1-0-0-1 | Täglich: 1-0-0-0" 
-* extension[recorded].valueDateTime = "2026-02-28T11:00:00+00:00" 
-* extension[groupIdentifier].valueIdentifier.value = "WYE82A2G8EEW"
 
-* status = #completed
+//* identifier.value = "WYE82A2G8EEW_4713202602270810000"
+
+* status = $cs-medication-request-status#active
+* intent = #order
+* category[mrcategory] = MedicationRequestCategoryCS#2 "Geplante Abgabe"
+* category[recipetype] = $cs-medication-rezeptart#1 "Kassenrezept"
 
 // Referenz auf Contained Medication Ressource
 * medicationReference.reference = "#contained-medication-journey-03-01"
 
 * subject = Reference(At-Emed-Example-Patient-01)
-* performer.actor = Reference(At-Emed-Example-Organization-Apo-01)
+* authoredOn = "2026-02-27T08:10:00+00:00" 
+* requester = Reference(At-Emed-Example-Practitioner-01)
 
-* authorizingPrescription[geplanteAbgabe] = Reference(MedicationRequest/At-Emed-Journey-02-Mr-Geplante-Abgabe-01) "GeplanteAbgabe 1"
-* authorizingPrescription[planeintrag] = Reference(MedicationRequest/At-Emed-Journey-02-Mr-Planeintrag-01) "Planeintrag 1"
+* basedOn = Reference(MedicationRequest/At-Emed-Journey-02-Mr-Planeintrag-01) "Planeintrag 1"
+// TODO: zusätzliche logische Referenz: reference.identifier 
 
-* type = #FFC
-* quantity = 1 '1'
-* whenHandedOver = "2026-02-28T11:00:00+00:00"
+* groupIdentifier.value = "WYE82A2G8EEW"
 
-// * note.text = "Freitext zur Durchgeführten Abgabe."
+// * note.text = "Freitext zur geplanten Abgabe (Info von Arzt an Apotheke)."
 
 * dosageInstruction[standardDosage].extension[DosageCategory].valueCodeableConcept = AtElgaEmedCodeSystemDosageCategory#standard
 * dosageInstruction[standardDosage].sequence = 1
@@ -39,11 +42,15 @@ Usage: #example
 * dosageInstruction[standardDosage].route = $cs-medikationartanwendung#100000073619 "zum Einnehmen"
 //* dosageInstruction.doseAndRate.doseQuantity = 10 'mg' "mg"
 
+* dispenseRequest.validityPeriod.end = "2026-03-27"
+* dispenseRequest.numberOfRepeatsAllowed = 0
+* dispenseRequest.quantity.value = 1
+* dispenseRequest.quantity.unit = "Packung"
 
 // Contained Medication *********************************************************************
 Instance: contained-medication-journey-03-01
 InstanceOf: AtElgaEmedMedicationMedikation
 Title: "Beispiel Medikation Ramipril"
 Usage: #inline
-//* id = "contained-medication-journey-02-01-01"
+//* id = "contained-medication-journey-03-01"
 * code = $cs-asp-liste#2450836 "RAMIPRIL HEX TBL 5MG"

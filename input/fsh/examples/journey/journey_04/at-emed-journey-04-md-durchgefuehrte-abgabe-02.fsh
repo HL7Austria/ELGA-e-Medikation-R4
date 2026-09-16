@@ -1,11 +1,11 @@
-Instance: At-Emed-Journey-03-Md-Durchgefuehrte-Abgabe-02
+Instance: At-Emed-Journey-04-Md-Durchgefuehrte-Abgabe-02
 InstanceOf: AtElgaEmedMedicationDispenseDurchgefuehrteAbgabe   
-Title: "Beispiel Journey 03: Durchgeführte Abgabe 1"
+Title: "Beispiel Journey 04: Durchgeführte Abgabe 1"
 Description: "Bildet eine durchgeführte Abgabe mit dem Arzneimittel Ramipril gemäß Geplanter Abgabe."
 Usage: #example
 
 
-* contained[+] = contained-medication-journey-03-magistral-01
+* contained[+] = contained-medication-journey-04-02-magistral
 
 * extension[renderedDosageInstruction].valueMarkdown = "1-0-1-0 | Täglich 1-0-1-0" 
 * extension[recorded].valueDateTime = "2026-02-28T11:00:00+00:00" 
@@ -14,7 +14,7 @@ Usage: #example
 * status = #completed
 
 // Referenz auf Contained Medication Ressource
-* medicationReference.reference = "#contained-medication-journey-03-magistral-01"
+* medicationReference.reference = "#contained-medication-journey-04-02-magistral"
 
 * subject = Reference(At-Emed-Example-Patient-01)
 * performer.actor = Reference(At-Emed-Example-Organization-Apo-01)
@@ -41,7 +41,7 @@ Usage: #example
 
 
 // Contained Medication *********************************************************************
-Instance: contained-medication-journey-03-magistral-01
+Instance: contained-medication-journey-04-02-magistral
 InstanceOf: AtElgaEmedMedicationMedikation
 Title: "Beispiel Medikation Ramipril"
 Usage: #inline

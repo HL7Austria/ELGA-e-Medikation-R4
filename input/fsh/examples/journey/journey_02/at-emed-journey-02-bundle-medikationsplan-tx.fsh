@@ -1,4 +1,4 @@
-Instance: At-Emed-Journey-02-Bundle-Tx-Medikationsplan
+Instance: At-Emed-Journey-02-Bundle-Medikationsplan-Tx
 InstanceOf: AtElgaEmedBundleMedikationsplanTx   
 Title: "Beispiel Journey 02: Transaction Bundle"
 Description: "Beispiel eines Transaction Bundles, das einen Mediaktionsplan (List) mit 2 Planeinträgen (MedicationRequests) beinhaltet."

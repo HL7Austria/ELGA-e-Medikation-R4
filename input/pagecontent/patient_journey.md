@@ -14,6 +14,8 @@ Dr. Hausärztin stellt eine leichte arterielle Hypertonie fest und ruft die e-Me
 
 Da für Herrn Mustermann noch nie ein Medikationsplan abgerufen wurde, erstellt die Fachanwendung automatisch einen leeren Medikationsplan. Darin enthalten sind die Informationen zum Patienten, die erstellende e-Medikation-Fachanwendung, das Datum der Erstellung und die Information, dass der Medikationsplan noch nicht gestartet wurde (*EmptyReason = notstarted*). 
 
+#### Journey-01:
+
 <div class="tabs">
   <div class="tab">
     <input type="radio" id="tab-beispiele-1-1" name="tab-group-patient-journey-1-1" checked="true">
@@ -68,6 +70,8 @@ dispense-search
 Dr. Hausärztin erstellt zwei Medikationsplaneinträge und klärt den Patienten über die Anwendung auf: gegen die arterielle Hypertonie **Ramipril 5 mg Tabletten**, 1 x täglich morgens (Dauermedikation) und gegen den Hautausschlag **Dexpanthenol-5-%-Salbe**, 2 × täglich für 3 Wochen, dünn aufzutragen.<br>
 Sie speichert den neuen Medikationsplan.
 
+#### Journey-02:
+
 <div class="tabs">
   <div class="tab">
     <input type="radio" id="tab-beispiele-2-1" name="tab-group-patient-journey-2-1" checked="true">
@@ -97,7 +101,7 @@ Sie speichert den neuen Medikationsplan.
           <strong>Transaction Bundle:</strong>
           <ul>
             <li>
-              <a href="Bundle-At-Emed-Journey-02-Bundle-Tx-Medikationsplan.html">Transaction Bundle</a>
+              <a href="Bundle-At-Emed-Journey-02-Bundle-Medikationsplan-Tx.html">Transaction Bundle</a>
             </li>
             <li>
               <a href="Practitioner-At-Emed-Example-Practitioner-01.html">Dr. Hausärztin</a>
@@ -133,6 +137,7 @@ Im aktualisierten Medikationsplan sind die neuen Planeinträge sowie das Datum d
 
 Dr. Hausärztin erstellt für beide Medikamente ein Rezept (Papier oder e-Rezept) und dokumentiert den Rezeptiervorgang in einer *Geplante Abgabe* in der e-Medikation. Herr Mustermann kann nun mit dem Rezept die Medikamente in der Apotheke abholen. 
 
+#### Journey-03:
 
 <div class="tabs">
   <div class="tab">
@@ -144,10 +149,10 @@ Dr. Hausärztin erstellt für beide Medikamente ein Rezept (Papier oder e-Rezept
           <strong>Geplante Abgaben erstellen:</strong>
           <ul>
             <li>
-              <a href="MedicationRequest-At-Emed-Journey-02-Mr-Geplante-Abgabe-01.html">Geplante Abgabe zu Planeintrag 1 (Ramipril)</a>
+              <a href="MedicationRequest-At-Emed-Journey-03-Mr-Geplante-Abgabe-01.html">Geplante Abgabe zu Planeintrag 1 (Ramipril)</a>
             </li>
             <li>
-              <a href="MedicationRequest-At-Emed-Journey-02-Mr-Geplante-Abgabe-02.html">Geplante Abgabe zu Planeintrag 2 (Dexpanthenol-Salbe)</a>
+              <a href="MedicationRequest-At-Emed-Journey-03-Mr-Geplante-Abgabe-02.html">Geplante Abgabe zu Planeintrag 2 (Dexpanthenol-Salbe)</a>
             </li>
           </ul>
         </li>
@@ -155,8 +160,7 @@ Dr. Hausärztin erstellt für beide Medikamente ein Rezept (Papier oder e-Rezept
           <strong>Transaction Bundle:</strong>
           <ul>
             <li>
-              Transaction Bundle in Arbeit. 
-              <!-- TODO -->
+            <a href="Bundle-At-Emed-Journey-03-Bundle-Geplante-Abgaben-Tx.html">Transaction Bundle mit Geplante Abgaben</a>
             </li>
           </ul>
         </li>
@@ -197,6 +201,8 @@ Die Dexpanthenol-Salbe muss noch hergestellt werden. Die Apothekerin erstellt ei
 
 Anschließend speichert sie die neuen *Durchgeführte Abgaben* in der e-Medikation.
 
+#### Journey-04:
+
 <div class="tabs">
   <div class="tab">
     <input type="radio" id="tab-beispiele-3-1" name="tab-group-patient-journey-3-1" checked="true">
@@ -207,10 +213,10 @@ Anschließend speichert sie die neuen *Durchgeführte Abgaben* in der e-Medikati
           <strong>Durchgeführte Abgaben erstellen:</strong> (Vollständige Abgabe, Besorgerprozess)
           <ul>
             <li>
-              <a href="MedicationDispense-At-Emed-Journey-03-Md-Durchgefuehrte-Abgabe-01.html">Durchgeführte Abgabe (vollständig) (Ramipril)</a>
+              <a href="MedicationDispense-At-Emed-Journey-04-Md-Durchgefuehrte-Abgabe-01.html">Durchgeführte Abgabe (vollständig) (Ramipril)</a>
             </li>
             <li>
-              <a href="MedicationDispense-At-Emed-Journey-03-Md-Durchgefuehrte-Abgabe-02.html">Durchgeführte Abgabe (Besorgerprozess) (Dexpanthenol-Salbe)</a>
+              <a href="MedicationDispense-At-Emed-Journey-04-Md-Durchgefuehrte-Abgabe-02.html">Durchgeführte Abgabe (Besorgerprozess) (Dexpanthenol-Salbe)</a>
             </li>
             <li>
               <a href="Organization-At-Emed-Example-Organization-Apo-01.html">Apotheke (Organization)</a>
@@ -221,8 +227,7 @@ Anschließend speichert sie die neuen *Durchgeführte Abgaben* in der e-Medikati
           <strong>Transaction Bundle:</strong>
           <ul>
             <li>
-              Transaction Bundle in Arbeit. 
-              <!-- TODO -->
+              <!-- <a href="Bundle-At-Emed-Journey-04-Bundle-Durchgefuehrte-Abgaben-Tx.html">Transaction Bundle mit Durchgeführten Abgaben</a> -->
             </li>
           </ul>
         </li>
