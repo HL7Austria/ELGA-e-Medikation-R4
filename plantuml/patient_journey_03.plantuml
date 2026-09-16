@@ -76,7 +76,6 @@ autonumber
 
 group GROUP_APO 28.2.2026 · Abgabe in der Apotheke (Besorgerprozess)
 
-
   Patient -> Apotheke: Medikamente abholen
   activate Patient COLOR_PATIENT
   activate Apotheke COLOR_APO
@@ -94,11 +93,8 @@ group GROUP_APO 28.2.2026 · Abgabe in der Apotheke (Besorgerprozess)
   deactivate eMed_FA
 
   Apotheke -> Apotheke: Durchgeführte Abgabe\nfür Ramipril erstellen
-
   Apotheke -> Patient: Ramipril aushändigen
-
-  Apotheke -> Apotheke: Durchgeführte Abgabe\nDexpanthenol-Salbe in\n(Besorgerprozess)
-
+  Apotheke -> Apotheke: Durchgeführte Abgabe\nfür Dexpanthenol-Salbe erstellen\n(Besorgerprozess)
   Apotheke -> eMed_FA: Durchgeführte Abgaben\nspeichern
   activate eMed_FA COLOR_EMED_FA
   eMed_FA -> Apotheke: Durchgeführte Abgaben
@@ -110,24 +106,4 @@ group GROUP_APO 28.2.2026 · Abgabe in der Apotheke (Besorgerprozess)
 end
 
 
-' group GROUP_APO 28.2.2026 · Abgabe in der Apotheke (Besorgerprozess)
-
-
-
-'   Apotheke -> eMed_FA: Durchgeführte Abgaben lesen: [[Sub_UC_eMed_03.html#sub_uc_emed_03_02---durchgeführte-abgaben-lesen-dispense-search Dispense-Search]]
-'   activate eMed_FA COLOR_EMED_FA 
-'   eMed_FA -> Apotheke: leeres Ergebnis
-'   deactivate eMed_FA
-'   activate eMed_FA COLOR_EMED_FA
-'   eMed_FA -> Apotheke: Aktueller Medikationsplan +\nGeplante Abgaben abrufen\n(Durchgeführte Abgaben\nleeres Ergebnis)
-'   deactivate eMed_FA
-'   Apotheke -> Apotheke: Durchgeführte Abgabe\nfür Ramipril erstellen
-'   Apotheke -> Patient: Ramipril aushändigen
-'   Apotheke -> Apotheke: Durchgeführte Abgabe\nDexpanthenol-Salbe in\nVorbereitung
-'   Apotheke -> eMed_FA: Durchgeführte Abgaben\nspeichern
-'   deactivate Apotheke
-'   '  deactivate Patient
-
-' end
-
-' @enduml
+@enduml
