@@ -289,7 +289,7 @@ groups:
     description: Medikationsplan
     resources:
       - StructureDefinition/at-elga-emed-bundle-medikationsplan
-      - StructureDefinition/at-elga-emed-bundle-medikationsplantx
+      - StructureDefinition/at-elga-emed-bundle-medikationsplan-tx
       - StructureDefinition/at-elga-emed-list-medikationsplan
       - StructureDefinition/at-elga-emed-medicationrequest-planeintrag
   GeplanteAbgabe:
