@@ -78,7 +78,7 @@ group GROUP_ARZT 27.2.2026 · Arztbesuch
   Patient -> Arzt_1: Arztbesuch
   activate Arzt_1 COLOR_GDA_1
 
-  ' == Medikationsplan erstmals abrufen ==
+  == Journey-01-01 ==
 
   Arzt_1 -> eMed_FA: aktuellen Medikationsplan abrufen:\n$plan-read 
   activate eMed_FA COLOR_EMED_FA  
@@ -94,12 +94,15 @@ group GROUP_ARZT 27.2.2026 · Arztbesuch
   deactivate eMed_FA
   '  deactivate Patient
 
-  ' == Medikationsplaneinträge hinzufügen ==
+  == Journey-01-02 ==
+
   Arzt_1 -> Arzt_1: neue Planeinträge erstellen +\nMedikationsplan bearbeiten
   Arzt_1 -> eMed_FA: neuen Medikationsplan speichern: $plan-write
   activate eMed_FA COLOR_EMED_FA
   eMed_FA -> Arzt_1: Medikationsplan 
   deactivate eMed_FA
+
+  == Journey-01-03 ==
 
   Arzt_1 -> Arzt_1: 2 Geplante Abgaben erstellen\n(Rampipril + Dexpanthenol-Salbe)
   Arzt_1 -> eMed_FA: Geplante Abgaben speichern: $dispense-write

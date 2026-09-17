@@ -103,113 +103,114 @@ participant eMed_FA as "e-Medikation" COLOR_EMED_FA
 
 
 autonumber
-group GROUP_ARZT 27.2.2026 · Arztbesuch
 
-  activate Patient COLOR_PATIENT
-  Patient -> Arzt_1: Arztbesuch  <$face>
-  activate Arzt_1 COLOR_GDA_1
+' group GROUP_ARZT 27.2.2026 · Arztbesuch
 
-  ' == Medikationsplan erstmals abrufen ==
+'   activate Patient COLOR_PATIENT
+'   Patient -> Arzt_1: Arztbesuch  <$face>
+'   activate Arzt_1 COLOR_GDA_1
 
-  Arzt_1 -> eMed_FA: aktuellen Medikationsplan lesen: $plan-read
-  activate eMed_FA COLOR_EMED_FA  
-  eMed_FA -> Arzt_1: leerer Medikationsplan\n(EmptyReason = notstarted)
-  deactivate eMed_FA
-  Arzt_1 -> eMed_FA: Geplante Abgaben lesen: Prescription-Search
-  activate eMed_FA COLOR_EMED_FA 
-  eMed_FA -> Arzt_1: leeres Ergebnis
-  deactivate eMed_FA
-  Arzt_1 -> eMed_FA: Durchgeführte Abgaben lesen: Dispense-Search
-  activate eMed_FA COLOR_EMED_FA 
-  eMed_FA -> Arzt_1: leeres Ergebnis
-  deactivate eMed_FA
-  '  deactivate Patient
+'   ' == Medikationsplan erstmals abrufen ==
 
-  ' == Medikationsplaneinträge hinzufügen ==
-  Arzt_1 -> Arzt_1: neue Planeinträge erstellen +\nMedikationsplan bearbeiten
-  Arzt_1 -> eMed_FA: neuen Medikationsplan schreiben: $plan-write
-  activate eMed_FA COLOR_EMED_FA
-  eMed_FA -> Arzt_1: Medikationsplan 
-  deactivate eMed_FA
+'   Arzt_1 -> eMed_FA: aktuellen Medikationsplan lesen: $plan-read
+'   activate eMed_FA COLOR_EMED_FA  
+'   eMed_FA -> Arzt_1: leerer Medikationsplan\n(EmptyReason = notstarted)
+'   deactivate eMed_FA
+'   Arzt_1 -> eMed_FA: Geplante Abgaben lesen: Prescription-Search
+'   activate eMed_FA COLOR_EMED_FA 
+'   eMed_FA -> Arzt_1: leeres Ergebnis
+'   deactivate eMed_FA
+'   Arzt_1 -> eMed_FA: Durchgeführte Abgaben lesen: Dispense-Search
+'   activate eMed_FA COLOR_EMED_FA 
+'   eMed_FA -> Arzt_1: leeres Ergebnis
+'   deactivate eMed_FA
+'   '  deactivate Patient
 
-  Arzt_1 -> Arzt_1: Geplante Abgaben erstellen\n(Rampipril + Dexpanthenol-Salbe)
-  Arzt_1 -> eMed_FA: Geplante Abgaben schreiben: $dispense-write
-  activate eMed_FA COLOR_EMED_FA
-  eMed_FA -> Arzt_1: Geplante Abgaben
-  deactivate eMed_FA
-  Arzt_1 -> Patient: Rezept aushändigen
-  deactivate Arzt_1
-  '  deactivate Patient
+'   ' == Medikationsplaneinträge hinzufügen ==
+'   Arzt_1 -> Arzt_1: neue Planeinträge erstellen +\nMedikationsplan bearbeiten
+'   Arzt_1 -> eMed_FA: neuen Medikationsplan schreiben: $plan-write
+'   activate eMed_FA COLOR_EMED_FA
+'   eMed_FA -> Arzt_1: Medikationsplan 
+'   deactivate eMed_FA
 
-end
+'   Arzt_1 -> Arzt_1: Geplante Abgaben erstellen\n(Rampipril + Dexpanthenol-Salbe)
+'   Arzt_1 -> eMed_FA: Geplante Abgaben schreiben: $dispense-write
+'   activate eMed_FA COLOR_EMED_FA
+'   eMed_FA -> Arzt_1: Geplante Abgaben
+'   deactivate eMed_FA
+'   Arzt_1 -> Patient: Rezept aushändigen
+'   deactivate Arzt_1
+'   '  deactivate Patient
 
-
-group GROUP_APO 28.2.2026 · Abgabe in der Apotheke (Besorgerprozess)
-
-  Patient -> Apotheke: Medikamente abholen
-  activate Patient COLOR_PATIENT
-  activate Apotheke COLOR_APO
-  Apotheke -> eMed_FA: Medikationsplan lesen: $plan-read
-  activate eMed_FA COLOR_EMED_FA  
-  eMed_FA -> Apotheke: Medikationsplan
-  deactivate eMed_FA
-  Apotheke -> eMed_FA: Geplante Abgaben lesen: Prescription-Search
-  activate eMed_FA COLOR_EMED_FA 
-  eMed_FA -> Apotheke: 2 Geplante Abgaben\n(Rampipril + Dexpanthenol-Salbe)
-  deactivate eMed_FA
-  Apotheke -> eMed_FA: Durchgeführte Abgaben lesen: Dispense-Search
-  activate eMed_FA COLOR_EMED_FA 
-  eMed_FA -> Apotheke: leeres Ergebnis
-  deactivate eMed_FA
-
-  Apotheke -> Apotheke: Durchgeführte Abgabe\nfür Ramipril erstellen
-  Apotheke -> Patient: Ramipril aushändigen
-  Apotheke -> Apotheke: Durchgeführte Abgabe\nfür Dexpanthenol-Salbe erstellen\n(Besorgerprozess)
-  Apotheke -> eMed_FA: Durchgeführte Abgaben\nspeichern
-  activate eMed_FA COLOR_EMED_FA
-  eMed_FA -> Apotheke: Durchgeführte Abgaben
-  deactivate eMed_FA
-  Apotheke -> Patient: Abholzettel aushändigen 
-  deactivate Apotheke
-  deactivate Patient
-
-end
-
-group GROUP_APO 1.3.2026 · Abgabe in der Apotheke (Besorgerprozess abschließen)
-
-  '  activate Patient COLOR_PATIENT
-
-  Patient -> Apotheke: Dexpanthenol-Salbe abholen
-
-  activate Apotheke COLOR_APO
-  Apotheke -> eMed_FA: aktuellen Medikationsplan,\nGeplante und Durchgeführte\nAbgaben abrufen
-
-  activate eMed_FA COLOR_EMED_FA
-  eMed_FA -> Apotheke: AktuellerMedikationsplan +\nGeplante und Durchgeführte\nAbgaben
-  deactivate eMed_FA
-
-  Apotheke -> Patient: Dexpanthenol-Salbe aushändigen
+' end
 
 
-  Apotheke -> eMed_FA: Durchgeführte Abgabe speichern\n(Besorgerprozess abschließen)
+' group GROUP_APO 28.2.2026 · Abgabe in der Apotheke (Besorgerprozess)
 
-  deactivate Apotheke
-  '  deactivate Patient
-end
+'   Patient -> Apotheke: Medikamente abholen
+'   activate Patient COLOR_PATIENT
+'   activate Apotheke COLOR_APO
+'   Apotheke -> eMed_FA: Medikationsplan lesen: $plan-read
+'   activate eMed_FA COLOR_EMED_FA  
+'   eMed_FA -> Apotheke: Medikationsplan
+'   deactivate eMed_FA
+'   Apotheke -> eMed_FA: Geplante Abgaben lesen: Prescription-Search
+'   activate eMed_FA COLOR_EMED_FA 
+'   eMed_FA -> Apotheke: 2 Geplante Abgaben\n(Rampipril + Dexpanthenol-Salbe)
+'   deactivate eMed_FA
+'   Apotheke -> eMed_FA: Durchgeführte Abgaben lesen: Dispense-Search
+'   activate eMed_FA COLOR_EMED_FA 
+'   eMed_FA -> Apotheke: leeres Ergebnis
+'   deactivate eMed_FA
 
-group GROUP_PAT 2.3.2026 · Patient ruft Medikationsplan ab
+'   Apotheke -> Apotheke: Durchgeführte Abgabe\nfür Ramipril erstellen
+'   Apotheke -> Patient: Ramipril aushändigen
+'   Apotheke -> Apotheke: Durchgeführte Abgabe\nfür Dexpanthenol-Salbe erstellen\n(Besorgerprozess)
+'   Apotheke -> eMed_FA: Durchgeführte Abgaben\nspeichern
+'   activate eMed_FA COLOR_EMED_FA
+'   eMed_FA -> Apotheke: Durchgeführte Abgaben
+'   deactivate eMed_FA
+'   Apotheke -> Patient: Abholzettel aushändigen 
+'   deactivate Apotheke
+'   deactivate Patient
 
-  '  activate Patient COLOR_PATIENT
+' end
 
-  Patient -> eMed_FA: Medikationsplan anzeigen
+' group GROUP_APO 1.3.2026 · Abgabe in der Apotheke (Besorgerprozess abschließen)
 
-  activate eMed_FA COLOR_EMED_FA
+'   '  activate Patient COLOR_PATIENT
 
-  eMed_FA -> Patient: Aktueller Medikationsplan
+'   Patient -> Apotheke: Dexpanthenol-Salbe abholen
 
-  deactivate eMed_FA
-  '  deactivate Patient
-end
+'   activate Apotheke COLOR_APO
+'   Apotheke -> eMed_FA: aktuellen Medikationsplan,\nGeplante und Durchgeführte\nAbgaben abrufen
+
+'   activate eMed_FA COLOR_EMED_FA
+'   eMed_FA -> Apotheke: AktuellerMedikationsplan +\nGeplante und Durchgeführte\nAbgaben
+'   deactivate eMed_FA
+
+'   Apotheke -> Patient: Dexpanthenol-Salbe aushändigen
+
+
+'   Apotheke -> eMed_FA: Durchgeführte Abgabe speichern\n(Besorgerprozess abschließen)
+
+'   deactivate Apotheke
+'   '  deactivate Patient
+' end
+
+' group GROUP_PAT 2.3.2026 · Patient ruft Medikationsplan ab
+
+'   '  activate Patient COLOR_PATIENT
+
+'   Patient -> eMed_FA: Medikationsplan anzeigen
+
+'   activate eMed_FA COLOR_EMED_FA
+
+'   eMed_FA -> Patient: Aktueller Medikationsplan
+
+'   deactivate eMed_FA
+'   '  deactivate Patient
+' end
 
 
 group GROUP_ARZT 3.3.2026 · Präoperativer Hausarzttermin
