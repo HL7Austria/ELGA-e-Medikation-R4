@@ -2,18 +2,10 @@
 
 Am Beispiel einer fiktiven Patient Journey wird veranschaulicht, wie sich der **Medikationsplan** eines Patienten mit den zugehörigen **Geplanten Abgaben** und den **Durchgeführten Abgaben** verändern kann.
 
-### Übersicht Patient Journey
+Eine fachliche Übersicht mit reduziertem Detailgrad findet sich am Ende dieses Kapitels [Übersicht Patient Journey](patient_journey.html#übersicht-patient-journey).
 
 <!-- TODO: nicht-sunshine-cases: patient ohne ecard in apotheke, 
 Einträge durch patient löschen, stornieren, rezept wieder öffnen, wenn teilabgabe storniert -->
-
-
-<!-- <div>{ include_relative plantuml/patient_journey.svg }</div> -->
-
-<br>
-[![overview](plantuml/patient_journey_overview.svg){: .mx-auto style="width:100%;"}](plantuml/patient_journey_overview.svg)
-<br> 
-
 
 
 ### Journey-01: 27.2.2026 - Erster Arztbesuch
@@ -480,6 +472,16 @@ Ramipril wird als Dauermedikation fortgeführt.
 * **Planeinträge beenden und Medikationsplan aktualisieren:** in Arbeit.
 
 
+### Übersicht Patient Journey
 
+<!-- TODO: nicht-sunshine-cases: patient ohne ecard in apotheke, 
+Einträge durch patient löschen, stornieren, rezept wieder öffnen, wenn teilabgabe storniert -->
+
+
+<!-- <div>{ include_relative plantuml/patient_journey.svg }</div> -->
+
+<br>
+[![overview](plantuml/patient_journey_overview.svg){: .mx-auto style="width:100%;"}](plantuml/patient_journey_overview.svg)
+<br> 
 
 
