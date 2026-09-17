@@ -1,20 +1,20 @@
-Instance: At-Emed-Journey-05-Md-Durchgefuehrte-Abgabe-02
+Instance: At-Emed-Journey-02-01-Md-Durchgefuehrte-Abgabe-02
 InstanceOf: AtElgaEmedMedicationDispenseDurchgefuehrteAbgabe   
-Title: "Beispiel Journey 05: Durchgeführte Abgabe 1"
+Title: "Beispiel Journey 02-01: Durchgeführte Abgabe 1"
 Description: "Bildet eine durchgeführte Abgabe mit dem Arzneimittel Ramipril gemäß Geplanter Abgabe."
 Usage: #example
 
 
-* contained[+] = contained-medication-journey-05-02-magistral
+* contained[+] = contained-medication-journey-02-01-02-magistral
 
 * extension[renderedDosageInstruction].valueMarkdown = "1-0-1-0 | Täglich 1-0-1-0" 
-* extension[recorded].valueDateTime = "2026-03-01T15:15:00+00:00" 
+* extension[recorded].valueDateTime = "2026-02-28T11:00:00+00:00" 
 * extension[groupIdentifier].valueIdentifier.value = "WYE82A2G8EEW"
 
 * status = #completed
 
 // Referenz auf Contained Medication Ressource
-* medicationReference.reference = "#contained-medication-journey-05-02-magistral"
+* medicationReference.reference = "#contained-medication-journey-02-01-02-magistral"
 
 * subject = Reference(At-Emed-Example-Patient-01)
 * performer.actor = Reference(At-Emed-Example-Organization-Apo-01)
@@ -22,9 +22,9 @@ Usage: #example
 * authorizingPrescription[geplanteAbgabe] = Reference(MedicationRequest/At-Emed-Journey-03-Mr-Geplante-Abgabe-02) "GeplanteAbgabe 1"
 * authorizingPrescription[planeintrag] = Reference(MedicationRequest/At-Emed-Journey-02-Mr-Planeintrag-02) "Planeintrag 1"
 
-* type = #FFC
-* quantity = 1 '1'
-* whenHandedOver = "2026-03-01T15:15:00+00:00" 
+* type = #FFP
+* quantity = 0 '0'
+// * whenHandedOver = "2026-02-28T11:00:00+00:00"
 
 // * note.text = "Freitext zur Durchgeführten Abgabe."
 
@@ -41,7 +41,7 @@ Usage: #example
 
 
 // Contained Medication *********************************************************************
-Instance: contained-medication-journey-05-02-magistral
+Instance: contained-medication-journey-02-01-02-magistral
 InstanceOf: AtElgaEmedMedicationMedikation
 Title: "Beispiel Medikation Ramipril"
 Usage: #inline

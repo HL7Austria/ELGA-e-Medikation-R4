@@ -1,6 +1,6 @@
-Instance: At-Emed-Journey-02-List-Medikationsplan
+Instance: At-Emed-Journey-01-02-List-Medikationsplan
 InstanceOf: AtElgaEmedListMedikationsplan   
-Title: "Beispiel Journey 02: Medikationsplan"
+Title: "Beispiel Journey 01-02: Medikationsplan"
 Description: "Beispiel eines Medikationsplans (List), der 2 Planeinträge (MedicationRequests) referenziert und Informationen über Reihenfolge und Änderungsstatus speichert."
 Usage: #example
 
@@ -14,7 +14,7 @@ Usage: #example
 
 // Listeneinträge
 * entry[0].flag.coding = ElgaListEntryFlagCS#new "Neuer Planeintrag"
-* entry[=].item = Reference(At-Emed-Journey-02-Mr-Planeintrag-01)
+* entry[=].item = Reference(At-Emed-Journey-01-02-Mr-Planeintrag-01)
 
 * entry[+].flag.coding = ElgaListEntryFlagCS#new "Neuer Planeintrag"
-* entry[=].item = Reference(At-Emed-Journey-02-Mr-Planeintrag-02)
+* entry[=].item = Reference(At-Emed-Journey-01-02-Mr-Planeintrag-02)

@@ -1,6 +1,6 @@
-Instance: At-Emed-Journey-01-List-Medikationsplan
+Instance: At-Emed-Journey-01-01-List-Medikationsplan
 InstanceOf: AtElgaEmedListMedikationsplan   
-Title: "Beispiel Journey 01: Leerer Medikationsplan"
+Title: "Beispiel Journey 01-01: Leerer Medikationsplan"
 Description: "Beispiel eines leeren Mediaktionsplans (List-Ressource ohne Einträge)"
 Usage: #example
 
