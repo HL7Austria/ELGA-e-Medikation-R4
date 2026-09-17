@@ -11,6 +11,10 @@ sprite face <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill=
   <path d="M4 10.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5m5 0a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5"/>
 </svg>
 
+sprite capsule <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-capsule" viewBox="0 0 16 16">
+  <path d="M1.828 8.9 8.9 1.827a4 4 0 1 1 5.657 5.657l-7.07 7.071A4 4 0 1 1 1.827 8.9Zm9.128.771 2.893-2.893a3 3 0 1 0-4.243-4.242L6.713 5.429z"/>
+</svg>
+
 title Patient Journey – e-Medikation
 '!option handwritten true
 
@@ -84,233 +88,198 @@ participant eMed_FA as "e-Medikation" COLOR_EMED_FA
 autonumber
 group GROUP_ARZT 27.2.2026 · Arztbesuch
 
-  activate Patient COLOR_PATIENT
+  ' activate Patient COLOR_PATIENT
   Patient -> Arzt_1: Arztbesuch  <$face>
-  activate Arzt_1 COLOR_GDA_1
-  == Medikationsplan, Geplante und Durchgeführte Abgaben abrufen ==
+  note over Patient
+  Herr Mustermann kommt 
+  mit Symptomen zur Ärztin 
+  und erhält Ramipril +
+  Dexpanthenol-Salbe verordnet.
+  end note
   Arzt_1 -> eMed_FA: e-Medikation abrufen 
-  activate eMed_FA COLOR_EMED_FA
-  eMed_FA -> Arzt_1: <$document> (Medikationsplan)
-  deactivate eMed_FA
-  '  deactivate Patient
-== Medikationsplaneinträge hinzufügen ==
-  Arzt_1 -> eMed_FA: neue Planeinträge für /nRampipril + Dexpanthenol-Salbe im\nMedikationsplan speichern
-  activate eMed_FA COLOR_EMED_FA
-  deactivate eMed_FA
-== Geplante Abgaben erstellen ==
-  Arzt_1 -> eMed_FA: Geplante Abgaben für \n(Rampipril + Dexpanthenol-Salbe) erstellen
-  activate eMed_FA COLOR_EMED_FA
-  deactivate eMed_FA
+  eMed_FA -> Arzt_1: <$document> leerer Medikationsplan
+  Arzt_1 -> eMed_FA: Neuen Medikationsplan mit\nRamipril + Dexpanthenol-Salbe\nspeichern
+  Arzt_1 -> eMed_FA: Geplante Abgaben erstellen\n(Ramipril + Dexpanthenol-Salbe) 
   Arzt_1 -> Patient: Rezept aushändigen (optional)
-  deactivate Arzt_1
-  '  deactivate Patient
+
 end
 
 
 group GROUP_APO 28.2.2026 · Abgabe in der Apotheke (Besorgerprozess)
 
   Patient -> Apotheke: Medikamente abholen
-  activate Apotheke COLOR_APO
-  == e-Medikation abrufen ==
-  Apotheke -> eMed_FA: aktuellen Medikationsplan,\noffene Geplante und Durchgeführte\nAbgaben abrufen
-  activate eMed_FA COLOR_EMED_FA
-  eMed_FA -> Apotheke: <$document> (Medikationsplan + Geplante Abgaben\n(Rampipril + Dexpanthenol-Salbe)
-  deactivate eMed_FA
-
-  == Durchgeführte Abgaben erstellen ==
-  Apotheke -> Apotheke: Durchgeführte Abgabe\nfür Ramipril erstellen
-  Apotheke -> Patient: Ramipril aushändigen
-  Apotheke -> Apotheke: Durchgeführte Abgabe\nfür Dexpanthenol-Salbe erstellen\n(Besorgerprozess)
-  Apotheke -> eMed_FA: Durchgeführte Abgaben\nspeichern
-  activate eMed_FA COLOR_EMED_FA
-  deactivate eMed_FA
-  Apotheke -> Patient: Abholzettel aushändigen 
-  deactivate Apotheke
-
+  note over Patient
+  Herr Mustermann erhält 
+  in der Apotheke Ramipril,
+  die Dexpanthenol-Salbe 
+  muss noch zubereitet werden.
+  end note
+  Apotheke -> eMed_FA: e-Medikation abrufen
+  eMed_FA -> Apotheke: <$document> Medikationsplan, Geplante Abgaben für\nRamipril + Dexpanthenol-Salbe
+  Apotheke -> Patient: Ramipril aushändigen <$capsule>
+  Apotheke -> Patient: Abholzettel für Dexpanthenol-Salbe aushändigen 
+  Apotheke -> eMed_FA: Durchgeführte Abgaben erstellen\nRamipril: Vollständige Abgabe\nDexpanthenol-Salbe (Besorgerprozess)
 end
 
 group GROUP_APO 1.3.2026 · Abgabe in der Apotheke (Besorgerprozess abschließen)
-
   Patient -> Apotheke: Dexpanthenol-Salbe abholen
-  activate Apotheke COLOR_APO
-  == e-Medikation abrufen ==
-  Apotheke -> eMed_FA: aktuellen Medikationsplan,\noffene Geplante und Durchgeführte\nAbgaben abrufen
-  activate eMed_FA COLOR_EMED_FA
-  eMed_FA -> Apotheke: <$document> (Medikationsplan + Geplante Abgaben:\n(Rampipril + Dexpanthenol-Salbe)
-  deactivate eMed_FA
-  == Durchgeführte Abgaben erstellen ==
-  activate eMed_FA COLOR_EMED_FA
-  Apotheke -> Apotheke: Durchgeführte Abgabe\nfür Dexpanthenol-Salbe erstellen
-  Apotheke -> eMed_FA: Durchgeführte Abgabe speichern\n(Besorgerprozess abschließen)
-  activate eMed_FA COLOR_EMED_FA
-  deactivate eMed_FA
-  Apotheke -> Patient: Dexpanthenol-Salbe aushändigen
-  deactivate Apotheke
-  '  deactivate Patient
+  note over Patient
+  Herr Mustermann erhält die 
+  Dexpanthenol-Salbe in der 
+  Apotheke.
+  end note
+  Apotheke -> eMed_FA: e-Medikation abrufen
+  eMed_FA -> Apotheke: <$document> Medikationsplan + offene Geplante Abgabe:\nDexpanthenol-Salbe
+  Apotheke -> Patient: Dexpanthenol-Salbe aushändigen <$capsule>
+  Apotheke -> eMed_FA: Durchgeführte Abgabe\nfür Dexpanthenol-Salbe erstellen\n(Besorgerprozess abschließen)
+
 end
 
-group GROUP_PAT 2.3.2026 · Patient ruft Medikationsplan ab
+group GROUP_PAT 7.3.2026 · Patient ruft Medikationsplan ab
 
-  '  activate Patient COLOR_PATIENT
-
-  Patient -> eMed_FA: Medikationsplan anzeigen
-
-  activate eMed_FA COLOR_EMED_FA
-
-  eMed_FA -> Patient: Aktueller Medikationsplan
-
-  deactivate eMed_FA
-  '  deactivate Patient
+  Patient -> eMed_FA: e-Medikation abrufen
+  eMed_FA -> Patient: <$document> Medikationsplan + abgeschlossene Geplante Abgaben +\nDurchgeführte Abgaben für Ramipril und Dexpanthenol-Salbe
+  note over Patient
+  Herr Mustermann ruft seine 
+  e-Medikation ab.
+  end note
 end
 
 
 group GROUP_ARZT 3.3.2026 · Präoperativer Hausarzttermin
 
-  '  activate Patient COLOR_PATIENT
-
   Patient -> Arzt_1: Präoperativer Kontrolltermin
-
-  activate Arzt_1 COLOR_GDA_1
-
-  Arzt_1 -> eMed_FA: aktuellen Medikationsplan,\nGeplante und Durchgeführte\nAbgaben abrufen
-
-  activate eMed_FA COLOR_EMED_FA
-  eMed_FA -> Arzt_1: Aktueller Medikationsplan
-  deactivate eMed_FA
-
-  Arzt_1 -> Arzt_1: Ramipril vorübergehend\npausieren
-
-  Arzt_1 -> eMed_FA: Medikationsplan speichern
-
-  ' activate eMed_FA COLOR_EMED_FA
-  ' eMed_FA -> Arzt_1: Medikationsplan gespeichert
-  ' deactivate eMed_FA
-
-  deactivate Arzt_1
-  '  deactivate Patient
-end
-
-group GROUP_KH 5.3.2026 · Geplante Leistenbruchoperation
-
-  '  activate Patient COLOR_PATIENT
-
-  Patient -> Arzt_2: Geplante Operation
-
-  activate Arzt_2 COLOR_GDA_2
-
-  Arzt_2 -> eMed_FA: aktuellen Medikationsplan,\nGeplante und Durchgeführte\nAbgaben abrufen
-
-  activate eMed_FA COLOR_EMED_FA
-  eMed_FA -> Arzt_2: Aktueller Medikationsplan
-  deactivate eMed_FA
-
-  Arzt_2 -> eMed_FA: neuer Planeintrag Metamizol-\nTropfen erstellen und speichern
-
-  Arzt_2 -> eMed_FA: neue Geplante Abgabe Metamizol-\nTropfen erstellen und speichern
-  deactivate Arzt_2
-  '  deactivate Patient
-end
-
-group GROUP_APO 7.3.2026 · Teilabgabe in der Apotheke
-
-  '  activate Patient COLOR_PATIENT
-
-  Patient -> Apotheke: Metamizol-Tropfen abholen
-
-  activate Apotheke COLOR_APO
-
-  Apotheke -> eMed_FA: aktuellen Medikationsplan,\nGeplante und Durchgeführte\nAbgaben abrufen
-
-  activate eMed_FA COLOR_EMED_FA
-  eMed_FA -> Apotheke: Medikationsplan\n+ Geplante Abgabe
-  deactivate eMed_FA
-
-  Apotheke -> eMed_FA: Durchgeführte Abgabe\nMetamizol als Teilabgabe\nerstellen
-
-  ' activate eMed_FA COLOR_EMED_FA
-  ' eMed_FA -> Apotheke: Abgabe gespeichert
-  ' deactivate eMed_FA
-
-  Apotheke -> Patient: Metamizol-Tropfen\n(1 Fläschchen) aushändigen
-
-  deactivate Apotheke
-  '  deactivate Patient
-end
-
-group GROUP_APO 9.3.2026 · Teilabgabe in der Apotheke abschließen
-
-  '  activate Patient COLOR_PATIENT
-
-  Patient -> Apotheke: Metamizol-Tropfen\nabholen
-
-  activate Apotheke COLOR_APO
-  Apotheke -> eMed_FA: e-Medikation abrufen
-
-  activate eMed_FA COLOR_EMED_FA
-  eMed_FA -> Apotheke: Aktueller Medikationsplan +\nGeplante und Durchgeführte Abgaben
-  deactivate eMed_FA
-
-  Apotheke -> eMed_FA: Durchgeführte Abgabe\nspeichern (Teilabgabe\nabschließen)
-
-  Apotheke -> Patient: Metamizol-Tropfen\naushändigen
-
-  deactivate Apotheke
-  '  deactivate Patient
-end
-
-group GROUP_ARZT 12.3.2026 · Nachkontrolle bei der Urlaubsvertretung von Dr. Hausärztin 
-
-  '  activate Patient COLOR_PATIENT
-
-  Patient -> Arzt_3: Nachkontrolle
-
-  activate Arzt_3 COLOR_GDA_3
-
-  Arzt_3 -> eMed_FA: e-Medikation abrufen
-
-  activate eMed_FA COLOR_EMED_FA
-  eMed_FA -> Arzt_3: Aktueller Medikationsplan,\nGeplante und Durchgeführte\nAbgaben
-  deactivate eMed_FA
-
-  Arzt_3 -> Arzt_3: Planeintrag Ramipril\nbearbeiten: Pausierung beenden
-
-  Arzt_3 -> Arzt_3: Planeintrag Metamizol\nbearbeiten: Dosierung anpassen 
-
-  Arzt_3 -> eMed_FA: Neuen Medikationsplan\nspeichern
-
-  ' activate eMed_FA COLOR_EMED_FA
-  ' eMed_FA -> Arzt_3: Medikationsplan gespeichert
-  ' deactivate eMed_FA
-
-  deactivate Arzt_3
-  '  deactivate Patient
-end
-
-group GROUP_ARZT 20.3.2026 · Kontrolltermin bei Dr. Hausärztin 
-
-  '  activate Patient COLOR_PATIENT
-
-  Patient -> Arzt_1: Kontrolltermin
-
-  activate Arzt_1 COLOR_GDA_1
-
   Arzt_1 -> eMed_FA: e-Medikation abrufen
+  eMed_FA -> Arzt_1: <$document> Medikationsplan
+  Arzt_1 -> eMed_FA: Medikationsplan aktualisieren:\nRamipril vorübergehend pausieren
+  note over Patient
+  Für eine geplante Operation 
+  wird Ramipril pausiert. 
+  end note
 
-  activate eMed_FA COLOR_EMED_FA
-  eMed_FA -> Arzt_1: Aktueller Medikationsplan,\nGeplante und Durchgeführte\nAbgaben
-  deactivate eMed_FA
-
-  Arzt_1 -> Arzt_1: Planeintrag Metamizol\nbeenden
-  Arzt_1 -> Arzt_1: Planeintrag Dexpanthenol-\nSalbe beenden
-
-  Arzt_1 -> eMed_FA: Medikationsplan speichern
-
-  ' activate eMed_FA COLOR_EMED_FA
-  ' eMed_FA -> Arzt_1: Medikationsplan gespeichert
-  ' deactivate eMed_FA
-
-  deactivate Arzt_1
-  deactivate Patient
 end
+
+' group GROUP_KH 5.3.2026 · Geplante Leistenbruchoperation
+
+'   '  activate Patient COLOR_PATIENT
+
+'   Patient -> Arzt_2: Geplante Operation
+
+'   ' activate Arzt_2 COLOR_GDA_2
+
+'   Arzt_2 -> eMed_FA: aktuellen Medikationsplan,\nGeplante und Durchgeführte\nAbgaben abrufen
+
+'   ' activate eMed_FA COLOR_EMED_FA
+'   eMed_FA -> Arzt_2: Aktueller Medikationsplan
+'   ' deactivate eMed_FA
+
+'   Arzt_2 -> eMed_FA: neuer Planeintrag Metamizol-\nTropfen erstellen und speichern
+
+'   Arzt_2 -> eMed_FA: neue Geplante Abgabe Metamizol-\nTropfen erstellen und speichern
+'   ' deactivate Arzt_2
+'   '  ' deactivate Patient
+' end
+
+' group GROUP_APO 7.3.2026 · Teilabgabe in der Apotheke
+
+'   '  activate Patient COLOR_PATIENT
+
+'   Patient -> Apotheke: Metamizol-Tropfen abholen
+
+'   ' activate Apotheke COLOR_APO
+
+'   Apotheke -> eMed_FA: aktuellen Medikationsplan,\nGeplante und Durchgeführte\nAbgaben abrufen
+
+'   ' activate eMed_FA COLOR_EMED_FA
+'   eMed_FA -> Apotheke: Medikationsplan\n+ Geplante Abgabe
+'   ' deactivate eMed_FA
+
+'   Apotheke -> eMed_FA: Durchgeführte Abgabe\nMetamizol als Teilabgabe\nerstellen
+
+'   ' activate eMed_FA COLOR_EMED_FA
+'   ' eMed_FA -> Apotheke: Abgabe gespeichert
+'   ' ' deactivate eMed_FA
+
+'   Apotheke -> Patient: Metamizol-Tropfen\n(1 Fläschchen) aushändigen
+
+'   ' deactivate Apotheke
+'   '  ' deactivate Patient
+' end
+
+' group GROUP_APO 9.3.2026 · Teilabgabe in der Apotheke abschließen
+
+'   '  activate Patient COLOR_PATIENT
+
+'   Patient -> Apotheke: Metamizol-Tropfen\nabholen
+
+'   ' activate Apotheke COLOR_APO
+'   Apotheke -> eMed_FA: e-Medikation abrufen
+
+'   ' activate eMed_FA COLOR_EMED_FA
+'   eMed_FA -> Apotheke: Aktueller Medikationsplan +\nGeplante und Durchgeführte Abgaben
+'   ' deactivate eMed_FA
+
+'   Apotheke -> eMed_FA: Durchgeführte Abgabe\nspeichern (Teilabgabe\nabschließen)
+
+'   Apotheke -> Patient: Metamizol-Tropfen\naushändigen
+
+'   ' deactivate Apotheke
+'   '  ' deactivate Patient
+' end
+
+' group GROUP_ARZT 12.3.2026 · Nachkontrolle bei der Urlaubsvertretung von Dr. Hausärztin 
+
+'   '  activate Patient COLOR_PATIENT
+
+'   Patient -> Arzt_3: Nachkontrolle
+
+'   ' activate Arzt_3 COLOR_GDA_3
+
+'   Arzt_3 -> eMed_FA: e-Medikation abrufen
+
+'   ' activate eMed_FA COLOR_EMED_FA
+'   eMed_FA -> Arzt_3: Aktueller Medikationsplan,\nGeplante und Durchgeführte\nAbgaben
+'   ' deactivate eMed_FA
+
+'   Arzt_3 -> Arzt_3: Planeintrag Ramipril\nbearbeiten: Pausierung beenden
+
+'   Arzt_3 -> Arzt_3: Planeintrag Metamizol\nbearbeiten: Dosierung anpassen 
+
+'   Arzt_3 -> eMed_FA: Neuen Medikationsplan\nspeichern
+
+'   ' activate eMed_FA COLOR_EMED_FA
+'   ' eMed_FA -> Arzt_3: Medikationsplan gespeichert
+'   ' ' deactivate eMed_FA
+
+'   ' deactivate Arzt_3
+'   '  ' deactivate Patient
+' end
+
+' group GROUP_ARZT 20.3.2026 · Kontrolltermin bei Dr. Hausärztin 
+
+'   '  activate Patient COLOR_PATIENT
+
+'   Patient -> Arzt_1: Kontrolltermin
+
+'   ' activate Arzt_1 COLOR_GDA_1
+
+'   Arzt_1 -> eMed_FA: e-Medikation abrufen
+
+'   ' activate eMed_FA COLOR_EMED_FA
+'   eMed_FA -> Arzt_1: Aktueller Medikationsplan,\nGeplante und Durchgeführte\nAbgaben
+'   ' deactivate eMed_FA
+
+'   Arzt_1 -> Arzt_1: Planeintrag Metamizol\nbeenden
+'   Arzt_1 -> Arzt_1: Planeintrag Dexpanthenol-\nSalbe beenden
+
+'   Arzt_1 -> eMed_FA: Medikationsplan speichern
+
+'   ' activate eMed_FA COLOR_EMED_FA
+'   ' eMed_FA -> Arzt_1: Medikationsplan gespeichert
+'   ' ' deactivate eMed_FA
+
+'   ' deactivate Arzt_1
+'   ' deactivate Patient
+' end
 
 @enduml
