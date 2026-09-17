@@ -97,6 +97,7 @@ group GROUP_APO 28.2.2026 · Abgabe in der Apotheke (Besorgerprozess Teil 1)
   Apotheke -> Apotheke: Durchgeführte Abgabe\nfür Dexpanthenol-Salbe erstellen\n(Besorgerprozess)
   Apotheke -> eMed_FA: Durchgeführte Abgaben\nspeichern
   activate eMed_FA COLOR_EMED_FA
+  eMed_FA -> eMed_FA: Geplante Abgabe\nRamipril\nabgeschlossen
   eMed_FA -> Apotheke: Durchgeführte Abgaben
   deactivate eMed_FA
   Apotheke -> Patient: Abholzettel für\nDexpanthenol-Salbe aushändigen 
