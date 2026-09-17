@@ -42,6 +42,7 @@ Alias: $cs-list-empty-reason = http://terminology.hl7.org/CodeSystem/list-empty-
 // medicationdispense
 Alias: $cs-medication-dispense-status = http://hl7.org/fhir/ValueSet/medicationdispense-status
 Alias: $cs-medication-dispense-type = http://terminology.hl7.org/ValueSet/v3-ActPharmacySupplyType
+Alias: $medicationdispense-rendereddosageinstruction-r5 = http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationDispense.renderedDosageInstruction
 
 //systems
 Alias: $sys-eMed-groupIdentifier = http://tbd.com

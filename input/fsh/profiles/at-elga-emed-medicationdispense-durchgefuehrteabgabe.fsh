@@ -12,7 +12,7 @@ Der aktuelle Status einer \"Durchgeführten Abgabe\" wird mittels \"status\"- un
 // TODO Check CDA
 
 // Extensions   ***************** TODO
-* extension contains $medicationrequest-rendereddosageinstruction-r5 named renderedDosageInstruction 0..1
+* extension contains $medicationdispense-rendereddosageinstruction-r5 named renderedDosageInstruction 0..1
 * extension[renderedDosageInstruction] ^short = "Vollständige Darstellung der Dosierungsanweisungen"
 
 // TODO Extension für Nacherfassung einer Abgabe  
@@ -88,7 +88,7 @@ auf die ELGA e-Medikation des Patienten zuzugreifen)."
 // Slicing authorizingPrescription:  
 // - authorizingPrescription zur Unterscheidung der MedicationRequest-Referenzen: Planeintrag und Geplante Abgabe
 * authorizingPrescription ^slicing.discriminator[+].type = #value
-* authorizingPrescription ^slicing.discriminator[=].path = "reference.ofType(MedicationRequest).category"
+* authorizingPrescription ^slicing.discriminator[=].path = "resolve().category"
 * authorizingPrescription ^slicing.rules = #closed
 * authorizingPrescription ^slicing.ordered = false
 

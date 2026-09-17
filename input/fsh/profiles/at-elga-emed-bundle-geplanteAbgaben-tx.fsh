@@ -15,8 +15,8 @@ Ist kein groupIdentifier enthalten so erhalten alle geplanten Abgaben im Transac
 
 * link 0..0
 
-* entry ^slicing.discriminator[+].type = #type   
-* entry ^slicing.discriminator[=].path = "resource"
+* entry ^slicing.discriminator[+].type = #value
+* entry ^slicing.discriminator[=].path = "resource.category"
 * entry ^slicing.rules = #closed  // als Entries sind nur List und MedicationRequest erlaubt
 //* entry ^slicing.ordered = true  // erstes Entry soll die Liste sein
 * entry contains 
@@ -27,5 +27,9 @@ Ist kein groupIdentifier enthalten so erhalten alle geplanten Abgaben im Transac
 * entry[geplanteAbgaben].fullUrl ^short = "Eindeutige URL für den Eintrag im Bundle. "
 * entry[geplanteAbgaben].request.method = #POST
 * entry[geplanteAbgaben].request.url = "MedicationRequest"
+* entry obeys at-emed-geplante-abgaben-group-identifier-einheitlich
 
-//TODO Invariante: entweder alle geplanten Abgaben haben einen groupIdentifier oder keine
+Invariant: at-emed-geplante-abgaben-group-identifier-einheitlich
+Description: "Entweder müssen alle geplanten Abgaben einen groupIdentifier enthalten oder keine."
+* severity = #error
+* expression = "resource.ofType(MedicationRequest).groupIdentifier.exists().not() or resource.ofType(MedicationRequest).groupIdentifier.exists().count() = resource.ofType(MedicationRequest).count()"

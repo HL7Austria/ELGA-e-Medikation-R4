@@ -2,7 +2,7 @@ ValueSet: DurchgefuehrteAbgabeTypVS
 Title: "ELGA e-Med Durchgeführte Abgabe Typ Value Set"
 Description: "ValueSet für zulässige Ausprägungen eines Typs einer Durchgeführten Abgabe (MedicationDispense)."
 //https://terminology.hl7.org/7.1.0/en/ValueSet-v3-ActPharmacySupplyType.html
-
+* ^status = #active
 * ^experimental = true
 
 * $cs-medication-dispense-type#FFC "First Fill - Complete"  // vollständig erfüllte Bestellungen

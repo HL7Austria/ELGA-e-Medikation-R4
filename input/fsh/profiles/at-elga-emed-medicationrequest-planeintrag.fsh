@@ -37,20 +37,20 @@ Der Planeintrag kann in weiterer Folge als Grundlage für die Erstellung einer \
 
 * statusReason MS
 * statusReason 0..1    //(ex) https://hl7.org/fhir/R4/valueset-medicationrequest-status-reason.html."
-//TODO statusReason muss 1..1 sein - derzeit 0..1 bis Beispiele angepasst sind
 * statusReason from AtElgaEmedValueSetPlaneintragStatusReasonVS
 * statusReason.coding ^short = "Codierte Begründung für den Status des Planeintrags."
 * statusReason.coding.code 1..1
 * statusReason.text 0..1  MS
 * statusReason.text ^short = "Begründung für den Status des Planeintrags (Freitext), z.B. warum ein Medikament abgesetzt wurde." 
 // TODO: müssen bei bestimmten Status (z.B. stopped) zwingend Begründungen angegeben werden? Evtl. Invariante erstellen.
+* obeys at-emed-planeintrag-status-reason-beim-absetzen
 
 * intent 1..1 MS
 * intent = https://hl7.org/fhir/R4/valueset-medicationrequest-intent#order
 * intent ^short = "Ein Planeintrag ist eine autorisierte ärztliche Anordnung und stellt eine verbindliche Einnahmeanweisung für den Patienten dar, auf dessen Basis eine Geplante Abgabe erstellt werden kann. Fixer Wert: \"order\". (req) proposal | plan | order | original-order | reflex-order | filler-order | instance-order | option. https://hl7.org/fhir/R4/valueset-medicationrequest-intent.html"
 
 * category 1..1 MS
-* category = MedicationRequestCategoryCS#1 "Planeintrag"  // Display nicht fixieren -> Übersetzungen
+* category = MedicationRequestCategoryCS#1   // Display nicht fixieren -> Übersetzungen
 * category ^short = "Kategorie zur Unterscheidung eines Planeintrags von einer geplanten Abgabe (beide haben intent order)"
 
 * priority 0..0
@@ -170,3 +170,9 @@ Invariant: e-med-acute-medication-effectiveDosePeriod
 Description: "Eine Akutmedikation (courseOfTherapyType = #acute) muss ein Enddatum besitzen."
 * severity = #error
 * expression = "courseOfTherapyType.where(coding.code='acute' and coding.system = 'http://terminology.hl7.org/CodeSystem/medicationrequest-course-of-therapy').exists() implies extension.where(url = 'http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationRequest.effectiveDosePeriod').value.ofType(Period).end.exists()"
+
+
+Invariant: at-emed-planeintrag-status-reason-beim-absetzen
+Description: "Bei Status 'stopped' oder 'entered-in-error' muss ein statusReason angegeben werden."
+* severity = #error
+* expression = "(status = 'stopped' or status = 'entered-in-error') implies statusReason.coding.code.exists()"

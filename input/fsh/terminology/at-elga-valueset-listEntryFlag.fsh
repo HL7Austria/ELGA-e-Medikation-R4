@@ -3,6 +3,7 @@ Title: "ELGA List.entry.flag CodeSystem"
 Description: "CodeSystem für zulässige Ausprägungen des Flags eines List.Entries in ELGA."
 * ^status = #active
 * ^experimental = true
+* ^caseSensitive = false
  
 * #new "Neuer Planeintrag"
 * #unchanged "Planeintrag beibehalten"

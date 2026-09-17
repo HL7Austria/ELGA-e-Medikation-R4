@@ -3,7 +3,7 @@ Title: "ELGA e-Med MedicationRequest Kategorie CodeSystem"
 Description: "Codesystem für zulässige Ausprägungen der MedicationRequest Kategorie. Dient der Unterscheidung von geplanten Abgaben und Medikationsplaneinträgen."
 * ^status = #active
 * ^experimental = true
-
+* ^caseSensitive = false
 * #1 "Planeintrag"
 * #2 "Geplante Abgabe"
 
