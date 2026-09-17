@@ -268,7 +268,7 @@ Dr. Hausärztin erstellt für beide Medikamente ein Kassenrezept (Papier oder e-
 
 #### Ablauf Erstbesuch
 <br>
-[![overview](plantuml/patient_journey_01.svg){: .mx-auto style="width:60%;"}](plantuml/patient_journey_01.svg)
+[![overview](plantuml/patient_journey_01.svg){: .mx-auto style="width:50%;"}](plantuml/patient_journey_01.svg)
 <br> 
 
 ### Journey-02: 28.2.2026 - Abgabe in der Apotheke (Teil 1)
@@ -479,7 +479,7 @@ Er kann auch sehen, dass er keine offenen *Geplanten Abgaben* hat und sieht in d
 #### Ablauf Patient ruft Medikationsplan ab
 
 <br>
-[![overview](plantuml/patient_journey_04.svg){: .mx-auto style="width:50%;"}](plantuml/patient_journey_04.svg)
+[![overview](plantuml/patient_journey_04.svg){: .mx-auto style="width:45%;"}](plantuml/patient_journey_04.svg)
 <br> 
 
 
