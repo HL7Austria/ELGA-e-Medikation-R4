@@ -6,12 +6,12 @@ Die folgende Abbildung zeigt den Aufbau des Medikationsplans sowie das Zusammenw
 
 Zentrale Ressource ist der Medikationsplan (*List*), der die einzelnen Medikationsplaneinträge (*MedicationRequest*) referenziert. Basierend auf diesen Planeinträgen werden *Geplante Abgaben* (*MedicationRequest*) erstellt, auf deren Grundlage *Durchgeführte Abgaben* (*MedicationDispense*) dokumentiert werden können.
 
-Die Fachanwendung persistiert ausschließlich die einzelnen FHIR-Ressourcen. Historische Zustände werden durch versionierte Ressourcen und versionierte Referenzen abgebildet. Medikationsplan-Searchset-Bundles dienen ausschließlich der Auslieferung eines Medikationsplans und werden bei Bedarf aus den entsprechenden Ressourcenversionen erzeugt.
+Die Fachanwendung persistiert ausschließlich die einzelnen FHIR-Ressourcen. Historische Zustände werden durch versionierte Ressourcen und versionierte Referenzen abgebildet. Medikationsplan-Bundles dienen ausschließlich der Auslieferung eines Medikationsplans und werden bei Bedarf aus den entsprechenden Ressourcenversionen erzeugt.
 
 <br>
 [![diagram](Uebersicht_e_Medikation_Ressourcen.drawio.svg){: style="width: 100%"}](Uebersicht_e_Medikation_Ressourcen.drawio.svg)
 
-<!-- TODO Pfeile zu Patient und Practitioner? Umrandung Medikationsplan-Searchset-Bundle strichliert -->
+<!-- TODO Pfeile zu Patient und Practitioner? Umrandung Medikationsplan-Bundle strichliert -->
 
 ### Relevante Profile
 
@@ -38,11 +38,11 @@ Der aktuelle Status eines Planeintrags wird im *status*-Element dokumentiert (si
 Abhängig vom List.entry.flag kann der Planeintrag nur bestimmte Statuswerte annehmen (siehe [Konsistenzregeln zwischen List.entry.flags und MedicationRequest-Status](workflowmanagement.html#konsistenzregeln-zwischen-listentryflags-und-medicationrequest-status)).
 
 
-#### Medikationsplan-Searchset-Bundle: AtElgaEmedBundleMedikationsplan (*Medikationsplan-Searchset-Bundle*)
+#### Medikationsplan-Bundle: AtElgaEmedBundleMedikationsplan (*Medikationsplan-Bundle*)
 
-Das Medikationsplan-Searchset-Bundle dient ausschließlich der Auslieferung eines Medikationsplans. Es wird von der Fachanwendung bei Bedarf aus einer List-Ressource sowie den von dieser referenzierten Ressourcenversionen erzeugt und **nicht persistiert**.
+Das Medikationsplan-Bundle dient ausschließlich der Auslieferung eines Medikationsplans. Es wird von der Fachanwendung bei Bedarf aus einer List-Ressource sowie den von dieser referenzierten Ressourcenversionen erzeugt und **nicht persistiert**.
 
-<!-- TODO: Iste ein Medikationsplan-Searchset-Bundle nur das Ergebnis von Plan-Read oder auch Teil des Ergebnis von Plan-History-Read (in einem Searchset-Bundle)? -->
+<!-- TODO: Iste ein Medikationsplan-Bundle nur das Ergebnis von Plan-Read oder auch Teil des Ergebnis von Plan-History-Read (in einem Searchset-Bundle)? -->
 
 
 <!-- #### Geplante Abgabe Transaction-Bundle: AtElgaEmedBundleGeplanteAbgabeTX (*Transaction Bundle*)
