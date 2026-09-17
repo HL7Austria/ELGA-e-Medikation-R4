@@ -15,8 +15,8 @@ Ist kein groupIdentifier enthalten so erhalten alle geplanten Abgaben im Transac
 
 * link 0..0
 
-* entry ^slicing.discriminator[+].type = #value
-* entry ^slicing.discriminator[=].path = "resource.category"
+* entry ^slicing.discriminator[+].type = #type
+* entry ^slicing.discriminator[=].path = "resource"
 * entry ^slicing.rules = #closed  // als Entries sind nur List und MedicationRequest erlaubt
 //* entry ^slicing.ordered = true  // erstes Entry soll die Liste sein
 * entry contains 
