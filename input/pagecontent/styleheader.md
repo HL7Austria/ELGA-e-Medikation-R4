@@ -85,11 +85,10 @@ width: 100%;}
   grid-template-columns: repeat(auto-fit, minmax(90px, max-content));
   align-items: end;
   position: relative;
-
   width: 100%;
   min-height: 0;
   max-height: none;
-  margin: 35px 0 25px;
+  margin: 5px 0 5px;
   background: #ffffff;
 }
 
@@ -145,6 +144,24 @@ width: 100%;}
   display: block;
 }
 
+.request-panel {
+  background: #f8f9fa;
+  padding: 1.2rem;
+  margin: 0.5rem 0;
+  border-radius: 0 4px 4px 0;
+  border-left: 4px solid #007bff;
+}
+
+.request-panel--success {
+  border-left-color: #28a745;
+}
+
+.request-meta {
+  font-size: 0.9em;
+  color: #666666;
+  margin-top: 0.5rem;
+}
+
 .request-code {
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
   background: #ffffff;
@@ -154,6 +171,29 @@ width: 100%;}
   font-size: 0.8em;
   line-height: 1;
   overflow-x: auto;
+}
+
+.request-method-post {
+  color: #d63384;
+  font-weight: bold;
+}
+
+.request-method-get {
+  color: #007bff;
+  font-weight: bold;
+}
+
+.request-url {
+  background: #e7f3ff;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  color: #0066cc;
+}
+
+.request-header {
+  background: #f1f3f4;
+  padding: 0.1em 0.3em;
+  border-radius: 2px;
 }
 
 .tabs:has(input[id^="tab-request-"]:checked) {

@@ -68,10 +68,94 @@ prescription-search
 dispense-search
  -->
 
+##### Request 01 - Medikationsplan abrufen
+<div class="tabs">
+  <div class="tab">
+    <input type="radio" id="tab-request-journey-01-01-01" name="tab-group-journey-01-01-01" checked="true" />
+    <label for="tab-request-journey-01-01-01" class="request-tab">Request</label>
+    <div class="content-in-tab">
+      <div class="request-panel">
+        <div class="request-code">
+          <span class="request-method-post">POST</span>
+          <code class="request-url">[base]/List/$plan-read</code>
+        </div>
+        <div class="request-meta">
+          <strong>Headers:</strong>
+          <code class="request-header">Content-Type: application/fhir+json</code>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tab">
+    <input type="radio" id="tab-request-body-journey-01-01-01" name="tab-group-journey-01-01-01" />
+    <label for="tab-request-body-journey-01-01-01">Request Body</label>
+    <div class="content-in-tab">{% fragment Parameters/Journey-01-01-Request-Body-01 JSON %}</div>
+  </div>
+  <div class="tab">
+    <input type="radio" id="tab-response-journey-01-01-01" name="tab-group-journey-01-01-01" />
+    <label for="tab-response-journey-01-01-01">Response Body</label>
+    <div class="content-in-tab">{% fragment Bundle/At-Emed-Journey-01-01-01-Bundle-Medikationsplan JSON %}</div>
+  </div>
+</div>
+
+
+##### Request 02 - geplante Abgaben Abrufen
+<div class="tabs">
+  <div class="tab">
+    <input type="radio" id="tab-request-journey-01-01-02" name="tab-group-journey-01-01-02" checked="true" />
+    <label for="tab-request-journey-01-01-02" class="request-tab">Request</label>
+    <div class="content-in-tab">
+      <div class="request-panel">
+        <div class="request-code">
+          <span class="request-method-get">GET</span>
+          <code class="request-url">[base]/MedicationRequest?category=https://fhir.hl7.at/elga/emed/r4/CodeSystem/MedicationRequestCategoryCS|2&amp;status=active</code>
+        </div>
+        <div class="request-meta">
+          <strong>Headers:</strong>
+          <code class="request-header">Content-Type: application/fhir+json</code>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tab">
+    <input type="radio" id="tab-response-journey-01-01-02" name="tab-group-journey-01-01-02" />
+    <label for="tab-response-journey-01-01-02">Response Body</label>
+    <div class="content-in-tab">{% fragment Bundle/at-emed-journey-01-01-02-bundle-geplanteAbgaben JSON %}</div>
+  </div>
+</div>
+
+##### Request 03 - durchgeführte Abgaben Abrufen
+
+<div class="tabs">
+  <div class="tab">
+    <input type="radio" id="tab-request-journey-01-01-03" name="tab-group-journey-01-01-03" checked="true" />
+    <label for="tab-request-journey-01-01-03" class="request-tab">Request</label>
+    <div class="content-in-tab">
+      <div class="request-panel">
+        <div class="request-code">
+          <span class="request-method-get">GET</span>
+          <code class="request-url">[base]/MedicationDispense?recorded=lt2025-01-01</code>
+        </div>
+        <div class="request-meta">
+          <strong>Headers:</strong>
+          <code class="request-header">Content-Type: application/fhir+json</code>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tab">
+    <input type="radio" id="tab-response-journey-01-01-03" name="tab-group-journey-01-01-03" />
+    <label for="tab-response-journey-01-01-03">Response Body</label>
+    <div class="content-in-tab">{% fragment Bundle/at-emed-journey-01-01-03-bundle-durchgefuehrte-abgaben JSON %}</div>
+  </div>
+</div>
+
+
+
+#### Journey-01-02
 Dr. Hausärztin erstellt zwei Medikationsplaneinträge und klärt den Patienten über die Anwendung auf: gegen die arterielle Hypertonie **Ramipril 5 mg Tabletten**, 1 x täglich morgens (Dauermedikation) und gegen den Hautausschlag **Dexpanthenol-5-%-Salbe**, 2 × täglich für 3 Wochen, dünn aufzutragen.<br>
 Sie speichert den neuen Medikationsplan.
 
-#### Journey-01-02
 <div class="tabs">
   <div class="tab">
     <input type="radio" id="tab-beispiele-01-02" name="tab-group-patient-journey-01-02" checked="true">

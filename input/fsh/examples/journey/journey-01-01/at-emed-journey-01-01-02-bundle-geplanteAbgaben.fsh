@@ -1,0 +1,8 @@
+Instance: at-emed-journey-01-01-02-bundle-geplanteAbgaben
+InstanceOf: Bundle
+Usage: #example
+* meta.lastUpdated = "2026-09-17T09:30:35.855-04:00"
+* type = #searchset
+* total = 0
+* link.relation = "self"
+* link.url = "[base]/MedicationRequest?category=https://fhir.hl7.at/elga/emed/r4/CodeSystem/MedicationRequestCategoryCS|2&status=active"

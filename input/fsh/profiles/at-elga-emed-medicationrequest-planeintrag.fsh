@@ -11,7 +11,7 @@ Der Planeintrag kann in weiterer Folge als Grundlage für die Erstellung einer \
 
 // Extensions
 * extension contains $medicationRequest-effectiveDosePeriod-r5 named effectiveDosePeriod 1..1
-* extension[effectiveDosePeriod] ^short = "Zeitraum, in dem das Arzneimittel eingenommen werden soll." 
+* extension[effectiveDosePeriod] ^short = "Zeitraum, in dem das Arzneimittel eingenommen werden soll." //TODO wording prüfen ob wirklich Einnahmezeitraum vgl. Dosierung
 * extension contains $medicationrequest-rendereddosageinstruction-r5 named renderedDosageInstruction 0..1
 * extension[renderedDosageInstruction] ^short = "Vollständige Darstellung der Dosierungsanweisungen"
 
