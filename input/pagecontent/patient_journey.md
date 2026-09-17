@@ -6,7 +6,7 @@ Am Beispiel einer fiktiven Patient Journey wird veranschaulicht, wie sich der **
 Einträge durch patient löschen, stornieren, rezept wieder öffnen, wenn teilabgabe storniert -->
 
 
-### 27.2.2026: Erstbesuch: Neue Medikation
+### Journey-01: 27.2.2026 - Erster Arztbesuch
 
 Herr Mustermann kommt wegen Kopfschmerzen und Schwindelgefühl zu seiner Hausärztin. Außerdem hat er einen leichten Hautausschlag bemerkt.
 
@@ -14,18 +14,18 @@ Dr. Hausärztin stellt eine leichte arterielle Hypertonie fest und ruft die e-Me
 
 Da für Herrn Mustermann noch nie ein Medikationsplan abgerufen wurde, erstellt die Fachanwendung automatisch einen leeren Medikationsplan. Darin enthalten sind die Informationen zum Patienten, die erstellende e-Medikation-Fachanwendung, das Datum der Erstellung und die Information, dass der Medikationsplan noch nicht gestartet wurde (*EmptyReason = notstarted*). 
 
-#### Journey-01
+#### Journey-01-01
 <div class="tabs">
   <div class="tab">
-    <input type="radio" id="tab-beispiele-1" name="tab-group-patient-journey-1" checked="true">
-    <label for="tab-beispiele-1">Beispiele</label>
+    <input type="radio" id="tab-beispiele-01-01" name="tab-group-patient-journey-01-01" checked="true">
+    <label for="tab-beispiele-01-01">Beispiele</label>
     <div class="content-in-tab">
       <ul>
         <li>
           <strong>Leerer Medikationsplan:</strong>(EmptyReason = notstarted) 
           <ul>
             <li>
-              <a href="Bundle-At-Emed-Journey-01-Bundle-Medikationsplan.html">Medikationsplan-Searchset-Bundle</a>
+              <a href="Bundle-At-Emed-Journey-01-01-Bundle-Medikationsplan.html">Medikationsplan-Bundle</a>
             </li>
             <li>
               <a href="Patient-At-Emed-Example-Patient-01.html">Patient</a>
@@ -39,8 +39,8 @@ Da für Herrn Mustermann noch nie ein Medikationsplan abgerufen wurde, erstellt 
     </div>
   </div>
   <div class="tab">
-    <input type="radio" id="tab-usecases-1" name="tab-group-patient-journey-1">
-    <label for="tab-usecases-1">Use Cases</label>
+    <input type="radio" id="tab-usecases-01-01" name="tab-group-patient-journey-01-01">
+    <label for="tab-usecases-01-01">Use Cases</label>
     <div class="content-in-tab">
       <ul>
         <li>
@@ -69,21 +69,21 @@ dispense-search
 Dr. Hausärztin erstellt zwei Medikationsplaneinträge und klärt den Patienten über die Anwendung auf: gegen die arterielle Hypertonie **Ramipril 5 mg Tabletten**, 1 x täglich morgens (Dauermedikation) und gegen den Hautausschlag **Dexpanthenol-5-%-Salbe**, 2 × täglich für 3 Wochen, dünn aufzutragen.<br>
 Sie speichert den neuen Medikationsplan.
 
-#### Journey-02
+#### Journey-01-02
 <div class="tabs">
   <div class="tab">
-    <input type="radio" id="tab-beispiele-2" name="tab-group-patient-journey-2" checked="true">
-    <label for="tab-beispiele-2">Beispiele</label>
+    <input type="radio" id="tab-beispiele-01-02" name="tab-group-patient-journey-01-02" checked="true">
+    <label for="tab-beispiele-01-02">Beispiele</label>
     <div class="content-in-tab">
       <ul>
         <li>
           <strong>Planeinträge erstellen:</strong>
           <ul>
             <li>
-              <a href="MedicationRequest-At-Emed-Journey-02-Mr-Planeintrag-01.html">Planeintrag 1: Ramipril 5 mg Tabletten, 1 x täglich morgens (Dauermedikation)</a>
+              <a href="MedicationRequest-At-Emed-Journey-01-02-Mr-Planeintrag-01.html">Planeintrag 1: Ramipril 5 mg Tabletten, 1 x täglich morgens (Dauermedikation)</a>
             </li>
             <li>
-              <a href="MedicationRequest-At-Emed-Journey-02-Mr-Planeintrag-02.html">Planeintrag 2: Dexpanthenol-5-%-Salbe, 2 × täglich für 3 Wochen, dünn auftragen</a>
+              <a href="MedicationRequest-At-Emed-Journey-01-02-Mr-Planeintrag-02.html">Planeintrag 2: Dexpanthenol-5-%-Salbe, 2 × täglich für 3 Wochen, dünn auftragen</a>
             </li>
           </ul>
         </li>
@@ -91,7 +91,7 @@ Sie speichert den neuen Medikationsplan.
           <strong>Medikationsplan aktualisieren:</strong>
           <ul>
             <li>
-              <a href="List-At-Emed-Journey-02-List-Medikationsplan.html">Medikationsplan ergänzt mit 2 Planeinträgen</a>
+              <a href="List-At-Emed-Journey-01-02-List-Medikationsplan.html">Medikationsplan ergänzt mit 2 Planeinträgen</a>
             </li>
           </ul>
         </li>
@@ -99,7 +99,7 @@ Sie speichert den neuen Medikationsplan.
           <strong>Transaction Bundle:</strong>
           <ul>
             <li>
-              <a href="Bundle-At-Emed-Journey-02-Bundle-Medikationsplan-Tx.html">Transaction Bundle</a>
+              <a href="Bundle-At-Emed-Journey-01-02-Bundle-Medikationsplan-Tx.html">Transaction Bundle</a>
             </li>
             <li>
               <a href="Practitioner-At-Emed-Example-Practitioner-01.html">Dr. Hausärztin</a>
@@ -110,8 +110,8 @@ Sie speichert den neuen Medikationsplan.
     </div>
   </div>
   <div class="tab">
-    <input type="radio" id="tab-usecases-2" name="tab-group-patient-journey-2">
-    <label for="tab-usecases-2">Use Cases</label>
+    <input type="radio" id="tab-usecases-01-02" name="tab-group-patient-journey-01-02">
+    <label for="tab-usecases-01-02">Use Cases</label>
     <div class="content-in-tab">
       <ul>
         <li>
@@ -135,21 +135,21 @@ Im aktualisierten Medikationsplan sind die neuen Planeinträge sowie das Datum d
 
 Dr. Hausärztin erstellt für beide Medikamente ein Kassenrezept (Papier oder e-Rezept) und dokumentiert den Rezeptiervorgang in einer *Geplante Abgabe* in der e-Medikation. Herr Mustermann kann nun mit dem Rezept die Medikamente in der Apotheke abholen. 
 
-#### Journey-03
+#### Journey-01-03
 <div class="tabs">
   <div class="tab">
-    <input type="radio" id="tab-beispiele-3" name="tab-group-patient-journey-3" checked="true">
-    <label for="tab-beispiele-3">Beispiele</label>
+    <input type="radio" id="tab-beispiele-01-03" name="tab-group-patient-journey-01-03" checked="true">
+    <label for="tab-beispiele-01-03">Beispiele</label>
     <div class="content-in-tab">
       <ul>
         <li>
           <strong>Geplante Abgaben erstellen:</strong>
           <ul>
             <li>
-              <a href="MedicationRequest-At-Emed-Journey-03-Mr-Geplante-Abgabe-01.html">Geplante Abgabe zu Planeintrag 1 (Ramipril)</a>
+              <a href="MedicationRequest-At-Emed-Journey-01-03-Mr-Geplante-Abgabe-01.html">Geplante Abgabe zu Planeintrag 1 (Ramipril)</a>
             </li>
             <li>
-              <a href="MedicationRequest-At-Emed-Journey-03-Mr-Geplante-Abgabe-02.html">Geplante Abgabe zu Planeintrag 2 (Dexpanthenol-Salbe)</a>
+              <a href="MedicationRequest-At-Emed-Journey-01-03-Mr-Geplante-Abgabe-02.html">Geplante Abgabe zu Planeintrag 2 (Dexpanthenol-Salbe)</a>
             </li>
           </ul>
         </li>
@@ -157,7 +157,7 @@ Dr. Hausärztin erstellt für beide Medikamente ein Kassenrezept (Papier oder e-
           <strong>Transaction Bundle:</strong>
           <ul>
             <li>
-            <a href="Bundle-At-Emed-Journey-03-Bundle-Geplante-Abgaben-Tx.html">Transaction Bundle mit Geplante Abgaben</a>
+            <a href="Bundle-At-Emed-Journey-01-03-Bundle-Geplante-Abgaben-Tx.html">Transaction Bundle mit Geplante Abgaben</a>
             </li>
           </ul>
         </li>
@@ -165,8 +165,8 @@ Dr. Hausärztin erstellt für beide Medikamente ein Kassenrezept (Papier oder e-
     </div>
   </div>
   <div class="tab">
-    <input type="radio" id="tab-usecases-3" name="tab-group-patient-journey-3">
-    <label for="tab-usecases-3">Use Cases</label>
+    <input type="radio" id="tab-usecases-01-03" name="tab-group-patient-journey-01-03">
+    <label for="tab-usecases-01-03">Use Cases</label>
     <div class="content-in-tab">
       <ul>
         <li>
@@ -182,14 +182,14 @@ Dr. Hausärztin erstellt für beide Medikamente ein Kassenrezept (Papier oder e-
 
 #### Ablauf Erstbesuch
 <br>
-[![overview](plantuml/patient_journey_01_02_03.svg){: .mx-auto style="width:60%;"}](plantuml/patient_journey_01_02_03.svg)
+[![overview](plantuml/patient_journey_01.svg){: .mx-auto style="width:60%;"}](plantuml/patient_journey_01.svg)
 <br> 
 
-### 28.2.2026: Abgabe in der Apotheke (Teil 1)
+### Journey-02: 28.2.2026 - Abgabe in der Apotheke (Teil 1)
 
 Herr Mustermann sucht eine Apotheke auf, um die verordneten Medikamente abzuholen und legt dazu seine e-card vor, wodurch die Apotheke Zugriff auf seine ELGA e-Medikation erhält.
 
-Die Apothekerin prüft das Rezept (Papierrezept oder ruft e-Rezept ab), ruft bestehende *Geplante Abgaben*, *Durchgeführte Abgaben* und den *Medikationsplan* ab und prüft die Medikation hinsichtlich Wechselwirkungen. 
+Die Apothekerin prüft das Rezept (Papierrezept oder ruft e-Rezept ab), ruft offenen *Geplante Abgaben*, sowie *Durchgeführte Abgaben* und den *Medikationsplan* ab und prüft die Medikation hinsichtlich Wechselwirkungen. 
 
 Sie händigt das Medikament Ramipril aus, erklärt die Einnahme und erstellt eine *Durchgeführte Abgabe* (**Vollständige Abgabe**).
 
@@ -197,23 +197,23 @@ Die Dexpanthenol-Salbe muss noch hergestellt werden. Die Apothekerin erstellt ei
 
 Die Dexpanthenol-Salbe muss noch hergestellt werden. Die Apothekerin erstellt eine *Durchgeführte Abgabe* und dokumentiert darin entsprechend dem **Besorgerprozess** *type = First Fill – Part Fill* und *MedicationDispense.quantity = 0*.
 
-Anschließend speichert sie die neuen *Durchgeführte Abgaben* in der e-Medikation. Die Fachanwendung erkennt, dass für Ramipril keine weiteren Einlösugen möglich sein (Kassenrezept) und markiert *Geplante Abgabe* automatisch als abgeschlossen (*completed*).
+Anschließend speichert sie die neuen *Durchgeführte Abgaben* in der e-Medikation. Da für Ramipril keine weitere Einlösung möglich ist (Kassenrezept), wird die zugehörige *Geplante Abgabe* automatisch abgeschlossen (*completed*).
 
-#### Journey-04
+#### Journey-02
 <div class="tabs">
   <div class="tab">
-    <input type="radio" id="tab-beispiele-4" name="tab-group-patient-journey-4" checked="true">
-    <label for="tab-beispiele-4">Beispiele</label>
+    <input type="radio" id="tab-beispiele-02-01" name="tab-group-patient-journey-02-01" checked="true">
+    <label for="tab-beispiele-02-01">Beispiele</label>
     <div class="content-in-tab">
       <ul>
         <li>
           <strong>Durchgeführte Abgaben erstellen:</strong>
           <ul>
             <li>
-              <a href="MedicationDispense-At-Emed-Journey-04-Md-Durchgefuehrte-Abgabe-01.html">Durchgeführte Abgabe (Ramipril)</a> (Vollständige Einzelabgabe)
+              <a href="MedicationDispense-At-Emed-Journey-02-01-Md-Durchgefuehrte-Abgabe-01.html">Durchgeführte Abgabe (Ramipril)</a> (Vollständige Einzelabgabe)
             </li>
             <li>
-              <a href="MedicationDispense-At-Emed-Journey-04-Md-Durchgefuehrte-Abgabe-02.html">Durchgeführte Abgabe (Dexpanthenol-Salbe)</a> (Besorgerprozess)
+              <a href="MedicationDispense-At-Emed-Journey-02-01-Md-Durchgefuehrte-Abgabe-02.html">Durchgeführte Abgabe (Dexpanthenol-Salbe)</a> (Besorgerprozess)
             </li>
           </ul>
         </li>
@@ -221,7 +221,7 @@ Anschließend speichert sie die neuen *Durchgeführte Abgaben* in der e-Medikati
           <strong>Transaction Bundle:</strong>
           <ul>
             <li>
-              <a href="Bundle-At-Emed-Journey-04-Bundle-Durchgefuehrte-Abgaben-Tx.html">Transaction Bundle mit Durchgeführten Abgaben</a>
+              <a href="Bundle-At-Emed-Journey-02-01-Bundle-Durchgefuehrte-Abgaben-Tx.html">Durchgeführte-Abgaben-Transaction-Bundle</a>
             </li>
             <li>
               <a href="Organization-At-Emed-Example-Organization-Apo-01.html">Apotheke (Organization)</a>
@@ -232,8 +232,8 @@ Anschließend speichert sie die neuen *Durchgeführte Abgaben* in der e-Medikati
     </div>
   </div>
   <div class="tab">
-    <input type="radio" id="tab-usecases-4" name="tab-group-patient-journey-4">
-    <label for="tab-usecases-4">Use Cases</label>
+    <input type="radio" id="tab-usecases-02-01" name="tab-group-patient-journey-02-01">
+    <label for="tab-usecases-02-01">Use Cases</label>
     <div class="content-in-tab">
       <ul>
       <li>
@@ -262,33 +262,32 @@ Anschließend speichert sie die neuen *Durchgeführte Abgaben* in der e-Medikati
 #### Ablauf Abgabe in der Apotheke (Teil 1)
 
 <br>
-[![overview](plantuml/patient_journey_04.svg){: .mx-auto style="width:60%;"}](plantuml/patient_journey_04.svg)
+[![overview](plantuml/patient_journey_02.svg){: .mx-auto style="width:60%;"}](plantuml/patient_journey_02.svg)
 <br> 
 
-  
-### 1.3.2026: Abgabe in der Apotheke (Teil 2)
+### Journey-03: 1.3.2026 - Abgabe in der Apotheke (Teil 2)
 
 Herr Mustermann möchte in der Apotheke die Dexpanthenol-Salbe abholen und steckt dort seine e-card.
 
 Die Apothekerin ruft die e-Medikation erneut ab. 
-Sie erhält die 
+Sie erhält den *Medikationsplan*, die offene *Geplante Abgabe* für die Dexpanthenol-Salbe und die zugehörige *Durchgeführte Abgabe*, mit der der Besorgerprozess dokumentiert wurde.
 Sie übergibt dem Patienten die fertiggestellte Dexpanthenol-Salbe und schließt den Besorgerprozess ab, indem sie eine weitere *Durchgeführte Abgabe* erstellt. Sie dokumentiert darin die tatsächlich abgegebene Menge und kennzeichnet diese mit *MedicationDispense.type = RFC (Refill – Complete)*.
 
-Anschließend speichert sie die neue *Durchgeführte Abgabe* in der e-Medikation.
+Anschließend speichert sie die neue *Durchgeführte Abgabe* in der e-Medikation. Da für die Dexpanthenol-Salbe keine weitere Einlösung möglich ist (Kassenrezept), wird die zugehörige *Geplante Abgabe* automatisch abgeschlossen (*completed*).
 
-#### Journey-05
+#### Journey-03
 
 <div class="tabs">
   <div class="tab">
-    <input type="radio" id="tab-beispiele-3-1" name="tab-group-patient-journey-3-1" checked="true">
-    <label for="tab-beispiele-3-1">Beispiele</label>
+    <input type="radio" id="tab-beispiele-03-01" name="tab-group-patient-journey-03-01" checked="true">
+    <label for="tab-beispiele-03-01">Beispiele</label>
     <div class="content-in-tab">
       <ul>
         <li>
           <strong>Durchgeführte Abgaben erstellen:</strong>
           <ul>
             <li>
-              <a href="MedicationDispense-At-Emed-Journey-05-Md-Durchgefuehrte-Abgabe-02.html">Durchgeführte Abgabe (Dexpanthenol-Salbe)</a> (Besorgerprozess beenden) 
+              <a href="MedicationDispense-At-Emed-Journey-03-01-Md-Durchgefuehrte-Abgabe-02.html">Durchgeführte Abgabe (Dexpanthenol-Salbe)</a> (Besorgerprozess beenden) 
             </li>
           </ul>
         </li>
@@ -296,7 +295,7 @@ Anschließend speichert sie die neue *Durchgeführte Abgabe* in der e-Medikation
           <strong>Transaction Bundle:</strong>
           <ul>
             <li>
-              <a href="Bundle-At-Emed-Journey-05-Bundle-Durchgefuehrte-Abgaben-Tx.html">Transaction Bundle mit Durchgeführter Abgabe</a>
+              <a href="Bundle-At-Emed-Journey-03-01-Bundle-Durchgefuehrte-Abgaben-Tx.html">Transaction Bundle mit Durchgeführter Abgabe</a>
             </li>
           </ul>
         </li>
@@ -304,8 +303,8 @@ Anschließend speichert sie die neue *Durchgeführte Abgabe* in der e-Medikation
     </div>
   </div>
   <div class="tab">
-    <input type="radio" id="tab-usecases-3-1" name="tab-group-patient-journey-3-1">
-    <label for="tab-usecases-3-1">Use Cases</label>
+    <input type="radio" id="tab-usecases-03-01" name="tab-group-patient-journey-03-01">
+    <label for="tab-usecases-03-01">Use Cases</label>
     <div class="content-in-tab">
       <ul>
       <li>
@@ -331,18 +330,72 @@ Anschließend speichert sie die neue *Durchgeführte Abgabe* in der e-Medikation
 #### Ablauf Abgabe in der Apotheke (Teil 2)
 
 <br>
-[![overview](plantuml/patient_journey_05.svg){: .mx-auto style="width:60%;"}](plantuml/patient_journey_05.svg)
+[![overview](plantuml/patient_journey_03.svg){: .mx-auto style="width:60%;"}](plantuml/patient_journey_03.svg)
 <br> 
 
-**2.3.2026: Patient ruft Medikationsplan ab**
+### Journey-04: 2.3.2026 - Patient ruft Medikationsplan ab
 
-Herr Mustermann erinnert sich nicht, welches Medikament er wie einnehmen soll und ruft im Zugangsportal seinen Medikationsplan auf.
+Herr Mustermann erinnert sich nicht, welches Medikament er wie einnehmen soll und ruft im Zugangsportal seine e-Medikation auf.
 
 <!-- Der aktuelle Medikationsplan enthält nun nur noch das **Dauermedikament Ramipril 5 mg**, während die zeitlich begrenzten Medikamente für die postoperative Behandlung bereits beendet wurden. -->
 
 * **Aktuellen Medikationsplan anzeigen:**
 
-  * Beispiel [Medikationsplan-Searchset-Bundle](Bundle-At-Emed-Journey-07-Bundle-Medikationsplan.html) 
+  * Beispiel [Medikationsplan-Bundle](Bundle-At-Emed-Journey-07-Bundle-Medikationsplan.html) 
+
+
+#### Journey-04
+
+<div class="tabs">
+  <div class="tab">
+    <input type="radio" id="tab-beispiele-04-01" name="tab-group-patient-journey-04-01" checked="true">
+    <label for="tab-beispiele-04-01">Beispiele</label>
+    <div class="content-in-tab">
+      <ul>
+        <li>
+          <strong>aktueller Medikationsplan:</strong>
+          <ul>
+            <li>In Arbeit.
+              <!-- <a href="MedicationDispense-At-Emed-Journey-03-01-Md-Durchgefuehrte-Abgabe-02.html">Durchgeführte Abgabe (Dexpanthenol-Salbe)</a> (Besorgerprozess beenden)  -->
+            </li>
+          </ul>
+        </li>
+        <li>
+          <strong>Gepante Abgaben:</strong>
+          <ul>
+            <li>Bundle in Arbeit.
+              <!-- <a href="Bundle-At-Emed-Journey-03-01-Bundle-Durchgefuehrte-Abgaben-Tx.html">Bundle in Arbeit</a> -->
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="tab">
+    <input type="radio" id="tab-usecases-04-01" name="tab-group-patient-journey-04-01">
+    <label for="tab-usecases-04-01">Use Cases</label>
+    <div class="content-in-tab">
+      <ul>
+      <li>
+          <a href="Sub_UC_eMed_01.html#sub_uc_emed_01_01---aktuellen-medikationsplan-lesen-plan-read">Sub_UC_eMed_01_01 - Aktuellen Medikationsplan lesen (Plan-Read)</a>
+        </li>
+        <li>
+          <a href="Sub_UC_eMed_03.html#sub_uc_emed_07_01---geplante-abgaben-lesen-prescription-search">Sub_UC_eMed_03_01 - Geplante Abgaben lesen (Prescription-Search)</a>
+        </li>
+        <li>
+          <a href="Sub_UC_eMed_03.html#sub_uc_emed_07_02---durchgeführte-abgaben-lesen-dispense-search">Sub_UC_eMed_03_02 - Durchgeführte Abgaben lesen (Dispense-Search)</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+#### Ablauf Patient ruft Medikationsplan ab
+
+<br>
+[![overview](plantuml/patient_journey_04.svg){: .mx-auto style="width:50%;"}](plantuml/patient_journey_04.svg)
+<br> 
+
 
 **3.3.2026: Präoperativer Hausarzttermin**
 
