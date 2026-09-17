@@ -15,7 +15,7 @@ Usage: #example
 * status = $cs-medication-request-status#active
 * intent = #order
 * category[mrcategory] = MedicationRequestCategoryCS#2 "Geplante Abgabe"
-* category[recipetype] = $cs-medication-rezeptart#1 "Kassenrezept"
+* category[recipetype] = $cs-medication-rezeptart#KASSEN "Kassenrezept"
 
 // Referenz auf Inline Medication Ressource
 * medicationReference.reference = "#contained-medication-journey-01-03-02-magistral"

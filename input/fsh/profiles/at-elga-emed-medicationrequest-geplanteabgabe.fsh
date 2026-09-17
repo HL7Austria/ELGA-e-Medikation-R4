@@ -8,7 +8,6 @@ Werden mehrere Medikamente gleichzeitig verordnet und sollen demselben e-Rezept 
 Es werden R5-Backport-Extensions verwendet."
 * . ^short = "Geplante Abgabe eines Arzneimittels aus dem Medikationsplan. Verwendet R5 Backport Extensions."
 
-// TODO: Statt MS Obligations für alle Elemente, daher später kein 0..0 nötig
 
 
 // Extensions   ***************** TODO: erst mit Dosierungen besprechen
@@ -54,10 +53,17 @@ Es werden R5-Backport-Extensions verwendet."
 * category contains   
     mrcategory 1..1 MS and
     recipetype 1..1 MS
+//TODO ASW BUG in this slicing
 
 * category[mrcategory] = MedicationRequestCategoryCS#2 "Geplante Abgabe"
 * category[mrcategory] ^short = "Kategorie zur Unterscheidung eines Medikationsplaneintrags von einer geplanten Abgabe (beide haben intent order)"
-* category[recipetype] from $vs-medication-rezeptart (required)
+//* category[recipetype] from $vs-medication-rezeptart (required)
+* category[recipetype] from elga-medikationrezeptart (required)
+* category[recipetype].coding 1..
+* category[recipetype].coding.code 1..1
+* category[recipetype].coding.code from elga-medikationrezeptart (required)
+* category[recipetype].coding.system = "https://termgit.elga.gv.at/CodeSystem/medikationrezeptart"
+* category[recipetype].coding.system 1..1
 * category[recipetype]  ^short = "Kategorie zur Unterscheidung, ob ein Kassen-, Privat- oder Substitutionsrezept erstellt wurde."
 
 * priority 0..0
