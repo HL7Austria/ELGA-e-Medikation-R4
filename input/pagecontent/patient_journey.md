@@ -2,8 +2,18 @@
 
 Am Beispiel einer fiktiven Patient Journey wird veranschaulicht, wie sich der **Medikationsplan** eines Patienten mit den zugehörigen **Geplanten Abgaben** und den **Durchgeführten Abgaben** verändern kann.
 
+### Übersicht Patient Journey
+
 <!-- TODO: nicht-sunshine-cases: patient ohne ecard in apotheke, 
 Einträge durch patient löschen, stornieren, rezept wieder öffnen, wenn teilabgabe storniert -->
+
+
+<!-- <div>{ include_relative plantuml/patient_journey.svg }</div> -->
+
+<br>
+[![overview](plantuml/patient_journey_overview.svg){: .mx-auto style="width:100%;"}](plantuml/patient_journey_overview.svg)
+<br> 
+
 
 
 ### Journey-01: 27.2.2026 - Erster Arztbesuch
@@ -333,15 +343,10 @@ Anschließend speichert sie die neue *Durchgeführte Abgabe* in der e-Medikation
 [![overview](plantuml/patient_journey_03.svg){: .mx-auto style="width:60%;"}](plantuml/patient_journey_03.svg)
 <br> 
 
-### Journey-04: 2.3.2026 - Patient ruft Medikationsplan ab
+### Journey-04: 7.3.2026 - Patient ruft Medikationsplan ab
 
-Herr Mustermann erinnert sich nicht, welches Medikament er wie einnehmen soll und ruft im Zugangsportal seine e-Medikation auf.
-
-<!-- Der aktuelle Medikationsplan enthält nun nur noch das **Dauermedikament Ramipril 5 mg**, während die zeitlich begrenzten Medikamente für die postoperative Behandlung bereits beendet wurden. -->
-
-* **Aktuellen Medikationsplan anzeigen:**
-
-  * Beispiel [Medikationsplan-Bundle](Bundle-At-Emed-Journey-07-Bundle-Medikationsplan.html) 
+Herr Mustermann erinnert sich nicht, wie lange er die Dexpanthenol-Salbe anwenden soll. Er ruft im Zugangsportal seine e-Medikation auf und erhält Einsicht auf seinen aktuellen *Medikationsplan* mit den Planeinträgen zur Dauermedikation Ramipril und der Dexpanthenol-Salbe. Dem Planeintrag der Dexpanthenol-Salbe kann er entnehmen, dass die Salbe für 3 Wochen anzuwenden ist.
+Er kann auch sehen, dass er keine offenen *Geplanten Abgaben* hat und sieht in den *Durchgeführten Abgaben*, wann er die Arzneimittel abgeholt hat
 
 
 #### Journey-04
@@ -355,8 +360,7 @@ Herr Mustermann erinnert sich nicht, welches Medikament er wie einnehmen soll un
         <li>
           <strong>aktueller Medikationsplan:</strong>
           <ul>
-            <li>In Arbeit.
-              <!-- <a href="MedicationDispense-At-Emed-Journey-03-01-Md-Durchgefuehrte-Abgabe-02.html">Durchgeführte Abgabe (Dexpanthenol-Salbe)</a> (Besorgerprozess beenden)  -->
+            <li>Bundle in Arbeit. 
             </li>
           </ul>
         </li>
@@ -364,7 +368,13 @@ Herr Mustermann erinnert sich nicht, welches Medikament er wie einnehmen soll un
           <strong>Gepante Abgaben:</strong>
           <ul>
             <li>Bundle in Arbeit.
-              <!-- <a href="Bundle-At-Emed-Journey-03-01-Bundle-Durchgefuehrte-Abgaben-Tx.html">Bundle in Arbeit</a> -->
+            </li>
+          </ul>
+        </li>
+        <li>
+          <strong>Durchgeführte Abgaben:</strong>
+          <ul>
+            <li>Bundle in Arbeit.
             </li>
           </ul>
         </li>
@@ -397,17 +407,26 @@ Herr Mustermann erinnert sich nicht, welches Medikament er wie einnehmen soll un
 <br> 
 
 
-**3.3.2026: Präoperativer Hausarzttermin**
+### Journey-05: 14.3.2026 - Präoperativer Hausarzttermin
 
-Bei Herrn Mustermann steht eine geplante Leistenbruchoperation an. Vor der Operation bespricht er
-die bestehende Medikation mit seiner Hausärztin.
+Bei Herrn Mustermann steht eine geplante Leistenbruchoperation an, welche für den 24.3.2026 vorgesehen ist.
 
-Die geplante Leistenbruchoperation ist für den 5.3.2026 vorgesehen.
+Vor der Operation bespricht er die bestehende Medikation mit seiner Hausärztin, welche seine aktuelle e-Medikation abruft.
+
+Die geplante Leistenbruchoperation ist für den 24.3.2026 vorgesehen.
  
-Dr. Hausärztin weist Herrn Mustermann an, Ramipril vor der Operation vorübergehend abzusetzen.
+Dr. Hausärztin weist Herrn Mustermann an, Ramipril vor der Operation vorübergehend abzusetzen und pausiert den Planeintrag.
+
+<div class="dragon">
+<p class="note-to-balloters">
+Offene Punkte:<br>
+Möglichkeit prüfen, wie der Usecase: "Medikament soll in 2 Wochen für 1 Woche pausiert werden", umgesetzt werden kann. Ein zukünftiger, zeitgesteuerter Statuswechsel auf on-hold ist nicht möglich.
+</p>
+</div>
 
 * **Medikationsplan mit pausiertem Planeintrag aktualisieren:** in Arbeit.
 <!-- TODO -->
+<!-- 20.3.: Salbe stopped setzen und dragon box: welches datum ist ausschlaggebend? planeintrag oder durchgeführte abgabe (medikament kann auch später abgeholt worden sein, einnahme wurde daher später begonnen, als im planeintrag vorgesehen) -->
 
 **5.3.2026: Geplante Leistenbruchoperation**
 
@@ -461,12 +480,6 @@ Ramipril wird als Dauermedikation fortgeführt.
 * **Planeinträge beenden und Medikationsplan aktualisieren:** in Arbeit.
 
 
-
-<!-- <div>{ include_relative plantuml/patient_journey.svg }</div> -->
-
-<br>
-[![overview](plantuml/patient_journey.svg){: .mx-auto style="width:100%;"}](plantuml/patient_journey.svg)
-<br> 
 
 
 
