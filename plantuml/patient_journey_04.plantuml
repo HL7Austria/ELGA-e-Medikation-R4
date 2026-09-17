@@ -64,10 +64,10 @@ actor Arzt_1 as "Dr. Hausärztin" COLOR_GDA_1
 actor Apotheke as "Amadeus Apotheke" COLOR_APO
 participant eMed_FA as "e-Medikation" COLOR_EMED_FA
 
-!define GROUP_ARZT          #96607D30
-!define GROUP_APO           #0F9ED530
-!define GROUP_KH           #beaf3c30
-!define GROUP_PAT           #196B2430
+' !define GROUP_ARZT          #96607D30
+' !define GROUP_APO           #0F9ED530
+' !define GROUP_KH           #beaf3c30
+' !define GROUP_PAT           #196B2430
 
 autonumber
 
