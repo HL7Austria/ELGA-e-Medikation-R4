@@ -22,9 +22,9 @@ Sowohl berechtigte GDA als auch ELGA-Teilnehmer können auf einzelne Planeinträ
 
 Plan-Read dient dem **Abruf des Medikationsplans** in einem für die Bearbeitung durch den GDA **aufbereiteten Zustand**.
 
-Hierfür erzeugt die Fachanwendung aus der aktuellen Version der [List](StructureDefinition-at-elga-emed-list-medikationsplan.html)-Ressource sowie den von ihr referenzierten Ressourcen ein temporäres [Medikationsplan-Searchset-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplan.html) zur Auslieferung. Der Abruf erfolgt über die Custom Operation [$plan-read](OperationDefinition-AtElgaEmed.List.Planread.html).
+Hierfür erzeugt die Fachanwendung aus der aktuellen Version der [List](StructureDefinition-at-elga-emed-list-medikationsplan.html)-Ressource sowie den von ihr referenzierten Ressourcen ein temporäres [Medikationsplan-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplan.html) zur Auslieferung. Der Abruf erfolgt über die Custom Operation [$plan-read](OperationDefinition-AtElgaEmed.List.Planread.html).
 
-<!-- TODO: Wird ein Medikationsplan-Searchset-Bundle oder ein Searchset erzeugt? -->
+<!-- TODO: Wird ein Medikationsplan-Bundle oder ein Searchset erzeugt? -->
 
 ##### Custom Operation
 
@@ -33,8 +33,8 @@ POST [$plan-read](OperationDefinition-AtElgaEmed.List.Planread.html)
 ##### Ablauf
 
 1. Der Client führt ein **POST** [$plan-read](OperationDefinition-AtElgaEmed.List.Planread.html) aus.
-2. Die Fachanwendung prüft den Zustand des Medikationsplans und erzeugt daraus ein Medikationsplan-Searchset-Bundle zur Auslieferung (siehe [Prüfung des Planzustands und Erzeugung des Medikationsplan-Searchset-Bundles](Sub_UC_eMed_01.html#prüfung-des-planzustands-und-erzeugung-des-Medikationsplan-Searchset-Bundles)).
-3. Die Fachanwendung liefert das Medikationsplan-Searchset-Bundle zurück. Dieses enthält:
+2. Die Fachanwendung prüft den Zustand des Medikationsplans und erzeugt daraus ein Medikationsplan-Bundle zur Auslieferung (siehe [Prüfung des Planzustands und Erzeugung des Medikationsplan-Bundles](Sub_UC_eMed_01.html#prüfung-des-planzustands-und-erzeugung-des-Medikationsplan-Bundles)).
+3. Die Fachanwendung liefert das Medikationsplan-Bundle zurück. Dieses enthält:
    * die [List](StructureDefinition-at-elga-emed-list-medikationsplan.html)-Ressource,
    * sämtliche von der *List* referenzierten Ressourcen sowie
    * im HTTP-Header den *ETag* der aktuellen Version der *List*-Ressource für das [Optimistic Locking](https://hl7.org/fhir/http.html#concurrency).
@@ -55,11 +55,11 @@ Fehlercodes sind noch zu definieren.
 </p>
 </div>
 
-##### Prüfung des Planzustands und Erzeugung des Medikationsplan-Searchset-Bundles
+##### Prüfung des Planzustands und Erzeugung des Medikationsplan-Bundles
 
 Nach Eingang eines **$plan-read** prüft die Fachanwendung den Zustand des Medikationsplans.
 
-Abschließend erzeugt die Fachanwendung aus der aktuellen Version der *List*-Ressource und den referenzierten Ressourcenversionen das Medikationsplan-Searchset-Bundle zur Auslieferung. Die persistierten Ressourcen am Server werden durch die Anpassungen im Auslieferungs-Bundle nicht verändert.
+Abschließend erzeugt die Fachanwendung aus der aktuellen Version der *List*-Ressource und den referenzierten Ressourcenversionen das Medikationsplan-Bundle zur Auslieferung. Die persistierten Ressourcen am Server werden durch die Anpassungen im Auslieferungs-Bundle nicht verändert.
 
 Dabei werden folgende Fälle unterschieden:
 
@@ -100,7 +100,7 @@ Der Abruf erfolgt mittels **GET** auf den *List*-Ressourcen-Endpunkt unter Angab
 
 <!-- TODO: weitere-parameter? -->
 
-Die erzeugten Medikationsplan-Searchset-Bundles dienen ausschließlich der Auslieferung und werden nicht persistiert.
+Die erzeugten Medikationsplan-Bundles dienen ausschließlich der Auslieferung und werden nicht persistiert.
 
 <div class="dragon">
 <p class="note-to-balloters">
@@ -113,8 +113,8 @@ Offene Frage:<br>
 ##### Ablauf
 
 1. Der Client führt ein GET auf *[base]/Patient/[id]/List/_history* mit den gewünschten Suchparametern aus.
-2. Die Fachanwendung ermittelt anhand der Suchparameter die passenden historischen Versionen der List-Ressource. Für jede gefundene List-Version rekonstruiert die Fachanwendung den historischen Medikationsplan, indem sie die zugehörigen historischen Versionen der referenzierten Ressourcen ermittelt, und ergänzt sie im Medikationsplan-Searchset-Bundle.
-3. Die Fachanwendung liefert das Medikationsplan-Searchset-Bundle zurück.
+2. Die Fachanwendung ermittelt anhand der Suchparameter die passenden historischen Versionen der List-Ressource. Für jede gefundene List-Version rekonstruiert die Fachanwendung den historischen Medikationsplan, indem sie die zugehörigen historischen Versionen der referenzierten Ressourcen ermittelt, und ergänzt sie im Medikationsplan-Bundle.
+3. Die Fachanwendung liefert das Medikationsplan-Bundle zurück.
 4. Werden keine passenden historischen Medikationsplanversionen gefunden, enthält das zurückgelieferte *searchset* keine Einträge.
 5. Im Fehlerfall wird ein entsprechender *OperationOutcome* zurückgegeben.
 
@@ -170,7 +170,7 @@ Soll die Erstellung durch das Berechtigungssystem beim ersten Aufruf eines Patie
 2. Die Fachanwendung prüft, ob bereits ein Medikationsplan für den Patienten existiert.
 3. Existiert noch kein Medikationsplan, erstellt die Fachanwendung initial eine List-Ressource mit *emptyReason = notstarted*.
 4. Die List-Ressource wird als erste Version persistiert.
-5. Für das Plan-Read erzeugt die Fachanwendung daraus ein temporäres Medikationsplan-Searchset-Bundle zur Auslieferung.
+5. Für das Plan-Read erzeugt die Fachanwendung daraus ein temporäres Medikationsplan-Bundle zur Auslieferung.
 6. Dieses wird mit *List.emptyReason = notstarted* sowie dem zugehörigen ETag zurückgeliefert.
 
 ##### Sequenzdiagramm

@@ -9,7 +9,7 @@ Ein berechtigter GDA (siehe [Rollen und Berechtigungen](actors.html#rollen-und-b
 Falls für eine *Geplante Abgabe* noch kein entsprechender Medikationsplaneintrag existiert, muss dieser zuerst erstellt werden (siehe [Sub_UC_eMed_02_02 - Planeintrag in Medikationsplan hinzufügen](Sub_UC_eMed_02.html#sub_uc_emed_02_02---planeintrag-in-medikationsplan-hinzufügen)). 
 Bei Bedarf kann ein bestehender Medikationsplaneintrag angepasst werden (siehe [Sub_UC_eMed_02_03 - Planeintrag im Medikationsplan ändern](Sub_UC_eMed_02.html#sub_uc_emed_02_03---planeintrag-im-medikationsplan-ändern)).
 
-Ist keine Anpassung des Medikationsplaneintrags erforderlich, führt der GDA ein [$plan-read](OperationDefinition-AtElgaEmed.List.Planread.html) aus und erhält von der Fachanwendung das **Medikationsplan-Searchset-Bundle**, das den Medikationsplan mit allen für die Erstellung der *Geplanten Abgaben* relevanten Ressourcen enthält.
+Ist keine Anpassung des Medikationsplaneintrags erforderlich, führt der GDA ein [$plan-read](OperationDefinition-AtElgaEmed.List.Planread.html) aus und erhält von der Fachanwendung das **Medikationsplan-Bundle**, das den Medikationsplan mit allen für die Erstellung der *Geplanten Abgaben* relevanten Ressourcen enthält.
 
 Basierend auf darin enthaltenen Planeinträgen erstellt der GDA neue *Geplante Abgaben* mit folgenden Angaben:
 - Der Status der neuen *Geplanten Abgabe* muss *offen* sein (**active**, siehe [Status des MedicationRequests in der geplanten Abgabe](workflowmanagement.html#status-des-medicationrequests-in-der-geplanten-abgabe)) 
