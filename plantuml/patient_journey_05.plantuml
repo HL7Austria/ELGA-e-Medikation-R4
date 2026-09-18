@@ -82,25 +82,24 @@ group GROUP_ARZT 14.3.2026 · Präoperativer Hausarzttermin
 
   Arzt_1 -> eMed_FA: aktuellen Medikationsplan abrufen:\n$plan-read 
   activate eMed_FA COLOR_EMED_FA  
-  eMed_FA -> Arzt_1: leerer Medikationsplan\n(EmptyReason = notstarted)
+  eMed_FA -> Arzt_1: Medikationsplan\n(Ramipril + Dexpanthenol-Salbe)
   deactivate eMed_FA
-  Arzt_1 -> eMed_FA: offene Geplante Abgaben abrufen:\nPrescription-Search (status=active)
-  activate eMed_FA COLOR_EMED_FA 
-  eMed_FA -> Arzt_1: leeres Ergebnis
-  deactivate eMed_FA
-  Arzt_1 -> eMed_FA: Durchgeführte Abgaben abrufen:\nDispense-Search
-  activate eMed_FA COLOR_EMED_FA 
-  eMed_FA -> Arzt_1: leeres Ergebnis
-  deactivate eMed_FA
-  '  deactivate Patient
+  note over Arzt_1
+  Abruf Geplante Abgaben
+  und Durchgeführte Abgaben 
+  siehe Journey-01
+  end note
+  deactivate eMed_FA 
 
   == Journey-05-02 ==
 
-  Arzt_1 -> Arzt_1: neue Planeinträge erstellen +\nMedikationsplan bearbeiten
+  Arzt_1 -> Arzt_1: Medikationsplan bearbeiten +\nPlaneintrag Ramipril pausieren
   Arzt_1 -> eMed_FA: neuen Medikationsplan speichern: $plan-write
   activate eMed_FA COLOR_EMED_FA
   eMed_FA -> Arzt_1: Medikationsplan 
   deactivate eMed_FA
+  deactivate Patient
+  deactivate Arzt_1
 
 
 end
