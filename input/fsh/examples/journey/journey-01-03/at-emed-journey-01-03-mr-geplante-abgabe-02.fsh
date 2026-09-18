@@ -24,7 +24,7 @@ Usage: #example
 * authoredOn = "2026-02-27T10:20:00+00:00"
 * requester = Reference(At-Emed-Example-Practitioner-01)
 
-* basedOn = Reference(MedicationRequest/At-Emed-Journey-02-Mr-Planeintrag-02) "Planeintrag 2"
+* basedOn = Reference(MedicationRequest/At-Emed-Journey-01-02-Mr-Planeintrag-02) "Planeintrag 2"
 // TODO: zusätzliche logische Referenz: reference.identifier 
 
 * groupIdentifier.value = "WYE82A2G8EEW"

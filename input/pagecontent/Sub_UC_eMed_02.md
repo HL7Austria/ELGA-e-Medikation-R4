@@ -21,7 +21,7 @@ Offene Frage:<br>
 
 Alle Schreibvorgänge auf dem **aktuellen** Medikationsplan folgen demselben technischen Grundablauf:
 
-1. Der aktuelle Medikationsplan **MUSS** mittels [$plan-read](OperationDefinition-AtElgaEmed.List.PlanRead.html) abgerufen werden (siehe [Sub_UC_eMed_01_01 - Aktuellen Medikationsplan lesen (Plan-Read)](Sub_UC_eMed_01.html#Sub_UC_eMed_01_01---aktuellen-medikationsplan-lesen-plan-read)).
+1. Der aktuelle Medikationsplan **MUSS** mittels [$plan-read](OperationDefinition-AtElgaEmed.List.PlanRead.html) abgerufen werden (siehe [Sub_UC_eMed_01_01 - Aktuellen Medikationsplan lesen (Plan-Read)](Sub_UC_eMed_01.html#sub_uc_emed_01_01---aktuellen-medikationsplan-lesen-plan-read)).
 2. Die durch $plan-read im Medikationsplan-Bundle bereitgestellten Ressourcen werden entsprechend des gewünschten Schreibszenarios bearbeitet.
 3. Der aktualisierte Medikationsplan **MUSS** mittels [$plan-write](OperationDefinition-AtElgaEmed.List.PlanWrite.html) als Transaction Bundle ([Medikationsplan-Transaction-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplantx.html)) an die Fachanwendung übermittelt werden.
 
@@ -34,7 +34,7 @@ Alle vom GDA ausgeführten, schreibenden Zugriffe auf den Medikationsplan erfolg
 
 ##### Ablauf
 
-1. Das GDA-System übermittelt den aktualisierten Medikationsplan mittels **POST** [$plan-write](OperationDefinition-AtElgaEmed.List.PlanWrite.html) als [Medikationsplan-Transaction-Bundle](design_choices.html#medikationsplan-transaction-bundle-atemedbundlemedikationsplantx-transaction-bundle). Der Request enthält:
+1. Das GDA-System übermittelt den aktualisierten Medikationsplan mittels **POST** [$plan-write](OperationDefinition-AtElgaEmed.List.PlanWrite.html) als [Medikationsplan-Transaction-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplantx). Der Request enthält:
     * alle **neuen**, **geänderten** und **zu entfernenden** Ressourcen im Transaction Bundle
     * den von der Fachanwendung nach dem *$plan-read* übermittelten *ETag* (zur Durchführung des [Optimistic Locking](https://hl7.org/fhir/http.html#concurrency))
     * unveränderte Ressourcen werden ausschließlich referenziert.
