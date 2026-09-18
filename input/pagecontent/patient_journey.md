@@ -12,11 +12,12 @@ Einträge durch patient löschen, stornieren, rezept wieder öffnen, wenn teilab
 
 Herr Mustermann kommt wegen Kopfschmerzen und Schwindelgefühl zu seiner Hausärztin. Außerdem hat er einen leichten Hautausschlag bemerkt.
 
-Dr. Hausärztin stellt eine leichte arterielle Hypertonie fest und ruft die e-Medikation (den aktuellen *Medikationsplan*,  *Geplante Abgaben* und *Durchgeführte Abgaben*) des Patienten  ab, um einen Überblick über seine aktuelle Medikation zu erhalten. 
+#### Journey-01-01:
+
+Dr. Hausärztin stellt eine leichte arterielle Hypertonie fest und ruft die e-Medikation (den aktuellen *Medikationsplan*,  *Geplante Abgaben* und *Durchgeführte Abgaben*) des Patienten ab, um einen Überblick über seine aktuelle Medikation zu erhalten. 
 
 Da für Herrn Mustermann noch nie ein Medikationsplan abgerufen wurde, erstellt die Fachanwendung automatisch einen leeren Medikationsplan. Darin enthalten sind die Informationen zum Patienten, die erstellende e-Medikation-Fachanwendung, das Datum der Erstellung und die Information, dass der Medikationsplan noch nicht gestartet wurde (*EmptyReason = notstarted*). 
 
-#### Journey-01-01
 <div class="tabs">
   <div class="tab">
     <input type="radio" id="tab-beispiele-01-01" name="tab-group-patient-journey-01-01" checked="true">
@@ -62,13 +63,7 @@ Da für Herrn Mustermann noch nie ein Medikationsplan abgerufen wurde, erstellt 
   </div>
 </div>
 
-<!-- Request-Response-Box 
-Plan-Read
-prescription-search
-dispense-search
- -->
-
-##### Request 01 - Medikationsplan abrufen
+##### Journey-01-01: Request 01 - Medikationsplan abrufen
 <div class="tabs">
   <div class="tab">
     <input type="radio" id="tab-request-journey-01-01-01" name="tab-group-journey-01-01-01" checked="true" />
@@ -99,7 +94,7 @@ dispense-search
 </div>
 
 
-##### Request 02 - geplante Abgaben Abrufen
+##### Journey-01-01: Request 02 - geplante Abgaben Abrufen
 <div class="tabs">
   <div class="tab">
     <input type="radio" id="tab-request-journey-01-01-02" name="tab-group-journey-01-01-02" checked="true" />
@@ -124,7 +119,7 @@ dispense-search
   </div>
 </div>
 
-##### Request 03 - durchgeführte Abgaben Abrufen
+##### Journey-01-01: Request 03 - durchgeführte Abgaben Abrufen
 
 <div class="tabs">
   <div class="tab">
@@ -153,6 +148,7 @@ dispense-search
 
 
 #### Journey-01-02
+
 Dr. Hausärztin erstellt zwei Medikationsplaneinträge und klärt den Patienten über die Anwendung auf: gegen die arterielle Hypertonie **Ramipril 5 mg Tabletten**, 1 x täglich morgens (Dauermedikation) und gegen den Hautausschlag **Dexpanthenol-5-%-Salbe**, 2 × täglich für 3 Wochen, dünn aufzutragen.<br>
 Sie speichert den neuen Medikationsplan.
 
@@ -485,11 +481,7 @@ Er kann auch sehen, dass er keine offenen *Geplanten Abgaben* hat und sieht in d
 
 ### Journey-05: 14.3.2026 - Präoperativer Hausarzttermin
 
-Bei Herrn Mustermann steht eine geplante Leistenbruchoperation an, welche für den 24.3.2026 vorgesehen ist.
-
-Vor der Operation bespricht er die bestehende Medikation mit seiner Hausärztin, welche seine aktuelle e-Medikation abruft.
-
-Die geplante Leistenbruchoperation ist für den 24.3.2026 vorgesehen.
+Bei Herrn Mustermann steht am 24.3.2026 eine geplante Leistenbruchoperation an. Für die Operationsfreigabe geht er zu seiner Hausärztin. Diese überprüft dahingehend auch die bestehende Medikation und ruft seine aktuelle e-Medikation ab.
  
 Dr. Hausärztin weist Herrn Mustermann an, Ramipril vor der Operation vorübergehend abzusetzen und pausiert den Planeintrag.
 
@@ -503,6 +495,56 @@ Möglichkeit prüfen, wie der Usecase: "Medikament soll in 2 Wochen für 1 Woche
 * **Medikationsplan mit pausiertem Planeintrag aktualisieren:** in Arbeit.
 <!-- TODO -->
 <!-- 20.3.: Salbe stopped setzen und dragon box: welches datum ist ausschlaggebend? planeintrag oder durchgeführte abgabe (medikament kann auch später abgeholt worden sein, einnahme wurde daher später begonnen, als im planeintrag vorgesehen) -->
+
+
+#### Journey-05-01
+<div class="tabs">
+  <div class="tab">
+    <input type="radio" id="tab-beispiele-05-01" name="tab-group-patient-journey-05-01" checked="true">
+    <label for="tab-beispiele-05-01">Beispiele</label>
+    <div class="content-in-tab">
+      <ul>
+        <li> in Arbeit.
+          <!-- <strong>Leerer Medikationsplan:</strong>(EmptyReason = notstarted) 
+          <ul>
+            <li>
+              <a href="Bundle-At-Emed-Journey-01-01-Bundle-Medikationsplan.html">Medikationsplan-Bundle</a>
+            </li>
+            <li>
+              <a href="Patient-At-Emed-Example-Patient-01.html">Patient</a>
+            </li>
+            <li>
+              <a href="Device-At-Emed-Example-Device-01.html">Device</a>
+            </li>
+          </ul> -->
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="tab">
+    <input type="radio" id="tab-usecases-05-01" name="tab-group-patient-journey-05-01">
+    <label for="tab-usecases-05-01">Use Cases</label>
+    <div class="content-in-tab">
+      <ul>
+        <li>
+          <a href="Sub_UC_eMed_01.html#sub_uc_emed_01_01---aktuellen-medikationsplan-lesen-plan-read">Sub_UC_eMed_01_01 - Aktuellen Medikationsplan lesen (Plan-Read)</a>
+        </li>
+        <li>
+          <a href="Sub_UC_eMed_03.html#sub_uc_emed_07_01---geplante-abgaben-lesen-prescription-search">Sub_UC_eMed_03_01 - Geplante Abgaben lesen (Prescription-Search)</a>
+        </li>
+        <li>
+          <a href="Sub_UC_eMed_03.html#sub_uc_emed_07_02---durchgeführte-abgaben-lesen-dispense-search">Sub_UC_eMed_03_02 - Durchgeführte Abgaben lesen (Dispense-Search)</a>
+        </li>
+        <!-- <li>
+          <a href="Sub_UC_eMed_01.html#sub_uc_emed_01_03---initial-erstellter-medikationsplan">Sub_UC_eMed_01_03 - Initial erstellter Medikationsplan</a>
+        </li> -->
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+
 
 **5.3.2026: Geplante Leistenbruchoperation**
 
