@@ -276,9 +276,7 @@ Die Apothekerin prüft das Rezept (Papierrezept oder ruft e-Rezept ab), ruft off
 
 Sie händigt das Medikament Ramipril aus, erklärt die Einnahme und erstellt eine *Durchgeführte Abgabe* (**Vollständige Abgabe**).
 
-Die Dexpanthenol-Salbe muss noch hergestellt werden. Die Apothekerin erstellt eine Durchgeführte Abgabe mit dem *Type = "First Fill – Part Fill"* und der abgegebenen Menge (*quantity*) Null. 
-
-Die Dexpanthenol-Salbe muss noch hergestellt werden. Die Apothekerin erstellt eine *Durchgeführte Abgabe* und dokumentiert darin entsprechend dem **Besorgerprozess** *type = First Fill – Part Fill* und *MedicationDispense.quantity = 0*.
+Die Dexpanthenol-Salbe muss noch hergestellt werden. Die Apothekerin erstellt eine *Durchgeführte Abgabe* und dokumentiert darin den **Besorgerprozess** *type = First Fill – Part Fill* und abgegebene Menge *quantity = 0*.
 
 Anschließend speichert sie die neuen *Durchgeführte Abgaben* in der e-Medikation. Da für Ramipril keine weitere Einlösung möglich ist (Kassenrezept), wird die zugehörige *Geplante Abgabe* automatisch abgeschlossen (*completed*).
 
