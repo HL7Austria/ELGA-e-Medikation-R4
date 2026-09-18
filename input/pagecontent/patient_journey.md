@@ -215,9 +215,10 @@ dispense-search
 
 Im aktualisierten Medikationsplan sind die neuen Planeinträge sowie das Datum der Bearbeitung und als verantwortliche Ärztin Dr. Hausärztin ersichtlich.
 
+#### Journey-01-03
+
 Dr. Hausärztin erstellt für beide Medikamente ein Kassenrezept (Papier oder e-Rezept) und dokumentiert den Rezeptiervorgang in einer *Geplante Abgabe* in der e-Medikation. Herr Mustermann kann nun mit dem Rezept die Medikamente in der Apotheke abholen. 
 
-#### Journey-01-03
 <div class="tabs">
   <div class="tab">
     <input type="radio" id="tab-beispiele-01-03" name="tab-group-patient-journey-01-03" checked="true">
@@ -262,7 +263,7 @@ Dr. Hausärztin erstellt für beide Medikamente ein Kassenrezept (Papier oder e-
   </div>
 </div>
 
-#### Ablauf Erstbesuch
+#### Journey-01: Ablauf - Erster Arztbesuch
 <br>
 [![overview](plantuml/patient_journey_01.svg){: .mx-auto style="width:50%;"}](plantuml/patient_journey_01.svg)
 <br> 
@@ -281,7 +282,8 @@ Die Dexpanthenol-Salbe muss noch hergestellt werden. Die Apothekerin erstellt ei
 
 Anschließend speichert sie die neuen *Durchgeführte Abgaben* in der e-Medikation. Da für Ramipril keine weitere Einlösung möglich ist (Kassenrezept), wird die zugehörige *Geplante Abgabe* automatisch abgeschlossen (*completed*).
 
-#### Journey-02
+<!-- #### Journey-02 -->
+
 <div class="tabs">
   <div class="tab">
     <input type="radio" id="tab-beispiele-02-01" name="tab-group-patient-journey-02-01" checked="true">
@@ -341,7 +343,7 @@ Anschließend speichert sie die neuen *Durchgeführte Abgaben* in der e-Medikati
   </div>
 </div>
 
-#### Ablauf Abgabe in der Apotheke (Teil 1)
+#### Journey-02: Ablauf - Abgabe in der Apotheke (Teil 1)
 
 <br>
 [![overview](plantuml/patient_journey_02.svg){: .mx-auto style="width:60%;"}](plantuml/patient_journey_02.svg)
@@ -357,7 +359,7 @@ Sie übergibt dem Patienten die fertiggestellte Dexpanthenol-Salbe und schließt
 
 Anschließend speichert sie die neue *Durchgeführte Abgabe* in der e-Medikation. Da für die Dexpanthenol-Salbe keine weitere Einlösung möglich ist (Kassenrezept), wird die zugehörige *Geplante Abgabe* automatisch abgeschlossen (*completed*).
 
-#### Journey-03
+<!-- #### Journey-03 -->
 
 <div class="tabs">
   <div class="tab">
@@ -409,7 +411,7 @@ Anschließend speichert sie die neue *Durchgeführte Abgabe* in der e-Medikation
   </div>
 </div>
 
-#### Ablauf Abgabe in der Apotheke (Teil 2)
+#### Journey-03: Ablauf - Abgabe in der Apotheke (Teil 2)
 
 <br>
 [![overview](plantuml/patient_journey_03.svg){: .mx-auto style="width:60%;"}](plantuml/patient_journey_03.svg)
@@ -421,7 +423,7 @@ Herr Mustermann erinnert sich nicht, wie lange er die Dexpanthenol-Salbe anwende
 Er kann auch sehen, dass er keine offenen *Geplanten Abgaben* hat und sieht in den *Durchgeführten Abgaben*, wann er die Arzneimittel abgeholt hat
 
 
-#### Journey-04
+<!-- #### Journey-04 -->
 
 <div class="tabs">
   <div class="tab">
@@ -472,7 +474,7 @@ Er kann auch sehen, dass er keine offenen *Geplanten Abgaben* hat und sieht in d
   </div>
 </div>
 
-#### Ablauf Patient ruft Medikationsplan ab
+#### Journey-04: Ablauf - Patient ruft Medikationsplan ab
 
 <br>
 [![overview](plantuml/patient_journey_04.svg){: .mx-auto style="width:45%;"}](plantuml/patient_journey_04.svg)
@@ -481,7 +483,7 @@ Er kann auch sehen, dass er keine offenen *Geplanten Abgaben* hat und sieht in d
 
 ### Journey-05: 14.3.2026 - Präoperativer Hausarzttermin
 
-Bei Herrn Mustermann steht am 24.3.2026 eine geplante Leistenbruchoperation an. Für die Operationsfreigabe geht er zu seiner Hausärztin. Diese überprüft dahingehend auch die bestehende Medikation und ruft seine aktuelle e-Medikation ab.
+Bei Herrn Mustermann steht am 24.3.2026 eine geplante Leistenbruchoperation an. Für die Operationsfreigabe geht er zu seiner Hausärztin. Diese überprüft dahingehend auch die bestehende Medikation und ruft seine aktuelle e-Medikation ab (für Abruf Geplante und Durchgeführte Abgaben, siehe Journey-01-01).
  
 Dr. Hausärztin weist Herrn Mustermann an, Ramipril vor der Operation vorübergehend abzusetzen und pausiert den Planeintrag.
 
@@ -493,6 +495,9 @@ Möglichkeit prüfen, wie der Usecase: "Medikament soll in 2 Wochen für 1 Woche
 </div>
 
 * **Medikationsplan mit pausiertem Planeintrag aktualisieren:** in Arbeit.
+
+
+
 <!-- TODO -->
 <!-- 20.3.: Salbe stopped setzen und dragon box: welches datum ist ausschlaggebend? planeintrag oder durchgeführte abgabe (medikament kann auch später abgeholt worden sein, einnahme wurde daher später begonnen, als im planeintrag vorgesehen) -->
 
@@ -544,6 +549,12 @@ Möglichkeit prüfen, wie der Usecase: "Medikament soll in 2 Wochen für 1 Woche
 </div>
 
 
+<br>
+[![overview](plantuml/patient_journey_05.svg){: .mx-auto style="width:45%;"}](plantuml/patient_journey_05.svg)
+<br> 
+
+
+### Journey-05: Ablauf - Präoperativer Hausarzttermin
 
 
 **5.3.2026: Geplante Leistenbruchoperation**
