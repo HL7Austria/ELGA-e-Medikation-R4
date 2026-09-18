@@ -1,0 +1,109 @@
+@startuml
+
+title Patient Journey – e-Medikation
+'!option handwritten true
+
+skinparam borderColor #000000
+skinparam backgroundColor #f5f5f5
+skinparam shadowing false
+skinparam roundCorner 10
+skinparam defaultFontName "Arial"
+skinparam defaultFontSize 14
+skinparam defaultFontColor #000000
+
+skinparam HyperlinkColor #0000EE
+skinparam HyperlinkUnderline false
+
+skinparam BoxPadding 20
+skinparam BoxBorderColor #555555
+
+skinparam note {
+  BackgroundColor #e0e5f0-#d1d9e6
+  BorderColor #8b95a5
+  BorderThickness 1
+  RoundCorner 0
+  Padding 6
+  FontColor #111827
+  Shadowing false
+}
+
+skinparam sequence {
+  ParticipantBorderColor #555555
+  ParticipantBackgroundColor #ffffff
+  ParticipantFontColor #000000
+  ParticipantFontSize 14
+  ParticipantPadding 20
+  ArrowColor #111827
+  ArrowThickness 1
+  ArrowFontColor #000000
+  ArrowFontSize 13
+  GroupBorderColor #111827
+  GroupBackgroundColor #eef2ff
+  GroupBorderThickness 2
+}
+
+!define COLOR_GDA_1    #15608280
+!define COLOR_GDA_2    #96607D80
+!define COLOR_GDA_3    #beaf3c80
+!define COLOR_PATIENT  #196B2480
+!define COLOR_APO      #0F9ED590
+!define COLOR_EMED_FA  #e97232bd
+!define COLOR_OK       #0F9ED525
+!define COLOR_ERROR    #E9713235
+
+' !define COLOR_GDA_1_BOX    #15608280
+' !define COLOR_GDA_2_BOX    #96607D80
+' !define COLOR_PATIENT_BOX  #196B2480
+' !define COLOR_APO_BOX      #0F9ED590
+' !define COLOR_EMED_FA_BOX  #e97232bd
+
+actor Patient as "Max Mustermann" COLOR_PATIENT
+actor Arzt_1 as "Dr. Hausärztin" COLOR_GDA_1
+' actor Arzt_2 as "Dr. Krankenhaus" COLOR_GDA_2
+' actor Arzt_3 as "Dr. Urlaubsvertretung" COLOR_GDA_3
+' actor Apotheke as "Amadeus Apotheke" COLOR_APO
+participant eMed_FA as "e-Medikation" COLOR_EMED_FA
+
+' !define GROUP_ARZT          #96607D30
+' !define GROUP_APO           #0F9ED530
+' !define GROUP_KH           #beaf3c30
+' !define GROUP_PAT           #196B2430
+
+
+autonumber
+
+group GROUP_ARZT 14.3.2026 · Präoperativer Hausarzttermin
+
+  activate Patient COLOR_PATIENT
+  Patient -> Arzt_1: Arztbesuch
+  activate Arzt_1 COLOR_GDA_1
+
+  == Journey-05-01 ==
+
+  Arzt_1 -> eMed_FA: aktuellen Medikationsplan abrufen:\n$plan-read 
+  activate eMed_FA COLOR_EMED_FA  
+  eMed_FA -> Arzt_1: leerer Medikationsplan\n(EmptyReason = notstarted)
+  deactivate eMed_FA
+  Arzt_1 -> eMed_FA: offene Geplante Abgaben abrufen:\nPrescription-Search (status=active)
+  activate eMed_FA COLOR_EMED_FA 
+  eMed_FA -> Arzt_1: leeres Ergebnis
+  deactivate eMed_FA
+  Arzt_1 -> eMed_FA: Durchgeführte Abgaben abrufen:\nDispense-Search
+  activate eMed_FA COLOR_EMED_FA 
+  eMed_FA -> Arzt_1: leeres Ergebnis
+  deactivate eMed_FA
+  '  deactivate Patient
+
+  == Journey-05-02 ==
+
+  Arzt_1 -> Arzt_1: neue Planeinträge erstellen +\nMedikationsplan bearbeiten
+  Arzt_1 -> eMed_FA: neuen Medikationsplan speichern: $plan-write
+  activate eMed_FA COLOR_EMED_FA
+  eMed_FA -> Arzt_1: Medikationsplan 
+  deactivate eMed_FA
+
+
+end
+
+
+@enduml
