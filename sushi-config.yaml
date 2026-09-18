@@ -83,10 +83,6 @@ pages:
   interactions.md:
     title: Transaktionen
   overview_use_case.md:
-    # title: Überblick & Anwendungsbeispiel
-    patient_journey.md:
-      title: Patient Journey
-    # .md:
     #   title: UC_eMed_01 - Medikationsplan lesen
     # UC_eMed_02.md:
     #   title: UC_eMed_02 - Medikationsplan schreiben
@@ -97,7 +93,7 @@ pages:
     # UC_eMed_05.md:
     #   title: UC_eMed_05 - Durchgeführte Abgabe schreiben
     overview_sub_use_case.md:
-      title: Use Cases
+      title: Use Cases Übersicht (fachlich und technisch)
     Sub_UC_eMed_01.md:
       title: ​Technische Use Cases für Medikationsplan lesen (UC_eMed_01)
     Sub_UC_eMed_02.md:
@@ -114,6 +110,8 @@ pages:
       title: ​Technische Use Cases für Geplante Abgabe schreiben (UC_eMed_04)
     Sub_UC_eMed_05.md:
       title: ​Technische Use Cases für Durchgeführte Abgabe schreiben (UC_eMed_05)
+    patient_journey.md:
+      title: Patient Journey
 
   # mapping.md:
   #   title: Mappings
