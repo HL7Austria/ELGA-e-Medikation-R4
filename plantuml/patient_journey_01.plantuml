@@ -92,11 +92,10 @@ group GROUP_ARZT 27.2.2026 · Arztbesuch
   activate eMed_FA COLOR_EMED_FA 
   eMed_FA -> Arzt_1: leeres Ergebnis
   deactivate eMed_FA
-  '  deactivate Patient
 
   == Journey-01-02 ==
 
-  Arzt_1 -> Arzt_1: neue Planeinträge erstellen +\nMedikationsplan bearbeiten
+  Arzt_1 -> Arzt_1: Medikationsplan bearbeiten +\nneue Planeinträge erstellen
   Arzt_1 -> eMed_FA: neuen Medikationsplan speichern: $plan-write
   activate eMed_FA COLOR_EMED_FA
   eMed_FA -> Arzt_1: Medikationsplan 
@@ -111,7 +110,7 @@ group GROUP_ARZT 27.2.2026 · Arztbesuch
   deactivate eMed_FA
   Arzt_1 -> Patient: Rezept aushändigen
   deactivate Arzt_1
-  '  deactivate Patient
+  deactivate Patient 
 
 end
 
