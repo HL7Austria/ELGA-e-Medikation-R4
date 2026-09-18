@@ -437,7 +437,7 @@ Er kann auch sehen, dass er keine offenen *Geplanten Abgaben* hat und sieht in d
           </ul>
         </li>
         <li>
-          <strong>Gepante Abgaben:</strong>
+          <strong>Geplante Abgaben:</strong>
           <ul>
             <li>Bundle in Arbeit.
             </li>

@@ -246,7 +246,7 @@ Eine [Durchgeführte Abgabe](design_choices.html#durchgeführte-abgabe-AtElgaEme
     <tr>
       <td><em>Geplante Abgabe</em> basierend auf Planeintrag erfassen</td>
       <td>active</td>
-      <td>Planeintrag bleibt active, unabhängig von Status der gepanten Abgabe (*)</td>
+      <td>Planeintrag bleibt active, unabhängig von Status der geplanten Abgabe (*)</td>
       <td>active</td>
       <td>OFFEN</td>
       <td>z.B. 6 Einlösungen bei Privatrezept</td>
@@ -258,7 +258,7 @@ Eine [Durchgeführte Abgabe](design_choices.html#durchgeführte-abgabe-AtElgaEme
     <tr>
       <td><em>Geplante Abgabe</em> beenden (durch Fachanwendung)</td>
       <td>active</td>
-      <td>Planeintrag bleibt active, unabhängig von Status der gepanten Abgabe (*)</td>
+      <td>Planeintrag bleibt active, unabhängig von Status der geplanten Abgabe (*)</td>
       <td>completed</td>
       <td>EINGELÖST</td>
       <td>auf Basis der Durchgeführten Abgaben automatisch gesetzt durch Fachanwendung; dh. Alle möglichen Einlösungen sind abgechlossen (entweder completed oder cancelled)</td>
@@ -270,7 +270,7 @@ Eine [Durchgeführte Abgabe](design_choices.html#durchgeführte-abgabe-AtElgaEme
     <tr>
       <td><em>Geplante Abgabe</em> verwerfen</td>
       <td>active</td>
-      <td>Planeintrag bleibt active, unabhängig von Status der gepanten Abgabe (*)</td>
+      <td>Planeintrag bleibt active, unabhängig von Status der geplanten Abgabe (*)</td>
       <td>entered-in-error</td>
       <td>STORNIERT</td>
       <td>bei fehlerhafter Eingabe, wenn noch keine Abgabe durchgeführt</td>
@@ -282,7 +282,7 @@ Eine [Durchgeführte Abgabe](design_choices.html#durchgeführte-abgabe-AtElgaEme
     <tr>
       <td><em>Geplante Abgabe</em> abgelaufen (durch Fachanwendung)</td>
       <td>active</td>
-      <td>Planeintrag bleibt active, unabhängig von Status der gepanten Abgabe (*)</td>
+      <td>Planeintrag bleibt active, unabhängig von Status der geplanten Abgabe (*)</td>
       <td>stopped</td>
       <td>ABGELAUFEN</td>
       <td>automatisch erkannt durch Fachanwendung</td>
@@ -294,7 +294,7 @@ Eine [Durchgeführte Abgabe](design_choices.html#durchgeführte-abgabe-AtElgaEme
     <tr>
       <td><em>Geplante Abgabe</em> nicht abgegeben (durch Fachanwendung)</td>
       <td>active</td>
-      <td>Planeintrag bleibt active, unabhängig von Status der gepanten Abgabe (*)</td>
+      <td>Planeintrag bleibt active, unabhängig von Status der geplanten Abgabe (*)</td>
       <td>cancelled</td>
       <td>NICHT_ABGEGEBEN</td>
       <td>automatisch, wenn alle Einlösungen im MedicationDispense den Status "cancelled" erhalten haben</td>

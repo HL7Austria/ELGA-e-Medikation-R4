@@ -26,7 +26,7 @@ Es werden R5-Backport-Extensions verwendet."
 // verschrieben hat. Derzeit keine Verwendung in der geplanten Abgabe, implizit ist dieser Bezug in Zukunft durch Referenzierung der Diagnose herstellbar."
 // ENDE Extensions  ******************
 
-* identifier 0..0 //1..* MS  Gepante-Abgabe-ID 
+* identifier 0..0 //1..* MS  Geplante-Abgabe-ID 
 * identifier ^short = "Logischer Identifier. Keine Verwendung in der geplanten Abgabe." // TODO: Verwendung noch zu prüfen, evtl. basedon mit logischem Identifier ausreichend."
 
 * status 1..1 MS
