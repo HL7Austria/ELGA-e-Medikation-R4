@@ -87,7 +87,7 @@ group GROUP_ARZT 14.3.2026 · Präoperativer Hausarzttermin
   note over Arzt_1
   Abruf Geplante Abgaben
   und Durchgeführte Abgaben 
-  siehe Journey-01
+  siehe Journey-04
   end note
   deactivate eMed_FA 
 
