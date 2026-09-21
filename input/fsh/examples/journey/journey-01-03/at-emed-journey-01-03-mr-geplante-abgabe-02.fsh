@@ -1,7 +1,7 @@
 Instance: At-Emed-Journey-01-03-Mr-Geplante-Abgabe-02   
 InstanceOf: AtElgaEmedMedicationRequestGeplanteAbgabe
 Title: "Beispiel Journey 01-03: Geplante Abgabe 2"
-Description: "Bildet eine Geplante Abgabe mit einer magistralen Zubereitung (Dexpanthenol-Salbe) mit den Dosierungsanweisungen des zugehörigen Planeintrags ab."
+Description: "Bildet eine Geplante Abgabe mit einer magistralen Zubereitung (Dexpanthenol-Salbe) und den Dosierungsanweisungen gemäß zugehörigem Planeintrag ab."
 Usage: #example
 
 * contained[+] = contained-medication-journey-01-03-02-magistral
@@ -22,7 +22,7 @@ Usage: #example
 
 * subject = Reference(At-Emed-Example-Patient-01)
 * authoredOn = "2026-02-27T10:20:00+00:00"
-* requester = Reference(At-Emed-Example-Practitioner-01)
+* requester = Reference(At-Emed-Example-PractitionerRole-01)
 
 * basedOn = Reference(MedicationRequest/At-Emed-Journey-01-02-Mr-Planeintrag-02) "Planeintrag 2"
 // TODO: zusätzliche logische Referenz: reference.identifier 

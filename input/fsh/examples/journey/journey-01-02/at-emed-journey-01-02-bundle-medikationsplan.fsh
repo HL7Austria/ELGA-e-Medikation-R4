@@ -16,5 +16,5 @@ Usage: #example
 * entry[Medikationsplaneintrag][=].fullUrl = "https://example.elga.com/MedicationRequest/At-Emed-Journey-01-02-Mr-Planeintrag-02"
 * entry[Patient].resource = At-Emed-Example-Patient-01
 * entry[Patient].fullUrl = "https://example.elga.com/Patient/At-Emed-Example-Patient-01"
-* entry[Authors].resource = At-Emed-Example-Practitioner-01
-* entry[Authors].fullUrl = "https://example.elga.com/Practitioner/At-Emed-Example-Practitioner-01"
+* entry[Authors].resource = At-Emed-Example-PractitionerRole-01
+* entry[Authors].fullUrl = "https://example.elga.com/Practitioner/At-Emed-Example-PractitionerRole-01"
