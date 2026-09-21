@@ -1,7 +1,7 @@
 Instance: At-Emed-Journey-05-01-Mr-Planeintrag-01
 InstanceOf: AtElgaEmedMedicationRequestPlaneintrag   
-Title: "Beispiel Journey 01-02: Medikationsplaneintrag 1"
-Description: "Bildet einen Medikationsplaneintrag mit dem Arzneimittel Ramipril und zugehörigen Dosierungsanweisungen ab."
+Title: "Beispiel Journey 05-02: Planeintrag 1"
+Description: "Bildet einen Planeintrag mit dem pausierten Arzneimittel Ramipril ab."
 Usage: #example
 
 * contained[+] = contained-medication-journey-05-01-01
@@ -23,7 +23,7 @@ Usage: #example
 
 * subject = Reference(At-Emed-Example-Patient-01)
 * authoredOn = "2026-03-14T13:10:00+00:00"
-* requester = Reference(At-Emed-Example-Practitioner-01)
+* requester = Reference(At-Emed-Example-PractitionerRole-01)
 
 //* note.text = "Freitext Informationen zum Medikationsplaneintrag."
 
