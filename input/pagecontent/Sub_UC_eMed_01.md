@@ -18,7 +18,7 @@ Für den lesenden Zugriff auf Medikationspläne werden zwei Zugriffsarten unters
 Sowohl berechtigte GDA als auch ELGA-Teilnehmer können auf einzelne Planeinträge lesend zugreifen und diese durchsuchen ([Planentry-Search](Sub_UC_eMed_01.html#sub_uc_emed_01_04---medikationsplaneinträge-lesen-planentry-search)).
 
 
-#### Sub_UC_eMed_01_01 - Aktuellen Medikationsplan lesen (Plan-Read)
+### Sub_UC_eMed_01_01 - Aktuellen Medikationsplan lesen (Plan-Read)
 
 Plan-Read dient dem **Abruf des Medikationsplans** in einem für die Bearbeitung durch den GDA **aufbereiteten Zustand**.
 
@@ -26,11 +26,11 @@ Hierfür erzeugt die Fachanwendung aus der aktuellen Version der [List](Structur
 
 <!-- TODO: Wird ein Medikationsplan-Bundle oder ein Searchset erzeugt? -->
 
-##### Custom Operation
+#### Custom Operation
 
 POST [$plan-read](OperationDefinition-AtElgaEmed.List.Planread.html)
 
-##### Ablauf
+#### Ablauf
 
 1. Der Client führt ein **POST** [$plan-read](OperationDefinition-AtElgaEmed.List.Planread.html) aus.
 2. Die Fachanwendung prüft den Zustand des Medikationsplans und erzeugt daraus ein Medikationsplan-Bundle zur Auslieferung (siehe [Prüfung des Planzustands und Erzeugung des Medikationsplan-Bundles](Sub_UC_eMed_01.html#prüfung-des-planzustands-und-erzeugung-des-medikationsplan-bundles)).
@@ -42,7 +42,7 @@ POST [$plan-read](OperationDefinition-AtElgaEmed.List.Planread.html)
 Nachfolgend kann der Medikationsplan vom GDA bearbeitet und mittels [Plan-Write](Sub_UC_eMed_02.html#sub_uc_emed_02_01---medikationsplan-schreiben-plan-write) gespeichert werden.
 
 
-##### Sequenzdiagramm
+#### Sequenzdiagramm
 
 <br>
 [![overview](plantuml/UC_eMed_01_01.svg){: .mx-auto style="width:40%;"}](plantuml/UC_eMed_01_01.svg)
@@ -55,7 +55,7 @@ Fehlercodes sind noch zu definieren.
 </p>
 </div>
 
-##### Prüfung des Planzustands und Erzeugung des Medikationsplan-Bundles
+#### Prüfung des Planzustands und Erzeugung des Medikationsplan-Bundles
 
 Nach Eingang eines **$plan-read** prüft die Fachanwendung den Zustand des Medikationsplans.
 
@@ -76,7 +76,7 @@ Dabei werden folgende Fälle unterschieden:
    * Es erfolgt keine Transformation.
 
 
-##### Aktivitätsdiagramm
+#### Aktivitätsdiagramm
 
 <br>
 [![overview](plantuml/UC_eMed_01_01_plancheck.svg){: .mx-auto style="width:60%;"}](plantuml/UC_eMed_01_01_plancheck.svg)
@@ -84,7 +84,7 @@ Dabei werden folgende Fälle unterschieden:
 
 
 
-#### Sub_UC_eMed_01_02 - Historische Medikationsplanversion lesen (Plan-History-Search)
+### Sub_UC_eMed_01_02 - Historische Medikationsplanversion lesen (Plan-History-Search)
 
 Beim Plan-History-Search rekonstruiert die Fachanwendung historische Versionen des Medikationsplans aus Versionen der List-Ressource sowie den von diesen referenzierten Ressourcenversionen und liefert diese unverändert aus. 
 
@@ -110,7 +110,7 @@ Offene Frage:<br>
 </p>
 </div>
 
-##### Ablauf
+#### Ablauf
 
 1. Der Client führt ein GET auf *[base]/Patient/[id]/List/_history* mit den gewünschten Suchparametern aus.
 2. Die Fachanwendung ermittelt anhand der Suchparameter die passenden historischen Versionen der List-Ressource. Für jede gefundene List-Version rekonstruiert die Fachanwendung den historischen Medikationsplan, indem sie die zugehörigen historischen Versionen der referenzierten Ressourcen ermittelt, und ergänzt sie im Medikationsplan-Bundle.
@@ -123,14 +123,14 @@ Beim Plan-History-Search erfolgt **keine Änderung** der Medikationspläne durch
 Der Zugriff dient ausschließlich der Anzeige bzw. Informationsabfrage persistierter Medikationsplanversionen.
 
 
-##### Sequenzdiagramm
+#### Sequenzdiagramm
 
 <br>
 [![overview](plantuml/UC_eMed_01_02.svg){: .mx-auto style="width:50%;"}](plantuml/UC_eMed_01_02.svg)
 <br> 
 
 
-###### Beispiele für Suchanfragen
+##### Beispiele für Suchanfragen
 In Arbeit.
 <!-- * **Aktuelle Planversion** mit dem Suchparameter Patient abrufen: GET [base]/Bundle?type=collection&_count=1&_sort=-timestamp&list.subject={bPK-GH} -->
 <!-- * **Alle Planversionen** mit dem Suchparameter Patient abrufen: GET [base]/Bundle?type=collection&_sort=-timestamp&list.subject={bPK-GH} -->
@@ -149,7 +149,7 @@ GET [base]/Patient/[id]/List/_history?_include=*&item=MedicationRequest/[id] -->
 GET [base]/Patient/[id]/List/_history?_include=*&item=MedicationRequest/[id]&date=ge2025-01-01 -->
 
 
-#### Sub_UC_eMed_01_03 - Initial erstellter Medikationsplan
+### Sub_UC_eMed_01_03 - Initial erstellter Medikationsplan
 
 Die initiale Erstellung eines Medikationsplans erfolgt ausschließlich durch die e-Medikation-Fachanwendung. Sie wird ausgelöst, wenn im Rahmen eines erstmaligen Aufrufs von [$plan-read](OperationDefinition-AtElgaEmed.List.PlanRead.html) noch kein Medikationsplan für den ELGA-Teilnehmer existiert.
 
@@ -164,7 +164,7 @@ Soll die Erstellung durch das Berechtigungssystem beim ersten Aufruf eines Patie
 </p>
 </div>
 
-##### Ablauf 
+#### Ablauf 
 
 1. Ein Client führt für einen ELGA-Teilnehmer erstmalig ein **POST** [$plan-read](OperationDefinition-AtElgaEmed.List.Planread.html) aus.
 2. Die Fachanwendung prüft, ob bereits ein Medikationsplan für den Patienten existiert.
@@ -173,14 +173,14 @@ Soll die Erstellung durch das Berechtigungssystem beim ersten Aufruf eines Patie
 5. Für das Plan-Read erzeugt die Fachanwendung daraus ein temporäres Medikationsplan-Bundle zur Auslieferung.
 6. Dieses wird mit *List.emptyReason = notstarted* sowie dem zugehörigen ETag zurückgeliefert.
 
-##### Sequenzdiagramm
+#### Sequenzdiagramm
 
 <br>
 [![overview](plantuml/UC_eMed_01_03.svg){: .mx-auto style="width:45%;"}](plantuml/UC_eMed_01_03.svg)
 <br> 
 
 
-#### Sub_UC_eMed_01_04 - Medikationsplaneinträge lesen (Planentry-Search)
+### Sub_UC_eMed_01_04 - Medikationsplaneinträge lesen (Planentry-Search)
 
 **Planentry-Search** dient der gezielten Suche nach Medikationsplaneintragsversionen eines ELGA-Teilnehmer. Als Medikationsplaneintrag gilt eine im Medikationsplan referenzierte Version einer *MedicationRequest*-Ressource mit *category = "Planeintrag"*.
 
@@ -219,7 +219,7 @@ Offene Punkte:<br>
 </p>
 </div>
 
-##### Ablauf
+#### Ablauf
 
 1. Der Client führt ein **GET** auf den Planentry-Search-Endpunkt mit den gewünschten Suchparametern aus (*MedicationRequest* mit *category = "Planeintrag"*).
 2. Die Fachanwendung ermittelt anhand der Suchparameter die passenden Medikationsplaneinträge.
@@ -227,13 +227,13 @@ Offene Punkte:<br>
 6. Werden keine passenden Medikationsplaneinträge gefunden, enthält das zurückgelieferte Searchset Bundle keine Einträge.
 7. Im Fehlerfall wird ein entsprechender *OperationOutcome* zurückgegeben.
 
-##### Sequenzdiagramm
+#### Sequenzdiagramm
 
 <br>
 [![overview](plantuml/UC_eMed_01_04.svg){: .mx-auto style="width:50%;"}](plantuml/UC_eMed_01_04.svg)
 <br> 
 
-##### Beispiele für Suchanfragen
+#### Beispiele für Suchanfragen
 
 In Arbeit. 
 <!-- * Alle aktiven Medikationsplaneinträge eines Patienten:
@@ -249,7 +249,7 @@ In Arbeit.
   `GET /Patient/[id]/MedicationRequest?ingredient=<Wirkstoff>` -->
 
 
-#### Sub_UC_eMed_01_05 - Verzeichnis historischer Medikationspläne lesen (Plan-History-Directory-Search)
+### Sub_UC_eMed_01_05 - Verzeichnis historischer Medikationspläne lesen (Plan-History-Directory-Search)
 
 <!-- GET	/Patient/[id]/List	plan-history-directory-search	Verzeichnis historischer Medikationspläne abrufen
 (_history?_elements=date,source) -->
