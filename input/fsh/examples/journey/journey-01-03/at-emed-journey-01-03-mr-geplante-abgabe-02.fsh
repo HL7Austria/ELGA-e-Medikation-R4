@@ -52,7 +52,7 @@ Usage: #example
 
 // Contained Medication *********************************************************************
 Instance: contained-medication-journey-01-03-02-magistral
-InstanceOf: AtElgaEmedMedicationMedikation
+InstanceOf: AtElgaEmedMedicationMagistraleZubereitung
 Title: "Beispiel Journey 02: Magistrale Anwendung (Dexpanthenol-Salbe)"
 Usage: #inline
 

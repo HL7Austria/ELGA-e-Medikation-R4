@@ -82,6 +82,8 @@ pages:
   #   title: Obligations
   interactions.md:
     title: Transaktionen
+  dosages.md:
+    title: Dosierungen
   overview_use_case.md:
     #   title: UC_eMed_01 - Medikationsplan lesen
     # UC_eMed_02.md:
@@ -170,6 +172,7 @@ menu:
     Workflowmanagement: workflowmanagement.html
     # Obligations: obligations.html
     Transaktionen: interactions.html
+    Dosierungen: dosages.html
   Anwendungsfälle:
     # Überblick: overview_use_case.html
     Überblick Use Cases: overview_sub_use_case.html
@@ -303,8 +306,9 @@ groups:
     name: Medikation
     description: Medikation
     resources:
-      - StructureDefinition/at-elga-emed-medication-medikation
+      - StructureDefinition/at-elga-emed-medication-standard-medikation
       - StructureDefinition/at-elga-emed-substance-wirkstoff
+      - StructureDefinition/at-elga-emed-medication-magistrale-zubereitung
   Dosierungen:
     name: Dosierungen
     description: Dosierungsvarianten

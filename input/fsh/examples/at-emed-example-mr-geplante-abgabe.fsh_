@@ -58,7 +58,7 @@ Usage: #example
 
 // Inline Medication *********************************************************************
 Instance: ContainedMedication
-InstanceOf: AtElgaEmedMedicationMedikation
+InstanceOf: AtElgaEmedMedicationStandardMedikation
 Title: "Beispiel Medikation EBETREXAT"
 Usage: #inline
 

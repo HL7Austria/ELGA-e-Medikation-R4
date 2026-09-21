@@ -42,7 +42,7 @@ Usage: #example
 
 // Contained Medication *********************************************************************
 Instance: contained-medication-journey-02-01-02-magistral
-InstanceOf: AtElgaEmedMedicationMedikation
+InstanceOf: AtElgaEmedMedicationMagistraleZubereitung
 Title: "Beispiel Medikation Ramipril"
 Usage: #inline
 

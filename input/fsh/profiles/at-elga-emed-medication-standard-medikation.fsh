@@ -1,6 +1,6 @@
-Profile: AtElgaEmedMedicationMedikation
+Profile: AtElgaEmedMedicationStandardMedikation
 Parent: Medication
-Id: at-elga-emed-medication-medikation
+Id: at-elga-emed-medication-standard-medikation
 Title: "AT ELGA e-Medikation Medication Medikation"
 Description: "Bildet ein Arzneimittel in der \"Medication\"-Ressource ab. Wird grundsätzlich verwendet in Planeintrag, Geplanter Abgabe und Durchgeführter Abgabe."
 // TODO: Medication aktuell nur geprüft im Kontext Planeintrag.
@@ -16,8 +16,21 @@ Description: "Bildet ein Arzneimittel in der \"Medication\"-Ressource ab. Wird g
 * identifier 0..0 
 * identifier ^short = "Eindeutiger Identifikator für das Arzneimittel. Wird nicht benötigt, da PZN, sofern vorhanden, im Code angegeben wird."
 
-* code 0..1 MS
-* code from $cs-asp-liste (required) //TODO this needs to be a ValueSet not a CodeSystem
+//* code 1..1 MS
+* code.coding ^slicing.discriminator.type = #value
+* code.coding ^slicing.discriminator.path = "system"
+* code.coding ^slicing.rules = #closed
+* code.coding ^slicing.ordered = false
+* code.coding contains   
+    PZN 0..1 MS and
+    PCID 0..1 MS
+    //ASW 21.09.2026 TODO: noch zu klären welche weiteren identifikatoren erlaubt sind
+
+// TODO Invariante eines der beiden muss vorhanden sein
+* code.coding[PZN].system = $cs-asp-liste
+* code.coding[PZN].code 1..1
+* code.coding[PCID].system = "1.2.40.0.34.4.27" //ASW 21.09.2026: TODO Codesystem
+* code.coding[PCID].code 1..1
 * code ^short = "Code des Arzneimittels. Hier muss die Pharmazentralnummer (PZN) aus der ASP-Liste angegeben werden, sofern vorhanden."
 // TODO: Slicing für meherere Codings
 // Gem. CDA V3: 

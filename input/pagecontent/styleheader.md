@@ -82,7 +82,7 @@ width: 100%;}
 
 .tabs {
   display: grid !important;
-  grid-template-columns: repeat(auto-fit, minmax(90px, max-content));
+  grid-template-columns: repeat(auto-fit, minmax(100px, max-content));
   align-items: end;
   position: relative;
   width: 100%;
@@ -90,6 +90,13 @@ width: 100%;}
   max-height: none;
   margin: 5px 0 5px;
   background: #ffffff;
+  overflow-x: auto;
+}
+
+.tabs .tab label {
+  white-space: nowrap;
+  box-sizing: border-box;
+  line-height: 1.2;
 }
 
 /* Let label and content participate directly in the grid */

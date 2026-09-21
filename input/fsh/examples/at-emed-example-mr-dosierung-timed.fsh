@@ -33,7 +33,7 @@ Usage: #example
 
 // Contained Medication *********************************************************************
 Instance: contained-medication-zeit-01
-InstanceOf: AtElgaEmedMedicationMedikation
+InstanceOf: AtElgaEmedMedicationStandardMedikation
 Title: "Beispiel Medikation EBETREXAT"
 Usage: #inline
 //* id = "contained-medication-zeit-01"

@@ -6,7 +6,7 @@ Usage: #example
 
 * type = #searchset
 * timestamp = "2026-02-27T08:00:00+00:00" 
-* entry[Medikationsplan].resource = 4cb4dceb-173f-461a-a267-683ec33e4be1
+* entry[Medikationsplan].resource = At-Emed-Journey-01-01-List-Medikationsplan
 * entry[Medikationsplan].fullUrl = "https://example.elga.com/List/4cb4dceb-173f-461a-a267-683ec33e4be1"
 * entry[Patient].resource = At-Emed-Example-Patient-01
 * entry[Patient].fullUrl = "https://example.elga.com/Patient/At-Emed-Example-Patient-01"
@@ -14,7 +14,7 @@ Usage: #example
 * entry[Authors].fullUrl = "https://example.elga.com/Device/At-Emed-Example-Device-01"
 
 
-Instance: 4cb4dceb-173f-461a-a267-683ec33e4be1
+Instance: At-Emed-Journey-01-01-List-Medikationsplan
 InstanceOf: AtElgaEmedListMedikationsplan   
 Usage: #inline
 Title: "Beispiel Journey 01-01: Leerer Medikationsplan"

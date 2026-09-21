@@ -1,5 +1,5 @@
 Instance: At-Emed-Example-Medication-Magistral-01
-InstanceOf: AtElgaEmedMedicationMedikation
+InstanceOf: AtElgaEmedMedicationMagistraleZubereitung
 Title: "Beispiel Journey 02: Magistrale Zubereitung"
 Description: "Beispiel einer magistralen Zubereitung (Dexpanthenol-Salbe)."
 Usage: #example
