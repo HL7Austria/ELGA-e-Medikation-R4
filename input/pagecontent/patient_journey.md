@@ -549,7 +549,9 @@ Möglichkeit prüfen, wie der Usecase: "Medikament soll in 2 Wochen für 1 Woche
         <li>
           <a href="Sub_UC_eMed_02.html#sub_uc_emed_02_05---planeintrag-pausieren-oder-reaktivieren">Sub_UC_eMed_02_05 - Planeintrag pausieren oder reaktivieren</a>
         </li>
+        <li>
           <a href="Sub_UC_eMed_02.html#sub_uc_emed_02_04---planeintrag-im-medikationsplan-beibehalten">Sub_UC_eMed_02_04 - Planeintrag im Medikationsplan beibehalten</a>
+        </li>
       </ul>
     </div>
   </div>
@@ -588,10 +590,18 @@ Zusätzlich wird die pausierte Ramipril Medikation wieder aufgenommen, aber in d
     <div class="content-in-tab">
       <ul>
         <li>
-          <strong>Planeintrag pausieren:</strong>
+          <strong>Planeintrag hinzufügen:</strong>
           <ul>
             <li>
               <a href="MedicationRequest-At-Emed-Journey-06-02-Mr-Planeintrag-03.html">Neuer Planeintrag 3: Wirstoff Metamizol</a>
+            </li>
+          </ul>
+        </li>
+                <li>
+          <strong>Planeintrag anpassen:</strong>
+          <ul>
+            <li>
+              <a href="MedicationRequest-At-Emed-Journey-06-02-Mr-Planeintrag-03.html">Neuer Planeintrag 1: Ramipril aktivieren + Dosierung ändern</a>
             </li>
           </ul>
         </li>
@@ -633,15 +643,16 @@ Zusätzlich wird die pausierte Ramipril Medikation wieder aufgenommen, aber in d
         </li>
         <li>
           <a href="Sub_UC_eMed_02.html#sub_uc_emed_02_04---planeintrag-im-medikationsplan-beibehalten">Sub_UC_eMed_02_04 - Planeintrag im Medikationsplan beibehalten</a>
+        </li>
       </ul>
     </div>
   </div>
 </div>
 
-#### Journey-06: Ablauf - Geplante Operation
+#### Journey-06: Ablauf - Stationärer Krankenhausaufenthalt
 
 <br>
-[![overview](plantuml/patient_journey_06.svg){: .mx-auto style="width:45%;"}](plantuml/patient_journey_06.svg)
+[![overview](plantuml/patient_journey_06.svg){: .mx-auto style="width:55%;"}](plantuml/patient_journey_06.svg)
 <br> 
 
 
