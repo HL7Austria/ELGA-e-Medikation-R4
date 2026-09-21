@@ -21,7 +21,7 @@ Sie speichert den neuen Medikationsplan.
    * **Medikationsplaneinträge hinzufügen:**
      * [Transaction Bundle](Bundle-At-Emed-Journey-02-Bundle-Tx-Medikationsplan.html)
 
-Im neu erstellen Medikationsplan sind die neuen Planeinträge sowie das Datum der Bearbeitung und als verantwortliche Ärztin Dr. Musterärztin ([Practitioner 1](Practitioner-At-Emed-Example-Practitioner-01.html)) ersichtlich.
+Im neu erstellen Medikationsplan sind die neuen Planeinträge sowie das Datum der Bearbeitung und als verantwortliche Ärztin Dr. Musterärztin ([Practitioner 1](Practitioner-At-Emed-Example-PractitionerRole-01.html)) ersichtlich.
 
 Dr. Musterärztin erstellt für beide Medikamente eine Geplante Abgabe (Rezeptierung), sodass Herr Mustermann die Medikamente in der Apotheke abholen kann.
 
