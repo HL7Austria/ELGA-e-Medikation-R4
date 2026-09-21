@@ -48,6 +48,9 @@ Alias: $medicationdispense-rendereddosageinstruction-r5 = http://hl7.org/fhir/5.
 Alias: $sys-eMed-groupIdentifier = http://tbd.com
 
 
+// ELGA Rollen
+Alias: $cs-elga-gtelvogdarollen = https://termgit.elga.gv.at/CodeSystem/elga-gtelvogdarollen
+
 // FHIR
 //Alias: $cs-event-timing = http://hl7.org/fhir/event-timing
 Alias: $cs-hl7-at-organizationtype = https://termgit.elga.gv.at/ValueSet/hl7-at-organizationtype
