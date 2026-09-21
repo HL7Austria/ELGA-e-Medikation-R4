@@ -81,11 +81,11 @@ group GROUP_APO 28.2.2026 · Abgabe in der Apotheke (Besorgerprozess Teil 1)
   activate Apotheke COLOR_APO
   Apotheke -> eMed_FA: aktuellen Medikationsplan abrufen:\n$plan-read 
   activate eMed_FA COLOR_EMED_FA  
-  eMed_FA -> Apotheke: Medikationsplan mit 2 Planeinträgen\n(Rampipril + Dexpanthenol-Salbe)
+  eMed_FA -> Apotheke: Medikationsplan mit 2 Planeinträgen\n(Ramipril + Dexpanthenol-Salbe)
   deactivate eMed_FA
   Apotheke -> eMed_FA: offene Geplante Abgaben abrufen:\nPrescription-Search (status=active)
   activate eMed_FA COLOR_EMED_FA 
-  eMed_FA -> Apotheke: 2 Geplante Abgaben\n(Rampipril + Dexpanthenol-Salbe)
+  eMed_FA -> Apotheke: 2 Geplante Abgaben\n(Ramipril + Dexpanthenol-Salbe)
   deactivate eMed_FA
   Apotheke -> eMed_FA: Durchgeführte Abgaben abrufen:\nDispense-Search
   activate eMed_FA COLOR_EMED_FA 

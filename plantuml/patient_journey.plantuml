@@ -133,7 +133,7 @@ autonumber
 '   eMed_FA -> Arzt_1: Medikationsplan 
 '   deactivate eMed_FA
 
-'   Arzt_1 -> Arzt_1: Geplante Abgaben erstellen\n(Rampipril + Dexpanthenol-Salbe)
+'   Arzt_1 -> Arzt_1: Geplante Abgaben erstellen\n(Ramipril + Dexpanthenol-Salbe)
 '   Arzt_1 -> eMed_FA: Geplante Abgaben schreiben: $dispense-write
 '   activate eMed_FA COLOR_EMED_FA
 '   eMed_FA -> Arzt_1: Geplante Abgaben
@@ -156,7 +156,7 @@ autonumber
 '   deactivate eMed_FA
 '   Apotheke -> eMed_FA: Geplante Abgaben lesen: Prescription-Search
 '   activate eMed_FA COLOR_EMED_FA 
-'   eMed_FA -> Apotheke: 2 Geplante Abgaben\n(Rampipril + Dexpanthenol-Salbe)
+'   eMed_FA -> Apotheke: 2 Geplante Abgaben\n(Ramipril + Dexpanthenol-Salbe)
 '   deactivate eMed_FA
 '   Apotheke -> eMed_FA: Durchgeführte Abgaben lesen: Dispense-Search
 '   activate eMed_FA COLOR_EMED_FA 

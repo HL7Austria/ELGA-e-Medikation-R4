@@ -76,11 +76,11 @@ group GROUP_PAT 2.3.2026 · Patient ruft Medikationsplan ab
   activate Patient COLOR_PATIENT
   Patient -> eMed_FA: aktuellen Medikationsplan abrufen:\n$plan-read
   activate eMed_FA COLOR_EMED_FA  
-  eMed_FA -> Patient: Medikationsplan mit 2 Planeinträgen\n(Rampipril + Dexpanthenol-Salbe)
+  eMed_FA -> Patient: Medikationsplan mit 2 Planeinträgen\n(Ramipril + Dexpanthenol-Salbe)
   deactivate eMed_FA
   Patient -> eMed_FA: Geplante Abgaben abrufen (in den letzten 30 Tagen):\nPrescription-Search
   activate eMed_FA COLOR_EMED_FA 
-  eMed_FA -> Patient: 2 abgeschlossene Geplante Abgaben\n(Rampipril + Dexpanthenol-Salbe)
+  eMed_FA -> Patient: 2 abgeschlossene Geplante Abgaben\n(Ramipril + Dexpanthenol-Salbe)
   deactivate eMed_FA
   Patient -> eMed_FA: Durchgeführte Abgaben abrufen (in den letzten 30 Tagen):\nDispense-Search
   activate eMed_FA COLOR_EMED_FA 

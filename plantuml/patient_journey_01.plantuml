@@ -103,7 +103,7 @@ group GROUP_ARZT 27.2.2026 · Arztbesuch
 
   == Journey-01-03 ==
 
-  Arzt_1 -> Arzt_1: 2 Geplante Abgaben erstellen\n(Rampipril + Dexpanthenol-Salbe)
+  Arzt_1 -> Arzt_1: 2 Geplante Abgaben erstellen\n(Ramipril + Dexpanthenol-Salbe)
   Arzt_1 -> eMed_FA: Geplante Abgaben speichern: $dispense-write
   activate eMed_FA COLOR_EMED_FA
   eMed_FA -> Arzt_1: Geplante Abgaben
