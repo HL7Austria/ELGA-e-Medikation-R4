@@ -16,9 +16,9 @@ Usage: #example
 * name = "Amadeus Apotheke"
 * address.use = #work
 * address.type = #both
-* address.line = "Mozartgasse 1-7 Haupteingang"
+* address.line = "Apotheken-Gasse 1-7 Haupteingang"
 * address.line.extension[0].url = "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName"
-* address.line.extension[=].valueString = "Mozartgasse"
+* address.line.extension[=].valueString = "Apotheken-Gasse"
 * address.line.extension[+].url = "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber"
 * address.line.extension[=].valueString = "1-7"
 * address.line.extension[+].url = "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-additionalLocator"
