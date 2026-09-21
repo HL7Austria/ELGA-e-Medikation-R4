@@ -159,127 +159,30 @@ group GROUP_ARZT 3.3.2026 · Präoperativer Hausarzttermin
 
 end
 
-' group GROUP_KH 5.3.2026 · Geplante Leistenbruchoperation
+group GROUP_ARZT 17.3.2026 bis 21.3.2026 · Stationärer Krankenhausaufenthalt
 
-'   '  activate Patient COLOR_PATIENT
+  Patient -> Arzt_1: Krankenhausbesuch 
 
-'   Patient -> Arzt_2: Geplante Operation
+  Arzt_1 -> eMed_FA: aktuellen Medikationsplan abrufen:\n$plan-read 
 
-'   ' activate Arzt_2 COLOR_GDA_2
+  eMed_FA -> Arzt_1: Medikationsplan\n(pausiertes Ramipril + Dexpanthenol-Salbe)
 
-'   Arzt_2 -> eMed_FA: aktuellen Medikationsplan,\nGeplante und Durchgeführte\nAbgaben abrufen
 
-'   ' activate eMed_FA COLOR_EMED_FA
-'   eMed_FA -> Arzt_2: Aktueller Medikationsplan
-'   ' deactivate eMed_FA
+  Arzt_1 -> Arzt_1: Medikationsplan bearbeiten +\nPlaneintrag Ramipril ändern +\nneuen Planeintrag mit Wirkstoff Metamizol erstellen
+  Arzt_1 -> eMed_FA: neuen Medikationsplan speichern: $plan-write
 
-'   Arzt_2 -> eMed_FA: neuer Planeintrag Metamizol-\nTropfen erstellen und speichern
+  eMed_FA -> Arzt_1: Medikationsplan 
 
-'   Arzt_2 -> eMed_FA: neue Geplante Abgabe Metamizol-\nTropfen erstellen und speichern
-'   ' deactivate Arzt_2
-'   '  ' deactivate Patient
-' end
+  note over Patient
+  Abruf Geplante Abgaben
+  und Durchgeführte Abgaben 
+  siehe Journey-04
+  end note
 
-' group GROUP_APO 7.3.2026 · Teilabgabe in der Apotheke
+end
 
-'   '  activate Patient COLOR_PATIENT
 
-'   Patient -> Apotheke: Metamizol-Tropfen abholen
 
-'   ' activate Apotheke COLOR_APO
 
-'   Apotheke -> eMed_FA: aktuellen Medikationsplan,\nGeplante und Durchgeführte\nAbgaben abrufen
-
-'   ' activate eMed_FA COLOR_EMED_FA
-'   eMed_FA -> Apotheke: Medikationsplan\n+ Geplante Abgabe
-'   ' deactivate eMed_FA
-
-'   Apotheke -> eMed_FA: Durchgeführte Abgabe\nMetamizol als Teilabgabe\nerstellen
-
-'   ' activate eMed_FA COLOR_EMED_FA
-'   ' eMed_FA -> Apotheke: Abgabe gespeichert
-'   ' ' deactivate eMed_FA
-
-'   Apotheke -> Patient: Metamizol-Tropfen\n(1 Fläschchen) aushändigen
-
-'   ' deactivate Apotheke
-'   '  ' deactivate Patient
-' end
-
-' group GROUP_APO 9.3.2026 · Teilabgabe in der Apotheke abschließen
-
-'   '  activate Patient COLOR_PATIENT
-
-'   Patient -> Apotheke: Metamizol-Tropfen\nabholen
-
-'   ' activate Apotheke COLOR_APO
-'   Apotheke -> eMed_FA: e-Medikation abrufen
-
-'   ' activate eMed_FA COLOR_EMED_FA
-'   eMed_FA -> Apotheke: Aktueller Medikationsplan +\nGeplante und Durchgeführte Abgaben
-'   ' deactivate eMed_FA
-
-'   Apotheke -> eMed_FA: Durchgeführte Abgabe\nspeichern (Teilabgabe\nabschließen)
-
-'   Apotheke -> Patient: Metamizol-Tropfen\naushändigen
-
-'   ' deactivate Apotheke
-'   '  ' deactivate Patient
-' end
-
-' group GROUP_ARZT 12.3.2026 · Nachkontrolle bei der Urlaubsvertretung von Dr. Hausärztin 
-
-'   '  activate Patient COLOR_PATIENT
-
-'   Patient -> Arzt_3: Nachkontrolle
-
-'   ' activate Arzt_3 COLOR_GDA_3
-
-'   Arzt_3 -> eMed_FA: e-Medikation abrufen
-
-'   ' activate eMed_FA COLOR_EMED_FA
-'   eMed_FA -> Arzt_3: Aktueller Medikationsplan,\nGeplante und Durchgeführte\nAbgaben
-'   ' deactivate eMed_FA
-
-'   Arzt_3 -> Arzt_3: Planeintrag Ramipril\nbearbeiten: Pausierung beenden
-
-'   Arzt_3 -> Arzt_3: Planeintrag Metamizol\nbearbeiten: Dosierung anpassen 
-
-'   Arzt_3 -> eMed_FA: Neuen Medikationsplan\nspeichern
-
-'   ' activate eMed_FA COLOR_EMED_FA
-'   ' eMed_FA -> Arzt_3: Medikationsplan gespeichert
-'   ' ' deactivate eMed_FA
-
-'   ' deactivate Arzt_3
-'   '  ' deactivate Patient
-' end
-
-' group GROUP_ARZT 20.3.2026 · Kontrolltermin bei Dr. Hausärztin 
-
-'   '  activate Patient COLOR_PATIENT
-
-'   Patient -> Arzt_1: Kontrolltermin
-
-'   ' activate Arzt_1 COLOR_GDA_1
-
-'   Arzt_1 -> eMed_FA: e-Medikation abrufen
-
-'   ' activate eMed_FA COLOR_EMED_FA
-'   eMed_FA -> Arzt_1: Aktueller Medikationsplan,\nGeplante und Durchgeführte\nAbgaben
-'   ' deactivate eMed_FA
-
-'   Arzt_1 -> Arzt_1: Planeintrag Metamizol\nbeenden
-'   Arzt_1 -> Arzt_1: Planeintrag Dexpanthenol-\nSalbe beenden
-
-'   Arzt_1 -> eMed_FA: Medikationsplan speichern
-
-'   ' activate eMed_FA COLOR_EMED_FA
-'   ' eMed_FA -> Arzt_1: Medikationsplan gespeichert
-'   ' ' deactivate eMed_FA
-
-'   ' deactivate Arzt_1
-'   ' deactivate Patient
-' end
 
 @enduml
