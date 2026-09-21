@@ -74,8 +74,8 @@ autonumber
 
 group GROUP_ARZT 14.3.2026 · Präoperativer Hausarzttermin
 
-  activate Patient COLOR_PATIENT
   Patient -> Arzt_1: Arztbesuch
+  activate Patient COLOR_PATIENT
   activate Arzt_1 COLOR_GDA_1
 
   == Journey-05-01 ==

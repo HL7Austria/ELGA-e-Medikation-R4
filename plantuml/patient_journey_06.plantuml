@@ -74,8 +74,8 @@ autonumber
 
 group GROUP_ARZT 17.3.2026 bis 21.3.2026 · Stationärer Krankenhausaufenthalt
 
-  activate Patient COLOR_PATIENT
   Patient -> Arzt_1: Krankenhausbesuch 
+  activate Patient COLOR_PATIENT
   activate Arzt_1 COLOR_GDA_1
 
   == Journey-06-01 ==

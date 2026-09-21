@@ -73,8 +73,8 @@ autonumber
 
 group GROUP_PAT 2.3.2026 · Patient ruft Medikationsplan ab
 
-  activate Patient COLOR_PATIENT
   Patient -> eMed_FA: aktuellen Medikationsplan abrufen:\n$plan-read
+  activate Patient COLOR_PATIENT
   activate eMed_FA COLOR_EMED_FA  
   eMed_FA -> Patient: Medikationsplan mit 2 Planeinträgen\n(Ramipril + Dexpanthenol-Salbe)
   deactivate eMed_FA
