@@ -50,7 +50,12 @@ Der Planeintrag kann in weiterer Folge als Grundlage für die Erstellung einer \
 * intent ^short = "Ein Planeintrag ist eine autorisierte ärztliche Anordnung und stellt eine verbindliche Einnahmeanweisung für den Patienten dar, auf dessen Basis eine Geplante Abgabe erstellt werden kann. Fixer Wert: \"order\". (req) proposal | plan | order | original-order | reflex-order | filler-order | instance-order | option. https://hl7.org/fhir/R4/valueset-medicationrequest-intent.html"
 
 * category 1..1 MS
-* category = MedicationRequestCategoryCS#1   // Display nicht fixieren -> Übersetzungen
+* category.coding 1..
+* category.coding.system = Canonical(MedicationRequestCategoryCS)
+* category.coding.system 1..1
+* category.coding.code = #1   // Display nicht fixieren -> Übersetzungen
+* category.coding.code 1..1
+* category from MedicationRequestCategoryVS (required)
 * category ^short = "Kategorie zur Unterscheidung eines Planeintrags von einer geplanten Abgabe (beide haben intent order)"
 
 * priority 0..0
@@ -67,7 +72,7 @@ Der Planeintrag kann in weiterer Folge als Grundlage für die Erstellung einer \
 
 // --- Medication immer als Medication-Resource (mit oder ohne PZN, damit Handelsname angegeben werden kann und historisch verfügbar bleibt)
 * medication[x] 1..1 MS  
-* medication[x] only Reference(AtElgaEmedMedicationMedikation)  
+* medication[x] only Reference(AtElgaEmedMedicationStandardMedikation or AtElgaEmedMedicationMagistraleZubereitung)  
 * medication[x] ^type.aggregation = #contained
 
 * medication[x] ^short = "Das Arzneimittel wird immer in einer contained Medication Ressource dokumentiert, damit Arzneimittel mit und ohne PZN einheitlich dokumentiert werden können."

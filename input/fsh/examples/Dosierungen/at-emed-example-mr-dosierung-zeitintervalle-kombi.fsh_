@@ -41,7 +41,7 @@ Usage: #example
 
 // Contained Medication *********************************************************************
 Instance: contained-medication-zeitintervalle-kombi
-InstanceOf: AtElgaEmedMedicationMedikation
+InstanceOf: AtElgaEmedMedicationStandardMedikation
 Title: "Beispiel Medikation EBETREXAT"
 Usage: #inline
 //* id = "contained-medication-zeitintervalle-kombi"

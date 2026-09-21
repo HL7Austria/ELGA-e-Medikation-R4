@@ -51,7 +51,7 @@ Usage: #example
 
 // Contained Medication *********************************************************************
 Instance: ContainedMedication01
-InstanceOf: AtElgaEmedMedicationMedikation
+InstanceOf: AtElgaEmedMedicationStandardMedikation
 Title: "Beispiel Medikation EBETREXAT"
 Usage: #inline
 //* id = "ContainedMedication01"

@@ -54,7 +54,7 @@ Der aktuelle Status einer \"Durchgeführten Abgabe\" wird mittels \"status\"- un
 
 // --- Medication immer als Medication-Resource (mit oder ohne PZN, damit Handelsname angegeben werden kann und historisch verfügbar bleibt)
 * medication[x] 1..1 MS  
-* medication[x] only Reference(AtElgaEmedMedicationMedikation)  
+* medication[x] only Reference(AtElgaEmedMedicationStandardMedikation or AtElgaEmedMedicationMagistraleZubereitung)  
 * medication[x] ^type.aggregation = #contained
 
 * medication[x] ^short = "Abgegebenes Medikament. Das Medikament wird immer in einer contained Medication Ressource dokumentiert, damit 
@@ -88,7 +88,9 @@ auf die ELGA e-Medikation des Patienten zuzugreifen)."
 // Slicing authorizingPrescription:  
 // - authorizingPrescription zur Unterscheidung der MedicationRequest-Referenzen: Planeintrag und Geplante Abgabe
 * authorizingPrescription ^slicing.discriminator[+].type = #value
-* authorizingPrescription ^slicing.discriminator[=].path = "resolve().category"
+* authorizingPrescription ^slicing.discriminator[=].path = "resolve().category.coding.system"
+* authorizingPrescription ^slicing.discriminator[+].type = #value
+* authorizingPrescription ^slicing.discriminator[=].path = "resolve().category.coding.code"
 * authorizingPrescription ^slicing.rules = #closed
 * authorizingPrescription ^slicing.ordered = false
 

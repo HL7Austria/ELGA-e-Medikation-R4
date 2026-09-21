@@ -46,7 +46,7 @@ Es werden R5-Backport-Extensions verwendet."
 // - Kategorie zur Unterscheidung der MedicationRequests: Planeintrag und Geplante Abgabe
 // - Kategorie zur Unterscheidung von Kassenrezept und Privatrezept
 * category ^slicing.discriminator.type = #value
-* category ^slicing.discriminator.path = "coding.code"
+* category ^slicing.discriminator.path = "coding.system"
 * category ^slicing.rules = #open
 * category ^slicing.ordered = false
 
@@ -54,14 +54,15 @@ Es werden R5-Backport-Extensions verwendet."
     mrcategory 1..1 MS and
     recipetype 1..1 MS
 //TODO ASW BUG in this slicing
-
-* category[mrcategory] = MedicationRequestCategoryCS#2 "Geplante Abgabe"
+* category[mrcategory] from MedicationRequestCategoryVS (required)
+* category[mrcategory].coding.system = Canonical(MedicationRequestCategoryCS)
+* category[mrcategory].coding.code = #2
 * category[mrcategory] ^short = "Kategorie zur Unterscheidung eines Medikationsplaneintrags von einer geplanten Abgabe (beide haben intent order)"
 //* category[recipetype] from $vs-medication-rezeptart (required)
-* category[recipetype] from elga-medikationrezeptart (required)
+//* category[recipetype] from elga-medikationrezeptart (required)
 * category[recipetype].coding 1..
 * category[recipetype].coding.code 1..1
-* category[recipetype].coding.code from elga-medikationrezeptart (required)
+* category[recipetype] from elga-medikationrezeptart (required)
 * category[recipetype].coding.system = "https://termgit.elga.gv.at/CodeSystem/medikationrezeptart"
 * category[recipetype].coding.system 1..1
 * category[recipetype]  ^short = "Kategorie zur Unterscheidung, ob ein Kassen-, Privat- oder Substitutionsrezept erstellt wurde."
@@ -77,7 +78,7 @@ Es werden R5-Backport-Extensions verwendet."
 
 // --- Medication immer als Medication-Resource (mit oder ohne PZN, damit Handelsname angegeben werden kann und historisch verfügbar bleibt)
 * medication[x] 1..1 MS  
-* medication[x] only Reference(AtElgaEmedMedicationMedikation)  
+* medication[x] only Reference(AtElgaEmedMedicationStandardMedikation or AtElgaEmedMedicationMagistraleZubereitung)  
 * medication[x] ^type.aggregation = #contained
 
    //ws planeintrag kann auch nur wirkstoffe enthalten; evtl. wirkstoff oder pzn; magistral, pzn, sonstige; todo bepr. mit medication ressource
