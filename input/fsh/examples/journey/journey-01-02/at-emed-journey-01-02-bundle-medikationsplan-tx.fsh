@@ -10,7 +10,7 @@ Usage: #example
 * entry[Medikationsplan].resource = At-Emed-Journey-01-02-List-Medikationsplan
 * entry[Medikationsplan].fullUrl = "https://example.elga.com/List/At-Emed-Journey-01-List-Medikationsplan"
 * entry[Medikationsplan][=].request.method = #PUT 
-* entry[Medikationsplan][=].request.url = "List/At-Emed-Journey-01-List-Medikationsplan"
+* entry[Medikationsplan][=].request.url = "List/At-Emed-Journey-01-02-List-Medikationsplan"
 // Medikationsplaneinträge
 * entry[Medikationsplaneintrag][+].resource = At-Emed-Journey-01-02-Mr-Planeintrag-01
 //* entry[Medikationsplaneintrag][=].fullUrl = "urn:uuid:62e2daa5-c34b-4b97-8044-fd893bc99a57"
