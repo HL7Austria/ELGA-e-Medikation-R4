@@ -1,7 +1,7 @@
 Instance: At-Emed-Journey-03-01-Md-Durchgefuehrte-Abgabe-02
 InstanceOf: AtElgaEmedMedicationDispenseDurchgefuehrteAbgabe   
 Title: "Beispiel Journey 05: Durchgeführte Abgabe 1"
-Description: "Bildet eine durchgeführte Abgabe mit dem Arzneimittel Ramipril gemäß Geplanter Abgabe."
+Description: "Bildet eine Durchgeführte Abgabe mit dem Arzneimittel Ramipril gemäß Geplanter Abgabe ab."
 Usage: #example
 
 
