@@ -15,7 +15,7 @@ Usage: #example
 // * orderedBy = http://terminology.hl7.org/CodeSystem/list-order#user
 
 // Listeneinträge
-* entry[0].flag.coding = ElgaListEntryFlagCS#new "Neuer Planeintrag"
+* entry[0].flag.coding = ElgaListEntryFlagCS#changed "Planeintrag geändert"
 * entry[=].item = Reference(At-Emed-Journey-05-01-Mr-Planeintrag-01)
 
 * entry[+].flag.coding = ElgaListEntryFlagCS#unchanged "Planeintrag beibehalten"
