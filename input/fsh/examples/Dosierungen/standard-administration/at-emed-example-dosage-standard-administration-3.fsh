@@ -24,7 +24,7 @@ Usage: #example
 
 * subject = Reference(At-Emed-Example-Patient-01)
 * authoredOn = "2026-02-27T10:20:00+00:00"
-* requester = Reference(At-Emed-Example-Practitioner-01)
+* requester = Reference(At-Emed-Example-PractitionerRole-01)
 
 * dosageInstruction[standardDosage][0].extension[DosageCategory].valueCodeableConcept = AtElgaEmedCodeSystemDosageCategory#standard
 * dosageInstruction[standardDosage][0].sequence = 1
