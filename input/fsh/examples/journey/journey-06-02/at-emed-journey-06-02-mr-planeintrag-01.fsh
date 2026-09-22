@@ -10,7 +10,7 @@ Usage: #example
 
 // R5 Backports
 * extension[effectiveDosePeriod].valuePeriod.start = "2026-02-27"
-* extension[renderedDosageInstruction].valueMarkdown = "1-0-0-0 | Täglich: 1-0-0-0" 
+* extension[renderedDosageInstruction].valueMarkdown = "1-0-1-0 | Täglich: 1-0-1-0" 
 
 * status = $cs-medication-request-status#on-hold
 * statusReason.coding = $cs-medication-request-status-reason#surg "Patient scheduled for surgery"
@@ -30,10 +30,11 @@ Usage: #example
 * dosageInstruction[standardDosage].extension[DosageCategory].valueCodeableConcept = AtElgaEmedCodeSystemDosageCategory#standard
 * dosageInstruction[standardDosage].sequence = 1
 * dosageInstruction[standardDosage].patientInstruction = "Nehmen Sie die Tablette vor dem Essen mit ausreichend Flüssigkeit ein."
-* dosageInstruction[standardDosage].timing.repeat.frequency = 1
+* dosageInstruction[standardDosage].timing.repeat.frequency = 2
 * dosageInstruction[standardDosage].timing.repeat.period = 1
 * dosageInstruction[standardDosage].timing.repeat.periodUnit = #d
 * dosageInstruction[standardDosage].timing.repeat.when[0] = $cs-event-timing#MORN  
+* dosageInstruction[standardDosage].timing.repeat.when[0] = $cs-event-timing#EVE  
 * dosageInstruction[standardDosage].doseAndRate.doseQuantity = $cs-ucum#{Stueck} "Stück" // TODO
 * dosageInstruction[standardDosage].route = $cs-medikationartanwendung#100000073619 "zum Einnehmen"
 //* dosageInstruction.doseAndRate.doseQuantity = 10 'mg' "mg"  //TODO
