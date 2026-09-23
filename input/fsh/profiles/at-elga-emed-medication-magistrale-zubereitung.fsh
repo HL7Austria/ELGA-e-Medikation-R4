@@ -46,7 +46,7 @@ Description: "Bildet eine Magistrale Zubereitung in der \"Medication\"-Ressource
     ATCWidO 0..1 MS and
     WirkstoffeAges 0..1 MS 
 
-* ingredient.itemCodeableConcept.coding[ATCWidO].system = "TODO"
+* ingredient.itemCodeableConcept.coding[ATCWidO] from AtElgaEmedValueSetATC (required)
 * ingredient.itemCodeableConcept.coding[ATCWidO].system 1..1
 * ingredient.itemCodeableConcept.coding[WirkstoffeAges] from https://termgit.elga.gv.at/ValueSet/elga-wirkstoffe-ages (required)
 * ingredient.itemCodeableConcept.coding[WirkstoffeAges].system 1..1

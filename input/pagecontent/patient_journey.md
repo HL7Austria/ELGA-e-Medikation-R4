@@ -213,6 +213,42 @@ prescription-search
 dispense-search
  -->
 
+#### Journey-01-02: Request 01 - Medikationsplan schreiben
+<div class="tabs">
+  <div class="tab">
+    <input type="radio" id="tab-request-journey-01-02" name="tab-group-journey-01-02" checked="true" />
+    <label for="tab-request-journey-01-02" class="request-tab">Request</label>
+    <div class="content-in-tab">
+      <div class="request-panel">
+        <div class="request-code">
+          <span class="request-method-post">POST</span>
+          <code class="request-url">[base]/List/$plan-write</code>
+        </div>
+        <div class="request-meta">
+          <strong>Headers:</strong>
+          <code class="request-header">Content-Type: application/fhir+json</code>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tab">
+    <input type="radio" id="tab-request-body-journey-01-02" name="tab-group-journey-01-02" />
+    <label for="tab-request-body-journey-01-02">Request Body</label>
+    <div class="content-in-tab">
+    Todo Replace with Parameter wrapper:
+    {% fragment Bundle/At-Emed-Journey-01-02-Bundle-Medikationsplan-Tx JSON %}</div>
+  </div>
+  <div class="tab">
+    <input type="radio" id="tab-response-journey-01-02" name="tab-group-journey-01-02" />
+    <label for="tab-response-journey-01-02">Response Body</label>
+    <div class="content-in-tab">{% fragment Bundle/At-Emed-Journey-01-02-Bundle-plan-write-response JSON %}</div>
+  </div>
+</div>
+
+
+
+
+
 Im aktualisierten Medikationsplan sind die neuen Planeinträge sowie das Datum der Bearbeitung und als verantwortliche Ärztin Dr. Hausärztin ersichtlich.
 
 #### Journey-01-03

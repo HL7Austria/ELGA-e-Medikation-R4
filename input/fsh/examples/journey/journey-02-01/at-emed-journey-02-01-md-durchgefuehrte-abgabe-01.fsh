@@ -5,7 +5,7 @@ Description: "Bildet eine Durchgeführte Abgabe mit dem Arzneimittel Ramipril ge
 Usage: #example
 
 
-* contained[+] = contained-medication-journey-02-01-01
+* contained[+] = at-emed-journey-medicaiton-ramipril
 
 * extension[renderedDosageInstruction].valueMarkdown = "1-0-0-1 | Täglich: 1-0-0-0" 
 * extension[recorded].valueDateTime = "2026-02-28T11:00:00+00:00" 
@@ -14,7 +14,7 @@ Usage: #example
 * status = #completed
 
 // Referenz auf Contained Medication Ressource
-* medicationReference.reference = "#contained-medication-journey-02-01-01"
+* medicationReference.reference = "#at-emed-journey-medicaiton-ramipril"
 
 * subject = Reference(At-Emed-Example-Patient-01)
 * performer.actor = Reference(At-Emed-Example-Organization-Apo-01)
@@ -39,11 +39,3 @@ Usage: #example
 * dosageInstruction[standardDosage].route = $cs-medikationartanwendung#100000073619 "zum Einnehmen"
 //* dosageInstruction.doseAndRate.doseQuantity = 10 'mg' "mg"
 
-
-// Contained Medication *********************************************************************
-Instance: contained-medication-journey-02-01-01
-InstanceOf: AtElgaEmedMedicationStandardMedikation
-Title: "Beispiel Medikation Ramipril"
-Usage: #inline
-//* id = "contained-medication-journey-02-01-01"
-* code = $cs-asp-liste#2450836 "RAMIPRIL HEX TBL 5MG"

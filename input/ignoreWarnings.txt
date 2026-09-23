@@ -3,3 +3,35 @@
 # Add warning and/or information messages here after you've confirmed that they aren't really a problem
 # (And include comments like this justifying why)
 # See https://github.com/FHIR/sample-ig/blob/master/input/ignoreWarnings.txt for examples
+
+
+
+
+#Tergmit TX Warnings:
+A definition for CodeSystem 'https://termgit.elga.gv.at/CodeSystem/hl7-at-religionaustria' could not be found, so the code cannot be validated 
+ValueSet 'https://termgit.elga.gv.at/ValueSet/elga-religiousaffiliation' not found
+A definition for CodeSystem 'https://termgit.elga.gv.at/CodeSystem/iso-3166-1-alpha-3' could not be found, so the code cannot be validated
+ValueSet 'https://termgit.elga.gv.at/ValueSet/elga-laendercodes' not found
+ValueSet 'https://termgit.elga.gv.at/ValueSet/hl7-at-patientidentifier' not found
+None of the codings provided are in the value set 'Country ValueSet' (http://hl7.org/fhir/ValueSet/country|5.0.0), and a coding is recommended to come from this value set (codes = https://termgit.elga.gv.at/CodeSystem/iso-3166-1-alpha-3#AUT)
+ValueSet 'https://termgit.elga.gv.at/ValueSet/elga-medikationfrequenz' not found
+ValueSet 'https://termgit.elga.gv.at/CodeSystem/medikationartanwendung' not found
+ValueSet 'https://termgit.elga.gv.at/ValueSet-elga-medikationmengenart' not found
+ValueSet 'https://termgit.elga.gv.at/ValueSet-elga-medikationmengenart' not found
+ValueSet 'https://termgit.elga.gv.at/ValueSet/elga-medikationdarreichungsform' not found
+A definition for CodeSystem 'https://termgit.elga.gv.at/CodeSystem/medikationdarreichungsform' could not be found, so the code cannot be validated
+A definition for CodeSystem 'https://termgit.elga.gv.at/CodeSystem/atc-deutsch-wido' could not be found, so the code cannot be validated
+# Experimental and draft codesystem Warnings
+Reference to experimental CodeSystem https://fhir.hl7.at/elga/emed/r4/CodeSystem/MedicationRequestCategoryCS|0.1.0
+Reference to experimental CodeSystem https://fhir.hl7.at/elga/emed/r4/CodeSystem/AtElgaEmedCodeSystemDosageCategory|0.1.0
+Reference to experimental CodeSystem https://fhir.hl7.at/elga/emed/r4/CodeSystem/ElgaListEntryFlagCS|0.1.0
+Reference to draft CodeSystem http://hl7.org/fhir/CodeSystem/medicationrequest-status|4.0.1
+Reference to draft CodeSystem http://hl7.org/fhir/list-status|4.0.1	
+A definition for CodeSystem 'https://termgit.elga.gv.at/CodeSystem/elga-gtelvogdarollen' could not be found, so the code cannot be validated
+ValueSet 'https://termgit.elga.gv.at/ValueSet/hl7-at-practitionerrole' not found
+
+#AT Core Warnings
+No definition could be found for URL value 'urn:oid:1.2.40.0.10.1.4.3.1'
+No definition could be found for URL value 'urn:oid:1.2.40.0.10.2.1.1.149'
+No definition could be found for URL value 'urn:oid:1.2.3.4.5'
+

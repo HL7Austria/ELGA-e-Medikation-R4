@@ -4,7 +4,7 @@ Title: "Beispiel Journey 01-03: Geplante Abgabe 1"
 Description: "Bildet eine Geplante Abgabe des Arzneimittels Ramipril mit Dosierungsanweisungen gemäß zugehörigem Planeintrag ab."
 Usage: #example
 
-* contained[+] = contained-medication-journey-01-03-01
+* contained[+] = at-emed-journey-medicaiton-ramipril
 * text.status = #generated
 * text.div = "<div>TODO: Some Narrative</div>"
 // R5 Backports
@@ -19,7 +19,7 @@ Usage: #example
 * category[recipetype] = $cs-medication-rezeptart#KASSEN "Kassenrezept"
 
 // Referenz auf Contained Medication Ressource
-* medicationReference.reference = "#contained-medication-journey-01-03-01"
+* medicationReference.reference = "#at-emed-journey-medicaiton-ramipril"
 
 * subject = Reference(At-Emed-Example-Patient-01)
 * authoredOn = "2026-02-27T08:10:00+00:00" 
@@ -47,11 +47,3 @@ Usage: #example
 * dispenseRequest.numberOfRepeatsAllowed = 0
 * dispenseRequest.quantity.value = 1
 * dispenseRequest.quantity.unit = "Packung"
-
-// Contained Medication *********************************************************************
-Instance: contained-medication-journey-01-03-01
-InstanceOf: AtElgaEmedMedicationStandardMedikation
-Title: "Beispiel Medikation Ramipril"
-Usage: #inline
-
-* code = $cs-asp-liste#2450836 "RAMIPRIL HEX TBL 5MG"
