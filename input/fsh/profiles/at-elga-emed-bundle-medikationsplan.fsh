@@ -16,7 +16,7 @@ Description: "Das Bundle vom Typ Searchset bestehend aus:
 * timestamp 1..1 MS
 * timestamp ^short = "Zeitpunkt der Erstellung des Bundles." //TODO: Verwendung prüfen
 
-* link 0..0
+* link MS
 * link ^short = "Verweise auf weiterführende Informationen zum Bundle."  //TODO: Verwendung prüfen
 
 // Slicing legt fest, welche Entries erlaubt sind -> Unterscheidung der Slices anhand von Pfad und Typ 
@@ -43,7 +43,7 @@ Description: "Das Bundle vom Typ Searchset bestehend aus:
 * entry[Patient].resource only AtElgaCorePatient
 
 * entry[Authors].resource 1..1
-* entry[Authors].resource only AtElgaCorePractitioner or AtElgaEmedDeviceFachanwendung or AtElgaCorePractitionerRole or AtElgaCorePatient
+* entry[Authors].resource only AtElgaCorePractitioner or AtElgaEmedDeviceFachanwendung or AtElgaCorePractitionerRole
 
 * entry.link 0..0
 

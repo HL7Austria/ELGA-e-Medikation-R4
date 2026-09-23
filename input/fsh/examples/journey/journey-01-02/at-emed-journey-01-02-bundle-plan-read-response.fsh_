@@ -1,5 +1,5 @@
 Instance: At-Emed-Journey-01-02-Bundle-Medikationsplan
-InstanceOf: AtElgaEmedBundleMedikationsplan   
+InstanceOf: Bundle   
 Title: "Beispiel Journey 01-02: Medikationsplan-Bundle"
 Description: "Beispiel eines Medikationsplan-Bundles, das einen Mediaktionsplan (List) mit 2 Planeinträgen (MedicationRequests) referenziert."
 Usage: #example
