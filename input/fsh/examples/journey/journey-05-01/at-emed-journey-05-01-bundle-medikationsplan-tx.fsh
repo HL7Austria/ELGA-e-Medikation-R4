@@ -8,19 +8,16 @@ Usage: #example
 * timestamp = "2026-03-14T13:10:00+00:00"
 // Liste 
 * entry[Medikationsplan].resource = At-Emed-Journey-05-01-List-Medikationsplan
-* entry[Medikationsplan].fullUrl = "https://example.elga.com/List/At-Emed-Journey-05-01-List-Medikationsplan"
+* entry[Medikationsplan].fullUrl = "https://example.elga.com/List/4cb4dceb-173f-461a-a267-683ec33e4be1"
 * entry[Medikationsplan][=].request.method = #PUT 
-* entry[Medikationsplan][=].request.url = "List/At-Emed-Journey-05-01-List-Medikationsplan"
+* entry[Medikationsplan][=].request.url = "List/4cb4dceb-173f-461a-a267-683ec33e4be1"
 
-// Medikationsplaneinträge
+// Medikationsplaneintrag 1: Ramipril wird pausiert
 * entry[Medikationsplaneintrag][+].resource = At-Emed-Journey-05-01-Mr-Planeintrag-01
-* entry[Medikationsplaneintrag][=].fullUrl = "urn:uuid:5b9831e4-60a8-4152-8d37-f8c904bb3d73"
-* entry[Medikationsplaneintrag][=].request.method = #POST 
-* entry[Medikationsplaneintrag][=].request.url = "MedicationRequest"
+* entry[Medikationsplaneintrag][=].fullUrl = "https://example.elga.com/MedicationRequest/urn:uuid:5e947f71-6881-46cc-9b06-81a1743aa674"  // zu ersetzen mit vom Server vergebenen id (response-bundle: journey 01-02)
+* entry[Medikationsplaneintrag][=].request.method = #PUT
+* entry[Medikationsplaneintrag][=].request.url = "MedicationRequest/5e947f71-6881-46cc-9b06-81a1743aa674"
 
-* entry[Medikationsplaneintrag][+].resource = At-Emed-Journey-01-02-Mr-Planeintrag-02
-* entry[Medikationsplaneintrag][=].fullUrl = "urn:uuid:32506977-b3ba-4f6f-af14-f8ea6fef243a"
-* entry[Medikationsplaneintrag][=].request.method = #POST 
-* entry[Medikationsplaneintrag][=].request.url = "MedicationRequest"
+// Planeintrag 2 bleibt unverändert
 
 
