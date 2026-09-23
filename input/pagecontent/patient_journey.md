@@ -593,7 +593,7 @@ Zusätzlich wird die pausierte Ramipril Medikation wieder aufgenommen, aber in d
           <strong>Planeintrag hinzufügen:</strong>
           <ul>
             <li>
-              <a href="MedicationRequest-At-Emed-Journey-06-02-Mr-Planeintrag-03.html">Neuer Planeintrag 3: Wirstoff Metamizol</a>
+              <a href="MedicationRequest-At-Emed-Journey-06-02-Mr-Planeintrag-03.html">Neuer Planeintrag 3: Wirstoff Metamizol (in Arbeit)</a>  <!-- TODO: Wirkstoffangabe sobald Profil verfügbar, akl 22.9.2026 -->
             </li>
           </ul>
         </li>
@@ -654,6 +654,80 @@ Zusätzlich wird die pausierte Ramipril Medikation wieder aufgenommen, aber in d
 <br>
 [![overview](plantuml/patient_journey_06.svg){: .mx-auto style="width:55%;"}](plantuml/patient_journey_06.svg)
 <br> 
+
+
+
+### Journey-07: 22.3.2026 - Termin beim Hausarzt
+
+Nach der Entlassung sucht Herr Mustermann seine Hausärztin auf, um sich für das Schermzmittel ein Rezept ausstellen zu lassen.
+Diese ruft die e-Medikation von Herrn Mustermann ab und ändert den Planeintrag mit der Wirkstoffangabe und Dosierung auf auf das entsprechende verfügbare Arzneimttelprodukt mit passender Dosierung.
+
+<!-- TODO: akl 22.09.2026 Planeintrag anpassen
+Geplante Abgabe erstellen -->
+
+
+#### Journey-07-01
+<div class="tabs">
+  <div class="tab">
+    <input type="radio" id="tab-beispiele-07-01" name="tab-group-patient-journey-07-01" checked="true">
+    <label for="tab-beispiele-07-012">Beispiele</label>
+    <div class="content-in-tab">
+      <ul>
+        <li>
+          <strong>Planeintrag anpassen:</strong>
+          <ul>
+            <li>
+              <a href="MedicationRequest-At-Emed-Journey-06-02-Mr-Planeintrag-03.html">Neuer Planeintrag 3: passendes Arzneimittel zur Wirkstoffeangabe verodnen</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <strong>Medikationsplan aktualisieren:</strong>
+          <ul>
+            <li>
+              <a href="List-At-Emed-Journey-06-02-List-Medikationsplan.html">Medikationsplan: 3 Planeintrag geändert, 1 + 2 unverändert</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <strong>Transaction Bundle:</strong>
+          <ul>
+            <li>
+              <a href="Bundle-At-Emed-Journey-06-02-Bundle-Medikationsplan-Tx.html">Transaction Bundle</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="tab">
+    <input type="radio" id="tab-usecases-07-01" name="tab-group-patient-journey-07-01">
+    <label for="tab-usecases-07-01">Use Cases</label>
+    <div class="content-in-tab">
+      <ul>
+        <li>
+          <a href="Sub_UC_eMed_01.html#sub_uc_emed_01_01---aktuellen-medikationsplan-lesen-plan-read">Sub_UC_eMed_01_01 - Aktuellen Medikationsplan lesen (Plan-Read)</a>
+        </li>
+        <li>
+          <a href="Sub_UC_eMed_02_02 - Planeintrag in Medikationsplan hinzufügen">Sub_UC_eMed_02.html#sub_uc_emed_02_02---planeintrag-in-medikationsplan-hinzufügen</a>
+        </li>
+        <li>
+          <a href="Sub_UC_eMed_02_03 - Planeintrag im Medikationsplan ändern">Sub_UC_eMed_02.html#sub_uc_emed_02_03---planeintrag-im-medikationsplan-ändern</a>
+        </li>
+        <li>
+        Referenz auf Wirkstoffangabe im Medikationsplan: in Arbeit.  <!-- TODO Kapitel akl 21.9.2026 -->
+        </li>
+        <li>
+          <a href="Sub_UC_eMed_02.html#sub_uc_emed_02_04---planeintrag-im-medikationsplan-beibehalten">Sub_UC_eMed_02_04 - Planeintrag im Medikationsplan beibehalten</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+
+
 
 
 
