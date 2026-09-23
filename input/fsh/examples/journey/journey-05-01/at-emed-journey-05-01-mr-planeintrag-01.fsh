@@ -13,7 +13,7 @@ Usage: #example
 * extension[renderedDosageInstruction].valueMarkdown = "1-0-0-0 | Täglich: 1-0-0-0" 
 
 * status = $cs-medication-request-status#on-hold
-* statusReason.coding = $cs-medication-request-status-reason#surg "Patient scheduled for surgery"
+* statusReason.coding = http://terminology.hl7.org/CodeSystem/medicationrequest-status-reason#surg "Patient scheduled for surgery."
 * intent = https://hl7.org/fhir/R4/valueset-medicationrequest-intent#order
 * category = MedicationRequestCategoryCS#1 "Planeintrag" 
 * reportedBoolean = false 
@@ -21,9 +21,9 @@ Usage: #example
 // Referenz auf Contained Medication Ressource
 * medicationReference.reference = "#contained-medication-journey-05-01-01"
 
-* subject = Reference(At-Emed-Example-Patient-01)
+* subject = Reference(At-Emed-Example-Patient-01) "Anton Mustermann"
 * authoredOn = "2026-03-14T13:10:00+00:00"
-* requester = Reference(At-Emed-Example-PractitionerRole-01)
+* requester = Reference(At-Emed-Example-PractitionerRole-01) "Dr. Hausärztin"
 
 //* note.text = "Freitext Informationen zum Medikationsplaneintrag."
 
