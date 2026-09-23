@@ -18,3 +18,6 @@ Usage: #example
 * entry[Patient].fullUrl = "https://example.elga.com/Patient/At-Emed-Example-Patient-01"
 * entry[Authors].resource = At-Emed-Example-PractitionerRole-01
 * entry[Authors].fullUrl = "https://example.elga.com/Practitioner/At-Emed-Example-PractitionerRole-01"
+
+
+// = zu response_bundle umbauen (mit patient usw)
