@@ -1,16 +1,15 @@
-Instance: At-Emed-Journey-06-02-Mr-Planeintrag-03
+Instance: At-Emed-Journey-07-01-Mr-Planeintrag-03
 InstanceOf: AtElgaEmedMedicationRequestPlaneintrag   
-Title: "Beispiel Journey 06-02: Planeintrag 3"
-Description: "Bildet einen Planeintrag mit einer Wirkstoffangabe (Metamizol) und Dosierung ab."
+Title: "Beispiel Journey 07-01: Planeintrag 3"
+Description: "Bildet einen geänderten Planeintrag ab (Arzneimittel ersetzt reine Wirkstoffangabe, angepasste Dosierung."
 Usage: #example
 
-* contained[+] = contained-medication-journey-06-02-02-magistral
+* contained[+] = contained-medication-journey-07-01-02
 * courseOfTherapyType = $cs-medication-request-courseOfTherapyType#acute
 
 // R5 Backports
-* extension[effectiveDosePeriod].valuePeriod.start = "2026-02-27"
-* extension[effectiveDosePeriod].valuePeriod.end = "2026-03-20"
-* extension[renderedDosageInstruction].valueMarkdown = "1-0-1-0 | Täglich 1-0-1-0 für 3 Wochen" 
+* extension[effectiveDosePeriod].valuePeriod.start = "2026-03-19"
+* extension[renderedDosageInstruction].valueMarkdown = "1-1-1-1 | 4 x täglich 40 Tropfen"
 
 * status = $cs-medication-request-status#active
 * intent = https://hl7.org/fhir/R4/valueset-medicationrequest-intent#order
@@ -18,48 +17,34 @@ Usage: #example
 * reportedBoolean = false
 
 // Referenz auf Contained Medication Ressource
-* medicationReference.reference = "#contained-medication-journey-06-02-02-magistral"
+* medicationReference.reference = "#contained-medication-journey-07-01-02"
 
-* subject = Reference(At-Emed-Example-Patient-01)
+* subject = Reference(At-Emed-Example-Patient-01) "Anton Mustermann"
 * authoredOn = "2026-03-19T12:10:00+00:00"
-* requester = Reference(At-Emed-Example-PractitionerRole-01)
+* requester = Reference(At-Emed-Example-PractitionerRole-03) "Dr. Krankenhaus"
 
 //* note.text = "Freitext Informationen zum Medikationsplaneintrag."
 
 * dosageInstruction[standardDosage].extension[DosageCategory].valueCodeableConcept = AtElgaEmedCodeSystemDosageCategory#standard
 * dosageInstruction[standardDosage].sequence = 1
-* dosageInstruction[standardDosage].timing.repeat.frequency = 2
+* dosageInstruction[standardDosage].patientInstruction = "Nehmen Sie die Tropfen nach dem Essen ein."
+* dosageInstruction[standardDosage].timing.repeat.frequency = 4
 * dosageInstruction[standardDosage].timing.repeat.period = 1
 * dosageInstruction[standardDosage].timing.repeat.periodUnit = #d
-* dosageInstruction[standardDosage].timing.repeat.when[0] = $cs-timing#MORN "Morgens"
-* dosageInstruction[standardDosage].timing.repeat.when[+] = $cs-timing#EVE "Abends" 
-* dosageInstruction[standardDosage].timing.repeat.boundsDuration.value = 3
-* dosageInstruction[standardDosage].timing.repeat.boundsDuration.unit = "wk"
-// * dosageInstruction[standardDosage].doseAndRate.doseQuantity.value = 2        // TODO: Angabe für Salbe
-// * dosageInstruction[standardDosage].doseAndRate.doseQuantity.system = $cs-ucum
-// * dosageInstruction[standardDosage].doseAndRate.doseQuantity = $cs-ucum#Stueck "Stück"
-* dosageInstruction[standardDosage].route = https://termgit.elga.gv.at/CodeSystem-medikationartanwendung.html#100000073566 "Anwendung auf der Haut"
+* dosageInstruction[standardDosage].timing.repeat.when[0] = $cs-timing#MORN
+* dosageInstruction[standardDosage].timing.repeat.when[+] = $cs-timing#NOON
+* dosageInstruction[standardDosage].timing.repeat.when[+] = $cs-timing#EVE
+* dosageInstruction[standardDosage].timing.repeat.when[+] = $cs-timing#NIGHT
+* dosageInstruction[standardDosage].doseAndRate.doseQuantity.value = 40       
+* dosageInstruction[standardDosage].doseAndRate.doseQuantity = $cs-ucum#{Tropfen} "Tropfen"
+
 
 // Contained Medication *********************************************************************
-Instance: contained-medication-journey-06-02-02-magistral
+Instance: contained-medication-journey-07-01-02
 InstanceOf: AtElgaEmedMedicationMagistraleZubereitung
-Title: "Beispiel Magistrale Zubereitung (Dexpanthenol-Salbe)"
+Title: "Beispiel Wirkstoffangaben (Magelan)"
 Usage: #inline
 
-// * text.status = #additional
-// * text.div = "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n<p>Freitext-Informationen zur magistralen Anwendung.</p>\n</div>"
-//* status = #active
-//* manufacturer = Reference(AtElgaEmed-Example-Organization-Apo-01) "Amadeus Apotheke"
-* form.coding = https://termgit.elga.gv.at/CodeSystem/medikationdarreichungsform#100000073713 "Salbe"
+* code = $cs-asp-liste#4467812 "METAGELAN TR 500MG/ML"
 
-* ingredient[+].itemCodeableConcept = $cs-atc#A11HA30 "Dexpanthenol"
-* ingredient[=].strength.numerator = 5 'g' "g"
-* ingredient[=].strength.denominator = 100 'g' "g"
-* ingredient[+].itemCodeableConcept.text = "Salbengrundlage"
-* ingredient[=].isActive = false
-* ingredient[=].strength.numerator.value = 95
-* ingredient[=].strength.numerator.unit = "g"
-* ingredient[=].strength.denominator.value = 100
-* ingredient[=].strength.denominator.unit = "g"
-
-
+* ingredient.itemCodeableConcept = https://termgit.elga.gv.at/CodeSystem/medikation-ages-wirkstoffe#4467812 "METAMIZOL NATRIUM MONOHYDRAT"
