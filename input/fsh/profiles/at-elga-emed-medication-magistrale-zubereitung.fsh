@@ -59,7 +59,7 @@ Description: "Bildet eine Magistrale Zubereitung in der \"Medication\"-Ressource
 * ingredient.isActive ^short = "Aktive Wirkstoff TRUE/FALSE"
 
 * ingredient.strength 0..1 MS
-* ingredient.strength ^short = "Menge der vorhandenen Zutaten."
+* ingredient.strength ^short = "Menge der vorhandenen Zutaten."  // Menge des Wirkstoffs?
 
 * batch 0..0 // MS
 //ASW 22.09.2026 offen ob 0..0
