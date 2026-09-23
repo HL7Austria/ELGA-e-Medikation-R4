@@ -8,10 +8,10 @@ Usage: #example
 * mode = #working
 * code = $cs-sct#736378000 "Medikationsplan"
 // logische referenz über bpkgh
-* subject = Reference(At-Emed-Example-Patient-01)
+* subject = Reference(At-Emed-Example-Patient-01) "Anton Mustermann"
 * date = "2026-03-14T13:10:00+00:00"
 // logische referenz über oid
-* source = Reference(At-Emed-Example-PractitionerRole-01)
+* source = Reference(At-Emed-Example-PractitionerRole-01) "Dr. Hausärztin"
 // * orderedBy = http://terminology.hl7.org/CodeSystem/list-order#user
 
 // Listeneinträge
