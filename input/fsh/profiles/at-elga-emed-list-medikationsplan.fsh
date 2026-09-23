@@ -7,9 +7,16 @@ Diese enthält 0..* Einträge (List.entry), wobei jedes List.entry.item genau ei
 Die Reihung der List.entries bestimmt die Reihenfolge der Medikationsplaneinträge. 
 Jeder Listeneintrag enthält im Element List.entry.flag den Änderungsstatus des jeweiligen Medikationsplaneintrags."
 
+* id 1..1 MS
+* meta MS
+* text MS
+* implicitRules 0..0
+
 //TODO: Invariante, dass überall in der List der gleiche Patient enthalten sein muss
 
 * extension contains AtElgaEmedExtensionPatientModified named PatientModified 0..1
+
+//ASW 22.09.2026 TODO short für extension einfügen
 
 * status 1..1 MS
 * status from ElgaListStatusVS (required)
@@ -21,10 +28,11 @@ Jeder Listeneintrag enthält im Element List.entry.flag den Änderungsstatus des
 
 * title 0..0
 * title ^short = "Der Medikationsplan hat keinen Titel."
+//ASW 22.09.2026 TODO short entfernen und 0..0 entfernen -> laut guideline einfach optional und nicht verändert
 
 * code 1..1 MS 
 * code = $cs-sct#736378000 "Medikationsplan" (exactly)
-* code ^short = "Code, der den Typ der Liste beschreibt."
+* code ^short = "Code der den Medikationsplan identifiziert"
 
 * subject 1..1 MS
 * subject only Reference(AtElgaCorePatient) // TODO ELGA Patient ableiten
@@ -32,24 +40,28 @@ Jeder Listeneintrag enthält im Element List.entry.flag den Änderungsstatus des
 
 * encounter 0..0
 * encounter ^short = "Es wird kein Behandlungskontext dokumentiert."
+//ASW 22.09.2026 TODO bleibt 0..0 - fachlich streichen
 
 * date 1..1 MS
 * date ^short = "Letzte Aktualisierung des Medikationsplans."
 
 * source 1..1 MS
-* source only Reference(AtElgaCorePractitioner or AtElgaCorePractitionerRole or Device or AtElgaCorePatient)  // TODO ELGA Profile
+//ASW 22.09.2026 Patient nicht mehr möglich -> durch patientmodified abgebildet
+* source only Reference(AtElgaCorePractitioner or AtElgaCorePractitionerRole or Device)  // TODO ELGA Profile
 * source ^short = "Ersteller des Medikationsplans und für den Inhalt verantwortlich. 
 Im Falle eines GDA: Eindeutig identifiziert über den GDA-Index und berechtigt auf die e-Medikation 
-des Patienten zuzugreifen. Device nur für initiale Erstellung durch die Fachanwendung. ELGA-Teilnehmer nur Ausübung seiner Teilnehmerrechte (Löschen von Einträgen)."
+des Patienten zuzugreifen. Device nur für initiale Erstellung durch die Fachanwendung."
+//ASW 22.09.2026 TODO short anpassen
 
 * orderedBy 0..0 
+//ASW 22.09.2026 .orderedBy fachlich gelöscht
 * orderedBy ^short = "Die Reihenfolge der Einträge wird über die List.entries durch den Ersteller vorgegeben."
 // * orderedBy 1..1 MS  
 // * orderedBy from http://hl7.org/fhir/ValueSet/list-order 
 // * orderedBy = #user
 // * orderedBy ^short = "Dokumentiert, wie die Reihenfolge der Einträge festgelegt wurde."
 // Mögliche Codes: user | system | event-date | entry-date| priority | alphabetic | category | patient"
-
+//ASW 22.09.2026 .note fachlich gelöscht
 * note 0..0 
 * note ^short = "Keine Freitext-Anmerkungen im Medikationsplan." 
 
@@ -62,11 +74,13 @@ des Patienten zuzugreifen. Device nur für initiale Erstellung durch die Fachanw
 * entry.flag ^short = "Kennzeichnet die Art der Änderung des Medikationsplaneintrags: [New | Unchanged | Changed | Removed] Bedeutung: New: Neuer Planeintrag wird hinzugefügt | Unchanged: Bestehender Planeintrag wird beibehalten und zur Kenntnis genommen | Changed: Bestehender Planeintrag wird geändert | Removed: Bestehender Planeintrag wird entfernt"
 
 * entry.deleted 0..0 
+//ASW 22.09.2026 * entry.deleted fachlich gelöscht
 * entry.deleted ^short = "Keine Verwendung im Medikationsplan (da list.mode immer working)."
 //Kann nur verwendet werden, wenn list.mode = changes
 
 * entry.date 0..0 
-* entry.date ^short = "Kein Datum der Aufnahme bzw. Änderung des Eintrags im Medikationsplan. Das Datum ist nur im referenzierten Medikationsplaneintrag ersichtlich."
+//ASW 22.09.2026 * entry.date fachlich gelöscht
+* entry.date ^short = "Kein Datum der Aufnahme des Eintrags im Medikationsplan. Das Datum ist nur im referenzierten Medikationsplaneintrag ersichtlich."
 
 * entry.item 1..1 MS
 * entry.item only Reference(AtElgaEmedMedicationRequestPlaneintrag)
@@ -74,4 +88,5 @@ des Patienten zuzugreifen. Device nur für initiale Erstellung durch die Fachanw
 
 * emptyReason 0..1 MS
 * emptyReason from ElgaListEmptyReasonVS (required)
+//ASW 22.09.2026 code unavailable hinzufügen für den Fall, dass der Patient alle Einträge entfernt
 * emptyReason ^short = "Begründung, warum der Medikationsplan leer ist. Mögliche Ausprägungen: [notstarted |  nilknown] Bedeutung: notstarted: Intitalzustand - noch nie befüllt | nilknown: Patient nimmt derzeit keine Medikamente ein"

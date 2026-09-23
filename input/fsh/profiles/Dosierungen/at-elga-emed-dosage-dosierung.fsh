@@ -41,7 +41,7 @@ Um widersprüchliche Anweisungen zu vermeiden, ist entweder Dosage.timing oder D
 * site ^short = "Körperstelle, an der das Medikament angewendet wird, z.B. Haut, Auge, Ohr etc."
 
 * route 0..1 MS
-* route from $cs-medikationartanwendung (required) 
+* route from $cs-medikationartanwendung (required)  
 * route ^short = "Art der Anwendung der Arznei. (z.B. oral, nasal, intravenös, subkutan). Kann bei codierten Arzneien aus der ASP-Liste entnommen werden."
 
 * method 0..1 MS

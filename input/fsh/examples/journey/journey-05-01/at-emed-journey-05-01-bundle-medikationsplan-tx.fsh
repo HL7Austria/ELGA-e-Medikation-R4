@@ -14,12 +14,12 @@ Usage: #example
 
 // Medikationsplaneinträge
 * entry[Medikationsplaneintrag][+].resource = At-Emed-Journey-05-01-Mr-Planeintrag-01
-//* entry[Medikationsplaneintrag][=].fullUrl = "urn:uuid:0219ec70-d19a-48ff-94d3-5184b0eca4ac"
+* entry[Medikationsplaneintrag][=].fullUrl = "urn:uuid:5b9831e4-60a8-4152-8d37-f8c904bb3d73"
 * entry[Medikationsplaneintrag][=].request.method = #POST 
 * entry[Medikationsplaneintrag][=].request.url = "MedicationRequest"
 
 * entry[Medikationsplaneintrag][+].resource = At-Emed-Journey-01-02-Mr-Planeintrag-02
-//* entry[Medikationsplaneintrag][=].fullUrl = "urn:uuid:62e2daa5-c34b-4b97-8044-fd893bc99a58"
+* entry[Medikationsplaneintrag][=].fullUrl = "urn:uuid:32506977-b3ba-4f6f-af14-f8ea6fef243a"
 * entry[Medikationsplaneintrag][=].request.method = #POST 
 * entry[Medikationsplaneintrag][=].request.url = "MedicationRequest"
 

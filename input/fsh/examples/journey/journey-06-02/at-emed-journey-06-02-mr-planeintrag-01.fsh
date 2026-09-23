@@ -13,7 +13,7 @@ Usage: #example
 * extension[renderedDosageInstruction].valueMarkdown = "1-0-1-0 | Täglich: 1-0-1-0" 
 
 * status = $cs-medication-request-status#on-hold
-* statusReason.coding = $cs-medication-request-status-reason#surg "Patient scheduled for surgery"
+* statusReason.coding = http://terminology.hl7.org/7.4.0/CodeSystem-medicationrequest-status-reason.html#surg "Patient scheduled for surgery."
 * intent = https://hl7.org/fhir/R4/valueset-medicationrequest-intent#order
 * category = MedicationRequestCategoryCS#1 "Planeintrag" 
 * reportedBoolean = false 
