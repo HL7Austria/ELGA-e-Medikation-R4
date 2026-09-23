@@ -306,7 +306,7 @@ Anschließend speichert sie die neuen *Durchgeführte Abgaben* in der e-Medikati
               <a href="Bundle-At-Emed-Journey-02-01-Bundle-Durchgefuehrte-Abgaben-Tx.html">Durchgeführte-Abgaben-Transaction-Bundle</a>
             </li>
             <li>
-              <a href="Organization-At-Emed-Example-Organization-Apo-01.html">Apotheke (Organization)</a>
+              <a href="Organization-At-Emed-Example-Organization-02.html">Apotheke (Organization)</a>
             </li>
           </ul>
         </li>
@@ -575,7 +575,7 @@ Die Operation verläuft komplikationslos.
 
 #### Journey-06-02: 19.3.2026 - Entlassung
 
-Zwei Tage nach der Operation kann Herr Mustermann entlassen werden. Gegen die postoperativen Schmerzen soll er weiterhin den **Wirkstoff** Metamizol einnehmen. Dr. Krankenhaus dokumentiert dies in einem neuen Planeintrag: Metamizol 1.000 mg, 4x täglich oral, Abstand 6–8 Stunden.
+Zwei Tage nach der Operation kann Herr Mustermann entlassen werden. Gegen die postoperativen Schmerzen soll er weiterhin den **Wirkstoff** Metamizol einnehmen. Dr. Krankenhaus dokumentiert dies in einem neuen Planeintrag: Metamizol 1.000 mg, 4x täglich. <!-- > TODO: im Abstand von 6–8 Stunden -->
 
 Zusätzlich wird die pausierte Ramipril Medikation wieder aufgenommen, aber in der Dosis erhöht (auf 1-0-1-0). 
 
@@ -657,13 +657,27 @@ Zusätzlich wird die pausierte Ramipril Medikation wieder aufgenommen, aber in d
 
 
 
-### Journey-07: 22.3.2026 - Termin beim Hausarzt
+### Journey-07: 22.3.2026 - Termin bei Dr. Urlaubsvertretung
 
-Nach der Entlassung sucht Herr Mustermann seine Hausärztin auf, um sich für das Schermzmittel ein Rezept ausstellen zu lassen.
-Diese ruft die e-Medikation von Herrn Mustermann ab und ändert den Planeintrag mit der Wirkstoffangabe und Dosierung auf auf das entsprechende verfügbare Arzneimttelprodukt mit passender Dosierung.
+Nach der Entlassung sucht Herr Mustermann die Praxis seiner Hausärztin auf, um sich für das Schermzmittel ein Rezept ausstellen zu lassen.
+Diese wird aktuell von Frau **Dr. Urlaubsvertretung** vertreten.
+Dr. Urlaubsvertretung ruft die e-Medikation von Herrn Mustermann ab und ändert den Planeintrag mit der Wirkstoffangabe und Dosierung auf das entsprechende Arzneimttelprodukt mit passender Dosierung: Metagelan 500 mg/ml-Tropfen, 40 Tropfen 4-mal täglich.
 
-<!-- TODO: akl 22.09.2026 Planeintrag anpassen
-Geplante Abgabe erstellen -->
+Der Behandlungszeitraum für die Dexpanthenol-Salbe ist zwischenzeitlich **abgelaufen**. Dr. Urlaubsvertretung stellt fest, dass keine weitere Behandung nötig ist, der im Medikationsplan von der Fachanwendung zur Entfernung markierte Planeintrag wird durch die Aktualisierung des Medikationsplans bestätigt und wird beim nächsten Abruf nicht mehr aufscheinen.
+
+Zuletzt erstellt Dr. Urlaubsvertretung eine *Geplante Abgabe* von die Metagelan-Tropfen.
+
+<div class="dragon">
+<p class="note-to-balloters">
+Offene Punkte:<br>
+Wie wird von der Fachanwendung festgestellt, ob ein Behandlungszeitraum abgelaufen ist? <br>
+- extension[effectiveDosePeriod].valuePeriod.start + Dosierinformationen (für 3 Wochen) <br>
+- überschrittenes Datum in extension[effectiveDosePeriod].valuePeriod.end <br>
+-> bei beiden Varianten unklar, wann das Medikament abgeholt bzw. die Behandlung wirklich begonnen wurde (Abholdatum geht nur aus MediacationDispense hervor)
+</p>
+</div>
+
+<!-- TODO: akl 22.09.2026 Geplante Abgabe erstellen -->
 
 
 #### Journey-07-01
@@ -677,7 +691,15 @@ Geplante Abgabe erstellen -->
           <strong>Planeintrag anpassen:</strong>
           <ul>
             <li>
-              <a href="MedicationRequest-At-Emed-Journey-06-02-Mr-Planeintrag-03.html">Neuer Planeintrag 3: passendes Arzneimittel zur Wirkstoffeangabe verodnen</a>
+              <a href="MedicationRequest-At-Emed-Journey-07-01-Mr-Planeintrag-03.html">Neuer Planeintrag 3: passendes Arzneimittel zur Wirkstoffeangabe verodnen</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <strong>abgelaufenen Planeintrag bestätigen:</strong> (keine Änderung erforderlich)
+          <ul>
+            <li>
+              <a href="MedicationRequest-At-Emed-Journey-07-01-Mr-Planeintrag-02.html">Neuer Planeintrag 2: Statusänderung wurde bereits durch Fachanwendung vorgenommen</a>
             </li>
           </ul>
         </li>
@@ -685,7 +707,7 @@ Geplante Abgabe erstellen -->
           <strong>Medikationsplan aktualisieren:</strong>
           <ul>
             <li>
-              <a href="List-At-Emed-Journey-06-02-List-Medikationsplan.html">Medikationsplan: 3 Planeintrag geändert, 1 + 2 unverändert</a>
+              <a href="List-At-Emed-Journey-07-01-List-Medikationsplan.html">Medikationsplan: Planeintrag 1 unverändert, Planeintrag 2 abgelaufen, Planeintrag 3: Wirkstoffangabe mit Arzneimittel ersetzt</a>
             </li>
           </ul>
         </li>
@@ -693,7 +715,7 @@ Geplante Abgabe erstellen -->
           <strong>Transaction Bundle:</strong>
           <ul>
             <li>
-              <a href="Bundle-At-Emed-Journey-06-02-Bundle-Medikationsplan-Tx.html">Transaction Bundle</a>
+              <a href="Bundle-At-Emed-Journey-07-01-Bundle-Medikationsplan-Tx.html">Transaction Bundle</a>
             </li>
           </ul>
         </li>
@@ -709,13 +731,10 @@ Geplante Abgabe erstellen -->
           <a href="Sub_UC_eMed_01.html#sub_uc_emed_01_01---aktuellen-medikationsplan-lesen-plan-read">Sub_UC_eMed_01_01 - Aktuellen Medikationsplan lesen (Plan-Read)</a>
         </li>
         <li>
-          <a href="Sub_UC_eMed_02_02 - Planeintrag in Medikationsplan hinzufügen">Sub_UC_eMed_02.html#sub_uc_emed_02_02---planeintrag-in-medikationsplan-hinzufügen</a>
-        </li>
-        <li>
           <a href="Sub_UC_eMed_02_03 - Planeintrag im Medikationsplan ändern">Sub_UC_eMed_02.html#sub_uc_emed_02_03---planeintrag-im-medikationsplan-ändern</a>
         </li>
         <li>
-        Referenz auf Wirkstoffangabe im Medikationsplan: in Arbeit.  <!-- TODO Kapitel akl 21.9.2026 -->
+        Abgelaufener Planeintrag: zu verlinken.  <!-- TODO Kapitel akl 21.9.2026 -->
         </li>
         <li>
           <a href="Sub_UC_eMed_02.html#sub_uc_emed_02_04---planeintrag-im-medikationsplan-beibehalten">Sub_UC_eMed_02_04 - Planeintrag im Medikationsplan beibehalten</a>
@@ -728,9 +747,11 @@ Geplante Abgabe erstellen -->
 
 
 
+#### Journey-07: Ablauf - Termin bei Dr. Urlaubsvertretung
 
-
-
+<br>
+[![overview](plantuml/patient_journey_07.svg){: .mx-auto style="width:55%;"}](plantuml/patient_journey_07.svg)
+<br> 
 
 **7.3.2026: Teilabgabe in der Apotheke**
 
