@@ -23,9 +23,9 @@ Usage: #example
 // Referenz auf Contained Medication Ressource
 * medicationReference.reference = "#AtEmedExampleMedicationIbuprofen200"
 
-* subject = Reference(At-Emed-Example-Patient-01)
+* subject = Reference(At-Emed-Example-Patient-01) "Anton Mustermann"
 * authoredOn = "2026-02-27T10:20:00+00:00"
-* requester = Reference(At-Emed-Example-PractitionerRole-01)
+* requester = Reference(At-Emed-Example-PractitionerRole-01) "Dr. Hausärztin"
 
 * dosageInstruction[standardDosage].extension[DosageCategory].valueCodeableConcept = AtElgaEmedCodeSystemDosageCategory#standard
 * dosageInstruction[standardDosage].sequence = 1

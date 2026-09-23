@@ -5,7 +5,7 @@ Alias: $v2-0203 = http://terminology.hl7.org/CodeSystem/v2-0203
 Instance: At-Emed-Example-Patient-01
 InstanceOf: AtElgaCorePatient
 Title: "Beispiel Patient 01"
-Description: "Beispiel eines Patienten."
+Description: "Beispiel eines Patienten (Anton Mustermann)."
 Usage: #example
 * meta.profile = "http://hl7.at/fhir/HL7ATCoreProfiles/4.0.1/StructureDefinition/at-core-patient"
 * extension[0].extension.url = "code"
