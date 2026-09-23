@@ -7,7 +7,7 @@ Usage: #example
 * type = #searchset
 * timestamp = "2026-02-27T08:00:00+00:00" 
 * entry[Medikationsplan].resource = At-Emed-Journey-01-01-List-Medikationsplan
-* entry[Medikationsplan].fullUrl = "https://example.elga.com/List/4cb4dceb-173f-461a-a267-683ec33e4be1"
+* entry[Medikationsplan].fullUrl = "https://example.elga.com/List/4cb4dceb-173f-461a-a267-683ec33e4be1"  // 4cb4dceb-173f-461a-a267-683ec33e4be1 -> id kommt vom Server -> bei PUT auf die Liste verwenden!
 * entry[Patient].resource = At-Emed-Example-Patient-01
 * entry[Patient].fullUrl = "https://example.elga.com/Patient/At-Emed-Example-Patient-01"
 * entry[Authors].resource = At-Emed-Example-Device-01
@@ -23,7 +23,7 @@ Description: "Beispiel eines leeren Mediaktionsplans (List-Ressource ohne Eintr√
 * status = #current
 * mode = #working
 * code = $cs-sct#736378000 "Medikationsplan"  
-* subject = Reference(At-Emed-Example-Patient-01)
+* subject = Reference(At-Emed-Example-Patient-01) "Anton Mustermann"
 * date = "2026-02-27T08:00:00+00:00" 
 // Verantworlich f√ºr die intitiale Erstellung ist die Flachanwendung
 * source = Reference(At-Emed-Example-Device-01)
