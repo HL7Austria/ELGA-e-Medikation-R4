@@ -3,7 +3,7 @@ Parent: AtElgaEmedMedicationRequestBase
 Id: at-elga-emed-medicationrequest-planeintrag
 Title: "At ELGA e-Medikation MedicationRequest Planeintrag"
 Description: "Ein Planeintrag im Medikationsplan wird durch eine \"MedicationRequest\"-Ressource abgebildet.
-Sie enthält genau ein Arzneimittel mit dessen Dosierung, wobei das Arzneimittel verpflichtend mit einer contained Medication-Ressource dokumentiert wird.
+Sie enthält genau ein Arzneimittel mit dessen Dosierung, wobei das Arzneimittel entweder verpflichtend mit einer contained Medication-Ressource oder einer logischen Referenz über die PZN dokumentiert wird.
 Der Planeintrag kann in weiterer Folge als Grundlage für die Erstellung einer \"Geplanten Abgabe\" dienen. Es werden R5-Backport-Extensions verwendet."
 // TODO: Statt MS Obligations für alle Elemente, daher später kein 0..0 nötig
 
@@ -12,14 +12,17 @@ Der Planeintrag kann in weiterer Folge als Grundlage für die Erstellung einer \
 // Extensions
 * extension contains $medicationRequest-effectiveDosePeriod-r5 named effectiveDosePeriod 1..1
 * extension[effectiveDosePeriod] ^short = "Zeitraum, in dem das Arzneimittel eingenommen werden soll." //TODO wording prüfen ob wirklich Einnahmezeitraum vgl. Dosierung
+//ASW 22.09.2026 TODO beschreiben, dass bei Akutmedikation der Zeitraum der effectiveDosePeriod mit der Zeitlichen Einschränkung der Dosage übereinstimmen muss (bei mehreren dosageIntstrucitons müssen sowieso alle die gleiche zeitliche Einschränkung haben)
+
 * extension contains $medicationrequest-rendereddosageinstruction-r5 named renderedDosageInstruction 0..1
-* extension[renderedDosageInstruction] ^short = "Vollständige Darstellung der Dosierungsanweisungen"
+* extension[renderedDosageInstruction] ^short = "Vollständige textuelle Zusammenfassung der Dosierungsanweisungen - wird von der Fachanwendung anhand der definiert Regeln befüllt."
 
 // IHE extension statt Backport Extension: Verwendung zu klären
 // * extension contains $ihe-ext-medicationrequest-offlabeluse named offLabelUse 0..1 
 // * extension[offLabelUse] ^short = "Weist darauf hin, dass der verschreibende Arzt das Medikament wissentlich für eine Indikation, Altersgruppe, Dosierung oder Verabreichungsform verschrieben hat, die nicht von den Aufsichtsbehörden zugelassen ist und in der Verschreibungsinformation für das Produkt nicht erwähnt wird."
 
 * identifier 0..1 //1..1  MS  TODO: entfernt von AKL 7.9.2026
+//ASW 22.09.2026 - short entfernen - laut neuer guidance nicht relevant
 * identifier ^short = "Planeintrag-ID." // TODO: Verwendung einer logischen Planeintrag-ID prüfen. Details zur Herstellung von Bezügen von geänderten Planeinträgen, siehe Definition."
 // * identifier ^definition = """
 // Planeintrag-ID zur Herstellung eines Bezugs von geänderten Planeinträgen.
@@ -36,12 +39,14 @@ Der Planeintrag kann in weiterer Folge als Grundlage für die Erstellung einer \
 * status ^short = "Status des Planeintrags. Mögliche Ausprägungen: [active | on-hold | completed | stopped | entered-in-error]. Bedeutung: active: Planeintrag einer aktiven Medikation, die eingenommen werden soll | on-hold: Planeintrag ist pausiert, die Therapie ist unterbrochen (Wiederaufnahme vorgesehen) | completed: Therapie gemäß Planeintrag wie geplant durchgeführt und abgeschlossen | stopped: Therapie gemäß Planeintrag vorzeitig gestoppt und abgeschlossen | entered-in-error: Fehlerhafter Planeintrag storniert und abgeschlossen."
 
 * statusReason MS
+//ASW 22.09.2026 TODO short einfügen
 * statusReason 0..1    //(ex) https://hl7.org/fhir/R4/valueset-medicationrequest-status-reason.html."
 * statusReason from AtElgaEmedValueSetPlaneintragStatusReasonVS
 * statusReason.coding ^short = "Codierte Begründung für den Status des Planeintrags."
 * statusReason.coding.code 1..1
 * statusReason.text 0..1  MS
-* statusReason.text ^short = "Begründung für den Status des Planeintrags (Freitext), z.B. warum ein Medikament abgesetzt wurde." 
+* statusReason.text ^short = "Begründung falls der Code 'other' angegeben wurde (Freitext)." 
+//ASW 22.09.2026 TODO Invariante - text darf nur verwendet werden wenn der code other ist
 // TODO: müssen bei bestimmten Status (z.B. stopped) zwingend Begründungen angegeben werden? Evtl. Invariante erstellen.
 * obeys at-emed-planeintrag-status-reason-beim-absetzen
 
@@ -54,14 +59,17 @@ Der Planeintrag kann in weiterer Folge als Grundlage für die Erstellung einer \
 * category.coding.system = Canonical(MedicationRequestCategoryCS)
 * category.coding.system 1..1
 * category.coding.code = #1   // Display nicht fixieren -> Übersetzungen
+//ASW 22.09.2026 TODO code von 1 zu plan ändern
 * category.coding.code 1..1
 * category from MedicationRequestCategoryVS (required)
 * category ^short = "Kategorie zur Unterscheidung eines Planeintrags von einer geplanten Abgabe (beide haben intent order)"
 
 * priority 0..0
+//ASW 22.09.2026 fachlich gestrichen - beschreibung weg
 * priority ^short = " Medikationsplaneinträge können nicht mit einer Priorität versehen werden: (req) routine | urgent | asap | stat."
 
 * doNotPerform 0..0 
+//ASW 22.09.2026 fachlich gestrichen - beschreibung weg
 * doNotPerform ^short = "Arzneimittel, die (z.B. aufgrund einer Allergie) nicht eingenommen bzw. verordnet werden dürfen, werden nicht dokumentiert." // TODO: Fachlich zu prüfen. Auch im Kontext mit status und statusReason zu betrachten. Evtl. erst in späterer Version"
 
 * reportedReference 0..0  
@@ -74,18 +82,19 @@ Der Planeintrag kann in weiterer Folge als Grundlage für die Erstellung einer \
 * medication[x] 1..1 MS  
 * medication[x] only Reference(AtElgaEmedMedicationStandardMedikation or AtElgaEmedMedicationMagistraleZubereitung)  
 * medication[x] ^type.aggregation = #contained
-
-* medication[x] ^short = "Das Arzneimittel wird immer in einer contained Medication Ressource dokumentiert, damit Arzneimittel mit und ohne PZN einheitlich dokumentiert werden können."
+* medication[x] ^short = "Das Arzneimittel wird in einer contained Medication Ressource oder als logische Referenz dokumentiert, damit Arzneimittel mit und ohne PZN einheitlich dokumentiert werden können."
 
 // --- Subject ---
 * subject only Reference(AtElgaCorePatient) // ag auch eu-patient, evtl nur verschl. bpkh, daten zpi verfügbar, auch mit svnr möglich, speicherfristen
 * subject 1..1 MS
-* subject ^short = "Patient, für den der Planeintrag ausgestellt werden soll, der über den Zentralen Patientenindex identifizierbar und Teilnehmer von ELGA e-Medikation ist."
+* subject ^short = "ELGA-Teilnehmer, für den der Medikationsplan dokumentiert wird."
 
 * encounter 0..0
+//ASW 22.09.2026 fachlich gestrichen - beschreibung weg
 * encounter ^short = "Es wird kein Behandlungskontext dokumentiert."
 
 * supportingInformation 0..0
+//ASW 22.09.2026 fachlich gestrichen - beschreibung weg
 * supportingInformation ^short = "Keine Referenzen auf zusätzliche Patienteninformationen (Ressource Any) im Planeintrag."
 
 // -- AuthoredOn ---
@@ -96,36 +105,47 @@ Der Planeintrag kann in weiterer Folge als Grundlage für die Erstellung einer \
 * requester 1..1 MS  // zu hinterfragen, ob AtElgaCorePractitionerRole + HL7ATCoreOrganization nötig 
 * requester only Reference(AtElgaCorePractitioner or AtElgaCorePractitionerRole or HL7ATCoreOrganization)
 * requester ^short = "Arzt oder Ärztin, die den Planeintrag erstellt hat und für den Inhalt verantwortlich ist. Eindeutig identifiziert über den GDA-Index und berechtigt auf die ELGA e-Medikation des Patienten zuzugreifen."
+//ASW 22.09.2026 TODO short anpassen
 
 * performer 0..0 
 * performer ^short = "Der gewünschte Ausführende der medikamentösen Behandlung (z.B. der Ausführende der Medikamentengabe). Keine Verwendung im Planeintrag." //TODO: evtl im Kontext Medikationsblatt zu prüfen.
+//ASW 22.09.2026 fachlich gestrichen - beschreibung weg
 
 * performerType 0..0
 * performerType ^short = "Rollen: https://hl7.org/fhir/R4/valueset-performer-role.html. Keine Verwendung im Planeintrag." // TODO: evtl im Kontext Medikationsblatt zu prüfen.
+//ASW 22.09.2026 fachlich gestrichen - beschreibung weg
 
 * recorder 0..0
 * recorder ^short = "Die Person, die den Planeintrag im Auftrag eines GDA eingegeben hat." // TODO: Prüfen, ob eine juristische Verpflichtung zur Dokumentation der Schreibkraft besteht."
+//ASW 22.09.2026 TODO fachlich hinterfragen
+
 
 // Grund für die Medikation 
 * reasonCode 0..0 
-//* reasonCode from $cs-sct (required)
-* reasonCode ^short = "Grund für die Verordnung des Arzneimittels. Entweder Code oder Referenz. Verwendung erst, wenn codierte Angabe möglich." //TODO: Evtl. Invariante
+//ASW 22.09.2026 fachlich gestrichen 
 * reasonReference 0..0 
+//ASW 22.09.2026 fachlich gestrichen 
+* reasonReference ^short = "Grund für die Verordnung des Arzneimittels. Wird zu einem späteren Zeitpunkt im Kontext von EDiagnose ergänzt."
 
 * instantiatesCanonical 0..0 
+//ASW 22.09.2026 fachlich gestrichen - beschreibung weg
 * instantiatesCanonical ^short = "URL, die auf eine Richtlinie/Guideline verweist, die von diesem Planeintrag ganz oder teilweise eingehalten wird. Derzeit keine Verwendung im Planeintrag."
 
 * instantiatesUri 0..0 
+//ASW 22.09.2026 fachlich gestrichen - beschreibung weg
 * instantiatesUri ^short = "URL, die auf eine extern gepflegte Richtlinie/Guideline verweist, die von diesem Planeintrag ganz oder teilweise eingehalten wird. Derzeit keine Verwendung im Planeintrag."
 
-* basedOn 0..0 
+* basedOn 0..0
+//ASW 22.09.2026 fachlich gestrichen - beschreibung weg
 //* basedOn only Reference(AtElgaEmedMedicationRequestPlaneintrag)
-* basedOn ^short = "Keine Verwendung im Planeintrag." // TODO: Verwendung vermutlich nicht möglich, da keine versionsspezifischen Referenzen verwendet werden."
+* basedOn ^short = "Keine Verwendung im Planeintrag."
 
 * groupIdentifier 0..0
+//ASW 22.09.2026 fachlich gestrichen - begründung angeben
 * groupIdentifier ^short = "Erst bei der geplanten Abgabe (Rezepterstellung) relevant." // TODO: Evtl ein Verweis auf erstellte Rezepte? Würde Extension erfordern, da Kardinalität nur 0..1 zulässig"
 
 * courseOfTherapyType 1..1 MS 
+//ASW 22.09.2026 TODO valueset verlinken und einschränken
 * courseOfTherapyType ^short = "Gesamtmuster der Medikamentengabe. Mögliche Ausprägungen: [continuous | acute ]" //TODO: seasonal evtl. durch Dosierungsinformationen abgedeckt
 // Invariante, die prüft: wenn continuous, dann kein Enddatum für Behandlungszeitraum.
 // TODO: seasonal entfernen
@@ -133,9 +153,12 @@ Der Planeintrag kann in weiterer Folge als Grundlage für die Erstellung einer \
 * obeys e-med-acute-medication-effectiveDosePeriod
 
 * insurance 0..0
+//ASW 22.09.2026 laut guideline nicht relevant
 * insurance ^short = "Keine Verwendung im Planeintrag."
 
-* note 0..* MS 
+* note 0..1 MS 
+//ASW 22.09.2026 TODO Verwendung zu klären - evtl in Dosierung ausreichend
+//ASW 22.09.2026 TODO Author, Datum, mehrere erlaubt? Annotation profilieren 
 * note ^short = "Zusätzliche Informationen zum Planeintrag." // TODO: fachlich prüfen, an welchen Stellen Freitext erforderlich sein soll/muss. Auch im Kontext zu entered-in-error Informationen."
 
 
@@ -146,16 +169,20 @@ Der Planeintrag kann in weiterer Folge als Grundlage für die Erstellung einer \
 * dispenseRequest ^short = "Details zur geplanten Abgabe des Arzneimittels im Medikationsplan. Keine Verwendung im Planeintrag."
 
 * substitution 0..0 // 
+//ASW 22.09.2026 TODO fachlich gestrichen
 * substitution ^short = "Gibt an, ob das Arzneimittel substituiert werden darf (Absicht des Arztes, der den Planeintrag erstellt). Derzeit keine Verwendung im Planeintrag." 
 // Es kann für den Patienten selbst oder das Pflegeheim eine wichtige Information sein, mit welchem Medikament das verordnete Medikament im Bedarfsfall ersetzen werden kann. Derzeit keine Verwendung, Backlog bezügl. Pflege.
 
 * priorPrescription 0..1 MS
+//ASW 22.09.2026 TODO entfernen ohne beschreibung
 * priorPrescription ^short = "Im Falle einer Änderung wird auf den ersetzten Planeintrag verwiesen."
 
 * detectedIssue 0..0
+//ASW 22.09.2026 TODO entfernen ohne beschreibung
 * detectedIssue ^short = "Klinisches Problem mit Maßnahme (Referenz auf Ressouce DetectedIssue). Keine Verwendung im Planeintrag."
 
 * eventHistory 0..0
+//ASW 22.09.2026 TODO entfernen ohne beschreibung
 * eventHistory ^short = "Referenz auf Provenance-Ressourcen, die verschiedene relevante Versionen dieser Ressource dokumentieren. Keine Verwendung im Planeintrag."
 
 
@@ -181,3 +208,8 @@ Invariant: at-emed-planeintrag-status-reason-beim-absetzen
 Description: "Bei Status 'stopped' oder 'entered-in-error' muss ein statusReason angegeben werden."
 * severity = #error
 * expression = "(status = 'stopped' or status = 'entered-in-error') implies statusReason.coding.code.exists()"
+//ASW 22.09.2026 TODO statusReason nur bei diesen Statusvarianten nicht bei active ect.
+
+//ASW 22.09.2026 TODO bei on hold auch statusreason???
+
+//ASW 22.09.2026 TODO path bei invarianten mit angeben

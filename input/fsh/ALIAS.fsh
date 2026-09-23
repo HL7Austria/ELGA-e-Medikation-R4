@@ -18,6 +18,7 @@ Alias: $cs-timing = http://terminology.hl7.org/CodeSystem/v3-TimingEvent
 Alias: $cs-asp-liste = https://termgit.elga.gv.at/CodeSystem/asp-liste
 Alias: $cs-atc = https://termgit.elga.gv.at/CodeSystem/atc-deutsch-wido
 Alias: $cs-emed-doseform = https://termgit.elga.gv.at/CodeSystem/medikationdarreichungsform     // Gel, Kapsel, Salbe, Tablette  ...
+Alias: $vs-emed-doseform = https://termgit.elga.gv.at/ValueSet/elga-medikationdarreichungsform
 Alias: $vs-emed-mengenart = https://termgit.elga.gv.at/ValueSet-elga-medikationmengenart        // Percent, PerHour, mg, Tablette ...
 
 //Dosierungen

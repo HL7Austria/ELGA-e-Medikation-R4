@@ -5,7 +5,8 @@ Description: "Bildet eine Geplante Abgabe des Arzneimittels Ramipril mit Dosieru
 Usage: #example
 
 * contained[+] = contained-medication-journey-01-03-01
-
+* text.status = #generated
+* text.div = "<div>TODO: Some Narrative</div>"
 // R5 Backports
 * extension[effectiveDosePeriod].valuePeriod.start = "2026-02-27"
 * extension[renderedDosageInstruction].valueMarkdown = "1-0-0-1 | Täglich: 1-0-0-0" 

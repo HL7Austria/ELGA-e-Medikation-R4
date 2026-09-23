@@ -12,26 +12,30 @@ Description: "Bildet ein Arzneimittel in der \"Medication\"-Ressource ab. Wird g
 //     a. Bei Verschreibung von Wirkstoffen
 //     b. Bei magistraler Anwendung, Infusionen 
 
+* id 1..1 MS
+* meta MS
+* text MS
+* implicitRules 0..0
 
-* identifier 0..0 
-* identifier ^short = "Eindeutiger Identifikator für das Arzneimittel. Wird nicht benötigt, da PZN, sofern vorhanden, im Code angegeben wird."
 
+//ASW 22.09.2026 TODO slice entfernen
+//ASW 22.09.2026 TODO beschreibung von PZN aus CDA
 //* code 1..1 MS
-* code.coding ^slicing.discriminator.type = #value
-* code.coding ^slicing.discriminator.path = "system"
-* code.coding ^slicing.rules = #closed
-* code.coding ^slicing.ordered = false
-* code.coding contains   
-    PZN 0..1 MS and
-    PCID 0..1 MS
+//* code.coding ^slicing.discriminator.type = #value
+//* code.coding ^slicing.discriminator.path = "system"
+//* code.coding ^slicing.rules = #closed
+//* code.coding ^slicing.ordered = false
+//* code.coding contains   
+//    PZN 0..1 MS and
+//    PCID 0..1 MS
     //ASW 21.09.2026 TODO: noch zu klären welche weiteren identifikatoren erlaubt sind
-
-// TODO Invariante eines der beiden muss vorhanden sein
-* code.coding[PZN].system = $cs-asp-liste
-* code.coding[PZN].code 1..1
-* code.coding[PCID].system = "1.2.40.0.34.4.27" //ASW 21.09.2026: TODO Codesystem
-* code.coding[PCID].code 1..1
-* code ^short = "Code des Arzneimittels. Hier muss die Pharmazentralnummer (PZN) aus der ASP-Liste angegeben werden, sofern vorhanden."
+// Invariante eines der beiden muss vorhanden sein
+* code.coding.system = $cs-asp-liste
+* code.coding.code 1..1
+//* code.coding[PCID].system = "1.2.40.0.34.4.27" //ASW 21.09.2026: TODO Codesystem
+//* code.coding[PCID].code 1..1
+* code ^short = "Code des Arzneimittels. Hier muss die Pharmazentralnummer (PZN) aus der ASP-Liste angegeben werden."
+* code 1..1 MS
 // TODO: Slicing für meherere Codings
 // Gem. CDA V3: 
 // Das Codesystem Pharmazentralnummer {1.2.40.0.34.4.16} wird am Terminologieserver in der ASP-Liste (Liste der humanen Arzneispezialitäten gelistet nach PZN) publiziert, 
@@ -44,30 +48,26 @@ Description: "Bildet ein Arzneimittel in der \"Medication\"-Ressource ab. Wird g
 
 * status 0..0 
 * status ^short = "Verfügbarkeitsstatus des Arzneimittels:(req) active | inactive | entered-in-error. https://hl7.org/fhir/R4/valueset-medication-status.html.
- Keine Verwendung im Kontext Planeintrag."
+ Keine Verwendung."
 
-* manufacturer 0..0 
-//* manufacturer only Reference(HL7ATCoreOrganization)
-* manufacturer ^short = "Der Hersteller des Arzneimittels. Keine Verwendung im Kontext Planeintrag." 
-//TODO: Prüfen, ob im Kontext Durchgeführte Abgabe und magistraler Zubereitung erforderlich; HL7ATCoreOrganization schränkt auf Organisationen gemäß GDA-Index ein."
 
-* form 0..1 MS 
-* form from $cs-emed-doseform (required)
-* form ^short = "Die Darreichungsform des Arzneimittels. Wenn PZN vorhanden 0..0, da Anreicherung aus ASP-Liste durch Fachanwendung."
+* form 0..1 MS
+* form from $vs-emed-doseform (required)
+* form ^short = "Die Darreichungsform des Arzneimittels."
 // Gem. CDA V3: 
 // Für die e-Medikation ist das CodeSystem ​Medikation_Darreichungsform 1.2.40.0.10.1.4.3.4.3.5 zu verwenden.
 // Für den eHDSI Kontext ist das CodeSystem 0.4.0.127.0.16.1.1.2.1 zu verwenden."
 
 * amount 0..1 MS  
-* form from $vs-emed-mengenart (required)
-* amount ^short = "Die Gesamtmenge des Arzneimittels in der Verpackung. 
-Wenn PZN vorhanden 0..0, da Anreicherung aus ASP-Liste durch Fachanwendung."
+* amount.numerator 1..1 MS
+* amount.numerator.code 1..1 MS
+* amount.numerator.code from $vs-emed-mengenart (required)
+* amount.denominator 0..0
+* amount ^short = "Die Gesamtmenge des Arzneimittels in der Verpackung."
 
 * ingredient 0..* MS
-* ingredient ^short = "Wirkstoffe. Keine Angabe, wenn PZN vorhanden (Anreicherung aus ASP-Liste durch Fachanwendung)."
-// Gemäß AG: Einschränkung auf CodeableConcept, TODO: prüfen, wie Freitext bei magistraler Zubereitung abgebildet wird:
-// Evtl. in einer Substance-Ressource in der description (string).
-* ingredient.item[x] only CodeableConcept or Reference(AtElgaEmedSubstanceWirkstoff) // or AtElgaEmedMedicationMedikation, TODO Substance profilieren
+* ingredient ^short = "Wirkstoffe."
+* ingredient.item[x] only CodeableConcept or Reference(AtElgaEmedSubstanceWirkstoff or AtElgaEmedMedicationStandardMedikation) // TODO Substance profilieren
 * ingredient.itemCodeableConcept 0..1 MS 
 // * ingredient.itemCodeableConcept ^short = "Inhaltsstoff codiert." TODO: prüfen, Einschränkung auf SPOR (EMA). Gemüß CDA v3:
 // Wirkstoff-Codes stammen aus der ATC-Klassifikation (Anatomical Therapeutic Chemical Classification), die von der WHO herausgegeben wird. 
@@ -86,7 +86,7 @@ Wenn PZN vorhanden 0..0, da Anreicherung aus ASP-Liste durch Fachanwendung."
 * ingredient.strength ^short = "Menge der vorhandenen Zutaten."
 
 * batch 0..0 // MS
-* batch ^short = "Informationen zur Charge des Arzneimittels." // Keine Verwendung im Kontext Planeintrag.
+* batch ^short = "Informationen zur Charge des Arzneimittels." 
 
 
 // Invariant: contained-sub

@@ -5,7 +5,8 @@ Description: "Bildet eine Geplante Abgabe mit einer magistralen Zubereitung (Dex
 Usage: #example
 
 * contained[+] = contained-medication-journey-01-03-02-magistral
-
+* text.status = #generated
+* text.div = "<div> TODO: Some Narrative </div>"
 // R5 Backports
 * extension[effectiveDosePeriod].valuePeriod.start = "2026-02-27"
 * extension[effectiveDosePeriod].valuePeriod.end = "2026-03-20"
