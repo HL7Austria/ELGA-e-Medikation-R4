@@ -20,9 +20,9 @@ Usage: #example
 // Referenz auf Contained Medication Ressource
 * medicationReference.reference = "#contained-medication-journey-01-02-02-magistral"
 
-* subject = Reference(At-Emed-Example-Patient-01)
+* subject = Reference(At-Emed-Example-Patient-01) "Anton Mustermann"
 * authoredOn = "2026-02-27T08:10:00+00:00"
-* requester = Reference(At-Emed-Example-PractitionerRole-01)
+* requester = Reference(At-Emed-Example-PractitionerRole-01) "Dr. Hausärztin"
 
 //* note.text = "Freitext Informationen zum Medikationsplaneintrag."
 
