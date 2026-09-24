@@ -57,8 +57,8 @@ skinparam sequence {
 ' !define COLOR_APO_BOX      #0F9ED590
 ' !define COLOR_EMED_FA_BOX  #e97232bd
 
-actor Patient as "Max Mustermann" COLOR_PATIENT
-actor Arzt_1 as "Dr. Hausärztin" COLOR_GDA_1
+actor Patient as "Anton Mustermann" COLOR_PATIENT
+actor Arzt_2 as "Dr. Hausärztin" COLOR_GDA_1
 ' actor Arzt_2 as "Dr. Krankenhaus" COLOR_GDA_2
 ' actor Arzt_3 as "Dr. Urlaubsvertretung" COLOR_GDA_3
 actor Apotheke as "Amadeus Apotheke" COLOR_APO

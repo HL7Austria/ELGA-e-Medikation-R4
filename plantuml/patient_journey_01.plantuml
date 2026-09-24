@@ -57,8 +57,8 @@ skinparam sequence {
 ' !define COLOR_APO_BOX      #0F9ED590
 ' !define COLOR_EMED_FA_BOX  #e97232bd
 
-actor Patient as "Max Mustermann" COLOR_PATIENT
-actor Arzt_1 as "Dr. Hausärztin" COLOR_GDA_1
+actor Patient as "Anton Mustermann" COLOR_PATIENT
+actor Arzt_2 as "Dr. Hausärztin" COLOR_GDA_1
 ' actor Arzt_2 as "Dr. Krankenhaus" COLOR_GDA_2
 ' actor Arzt_3 as "Dr. Urlaubsvertretung" COLOR_GDA_3
 ' actor Apotheke as "Amadeus Apotheke" COLOR_APO
@@ -75,41 +75,41 @@ autonumber
 group GROUP_ARZT 27.2.2026 · Arztbesuch
 
   activate Patient COLOR_PATIENT
-  Patient -> Arzt_1: Arztbesuch
-  activate Arzt_1 COLOR_GDA_1
+  Patient -> Arzt_2: Arztbesuch
+  activate Arzt_2 COLOR_GDA_1
 
   == Journey-01-01 ==
 
-  Arzt_1 -> eMed_FA: aktuellen Medikationsplan abrufen:\n$plan-read 
+  Arzt_2 -> eMed_FA: aktuellen Medikationsplan abrufen:\n$plan-read 
   activate eMed_FA COLOR_EMED_FA  
-  eMed_FA -> Arzt_1: leerer Medikationsplan\n(EmptyReason = notstarted)
+  eMed_FA -> Arzt_2: leerer Medikationsplan\n(EmptyReason = notstarted)
   deactivate eMed_FA
-  Arzt_1 -> eMed_FA: offene Geplante Abgaben abrufen:\nPrescription-Search (status=active)
+  Arzt_2 -> eMed_FA: offene Geplante Abgaben abrufen:\nPrescription-Search (status=active)
   activate eMed_FA COLOR_EMED_FA 
-  eMed_FA -> Arzt_1: leeres Ergebnis
+  eMed_FA -> Arzt_2: leeres Ergebnis
   deactivate eMed_FA
-  Arzt_1 -> eMed_FA: Durchgeführte Abgaben abrufen:\nDispense-Search
+  Arzt_2 -> eMed_FA: Durchgeführte Abgaben abrufen:\nDispense-Search
   activate eMed_FA COLOR_EMED_FA 
-  eMed_FA -> Arzt_1: leeres Ergebnis
+  eMed_FA -> Arzt_2: leeres Ergebnis
   deactivate eMed_FA
 
   == Journey-01-02 ==
 
-  Arzt_1 -> Arzt_1: Medikationsplan bearbeiten +\nneue Planeinträge erstellen
-  Arzt_1 -> eMed_FA: neuen Medikationsplan speichern: $plan-write
+  Arzt_2 -> Arzt_2: Medikationsplan bearbeiten +\nneue Planeinträge erstellen
+  Arzt_2 -> eMed_FA: neuen Medikationsplan speichern: $plan-write
   activate eMed_FA COLOR_EMED_FA
-  eMed_FA -> Arzt_1: Medikationsplan 
+  eMed_FA -> Arzt_2: Medikationsplan 
   deactivate eMed_FA
 
   == Journey-01-03 ==
 
-  Arzt_1 -> Arzt_1: 2 Geplante Abgaben erstellen\n(Ramipril + Dexpanthenol-Salbe)
-  Arzt_1 -> eMed_FA: Geplante Abgaben speichern: $dispense-write
+  Arzt_2 -> Arzt_2: 2 Geplante Abgaben erstellen\n(Ramipril + Dexpanthenol-Salbe)
+  Arzt_2 -> eMed_FA: Geplante Abgaben speichern: $dispense-write
   activate eMed_FA COLOR_EMED_FA
-  eMed_FA -> Arzt_1: Geplante Abgaben
+  eMed_FA -> Arzt_2: Geplante Abgaben
   deactivate eMed_FA
-  Arzt_1 -> Patient: Rezept aushändigen
-  deactivate Arzt_1
+  Arzt_2 -> Patient: Rezept aushändigen
+  deactivate Arzt_2
   deactivate Patient 
 
 end

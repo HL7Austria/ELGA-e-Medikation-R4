@@ -57,11 +57,11 @@ skinparam sequence {
 ' !define COLOR_APO_BOX      #0F9ED590
 ' !define COLOR_EMED_FA_BOX  #e97232bd
 
-actor Patient as "Max Mustermann" COLOR_PATIENT
-actor Arzt_1 as "Dr. Hausärztin" COLOR_GDA_1
+actor Patient as "Anton Mustermann" COLOR_PATIENT
+actor Arzt_2 as "Dr. Hausärztin" COLOR_GDA_1
 ' actor Arzt_2 as "Dr. Krankenhaus" COLOR_GDA_2
 ' actor Arzt_3 as "Dr. Urlaubsvertretung" COLOR_GDA_3
-' actor Apotheke as "Amadeus Apotheke" COLOR_APO
+actor Apotheke as "Amadeus Apotheke" COLOR_APO
 participant eMed_FA as "e-Medikation" COLOR_EMED_FA
 
 ' !define GROUP_ARZT          #96607D30
@@ -74,17 +74,17 @@ autonumber
 
 group GROUP_ARZT 14.3.2026 · Präoperativer Hausarzttermin
 
-  Patient -> Arzt_1: Arztbesuch
+  Patient -> Arzt_2: Arztbesuch
   activate Patient COLOR_PATIENT
-  activate Arzt_1 COLOR_GDA_1
+  activate Arzt_2 COLOR_GDA_1
 
   == Journey-05-01 ==
 
-  Arzt_1 -> eMed_FA: aktuellen Medikationsplan abrufen:\n$plan-read 
+  Arzt_2 -> eMed_FA: aktuellen Medikationsplan abrufen:\n$plan-read 
   activate eMed_FA COLOR_EMED_FA  
-  eMed_FA -> Arzt_1: Medikationsplan\n(Ramipril + Dexpanthenol-Salbe)
+  eMed_FA -> Arzt_2: Medikationsplan\n(Ramipril + Dexpanthenol-Salbe)
   deactivate eMed_FA
-  note over Arzt_1
+  note over Arzt_2
   Abruf Geplante Abgaben
   und Durchgeführte Abgaben 
   siehe Journey-04
@@ -93,13 +93,13 @@ group GROUP_ARZT 14.3.2026 · Präoperativer Hausarzttermin
 
   == Journey-05-02 ==
 
-  Arzt_1 -> Arzt_1: Medikationsplan bearbeiten +\nPlaneintrag Ramipril pausieren
-  Arzt_1 -> eMed_FA: neuen Medikationsplan speichern: $plan-write
+  Arzt_2 -> Arzt_2: Medikationsplan bearbeiten:\nPlaneintrag Ramipril pausieren
+  Arzt_2 -> eMed_FA: neuen Medikationsplan speichern: $plan-write
   activate eMed_FA COLOR_EMED_FA
-  eMed_FA -> Arzt_1: Medikationsplan 
+  eMed_FA -> Arzt_2: Medikationsplan 
   deactivate eMed_FA
   deactivate Patient
-  deactivate Arzt_1
+  deactivate Arzt_2
 
 
 end
