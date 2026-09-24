@@ -1,10 +1,10 @@
-Instance: At-Emed-Journey-07-01-Mr-Planeintrag-03
+Instance: At-Emed-Journey-07-02-Mr-Planeintrag-03
 InstanceOf: AtElgaEmedMedicationRequestPlaneintrag   
-Title: "Beispiel Journey 07-01: Planeintrag 3"
+Title: "Beispiel Journey 07-02: Planeintrag 3"
 Description: "Bildet einen geänderten Planeintrag ab (Arzneimittel ersetzt reine Wirkstoffangabe, angepasste Dosierung."
 Usage: #example
 
-* contained[+] = contained-medication-journey-07-01-02
+* contained[+] = contained-medication-journey-07-02-02
 * courseOfTherapyType = $cs-medication-request-courseOfTherapyType#acute
 
 // R5 Backports
@@ -17,7 +17,7 @@ Usage: #example
 * reportedBoolean = false
 
 // Referenz auf Contained Medication Ressource
-* medicationReference.reference = "#contained-medication-journey-07-01-02"
+* medicationReference.reference = "#contained-medication-journey-07-02-02"
 
 * subject = Reference(At-Emed-Example-Patient-01) "Anton Mustermann"
 * authoredOn = "2026-03-19T12:10:00+00:00"
@@ -40,7 +40,7 @@ Usage: #example
 
 
 // Contained Medication *********************************************************************
-Instance: contained-medication-journey-07-01-02
+Instance: contained-medication-journey-07-02-02
 InstanceOf: AtElgaEmedMedicationMagistraleZubereitung
 Title: "Beispiel Wirkstoffangaben (Magelan)"
 Usage: #inline

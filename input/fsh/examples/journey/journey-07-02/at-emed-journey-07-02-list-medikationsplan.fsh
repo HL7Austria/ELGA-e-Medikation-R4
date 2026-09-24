@@ -1,6 +1,6 @@
-Instance: At-Emed-Journey-07-01-List-Medikationsplan
+Instance: At-Emed-Journey-07-02-List-Medikationsplan
 InstanceOf: AtElgaEmedListMedikationsplan   
-Title: "Beispiel Journey 07-01: Medikationsplan"
+Title: "Beispiel Journey 07-02: Medikationsplan"
 Description: "Beispiel eines Medikationsplans mit einem geänderten, einem unveränderten und einem neuen Planeintrag."
 Usage: #example
 
@@ -19,8 +19,8 @@ Usage: #example
 
 // Abgelaufenen Planeintrag entfernen
 * entry[+].flag.coding = ElgaListEntryFlagCS#removed "Planeintrag entfernt"
-* entry[=].item = Reference(At-Emed-Journey-07-01-Mr-Planeintrag-02)
+* entry[=].item = Reference(At-Emed-Journey-07-02-Mr-Planeintrag-02)
 
 // Planeintrag von Wirkstoff auf Arzneimittel gändert
 * entry[+].flag.coding = ElgaListEntryFlagCS#changed "Planeintrag geändert"
-* entry[=].item = Reference(At-Emed-Journey-07-01-Mr-Planeintrag-03)
+* entry[=].item = Reference(At-Emed-Journey-07-02-Mr-Planeintrag-03)
