@@ -10,13 +10,11 @@ Jeder Listeneintrag enthält im Element List.entry.flag den Änderungsstatus des
 * id 1..1 MS
 * meta MS
 * text MS
+//ASW 24.09.2026 TODO text 1..1
 * implicitRules 0..0
-
-//TODO: Invariante, dass überall in der List der gleiche Patient enthalten sein muss
-
-* extension contains AtElgaEmedExtensionPatientModified named PatientModified 0..1
-
-//ASW 22.09.2026 TODO short für extension einfügen
+* extension contains AtElgaEmedExtensionPatientModified named PatientModified 0..1 MS
+* extension[PatientModified] ^short = "Boolean der angibt, ob diese Version des Plans durch Aktionen des Patienten verändert wurde (z.B. Einträge entfernt)."
+* obeys at-emed-list-same-patient
 
 * status 1..1 MS
 * status from ElgaListStatusVS (required)
@@ -25,10 +23,6 @@ Jeder Listeneintrag enthält im Element List.entry.flag den Änderungsstatus des
 * mode 1..1 MS
 * mode = #working (exactly)
 * mode ^short = "Der Medikationsplan ist ein laufend gepflegtes Dokument. Fixer Wert: working."
-
-* title 0..0
-* title ^short = "Der Medikationsplan hat keinen Titel."
-//ASW 22.09.2026 TODO short entfernen und 0..0 entfernen -> laut guideline einfach optional und nicht verändert
 
 * code 1..1 MS 
 * code = $cs-sct#736378000 "Medikationsplan" (exactly)
@@ -39,31 +33,30 @@ Jeder Listeneintrag enthält im Element List.entry.flag den Änderungsstatus des
 * subject ^short = "ELGA-Teilnehmer, für den der Medikationsplan dokumentiert wird."
 
 * encounter 0..0
-* encounter ^short = "Es wird kein Behandlungskontext dokumentiert."
-//ASW 22.09.2026 TODO bleibt 0..0 - fachlich streichen
+* encounter ^short = "Fachliche Begründung: Es wird derzeit kein Behandlungskontext dokumentiert."
 
 * date 1..1 MS
 * date ^short = "Letzte Aktualisierung des Medikationsplans."
 
 * source 1..1 MS
 //ASW 22.09.2026 Patient nicht mehr möglich -> durch patientmodified abgebildet
-* source only Reference(AtElgaCorePractitioner or AtElgaCorePractitionerRole or Device)  // TODO ELGA Profile
-* source ^short = "Ersteller des Medikationsplans und für den Inhalt verantwortlich. 
-Im Falle eines GDA: Eindeutig identifiziert über den GDA-Index und berechtigt auf die e-Medikation 
-des Patienten zuzugreifen. Device nur für initiale Erstellung durch die Fachanwendung."
-//ASW 22.09.2026 TODO short anpassen
+* source only Reference(AtElgaCorePractitioner or AtElgaCorePractitionerRole or AtElgaEmedDeviceFachanwendung)
+* source ^short = "Ersteller des Medikationsplans und für den Inhalt verantwortlich. Device nur für initiale Erstellung durch die Fachanwendung."
 
-* orderedBy 0..0 
+* orderedBy 0..0
+* encounter ^short = "Fachliche Begründung: TODO"
 //ASW 22.09.2026 .orderedBy fachlich gelöscht
-* orderedBy ^short = "Die Reihenfolge der Einträge wird über die List.entries durch den Ersteller vorgegeben."
+//ASW 24.09.2026 TODO: Fachliche Begründung? - eigentlich sollte hier eher ein fixed value verwendet werden?
+// * orderedBy ^short = "Die Reihenfolge der Einträge wird über die List.entries durch den Ersteller vorgegeben."
 // * orderedBy 1..1 MS  
 // * orderedBy from http://hl7.org/fhir/ValueSet/list-order 
 // * orderedBy = #user
 // * orderedBy ^short = "Dokumentiert, wie die Reihenfolge der Einträge festgelegt wurde."
 // Mögliche Codes: user | system | event-date | entry-date| priority | alphabetic | category | patient"
+
 //ASW 22.09.2026 .note fachlich gelöscht
 * note 0..0 
-* note ^short = "Keine Freitext-Anmerkungen im Medikationsplan." 
+* note ^short = "Fachliche Begrüundung: Auf dieser Ebene keine Freitext-Anmerkungen im Medikationsplan. Freitext ist in den jeweiligen MedicationRequests(Planeinträgen möglich)" 
 
 // --- Entries ---
 * entry 0..* MS
@@ -75,12 +68,14 @@ des Patienten zuzugreifen. Device nur für initiale Erstellung durch die Fachanw
 
 * entry.deleted 0..0 
 //ASW 22.09.2026 * entry.deleted fachlich gelöscht
-* entry.deleted ^short = "Keine Verwendung im Medikationsplan (da list.mode immer working)."
+* entry.deleted ^short = "Fachliche Begründung: Keine Verwendung im Medikationsplan (da list.mode immer working)."
 //Kann nur verwendet werden, wenn list.mode = changes
 
 * entry.date 0..0 
 //ASW 22.09.2026 * entry.date fachlich gelöscht
-* entry.date ^short = "Kein Datum der Aufnahme des Eintrags im Medikationsplan. Das Datum ist nur im referenzierten Medikationsplaneintrag ersichtlich."
+//ASW 24.09.2026 relevant für directory search?
+* entry.date ^short = "Fachliche Begründung: Kein Datum der initialen Aufnahme des Eintrags im Medikationsplan.
+Das Datum ist nur im referenzierten Medikationsplaneintrag ersichtlich."
 
 * entry.item 1..1 MS
 * entry.item only Reference(AtElgaEmedMedicationRequestPlaneintrag)
@@ -89,4 +84,9 @@ des Patienten zuzugreifen. Device nur für initiale Erstellung durch die Fachanw
 * emptyReason 0..1 MS
 * emptyReason from ElgaListEmptyReasonVS (required)
 //ASW 22.09.2026 code unavailable hinzufügen für den Fall, dass der Patient alle Einträge entfernt
-* emptyReason ^short = "Begründung, warum der Medikationsplan leer ist. Mögliche Ausprägungen: [notstarted |  nilknown] Bedeutung: notstarted: Intitalzustand - noch nie befüllt | nilknown: Patient nimmt derzeit keine Medikamente ein"
+* emptyReason ^short = "Begründung, warum der Medikationsplan leer ist. Mögliche Ausprägungen: [notstarted |  nilknown | unavailable] Bedeutung: notstarted: Intitalzustand - noch nie befüllt | nilknown: Patient nimmt derzeit keine Medikamente ein | unavailable: Plan ist leer weil alle Einträge vom Patienten entfernt wurden"
+
+Invariant: at-emed-list-same-patient
+Description: "Alle in der Liste referenzierten Patienten müssen gleich sein"
+* severity = #error
+* expression = "subject.resolve() = entry.item.resolve().ofType(MedicationRequest).subject.resolve()"

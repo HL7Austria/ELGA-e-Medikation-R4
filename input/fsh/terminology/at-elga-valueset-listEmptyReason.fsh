@@ -6,5 +6,6 @@ Description: "ValueSet für zulässige Ausprägungen des Elements emptyReason ei
 * ^experimental = true
 * $cs-list-empty-reason#nilknown
 * $cs-list-empty-reason#notstarted
+* $cs-list-empty-reason#unavailable
 
 

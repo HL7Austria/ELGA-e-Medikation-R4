@@ -30,7 +30,8 @@ Description: "Bildet ein Arzneimittel in der \"Medication\"-Ressource ab. Wird g
 //    PCID 0..1 MS
     //ASW 21.09.2026 TODO: noch zu klären welche weiteren identifikatoren erlaubt sind
 // Invariante eines der beiden muss vorhanden sein
-* code.coding.system = $cs-asp-liste
+* code.coding.system = "https://termgit.elga.gv.at/CodeSystem/asp-liste" (exactly)
+* code.coding 1..
 * code.coding.code 1..1
 //* code.coding[PCID].system = "1.2.40.0.34.4.27" //ASW 21.09.2026: TODO Codesystem
 //* code.coding[PCID].code 1..1
