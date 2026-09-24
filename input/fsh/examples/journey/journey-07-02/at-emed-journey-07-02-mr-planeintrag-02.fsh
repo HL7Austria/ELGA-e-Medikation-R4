@@ -22,7 +22,7 @@ Usage: #example
 * medicationReference.reference = "#contained-medication-journey-07-02-02-magistral"
 
 * subject = Reference(At-Emed-Example-Patient-01) "Anton Mustermann"
-* authoredOn = "2026-03-22T16:10:00+00:00"
+* authoredOn = "2026-02-27T08:10:00+00:00"
 * requester = Reference(At-Emed-Example-PractitionerRole-01) "Dr. Hausärztin"
 
 //* note.text = "Freitext Informationen zum Medikationsplaneintrag."

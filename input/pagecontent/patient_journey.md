@@ -2,7 +2,7 @@
 
 Am Beispiel einer fiktiven Patient Journey wird veranschaulicht, wie sich der **Medikationsplan** eines Patienten mit den zugehörigen **Geplanten Abgaben** und den **Durchgeführten Abgaben** verändern kann.
 
-Eine fachliche Übersicht mit reduziertem Detailgrad findet sich am Ende dieses Kapitels [Übersicht Patient Journey](patient_journey.html#übersicht-patient-journey).
+Eine fachliche Übersicht mit reduziertem Detailgrad findet sich am Ende dieses Kapitels ([Übersicht Patient Journey](patient_journey.html#übersicht-patient-journey)).
 
 <!-- TODO: nicht-sunshine-cases: patient ohne ecard in apotheke, 
 Einträge durch patient löschen, stornieren, rezept wieder öffnen, wenn teilabgabe storniert -->
@@ -14,7 +14,7 @@ Herr Mustermann kommt wegen Kopfschmerzen und Schwindelgefühl zu seiner Hausär
 
 #### Journey-01-01:
 
-Dr. Hausärztin stellt eine leichte arterielle Hypertonie fest und ruft die e-Medikation (den aktuellen *Medikationsplan*,  *Geplante Abgaben* und *Durchgeführte Abgaben*) des Patienten ab, um einen Überblick über seine aktuelle Medikation zu erhalten. 
+Dr. Hausärztin stellt eine leichte arterielle Hypertonie fest und ruft die e-Medikation - den aktuellen *Medikationsplan*,  *Geplante Abgaben* und *Durchgeführte Abgaben* - des Patienten ab, um einen Überblick über seine aktuelle Medikation zu erhalten. 
 
 Da für Herrn Mustermann noch nie ein Medikationsplan abgerufen wurde, erstellt die Fachanwendung automatisch einen leeren Medikationsplan. Darin enthalten sind die Informationen zum Patienten, die erstellende e-Medikation-Fachanwendung, das Datum der Erstellung und die Information, dass der Medikationsplan noch nicht gestartet wurde (*EmptyReason = notstarted*). 
 
@@ -694,7 +694,7 @@ Zusätzlich wird die pausierte Ramipril Medikation wieder aufgenommen, aber in d
 
 ### Journey-07: 22.3.2026 - Termin bei Dr. Urlaubsvertretung
 
-Nach der Entlassung sucht Herr Mustermann die Praxis seiner Hausärztin auf, um sich für das Schermzmittel ein Rezept ausstellen zu lassen.
+Nach der Entlassung möchte Herr Mustermann seine Hausärztin aufsuchen, um sich für das Schermzmittel ein Rezept ausstellen zu lassen.
 Diese wird aktuell von Frau **Dr. Urlaubsvertretung** vertreten.
 
 #### Journey-07-01
@@ -777,7 +777,7 @@ Wie wird von der Fachanwendung festgestellt, ob ein Behandlungszeitraum abgelauf
 
 #### Journey-07-02
 
-Zuletzt erstellt Dr. Urlaubsvertretung eine *Geplante Abgabe* für die Metagelan-Tropfen.
+Zuletzt erstellt Dr. Urlaubsvertretung eine *Geplante Abgabe* für zwei Packungen Magelan-Tropfen.
 <!-- TODO: akl 22.09.2026 Geplante Abgabe erstellen -->
 
 
@@ -828,16 +828,16 @@ Zuletzt erstellt Dr. Urlaubsvertretung eine *Geplante Abgabe* für die Metagelan
 #### Journey-07: Ablauf - Termin bei Dr. Urlaubsvertretung
 
 <br>
-[![overview](plantuml/patient_journey_07.svg){: .mx-auto style="width:55%;"}](plantuml/patient_journey_07.svg)
+[![overview](plantuml/patient_journey_07.svg){: .mx-auto style="width:80%;"}](plantuml/patient_journey_07.svg)
 <br> 
 
 
 **7.3.2026: Teilabgabe in der Apotheke**
 
-Herr Mustermann möchte in der Apotheke die Metamizol-Tropfen abholen und übergibt legt e-Rezept der Apothekerin vor.
+Herr Mustermann möchte in der Apotheke die Magelan-Tropfen abholen und übergibt legt e-Rezept der Apothekerin vor.
 
-Es ist nur noch ein Fläschchen Metamizol verfügbar. Die Apothekerin händigt das Fläschchen aus und erstellt eine Durchgeführte Abgabe als Teilabgabe. 
-Die Patienten wird angewiesen, das zweite Fläschchen in der Apotheke abzuholen, sobald es verfügbar ist.
+Es ist nur noch eine Packung Magelan-Tropfen verfügbar. Die Apothekerin händigt diese aus und erstellt eine *Durchgeführte Abgabe* als Teilabgabe. 
+Der Patient wird angewiesen, die zweite Packung in der Apotheke abzuholen, sobald diese verfügbar ist.
 
 <!-- Abruf mit Groupidentifier, kein EGLA Zugriff -->
 
@@ -846,8 +846,8 @@ Die Patienten wird angewiesen, das zweite Fläschchen in der Apotheke abzuholen,
 
 **9.3.2026: Teilabgabe in der Apotheke abschließen**
 
-Herr Mustermann wurde von der Apotheke informiert, dass die Metamizol-Tropfen nun verfügbar sind. Er steckt in der Apotheke seine e-card.
-Die Apothekerin ruft die e-Medikation erneut ab, schließt dann die Teilabgabe ab, indem sie eine weitere Durchgeführte Abgabe erstellt und übergibt dem Patienten die Metamizol-Tropfen.
+Herr Mustermann wurde von der Apotheke informiert, dass die Magelan-Tropfen nun verfügbar sind. Er steckt in der Apotheke seine e-card.
+Die Apothekerin ruft die e-Medikation erneut ab, schließt dann die Teilabgabe ab, indem sie eine weitere Durchgeführte Abgabe erstellt und übergibt dem Patienten die Magelan-Tropfen.
 
 * **Durchgeführte Abgaben erstellen (Teilabgabe abschließen):** in Arbeit.
 
@@ -858,7 +858,7 @@ Herr Mustermann hat die Medikamente in der Apotheke abgeholt und die Schmerzen s
  
 Eine Woche nach der Operation kommt er zur Nachkontrolle zur Dr. Hausärztin.
 
-Für die verbleibenden Schmerzen wird von Dr. Hausärztin die Metamizoldosis für einen begrenzten Zeitraum weiterverodnet, die Dosis aber reduziert. Metamizol-Tropfen: 4 × täglich 20 Tropfen, für 5 Tage.
+Für die verbleibenden Schmerzen wird von Dr. Hausärztin die Magelandosis für einen begrenzten Zeitraum weiterverodnet, die Dosis aber reduziert. Magelan-Tropfen: 4 × täglich 20 Tropfen, für 5 Tage.
 Herr Mustermann benötigt ein neues Rezept, daher erstellt Dr. Hausärztin eine *Geplante Abgabe*.
  
 Beim rausgehen sagt der Patient, dass ihn das Tropfen zählen nervt, also ändert Dr. Hausärztin die Medikation auf Tabletten: Metagelan 500 mg-Tabletten: 4 x täglich 1 Tablette, für 5 Tage.
@@ -873,7 +873,7 @@ Sie ändert den Planeintrag, **storniert** die *Geplante Abgabe* für die Tropfe
 
 Herr Mustermann erscheint zur Kontrolle bei Dr. Hausärztin.
 
-Die postoperative Schmerztherapie ist nicht mehr erforderlich. Der Planeintrag für Metamizol wird daher beendet.
+Die postoperative Schmerztherapie ist nicht mehr erforderlich. Der Planeintrag für Magelan wird daher beendet.
 Ramipril wird als Dauermedikation fortgeführt.
 
 * **Planeinträge beenden und Medikationsplan aktualisieren:** in Arbeit.

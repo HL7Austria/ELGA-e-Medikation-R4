@@ -11,7 +11,7 @@ Usage: #example
 * subject = Reference(At-Emed-Example-Patient-01) "Anton Mustermann"
 * date = "2026-03-22T16:10:00+00:00"
 // logische referenz über oid
-* source = Reference(At-Emed-Example-PractitionerRole-01) "Dr. Hausärztin"
+* source = Reference(At-Emed-Example-PractitionerRole-04) "Dr. Urlaubsvertretung"
 
 // Planeintrag unverändert
 * entry[0].flag.coding = ElgaListEntryFlagCS#unchanged "Planeintrag beibehalten"
