@@ -17,7 +17,7 @@ Usage: #example
 * medicationReference.reference = "#at-emed-journey-medicaiton-ramipril"
 
 * subject = Reference(At-Emed-Example-Patient-01) "Anton Mustermann" 
-* performer.actor = Reference(At-Emed-Example-Organization-02) "Apotheke"
+* performer.actor = Reference(At-Emed-Example-Organization-02) "Amadeus Apotheke"
 
 * authorizingPrescription[geplanteAbgabe] = Reference(MedicationRequest/At-Emed-Journey-01-03-Mr-Geplante-Abgabe-01) "GeplanteAbgabe 1"
 * authorizingPrescription[planeintrag] = Reference(MedicationRequest/At-Emed-Journey-01-02-Mr-Planeintrag-01) "Planeintrag 1"
