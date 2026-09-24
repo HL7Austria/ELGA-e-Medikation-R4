@@ -57,11 +57,11 @@ skinparam sequence {
 ' !define COLOR_APO_BOX      #0F9ED590
 ' !define COLOR_EMED_FA_BOX  #e97232bd
 
-actor Patient as "Max Mustermann" COLOR_PATIENT
+actor Patient as "Anton Mustermann" COLOR_PATIENT
 actor Arzt_1 as "Dr. Hausärztin" COLOR_GDA_1
-' actor Arzt_2 as "Dr. Krankenhaus" COLOR_GDA_2
-' actor Arzt_3 as "Dr. Urlaubsvertretung" COLOR_GDA_3
-' actor Apotheke as "Amadeus Apotheke" COLOR_APO
+actor Arzt_2 as "Dr. Krankenhaus" COLOR_GDA_2
+actor Arzt_3 as "Dr. Urlaubsvertretung" COLOR_GDA_3
+actor Apotheke as "Amadeus Apotheke" COLOR_APO
 participant eMed_FA as "e-Medikation" COLOR_EMED_FA
 
 ' !define GROUP_ARZT          #96607D30
@@ -76,41 +76,39 @@ autonumber
 group GROUP_ARZT 22.3.2026 · Termin bei Dr. Urlaubsvertretung
 
   activate Patient COLOR_PATIENT
-  Patient -> Arzt_1: Arztbesuch
-  activate Arzt_1 COLOR_GDA_1
+  Patient -> Arzt_3: Arztbesuch
+  activate Arzt_3 COLOR_GDA_1
 
-  == Journey-01-01 ==
+  == Journey-07-01 ==
 
-  Arzt_1 -> eMed_FA: aktuellen Medikationsplan abrufen:\n$plan-read 
+  Arzt_3 -> eMed_FA: aktuellen Medikationsplan abrufen:\n$plan-read 
   activate eMed_FA COLOR_EMED_FA  
-  eMed_FA -> Arzt_1: leerer Medikationsplan\n(EmptyReason = notstarted)
+  eMed_FA -> Arzt_3: Medikationsplan\n(Ramipril + Dexpanthenol-Salbe (abgelaufen)\n+ Wirkstoff Mtamizol)
   deactivate eMed_FA
-  Arzt_1 -> eMed_FA: offene Geplante Abgaben abrufen:\nPrescription-Search (status=active)
-  activate eMed_FA COLOR_EMED_FA 
-  eMed_FA -> Arzt_1: leeres Ergebnis
-  deactivate eMed_FA
-  Arzt_1 -> eMed_FA: Durchgeführte Abgaben abrufen:\nDispense-Search
-  activate eMed_FA COLOR_EMED_FA 
-  eMed_FA -> Arzt_1: leeres Ergebnis
-  deactivate eMed_FA
+  note over Arzt_3
+  Abruf Geplante Abgaben
+  und Durchgeführte Abgaben 
+  siehe Journey-04
+  end note
+  deactivate eMed_FA 
 
-  == Journey-01-02 ==
+  == Journey-07-02 ==
 
-  Arzt_1 -> Arzt_1: Medikationsplan bearbeiten +\nneue Planeinträge erstellen
-  Arzt_1 -> eMed_FA: neuen Medikationsplan speichern: $plan-write
+  Arzt_3 -> Arzt_3: Medikationsplan bearbeiten:\nPlaneintrag 3 ändern: reine Wirkstoffangabe mit\nArzneimittel (Magelan-Tropfen) ersetzen\nabgelaufenen Planeintrag 2 (Dexpanthenol-Salbe) bestätigen
+  Arzt_3 -> eMed_FA: neuen Medikationsplan speichern: $plan-write
   activate eMed_FA COLOR_EMED_FA
-  eMed_FA -> Arzt_1: Medikationsplan 
+  eMed_FA -> Arzt_3: Medikationsplan
   deactivate eMed_FA
 
-  == Journey-01-03 ==
+  == Journey-07-03 ==
 
-  Arzt_1 -> Arzt_1: 2 Geplante Abgaben erstellen\n(Ramipril + Dexpanthenol-Salbe)
-  Arzt_1 -> eMed_FA: Geplante Abgaben speichern: $dispense-write
+  Arzt_3 -> Arzt_3: 2 Geplante Abgabe erstellen\n(Magelan-Tropfen)
+  Arzt_3 -> eMed_FA: Geplante Abgabe speichern: $dispense-write
   activate eMed_FA COLOR_EMED_FA
-  eMed_FA -> Arzt_1: Geplante Abgaben
+  eMed_FA -> Arzt_3: Geplante Abgabe
   deactivate eMed_FA
-  Arzt_1 -> Patient: Rezept aushändigen
-  deactivate Arzt_1
+  Arzt_3 -> Patient: Rezept aushändigen (optional)
+  deactivate Arzt_3
   deactivate Patient 
 
 end

@@ -611,7 +611,7 @@ Die Operation verläuft komplikationslos.
 
 #### Journey-06-02: 19.3.2026 - Entlassung
 
-Zwei Tage nach der Operation kann Herr Mustermann entlassen werden. Gegen die postoperativen Schmerzen soll er weiterhin den **Wirkstoff** Metamizol einnehmen. Dr. Krankenhaus dokumentiert dies in einem neuen Planeintrag: Metamizol 1.000 mg, 4x täglich. <!-- > TODO: im Abstand von 6–8 Stunden -->
+Zwei Tage nach der Operation kann Herr Mustermann entlassen werden. Gegen die postoperativen Schmerzen soll er weiterhin den **Wirkstoff** Metamizol einnehmen. Dr. Krankenhaus dokumentiert dies in einem neuen Planeintrag: **Metamizol 1.000 mg, 4x täglich**. <!-- > TODO: im Abstand von 6–8 Stunden -->
 
 Zusätzlich wird die pausierte Ramipril Medikation wieder aufgenommen, aber in der Dosis erhöht (auf 1-0-1-0). 
 
@@ -626,14 +626,6 @@ Zusätzlich wird die pausierte Ramipril Medikation wieder aufgenommen, aber in d
     <div class="content-in-tab">
       <ul>
         <li>
-          <strong>Planeintrag hinzufügen:</strong>
-          <ul>
-            <li>
-              <a href="MedicationRequest-At-Emed-Journey-06-02-Mr-Planeintrag-03.html">Neuer Planeintrag 3: Wirstoff Metamizol (in Arbeit)</a>  <!-- TODO: Wirkstoffangabe sobald Profil verfügbar, akl 22.9.2026 -->
-            </li>
-          </ul>
-        </li>
-                <li>
           <strong>Planeintrag anpassen:</strong>
           <ul>
             <li>
@@ -642,10 +634,18 @@ Zusätzlich wird die pausierte Ramipril Medikation wieder aufgenommen, aber in d
           </ul>
         </li>
         <li>
+          <strong>Planeintrag hinzufügen:</strong>
+          <ul>
+            <li>
+              <a href="MedicationRequest-At-Emed-Journey-06-02-Mr-Planeintrag-03.html">Neuer Planeintrag 3: Wirstoff Metamizol (in Arbeit)</a>  <!-- TODO: Wirkstoffangabe sobald Profil verfügbar, akl 22.9.2026 -->
+            </li>
+          </ul>
+        </li>
+        <li>
           <strong>Medikationsplan aktualisieren:</strong>
           <ul>
             <li>
-              <a href="List-At-Emed-Journey-06-02-List-Medikationsplan.html">Medikationsplan: 1 Planeintrag neu hinzugefügt, 2 Planeinträge unverändert</a>
+              <a href="List-At-Emed-Journey-06-02-List-Medikationsplan.html">Medikationsplan: Planeintrag 1 geändert, Planeintrag 2 unverändert, Planeintrag 3 neu hinzugefügt</a>
             </li>
           </ul>
         </li>
@@ -692,16 +692,15 @@ Zusätzlich wird die pausierte Ramipril Medikation wieder aufgenommen, aber in d
 <br> 
 
 
-
 ### Journey-07: 22.3.2026 - Termin bei Dr. Urlaubsvertretung
 
 Nach der Entlassung sucht Herr Mustermann die Praxis seiner Hausärztin auf, um sich für das Schermzmittel ein Rezept ausstellen zu lassen.
 Diese wird aktuell von Frau **Dr. Urlaubsvertretung** vertreten.
-Dr. Urlaubsvertretung ruft die e-Medikation von Herrn Mustermann ab und ändert den Planeintrag mit der Wirkstoffangabe und Dosierung auf das entsprechende Arzneimttelprodukt mit passender Dosierung: Metagelan 500 mg/ml-Tropfen, 40 Tropfen 4-mal täglich.
 
-Der Behandlungszeitraum für die Dexpanthenol-Salbe ist zwischenzeitlich **abgelaufen**. Dr. Urlaubsvertretung stellt fest, dass keine weitere Behandung nötig ist, der im Medikationsplan von der Fachanwendung zur Entfernung markierte Planeintrag wird durch die Aktualisierung des Medikationsplans bestätigt und wird beim nächsten Abruf nicht mehr aufscheinen.
+#### Journey-07-01
+Dr. Urlaubsvertretung ruft die e-Medikation von Herrn Mustermann ab und ändert den Planeintrag mit der Wirkstoffangabe und Dosierung (Metamizol) auf das entsprechende Arzneimttelprodukt Metagelan mit passender Dosierung: **Metagelan 500 mg/ml-Tropfen, 40 Tropfen 4-mal täglich**.
 
-Zuletzt erstellt Dr. Urlaubsvertretung eine *Geplante Abgabe* von die Metagelan-Tropfen.
+Der Behandlungszeitraum für die **Dexpanthenol-Salbe** ist zwischenzeitlich **abgelaufen**. Dr. Urlaubsvertretung stellt fest, dass keine weitere Behandung nötig ist. Der von der Fachanwendung zur Entfernung markierte Planeintrag wird durch die Aktualisierung des Medikationsplans bestätigt und beim nächsten Abruf nicht mehr in Plan enthalten sein.
 
 <div class="dragon">
 <p class="note-to-balloters">
@@ -713,14 +712,10 @@ Wie wird von der Fachanwendung festgestellt, ob ein Behandlungszeitraum abgelauf
 </p>
 </div>
 
-<!-- TODO: akl 22.09.2026 Geplante Abgabe erstellen -->
-
-
-#### Journey-07-01
 <div class="tabs">
   <div class="tab">
     <input type="radio" id="tab-beispiele-07-01" name="tab-group-patient-journey-07-01" checked="true">
-    <label for="tab-beispiele-07-012">Beispiele</label>
+    <label for="tab-beispiele-07-01">Beispiele</label>
     <div class="content-in-tab">
       <ul>
         <li>
@@ -780,6 +775,53 @@ Wie wird von der Fachanwendung festgestellt, ob ein Behandlungszeitraum abgelauf
   </div>
 </div>
 
+#### Journey-07-02
+
+Zuletzt erstellt Dr. Urlaubsvertretung eine *Geplante Abgabe* für die Metagelan-Tropfen.
+<!-- TODO: akl 22.09.2026 Geplante Abgabe erstellen -->
+
+
+<div class="tabs">
+  <div class="tab">
+    <input type="radio" id="tab-beispiele-07-02" name="tab-group-patient-journey-07-02" checked="true">
+    <label for="tab-beispiele-07-02">Beispiele</label>
+    <div class="content-in-tab">
+      <ul>
+        <li>
+          <strong>Geplante Abgaben erstellen:</strong>
+          <ul>
+            <li>
+              <a href="MedicationRequest-At-Emed-Journey-07-02-Mr-Geplante-Abgabe-03.html">Geplante Abgabe zu Planeintrag 3 (Metagelan )</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <strong>Transaction Bundle:</strong>
+          <ul>
+            <li>
+            <a href="Bundle-At-Emed-Journey-07-02-Bundle-Geplante-Abgaben-Tx.html">Transaction Bundle mit Geplanter Abgabe</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="tab">
+    <input type="radio" id="tab-usecases-07-02" name="tab-group-patient-journey-07-02">
+    <label for="tab-usecases-07-02">Use Cases</label>
+    <div class="content-in-tab">
+      <ul>
+        <li>
+          <a href="Sub_UC_eMed_04.html#sub_uc_emed_04_01---geplante-abgabe-erstellen-prescription-write">Sub_UC_eMed_04_01 - Geplante Abgabe erstellen (Prescription-Write)</a>
+        </li>
+        <li>
+          <a href="Sub_UC_eMed_04.html#variante-a-vorab-ermittlung-des-e-med-groupidentifiers-groupidentifier-create">Sub_UC_eMed_04_02 - e-Med GroupIdentifier beziehen (Variante A)</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
 
 
 
@@ -789,12 +831,15 @@ Wie wird von der Fachanwendung festgestellt, ob ein Behandlungszeitraum abgelauf
 [![overview](plantuml/patient_journey_07.svg){: .mx-auto style="width:55%;"}](plantuml/patient_journey_07.svg)
 <br> 
 
+
 **7.3.2026: Teilabgabe in der Apotheke**
 
-Herr Mustermann möchte in der Apotheke die Metamizol-Tropfen abholen und steckt seine e-card.
+Herr Mustermann möchte in der Apotheke die Metamizol-Tropfen abholen und übergibt legt e-Rezept der Apothekerin vor.
 
-Es ist nur noch ein Fläschchen Metamizol verfügbar. Die Apothekerin händigt das Fläschchen aus und erstellt eine Durchgeführte Abgabe als Teilabgabe.
+Es ist nur noch ein Fläschchen Metamizol verfügbar. Die Apothekerin händigt das Fläschchen aus und erstellt eine Durchgeführte Abgabe als Teilabgabe. 
 Die Patienten wird angewiesen, das zweite Fläschchen in der Apotheke abzuholen, sobald es verfügbar ist.
+
+<!-- Abruf mit Groupidentifier, kein EGLA Zugriff -->
 
 * **Durchgeführte Abgaben erstellen (Teilabgabe):** in Arbeit.
 
@@ -807,27 +852,39 @@ Die Apothekerin ruft die e-Medikation erneut ab, schließt dann die Teilabgabe a
 * **Durchgeführte Abgaben erstellen (Teilabgabe abschließen):** in Arbeit.
 
 
-**12.3.2026: Nachkontrolle bei der Urlaubsvertretung von Dr. Hausärztin**
+**12.3.2026: Nachkontrolle bei Dr. Hausärztin**
 
 Herr Mustermann hat die Medikamente in der Apotheke abgeholt und die Schmerzen sind deutlich zurückgegangen.
  
-Eine Woche nach der Operation kommt er zur Nachkontrolle zur Urlaubsvertretung von Dr. Hausärztin.
+Eine Woche nach der Operation kommt er zur Nachkontrolle zur Dr. Hausärztin.
 
-Für die verbleibenden Schmerzen wird von Dr. Urlaubsvertretung die Metamizoldosis für einen begrenzten Zeitraum weiterverodnet, die Dosis aber reduziert. Metamizol-Tropfen: 2 × täglich 10 Tropfen, für 5 Tage.
+Für die verbleibenden Schmerzen wird von Dr. Hausärztin die Metamizoldosis für einen begrenzten Zeitraum weiterverodnet, die Dosis aber reduziert. Metamizol-Tropfen: 4 × täglich 20 Tropfen, für 5 Tage.
+Herr Mustermann benötigt ein neues Rezept, daher erstellt Dr. Hausärztin eine *Geplante Abgabe*.
  
-Ramipril soll wieder eingenommen werden. 
+Beim rausgehen sagt der Patient, dass ihn das Tropfen zählen nervt, also ändert Dr. Hausärztin die Medikation auf Tabletten: Metagelan 500 mg-Tabletten: 4 x täglich 1 Tablette, für 5 Tage.
 
-Im neu erstellten Medikationsplan sind die neuen Planeinträge sowie das Datum der Bearbeitung und die verantwortliche Ärztin (Dr. Urlaubsvertretung) ersichtlich.
+Sie ändert den Planeintrag, **storniert** die *Geplante Abgabe* für die Tropfen und erstellt eine neue für die Tabletten.
+
+* **Planeintrag beenden und Medikationsplan aktualisieren:** in Arbeit.
+* **Geplante Abgabe stornieren:** in Arbeit.
+
 
 **20.3.2026: Kontrolltermin bei Dr. Hausärztin**
 
-Herr Mustermann erscheint zur Wundkontrolle bei Dr. Hausärztin.
+Herr Mustermann erscheint zur Kontrolle bei Dr. Hausärztin.
 
 Die postoperative Schmerztherapie ist nicht mehr erforderlich. Der Planeintrag für Metamizol wird daher beendet.
-Die Behandlung mit der Dexpanthenol-Salbe ist ebenfalls abgeschlossen.
 Ramipril wird als Dauermedikation fortgeführt.
 
 * **Planeinträge beenden und Medikationsplan aktualisieren:** in Arbeit.
+
+
+**20.6.2026: Herr Mustermann setzt seine Teilnehmerrechte durch**
+
+Herr Mustermann testet die Umsetzung seiner Teilnehmerrechte.
+Er löscht die historische Planversion vom 14.3.2026 und einen historischen Planeintrag vom 22.3.2026 (Magelan-Tropfen).
+Weiters entfernt er alle Planeinträge vom aktuellen Medikationsplan.
+<!-- Im Anschluss sieht er sich die Ergebnisse an. -->
 
 
 ### Übersicht Patient Journey
