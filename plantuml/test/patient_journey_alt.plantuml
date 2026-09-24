@@ -44,7 +44,7 @@ skinparam BoxBorderColor #555555
 
 
 box "\n Patient " #bac38b
-actor Patient as "Max Mustermann"
+actor Patient as "Anton Mustermann"
 end box
 
 box "\n Ärztin " #9fbac4

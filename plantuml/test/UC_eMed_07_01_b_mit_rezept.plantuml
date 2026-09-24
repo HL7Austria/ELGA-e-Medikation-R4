@@ -51,7 +51,7 @@ skinparam sequence {
 !define COLOR_ERROR    #E9713235
 
 'actor GDA_1 as "GDA 1" COLOR_GDA_1
-actor GDA_Apo as "Apotheke" COLOR_APO
+actor GDA_Apo as "Amadeus Apotheke" COLOR_APO
 participant eMed_FA as "e-Med FA" COLOR_EMED_FA
 'participant e_Rezept as "e-Rezept" COLOR_E_REZEPT
 

@@ -57,8 +57,8 @@ skinparam sequence {
 ' !define COLOR_APO_BOX      #0F9ED590
 ' !define COLOR_EMED_FA_BOX  #e97232bd
 
-actor Patient as "Max Mustermann" COLOR_PATIENT
-actor Arzt_1 as "Dr. Hausärztin" COLOR_GDA_1
+actor Patient as "Anton Mustermann" COLOR_PATIENT
+actor Arzt_2 as "Dr. Hausärztin" COLOR_GDA_1
 actor Arzt_2 as "Dr. Krankenhaus" COLOR_GDA_2
 actor Arzt_3 as "Dr. Urlaubsvertretung" COLOR_GDA_3
 actor Apotheke as "Amadeus Apotheke" COLOR_APO
@@ -71,11 +71,11 @@ participant eMed_FA as "e-Medikation" COLOR_EMED_FA
 
 
 ' box "\n Patient " COLOR_PATIENT_BOX
-' actor Patient as "Max Mustermann" COLOR_PATIENT
+' actor Patient as "Anton Mustermann" COLOR_PATIENT
 ' end box
 
 ' box "\n Ärztin " COLOR_GDA_1_BOX
-' actor Arzt_1 as "Dr. Hausärztin" COLOR_GDA_1
+' actor Arzt_2 as "Dr. Hausärztin" COLOR_GDA_1
 ' end box
 
 ' box "\n Krankenhaus " COLOR_GDA_2_BOX
@@ -96,7 +96,7 @@ autonumber
 group GROUP_ARZT 27.2.2026 · Arztbesuch
 
   activate Patient COLOR_PATIENT
-  Patient -> Arzt_1: Arztbesuch
+  Patient -> Arzt_2: Arztbesuch
 
   note over Patient
   Herr Mustermann kommt wegen
@@ -107,9 +107,9 @@ group GROUP_ARZT 27.2.2026 · Arztbesuch
   Hautausschlag bemerkt.
   end note
 
-  activate Arzt_1 COLOR_GDA_1
+  activate Arzt_2 COLOR_GDA_1
 
-  note over Arzt_1
+  note over Arzt_2
   Dr. Hausärztin stellt eine
   leichte arterielle Hypertonie 
   fest und ruft die e-Medikation 
@@ -122,7 +122,7 @@ group GROUP_ARZT 27.2.2026 · Arztbesuch
 
   == Medikationsplan erstmals abrufen ==
 
-  Arzt_1 -> eMed_FA: aktuellen Medikationsplan, Geplante und Durchgeführte Abgaben abrufen
+  Arzt_2 -> eMed_FA: aktuellen Medikationsplan, Geplante und Durchgeführte Abgaben abrufen
 
   activate eMed_FA COLOR_EMED_FA
 
@@ -134,14 +134,14 @@ group GROUP_ARZT 27.2.2026 · Arztbesuch
   leeren Medikationsplan.
   end note
 
-  eMed_FA -> Arzt_1: leerer Medikationsplan (*EmptyReason = notstarted*)\n(Geplante und Durchgeführte Abgaben leeres Ergebnis)
+  eMed_FA -> Arzt_2: leerer Medikationsplan (*EmptyReason = notstarted*)\n(Geplante und Durchgeführte Abgaben leeres Ergebnis)
 
   deactivate eMed_FA
   '  deactivate Patient
 
   == Medikationsplaneinträge hinzufügen ==
 
-  note over Arzt_1
+  note over Arzt_2
   Dr. Hausärztin erstellt 2
   Medikationsplaneinträge und 
   klärt den Patienten über die 
@@ -156,9 +156,9 @@ group GROUP_ARZT 27.2.2026 · Arztbesuch
   dünn auftragen
   end note
 
-  Arzt_1 -> Arzt_1: neue Planeinträge erstellen + Medikationsplan bearbeiten
+  Arzt_2 -> Arzt_2: neue Planeinträge erstellen + Medikationsplan bearbeiten
 
-  Arzt_1 -> eMed_FA: neuen Medikationsplan speichern
+  Arzt_2 -> eMed_FA: neuen Medikationsplan speichern
 
   activate eMed_FA COLOR_EMED_FA
 
@@ -171,7 +171,7 @@ group GROUP_ARZT 27.2.2026 · Arztbesuch
   end note
 
 
-  note over Arzt_1
+  note over Arzt_2
   Dr. Hausärztin erstellt 
   für beide Medikamente eine 
   Geplante Abgabe (Rezeptierung), 
@@ -180,12 +180,12 @@ group GROUP_ARZT 27.2.2026 · Arztbesuch
   abholen kann.
   end note
 
-  Arzt_1 -> Arzt_1: Geplante Abgaben erstellen
+  Arzt_2 -> Arzt_2: Geplante Abgaben erstellen
 
-  Arzt_1 -> eMed_FA: Geplante Abgaben speichern
+  Arzt_2 -> eMed_FA: Geplante Abgaben speichern
 
   deactivate eMed_FA
-  deactivate Arzt_1
+  deactivate Arzt_2
   '  deactivate Patient
 
 end
@@ -321,17 +321,17 @@ group GROUP_ARZT 3.3.2026 · Präoperativer Hausarzttermin
   seiner Hausärztin.
   end note
 
-  Patient -> Arzt_1: Präoperativer Kontrolltermin
+  Patient -> Arzt_2: Präoperativer Kontrolltermin
 
-  activate Arzt_1 COLOR_GDA_1
+  activate Arzt_2 COLOR_GDA_1
 
-  Arzt_1 -> eMed_FA: e-Medikation abrufen
+  Arzt_2 -> eMed_FA: e-Medikation abrufen
 
   activate eMed_FA COLOR_EMED_FA
-  eMed_FA --> Arzt_1: Aktueller Medikationsplan
+  eMed_FA --> Arzt_2: Aktueller Medikationsplan
   deactivate eMed_FA
 
-  note over Arzt_1
+  note over Arzt_2
   Die geplante Leistenbruchoperation
   ist für den 5.3.2026 vorgesehen.
 
@@ -340,15 +340,15 @@ group GROUP_ARZT 3.3.2026 · Präoperativer Hausarzttermin
   vorübergehend abzusetzen.
   end note
 
-  Arzt_1 -> Arzt_1: Ramipril vorübergehend pausieren
+  Arzt_2 -> Arzt_2: Ramipril vorübergehend pausieren
 
-  Arzt_1 -> eMed_FA: Medikationsplan speichern
+  Arzt_2 -> eMed_FA: Medikationsplan speichern
 
   ' activate eMed_FA COLOR_EMED_FA
-  ' eMed_FA --> Arzt_1: Medikationsplan gespeichert
+  ' eMed_FA --> Arzt_2: Medikationsplan gespeichert
   ' deactivate eMed_FA
 
-  deactivate Arzt_1
+  deactivate Arzt_2
   '  deactivate Patient
 end
 
@@ -546,17 +546,17 @@ group GROUP_ARZT 20.3.2026 · Kontrolltermin bei Dr. Hausärztin
   Wundkontrolle bei Dr. Hausärztin. 
   end note
 
-  Patient -> Arzt_1: Kontrolltermin
+  Patient -> Arzt_2: Kontrolltermin
 
-  activate Arzt_1 COLOR_GDA_1
+  activate Arzt_2 COLOR_GDA_1
 
-  Arzt_1 -> eMed_FA: e-Medikation abrufen
+  Arzt_2 -> eMed_FA: e-Medikation abrufen
 
   activate eMed_FA COLOR_EMED_FA
-  eMed_FA --> Arzt_1: Aktueller Medikationsplan, Geplante und Durchgeführte Abgaben
+  eMed_FA --> Arzt_2: Aktueller Medikationsplan, Geplante und Durchgeführte Abgaben
   deactivate eMed_FA
 
-  note over Arzt_1
+  note over Arzt_2
   Die postoperative Schmerztherapie
   ist nicht mehr erforderlich. Der 
   Planeintrag für Metamizol wird daher beendet.
@@ -569,10 +569,10 @@ group GROUP_ARZT 20.3.2026 · Kontrolltermin bei Dr. Hausärztin
   Dauermedikation fortgeführt.
   end note
 
-  Arzt_1 -> Arzt_1: Planeintrag Metamizol beenden
-  Arzt_1 -> Arzt_1: Planeintrag Dexpanthenol-Salbe beenden
+  Arzt_2 -> Arzt_2: Planeintrag Metamizol beenden
+  Arzt_2 -> Arzt_2: Planeintrag Dexpanthenol-Salbe beenden
 
-  Arzt_1 -> eMed_FA: Medikationsplan speichern
+  Arzt_2 -> eMed_FA: Medikationsplan speichern
 
   note over eMed_FA
   Im neu erstellten Medikationsplan
@@ -583,10 +583,10 @@ group GROUP_ARZT 20.3.2026 · Kontrolltermin bei Dr. Hausärztin
   end note
 
   ' activate eMed_FA COLOR_EMED_FA
-  ' eMed_FA --> Arzt_1: Medikationsplan gespeichert
+  ' eMed_FA --> Arzt_2: Medikationsplan gespeichert
   ' deactivate eMed_FA
 
-  deactivate Arzt_1
+  deactivate Arzt_2
   deactivate Patient
 end
 

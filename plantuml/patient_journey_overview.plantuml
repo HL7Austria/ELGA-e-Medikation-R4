@@ -67,7 +67,7 @@ skinparam sequence {
 ' !define COLOR_APO_BOX      #0F9ED590
 ' !define COLOR_EMED_FA_BOX  #e97232bd
 
-actor Patient as "Max Mustermann" COLOR_PATIENT
+actor Patient as "Anton Mustermann" COLOR_PATIENT
 actor Arzt_1 as "Dr. Hausärztin" COLOR_GDA_1
 actor Arzt_2 as "Dr. Krankenhaus" COLOR_GDA_2
 actor Arzt_3 as "Dr. Urlaubsvertretung" COLOR_GDA_3
@@ -156,18 +156,35 @@ end
 
 group GROUP_ARZT 17.3.2026 bis 21.3.2026 · Stationärer Krankenhausaufenthalt
 
-  Patient -> Arzt_1: Krankenhausbesuch 
-  Arzt_1 -> eMed_FA: aktuellen Medikationsplan abrufen:\n$plan-read 
-  eMed_FA -> Arzt_1: Medikationsplan\n(pausiertes Ramipril + Dexpanthenol-Salbe)
-  Arzt_1 -> Arzt_1: Medikationsplan bearbeiten +\nPlaneintrag Ramipril ändern +\nneuen Planeintrag mit Wirkstoff Metamizol erstellen
-  Arzt_1 -> eMed_FA: neuen Medikationsplan speichern: $plan-write
-  eMed_FA -> Arzt_1: Medikationsplan 
+  Patient -> Arzt_2: Krankenhausbesuch 
+  Arzt_2 -> eMed_FA: aktuellen Medikationsplan abrufen:\n$plan-read 
+  eMed_FA -> Arzt_2: Medikationsplan\n(pausiertes Ramipril + Dexpanthenol-Salbe)
+  Arzt_2 -> Arzt_2: Medikationsplan bearbeiten +\nPlaneintrag Ramipril ändern +\nneuen Planeintrag mit Wirkstoff Metamizol erstellen
+  Arzt_2 -> eMed_FA: neuen Medikationsplan speichern: $plan-write
+  eMed_FA -> Arzt_2: Medikationsplan 
 
   note over Patient
   Abruf Geplante Abgaben
   und Durchgeführte Abgaben 
   siehe Journey-04
   end note
+
+end
+
+
+group GROUP_ARZT 22.3.2026 · Termin bei Dr. Urlaubsvertretung
+
+  Patient -> Arzt_3: Arztbesuch  
+  note over Patient
+  Herr Mustermann benötigt
+  ein Rezept für das 
+  Schmerzmittel.
+  end note
+  Arzt_3 -> eMed_FA: e-Medikation abrufen 
+  eMed_FA -> Arzt_3: <$document> Medikationsplan (Ramipril + Dexpanthenol-Salbe (abgelaufen) + Wirkstoff Metamizol)
+  Arzt_3 -> eMed_FA: Neuer Medikationsplan mit Magelan-Tropfen, Entfernung der Dexpanthenol-Salbe aus dem Plan bestätigen
+  Arzt_3 -> eMed_FA: 2 Geplante Abgabe erstellen\n(Magelan-Tropfen)
+  Arzt_3 -> Patient: Rezept aushändigen (optional)
 
 end
 

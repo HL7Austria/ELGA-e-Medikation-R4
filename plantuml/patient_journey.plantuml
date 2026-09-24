@@ -68,8 +68,8 @@ skinparam sequence {
 ' !define COLOR_APO_BOX      #0F9ED590
 ' !define COLOR_EMED_FA_BOX  #e97232bd
 
-actor Patient as "Max Mustermann" COLOR_PATIENT
-actor Arzt_1 as "Dr. Hausärztin" COLOR_GDA_1
+actor Patient as "Anton Mustermann" COLOR_PATIENT
+actor Arzt_2 as "Dr. Hausärztin" COLOR_GDA_1
 actor Arzt_2 as "Dr. Krankenhaus" COLOR_GDA_2
 actor Arzt_3 as "Dr. Urlaubsvertretung" COLOR_GDA_3
 actor Apotheke as "Amadeus Apotheke" COLOR_APO
@@ -82,11 +82,11 @@ participant eMed_FA as "e-Medikation" COLOR_EMED_FA
 
 
 ' box "\n Patient " COLOR_PATIENT_BOX
-' actor Patient as "Max Mustermann" COLOR_PATIENT
+' actor Patient as "Anton Mustermann" COLOR_PATIENT
 ' end box
 
 ' box "\n Ärztin " COLOR_GDA_1_BOX
-' actor Arzt_1 as "Dr. Hausärztin" COLOR_GDA_1
+' actor Arzt_2 as "Dr. Hausärztin" COLOR_GDA_1
 ' end box
 
 ' box "\n Krankenhaus " COLOR_GDA_2_BOX
@@ -107,39 +107,39 @@ autonumber
 ' group GROUP_ARZT 27.2.2026 · Arztbesuch
 
 '   activate Patient COLOR_PATIENT
-'   Patient -> Arzt_1: Arztbesuch  <$face>
-'   activate Arzt_1 COLOR_GDA_1
+'   Patient -> Arzt_2: Arztbesuch  <$face>
+'   activate Arzt_2 COLOR_GDA_1
 
 '   ' == Medikationsplan erstmals abrufen ==
 
-'   Arzt_1 -> eMed_FA: aktuellen Medikationsplan lesen: $plan-read
+'   Arzt_2 -> eMed_FA: aktuellen Medikationsplan lesen: $plan-read
 '   activate eMed_FA COLOR_EMED_FA  
-'   eMed_FA -> Arzt_1: leerer Medikationsplan\n(EmptyReason = notstarted)
+'   eMed_FA -> Arzt_2: leerer Medikationsplan\n(EmptyReason = notstarted)
 '   deactivate eMed_FA
-'   Arzt_1 -> eMed_FA: Geplante Abgaben lesen: Prescription-Search
+'   Arzt_2 -> eMed_FA: Geplante Abgaben lesen: Prescription-Search
 '   activate eMed_FA COLOR_EMED_FA 
-'   eMed_FA -> Arzt_1: leeres Ergebnis
+'   eMed_FA -> Arzt_2: leeres Ergebnis
 '   deactivate eMed_FA
-'   Arzt_1 -> eMed_FA: Durchgeführte Abgaben lesen: Dispense-Search
+'   Arzt_2 -> eMed_FA: Durchgeführte Abgaben lesen: Dispense-Search
 '   activate eMed_FA COLOR_EMED_FA 
-'   eMed_FA -> Arzt_1: leeres Ergebnis
+'   eMed_FA -> Arzt_2: leeres Ergebnis
 '   deactivate eMed_FA
 '   '  deactivate Patient
 
 '   ' == Medikationsplaneinträge hinzufügen ==
-'   Arzt_1 -> Arzt_1: neue Planeinträge erstellen +\nMedikationsplan bearbeiten
-'   Arzt_1 -> eMed_FA: neuen Medikationsplan schreiben: $plan-write
+'   Arzt_2 -> Arzt_2: neue Planeinträge erstellen +\nMedikationsplan bearbeiten
+'   Arzt_2 -> eMed_FA: neuen Medikationsplan schreiben: $plan-write
 '   activate eMed_FA COLOR_EMED_FA
-'   eMed_FA -> Arzt_1: Medikationsplan 
+'   eMed_FA -> Arzt_2: Medikationsplan 
 '   deactivate eMed_FA
 
-'   Arzt_1 -> Arzt_1: Geplante Abgaben erstellen\n(Ramipril + Dexpanthenol-Salbe)
-'   Arzt_1 -> eMed_FA: Geplante Abgaben schreiben: $dispense-write
+'   Arzt_2 -> Arzt_2: Geplante Abgaben erstellen\n(Ramipril + Dexpanthenol-Salbe)
+'   Arzt_2 -> eMed_FA: Geplante Abgaben schreiben: $dispense-write
 '   activate eMed_FA COLOR_EMED_FA
-'   eMed_FA -> Arzt_1: Geplante Abgaben
+'   eMed_FA -> Arzt_2: Geplante Abgaben
 '   deactivate eMed_FA
-'   Arzt_1 -> Patient: Rezept aushändigen
-'   deactivate Arzt_1
+'   Arzt_2 -> Patient: Rezept aushändigen
+'   deactivate Arzt_2
 '   '  deactivate Patient
 
 ' end
@@ -217,25 +217,25 @@ group GROUP_ARZT 3.3.2026 · Präoperativer Hausarzttermin
 
   '  activate Patient COLOR_PATIENT
 
-  Patient -> Arzt_1: Präoperativer Kontrolltermin
+  Patient -> Arzt_2: Präoperativer Kontrolltermin
 
-  activate Arzt_1 COLOR_GDA_1
+  activate Arzt_2 COLOR_GDA_1
 
-  Arzt_1 -> eMed_FA: aktuellen Medikationsplan,\nGeplante und Durchgeführte\nAbgaben abrufen
+  Arzt_2 -> eMed_FA: aktuellen Medikationsplan,\nGeplante und Durchgeführte\nAbgaben abrufen
 
   activate eMed_FA COLOR_EMED_FA
-  eMed_FA -> Arzt_1: Aktueller Medikationsplan
+  eMed_FA -> Arzt_2: Aktueller Medikationsplan
   deactivate eMed_FA
 
-  Arzt_1 -> Arzt_1: Ramipril vorübergehend\npausieren
+  Arzt_2 -> Arzt_2: Ramipril vorübergehend\npausieren
 
-  Arzt_1 -> eMed_FA: Medikationsplan speichern
+  Arzt_2 -> eMed_FA: Medikationsplan speichern
 
   ' activate eMed_FA COLOR_EMED_FA
-  ' eMed_FA -> Arzt_1: Medikationsplan gespeichert
+  ' eMed_FA -> Arzt_2: Medikationsplan gespeichert
   ' deactivate eMed_FA
 
-  deactivate Arzt_1
+  deactivate Arzt_2
   '  deactivate Patient
 end
 
@@ -339,26 +339,26 @@ group GROUP_ARZT 20.3.2026 · Kontrolltermin bei Dr. Hausärztin
 
   '  activate Patient COLOR_PATIENT
 
-  Patient -> Arzt_1: Kontrolltermin
+  Patient -> Arzt_2: Kontrolltermin
 
-  activate Arzt_1 COLOR_GDA_1
+  activate Arzt_2 COLOR_GDA_1
 
-  Arzt_1 -> eMed_FA: e-Medikation abrufen
+  Arzt_2 -> eMed_FA: e-Medikation abrufen
 
   activate eMed_FA COLOR_EMED_FA
-  eMed_FA -> Arzt_1: Aktueller Medikationsplan,\nGeplante und Durchgeführte\nAbgaben
+  eMed_FA -> Arzt_2: Aktueller Medikationsplan,\nGeplante und Durchgeführte\nAbgaben
   deactivate eMed_FA
 
-  Arzt_1 -> Arzt_1: Planeintrag Metamizol\nbeenden
-  Arzt_1 -> Arzt_1: Planeintrag Dexpanthenol-\nSalbe beenden
+  Arzt_2 -> Arzt_2: Planeintrag Metamizol\nbeenden
+  Arzt_2 -> Arzt_2: Planeintrag Dexpanthenol-\nSalbe beenden
 
-  Arzt_1 -> eMed_FA: Medikationsplan speichern
+  Arzt_2 -> eMed_FA: Medikationsplan speichern
 
   ' activate eMed_FA COLOR_EMED_FA
-  ' eMed_FA -> Arzt_1: Medikationsplan gespeichert
+  ' eMed_FA -> Arzt_2: Medikationsplan gespeichert
   ' deactivate eMed_FA
 
-  deactivate Arzt_1
+  deactivate Arzt_2
   deactivate Patient
 end
 
