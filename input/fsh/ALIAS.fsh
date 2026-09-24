@@ -41,8 +41,8 @@ Alias: $cs-medication-rezeptart = https://termgit.elga.gv.at/CodeSystem/medikati
 Alias: $cs-list-empty-reason = http://terminology.hl7.org/CodeSystem/list-empty-reason
 
 // medicationdispense
-Alias: $cs-medication-dispense-status = http://hl7.org/fhir/ValueSet/medicationdispense-status
-Alias: $cs-medication-dispense-type = http://terminology.hl7.org/ValueSet/v3-ActPharmacySupplyType
+Alias: $cs-medication-dispense-status = http://hl7.org/fhir/CodeSystem/medicationdispense-status
+Alias: $cs-medication-dispense-type = http://terminology.hl7.org/CodeSystem/v3-ActCode
 Alias: $medicationdispense-rendereddosageinstruction-r5 = http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationDispense.renderedDosageInstruction
 
 //systems
@@ -54,7 +54,7 @@ Alias: $cs-elga-gtelvogdarollen = https://termgit.elga.gv.at/CodeSystem/elga-gte
 
 // FHIR
 //Alias: $cs-event-timing = http://hl7.org/fhir/event-timing
-Alias: $cs-hl7-at-organizationtype = https://termgit.elga.gv.at/ValueSet/hl7-at-organizationtype
+Alias: $cs-hl7-at-organizationtype = https://termgit.elga.gv.at/CodeSystem/elga-gtelvogdarollen
 
 
 // terminology.hl7.org
