@@ -42,7 +42,7 @@ start
 
 if (Medikationsplan\nvorhanden?) then (Nein)
 
-  :List.emptyReason =\nnotstarted;
+  :[1] List.emptyReason =\nnotstarted;
 
   note right
     Initialen Medikationsplan
@@ -54,7 +54,7 @@ else (Ja)
 
   if (Planeinträge\nvorhanden?) then (Ja)
 
-    :Transformationen durchführen\n(+ Einträge mit Flag "Removed"\nentfernen);
+    :[2] Transformationen durchführen\n+ Einträge mit Flag "Removed"\nentfernen;
 
     if (noch Planeinträge\nvorhanden?) then (Ja)
 
@@ -66,13 +66,13 @@ else (Ja)
 
   else (Nein)
 
-    :keine\nTransformation;
+    :[3] keine\nTransformation;
 
   endif
 
 endif
 
-:Medikationsplan-Bundle\nzur Auslieferung bereit;
+:[4] Medikationsplan-Bundle\nerstellen;
 
 stop
 

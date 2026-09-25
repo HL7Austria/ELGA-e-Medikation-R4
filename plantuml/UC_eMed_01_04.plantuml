@@ -51,10 +51,13 @@ participant eMed_FA as "e-Med FA" COLOR_EMED_FA
 
 autonumber
 
-== Medikationsplaneinträge lesen ==
-
-GDA_1 -> eMed_FA: GET [base]/Patient/[id]/MedicationRequest/_history\n(category="Planeintrag" & Suchparameter)
+GDA_1 -> eMed_FA: GET [base]/MedicationRequest/_history\n(category="Planeintrag" & Suchparameter)
 activate GDA_1 COLOR_GDA_1
+
+note over GDA_1
+Medikationsplaneinträge
+suchen
+end note
 
 activate eMed_FA COLOR_EMED_FA
 eMed_FA -> eMed_FA: Ermittlung der passenden\nMedicationRequest-Versionen\nanhand der Suchparameter

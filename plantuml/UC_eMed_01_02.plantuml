@@ -58,13 +58,17 @@ participant eMed_FA as "e-Med FA" COLOR_EMED_FA
 
 autonumber
 
-== Historische Medikationspläne lesen ==
-
-GDA_1 -> eMed_FA: GET [base]/Patient/[id]/List/_history?include=*\n(mit Suchparametern)
+GDA_1 -> eMed_FA: GET [base]/List/_history?include=*\n[Suchparameter]
 activate GDA_1 COLOR_GDA_1
 
+note over GDA_1
+Suche nach historischen 
+Planversionen.
+end note
+
+
 activate eMed_FA COLOR_EMED_FA
-eMed_FA -> eMed_FA: Ermittlung der passenden\nhistorischen List-Versionen\nund Rekonstruktion der\nhistorischen Medikationspläne
+eMed_FA -> eMed_FA: Ermittlung der List-Versionen\nund Rekonstruktion der\nhistorischen Medikationspläne
 
 group COLOR_OK alt: Historische List-Version(en) gefunden?
   eMed_FA -> GDA_1: Bundle (type=searchset) mit einem oder mehreren\nMedikationsplan-Bundles
@@ -76,12 +80,5 @@ else COLOR_ERROR Fehler
   deactivate eMed_FA
 end
 
-
-note over eMed_FA
-Die Fachanwendung liefert die den
-Suchparametern entsprechenden historischen
-Medikationspläne als Medikationsplan-Bundles in
-einem Bundle vom Typ searchset zurück.
-end note
 
 @enduml
