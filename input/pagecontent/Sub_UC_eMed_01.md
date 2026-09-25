@@ -177,21 +177,10 @@ Die Suche ermöglicht berechtigten Akteuren den Zugriff auf aktuelle und histori
 
 Die Historie ermöglicht die Nachverfolgung von Änderungen an Medikationsplaneinträgen, beispielsweise hinsichtlich Präparat, Dosierung oder Einnahmeanweisung.
 
-
-#### Suchparameter
-
-Die Suche nach Medikationsplaneinträgen erfolgt mittels **GET** unter Angabe geeigneter Suchparameter:<br>
-* **Medikation** (PZN, Arzneimittelname oder Wirkstoff)
-* **Einnahmezeitraum**
-* **Erstellungszeitpunkt**
-* **Status** (z.B. *stopped* oder *on-hold*)
-* **StatusReason**: bestimmtes [statusReason](ValueSet-AtElgaEmedValueSetPlaneintragStatusReasonVS.html)
-* **Historisch oder aktuell** (_history)
-
 <br>
 Die gefundenen Medikationsplaneinträge können anschließend als Ausgangspunkt für weitere Abfragen verwendet werden, um jene Ressourcen zu ermittelnt, die genau auf diese Planeintragsversion referenzieren:
 
-* die zugehörigen Medikationsplanversionen mittels [Plan-History-Search](Sub_UC_eMed_01.html#sub_uc_emed_01_02---historische-medikationsplanversion-lesen-plan-history-search)
+* die zugehörigen Medikationsplanversionen ([Plan-History-Search](Sub_UC_eMed_01.html#sub_uc_emed_01_02---historische-medikationsplanversion-suchen-plan-history-search))
 * *Geplante Abgaben* ([Prescription-Search](Sub_UC_eMed_03.html#sub_uc_emed_03_01---geplante-abgaben-lesen-prescription-search)) 
 * *Durchgeführte Abgaben* ([Dispense-Search](Sub_UC_eMed_03.html#sub_uc_emed_03_02---durchgeführte-abgaben-lesen-dispense-search)) 
 
@@ -201,6 +190,17 @@ Offene Punkte:<br>
 - Sind die Referenzen in Geplanten Abgaben und Durchgeführten Abgaben versioniert?<br>
 </p>
 </div>
+
+
+#### Suchparameter
+
+Die Suche nach Medikationsplaneinträgen erfolgt mittels **GET** unter Angabe geeigneter Suchparameter:<br>
+* **Medikation** (PZN, Arzneimittelname oder Wirkstoff)
+* **Einnahmezeitraum**
+* **Erstellungszeitpunkt**
+* **Status**: [Value Set](ValueSet-PlaneintragStatusVS.html)
+* **StatusReason**: [Value Set](ValueSet-AtElgaEmedValueSetPlaneintragStatusReasonVS.html)
+* **Historisch oder aktuell** (_history)
 
 #### Ablauf
 
