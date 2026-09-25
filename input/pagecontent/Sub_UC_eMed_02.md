@@ -707,7 +707,11 @@ Ausüben der Teilnehmerrechte in Arbeit.
 
 
 
-<!-- Der:die ELGA-Teilnehmer:in kann über das Zugangsportal die *aktuelle Medikationsplanversion* sowie *einzelne oder mehrere historische Medikationsplanversionen* unwiderruflich löschen.
+<!-- stand 25.9.: Wird die aktuelle Version vollständig gelöscht, wird ein leerer Medikationsplan zur neuen aktuellen Version.
+
+alt:
+
+Der:die ELGA-Teilnehmer:in kann über das Zugangsportal die *aktuelle Medikationsplanversion* sowie *einzelne oder mehrere historische Medikationsplanversionen* unwiderruflich löschen.
 
 Hierfür muss der:die ELGA-Teilnehmer:in zunächst mittels *Plan-History-Search* oder *Plan-History-Directory-Search* über das Zugangsportal die betreffenden Medikationsplanversionen bzw. deren Identifikatoren ermitteln.
 Anschließend markiert der:die ELGA-Teilnehmer:in die zu löschenden Medikationsplanversionen und führt über das Zugangsportal ein $plan-delete aus.
