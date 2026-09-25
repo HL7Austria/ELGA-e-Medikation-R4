@@ -63,6 +63,8 @@ width: 100%;}
 }
 
 .hinweisbox {
+  font-size: 12px;
+  /* font-family: "Courier New", Courier; */
   border: 1px solid #156082;
   background: #dae8f8;
   padding: 8px 12px;
