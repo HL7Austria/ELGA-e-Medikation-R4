@@ -586,7 +586,7 @@ Möglichkeit prüfen, wie der Usecase: "Medikament soll in 2 Wochen für 1 Woche
           <a href="Sub_UC_eMed_02.html#sub_uc_emed_02_05---planeintrag-pausieren-oder-reaktivieren">Sub_UC_eMed_02_05 - Planeintrag pausieren oder reaktivieren</a>
         </li>
         <li>
-          <a href="Sub_UC_eMed_02.html#sub_uc_emed_02_04---planeintrag-im-medikationsplan-beibehalten">Sub_UC_eMed_02_04 - Planeintrag im Medikationsplan beibehalten</a>
+          <a href="Sub_UC_eMed_02.html#sub_uc_emed_02_04---planeintrag-unverändert-zur-kenntnis-nehmen">Sub_UC_eMed_02_04 - Planeintrag unverändert zur Kenntnis nehmen</a>
         </li>
       </ul>
     </div>
@@ -678,7 +678,7 @@ Zusätzlich wird die pausierte Ramipril Medikation wieder aufgenommen, aber in d
         Referenz auf Wirkstoffangabe im Medikationsplan: in Arbeit.  <!-- TODO Kapitel akl 21.9.2026 -->
         </li>
         <li>
-          <a href="Sub_UC_eMed_02.html#sub_uc_emed_02_04---planeintrag-im-medikationsplan-beibehalten">Sub_UC_eMed_02_04 - Planeintrag im Medikationsplan beibehalten</a>
+          <a href="Sub_UC_eMed_02.html#sub_uc_emed_02_04---planeintrag-unverändert-zur-kenntnis-nehmen">Sub_UC_eMed_02_04 - Planeintrag unverändert zur Kenntnis nehmen</a>
         </li>
       </ul>
     </div>
@@ -768,7 +768,7 @@ Wie wird von der Fachanwendung festgestellt, ob ein Behandlungszeitraum abgelauf
         Abgelaufener Planeintrag: zu verlinken.  <!-- TODO Kapitel akl 21.9.2026 -->
         </li>
         <li>
-          <a href="Sub_UC_eMed_02.html#sub_uc_emed_02_04---planeintrag-im-medikationsplan-beibehalten">Sub_UC_eMed_02_04 - Planeintrag im Medikationsplan beibehalten</a>
+          <a href="Sub_UC_eMed_02.html#sub_uc_emed_02_04---planeintrag-unverändert-zur-kenntnis-nehmen">Sub_UC_eMed_02_04 - Planeintrag unverändert zur Kenntnis nehmen</a>
         </li>
       </ul>
     </div>
