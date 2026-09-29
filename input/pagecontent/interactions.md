@@ -5,6 +5,12 @@
 <!-- <br>
 [![diagram](eMed_Interactions.png){: style="width: 60%"}](eMed_Interactions.png) -->
 
+<div class="note-to-balloters">
+Die Umsetzung des Patientenkontakts in den Transaktionen ist nicht Teil des Ballots. Der konkrete Zugriff wird in der Lösungsarchitektur beschrieben. 
+<br>
+In diesem IG werden daher alle Requests ab dem /[type] dargestellt.
+</div>
+
 <br>
 <div>{% include_relative plantuml/interaction_overview.svg %}</div>
 <br>
@@ -47,7 +53,7 @@ table thead th {
 
 <tr style="border-top:3px solid #666;">
 <td><strong>POST</strong></td>
-<td><code>/Patient/[id]/List</code></td>
+<td><code>/List</code></td>
 <td><code>$plan-read</code></td>
 <td>Aktuelle Medikationsplanversion lesen</td>
 <td>GDA, PAT</td>
@@ -55,7 +61,7 @@ table thead th {
 
 <tr>
 <td><strong>POST</strong></td>
-<td><code>/Patient/[id]/List</code></td>
+<td><code>/List</code></td>
 <td><code>$plan-write</code></td>
 <td>Neue Version eines Medikationsplans schreiben</td>
 <td>GDA</td>
@@ -63,7 +69,7 @@ table thead th {
 
 <tr>
 <td><strong>POST</strong></td>
-<td><code>/Patient/[id]/List</code></td>
+<td><code>/List</code></td>
 <td><code>$patient-plan-write</code></td>
 <td>Medikationsplaneinträge löschen</td>
 <td>PAT</td>
@@ -71,7 +77,7 @@ table thead th {
 
 <tr>
 <td><strong>POST</strong></td>
-<td><code>/Patient/[id]/List</code></td>
+<td><code>/List</code></td>
 <td><code>$plan-delete</code></td>
 <td>Aktuelle oder historische Medikationsplanversion löschen</td>
 <td>PAT</td>
@@ -79,7 +85,7 @@ table thead th {
 
 <tr>
 <td><strong>GET</strong></td>
-<td><code>/Patient/[id]/List</code></td>
+<td><code>/List</code></td>
 <td><code>plan-history-search</code></td>
 <td>
 Historische Medikationsplanversion(en) lesen<br>
@@ -91,18 +97,18 @@ Historische Medikationsplanversion(en) lesen<br>
 
 <tr>
 <td><strong>GET</strong></td>
-<td><code>/Patient/[id]/List</code></td>
+<td><code>/List</code></td>
 <td><code>plan-history-directory-search</code></td>
 <td>
 Verzeichnis historischer Medikationspläne abrufen<br>
-(<code>_history?_elements=date,source</code>)
+(<code>_history</code>)
 </td>
 <td>GDA, PAT</td>
 </tr>
 
 <tr style="border-top:3px solid #666;">
 <td><strong>POST</strong></td>
-<td><code>/Patient/[id]/MedicationRequest</code></td>
+<td><code>/MedicationRequest</code></td>
 <td><code>$prescription-write</code></td>
 <td>Geplante Abgabe schreiben</td>
 <td>GDA</td>
@@ -110,15 +116,23 @@ Verzeichnis historischer Medikationspläne abrufen<br>
 
 <tr>
 <td><strong>POST</strong></td>
-<td><code>/Patient/[id]/MedicationRequest</code></td>
+<td><code>/MedicationRequest</code></td>
 <td><code>$prescription-discard</code></td>
 <td>Eigene geplante Abgabe verwerfen</td>
 <td>GDA</td>
 </tr>
 
 <tr>
+<td><strong>POST</strong></td>
+<td><code>/MedicationRequest</code></td>
+<td><code>$plan-entry-delete</code></td>
+<td>Planeintrag löschen</td>
+<td>GDA</td>
+</tr>
+
+<tr>
 <td><strong>GET</strong></td>
-<td><code>/Patient/[id]/MedicationRequest</code></td>
+<td><code>/MedicationRequest</code></td>
 <td><code>prescription-search</code></td>
 <td>Geplante Abgaben suchen (<code>?category=GeplAbgabe</code>)</td>
 <td>GDA, PAT</td>
@@ -126,7 +140,7 @@ Verzeichnis historischer Medikationspläne abrufen<br>
 
 <tr>
 <td><strong>GET</strong></td>
-<td><code>/Patient/[id]/MedicationRequest</code></td>
+<td><code>/MedicationRequest</code></td>
 <td><code>planentry-search</code></td>
 <td>Medikationsplaneinträge suchen (<code>?category=Planeintrag</code>)</td>
 <td>GDA, PAT</td>
@@ -134,7 +148,7 @@ Verzeichnis historischer Medikationspläne abrufen<br>
 
 <tr>
 <td><strong>DELETE</strong></td>
-<td><code>/Patient/[id]/MedicationRequest</code></td>
+<td><code>/MedicationRequest</code></td>
 <td><code>prescription-delete</code></td>
 <td>Geplante Abgabe löschen</td>
 <td>PAT</td>
@@ -142,7 +156,7 @@ Verzeichnis historischer Medikationspläne abrufen<br>
 
 <tr style="border-top:3px solid #666;">
 <td><strong>POST</strong></td>
-<td><code>/Patient/[id]/MedicationDispense</code></td>
+<td><code>/MedicationDispense</code></td>
 <td><code>$dispense-write</code></td>
 <td>Durchgeführte Abgabe schreiben</td>
 <td>GDA</td>
@@ -150,7 +164,7 @@ Verzeichnis historischer Medikationspläne abrufen<br>
 
 <tr>
 <td><strong>POST</strong></td>
-<td><code>/Patient/[id]/MedicationDispense</code></td>
+<td><code>/MedicationDispense</code></td>
 <td><code>$dispense-discard</code></td>
 <td>Eigene durchgeführte Abgabe verwerfen</td>
 <td>GDA</td>
@@ -158,7 +172,7 @@ Verzeichnis historischer Medikationspläne abrufen<br>
 
 <tr>
 <td><strong>POST</strong></td>
-<td><code>/Patient/[id]/MedicationDispense</code></td>
+<td><code>/MedicationDispense</code></td>
 <td><code>$reference-plan</code></td>
 <td>Referenz auf Medikationsplan erstellen</td>
 <td>GDA</td>
@@ -166,7 +180,7 @@ Verzeichnis historischer Medikationspläne abrufen<br>
 
 <tr>
 <td><strong>GET</strong></td>
-<td><code>/Patient/[id]/MedicationDispense</code></td>
+<td><code>/MedicationDispense</code></td>
 <td><code>dispense-search</code></td>
 <td>Durchgeführte Abgaben suchen</td>
 <td>GDA, PAT</td>
@@ -174,7 +188,7 @@ Verzeichnis historischer Medikationspläne abrufen<br>
 
 <tr>
 <td><strong>DELETE</strong></td>
-<td><code>/Patient/[id]/MedicationDispense</code></td>
+<td><code>/MedicationDispense</code></td>
 <td><code>dispense-delete</code></td>
 <td>Durchgeführte Abgabe löschen</td>
 <td>PAT</td>
