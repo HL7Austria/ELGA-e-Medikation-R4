@@ -66,14 +66,6 @@ end note
 
 GDA_1 -> eMed_FA: POST $plan-write (Medikationsplan-Transaction-Bundle + ETag)
 
-activate eMed_FA COLOR_EMED_FA
-note over GDA_1
-Neue, geänderte und zu entfernende
-Ressourcen sind inline enthalten.
-Unveränderte Ressourcen werden
-ausschließlich referenziert.
-end note
-
 eMed_FA -> eMed_FA: Prüfung des ETag\n(Optimistic Locking)
 
 group COLOR_OK alt: ETag gültig? [ja]
@@ -89,7 +81,7 @@ group COLOR_OK alt: ETag gültig? [ja]
     gespeichert
     end note
 
-    eMed_FA --> GDA_1: HTTP 200 OK
+    eMed_FA --> GDA_1: OK
 
   else COLOR_ERROR nein: Fehler
   
