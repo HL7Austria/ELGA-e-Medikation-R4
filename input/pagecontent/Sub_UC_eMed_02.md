@@ -50,16 +50,21 @@ Offene Frage:<br>
 </p>
 </div> TODO: welche Fragestellungen bleiben übrg? akl 28.09.2026 -->
 
-### Allgemeiner Ablauf Medikationsplan schreiben
+
+### Allgemeiner Ablauf Medikationsplan bearbeiten und schreiben
 
 Für jeden Schreibvorgang auf dem **aktuellen Medikationsplan MUSS** der folgende technische Ablauf eingehalten werden:
 
-1. Den aktuellen Medikationsplan mittels [$plan-read](OperationDefinition-AtElgaEmed.List.PlanRead.html) abrufen (siehe [Sub_UC_eMed_01_01 - Aktuellen Medikationsplan lesen (Plan-Read)](Sub_UC_eMed_01.html#sub_uc_emed_01_01---aktuellen-medikationsplan-lesen-plan-read)).
-2. Die im zurückgegebenen Medikationsplan-Bundle enthaltenen Ressourcen entsprechend dem jeweiligen fachlichen Anwendungsfall bearbeiten.
-3. Den aktualisierten Medikationsplan mittels [$plan-write](OperationDefinition-AtElgaEmed.List.PlanWrite.html) als [Medikationsplan-Transaction-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplantx.html) an die Fachanwendung übermitteln.
+1. **Aktuellen Medikationsplan abrufen**: mittels [$plan-read](OperationDefinition-AtElgaEmed.List.PlanRead.html) (siehe [Sub_UC_eMed_01_01 - Aktuellen Medikationsplan lesen (Plan-Read)](Sub_UC_eMed_01.html#sub_uc_emed_01_01---aktuellen-medikationsplan-lesen-plan-read)).
+2. **Medikationsplan-Bundle bearbeiten**: Die im zurückgegebenen Medikationsplan-Bundle enthaltenen Ressourcen entsprechend dem jeweiligen fachlichen Anwendungsfall bearbeiten.
+3. **Aktualisierten Medikationsplan speichern**: mittels [$plan-write](OperationDefinition-AtElgaEmed.List.PlanWrite.html) als [Medikationsplan-Transaction-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplantx.html) an die Fachanwendung übermitteln. Der technische Ablauf, einschließlich der Integritätsprüfung mittels *ETag*, wird im [Sub_UC_eMed_02_01 - Medikationsplan schreiben (Plan-Write)](Sub_UC_eMed_02.html#sub_uc_emed_02_01---medikationsplan-schreiben-plan-write) beschrieben.
 <!-- "Fachanwendung" generell mit "e-Medikationssystem" ersetzen? TODO akl 28.09.2026 -->
 
-Die nachfolgenden technischen Use Cases beschreiben die für den jeweiligen Anwendungsfall erforderlichen Änderungen an den Ressourcen sowie die Struktur und Inhalte des Medikationsplan-Transaction-Bundles. Der technische Ablauf von *$plan-write*, einschließlich der Integritätsprüfung mittels *ETag*, wird im folgenden Abschnitt beschrieben.
+<br>
+[![overview](plantuml/UC_eMed_02_02.svg){: .mx-auto style="width:40%;"}](plantuml/UC_eMed_02_02.svg)
+<br> 
+
+Die nachfolgenden technischen Use Cases beschreiben die für den jeweiligen Anwendungsfall erforderlichen Änderungen an den Ressourcen sowie die Struktur und Inhalte des *Medikationsplan-Transaction-Bundles*.
 
 
 ### Sub_UC_eMed_02_01 - Medikationsplan schreiben (Plan-Write)
@@ -69,16 +74,16 @@ Alle vom GDA ausgeführten, schreibenden Zugriffe auf den Medikationsplan erfolg
 
 #### Ablauf
 
-1. Das GDA-System übermittelt den aktualisierten Medikationsplan mittels **POST** [$plan-write](OperationDefinition-AtElgaEmed.List.PlanWrite.html) als [Medikationsplan-Transaction-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplantx). Der Request enthält:
+1. Das GDA-System übermittelt den aktualisierten Medikationsplan mittels **POST** [$plan-write](OperationDefinition-AtElgaEmed.List.PlanWrite.html) als [Medikationsplan-Transaction-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplantx). <br>Der Request enthält:
     * alle **neuen**, **geänderten** und **zu entfernenden** Ressourcen im Transaction Bundle
-    * den von der Fachanwendung nach dem *$plan-read* übermittelten *ETag* (zur Durchführung des [Optimistic Locking](https://hl7.org/fhir/http.html#concurrency))
+    * den von der Fachanwendung nach dem *$plan-read* übermittelten **ETag** (zur Durchführung des [Optimistic Locking](https://hl7.org/fhir/http.html#concurrency))
     * unveränderte Ressourcen werden ausschließlich referenziert.
 2. Die Fachanwendung prüft den übermittelten *ETag* gegen den *ETag* der aktuell persistierten Medikationsplan-Version.
-3. Ist der *ETag* gültig, validiert die Fachanwendung das Medikationsplan-Transaction-Bundle einschließlich der zulässigen [Zustandsübergänge](workflowmanagement.html#überblick-der-statusänderungen-der-e-medikation-ressourcen) der List.Entry.Flags und MedicationReqeuest.Status. 
-4. Die Fachanwendung erstellt neue Versionen der geänderten Ressourcen und persistiert diese.
+3. Ist der *ETag* gültig, validiert die Fachanwendung das *Medikationsplan-Transaction-Bundle* einschließlich der zulässigen [Zustandsübergänge](workflowmanagement.html#überblick-der-statusänderungen-der-e-medikation-ressourcen) der *List.Entry.Flags* und *MedicationReqeuest.Status*. 
+4. Die Fachanwendung erstellt neue Versionen der geänderten Ressourcen und **persistiert** diese.
 5. Die Fachanwendung bestätigt die erfolgreiche Aktualisierung des Medikationsplans. 
 6. Schlägt die Validierung fehl, wird der Schreibvorgang mit einem **OperationOutcome** abgelehnt.
-7. Stimmt der übermittelte *ETag* nicht mit dem der Fachanwendung überein, wird der Schreibvorgang mit einem **OperationOutcome** abgelehnt. Vor einem erneuten Schreibversuch muss der Medikationsplan mittels [$plan-read](OperationDefinition-AtElgaEmed.List.PlanRead.html) erneut abgerufen und auf Basis der aktuellen Version bearbeitet werden.
+7. Stimmt der übermittelte *ETag* nicht mit dem der Fachanwendung überein, wird der Schreibvorgang mit einem *OperationOutcome* **abgelehnt**. Vor einem erneuten Schreibversuch muss der Medikationsplan mittels [$plan-read](OperationDefinition-AtElgaEmed.List.PlanRead.html) erneut abgerufen und auf Basis der aktuellen Version bearbeitet werden.
 
 <br>
 [![overview](plantuml/UC_eMed_02_01.svg){: .mx-auto style="width:60%;"}](plantuml/UC_eMed_02_01.svg)
@@ -103,32 +108,25 @@ Offener Punkt:<br>
 * [$plan-write](OperationDefinition-AtEmed.List.PlanWrite.html)
 
 
-### Allgemeiner Ablauf von Medikationsplan bearbeiten
-
-Im Weiteren wird beschrieben, wie der Medikationsplan bzw. Planeinträge bearbeitet werden können. Das Diagramm zeigt den allgemeinen Ablauf.
-
-<br>
-[![overview](plantuml/UC_eMed_02_02.svg){: .mx-auto style="width:40%;"}](plantuml/UC_eMed_02_02.svg)
-<br> 
-
-
 ### Sub_UC_eMed_02_02 - Planeintrag in Medikationsplan hinzufügen
 
-Der GDA kann dem Medikationsplan ein oder mehrere Planeinträge hinzufügen. 
+Der GDA kann dem Medikationsplan ein oder mehrere Planeinträge hinzufügen (neu einzunehmende, verordnete Medikation). 
 Dabei muss er dokumentieren, ob dieser von ihm selbst stammt oder nicht (Fremdmedikation durch einen anderen GDA bzw. Eigenmedikation des Patienten).
 
 #### Ablauf 
 
 Der GDA führt ein **POST** [$plan-read](OperationDefinition-AtElgaEmed.List.Planread.html) aus und bearbeitet die von der Fachanwendung im [Medikationsplan-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplan.html) bereitgestellten Ressourcen:
 
-- Im Element *List.source* wird der aktuelle GDA als Quelle der Änderung dokumentiert.
-- Das Element *List.date* wird auf den Zeitpunkt der Änderung aktualisiert.
+* [List-Ressource](StructureDefinition-at-elga-emed-list-medikationsplan.html):
+    - *List.source*: wird auf den aktuellen GDA (Ersteller) geändert
+    - *List.date*: wird mit dem Zeitpunkt der Änderung aktualisiert
+    - *List.entry*: Für jede neu einzunehmende Medikation wird ein Planeintrag ([MedicationRequests](StructureDefinition-at-elga-emed-medicationrequest-planeintrag.html)) **referenziert**
+    - *List.entry.flag* des neuen Planeintrags erhält den Wert *new* (siehe [Statusdiagramm](workflowmanagement.html#status-des-listentryflags-im-medikationsplan))
 
-- Entsprechende Planeinträge (*MedicationRequests*) werden neu erstellt und in der *List*-Ressouce referenziert:
-    - Das *List.entry.flag* des referenzierten MedicationRequests erhält den Wert *new*,  
-    - der *MedicationRequest* kann den Status *active* oder *on-hold* erhalten (siehe [Konsistenzregeln zwischen List.entry.flags und MedicationRequest-Status](workflowmanagement.html#konsistenzregeln-zwischen-listentryflags-und-medicationrequest-status)).
+* [MedicationRequests](StructureDefinition-at-elga-emed-medicationrequest-planeintrag.html):
+    - *status* muss mit *active* oder *on-hold* dokumentiert werden (siehe [Konsistenzregeln zwischen List.entry.flags und MedicationRequest-Status](workflowmanagement.html#konsistenzregeln-zwischen-listentryflags-und-medicationrequest-status))
     - *intent = order* und *category = "Planeintrag"* sind für alle Planeinträge verpflichtend mit festen Wert zu dokumentieren
-    - *reported* erhält den Wert *false*, wenn die Medikation vom Autor des Planeintrags selbst stammt
+    - *reported* erhält den Wert *false*, wenn die Medikation vom Ersteller des Planeintrags selbst stammt, sonst *true*
     - für die Dokumentation des Arzneimittels ist die *Medication*-Ressource zu verwenden, diese muss immer im MedicationRequest enthalten sein (contained)
     <!-- TODO: Link zu Dokumentation von Arzneimittel (PZN und Magistral) ergänzen -->
     - *courseOfTherapyType* dokumentiert verpflichtend die Art der Medikation. Mögliche Ausprägungen sind *continuous* für Dauermedikation und *acute* für Akutmedikation. Bei Aktumedikation ist in *extension:effectiveDosePeriod* verpflichtend ein Enddatum für den Einnahmezeitraum zu dokumentieren. Bei Dauermedikation darf an dieser Stelle kein Enddatum dokumentiert werden.
@@ -170,7 +168,7 @@ AtElgaEmedMedicationRequestPlaneintrag
     status: active | on-hold
     intent: order                       // fester Wert
     category: "Planeintrag"  // fester Wert
-    reportedBoolean: false | true       // false, wenn vom Autor des Planeintrags
+    reportedBoolean: false | true       // false, wenn vom Ersteller des Planeintrags
     medicationReference.reference: Medikation mit PZN oder Magistrale Zubereitung // Contained Medication 
     authoredOn: Datum der Erstellung des Planeintrags    
     requester: veranwortlicher GDA      // wird auf Übereinstimmung mit List.source geprüft
