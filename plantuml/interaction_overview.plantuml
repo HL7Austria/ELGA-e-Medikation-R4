@@ -43,7 +43,7 @@ skinparam interface {
 
 left to right direction
 
-title REST-Schnittstellen: https://[server]
+title REST-Schnittstellen: https://[base]
 
 
 interface "/" as IEmed {
@@ -51,7 +51,7 @@ interface "/" as IEmed {
   «POST» $groupidentifier-search [GDA]
 }
 
-interface "/Patient/[id]/List/" as IList {
+interface "/List/" as IList {
   «POST» $plan-read [GDA, PAT]
   «POST» $plan-write [GDA]
   «POST» $patient-plan-write [PAT]
@@ -60,7 +60,7 @@ interface "/Patient/[id]/List/" as IList {
   «GET» (plan-history-directory-search)
 }
 
-interface "/Patient/[id]/MedicationRequest/" as IMedicationRequest {
+interface "/MedicationRequest/" as IMedicationRequest {
   «POST» $prescription-write [GDA]
   «POST» $prescription-discard [GDA]
   «GET» (prescription-search)
@@ -68,7 +68,7 @@ interface "/Patient/[id]/MedicationRequest/" as IMedicationRequest {
   «DELETE» (prescription-delete) [PAT]
 } 
 
-interface "/Patient/[id]/MedicationDispense/" as IDurchgAbgabe {
+interface "/MedicationDispense/" as IDurchgAbgabe {
   «POST» $dispense-write [GDA]
   «POST» $dispense-discard [GDA]
   «POST» $reference-plan [GDA]
