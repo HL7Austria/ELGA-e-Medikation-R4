@@ -8,6 +8,7 @@ Die Reihung der List.entries bestimmt die Reihenfolge der Medikationsplaneinträ
 Jeder Listeneintrag enthält im Element List.entry.flag den Änderungsstatus des jeweiligen Medikationsplaneintrags."
 
 * id 1..1 MS
+* id ^short = "Technische id der Ressource"
 * meta MS
 * text MS
 //ASW 24.09.2026 TODO text 1..1
