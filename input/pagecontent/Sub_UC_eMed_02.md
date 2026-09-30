@@ -377,7 +377,7 @@ Der GDA führt ein **POST** [$plan-read](OperationDefinition-AtElgaEmed.List.Pla
     - *List.entry.flag* des stornierten Planeintrags erhält den Wert ***removed*** (siehe [Statusdiagramm](workflowmanagement.html#status-des-listentryflags-im-medikationsplan))
 
 * *MedicationRequest*-Ressource(n) bearbeiten: [AtElgaEmedMedicationRequestPlaneintrag](StructureDefinition-at-elga-emed-medicationrequest-planeintrag.html): 
-    - *id*: darf **nicht geändert** werden
+    <!-- - *id*: darf **nicht geändert** werden -->
     - *status* muss mit ***entered-in-error*** dokumentiert werden (siehe [Status des MedicationRequests im Medikationsplaneintrag](workflowmanagement.html#status-des-medicationrequests-im-medikationsplaneintrag) und [Konsistenzregeln zwischen List.entry.flags und MedicationRequest-Status](workflowmanagement.html#konsistenzregeln-zwischen-listentryflags-und-medicationrequest-status))
     - *statusReason.coding* muss **verpflichend** mit einem Grund für die Stornierung als Code oder Freitext dokumentiert werden (siehe [ValueSet-AtElgaEmedValueSetPlaneintragStatusReasonVS.html](AtElgaEmedValueSetPlaneintragStatusReasonVS))
 
@@ -428,7 +428,7 @@ Der GDA führt ein **POST** [$plan-read](OperationDefinition-AtElgaEmed.List.Pla
     - *List.entry.flag* des beendeten Planeintrags erhält den Wert ***removed*** (siehe [Statusdiagramm](workflowmanagement.html#status-des-listentryflags-im-medikationsplan))
 
 * *MedicationRequest*-Ressource(n) bearbeiten: [AtElgaEmedMedicationRequestPlaneintrag](StructureDefinition-at-elga-emed-medicationrequest-planeintrag.html): 
-    - *id*: darf **nicht geändert** werden
+    <!-- - *id*: darf **nicht geändert** werden -->
     - *status* muss mit ***stopped*** dokumentiert werden (siehe [Status des MedicationRequests im Medikationsplaneintrag](workflowmanagement.html#status-des-medicationrequests-im-medikationsplaneintrag) und [Konsistenzregeln zwischen List.entry.flags und MedicationRequest-Status](workflowmanagement.html#konsistenzregeln-zwischen-listentryflags-und-medicationrequest-status))
     - *statusReason.coding* muss **verpflichend** mit einem Grund für die Beendigung als Code oder Freitext dokumentiert werden (siehe [ValueSet-AtElgaEmedValueSetPlaneintragStatusReasonVS.html](AtElgaEmedValueSetPlaneintragStatusReasonVS)) 
 
