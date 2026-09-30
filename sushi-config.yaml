@@ -321,6 +321,11 @@ groups:
      - StructureDefinition/at-elga-emed-dosage-freetext-administration
      - StructureDefinition/at-elga-emed-dosage-frequency-administration
      - StructureDefinition/at-elga-emed-dosage-timed-administration
+  Suchparameter:
+    name: Suchparameter
+    description: Suchparameter
+    resources:
+    - SearchParameter/at-elga-emed-searchparameter-list-mr-medication-code
 
 
 # The ImplementationGuide resource defines several other properties

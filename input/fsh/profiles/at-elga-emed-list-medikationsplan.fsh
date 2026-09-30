@@ -85,7 +85,7 @@ Das Datum ist nur im referenzierten Medikationsplaneintrag ersichtlich."
 * emptyReason 0..1 MS
 * emptyReason from ElgaListEmptyReasonVS (required)
 //ASW 22.09.2026 code unavailable hinzufügen für den Fall, dass der Patient alle Einträge entfernt
-* emptyReason ^short = "Begründung, warum der Medikationsplan leer ist. Mögliche Ausprägungen: [notstarted |  nilknown | unavailable] Bedeutung: notstarted: Intitalzustand - noch nie befüllt | nilknown: Patient nimmt derzeit keine Medikamente ein | unavailable: Plan ist leer weil alle Einträge vom Patienten entfernt wurden"
+* emptyReason ^short = "Begründung, warum der Medikationsplan leer ist. Mögliche Ausprägungen: [notstarted |  nilknown | unavailable] Bedeutung: notstarted: Intitalzustand - noch nie befüllt | nilknown: Patient nimmt derzeit keine Medikamente ein | unavailable: Plan ist leer weil alle Einträge entfernt wurden"
 
 Invariant: at-emed-list-same-patient
 Description: "Alle in der Liste referenzierten Patienten müssen gleich sein"

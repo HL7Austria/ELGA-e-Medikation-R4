@@ -5,11 +5,12 @@
 <!-- <br>
 [![diagram](eMed_Interactions.png){: style="width: 60%"}](eMed_Interactions.png) -->
 
-<div class="note-to-balloters">
-Die Umsetzung des Patientenkontakts in den Transaktionen ist nicht Teil des Ballots. Der konkrete Zugriff wird in der Lösungsarchitektur beschrieben. 
-<br>
-In diesem IG werden daher alle Requests ab dem /[type] dargestellt.
+<div class="note-to-balloters" markdown="1">
+Die Umsetzung des Patientenkontakts in den Transaktionen ist nicht Teil des Ballots. Der konkrete Zugriff wird in der Lösungsarchitektur beschrieben.
+ 
+In diesem IG werden daher alle Requests ab dem `/[type]` dargestellt.
 </div>
+ 
 
 <br>
 <div>{% include_relative plantuml/interaction_overview.svg %}</div>
@@ -197,3 +198,8 @@ Verzeichnis historischer Medikationspläne abrufen<br>
 </tbody>
 
 </table>
+
+
+#### Suchparameter Überblick
+
+[![diagram](searchparameter_overview.png){: style="width: 60%"}](searchparameter_overview.png)

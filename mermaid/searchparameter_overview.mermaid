@@ -1,0 +1,64 @@
+classDiagram
+    StandardParameter <|-- Medication
+    Medication <|-- MedicationRequest
+    MedicationRequest <|-- Planeintrag
+    MedicationRequest <|-- GeplanteAbgabe
+    Planeintrag <|-- Medikationsplan
+    Medication  <|-- MedicationDispense
+    class StandardParameter{
+      + _id
+      + _lastUpdated
+      + _profile
+    }
+
+    class Medication{
+      ref() siehe StandardParameter
+      +PZN
+      +Arzneimittelname
+      +Wirkstoff
+    }
+   
+    class MedicationRequest{
+      ref() siehe Medication
+      ref() siehe StandardParameter
+      + Autor
+      + Status
+      + courseOfTherapyType
+    }
+      class MedicationDispense{
+      ref() siehe Medication
+      ref() siehe StandardParameter
+      + Autor
+      + Status
+      + Erfassungsdatum
+      + Planeintrag id
+      + Geplante Abgabe id
+      + GroupIdentifier
+    }
+        class GeplanteAbgabe{
+        ref() siehe Medication
+        ref() siehe StandardParameter
+        + Erfassungsdatum
+        + Planeintrag id
+        + Durchgeführte Abgabe id
+        + GroupIdentifier
+    }
+
+      class Planeintrag{
+        ref() siehe Medication
+        ref() siehe StandardParameter
+        + _history - historisch oder aktuell
+        + Einnahmezeitraum
+        + Erstellungszeitpunkt
+        + StatusReason - Absetzgrund
+    }
+
+     class Medikationsplan{
+      ref() siehe Planeintrag
+      ref() siehe StandardParameter
+      + _history - historisch oder aktuell
+      + Zeitraum der Erfassung von Medikationsplanversionen
+      + Autor
+      + emptyReason
+      + code - Art der Liste (Medikationsplan)
+    }
