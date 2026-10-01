@@ -1,7 +1,7 @@
 Instance: At-Emed-Journey-07-02-Mr-Planeintrag-03
 InstanceOf: AtElgaEmedMedicationRequestPlaneintrag   
 Title: "Beispiel Journey 07-02: Planeintrag 3"
-Description: "Bildet einen geänderten Planeintrag ab: Arzneimittel (Magelan) ersetzt reine Wirkstoffangabe, angepasste Dosierung."
+Description: "Bildet einen geänderten Planeintrag ab: Arzneimittel (Magelan-Tropfen) ersetzt reine Wirkstoffangabe, angepasste Dosierung."
 Usage: #example
 
 * contained[+] = contained-medication-journey-07-02-02
@@ -42,7 +42,7 @@ Usage: #example
 // Contained Medication *********************************************************************
 Instance: contained-medication-journey-07-02-02
 InstanceOf: AtElgaEmedMedicationStandardMedikation
-Title: "Beispiel Wirkstoffangaben (Magelan)"
+Title: "Beispiel Magelan-Tropfen"
 Usage: #inline
 
 * code = $cs-asp-liste#4467812 "METAGELAN TR 500MG/ML"

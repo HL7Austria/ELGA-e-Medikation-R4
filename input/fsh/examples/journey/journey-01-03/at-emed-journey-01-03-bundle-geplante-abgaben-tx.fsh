@@ -1,7 +1,7 @@
 Instance: At-Emed-Journey-01-03-Bundle-Geplante-Abgaben-Tx
 InstanceOf: AtElgaEmedBundleGeplanteAbgabenTx  
 Title: "Beispiel Journey 01-03: Geplante-Abgaben-Transaction-Bundle"
-Description: "Beispiel eines Transaction Bundles mit Geplanten Abgaben."
+Description: "Beispiel eines Transaction Bundles mit 2 Geplanten Abgaben."
 Usage: #example
 
 * type = #transaction

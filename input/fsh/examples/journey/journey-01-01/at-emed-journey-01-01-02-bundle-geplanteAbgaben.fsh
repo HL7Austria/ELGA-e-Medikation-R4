@@ -1,5 +1,7 @@
 Instance: at-emed-journey-01-01-02-bundle-geplanteAbgaben
 InstanceOf: Bundle
+Title: "Beispiel Journey 01-01-02: Geplante-Abgaben-Bundle"
+Description: "Beispiel eines leeren Geplante-Abgaben-Bundles."
 Usage: #example
 * meta.lastUpdated = "2026-09-17T09:30:35.855-04:00"
 * type = #searchset

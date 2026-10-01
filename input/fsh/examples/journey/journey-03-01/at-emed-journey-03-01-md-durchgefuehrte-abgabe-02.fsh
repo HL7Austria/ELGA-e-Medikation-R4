@@ -1,11 +1,8 @@
 Instance: At-Emed-Journey-03-01-Md-Durchgefuehrte-Abgabe-02
 InstanceOf: AtElgaEmedMedicationDispenseDurchgefuehrteAbgabe   
-Title: "Beispiel Journey 05: Durchgeführte Abgabe 1"
-Description: "Bildet eine Durchgeführte Abgabe mit dem Arzneimittel Ramipril gemäß Geplanter Abgabe ab."
+Title: "Beispiel Journey 03-01: Durchgeführte Abgabe 1"
+Description: "Bildet eine Durchgeführte Abgabe mit Beendigung eines Besorgerprozesses (magistrale Zubereitung Dexpanthenol-Salbe) gemäß Geplanter Abgabe ab."
 Usage: #example
-
-
-* contained[+] = contained-medication-journey-03-01-02-magistral
 
 * extension[renderedDosageInstruction].valueMarkdown = "1-0-1-0 | Täglich 1-0-1-0" 
 * extension[recorded].valueDateTime = "2026-03-01T15:15:00+00:00" 
@@ -30,20 +27,21 @@ Usage: #example
 
 * dosageInstruction[standardDosage].extension[DosageCategory].valueCodeableConcept = AtElgaEmedCodeSystemDosageCategory#standard
 * dosageInstruction[standardDosage].sequence = 1
-* dosageInstruction[standardDosage].patientInstruction = "Nehmen Sie die Tablette vor dem Essen mit ausreichend Flüssigkeit ein."
-* dosageInstruction[standardDosage].timing.repeat.frequency = 1
+* dosageInstruction[standardDosage].patientInstruction = "Dünn auftragen."
+* dosageInstruction[standardDosage].timing.repeat.frequency = 2
 * dosageInstruction[standardDosage].timing.repeat.period = 1
 * dosageInstruction[standardDosage].timing.repeat.periodUnit = #d
-* dosageInstruction[standardDosage].timing.repeat.when[0] = $cs-event-timing#MORN  
-* dosageInstruction[standardDosage].doseAndRate.doseQuantity = $cs-ucum#{Stueck} "Stück"
-* dosageInstruction[standardDosage].route = $cs-medikationartanwendung#100000073619 "zum Einnehmen"
-//* dosageInstruction.doseAndRate.doseQuantity = 10 'mg' "mg"
+* dosageInstruction[standardDosage].timing.repeat.when[0] = $cs-timing#MORN "Morgens"
+* dosageInstruction[standardDosage].timing.repeat.when[+] = $cs-timing#EVE "Abends" 
+* dosageInstruction[standardDosage].timing.repeat.boundsDuration.value = 3
+* dosageInstruction[standardDosage].timing.repeat.boundsDuration.unit = "wk"
+* dosageInstruction[standardDosage].route = https://termgit.elga.gv.at/CodeSystem-medikationartanwendung.html#100000073566 "Anwendung auf der Haut"
 
 
 // Contained Medication *********************************************************************
 Instance: contained-medication-journey-03-01-02-magistral
 InstanceOf: AtElgaEmedMedicationMagistraleZubereitung
-Title: "Beispiel Medikation Ramipril"
+Title: "Beispiel Magistrale Zubereitung Dexpanthenol-Salbe"
 Usage: #inline
 
 //* status = #active
