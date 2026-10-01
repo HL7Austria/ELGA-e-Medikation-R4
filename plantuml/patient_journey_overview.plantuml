@@ -141,7 +141,7 @@ group GROUP_PAT 7.3.2026 · Patient ruft Medikationsplan ab
 end
 
 
-group GROUP_ARZT 3.3.2026 · Präoperativer Hausarzttermin
+group GROUP_ARZT 14.3.2026 · Präoperativer Hausarzttermin
 
   Patient -> Arzt_1: Präoperativer Kontrolltermin
   Arzt_1 -> eMed_FA: e-Medikation abrufen
@@ -160,13 +160,11 @@ group GROUP_ARZT 17.3.2026 bis 21.3.2026 · Stationärer Krankenhausaufenthalt
   Arzt_2 -> eMed_FA: aktuellen Medikationsplan abrufen:\n$plan-read 
   eMed_FA -> Arzt_2: Medikationsplan\n(pausiertes Ramipril + Dexpanthenol-Salbe)
   Arzt_2 -> Arzt_2: Medikationsplan bearbeiten +\nPlaneintrag Ramipril ändern +\nneuen Planeintrag mit Wirkstoff Metamizol erstellen
-  Arzt_2 -> eMed_FA: neuen Medikationsplan speichern: $plan-write
-  eMed_FA -> Arzt_2: Medikationsplan 
+  Arzt_2 -> eMed_FA: neuen Medikationsplan speichern
 
   note over Patient
-  Abruf Geplante Abgaben
-  und Durchgeführte Abgaben 
-  siehe Journey-04
+  Änderung der Ramipril Dosierung,
+  Wirkstoff Metamizol wird verschrieben
   end note
 
 end
@@ -176,9 +174,10 @@ group GROUP_ARZT 22.3.2026 · Termin bei Dr. Urlaubsvertretung
 
   Patient -> Arzt_3: Arztbesuch  
   note over Patient
-  Herr Mustermann benötigt
-  ein Rezept für das 
-  Schmerzmittel.
+  Abgelaufener Eintrag für Dexpanthenol-
+  Salbe wird entfernt;
+  Wirkstoff Metamizol zu Magelan-Tropfen 
+  geändert
   end note
   Arzt_3 -> eMed_FA: e-Medikation abrufen 
   eMed_FA -> Arzt_3: <$document> Medikationsplan (Ramipril + Dexpanthenol-Salbe (abgelaufen) + Wirkstoff Metamizol)
