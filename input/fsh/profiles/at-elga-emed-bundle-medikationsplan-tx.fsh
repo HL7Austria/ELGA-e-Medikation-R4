@@ -8,20 +8,19 @@ Description: "Das Bundle vom Typ Transaction dient dem schreibenden Zugriff auf 
 
 Alle neuen bzw. geänderten und zu entfernenden Medikationsplaneinträge müssen inline im Bundle enthalten sein, alle unveränderten Ressourcen werden referenziert."
 
-* identifier 0..1 MS
-* identifier ^short = "Persistenter Identifikator für das Bundle." //TODO: Verwendung prüfen
+* identifier 0..0
+// * identifier ^short = "Persistenter Identifikator für das Bundle." 
 
 * type 1..1 MS
 * type = #transaction
 * type ^short = "Art des Bundles. Für schreibenden Zugriff immer Typ \"transaction\"."
  
 * timestamp 1..1 MS
-* timestamp ^short = "Zeitpunkt der Erstellung des Bundles." //TODO: Verwendung prüfen
+* timestamp ^short = "Zeitpunkt der Erstellung des Bundles."
 
-* link 0..0
-* link ^short = "Verweise auf weiterführende Informationen zum Bundle." //TODO: Verwendung prüfen
 
 // Slicing legt fest, welche Entries erlaubt sind -> Unterscheidung der Slices anhand von Pfad und Typ 
+* entry MS
 * entry ^slicing.discriminator[+].type = #type   
 * entry ^slicing.discriminator[=].path = "resource"
 * entry ^slicing.rules = #closed  // als Entries sind nur List und MedicationRequest erlaubt
@@ -40,6 +39,5 @@ Alle neuen bzw. geänderten und zu entfernenden Medikationsplaneinträge müssen
 // * entry[MagistraleZubereitung].resource only AtElgaEmedMedicationMedikation
 
 * entry.link 0..0
-* entry.link ^short = "Verweise auf weiterführende Informationen zu diesem Entry." //TODO: Verwendung prüfen
 
-* entry.fullUrl ^short = "Eindeutige URL für den Eintrag im Bundle. "
+//* entry.fullUrl ^short = "Eindeutige URL für den Eintrag im Bundle. "
