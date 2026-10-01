@@ -38,8 +38,8 @@ Es werden R5-Backport-Extensions verwendet."
 // verschrieben hat. Derzeit keine Verwendung in der geplanten Abgabe, implizit ist dieser Bezug in Zukunft durch Referenzierung der Diagnose herstellbar."
 // ENDE Extensions  ******************
 
-* identifier 0..0 //1..* MS  Geplante-Abgabe-ID 
-* identifier ^short = "Logischer Identifier. Keine Verwendung in der geplanten Abgabe." // TODO: Verwendung noch zu prüfen, evtl. basedon mit logischem Identifier ausreichend."
+* identifier 0..0 
+//* identifier ^short = "Logischer Identifier. Keine Verwendung in der geplanten Abgabe." // TODO: Verwendung noch zu prüfen, evtl. basedon mit logischem Identifier ausreichend."
 
 * status 1..1 MS
 * status from GeplanteAbgabeStatusVS (required)
@@ -48,7 +48,7 @@ Es werden R5-Backport-Extensions verwendet."
 // completed: evtl. implizit mittels Custom Operation gesetzt, nachdem alle Abgaben durchgeführt wurden (Rezept komplett eingelöst) (TODO: techn. prüfen)
 
 * statusReason 0..0 
-* statusReason ^short = "Grund des aktuellen Status: https://hl7.org/fhir/R4/valueset-medicationrequest-status-reason.html. Keine Verwendung in der geplanten Abgabe."
+// * statusReason ^short = "Grund des aktuellen Status: https://hl7.org/fhir/R4/valueset-medicationrequest-status-reason.html. Keine Verwendung in der geplanten Abgabe."
 
 * intent 1..1 MS
 * intent = #order 
@@ -80,13 +80,13 @@ Es werden R5-Backport-Extensions verwendet."
 * category[recipetype]  ^short = "Kategorie zur Unterscheidung, ob ein Kassen-, Privat- oder Substitutionsrezept erstellt wurde."
 
 * priority 0..0
-* priority ^short = "Priorität der geplanten Abgabe. Keine Verwendung in der geplanten Abgabe."
+// * priority ^short = "Priorität der geplanten Abgabe. Keine Verwendung in der geplanten Abgabe."
 
 * doNotPerform 0..0
-* doNotPerform ^short = "Gibt an, ob die Geplante Abgabe untersagt ist. Keine Verwendung in der geplanten Abgabe."
+// * doNotPerform ^short = "Gibt an, ob die Geplante Abgabe untersagt ist. Keine Verwendung in der geplanten Abgabe."
 
 * reported[x] 0..0
-* reported[x] ^short = "Keine Verwendung in der geplanten Abgabe."
+// * reported[x] ^short = "Keine Verwendung in der geplanten Abgabe."
 
 // --- Medication immer als Medication-Resource (mit oder ohne PZN, damit Handelsname angegeben werden kann und historisch verfügbar bleibt)
 * medication[x] 1..1 MS  
@@ -148,7 +148,7 @@ geplanten Abgabe ganz oder teilweise eingehalten wird. Keine Verwendung in der g
 // TODO: zu prüfen: zusätzliche logische Referenz: reference.identifier 
 // {Medikationsplaneintrag-ID}_{Medikationsplaneintrag-ID_Version}."
 
-* groupIdentifier 1..1 MS
+* groupIdentifier 0..1 MS
 * groupIdentifier ^short = "Als groupIdentifier dient die eMED-ID, die auch im e-Rezept mitgeführt wird. 
 Werden von einem:r Arzt:Ärtztin mehrere Arzneimittel gleichzeitig verordnet, wird für jedes Arzneimittel eine 
 Geplante Abgabe mit demselben groupIdentifier erstellt (bildet 'Rezept-Klammer')."
@@ -166,6 +166,7 @@ Geplante Abgabe mit demselben groupIdentifier erstellt (bildet 'Rezept-Klammer')
 
 
 //TODO Dosage und AtElgaEmedDosageDosierung entfernen sobald Dosierungen fertig sind
+* dosageInstruction MS
 * dosageInstruction ^short  = "Angabe der Dosierinformationen strukturiert oder als Freitext." //TODO: Inhalte AtElgaEmedDosageDosierung fachlich prüfen.
 
 // DISPENSE REQUEST
@@ -173,10 +174,10 @@ Geplante Abgabe mit demselben groupIdentifier erstellt (bildet 'Rezept-Klammer')
 * dispenseRequest ^short = "Details zur geplanten Abgabe des Arzneimittels."
 
 * dispenseRequest.initialFill 0..0 
-* dispenseRequest.initialFill.quantity ^short = "Anzahl der Einheiten für die erste Abgabe, z.B. 30 Kapseln oder 100 mg. Keine Verwendung in der geplanten Abgabe."   
+//* dispenseRequest.initialFill.quantity ^short = "Anzahl der Einheiten für die erste Abgabe, z.B. 30 Kapseln oder 100 mg. Keine Verwendung in der geplanten Abgabe."   
 
 * dispenseRequest.dispenseInterval 0..0 
-* dispenseRequest.dispenseInterval ^short = "Mindestzeitraum zwischen den Abgaben. Keine Verwendung in der geplanten Abgabe."
+//* dispenseRequest.dispenseInterval ^short = "Mindestzeitraum zwischen den Abgaben. Keine Verwendung in der geplanten Abgabe."
 
 * dispenseRequest.validityPeriod 1..1 MS 
 * dispenseRequest.validityPeriod ^short = "Gültigkeitszeitraum einer Geplante Abgabe (abhängig von Rezeptart): Kassenrezept: ab Erstelldatum 1 Monat, bei Teilabgabe verlängert sich Gültigkeitsdauer auf 3 Monate („Besorger“-Prozess). Privatrezept: ab Erstelldatum max. 365 Tage, die Gültigkeitsdauer kann vom Arzt definiert werden. Substitutionsrezept: Max. Gültigkeitsdauer 12 Monate."
@@ -193,12 +194,12 @@ Der Gültigkeitszeitraum ist abhängig von der **Rezeptart**:
 
 
 * dispenseRequest.numberOfRepeatsAllowed 1..1 MS   // repeatNumber 1..1 im CDA
-* dispenseRequest.numberOfRepeatsAllowed ^short = "Die Anzahl der weiteren möglichen Einlösungen (abhängig von Rezeptart): Kassenrezept: keine weitere Einlösung möglich (fixer Wert 0). Privatrezept: bis zu 6 Einlösungen, Anzahl der möglichen Einlösungen kann vom Arzt definiert werden. Sustitutionsrezept: keine weitere Einlösung möglich (fixer Wert 0)"
+* dispenseRequest.numberOfRepeatsAllowed ^short = "Die Anzahl der weiteren möglichen Einlösungen (abhängig von Rezeptart): Kassenrezept: keine weitere Einlösung möglich (fixer Wert 0). Privatrezept: bis zu 6 Einlösungen, Anzahl der möglichen Einlösungen kann vom Arzt definiert werden. Substitutionsrezept: keine weitere Einlösung möglich (fixer Wert 0)"
 * dispenseRequest.numberOfRepeatsAllowed ^definition = """
 Anzahl der weiteren möglichen Einlösungen:
 * **Kassenrezept**: keine weitere Einlösung möglich (fixer Wert 0)
 * **Privatrezept**: bis zu 6 Einlösungen, Anzahl der möglichen Einlösungen kann vom Arzt definiert werden
-* **Sustitutionsrezept**: keine weitere Einlösung möglich (fixer Wert 0) 
+* **Substitutionsrezept**: keine weitere Einlösung möglich (fixer Wert 0) 
 """
 // TODO: Techn. Prüfung: Wenn Kassenrezept oder Substitutionsrezept, dann 0. Verpflichtende Eingabe, wenn Privatrezept, max 6.
 
@@ -208,25 +209,24 @@ Da sich die Angaben zum Arzneimittel jeweils auf eine Packung der Arznei beziehe
 Dies gilt für Arzneimittel mit PZN und magistralen Zubereitungen."
 
 * dispenseRequest.expectedSupplyDuration 0..0 
-* dispenseRequest.expectedSupplyDuration.value ^short = "Dauer, für die die bereitgestellte Menge des Medikaments voraussichtlich ausreicht. Keine Verwendung in der geplanten Abgabe."
+//* dispenseRequest.expectedSupplyDuration.value ^short = "Dauer, für die die bereitgestellte Menge des Medikaments voraussichtlich ausreicht. Keine Verwendung in der geplanten Abgabe."
 
 * dispenseRequest.performer 0..0 
-* dispenseRequest.performer ^short = "Apotheke oder andere Einrichtung, die die Geplante Abgabe einlösen soll. Keine Verwendung in der geplanten Abgabe."
+//* dispenseRequest.performer ^short = "Apotheke oder andere Einrichtung, die die Geplante Abgabe einlösen soll. Keine Verwendung in der geplanten Abgabe."
 
 * substitution 0..0  
-* substitution ^short = "Gibt an, ob das Arzneimittel substituiert werden darf (Absicht des Arztes, der die Geplante Abgabe erstellt). Keine Verwendung in der geplanten Abgabe." 
+//* substitution ^short = "Gibt an, ob das Arzneimittel substituiert werden darf (Absicht des Arztes, der die Geplante Abgabe erstellt). Keine Verwendung in der geplanten Abgabe." 
 
 * priorPrescription 0..0 
-* priorPrescription ^short = "Im Falle einer Änderung wird auf die ersetzte Geplante Abgabe verwiesen. Keine Verwendung in der geplanten Abgabe."
+//* priorPrescription ^short = "Im Falle einer Änderung wird auf die ersetzte Geplante Abgabe verwiesen. Keine Verwendung in der geplanten Abgabe."
 
 * detectedIssue 0..0
-* detectedIssue ^short = "Klinisches Problem mit Maßnahme, mittels Referenz auf Ressouce DetectedIssue. Keine Verwendung in der geplanten 
-Abgabe."
+//* detectedIssue ^short = "Klinisches Problem mit Maßnahme, mittels Referenz auf Ressouce DetectedIssue. Keine Verwendung in der geplanten Abgabe."
 
 * eventHistory 0..0
-* eventHistory ^short = "Referenz auf Provenance-Ressourcen, die 
-verschiedene relevante Versionen dieser Ressource dokumentieren. 
-Keine Verwendung in der geplanten Abgabe."
+// * eventHistory ^short = "Referenz auf Provenance-Ressourcen, die 
+// verschiedene relevante Versionen dieser Ressource dokumentieren. 
+// Keine Verwendung in der geplanten Abgabe."
 
 
 // ws: invarianten: welche prüfungen innerhalb der ressource, operations, server
