@@ -4,7 +4,7 @@ Title: "Beispiel Journey 01-03: Geplante Abgabe 1"
 Description: "Bildet eine Geplante Abgabe des Arzneimittels Ramipril mit Dosierungsanweisungen gemäß zugehörigem Planeintrag ab."
 Usage: #example
 
-* contained[+] = at-emed-journey-medicaiton-ramipril
+* contained[+] = at-emed-journey-medication-ramipril
 * text.status = #generated
 * text.div = "<div>TODO: Some Narrative</div>"
 // R5 Backports
@@ -19,7 +19,7 @@ Usage: #example
 * category[recipetype] = $cs-medication-rezeptart#KASSEN "Kassenrezept"
 
 // Referenz auf Contained Medication Ressource
-* medicationReference.reference = "#at-emed-journey-medicaiton-ramipril"
+* medicationReference.reference = "#at-emed-journey-medication-ramipril"
 
 * subject = Reference(At-Emed-Example-Patient-01) "Anton Mustermann"
 * authoredOn = "2026-02-27T08:10:00+00:00" 

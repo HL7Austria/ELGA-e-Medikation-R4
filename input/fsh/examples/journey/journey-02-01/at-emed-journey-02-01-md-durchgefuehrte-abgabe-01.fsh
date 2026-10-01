@@ -5,7 +5,7 @@ Description: "Bildet eine Durchgeführte Abgabe mit dem Arzneimittel Ramipril ge
 Usage: #example
 
 
-* contained[+] = at-emed-journey-medicaiton-ramipril
+* contained[+] = at-emed-journey-medication-ramipril
 
 * extension[renderedDosageInstruction].valueMarkdown = "1-0-0-1 | Täglich: 1-0-0-0" 
 * extension[recorded].valueDateTime = "2026-02-28T11:00:00+00:00" 
@@ -14,7 +14,7 @@ Usage: #example
 * status = #completed
 
 // Referenz auf Contained Medication Ressource
-* medicationReference.reference = "#at-emed-journey-medicaiton-ramipril"
+* medicationReference.reference = "#at-emed-journey-medication-ramipril"
 
 * subject = Reference(At-Emed-Example-Patient-01) "Anton Mustermann" 
 * performer.actor = Reference(At-Emed-Example-Organization-02) "Amadeus Apotheke"

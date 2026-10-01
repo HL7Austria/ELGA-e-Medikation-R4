@@ -1,4 +1,4 @@
-Instance: at-emed-journey-medicaiton-ramipril
+Instance: at-emed-journey-medication-ramipril
 InstanceOf: AtElgaEmedMedicationStandardMedikation
 Title: "Beispiel Medikation Ramipril"
 Usage: #example

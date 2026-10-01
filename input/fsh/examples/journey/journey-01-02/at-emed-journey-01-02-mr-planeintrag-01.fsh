@@ -4,7 +4,7 @@ Title: "Beispiel Journey 01-02: Planeintrag 1"
 Description: "Bildet einen Planeintrag mit dem Arzneimittel Ramipril und der Dosierungsanweisung ab."
 Usage: #example
 
-* contained[+] = at-emed-journey-medicaiton-ramipril
+* contained[+] = at-emed-journey-medication-ramipril
 
 * courseOfTherapyType = $cs-medication-request-courseOfTherapyType#continuous
 
@@ -18,7 +18,7 @@ Usage: #example
 * reportedBoolean = false 
 
 // Referenz auf Contained Medication Ressource
-* medicationReference.reference = "#at-emed-journey-medicaiton-ramipril"
+* medicationReference.reference = "#at-emed-journey-medication-ramipril"
 
 * subject = Reference(At-Emed-Example-Patient-01) "Anton Mustermann"
 * authoredOn = "2026-02-27T08:10:00+00:00" 
