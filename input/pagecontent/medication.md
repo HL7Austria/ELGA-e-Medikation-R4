@@ -30,9 +30,11 @@ Die Referenz erfolgt anhand der PZN, beispielsweise:
 
 ```
 "medicationReference" : {
-    "reference" : "Medication?code=https://termgit.elga.gv.at/CodeSystem/asp-liste|2450836"
+    "reference" : "Medication?code=https://termgit.elga.gv.at/CodeSystem/asp-liste|2450836&code:text=RAMIPRIL"
   },
 ```
+<!-- TODO: Display im Bsp ändern auf RAMIPRIL HEX TBL 5MG  akl. 1.10. -->
+
 Dadurch muss das einbringende System keine vollständige Medication-Ressource erzeugen, pflegen oder separat übertragen. Alle für die Medication-Ressource erforderlichen fachlichen Informationen können anhand der übermittelten PZN aus den zentral verfügbaren Arzneimittelstammdaten abgeleitet werden.
 
 Der optionale display-Wert ersetzt dabei nicht die PZN als maßgeblichen Identifikator. Er dient ausschließlich der besseren Lesbarkeit sowie als zusätzliche Absicherung, dass fachlich die erwartete Arzneimittelpackung ausgewählt wurde.
