@@ -6,20 +6,18 @@ Description: "Das Bundle vom Typ Searchset bestehend aus:
 - 1..1 Medikationsplan (List): Liste mit Referenzen auf Medikationsplaneinträge und zur Abbildung von Reihenfolge und Änderungsstatus
 - 0..* Medikationsplaneinträge (MedicationRequests): Medikation und Dosierung"
 
-* identifier 0..1 MS
-* identifier ^short = "Persistenter Identifikator für das Bundle." //TODO: Verwendung prüfen
+* identifier 0..0 
 
 * type 1..1 MS
 * type = #searchset
 * type ^short = "Art des Bundles. Für Medikationspläne immer \"searchset\"."
 
 * timestamp 1..1 MS
-* timestamp ^short = "Zeitpunkt der Erstellung des Bundles." //TODO: Verwendung prüfen
+* timestamp ^short = "Zeitpunkt der Erstellung des Bundles." 
 
-* link MS
-* link ^short = "Verweise auf weiterführende Informationen zum Bundle."  //TODO: Verwendung prüfen
 
 // Slicing legt fest, welche Entries erlaubt sind -> Unterscheidung der Slices anhand von Pfad und Typ 
+* entry MS
 * entry ^slicing.discriminator[+].type = #type   
 * entry ^slicing.discriminator[=].path = "resource"
 * entry ^slicing.rules = #closed  // als Entries sind nur List und MedicationRequest erlaubt
@@ -48,4 +46,4 @@ Description: "Das Bundle vom Typ Searchset bestehend aus:
 * entry.link 0..0
 
 * entry.fullUrl 1..1
-* entry.fullUrl ^short = "Eindeutige URL für den Eintrag im Bundle." //TODO: Verwendung prüfen
+// * entry.fullUrl ^short = "Eindeutige URL für den Eintrag im Bundle." //TODO: Verwendung prüfen
