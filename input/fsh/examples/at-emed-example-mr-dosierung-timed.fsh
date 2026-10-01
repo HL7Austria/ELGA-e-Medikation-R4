@@ -5,7 +5,7 @@ Description: "Medikationsplaneintrag mit Dosierung mit Timed Administration"
 Usage: #example
 
 * contained[+] = contained-medication-zeit-01
-* identifier.value = "4712_202602280800000" // Eintrag_ID = {ID}_{Zeitstempel}
+
 * courseOfTherapyType = $cs-medication-request-courseOfTherapyType#acute
 
 // R5 Backports

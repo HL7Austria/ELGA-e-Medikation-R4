@@ -12,7 +12,7 @@ Usage: #example
 * extension[effectiveDosePeriod].valuePeriod.end = "2026-03-06"
 * extension[renderedDosageInstruction].valueMarkdown = "2-0-2-0 Mon wöchentlich; 0-0-0-1 Mi wöchentlich | Wöchentlich montags 2 Stück morgens und 2 Stück abends und mittwochs 1 Stück nachts"
 
-* identifier.value = "4712_202602280800000" // Eintrag_ID = {ID}_{Zeitstempel}
+
 * status = $cs-medication-request-status#active
 //* intent = https://hl7.org/fhir/R4/valueset-medicationrequest-intent#order
 * intent = #order

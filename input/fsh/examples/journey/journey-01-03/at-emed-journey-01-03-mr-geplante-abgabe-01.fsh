@@ -11,7 +11,6 @@ Usage: #example
 * extension[effectiveDosePeriod].valuePeriod.start = "2026-02-27"
 * extension[renderedDosageInstruction].valueMarkdown = "1-0-0-1 | Täglich: 1-0-0-0" 
 
-//* identifier.value = "WYE82A2G8EEW_4713202602270810000"
 
 * status = $cs-medication-request-status#active
 * intent = #order
