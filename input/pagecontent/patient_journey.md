@@ -28,7 +28,7 @@ Da für Herrn Mustermann noch nie ein Medikationsplan abgerufen wurde, erstellt 
           <strong>Leerer Medikationsplan:</strong>(EmptyReason = notstarted) 
           <ul>
             <li>
-              <a href="Bundle-At-Emed-Journey-01-01-Bundle-Medikationsplan.html">Medikationsplan-Bundle</a>
+              <a href="Bundle-At-Emed-Journey-01-01-01-Bundle-Medikationsplan.html">Medikationsplan-Bundle</a>
             </li>
             <li>
               <a href="Patient-At-Emed-Example-Patient-01.html">Patient</a>
