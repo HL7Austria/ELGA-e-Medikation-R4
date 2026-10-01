@@ -9,7 +9,16 @@ Sofern eine zugehörige \"Geplanten Abgabe\" vorliegt, muss diese mit dem zugeh�
 Der aktuelle Status einer \"Durchgeführten Abgabe\" wird mittels \"status\"- und \"type\"-Element dokumentiert. Es werden R5-Backport-Extensions verwendet."
 * . ^short = "Durchgeführte Abgabe eines Arzneimittels mit oder ohne Bezug zur geplanten Abgabe. Verwendet R5 Backport Extensions."
 
-// TODO Check CDA
+* id 1..1 MS
+* meta MS
+* text 0..1 MS  // TODO auf 1..1 setzen
+* implicitRules 0..0
+
+* contained MS
+* contained ^short = "TODO"
+//TODO contained short
+* contained only AtElgaEmedMedicationStandardMedikation or AtElgaEmedMedicationMagistraleZubereitung
+
 
 // Extensions   ***************** TODO
 * extension contains $medicationdispense-rendereddosageinstruction-r5 named renderedDosageInstruction 0..1
@@ -19,20 +28,17 @@ Der aktuelle Status einer \"Durchgeführten Abgabe\" wird mittels \"status\"- un
 * extension contains $medicationDispense-recorded-r5 named recorded 1..1
 * extension[recorded] ^short = "Datum und Uhrzeit, zu denen die Abgabe erfasst wurde. Dies muss nicht unbedingt mit dem Zeitpunkt übereinstimmen, zu dem das Medikament dem Patienten ausgehändigt wurde (z.B. bei Nacherfassung der Abgabe)."
 
-
 * extension contains AtElgaEmedExtensionGroupIdentifier named groupIdentifier 0..1
-* extension[groupIdentifier] ^short = "Als groupIdentifier dient die eMED-ID, die auch im e-Rezept mitgeführt wird."
+* extension[groupIdentifier] ^short = "Als groupIdentifier dient der e-Med GroupIdentifier der zugehörigen Geplanten Abgabe (wird auch im e-Rezept mitgeführt)."
 
-// Invariante: wenn eine Referenz auf eine geplante Abgabe existiert dann muss auch der groupIdentifier befüllt sein.
+// Invariante: wenn eine Referenz auf eine geplante Abgabe existiert dann muss auch der groupIdentifier befüllt sein. Ausnahme: Alle GroupIdentifier eines Transaction Bundles sind noch leer -> werden von der Fachanwendung befüllt
 
 // ENDE Extensions  ******************
 
-* identifier 0..1 MS
-* identifier ^short = "Verpflichtende Angabe des 'e-Med Groupidentifiers' der Geplanten Abgabe, sofern diese existiert."
-// "Durchgeführte-Abgabe-ID. Keine Verwendung in der Durchgeführten Abgabe." // TODO: Verwendung zu prüfen, ws: vermutlich keine notwendigkeit
+* identifier 0..0 
 
 * partOf 0..0 
-* partOf ^short = "Auslösendes Ereignis (Referenz auf Procedure-Ressource). Keine Verwendung in der Durchgeführten Abgabe."
+//* partOf ^short = "Auslösendes Ereignis (Referenz auf Procedure-Ressource). Keine Verwendung in der Durchgeführten Abgabe."
 
 * status 1..1 MS
 * status ^short = "Status der Durchgeführten Abgabe. Mögliche Ausprägungen: [completed | entered-in-error | stopped] Bedeutung: completed: Die Durchgeführte Abgabe ist abgeschlossen. | entered-in-error: Die Durchgeführte Abgabe wird aufgrund falscher Eingabe storniert. | stopped: Die Abgabe wird nicht durchgeführt (Medikament wird abgesetzt)."
@@ -40,16 +46,18 @@ Der aktuelle Status einer \"Durchgeführten Abgabe\" wird mittels \"status\"- un
 // * ob es einen Status in-progress / preparation geben soll, z.B. wenn Bestellvorgang gestartet wurde und der typ First Fill - Part Fill ist.
 // * Technische Prüfungen bezüglich Abhängigkeiten von status, typ, Rezeptart? (z.B. in-progress bei Bestellung o.ä.), evtl Operation 
 
-* statusReason[x] ^short = "Grund für den aktuellen Status, z.B. warum keine Abgabe erfolgte (zB. Produkt nicht verfügbar). Code oder Referenz (DetectedIssue)"
-* statusReasonCodeableConcept 0..1 MS   //TODO: Verwendung zu prüfen
-* statusReasonCodeableConcept ^short = "Grund für den aktuellen Status als Code. (ex) https://hl7.org/fhir/R4/valueset-medicationdispense-status-reason.html"
-* statusReasonReference 0..0
-* statusReasonReference ^short = "Referenz auf DetectedIssue-Ressource. Keine Verwendung in der Durchgeführten Abgabe."
+
+* statusReason[x] 0..0
+// * statusReason[x] ^short = "Grund für den aktuellen Status, z.B. warum keine Abgabe erfolgte (zB. Produkt nicht verfügbar). Code oder Referenz (DetectedIssue)"
+// * statusReasonCodeableConcept 0..1    //TODO: Verwendung zu prüfen
+// * statusReasonCodeableConcept ^short = "Grund für den aktuellen Status als Code. (ex) https://hl7.org/fhir/R4/valueset-medicationdispense-status-reason.html"
+// * statusReasonReference 0..0
+// * statusReasonReference ^short = "Referenz auf DetectedIssue-Ressource. Keine Verwendung in der Durchgeführten Abgabe."
 
 //TODO: statusChanged R6 -> um Datum zu dokumentieren, wann Abgabe abgesetzt wurde
 
 * category 0..0 
-* category ^short = "Angabe, wo das abgegebene Medikament voraussichtlich eingenommen oder verabreicht wird (z.B. stationär oder ambulant). Keine Verwendung in der Durchgeführten Abgabe."
+//* category ^short = "Angabe, wo das abgegebene Medikament voraussichtlich eingenommen oder verabreicht wird (z.B. stationär oder ambulant). Keine Verwendung in der Durchgeführten Abgabe."
 
 
 // --- Medication immer als Medication-Resource (mit oder ohne PZN, damit Handelsname angegeben werden kann und historisch verfügbar bleibt)
@@ -66,15 +74,15 @@ Arzneimittel mit und ohne PZN einheitlich dokumentiert werden können."
 * subject ^short = "Patient, für den die Durchgeführte Abgabe ausgestellt wird (über Zentralen Patientenindex identifiziert und Teilnehmer von ELGA e-Medikation)."
 
 * context 0..0
-* context ^short = "Referenz auf Encounter oder EpisodeOfCare. Keine Verwendung in der Durchgeführten Abgabe."
+// * context ^short = "Referenz auf Encounter oder EpisodeOfCare. Keine Verwendung in der Durchgeführten Abgabe."
 
 * supportingInformation 0..0 
-* supportingInformation ^short = "Referenz (Any) auf zusätzliche Informationen, die die Abgabe des Medikaments unterstützen. Keine Verwendung in der Durchgeführten Abgabe."
+// * supportingInformation ^short = "Referenz (Any) auf zusätzliche Informationen, die die Abgabe des Medikaments unterstützen. Keine Verwendung in der Durchgeführten Abgabe."
 
 * performer 1..1 MS
 * performer ^short = "Durchführende Person" 
-* performer.function 0..0 
-* performer.function ^short = "Rolle der Person, die die Abgabe durchgeführt hat. Keine Verwendung in der Durchgeführten Abgabe."
+//* performer.function 0..0 
+//* performer.function ^short = "Rolle der Person, die die Abgabe durchgeführt hat. Keine Verwendung in der Durchgeführten Abgabe."
 * performer.actor 1..1 MS
 * performer.actor only Reference(AtElgaCorePractitioner or AtElgaCorePractitionerRole or HL7ATCoreOrganization)
 * performer.actor ^short = "Refrenz auf Practitioner, PractitionerRole, Organization, 
@@ -82,7 +90,7 @@ der/die die Durchgeführte Abgabe erstellt hat und für den Inhalt verantwortlic
 auf die ELGA e-Medikation des Patienten zuzugreifen)."
 
 * location 0..0 
-* location ^short = "Ort der Abgabe (Referenz auf Location Ressource). Keine Verwendung in durchgeführter Abgabe."
+//* location ^short = "Ort der Abgabe (Referenz auf Location Ressource). Keine Verwendung in durchgeführter Abgabe."
 
 
 // Slicing authorizingPrescription:  
@@ -131,19 +139,19 @@ Abgaben ohne Geplante Abgabe geben kann (z.B. Notfall oder OTC-Medikation)."
 * quantity ^short = "Abgegebene Packungsanzahl."
 
 * daysSupply 0..0 //1 MS
-* daysSupply ^short = "Tage, für die die abgegebene Menge ausreicht"
+//* daysSupply ^short = "Tage, für die die abgegebene Menge ausreicht"
 
 * whenPrepared 0..0 //1 MS
-* whenPrepared ^short = "Zeitpunkt, zu dem das Produkt verpackt und geprüft wurde."
+//* whenPrepared ^short = "Zeitpunkt, zu dem das Produkt verpackt und geprüft wurde."
 
 * whenHandedOver 0..1 MS  // geändert von  1..1 akl
 * whenHandedOver ^short = "Der Zeitpunkt, zu dem das abgegebene Produkt dem Patienten oder seinem Vertreter zur Verfügung gestellt wurde."
 
 * destination 0..0
-* destination ^short = "Ort an den das Medikament geschickt wurde (Referenz auf Location Ressource). Keine Verwendung in durchgeführter Abgabe."
+//* destination ^short = "Ort an den das Medikament geschickt wurde (Referenz auf Location Ressource). Keine Verwendung in durchgeführter Abgabe."
 
 * receiver 0..0
-* receiver ^short = "Person, die das Medikament abgeholt hat. Referenz auf Patient oder Practitioner. Keine Verwendung in durchgeführter Abgabe."
+//* receiver ^short = "Person, die das Medikament abgeholt hat. Referenz auf Patient oder Practitioner. Keine Verwendung in durchgeführter Abgabe."
 
 * note 0..* MS // analog zur geplanten abgabe
 * note ^short = "Zusätzliche Informationen zur Abgabe, die nicht anders dokumentiert werden kann."
