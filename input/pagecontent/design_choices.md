@@ -85,3 +85,20 @@ In der *Durchgeführten Abgabe* können Abweichungen von der *Geplanten Abgabe* 
 Eine mögliche Substitution des Medikaments ist implizit, durch die Referenz auf die zugehörige Geplante Abgabe, ersichtlich. Es werden R5-Backport-Extensions verwendet.
 
 Der aktuelle Status einer *Durchgeführten Abgabe* wird mittels *status*- und *type*-Element dokumentiert (siehe [Status des MedicationDispense in der Durchgeführten Abgabe](workflowmanagement.html#status-des-medicationdispense-in-der-durchgeführten-abgabe)).   -->
+
+
+
+<!-- 
+
+- Must Support Profilierung 
+
+Nur Elemente, die mit MS geflaggt sind, werden durch die zentrale Fachanwendung verarbeitet und in weiterer Folge zur Anzeige gebracht (Portal).
+Modifier + ausgewählte Elemente werden mit fachlicher Begründung auf 0..0 gesetzt
+
+
+- Versionierung
+
+wann und warum versionierte Referenzen verwendet werden
+und wann nicht
+
+-->
