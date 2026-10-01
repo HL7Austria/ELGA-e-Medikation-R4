@@ -182,12 +182,8 @@ menu:
     Medikationsplan lesen: Sub_UC_eMed_01.html
     Medikationsplan schreiben: Sub_UC_eMed_02.html
     Geplante Abgaben und Durchgeführte Abgaben lesen: Sub_UC_eMed_03.html
-    # Geplante Abgaben lesen: Sub_UC_eMed_03.html
-    # Durchgeführte Abgaben lesen: Sub_UC_eMed_03.html
-    # Geplante Abgaben und Durchgeführte Abgaben mit e-Med GroupIdentifier lesen: Sub_UC_eMed_03.html
     Geplante Abgabe schreiben: Sub_UC_eMed_04.html
     Durchgeführte Abgabe schreiben: Sub_UC_eMed_05.html
-    # Geplante Abgaben und Durchgeführte Abgaben mit e-Med GroupIdentifier schreiben: Sub_UC_eMed_05_01.html
     Patient Journey: patient_journey.html
 
   # Mappings: mapping.html
@@ -300,17 +296,19 @@ groups:
     description: Geplante Abgabe
     resources:
       - StructureDefinition/at-elga-emed-medicationrequest-geplanteabgabe
+      - StructureDefinition/at-elga-emed-bundle-geplanteabgaben-tx
   DurchgefuehrteAbgabe:
     name: Durchgeführte Abgabe
     description: Durchgeführte Abgabe
     resources:
       - StructureDefinition/at-elga-emed-medicationdispense-durchgefuehrteabgabe
+      - StructureDefinition/at-elga-emed-bundle-durchgefuehrteabgaben-tx
   Medikation:
     name: Medikation
     description: Medikation
     resources:
       - StructureDefinition/at-elga-emed-medication-standard-medikation
-      - StructureDefinition/at-elga-emed-substance-wirkstoff
+      # - StructureDefinition/at-elga-emed-substance-wirkstoff
       - StructureDefinition/at-elga-emed-medication-magistrale-zubereitung
   Dosierungen:
     name: Dosierungen
