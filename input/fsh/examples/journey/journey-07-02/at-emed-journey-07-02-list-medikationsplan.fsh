@@ -1,7 +1,7 @@
 Instance: At-Emed-Journey-07-02-List-Medikationsplan
 InstanceOf: AtElgaEmedListMedikationsplan   
 Title: "Beispiel Journey 07-02: Medikationsplan"
-Description: "Beispiel eines Medikationsplans mit einem geänderten, einem unveränderten und einem neuen Planeintrag."
+Description: "Beispiel eines Medikationsplans mit 1 geänderten, 1 unveränderten und 1 neuen Planeintrag."
 Usage: #example
 
 * status = #current

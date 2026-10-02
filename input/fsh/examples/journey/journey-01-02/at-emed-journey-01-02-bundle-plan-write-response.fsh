@@ -1,8 +1,9 @@
 Instance: At-Emed-Journey-01-02-Bundle-plan-write-response
 InstanceOf: Bundle   
-Title: "Beispiel Journey 01-02: Plan-Write-Response "
-Description: "Beispiel einer Response eines plan write mit 2 neuen Planeinträgen"
+Title: "Beispiel Journey 01-02: Plan-Write-Response"
+Description: "Beispiel einer Response eines plan-write mit 2 neuen Planeinträgen"
 Usage: #example
+
 * type = #transaction-response
 * timestamp = "2026-02-27T08:10:00+00:00"
 * link.url = "https://example.elga.com/base/List/$plan-write"

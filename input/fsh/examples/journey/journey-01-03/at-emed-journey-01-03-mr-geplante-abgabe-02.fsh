@@ -33,6 +33,7 @@ Usage: #example
 
 * dosageInstruction[standardDosage].extension[DosageCategory].valueCodeableConcept = AtElgaEmedCodeSystemDosageCategory#standard
 * dosageInstruction[standardDosage].sequence = 1
+* dosageInstruction[standardDosage].patientInstruction = "Dünn auftragen."
 * dosageInstruction[standardDosage].timing.repeat.frequency = 2
 * dosageInstruction[standardDosage].timing.repeat.period = 1
 * dosageInstruction[standardDosage].timing.repeat.periodUnit = #d
@@ -40,9 +41,6 @@ Usage: #example
 * dosageInstruction[standardDosage].timing.repeat.when[+] = $cs-timing#EVE "Abends" 
 * dosageInstruction[standardDosage].timing.repeat.boundsDuration.value = 3
 * dosageInstruction[standardDosage].timing.repeat.boundsDuration.unit = "wk"
-// * dosageInstruction[standardDosage].doseAndRate.doseQuantity.value = 2
-// * dosageInstruction[standardDosage].doseAndRate.doseQuantity.system = $cs-ucum
-// * dosageInstruction[standardDosage].doseAndRate.doseQuantity = $cs-ucum#Stueck "Stück"
 * dosageInstruction[standardDosage].route = https://termgit.elga.gv.at/CodeSystem-medikationartanwendung.html#100000073566 "Anwendung auf der Haut"
 
 * dispenseRequest.validityPeriod.end = "2026-03-27"

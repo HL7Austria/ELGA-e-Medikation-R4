@@ -1,7 +1,7 @@
 Instance: At-Emed-Journey-07-03-Mr-Geplante-Abgabe-03   
 InstanceOf: AtElgaEmedMedicationRequestGeplanteAbgabe
 Title: "Beispiel Journey 07-03: Geplante Abgabe 1"
-Description: "Bildet eine Geplante Abgabe des Arzneimittels Magelan mit Dosierungsanweisungen gemäß zugehörigem Planeintrag ab."
+Description: "Bildet eine Geplante Abgabe von Magelan-Tropfen mit Dosierungsanweisungen gemäß zugehörigem Planeintrag ab."
 Usage: #example
 
 * contained[+] = contained-medication-journey-07-03-03

@@ -28,6 +28,7 @@ Usage: #example
 
 * dosageInstruction[standardDosage].extension[DosageCategory].valueCodeableConcept = AtElgaEmedCodeSystemDosageCategory#standard
 * dosageInstruction[standardDosage].sequence = 1
+* dosageInstruction[standardDosage].patientInstruction = "Dünn auftragen."
 * dosageInstruction[standardDosage].timing.repeat.frequency = 2
 * dosageInstruction[standardDosage].timing.repeat.period = 1
 * dosageInstruction[standardDosage].timing.repeat.periodUnit = #d
