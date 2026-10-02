@@ -60,9 +60,9 @@ suchen
 end note
 
 activate eMed_FA COLOR_EMED_FA
-eMed_FA -> eMed_FA: Ermittlung der passenden\nMedicationRequest-Versionen\nanhand der Suchparameter
+eMed_FA -> eMed_FA: Ermittlung der den Such-\nparametern entsprechenden\nMedicationRequest-Versionen
 
-group COLOR_OK alt: Medikationsplaneintrag/-einträge gefunden?
+group COLOR_OK alt: Medikationsplaneintrag gefunden? [ja]
   eMed_FA -> GDA_1: Bundle (type=searchset) mit einem oder mehreren\nMedicationRequest-Einträgen
 else COLOR_OK_2 nein
   eMed_FA -> GDA_1: Bundle (type=searchset) ohne Einträge

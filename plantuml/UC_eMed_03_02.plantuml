@@ -57,26 +57,25 @@ participant eMed_FA as "e-Med FA" COLOR_EMED_FA
 
 autonumber
 
-GDA_1 -> eMed_FA: GET MedicationDispense mit Suchparametern
+GDA_1 -> eMed_FA: GET [base]/MedicationDispense & Suchparameter
 activate GDA_1 COLOR_GDA_1
 activate eMed_FA COLOR_EMED_FA 
 
-eMed_FA -> eMed_FA: Durchgeführte Abgaben\nermitteln
+note over GDA_1
+Durchgeführte Abgaben
+suchen
+end note
+
+eMed_FA -> eMed_FA: Ermittlung der den Such-\nparametern entsprechenden\nMedicationDispenses
 
 group COLOR_OK alt: Durchgeführte Abgaben mit Suchparametern vorhanden? [ja]
   eMed_FA -> GDA_1: Bundle (type=searchset) mit MedicationDispenses
-
-  note over GDA_1
-  GDA erhält alle den Suchkriterien 
-  entsprechenden Durchgeführten 
-  Abgaben des Patienten. 
-  end note
 
 else COLOR_OK_2 nein
   eMed_FA -> GDA_1: Bundle (type=searchset) ohne Einträge
 
 else COLOR_ERROR Fehler
-  eMed_FA --> GDA_1: HTTP 4xx OperationOutcome
+  eMed_FA --> GDA_1: OperationOutcome
   deactivate eMed_FA
 
 end
@@ -89,12 +88,6 @@ opt Zusätzliche Informationen abrufen
     ref over GDA_1,eMed_FA
     Prescription-Search
     end ref
-
-    note over GDA_1
-    Optionaler Abruf des Medikationsplans
-    und der Geplanten Abgaben zur 
-    fachlichen Beurteilung.
-    end note
 
 end
 

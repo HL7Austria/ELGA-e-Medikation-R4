@@ -57,47 +57,24 @@ participant eMed_FA as "e-Med FA" COLOR_EMED_FA
 
 autonumber
 
-' opt Zusätzliche Informationen abrufen
-
-'     ref over GDA_1,eMed_FA
-'     Plan-Read
-'     end ref
-
-'     ref over GDA_1,eMed_FA
-'     Dispense-Search
-'     end ref
-
-'     note over GDA_1
-'     Optionaler Abruf des Medikationsplans
-'     und der Durchgeführten Abgaben zur 
-'     fachlichen Beurteilung.
-'     end note
-
-' end
-
+GDA_1 -> eMed_FA: GET [base]/MedicationRequest mit category=\n"Geplante Abgabe" & Suchparameter 
 activate GDA_1 COLOR_GDA_1
-
-GDA_1 -> eMed_FA: GET MedicationRequest mit category = "Geplante Abgabe"\nund Suchparametern 
-
-
 activate eMed_FA COLOR_EMED_FA 
 
-eMed_FA -> eMed_FA: Geplante Abgaben\nermitteln
+note over GDA_1
+Geplante Abgaben
+suchen
+end note
 
-group COLOR_OK alt: Geplante Abgaben mit Suchparametern vorhanden? [ja]
-  eMed_FA -> GDA_1: Bundle (type=searchset) mit MedicationRequests
-
-  note over GDA_1
-  GDA erhält alle den Suchkriterien 
-  entsprechenden Geplanten Abgaben 
-  des Patienten. 
-  end note
+eMed_FA -> eMed_FA: Ermittlung der den Such-\nparametern entsprechenden\nMedicationRequests
+group COLOR_OK alt: Geplante Abgabe(n) gefunden? [ja]
+  eMed_FA -> GDA_1: Bundle (type=searchset) mit einem oder mehreren\nMedicationRequest-Einträgen
 
 else COLOR_OK_2 nein
   eMed_FA -> GDA_1: Bundle (type=searchset) ohne Einträge
 
 else COLOR_ERROR Fehler
-  eMed_FA --> GDA_1: HTTP 4xx OperationOutcome
+  eMed_FA --> GDA_1: OperationOutcome
   deactivate eMed_FA
   
 end
@@ -112,12 +89,6 @@ opt Zusätzliche Informationen abrufen
     ref over GDA_1,eMed_FA
     Dispense-Search
     end ref
-
-    note over GDA_1
-    Optionaler Abruf des Medikationsplans
-    und der Durchgeführten Abgaben zur 
-    fachlichen Beurteilung.
-    end note
 
 end
 
