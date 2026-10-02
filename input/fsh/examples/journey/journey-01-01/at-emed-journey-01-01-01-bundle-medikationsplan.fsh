@@ -5,7 +5,7 @@ Description: "Beispiel eines Medikationsplan-Bundles, mit leerem Mediaktionsplan
 Usage: #example
 * total = 3
 * type = #searchset
-* timestamp = "2026-02-27T08:00:00+00:00" 
+//* timestamp = "2026-02-27T08:00:00+00:00" 
 * entry[Medikationsplan].resource = At-Emed-Journey-01-01-List-Medikationsplan
 * entry[Medikationsplan].search.mode = #match
 * entry[Medikationsplan].fullUrl = "https://example.elga.com/List/4cb4dceb-173f-461a-a267-683ec33e4be1"
