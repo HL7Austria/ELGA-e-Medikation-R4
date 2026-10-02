@@ -10,9 +10,13 @@ Jeder Listeneintrag enthält im Element List.entry.flag den Änderungsstatus des
 * id 1..1 MS
 * id ^short = "Technische id der Ressource"
 * meta MS
+
+// ws: meta.version.id = kann für etag verwendet werden
+//* id + meta für etag
+
 * text MS
 //ASW 24.09.2026 TODO text 1..1
-* implicitRules 0..0
+* implicitRules 0..0  //ws überall entfernen
 * extension contains AtElgaEmedExtensionPatientModified named PatientModified 0..1 MS
 * extension[PatientModified] ^short = "Boolean der angibt, ob diese Version des Plans durch Aktionen des Patienten verändert wurde (z.B. Einträge entfernt)."
 * obeys at-emed-list-same-patient

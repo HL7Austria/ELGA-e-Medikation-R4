@@ -4,17 +4,21 @@ Id: at-elga-emed-bundle-medikationsplan
 Title: "AT ELGA e-Medikation Medikationsplan-Bundle Medikationsplan"
 Description: "Das Bundle vom Typ Searchset bestehend aus: 
 - 1..1 Medikationsplan (List): Liste mit Referenzen auf Medikationsplaneinträge und zur Abbildung von Reihenfolge und Änderungsstatus
-- 0..* Medikationsplaneinträge (MedicationRequests): Medikation und Dosierung"
+- 0..* Medikationsplaneinträge (MedicationRequests): Medikation und Dosierung
+- 1..1 Patient
+- 1..* Authors"
+
 
 * identifier 0..0 
+* implicitRules 0..0
 
 * type 1..1 MS
 * type = #searchset
 * type ^short = "Art des Bundles. Für Medikationspläne immer \"searchset\"."
 
-* timestamp 1..1 MS
-* timestamp ^short = "Zeitpunkt der Erstellung des Bundles." 
-
+* timestamp 0..0 //1..1 MS
+//* timestamp ^short = "Zeitpunkt der Erstellung des Bundles."  ws. zeitpunkt nur in der liste relevant
+//evt. für protokollierung
 
 // Slicing legt fest, welche Entries erlaubt sind -> Unterscheidung der Slices anhand von Pfad und Typ 
 * entry MS
