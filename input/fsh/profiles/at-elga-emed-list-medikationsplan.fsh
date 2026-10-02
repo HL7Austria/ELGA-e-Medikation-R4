@@ -2,8 +2,9 @@ Profile: AtElgaEmedListMedikationsplan
 Parent: List 
 Id: at-elga-emed-list-medikationsplan
 Title: "AT ELGA e-Medikation List Medikationsplan"
-Description: "Der Medikationsplan wird durch eine List-Ressource abgebildet. 
-Diese enthält 0..* Einträge (List.entry), wobei jedes List.entry.item genau eine Referenz auf einen Medikationsplaneintrag (MedicationRequest) beinhaltet.
+Description: "Der Medikationsplan wird durch eine List-Ressource abgebildet und enthält:
+- 0..* Einträge (List.entry). 
+Jedes List.entry.item enhält genau eine Referenz auf einen Medikationsplaneintrag (MedicationRequest).
 Die Reihung der List.entries bestimmt die Reihenfolge der Medikationsplaneinträge. 
 Jeder Listeneintrag enthält im Element List.entry.flag den Änderungsstatus des jeweiligen Medikationsplaneintrags."
 
