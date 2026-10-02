@@ -22,9 +22,7 @@ Es gelten die dort festgelegten Vorbedingungen. Alle Zugriffe werden protokollie
 
 ### Sub_UC_eMed_01_01 - Aktuellen Medikationsplan lesen (Plan-Read)
 
-<!--Todo:  Wording im UC "anzeigen" statt lesen. ändern? akl 25.09.2026 -->
-
-Plan-Read dient dem Abruf des aktuellen Medikationsplans in einem für die Bearbeitung durch den GDA **aufbereiteten Zustand**.
+*Plan-Read* dient dem Abruf des aktuellen Medikationsplans in einem für die Bearbeitung durch den GDA **aufbereiteten Zustand**.
 
 Hierfür erzeugt die Fachanwendung aus der aktuellen Version der [List](StructureDefinition-at-elga-emed-list-medikationsplan.html)-Ressource sowie den von ihr referenzierten Ressourcen ein **temporäres** [Medikationsplan-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplan.html) zur Auslieferung. Der Abruf erfolgt über die Custom Operation [$plan-read](OperationDefinition-AtElgaEmed.List.Planread.html).
 
@@ -40,12 +38,12 @@ Nachfolgend kann der Medikationsplan vom GDA bearbeitet und mittels [Plan-Write]
 [![overview](plantuml/UC_eMed_01_01.svg){: .mx-auto style="width:35%;"}](plantuml/UC_eMed_01_01.svg)
 <br> 
 
-<div class="dragon">
+<!-- <div class="dragon">
 <p class="note-to-balloters">
 Offene Punkte:<br>
 Fehlercodes sind noch zu definieren.
 </p>
-</div>
+</div>  Todo: werden von uns gar nicht definiert, Stand 2.10. akl -->
 
 
 #### Custom Operations
@@ -85,9 +83,9 @@ Die **persistierten Ressourcen am Server** werden durch die Transformationen fü
 
 ### Sub_UC_eMed_01_02 - Historische Medikationsplanversion suchen (Plan-History-Search)
 
-Bei der Plan-History-Search rekonstruiert die Fachanwendung historische Versionen des Medikationsplans aus Versionen der List-Ressource sowie den von diesen referenzierten Ressourcenversionen und liefert diese unverändert aus. Alle diese Ressourcen sind Teil des resultierenden Searchset-Bundles.
+Bei der *Plan-History-Search* rekonstruiert die Fachanwendung historische Versionen des Medikationsplans aus Versionen der List-Ressource sowie den von diesen referenzierten Ressourcenversionen und liefert diese unverändert aus. Alle diese Ressourcen sind Teil des resultierenden Searchset-Bundles.
 
-Beim Plan-History-Search erfolgt **keine Änderung** der Medikationspläne durch die Fachanwendung. Insbesondere werden keine Inhalte, Statusinformationen oder Kennzeichnungen (Flags) verändert. Der Zugriff dient ausschließlich der Anzeige bzw. Informationsabfrage persistierter Medikationsplanversionen.
+Beim *Plan-History-Search* erfolgt **keine Änderung** der Medikationspläne durch die Fachanwendung. Insbesondere werden keine Inhalte, Statusinformationen oder Kennzeichnungen (Flags) verändert. Der Zugriff dient ausschließlich der Anzeige bzw. Informationsabfrage persistierter Medikationsplanversionen.
 
 #### Suchparameter
 
@@ -124,7 +122,7 @@ Offene Punkte: <br>in Arbeit.
 <!-- <div class="dragon">
 <p class="note-to-balloters">
 Offene Frage:<br>
-- Ist Plan-History-Search ein GET mit _include=* oder eine Custom Operation?<br>
+- Ist *Plan-History-Search* ein GET mit _include=* oder eine Custom Operation?<br>
 - Können bei einem GET _history beliebige Suchparameter definiert werden?<br>
 </p>
 </div> TODO: Annahme treffen akl 25.09.26 -->
@@ -171,26 +169,9 @@ Soll die Erstellung durch das Berechtigungssystem beim ersten Aufruf eines Patie
 
 ### Sub_UC_eMed_01_04 - Medikationsplaneinträge suchen (Planentry-Search)
 
-**Planentry-Search** dient der gezielten Suche nach Medikationsplaneintragsversionen. Als Medikationsplaneintrag gilt eine im Medikationsplan referenzierte Version einer *MedicationRequest*-Ressource mit *category = "Planeintrag"*.
+**Planentry-Search** dient der gezielten Suche nach Medikationsplaneinträgen, unabhängig von dereren referenzierenden Medikationsplanversion. Als Medikationsplaneintrag gilt eine in einer Medikationsplanversion referenzierte *MedicationRequest*-Ressource mit *category = "Planeintrag"*.
 
-Die Suche ermöglicht berechtigten Akteuren den Zugriff auf aktuelle und historische Medikationsplaneinträge unabhängig von einer bestimmten Medikationsplanversion.
-
-Die Historie ermöglicht die Nachverfolgung von Änderungen an Medikationsplaneinträgen, beispielsweise hinsichtlich Präparat, Dosierung oder Einnahmeanweisung.
-
-<br>
-Die gefundenen Medikationsplaneinträge können anschließend als Ausgangspunkt für weitere Abfragen verwendet werden, um jene Ressourcen zu ermittelnt, die genau auf diese Planeintragsversion referenzieren:
-
-* die zugehörigen Medikationsplanversionen ([Plan-History-Search](Sub_UC_eMed_01.html#sub_uc_emed_01_02---historische-medikationsplanversion-suchen-plan-history-search))
-* *Geplante Abgaben* ([Prescription-Search](Sub_UC_eMed_03.html#sub_uc_emed_03_01---geplante-abgaben-lesen-prescription-search)) 
-* *Durchgeführte Abgaben* ([Dispense-Search](Sub_UC_eMed_03.html#sub_uc_emed_03_02---durchgeführte-abgaben-lesen-dispense-search)) 
-
-<div class="dragon">
-<p class="note-to-balloters">
-Offene Punkte:<br>
-- Sind die Referenzen in Geplanten Abgaben und Durchgeführten Abgaben versioniert?<br>
-</p>
-</div>
-
+*Planentry-Search* ermöglicht den Zugriff auf aktuelle und historische Versionen von Medikationsplaneinträge und somit die Nachverfolgung von Änderungen an Medikationsplaneinträgen, beispielsweise hinsichtlich Präparat, Dosierung oder Einnahmeanweisung.
 
 #### Suchparameter
 
@@ -201,6 +182,20 @@ Die Suche nach Medikationsplaneinträgen erfolgt mittels **GET** unter Angabe ge
 * **Status**: [Value Set](ValueSet-PlaneintragStatusVS.html)
 * **StatusReason**: [Value Set](ValueSet-AtElgaEmedValueSetPlaneintragStatusReasonVS.html)
 * **Historisch oder aktuell** (_history)
+<!-- * Erstellender GDA? Todo akl 2.10. -->
+
+Die gefundenen Medikationsplaneinträge können als Ausgangspunkt für weitere Abfragen verwendet werden, um jene Ressourcen zu ermittelnt, die genau auf diese Planeintragsversion referenzieren:
+
+* die zugehörigen Medikationsplanversionen ([Plan-History-Search](Sub_UC_eMed_01.html#sub_uc_emed_01_02---historische-medikationsplanversion-suchen-plan-history-search))
+* *Geplante Abgaben* ([Prescription-Search](Sub_UC_eMed_03.html#sub_uc_emed_03_01---geplante-abgaben-lesen-prescription-search)) 
+* *Durchgeführte Abgaben* ([Dispense-Search](Sub_UC_eMed_03.html#sub_uc_emed_03_02---durchgeführte-abgaben-lesen-dispense-search)) 
+
+<div class="dragon">
+<p class="note-to-balloters">
+Offene Punkte:<br>
+- Sind die Referenzen in Geplanten Abgaben und Durchgeführten Abgaben versioniert?<br>
+</p>
+</div> <!-- Todo: akl 2.10. dzt. Annahme: nein -->
 
 #### Ablauf
 
