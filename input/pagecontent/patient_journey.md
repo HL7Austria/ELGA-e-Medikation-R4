@@ -4,6 +4,8 @@ Am Beispiel einer fiktiven Patient Journey wird veranschaulicht, wie sich der **
 
 Eine fachliche Übersicht mit reduziertem Detailgrad findet sich am Ende dieses Kapitels ([Übersicht Patient Journey](patient_journey.html#übersicht-patient-journey)).
 
+{% include patient_journey_animation.md %}
+
 <!-- TODO: nicht-sunshine-cases: patient ohne ecard in apotheke, 
 Einträge durch patient löschen, stornieren, rezept wieder öffnen, wenn teilabgabe storniert -->
 
