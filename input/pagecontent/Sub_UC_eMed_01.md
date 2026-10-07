@@ -175,7 +175,7 @@ Soll die Erstellung durch das Berechtigungssystem beim ersten Aufruf eines Patie
 
 #### Suchparameter
 
-Die Suche nach Medikationsplaneinträgen erfolgt mittels **GET** unter Angabe geeigneter Suchparameter:<br>
+Die Suche nach Medikationsplaneinträgen erfolgt mittels **GET**-Request unter Angabe geeigneter Suchparameter:<br>
 * **Medikation** (PZN, Arzneimittelname oder Wirkstoff)
 * **Einnahmezeitraum**
 * **Erstellungszeitpunkt**
@@ -199,7 +199,7 @@ Offene Punkte:<br>
 
 #### Ablauf
 
-1. Der Client führt ein **GET** auf den Planentry-Search-Endpunkt mit den gewünschten Suchparametern aus (*MedicationRequest* mit *category = "Planeintrag"*).
+1. Der Client führt einen **GET**-Request auf den Planentry-Search-Endpunkt mit den gewünschten Suchparametern aus (*MedicationRequest* mit *category = "Planeintrag"*).
 2. Die Fachanwendung ermittelt anhand der Suchparameter die passenden Medikationsplaneinträge.
 4. Die Fachanwendung liefert die Suchergebnisse als Bundle vom Typ *searchset* zurück.
 6. Werden keine passenden Medikationsplaneinträge gefunden, enthält das zurückgelieferte Searchset Bundle keine Einträge.
