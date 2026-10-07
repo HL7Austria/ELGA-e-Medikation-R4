@@ -6,19 +6,21 @@ Dieser technische Use Case beschreibt den schreibenden Zugriff [berechtigter Akt
 
 Für ELGA-Teilnehmer (bzw. deren Vertretungen) erfolgt der schreibende Zugriff im Rahmen der Ausübung von Teilnehmerrechten ausschließlich über das ELGA-Zugangsportal. Für GDA erfolgt der schreibende Zugriff über die e-Medikation-Schnittstelle des jeweiligen GDA-Systems.
 
-Der schreibende Zugriff umfasst folgende Bearbeitungen der **aktuellen Version des Medikationsplans**:
-* **GDA** können einzelne **Medikationsplaneinträge**
-    * [hinzufügen](Sub_UC_eMed_02.html#sub_uc_emed_02_02---planeintrag-in-medikationsplan-hinzufügen),
-    * [ändern](Sub_UC_eMed_02.html#sub_uc_emed_02_03---planeintrag-im-medikationsplan-ändern),
-    * [unverändert zur Kenntis nehmen](Sub_UC_eMed_02.html#sub_uc_emed_02_04---planeintrag-unverändert-zur-kenntnis-nehmen),
-    * [pausieren bzw. reaktivieren](Sub_UC_eMed_02.html#sub_uc_emed_02_05---planeintrag-pausieren-oder-reaktivieren),
-    * [beenden](Sub_UC_eMed_02.html#sub_uc_emed_02_08---planeintrag-im-medikationsplan-beenden),
-    * [stornieren](Sub_UC_eMed_02.html#sub_uc_emed_02_07---planeintrag-im-medikationsplan-stornieren),
-    * [mit abgelaufenem Einnahmezeitraum weiterverordnen oder beenden](Sub_UC_eMed_02.html#sub_uc_emed_02_09---abgelaufenen-planeintrag-weiterverordnen-oder-beenden)
- * die [Reihenfolge der Planeinträge ändern](Sub_UC_eMed_02.html#sub_uc_emed_02_10---reihenfolge-der-planeinträge-ändern)
- * einen [Leeren Medikationsplan dokumentieren](Sub_UC_eMed_02.html#sub_uc_emed_02_06---leeren-medikationsplan-dokumentieren).
+Der schreibende Zugriff umfasst folgende Bearbeitungen:
+* **GDA** können in der **aktuellen Version des Medikationsplans**
+    * einzelne **Medikationsplaneinträge**
+        * [hinzufügen](Sub_UC_eMed_02.html#sub_uc_emed_02_02---planeintrag-in-medikationsplan-hinzufügen),
+        * [ändern](Sub_UC_eMed_02.html#sub_uc_emed_02_03---planeintrag-im-medikationsplan-ändern),
+        * [unverändert zur Kenntis nehmen](Sub_UC_eMed_02.html#sub_uc_emed_02_04---planeintrag-unverändert-zur-kenntnis-nehmen),
+        * [pausieren bzw. reaktivieren](Sub_UC_eMed_02.html#sub_uc_emed_02_05---planeintrag-pausieren-oder-reaktivieren),
+        * [beenden](Sub_UC_eMed_02.html#sub_uc_emed_02_08---planeintrag-im-medikationsplan-beenden),
+        * [stornieren](Sub_UC_eMed_02.html#sub_uc_emed_02_07---planeintrag-im-medikationsplan-stornieren),
+        * [mit abgelaufenem Einnahmezeitraum weiterverordnen oder beenden](Sub_UC_eMed_02.html#sub_uc_emed_02_09---abgelaufenen-planeintrag-weiterverordnen-oder-beenden)
+    * im **Medikationsplan**: 
+        * die [Reihenfolge der Planeinträge ändern](Sub_UC_eMed_02.html#sub_uc_emed_02_10---reihenfolge-der-planeinträge-ändern)
+        * einen [Leeren Medikationsplan dokumentieren](Sub_UC_eMed_02.html#sub_uc_emed_02_06---leeren-medikationsplan-dokumentieren).
 
-* **ELGA-Teilnehmer** können
+* **ELGA-Teilnehmer** und deren Vertretungen können
   * einzelne aktuelle oder historische [Planeinträge löschen](Sub_UC_eMed_02.html#sub_uc_emed_02_11---planeintrag-durch-elga-teilnehmer-löschen) oder
   * den aktuellen oder historische Versionen des gesamten [Medikationsplans löschen](Sub_UC_eMed_02.html#sub_uc_emed_02_12---medikationsplan-durch-elga-teilnehmer-löschen).
 
