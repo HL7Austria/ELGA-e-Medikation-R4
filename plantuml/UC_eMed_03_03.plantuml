@@ -61,66 +61,30 @@ autonumber
 GDA_1 -> eMed_FA: POST $groupidentifier-search (e-Med GroupIdentifier)
 activate GDA_1 COLOR_GDA_1
 activate eMed_FA COLOR_EMED_FA
+note over GDA_1
+Geplante Abgaben und 
+Durchgeführte Abgaben 
+mit bestimmten e-Med 
+GroupIdentifier suchen
+end note
 
-eMed_FA -> eMed_FA: Syntaktische Prüfung\ndes e-Med GroupIdentifier
 
-group COLOR_OK alt: GroupIdentifier gültig? [ja]
+eMed_FA -> eMed_FA: Prüfung\ne-Med GroupIdentifier
 
-  eMed_FA -> eMed_FA: Ermitteln von MedicationRequests mit:\n- category = "Geplante Abgabe" und\n- e-Med GroupIdentifier
+group COLOR_OK alt: e-Med GroupIdentifier gültig? [ja]
 
-  eMed_FA -> eMed_FA: Ermitteln von MedicationDispenses mit:\n- e-Med GroupIdentifier
+  eMed_FA -> eMed_FA: Ermitteln von MedicationRequests mit:\n- category = "Geplante Abgabe" und\n- groupIdentifier = e-Med GroupIdentifier
 
-  note over eMed_FA
-  Geplante Abgaben und Durchgeführte 
-  Abgaben mit dem gesuchten e-Med 
-  GroupIdentifier werden zurückgeliefert.
-  end note
+  eMed_FA -> eMed_FA: Ermitteln von MedicationDispenses mit:\n- extension:groupIdentifier = e-Med GroupIdentifier
 
   eMed_FA -> GDA_1: Bundle (type=searchset)\nmit MedicationRequest- und MedicationDispense-Ressourcen
 
 else COLOR_ERROR nein: Fehler
 
-  eMed_FA --> GDA_1: HTTP 4xx\nOperationOutcome
+  eMed_FA --> GDA_1: OperationOutcome
   deactivate eMed_FA
 
 end
 
-
-
-' GDA_1 -> eMed_FA: POST $groupidentifier-search (e-Med GroupIdentifier)
-' activate GDA_1 COLOR_GDA_1
-' activate eMed_FA COLOR_EMED_FA 
-
-' eMed_FA -> eMed_FA: Prüfung\ndes e-Med GroupIdentifier
-
-' group COLOR_OK alt: GroupIdentifier gültig? [ja]
-
-'   eMed_FA -> eMed_FA: Ermitteln von MedicationRequests mit:\n- category = "Geplante Abgabe" und\n- e-Med GroupIdentifier und\n- status = active 
-  
-'   eMed_FA -> eMed_FA: Mindestens ein Ergebnis?
- 
-'   group COLOR_OK alt: Mindestens eine offene Geplante Abgabe? [ja]
-
-'     eMed_FA -> eMed_FA: Ermitteln von MedicationDispenses mit:\n- e-Med GroupIdentifier und\n- status = completed | cancelled
-    
-'     note over eMed_FA
-'     Die zugehörigen Durchgeführten 
-'     Abgaben werden gemeinsam mit 
-'     den offenen Geplanten Abgaben
-'     zurückgeliefert.
-'     end note
-
-'     eMed_FA -> GDA_1: Bundle (type=searchset)\nmit MedicationRequest- und MedicationDispense-Ressourcen
-  
-'   else COLOR_OK_2 nein
-'     eMed_FA -> GDA_1: Bundle (type=searchset) ohne Einträge
-    
-'   end
-
-' else COLOR_ERROR nein: Felhler 
-'   eMed_FA --> GDA_1: HTTP 4xx\nOperationOutcome
-'   deactivate eMed_FA
-  
-' end
 
 @enduml

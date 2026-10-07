@@ -91,6 +91,7 @@ opt Zusätzliche Informationen abrufen
     end ref
 
 end
+deactivate GDA_1
 
 
 @enduml
