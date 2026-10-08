@@ -4,7 +4,7 @@ Title: "Beispiel Journey 01-03: Geplante Abgabe 2"
 Description: "Bildet eine Geplante Abgabe mit einer magistralen Zubereitung (Dexpanthenol-Salbe) und den Dosierungsanweisungen gemäß zugehörigem Planeintrag ab."
 Usage: #example
 
-* contained[+] = contained-medication-journey-01-03-02-magistral
+* contained[+] = contained-medication-magistral-01
 * text.status = #generated
 * text.div = "<div> TODO: Some Narrative </div>"
 // R5 Backports
@@ -18,7 +18,7 @@ Usage: #example
 * category[recipetype] = $cs-medication-rezeptart#KASSEN "Kassenrezept"
 
 // Referenz auf Inline Medication Ressource
-* medicationReference.reference = "#contained-medication-journey-01-03-02-magistral"
+* medicationReference.reference = "#contained-medication-magistral-01"
 
 * subject = Reference(At-Emed-Example-Patient-01) "Anton Mustermann"
 * authoredOn = "2026-02-27T10:20:00+00:00"
@@ -41,29 +41,9 @@ Usage: #example
 * dosageInstruction[standardDosage].timing.repeat.when[+] = $cs-timing#EVE "Abends" 
 * dosageInstruction[standardDosage].timing.repeat.boundsDuration.value = 3
 * dosageInstruction[standardDosage].timing.repeat.boundsDuration.unit = "wk"
-* dosageInstruction[standardDosage].route = https://termgit.elga.gv.at/CodeSystem-medikationartanwendung.html#100000073566 "Anwendung auf der Haut"
+* dosageInstruction[standardDosage].route = $cs-medikationartanwendung#100000073566 "Anwendung auf der Haut"
 
 * dispenseRequest.validityPeriod.end = "2026-03-27"
 * dispenseRequest.numberOfRepeatsAllowed = 0
 * dispenseRequest.quantity.value = 1
 * dispenseRequest.quantity.unit = "Packung"
-
-// Contained Medication *********************************************************************
-Instance: contained-medication-journey-01-03-02-magistral
-InstanceOf: AtElgaEmedMedicationMagistraleZubereitung
-Title: "Beispiel Journey 02: Magistrale Anwendung (Dexpanthenol-Salbe)"
-Usage: #inline
-
-//* status = #active
-//* manufacturer = Reference(AtElgaEmed-Example-Organization-Apo-01) "Amadeus Apotheke"
-* form.coding = https://termgit.elga.gv.at/CodeSystem/medikationdarreichungsform#100000073713 "Salbe"
-
-* ingredient[+].itemCodeableConcept = $cs-atc#A11HA30 "Dexpanthenol"
-* ingredient[=].strength.numerator = 5 'g' "g"
-* ingredient[=].strength.denominator = 100 'g' "g"
-* ingredient[+].itemCodeableConcept.text = "Salbengrundlage"
-* ingredient[=].isActive = false
-* ingredient[=].strength.numerator.value = 95
-* ingredient[=].strength.numerator.unit = "g"
-* ingredient[=].strength.denominator.value = 100
-* ingredient[=].strength.denominator.unit = "g"

@@ -7,4 +7,4 @@ Usage: #example
 * type = #searchset
 * total = 0
 * link.relation = "self"
-* link.url = "[base]/MedicationRequest?category=https://fhir.hl7.at/elga/emed/r4/CodeSystem/MedicationRequestCategoryCS|2&status=active"
+* link.url = "https://example.elga.com/base/MedicationRequest?category=https://fhir.hl7.at/elga/emed/r4/CodeSystem/MedicationRequestCategoryCS|2&status=active"

@@ -4,7 +4,7 @@ Title: "Beispiel Journey 01-02: Planeintrag 1"
 Description: "Bildet einen Planeintrag mit dem Arzneimittel Ramipril und geänderten Dosierungsanweisungen ab."
 Usage: #example
 
-* contained[+] = contained-medication-journey-06-02-01
+* contained[+] = at-emed-journey-medication-ramipril
 
 * courseOfTherapyType = $cs-medication-request-courseOfTherapyType#continuous
 
@@ -18,7 +18,7 @@ Usage: #example
 * reportedBoolean = false 
 
 // Referenz auf Contained Medication Ressource
-* medicationReference.reference = "#contained-medication-journey-06-02-01"
+* medicationReference.reference = "#at-emed-journey-medication-ramipril"
 
 * subject = Reference(At-Emed-Example-Patient-01) "Anton Mustermann"
 * authoredOn = "2026-03-19T12:10:00+00:00"
@@ -39,10 +39,4 @@ Usage: #example
 //* dosageInstruction.doseAndRate.doseQuantity = 10 'mg' "mg"  //TODO
 
 
-// Contained Medication *********************************************************************
-Instance: contained-medication-journey-06-02-01
-InstanceOf: AtElgaEmedMedicationStandardMedikation
-Title: "Beispiel Medikation Ramipril"
-Usage: #inline
 
-* code = $cs-asp-liste#2450836 "RAMIPRIL HEX TBL 5MG"

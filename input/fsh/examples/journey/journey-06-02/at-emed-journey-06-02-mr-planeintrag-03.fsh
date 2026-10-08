@@ -43,5 +43,5 @@ Instance: contained-medication-journey-06-02-02-wirkstoff
 InstanceOf: AtElgaEmedMedicationMagistraleZubereitung
 Title: "Beispiel Wirkstoffangaben (Metamizol)"
 Usage: #inline
-
+* id = "contained-medication-journey-06-02-02-wirkstoff"
 * ingredient.itemCodeableConcept = https://termgit.elga.gv.at/CodeSystem/medikation-ages-wirkstoffe#4467812 "METAMIZOL NATRIUM MONOHYDRAT"

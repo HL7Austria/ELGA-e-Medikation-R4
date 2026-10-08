@@ -4,7 +4,7 @@ Title: "Beispiel Journey 07-03: Geplante Abgabe 1"
 Description: "Bildet eine Geplante Abgabe von Magelan-Tropfen mit Dosierungsanweisungen gemäß zugehörigem Planeintrag ab."
 Usage: #example
 
-* contained[+] = contained-medication-journey-07-03-03
+* contained[+] = at-emed-journey-medication-metagelan
 * text.status = #generated
 * text.div = "<div>TODO: Some Narrative</div>"
 // R5 Backports
@@ -17,7 +17,7 @@ Usage: #example
 * category[recipetype] = $cs-medication-rezeptart#KASSEN "Kassenrezept"
 
 // Referenz auf Contained Medication Ressource
-* medicationReference.reference = "#contained-medication-journey-07-03-03"
+* medicationReference.reference = "#at-emed-journey-medication-metagelan"
 
 * subject = Reference(At-Emed-Example-Patient-01) "Anton Mustermann"
 * authoredOn = "2026-03-22T16:10:00+00:00"
@@ -49,12 +49,3 @@ Usage: #example
 * dispenseRequest.quantity.unit = "Packung"
 
 
-// Contained Medication *********************************************************************
-Instance: contained-medication-journey-07-03-03
-InstanceOf: AtElgaEmedMedicationStandardMedikation
-Title: "Beispiel Wirkstoffangaben (Magelan)"
-Usage: #inline
-
-* code = $cs-asp-liste#4467812 "METAGELAN TR 500MG/ML"
-
-//* ingredient.itemCodeableConcept = https://termgit.elga.gv.at/CodeSystem/medikation-ages-wirkstoffe#4467812 "METAMIZOL NATRIUM MONOHYDRAT"
