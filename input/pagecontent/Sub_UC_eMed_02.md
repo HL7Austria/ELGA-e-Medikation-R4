@@ -131,7 +131,7 @@ Der GDA führt ein **POST** [$plan-read](OperationDefinition-AtElgaEmed.List.Pla
     - *status* muss mit *active* oder *on-hold* dokumentiert werden (siehe [Status des MedicationRequests im Medikationsplaneintrag](workflowmanagement.html#status-des-medicationrequests-im-medikationsplaneintrag) und [Konsistenzregeln zwischen List.entry.flags und MedicationRequest-Status](workflowmanagement.html#konsistenzregeln-zwischen-listentryflags-und-medicationrequest-status))
     - *intent = order* und *category = "Planeintrag"* sind für alle Planeinträge verpflichtend mit festem Wert zu dokumentieren
     - *reportedBoolean* erhält den Wert *false*, wenn die Medikation vom Ersteller des Planeintrags (GDA) selbst stammt, sonst *true*
-    - *Medication*: zur Dokumentation des Arzneimittels wird die *Medication*-Ressource verwendet. Diese muss bei Medikamenten mit PZN beim Schreiben als **Logical Reference** mit **PZN und Name** angegeben werden (beim Lesen ist diese contained in der Ressource enthalten). Magistrale Zubereitungen sind immer als contained Ressource anzugeben (siehe Kapitel [Medikation](ELGA-e-Medikation-R4/output/medication.html)).
+    - *medication*: zur Dokumentation des Arzneimittels wird die *Medication*-Ressource verwendet. Diese muss bei Medikamenten mit PZN beim Schreiben als **Logical Reference** mit **PZN und Name** angegeben werden (beim Lesen ist diese contained in der Ressource enthalten). Magistrale Zubereitungen sind immer als contained Ressource anzugeben (siehe Kapitel [Medikation](ELGA-e-Medikation-R4/output/medication.html)).
     - *subject*: [ELGA Core Patient](https://build.fhir.org/ig/HL7Austria/ELGA-Core-R4/StructureDefinition-at-elga-core-patient.html) darf **nicht geändert** werden.  <!-- TODO: prüfen wir das? akl 30.09.2026 -->
     - *authoredOn*: Datum der Erstellung des Planeintrags
     - *requester*: Ersteller des Planeintrags (GDA). AT ELGA Core Practitioner, PractitionerRole bzw. Organization Profile (siehe [ELGA Core](https://build.fhir.org/ig/HL7Austria/ELGA-Core-R4/artifacts.html))
@@ -163,7 +163,7 @@ AtElgaEmedListMedikationsplan
 ```JSON
 AtElgaEmedMedicationRequestPlaneintrag
     status: active | on-hold
-    category: "Planeintrag"  // fester Wert
+    category: 1 "Planeintrag"         //Kategorie zur Unterscheidung der MedicationRequests
     reportedBoolean: false | true       // false, wenn vom Ersteller des Planeintrags
     medicationReference.reference: Medikation mit PZN oder Magistrale Zubereitung // Contained Medication 
     authoredOn: Datum der Erstellung des Planeintrags    
