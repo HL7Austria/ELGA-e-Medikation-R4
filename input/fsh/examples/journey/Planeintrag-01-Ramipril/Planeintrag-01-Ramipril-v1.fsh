@@ -1,13 +1,14 @@
-Instance: At-Emed-Journey-01-02-Mr-Planeintrag-01
+Instance: At-Emed-Journey-Planeintrag-01-Ramipril-v1
+// war 01-02-mr-planeintrag-01
 InstanceOf: AtElgaEmedMedicationRequestPlaneintrag   
 Title: "Beispiel Journey 01-02: Planeintrag 1"
 Description: "Bildet einen Planeintrag mit dem Arzneimittel Ramipril und der Dosierungsanweisung ab."
 Usage: #inline
-
+* id = "6bacfe23-d469-4945-bf3c-90c7e647aa52"
+* meta.versionId = "v1v1aeb5e5e8-785a-430b-afef-ee57335b213d"
 * contained[+] = at-emed-journey-medication-ramipril
 
 * courseOfTherapyType = $cs-medication-request-courseOfTherapyType#continuous
-
 // R5 Backports
 * extension[effectiveDosePeriod].valuePeriod.start = "2026-02-27"
 * extension[renderedDosageInstruction].valueMarkdown = "1-0-0-0 | Täglich: 1-0-0-0" 
@@ -20,7 +21,7 @@ Usage: #inline
 // Referenz auf Contained Medication Ressource
 * medicationReference.reference = "#at-emed-journey-medication-ramipril"
 
-* subject.reference = "Patient?identifier=test|test1" //Reference(At-Emed-Example-Patient-01) "Anton Mustermann"
+* subject = Reference(At-Emed-Example-Patient-01) "Anton Mustermann"
 * authoredOn = "2026-02-27T08:10:00+00:00" 
 * requester = Reference(At-Emed-Example-PractitionerRole-01) "Dr. Hausärztin"
 

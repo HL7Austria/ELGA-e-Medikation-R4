@@ -1,10 +1,11 @@
-Instance: At-Emed-Journey-01-02-List-Medikationsplan
+Instance: At-Emed-Journey-List-Medikationsplan-v2
+//war At-Emed-Journey-01-02-List-Medikationsplan
 InstanceOf: AtElgaEmedListMedikationsplan   
 Title: "Beispiel Journey 01-02: Medikationsplan"
 Description: "Beispiel eines Medikationsplans, der 2 neue Planeinträge referenziert."
 Usage: #inline
 * id = "4cb4dceb-173f-461a-a267-683ec33e4be1"
-* meta.versionId = "2v5cd90b82-be84-41c1-ae4b-715d232fec20"
+* meta.versionId = "v25cd90b82-be84-41c1-ae4b-715d232fec20"
 * status = #current
 * mode = #working
 * code = $cs-sct#736378000 "Medikationsplan"
@@ -17,7 +18,7 @@ Usage: #inline
 
 // Listeneinträge
 * entry[0].flag.coding = ElgaListEntryFlagCS#new "Neuer Planeintrag"
-* entry[=].item.reference = "urn:uuid:5e947f71-6881-46cc-9b06-81a1743aa674" //Reference(At-Emed-Journey-01-02-Mr-Planeintrag-01)
+* entry[=].item.reference = "MedicationRequest/6bacfe23-d469-4945-bf3c-90c7e647aa52/_history/v1aeb5e5e8-785a-430b-afef-ee57335b213d" //Reference(At-Emed-Journey-Planeintrag-01-Ramipril-v1)
 
 * entry[+].flag.coding = ElgaListEntryFlagCS#new "Neuer Planeintrag"
-* entry[=].item = Reference(At-Emed-Journey-01-02-Mr-Planeintrag-02)
+* entry[=].item.reference = "MedicationRequest/55e4be12-0d10-454c-a85f-cfb5f849e391/_history/v101275d13-fd59-4781-99ae-744fb90a1ba0" //Reference(At-Emed-Journey-Planeintrag-02-Magistral-Dexpanthenol-v1)

@@ -19,4 +19,4 @@ Usage: #example
 * entry[=].item = Reference(At-Emed-Journey-05-01-Mr-Planeintrag-01)
 
 * entry[+].flag.coding = ElgaListEntryFlagCS#unchanged "Planeintrag beibehalten"
-* entry[=].item = Reference(At-Emed-Journey-01-02-Mr-Planeintrag-02)
+* entry[=].item = Reference(At-Emed-Journey-Planeintrag-02-Magistral-Dexpanthenol-v1)

@@ -16,8 +16,8 @@ Description: "Das Medikationsplan-Bundle vom Typ Searchset enthält:
 * type = #searchset
 * type ^short = "Art des Bundles. Für Medikationspläne immer \"searchset\"."
 
-* timestamp 0..0 //1..1 MS
-//* timestamp ^short = "Zeitpunkt der Erstellung des Bundles."  ws. zeitpunkt nur in der liste relevant
+* timestamp 0..1 //1..1 MS
+//* timestamp ^short = "Zeitpunkt der Erstellung des Bundles." 
 //evt. für protokollierung
 
 // Slicing legt fest, welche Entries erlaubt sind -> Unterscheidung der Slices anhand von Pfad und Typ 

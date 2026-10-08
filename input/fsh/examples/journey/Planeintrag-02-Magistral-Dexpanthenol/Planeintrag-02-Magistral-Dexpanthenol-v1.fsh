@@ -1,35 +1,33 @@
-Instance: At-Emed-Journey-01-03-Mr-Geplante-Abgabe-02   
-InstanceOf: AtElgaEmedMedicationRequestGeplanteAbgabe
-Title: "Beispiel Journey 01-03: Geplante Abgabe 2"
-Description: "Bildet eine Geplante Abgabe mit einer magistralen Zubereitung (Dexpanthenol-Salbe) und den Dosierungsanweisungen gemäß zugehörigem Planeintrag ab."
-Usage: #example
+Instance: At-Emed-Journey-Planeintrag-02-Magistral-Dexpanthenol-v1
+// war At-Emed-Journey-01-02-Mr-Planeintrag-02
+InstanceOf: AtElgaEmedMedicationRequestPlaneintrag   
+Title: "Beispiel Journey 01-02: Planeintrag 2"
+Description: "Bildet einen Planeintrag mit einer magistralen Zubereitung (Dexpanthenol-Salbe) und der Dosierungsanweisung ab."
+Usage: #inline
+* id = "55e4be12-0d10-454c-a85f-cfb5f849e391"
+* meta.versionId = "v101275d13-fd59-4781-99ae-744fb90a1ba0"
 
 * contained[+] = contained-medication-magistral-01
-* text.status = #generated
-* text.div = "<div> TODO: Some Narrative </div>"
+* courseOfTherapyType = $cs-medication-request-courseOfTherapyType#acute
+
 // R5 Backports
 * extension[effectiveDosePeriod].valuePeriod.start = "2026-02-27"
 * extension[effectiveDosePeriod].valuePeriod.end = "2026-03-20"
-* extension[renderedDosageInstruction].valueMarkdown = "1-0-1-0 | Täglich 1-0-1-0" 
+* extension[renderedDosageInstruction].valueMarkdown = "1-0-1-0 | Täglich 1-0-1-0 für 3 Wochen" 
 
 * status = $cs-medication-request-status#active
-* intent = #order
-* category[mrcategory] = MedicationRequestCategoryCS#2 "Geplante Abgabe"
-* category[recipetype] = $cs-medication-rezeptart#KASSEN "Kassenrezept"
+* intent = https://hl7.org/fhir/R4/valueset-medicationrequest-intent#order
+* category = MedicationRequestCategoryCS#1 "Planeintrag" 
+* reportedBoolean = false
 
-// Referenz auf Inline Medication Ressource
+// Referenz auf Contained Medication Ressource
 * medicationReference.reference = "#contained-medication-magistral-01"
 
 * subject = Reference(At-Emed-Example-Patient-01) "Anton Mustermann"
-* authoredOn = "2026-02-27T10:20:00+00:00"
+* authoredOn = "2026-02-27T08:10:00+00:00"
 * requester = Reference(At-Emed-Example-PractitionerRole-01) "Dr. Hausärztin"
 
-* basedOn = Reference(MedicationRequest/At-Emed-Journey-Planeintrag-02-Magistral-Dexpanthenol-v1) "Planeintrag 2"
-// TODO: zusätzliche logische Referenz: reference.identifier 
-
-* groupIdentifier.value = "WYE82A2G8EEW"
-
-// * note.text = "Freitext zur geplanten Abgabe (Info von Arzt an Apotheke)."
+//* note.text = "Freitext Informationen zum Medikationsplaneintrag."
 
 * dosageInstruction[standardDosage].extension[DosageCategory].valueCodeableConcept = AtElgaEmedCodeSystemDosageCategory#standard
 * dosageInstruction[standardDosage].sequence = 1
@@ -41,9 +39,11 @@ Usage: #example
 * dosageInstruction[standardDosage].timing.repeat.when[+] = $cs-timing#EVE "Abends" 
 * dosageInstruction[standardDosage].timing.repeat.boundsDuration.value = 3
 * dosageInstruction[standardDosage].timing.repeat.boundsDuration.unit = "wk"
+// * dosageInstruction[standardDosage].doseAndRate.doseQuantity.value = 2        // TODO: Angabe für Salbe
+// * dosageInstruction[standardDosage].doseAndRate.doseQuantity.system = $cs-ucum
+// * dosageInstruction[standardDosage].doseAndRate.doseQuantity = $cs-ucum#Stueck "Stück"
 * dosageInstruction[standardDosage].route = $cs-medikationartanwendung#100000073566 "Anwendung auf der Haut"
 
-* dispenseRequest.validityPeriod.end = "2026-03-27"
-* dispenseRequest.numberOfRepeatsAllowed = 0
-* dispenseRequest.quantity.value = 1
-* dispenseRequest.quantity.unit = "Packung"
+
+
+
