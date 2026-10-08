@@ -36,5 +36,5 @@ Instance: contained-medication-zeit-01
 InstanceOf: AtElgaEmedMedicationStandardMedikation
 Title: "Beispiel Medikation EBETREXAT"
 Usage: #inline
-//* id = "contained-medication-zeit-01"
+* id = "contained-medication-zeit-01"
 * code = $cs-asp-liste#2443061 "EBETREXAT TBL 10MG"

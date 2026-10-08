@@ -4,6 +4,8 @@ Title: "Beispiel Journey 03-01: Durchgeführte Abgabe 1"
 Description: "Bildet eine Durchgeführte Abgabe mit Beendigung eines Besorgerprozesses (magistrale Zubereitung Dexpanthenol-Salbe) gemäß Geplanter Abgabe ab."
 Usage: #example
 
+* contained[+] = contained-medication-magistral-01
+
 * extension[renderedDosageInstruction].valueMarkdown = "1-0-1-0 | Täglich 1-0-1-0" 
 * extension[recorded].valueDateTime = "2026-03-01T15:15:00+00:00" 
 * extension[groupIdentifier].valueIdentifier.value = "WYE82A2G8EEW"
@@ -11,7 +13,7 @@ Usage: #example
 * status = #completed
 
 // Referenz auf Contained Medication Ressource
-* medicationReference.reference = "#contained-medication-journey-03-01-02-magistral"
+* medicationReference.reference = "#contained-medication-magistral-01"
 
 * subject = Reference(At-Emed-Example-Patient-01) "Anton Mustermann"
 * performer.actor = Reference(At-Emed-Example-Organization-02) "Amadeus Apotheke"
@@ -35,25 +37,5 @@ Usage: #example
 * dosageInstruction[standardDosage].timing.repeat.when[+] = $cs-timing#EVE "Abends" 
 * dosageInstruction[standardDosage].timing.repeat.boundsDuration.value = 3
 * dosageInstruction[standardDosage].timing.repeat.boundsDuration.unit = "wk"
-* dosageInstruction[standardDosage].route = https://termgit.elga.gv.at/CodeSystem-medikationartanwendung.html#100000073566 "Anwendung auf der Haut"
+* dosageInstruction[standardDosage].route = $cs-medikationartanwendung#100000073566 "Anwendung auf der Haut"
 
-
-// Contained Medication *********************************************************************
-Instance: contained-medication-journey-03-01-02-magistral
-InstanceOf: AtElgaEmedMedicationMagistraleZubereitung
-Title: "Beispiel Magistrale Zubereitung Dexpanthenol-Salbe"
-Usage: #inline
-
-//* status = #active
-//* manufacturer = Reference(AtElgaEmed-Example-Organization-Apo-01) "Amadeus Apotheke"
-* form.coding = https://termgit.elga.gv.at/CodeSystem/medikationdarreichungsform#100000073713 "Salbe"
-
-* ingredient[+].itemCodeableConcept = $cs-atc#A11HA30 "Dexpanthenol"
-* ingredient[=].strength.numerator = 5 'g' "g"
-* ingredient[=].strength.denominator = 100 'g' "g"
-* ingredient[+].itemCodeableConcept.text = "Salbengrundlage"
-* ingredient[=].isActive = false
-* ingredient[=].strength.numerator.value = 95
-* ingredient[=].strength.numerator.unit = "g"
-* ingredient[=].strength.denominator.value = 100
-* ingredient[=].strength.denominator.unit = "g"

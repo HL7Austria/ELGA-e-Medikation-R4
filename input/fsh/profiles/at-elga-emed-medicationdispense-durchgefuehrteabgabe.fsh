@@ -9,7 +9,7 @@ Sofern eine zugehörige \"Geplanten Abgabe\" vorliegt, muss diese mit dem zugeh�
 Der aktuelle Status einer \"Durchgeführten Abgabe\" wird mittels \"status\"- und \"type\"-Element dokumentiert. Es werden R5-Backport-Extensions verwendet."
 * . ^short = "Durchgeführte Abgabe eines Arzneimittels mit oder ohne Bezug zur geplanten Abgabe. Verwendet R5 Backport Extensions."
 
-* id 1..1 MS
+* id 0..1 MS
 * meta MS
 * text 0..1 MS  // TODO auf 1..1 setzen
 * implicitRules 0..0

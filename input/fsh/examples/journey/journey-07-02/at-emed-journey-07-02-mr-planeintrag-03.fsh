@@ -4,7 +4,7 @@ Title: "Beispiel Journey 07-02: Planeintrag 3"
 Description: "Bildet einen geänderten Planeintrag ab: Arzneimittel (Magelan-Tropfen) ersetzt reine Wirkstoffangabe, angepasste Dosierung."
 Usage: #example
 
-* contained[+] = contained-medication-journey-07-02-02
+* contained[+] = at-emed-journey-medication-metagelan
 * courseOfTherapyType = $cs-medication-request-courseOfTherapyType#acute
 
 // R5 Backports
@@ -17,7 +17,7 @@ Usage: #example
 * reportedBoolean = false
 
 // Referenz auf Contained Medication Ressource
-* medicationReference.reference = "#contained-medication-journey-07-02-02"
+* medicationReference.reference = "#at-emed-journey-medication-metagelan"
 
 * subject = Reference(At-Emed-Example-Patient-01) "Anton Mustermann"
 * authoredOn = "2026-03-22T16:10:00+00:00"
@@ -37,14 +37,3 @@ Usage: #example
 * dosageInstruction[standardDosage].timing.repeat.when[+] = $cs-timing#NIGHT
 * dosageInstruction[standardDosage].doseAndRate.doseQuantity.value = 40       
 * dosageInstruction[standardDosage].doseAndRate.doseQuantity = $cs-ucum#{Tropfen} "Tropfen"
-
-
-// Contained Medication *********************************************************************
-Instance: contained-medication-journey-07-02-02
-InstanceOf: AtElgaEmedMedicationStandardMedikation
-Title: "Beispiel Magelan-Tropfen"
-Usage: #inline
-
-* code = $cs-asp-liste#4467812 "METAGELAN TR 500MG/ML"
-
-//* ingredient.itemCodeableConcept = https://termgit.elga.gv.at/CodeSystem/medikation-ages-wirkstoffe#4467812 "METAMIZOL NATRIUM MONOHYDRAT"

@@ -8,7 +8,7 @@ Werden mehrere Medikamente gleichzeitig verschrieben und sollen demselben e-Reze
 Es werden R5-Backport-Extensions verwendet."
 * . ^short = "Geplante Abgabe eines Arzneimittels aus dem Medikationsplan. Verwendet R5 Backport Extensions."
 
-* id 1..1 MS
+* id 0..1 MS
 * meta MS
 * text MS
 * implicitRules 0..0

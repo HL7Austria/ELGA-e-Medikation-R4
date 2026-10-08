@@ -10,25 +10,23 @@ Usage: #example
 * link.relation = #self
 // Liste 
 * entry[+].resource = At-Emed-Journey-01-02-List-plan-write-response-List
-* entry[=].fullUrl = "https://example.elga.com/List/4cb4dceb-173f-461a-a267-683ec33e4be1"
+* entry[=].fullUrl = "https://example.elga.com/base/List/4cb4dceb-173f-461a-a267-683ec33e4be1"
 * entry[=].response.status = "200"
-* entry[=].response.location = "https://example.elga.com/List/4cb4dceb-173f-461a-a267-683ec33e4be1/_history/9f99de43-341d-40a0-a55d-21f6b4c305ed"
+* entry[=].response.location = "https://example.elga.com/base/List/4cb4dceb-173f-461a-a267-683ec33e4be1/_history/9f99de43-341d-40a0-a55d-21f6b4c305ed"
 * entry[=].response.etag = "9f99de43-341d-40a0-a55d-21f6b4c305ed"
 * entry[=].response.lastModified = "2026-09-23T13:54:03.698+00:00"
 // Medikationsplaneinträge
 // Eintrag 1
-* entry[+].fullUrl = "https://example.elga.com/MedicationRequest/6bacfe23-d469-4945-bf3c-90c7e647aa52"
+* entry[+].fullUrl = "https://example.elga.com/base/MedicationRequest/6bacfe23-d469-4945-bf3c-90c7e647aa52"
 * entry[=].resource = At-Emed-Journey-01-02-plan-write-response-PE-01
 * entry[=].response.status = "201"
-* entry[=].response.location = "https://example.elga.com/MedicationRequest/6bacfe23-d469-4945-bf3c-90c7e647aa52/_history/aeb5e5e8-785a-430b-afef-ee57335b213d"
-* entry[=].response.etag = "aeb5e5e8-785a-430b-afef-ee57335b213d"
+* entry[=].response.location = "https://example.elga.com/base/MedicationRequest/6bacfe23-d469-4945-bf3c-90c7e647aa52/_history/aeb5e5e8-785a-430b-afef-ee57335b213d"
 * entry[=].response.lastModified = "2026-09-23T13:54:03.714+00:00"
 // Eintrag 2
-* entry[+].fullUrl = "https://example.elga.com/MedicationRequest/55e4be12-0d10-454c-a85f-cfb5f849e391"
+* entry[+].fullUrl = "https://example.elga.com/base/MedicationRequest/55e4be12-0d10-454c-a85f-cfb5f849e391"
 * entry[=].resource = At-Emed-Journey-01-02-plan-write-response-PE-02
 * entry[=].response.status = "201"
-* entry[=].response.location = "https://example.elga.com/MedicationRequest/55e4be12-0d10-454c-a85f-cfb5f849e391/_history/01275d13-fd59-4781-99ae-744fb90a1ba0"
-* entry[=].response.etag = "01275d13-fd59-4781-99ae-744fb90a1ba0"
+* entry[=].response.location = "https://example.elga.com/base/MedicationRequest/55e4be12-0d10-454c-a85f-cfb5f849e391/_history/01275d13-fd59-4781-99ae-744fb90a1ba0"
 * entry[=].response.lastModified = "2026-09-23T13:54:03.76+00:00"
 
 Instance: At-Emed-Journey-01-02-List-plan-write-response-List
@@ -99,7 +97,7 @@ Description: "Bildet einen Planeintrag mit einer magistralen Zubereitung (Dexpan
 Usage: #example
 * id = "55e4be12-0d10-454c-a85f-cfb5f849e391"
 * meta.versionId = "01275d13-fd59-4781-99ae-744fb90a1ba0"
-* contained[+] = d9641fa3-9b85-4ab9-a843-c08e5a6fc007
+* contained[+] = contained-medication-magistral-01
 * courseOfTherapyType = $cs-medication-request-courseOfTherapyType#acute
 // R5 Backports
 * extension[effectiveDosePeriod].valuePeriod.start = "2026-02-27"
@@ -110,7 +108,7 @@ Usage: #example
 * category = MedicationRequestCategoryCS#1 "Planeintrag" 
 * reportedBoolean = false
 // Referenz auf Contained Medication Ressource
-* medicationReference.reference = "#d9641fa3-9b85-4ab9-a843-c08e5a6fc007"
+* medicationReference.reference = "#contained-medication-magistral-01"
 * subject = Reference(At-Emed-Example-Patient-01)
 * authoredOn = "2026-02-27T08:10:00+00:00"
 * requester = Reference(At-Emed-Example-PractitionerRole-01)
@@ -127,27 +125,6 @@ Usage: #example
 // * dosageInstruction[standardDosage].doseAndRate.doseQuantity.value = 2        // TODO: Angabe für Salbe
 // * dosageInstruction[standardDosage].doseAndRate.doseQuantity.system = $cs-ucum
 // * dosageInstruction[standardDosage].doseAndRate.doseQuantity = $cs-ucum#Stueck "Stück"
-* dosageInstruction[standardDosage].route = https://termgit.elga.gv.at/CodeSystem-medikationartanwendung.html#100000073566 "Anwendung auf der Haut"
-
-// Contained Medication *********************************************************************
-Instance: d9641fa3-9b85-4ab9-a843-c08e5a6fc007
-InstanceOf: AtElgaEmedMedicationMagistraleZubereitung
-Title: "Beispiel Magistrale Zubereitung (Dexpanthenol-Salbe)"
-Usage: #inline
-// * text.status = #additional
-// * text.div = "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n<p>Freitext-Informationen zur magistralen Anwendung.</p>\n</div>"
-//* status = #active
-//* manufacturer = Reference(AtElgaEmed-Example-Organization-Apo-01) "Amadeus Apotheke"
-* form.coding = https://termgit.elga.gv.at/CodeSystem/medikationdarreichungsform#100000073713 "Salbe"
-* ingredient[+].itemCodeableConcept = $cs-atc#A11HA30 "Dexpanthenol"
-* ingredient[=].strength.numerator = 5 'g' "g"
-* ingredient[=].strength.denominator = 100 'g' "g"
-* ingredient[+].itemCodeableConcept.text = "Salbengrundlage"
-* ingredient[=].isActive = false
-* ingredient[=].strength.numerator.value = 95
-* ingredient[=].strength.numerator.unit = "g"
-* ingredient[=].strength.denominator.value = 100
-* ingredient[=].strength.denominator.unit = "g"
-
+* dosageInstruction[standardDosage].route = $cs-medikationartanwendung#100000073566 "Anwendung auf der Haut"
 
 

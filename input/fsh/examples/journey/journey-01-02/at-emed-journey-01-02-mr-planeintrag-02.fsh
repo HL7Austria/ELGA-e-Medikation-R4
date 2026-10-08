@@ -2,9 +2,9 @@ Instance: At-Emed-Journey-01-02-Mr-Planeintrag-02
 InstanceOf: AtElgaEmedMedicationRequestPlaneintrag   
 Title: "Beispiel Journey 01-02: Planeintrag 2"
 Description: "Bildet einen Planeintrag mit einer magistralen Zubereitung (Dexpanthenol-Salbe) und der Dosierungsanweisung ab."
-Usage: #example
+Usage: #inline
 
-* contained[+] = contained-medication-journey-01-02-02-magistral
+* contained[+] = contained-medication-magistral-01
 * courseOfTherapyType = $cs-medication-request-courseOfTherapyType#acute
 
 // R5 Backports
@@ -18,9 +18,9 @@ Usage: #example
 * reportedBoolean = false
 
 // Referenz auf Contained Medication Ressource
-* medicationReference.reference = "#contained-medication-journey-01-02-02-magistral"
+* medicationReference.reference = "#contained-medication-magistral-01"
 
-* subject = Reference(At-Emed-Example-Patient-01) "Anton Mustermann"
+* subject.reference = "Patient?identifier=urn:oid:1.2.40.0.10.2.1.1.149|GH:oeLdSEb0l+8kSdJWjOYyYmnYki0=" //Reference(At-Emed-Example-Patient-01) "Anton Mustermann"
 * authoredOn = "2026-02-27T08:10:00+00:00"
 * requester = Reference(At-Emed-Example-PractitionerRole-01) "Dr. Hausärztin"
 
@@ -39,28 +39,8 @@ Usage: #example
 // * dosageInstruction[standardDosage].doseAndRate.doseQuantity.value = 2        // TODO: Angabe für Salbe
 // * dosageInstruction[standardDosage].doseAndRate.doseQuantity.system = $cs-ucum
 // * dosageInstruction[standardDosage].doseAndRate.doseQuantity = $cs-ucum#Stueck "Stück"
-* dosageInstruction[standardDosage].route = https://termgit.elga.gv.at/CodeSystem-medikationartanwendung.html#100000073566 "Anwendung auf der Haut"
+* dosageInstruction[standardDosage].route = $cs-medikationartanwendung#100000073566 "Anwendung auf der Haut"
 
-// Contained Medication *********************************************************************
-Instance: contained-medication-journey-01-02-02-magistral
-InstanceOf: AtElgaEmedMedicationMagistraleZubereitung
-Title: "Beispiel Magistrale Zubereitung (Dexpanthenol-Salbe)"
-Usage: #inline
 
-// * text.status = #additional
-// * text.div = "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n<p>Freitext-Informationen zur magistralen Anwendung.</p>\n</div>"
-//* status = #active
-//* manufacturer = Reference(AtElgaEmed-Example-Organization-Apo-01) "Amadeus Apotheke"
-* form.coding = https://termgit.elga.gv.at/CodeSystem/medikationdarreichungsform#100000073713 "Salbe"
-
-* ingredient[+].itemCodeableConcept = $cs-atc#A11HA30 "Dexpanthenol"
-* ingredient[=].strength.numerator = 5 'g' "g"
-* ingredient[=].strength.denominator = 100 'g' "g"
-* ingredient[+].itemCodeableConcept.text = "Salbengrundlage"
-* ingredient[=].isActive = false
-* ingredient[=].strength.numerator.value = 95
-* ingredient[=].strength.numerator.unit = "g"
-* ingredient[=].strength.denominator.value = 100
-* ingredient[=].strength.denominator.unit = "g"
 
 
