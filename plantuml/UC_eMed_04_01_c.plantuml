@@ -59,25 +59,13 @@ participant e_Rezept as "e-Rezept" COLOR_E_REZEPT
 
 autonumber
 
-== Medikationsplan abrufen ==
-
 activate GDA_1 COLOR_GDA_1
 ref over GDA_1, eMed_FA : [[interactions.html#sequenzdiagramm-plan-read Plan-Read]]
 
+== Geplante Abgaben vorbereiten und schreiben ==
 
-note over GDA_1
-GDA erhält Medikationsplan 
-(Medikationsplan-Bundle)
-end note
+GDA_1 -> GDA_1: Geplante Abgaben vorbereiten\nGroupIdentifier bleibt <b>leer</b>
 
-== <i>Geplante Abgaben</i> vorbereiten und schreiben ==
-
-note over GDA_1
-Erstellte <i>Geplante Abgaben</i> referenzieren 
-zugehörige Medikationsplaneinträge;
-groupIdentifier für "Rezeptklammer"
-bleibt leer
-end note
 
 par Erstellung e-Rezept
 
@@ -101,17 +89,13 @@ else gleichzeitige Erstellung <i>Geplante Abgabe</i>
   GDA_1 -> eMed_FA: POST Transaction Bundle GeplAbgabe
   
   activate eMed_FA COLOR_EMED_FA
-  note over GDA_1
-    Transaction Bundle mit Geplanten
-    Abgaben an Fachanwendung übermitteln
-  end note
 
   alt COLOR_OK Geplante Abgaben erstellt
 
-    eMed_FA -> eMed_FA: e-Med GroupIdentifier erzeugen\n+ Geplanten Abgaben hinzufügen
+    eMed_FA -> eMed_FA: e-Med GroupIdentifier erzeugen\n+ in Geplanten Abgaben ergänzen
 
     note over eMed_FA
-    Geplante Abgabe 1 + 2 
+    Geplante Abgaben 
     gespeichert
     end note
 

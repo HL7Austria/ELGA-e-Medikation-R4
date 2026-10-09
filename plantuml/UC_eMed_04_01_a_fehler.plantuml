@@ -58,43 +58,30 @@ participant e_Rezept as "e-Rezept" COLOR_E_REZEPT
 
 autonumber
 
-== Medikationsplan abrufen ==
-
 activate GDA_1 COLOR_GDA_1
 ref over GDA_1, eMed_FA : [[interactions.html#sequenzdiagramm-plan-read Plan-Read]]
-
-note over GDA_1
-GDA erhält Medikationsplan 
-(Medikationsplan-Bundle)
-end note
 
 == <i>Geplante Abgaben</i> vorbereiten und schreiben ==
 
 GDA_1 -> eMed_FA: POST $groupidentifier-create​ 
 
 note over GDA_1
-e-Med GroupIdentifier für "Rezeptklammer"
+e-Med GroupIdentifier
 anfordern
 end note
 
 activate eMed_FA COLOR_EMED_FA
-eMed_FA -> eMed_FA: e-Med GroupIdentifier erzeugen
-eMed_FA --> GDA_1: e-Med GroupIdentifier
+eMed_FA -> eMed_FA: e-Med GroupIdentifier\nerzeugen
+eMed_FA -> GDA_1: e-Med GroupIdentifier
 deactivate eMed_FA
 
-note over GDA_1
-Erstellte <i>Geplante Abgaben</i> referenzieren 
-zugehörige Medikationsplaneinträge und
-enthalten e-Med GroupIdentifier
-end note
+GDA_1 -> GDA_1: Geplante Abgaben vorbereiten\nund GroupIdentifier einfügen
+
 
 par Erstellung e-Rezept
 
   GDA_1 -> e_Rezept: Trigger e-Rezept erstellen
   activate e_Rezept COLOR_E_REZEPT
-  note over GDA_1
-  Erstellung e-Rezept auslösen
-  end note
 
   alt COLOR_OK e-Rezept erstellt
     e_Rezept --> GDA_1: OK
@@ -105,31 +92,30 @@ par Erstellung e-Rezept
     GDA_1 -> eMed_FA: POST $prescription-discard​
     
     note over GDA_1
-    Siehe Use Case "<i>Geplante Abgabe</i> stornieren"
+    Siehe Use Case 
+    "<i>Geplante Abgabe</i> stornieren"
     end note
   end
 
 else gleichzeitige Erstellung <i>Geplante Abgabe</i>
 
-  GDA_1 -> eMed_FA: POST $prescription-write
+  GDA_1 -> eMed_FA: POST $prescription-write\n(Geplante Abgaben-Transaction Bundle)
   activate eMed_FA COLOR_EMED_FA
-  note over GDA_1
-  Transaction Bundle mit Geplanten
-  Abgaben an Fachanwendung übermitteln
-  end note
   
   alt COLOR_OK <i>Geplante Abgabe</i> erstellt
     eMed_FA --> GDA_1: OK
 
     note over eMed_FA
-      Geplante Abgabe 1 + 2 gespeichert
+      Geplante Abgabe 
+      gespeichert
     end note
 
   else COLOR_ERROR <i>Geplante Abgabe</i> Fehler
     eMed_FA --> GDA_1: Fehler
 
     alt COLOR_OK Geplante Abgabe erneut übermitteln
-      GDA_1 -> eMed_FA: POST $prescription-write
+      GDA_1 -> eMed_FA: POST $prescription-write\n(Geplante Abgaben-Transaction Bundle)
+      deactivate eMed_FA
 
     else COLOR_ERROR Fehler nicht behebbar
       deactivate eMed_FA

@@ -57,34 +57,23 @@ participant e_Rezept as "e-Rezept" COLOR_E_REZEPT
 
 autonumber
 
-== Medikationsplan abrufen ==
-
 activate GDA_1 COLOR_GDA_1
 ref over GDA_1, eMed_FA : [[interactions.html#sequenzdiagramm-plan-read Plan-Read]]
 
-note over GDA_1
-GDA erhält Medikationsplan 
-(Medikationsplan-Bundle)
-end note
-
 == Geplante Abgaben vorbereiten und schreiben ==
 
-note over GDA_1
-Erstellte <i>Geplante Abgaben</i> referenzieren 
-zugehörige Medikationsplaneinträge;
-groupIdentifier für "Rezeptklammer"
-bleibt leer
-end note
+GDA_1 -> GDA_1: Geplante Abgaben vorbereiten\nGroupIdentifier bleibt <b>leer</b>
 
-GDA_1 -> eMed_FA: POST Transaction Bundle GeplAbgabe
+GDA_1 -> eMed_FA: POST $prescription-write\n(Geplante Abgaben-Transaction Bundle)
 activate eMed_FA COLOR_EMED_FA
 
 alt COLOR_OK Geplante Abgaben erstellt
 
-  eMed_FA -> eMed_FA: e-Med GroupIdentifier erzeugen\n+ in geplanten Abgaben ergänzen
+  eMed_FA -> eMed_FA: e-Med GroupIdentifier erzeugen\n+ in Geplanten Abgaben ergänzen
 
   note over eMed_FA
-  Geplante Abgabe 1 + 2 gespeichert
+  Geplante Abgaben 
+  gespeichert
   end note
 
   eMed_FA --> GDA_1: OK (Ressourcen inkl. e-Med GroupIdentifier)
@@ -97,10 +86,6 @@ else COLOR_ERROR Geplante Abgaben Fehler
 end
 
 GDA_1 -> e_Rezept: Trigger e-Rezept erstellen (inkl. e-Med GroupIdentifier)
-note over GDA_1
-Erstellung e-Rezept inkl. 
-e-Med GroupIdentifier auslösen
-end note
 activate e_Rezept COLOR_E_REZEPT
 
 alt COLOR_OK e-Rezept erstellt
@@ -112,7 +97,8 @@ else COLOR_ERROR e-Rezept Fehler
   GDA_1 -> eMed_FA: <i>Geplante Abgabe</i> stornieren ($prescription-discard​)
 
   note over eMed_FA
-  Siehe Use Case "<i>Geplante Abgabe</i> stornieren"
+  Siehe Use Case
+  "<i>Geplante Abgabe</i> stornieren"
   end note
   deactivate GDA_1
 end

@@ -74,7 +74,7 @@ eMed_FA -> eMed_FA: e-Med GroupIdentifier\nerzeugen
 eMed_FA -> GDA_1: e-Med GroupIdentifier
 deactivate eMed_FA
 
-GDA_1 -> GDA_1: Geplante Abgaben vorbereiten\nPlaneinträge referenzieren\nGroupIdentifier einfügen
+GDA_1 -> GDA_1: Geplante Abgaben vorbereiten\nund GroupIdentifier einfügen
 
 par Erstellung e-Rezept
 
@@ -85,19 +85,16 @@ par Erstellung e-Rezept
     
 else gleichzeitige Erstellung <i>Geplante Abgabe</i>
 
-  GDA_1 -> eMed_FA: POST $prescription-write
+  GDA_1 -> eMed_FA: POST $prescription-write\n(Geplante Abgaben-Transaction Bundle)
   activate eMed_FA COLOR_EMED_FA
-  note over GDA_1
-  Transaction Bundle mit
-  Geplanten Abgaben an 
-  Fachanwendung übermitteln
-  end note
+
   
   eMed_FA --> GDA_1: OK  
   deactivate eMed_FA
   deactivate GDA_1
   note over eMed_FA
-  <i>Geplante Abgaben</i> erstellt
+  Geplante Abgaben 
+  gespeichert
   end note
 
 end
