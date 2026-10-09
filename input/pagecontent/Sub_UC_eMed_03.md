@@ -39,7 +39,7 @@ Die Suche nach [Geplante Abgaben](StructureDefinition-at-elga-emed-medicationreq
 * alle (ohne Einschränkung) <!-- TODO sinnvoll? akl 2.10. -->
 * in einem bestimmten Zeitraum erfasste 
 * mit bestimmter Medikation: PZN/Name bzw. Wirkstoff (inkl. Magistraler Zubereitungen) 
-* mit einem bestimmten [status](ValueSet-GeplanteAbgabeStatusVS.html)  <!-- Todo: entered-in-error nicht, weil nur eigene verworfen werden können? -->
+* mit einem bestimmten [status](ValueSet-GeplanteAbgabeStatusVS.html)  <!-- Todo: entered-in-error nicht, weil nur eigene storniert werden können? -->
 * mit einem bestimmten *e-Med GroupIdentifier* 
 <!-- * Erstellender GDA? Todo akl 2.10. -->
 
@@ -93,7 +93,7 @@ Die Suche nach [Durchgeführten Abgaben](StructureDefinition-at-elga-emed-medica
 * alle (ohne Einschränkung) <!-- TODO sinnvoll? akl 2.10. -->
 * in einem bestimmten Zeitraum erfasste 
 * mit bestimmter Medikation: PZN/Name bzw. Wirkstoff (inkl. Magistraler Zubereitungen) 
-* mit einem bestimmten [status](ValueSet-DurchgefuehrteAbgabeStatusVS.html) <!-- Todo: entered-in-error nicht, weil nur eigene verworfen werden können? -->
+* mit einem bestimmten [status](ValueSet-DurchgefuehrteAbgabeStatusVS.html) <!-- Todo: entered-in-error nicht, weil nur eigene storniert werden können? -->
 <!-- - mit einem bestimmten [type](ValueSet-DurchgefuehrteAbgabeTypVS.html) (Abgabeart) TODO akl 7.10. steht dzt nicht als Suchkriterium in UC3 -->
 * mit einem bestimmten *e-Med GroupIdentifier* 
 <!-- * Erstellender GDA? Todo akl 2.10. -->

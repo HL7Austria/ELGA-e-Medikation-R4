@@ -43,7 +43,7 @@ Als ELGA-Teilnehmer:in möchte ich Medikationsplaneinträge oder ganze Medikatio
     b. bestehende Medikationsplaneinträge unverändert beibehalten werden <br>
     c. bestehende Medikationsplaneinträge verändert werden (fachliche Änderung) <br>
     d. bestehende Einträge entfernt werden (Absetzen von Medikamenten) <br>
-    e. bestehende Einträge verworfen werden (als „irrtümlich erfasst“ kennzeichnen) <br>
+    e. bestehende Einträge storniert werden (als „irrtümlich erfasst“ kennzeichnen) <br>
     f. bestehende Einträge pausiert werden <br>
 2. GDA definiert die Reihenfolge der Medikationsplaneinträge 
 3. GDA bestätigt die Verträglichkeit der neu hinzugefügten/geänderten Medikation mit dem bestehenden Medikationsplan und speichert diesen ab 
@@ -120,7 +120,7 @@ ODER
 ###### Bestehende Medikationsplaneinträge verwerfen (als „irrtümlich erfasst“ kennzeichnen) 
 
 = stornieren laut IG-Statuschart 
-* zur Bereinigung fehlerhaften Angaben in einem Medikationsplaneintrag kann dieser wieder verworfen (bzw. als „irrtümlich erfasst“ gekennzeichnet) werden 
+* zur Bereinigung fehlerhaften Angaben in einem Medikationsplaneintrag kann dieser wieder storniert (bzw. als „irrtümlich erfasst“ gekennzeichnet) werden 
 * verworfene Einträge werden nicht mehr im Medikationsplan angezeigt, können aber über die Versionshistorie aufgerufen werden und werden darin als „irrtümlich erfasst“ ausgewiesen 
 * eine Richtigstellung der fehlerhaften Angabe erfolgt in einem neuen Medikationsplaneintrag (sofern notwendig) 
 

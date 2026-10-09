@@ -16,7 +16,7 @@ Der schreibende Zugriff umfasst folgende Bearbeitungen:
 * **Automatisch** durch die **Fachanwendung** umgesetzt werden:
     * [Beenden](Sub_UC_eMed_04.html#sub_uc_emed_04_04---geplante-abgabe-beenden-durch-fachanwendung)
     * [Ablauf](Sub_UC_eMed_04.html#sub_uc_emed_04_05---geplante-abgabe-abgelaufen-durch-fachanwendung)
-    * [Canceln](Sub_UC_eMed_04.html#sub_uc_emed_04_06---geplante-abgabe-storniert-durch-fachanwendung)
+    * [Canceln](Sub_UC_eMed_04.html#sub_uc_emed_04_06---geplante-abgabe-gecancelt-durch-fachanwendung)
 
 von *Geplanten Abgaben*.
 
@@ -126,7 +126,7 @@ Der Ablauf zur Erstellung von *Geplanten Abgaben* und der Bezug des *e-Med Group
 Der *e-Med GroupIdentifier* ("Rezeptklammer") wird via **POST** *$groupidentifier-create* <!-- Todo link akl 8.10 --> vorab von der Fachanwendung bezogen, in den *Geplanten Abgaben* ergänzt und zur Erstellung des e-Rezepts an die e-Rezept-Anwendung mitgegeben, um dieses mit den *Geplanten Abgaben* zu verknüpfen.
 Der Trigger zu Erstellung des e-Rezepts und [Prescription-Write](Sub_UC_eMed_04.html#sub_uc_emed_04_01---geplante-abgabe-erstellen-prescription-write) können parallel erfolgen (siehe Normalfall). 
 
-Liefert e-Rezept einen Fehler zurück, können mittels POST *$prescription-discard* bereits in der e-Medikation erstellte *Geplante Abgaben* verworfen werden (siehe [Sub_UC_eMed_04_03 - Geplante Abgabe stornieren ($prescription-discard)](Sub_UC_eMed_04.html#sub_uc_emed_04_03---geplante-abgabe-stornieren-prescription-discard)).
+Liefert e-Rezept einen Fehler zurück, können mittels POST *$prescription-discard* bereits in der e-Medikation erstellte *Geplante Abgaben* storniert werden (siehe [Sub_UC_eMed_04_03 - Geplante Abgabe stornieren ($prescription-discard)](Sub_UC_eMed_04.html#sub_uc_emed_04_03---geplante-abgabe-stornieren-prescription-discard)).
 Liefert die e-Medikation Fachanwendung einen Fehler zurück, kann nach Fehlerkorrektur erneut ein *Prescription-Write* erfolgen oder ein bereits durch den *e-Med groupIdentifer* verknüpftes e-Rezept wieder von den *Geplanten Abgaben* "entkoppelt" werden (siehe [Variante A: Fehlerfall](Sub_UC_eMed_04.html#variante-a-fehlerfall)).
 
 
@@ -210,7 +210,7 @@ Offene Punkte: <br>$prescription-discard: in Arbeit.
 
 Wurden alle möglichen Einlösungen einer *Geplanten Abgabe* planmäßig durchgeführt und entsprechende *Durchgeführte Abgaben* erstellt (siehe [Sub_UC_eMed_05_01 - Durchgeführte Abgabe erfassen](Sub_UC_eMed_05.html#Sub_UC_eMed_05_01---durchgeführte-abgabe-erfassen)), setzt die Fachanwendung die *Geplante Abgabe* **automatisch** auf den Status ***completed*** (siehe [Status des MedicationRequests in der geplanten Abgabe](workflowmanagement.html#status-des-medicationrequests-in-der-geplanten-abgabe)). Die *Geplante Abgabe* ist damit abgeschlossen.
 
-**Sonderfall**: Wird die letzte *Durchgeführte Abgabe* im Anschluss verworfen (Status *entered-in-error*), wird der Status der *Geplanten Abgabe* durch die Fachanwendung wieder auf *active* gesetzt.
+**Sonderfall**: Wird die letzte *Durchgeführte Abgabe* im Anschluss storniert (Status *entered-in-error*), wird der Status der *Geplanten Abgabe* durch die Fachanwendung wieder auf *active* gesetzt.
 
 Die Fachanwendung erkennt anhand von *MedicationRequest.numberOfRepeatsAllowed > 0*, ob weitere Einlösungen erlaubt sind (z.B. bei einem Privatrezept). Je möglicher Einlösung muss mindestens eine *Durchgeführte Abgabe* erstellt werden (bei Teilabgaben können es mehrere sein). Eine Einlösung gilt als vollständig, wenn MedicationDispense.type den Wert *FFC (First Fill – Complete)* oder *PFC (Part Fill - Complete)* enthält.
 
@@ -244,11 +244,11 @@ AtElgaEmedMedicationRequestGeplanteAbgabe
     requester: Ursprünglicher Ersteller                    // bleibt unverändert
 ```
 
-### Sub_UC_eMed_04_06 - Geplante Abgabe storniert (durch Fachanwendung) 
+### Sub_UC_eMed_04_06 - Geplante Abgabe gecancelt (durch Fachanwendung) 
 
-Eine *Geplante Abgabe* wird **automatisch** storniert (erhält den Status *cancelled* (siehe [Status des MedicationRequests in der geplanten Abgabe](workflowmanagement.html#status-des-medicationrequests-in-der-geplanten-abgabe))), wenn **alle** *Durchgeführten Abgaben* (jede Einlösung) den Status ***cancelled*** erhalten haben. Die *Geplanten Abgabe* ist damit abgeschlossen.
+Eine *Geplante Abgabe* erhält **automatisch** den Status ***cancelled*** (siehe [Status des MedicationRequests in der geplanten Abgabe](workflowmanagement.html#status-des-medicationrequests-in-der-geplanten-abgabe)), wenn **alle** *Durchgeführten Abgaben* (jede Einlösung) den Status *cancelled* erhalten haben. Die *Geplanten Abgabe* ist damit abgeschlossen.
 
-Sonderfall: Wird die letzte *Durchgeführte Abgabe* im Anschluss verworfen (Status *entered-in-error*), wird der Status der *Geplanten Abgabe* durch die Fachanwendung wieder auf *active* gesetzt.
+Sonderfall: Wird die letzte *Durchgeführte Abgabe* im Anschluss storniert (Status *entered-in-error*), wird der Status der *Geplanten Abgabe* durch die Fachanwendung wieder auf *active* gesetzt.
 
 
 #### Relevante Elemente (MedicationRequest)

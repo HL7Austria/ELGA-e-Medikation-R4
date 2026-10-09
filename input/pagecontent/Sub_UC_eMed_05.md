@@ -165,7 +165,7 @@ Vor dem Speichern einer neuen *Durchgeführten Abgabe* **MUSS** die Fachanwendun
 
 Der Status der *Geplanten Abgabe* bleibt *active*, solange weitere Einlösungen zulässig sind. Sind keine weiteren Einlösungen mehr möglich, setzt die Fachanwendung den Status der *Geplanten Abgabe* auf *completed*.
 
-Um die durch *MedicationDispense.type* definierte Sequenz *FFP → RFP → RFC* konsistent zu halten, darf immer nur die zuletzt gespeicherte *Durchgeführte Abgabe* verworfen werden. Mehrere *Durchgeführte Abgaben* können nur sequenziell in umgekehrter Reihenfolge ihrer Erstellung verworfen werden.
+Um die durch *MedicationDispense.type* definierte Sequenz *FFP → RFP → RFC* konsistent zu halten, darf immer nur die zuletzt gespeicherte *Durchgeführte Abgabe* storniert werden. Mehrere *Durchgeführte Abgaben* können nur sequenziell in umgekehrter Reihenfolge ihrer Erstellung storniert werden.
 
 <!-- TODO: Prüfen ob hier nicht Storno gemeint ist: nur eigene stornierbar -->
 
