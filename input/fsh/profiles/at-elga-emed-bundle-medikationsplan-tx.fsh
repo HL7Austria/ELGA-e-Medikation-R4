@@ -15,7 +15,7 @@ Alle neuen bzw. geänderten und zu entfernenden Medikationsplaneinträge müssen
 * type = #transaction
 * type ^short = "Art des Bundles. Für schreibenden Zugriff immer Typ \"transaction\"."
  
-* timestamp 1..1 MS
+* timestamp 0..1 
 * timestamp ^short = "Zeitpunkt der Erstellung des Bundles."
 
 

@@ -1,5 +1,5 @@
 Instance: At-Emed-Example-Device-01
-InstanceOf: Device
+InstanceOf: AtElgaEmedDeviceFachanwendung
 Title: "Beispiel Journey 01: e-Med Fachanwendung"
 Description: "Beispiel der e-Med Fachanwendung, die den Mediaktionsplan initial erstellt."
 Usage: #example

@@ -20,7 +20,7 @@ Usage: #example
 * performer.actor = Reference(At-Emed-Example-Organization-02) "Amadeus Apotheke"  //oid
 
 * authorizingPrescription[geplanteAbgabe] = Reference(MedicationRequest/At-Emed-Journey-01-03-Mr-Geplante-Abgabe-01) "GeplanteAbgabe 1"
-* authorizingPrescription[planeintrag] = Reference(MedicationRequest/At-Emed-Journey-01-02-Mr-Planeintrag-01) "Planeintrag 1"
+* authorizingPrescription[planeintrag] = Reference(MedicationRequest/At-Emed-Journey-Planeintrag-01-Ramipril-v1) "Planeintrag 1"
 
 * type = #FFC
 * quantity = 1 '1'
