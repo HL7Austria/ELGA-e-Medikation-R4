@@ -5,7 +5,7 @@ Title: "Beispiel Journey 01-02: Medikationsplan"
 Description: "Beispiel eines Medikationsplans, der 2 neue Planeinträge referenziert."
 Usage: #inline
 * id = "4cb4dceb-173f-461a-a267-683ec33e4be1"
-* meta.versionId = "v25cd90b82-be84-41c1-ae4b-715d232fec20"
+//* meta.versionId = "v25cd90b82-be84-41c1-ae4b-715d232fec20"
 * status = #current
 * mode = #working
 * code = $cs-sct#736378000 "Medikationsplan"
