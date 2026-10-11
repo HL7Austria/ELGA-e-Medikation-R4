@@ -3,6 +3,24 @@ Parent: MedicationRequest
 Id: at-elga-emed-medicationrequest-base
 Title: "At ELGA e-Medikation MedicationRequest Base"
 Description: "Die Basis für alle in eMed verwendeten MedicationRequests"
+// ASW 11.10.2026 TODO fehlende shorts ergänzen
+
+* id 0..1 MS
+* id ^short = "Technische id der Ressource"
+* meta MS
+* meta.versionId MS
+* meta.lastUpdated MS
+* meta.profile MS
+
+//ASW 24.09.2026 TODO text 1..1
+* text MS
+//ASW 22.09.2026 TODO Beschreibung - so visualisiert wie im CDA mit XHTML -> How to fill the Narrative in -notes.html 
+// Bis zum Ballot nur Drachenbox
+* text.div MS
+* text.status MS
+
+* implicitRules 0..0
+* implicitRules ^short =  "Fachliche Begründung: Die Ressource wird nach den Regeln dieses Implementierungsleitfadens interpretiert. Zusätzliche implizite Verarbeitungsregeln werden nicht verwendet."
 
 // TODO: Invariante für repeating sequences * dosageInstruction.extension contains AtElgaEmedExtensionDosageRepeat??? named repeatCycle 0..1
 //TODO Invariante sodass die Extension nur erlaubt ist, wenn es mehrere Dosages gibt

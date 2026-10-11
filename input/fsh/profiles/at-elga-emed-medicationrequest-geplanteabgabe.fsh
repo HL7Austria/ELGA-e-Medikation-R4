@@ -8,13 +8,6 @@ Werden mehrere Medikamente gleichzeitig verschrieben und sollen demselben e-Reze
 Es werden R5-Backport-Extensions verwendet."
 * . ^short = "Geplante Abgabe eines Arzneimittels aus dem Medikationsplan. Verwendet R5 Backport Extensions."
 
-* id 0..1 MS
-* meta MS
-* text MS
-* implicitRules 0..0
-* text 1..1 MS
-//ASW 22.09.2026 TODO Beschreibung - so visualisiert wie im CDA mit XHTML -> How to fill the Narrative in -notes.html 
-// Bis zum Ballot nur Drachenbox
 
 * contained MS
 * contained ^short = "TODO"
