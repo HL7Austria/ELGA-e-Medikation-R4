@@ -1,9 +1,11 @@
-Instance: At-Emed-Journey-07-02-Mr-Planeintrag-02
+Instance: At-Emed-Journey-Planeintrag-02-Magistral-Dexpanthenol-v2
+// war At-Emed-Journey-07-02-Mr-Planeintrag-02
 InstanceOf: AtElgaEmedMedicationRequestPlaneintrag   
 Title: "Beispiel Journey 07-02: Planeintrag 2"
 Description: "Bildet einen abgelaufenen Planeintrag ab (Dexpanthenol-Salbe)."
 Usage: #example
-
+* id = "55e4be12-0d10-454c-a85f-cfb5f849e391"
+* meta.versionId = "v2bb6cfb1d-70bd-41a4-adc3-c6b998e3874b"
 * contained[+] = contained-medication-magistral-01
 * courseOfTherapyType = $cs-medication-request-courseOfTherapyType#acute
 
@@ -21,7 +23,10 @@ Usage: #example
 // Referenz auf Contained Medication Ressource
 * medicationReference.reference = "#contained-medication-magistral-01"
 
-* subject = Reference(At-Emed-Example-Patient-01) "Anton Mustermann"
+* subject.type = "Patient"
+* subject.identifier.value = "GH:oeLdSEb0l+8kSdJWjOYyYmnYki0="
+* subject.identifier.system = "urn:oid:1.2.40.0.10.2.1.1.149"
+
 * authoredOn = "2026-02-27T08:10:00+00:00"
 * requester = Reference(At-Emed-Example-PractitionerRole-01) "Dr. Hausärztin"
 

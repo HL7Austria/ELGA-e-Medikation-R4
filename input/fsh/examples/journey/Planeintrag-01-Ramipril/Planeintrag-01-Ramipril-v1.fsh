@@ -5,7 +5,7 @@ Title: "Beispiel Journey 01-02: Planeintrag 1"
 Description: "Bildet einen Planeintrag mit dem Arzneimittel Ramipril und der Dosierungsanweisung ab."
 Usage: #inline
 * id = "6bacfe23-d469-4945-bf3c-90c7e647aa52"
-* meta.versionId = "v1v1aeb5e5e8-785a-430b-afef-ee57335b213d"
+* meta.versionId = "v1aeb5e5e8-785a-430b-afef-ee57335b213d"
 * contained[+] = at-emed-journey-medication-ramipril
 
 * courseOfTherapyType = $cs-medication-request-courseOfTherapyType#continuous
@@ -21,7 +21,10 @@ Usage: #inline
 // Referenz auf Contained Medication Ressource
 * medicationReference.reference = "#at-emed-journey-medication-ramipril"
 
-* subject = Reference(At-Emed-Example-Patient-01) "Anton Mustermann"
+* subject.type = "Patient"
+* subject.identifier.value = "GH:oeLdSEb0l+8kSdJWjOYyYmnYki0="
+* subject.identifier.system = "urn:oid:1.2.40.0.10.2.1.1.149"
+
 * authoredOn = "2026-02-27T08:10:00+00:00" 
 * requester = Reference(At-Emed-Example-PractitionerRole-01) "Dr. Hausärztin"
 

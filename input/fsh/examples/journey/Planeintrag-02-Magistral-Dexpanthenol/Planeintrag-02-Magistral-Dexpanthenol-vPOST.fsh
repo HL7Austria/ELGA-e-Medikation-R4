@@ -20,7 +20,11 @@ Usage: #inline
 // Referenz auf Contained Medication Ressource
 * medicationReference.reference = "#contained-medication-magistral-01"
 
-* subject.reference = "Patient?identifier=urn:oid:1.2.40.0.10.2.1.1.149|GH:oeLdSEb0l+8kSdJWjOYyYmnYki0=" //Reference(At-Emed-Example-Patient-01) "Anton Mustermann"
+* subject.type = "Patient"
+* subject.identifier.value = "GH:oeLdSEb0l+8kSdJWjOYyYmnYki0="
+* subject.identifier.system = "urn:oid:1.2.40.0.10.2.1.1.149"
+
+//Reference(At-Emed-Example-Patient-01) "Anton Mustermann"
 * authoredOn = "2026-02-27T08:10:00+00:00"
 * requester = Reference(At-Emed-Example-PractitionerRole-01) "Dr. Hausärztin"
 

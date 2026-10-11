@@ -1,9 +1,11 @@
-Instance: At-Emed-Journey-07-02-Mr-Planeintrag-03
+Instance: Planeintrag-03-Wirkstoff-Metamizol-v2
+// war At-Emed-Journey-07-02-Mr-Planeintrag-03
 InstanceOf: AtElgaEmedMedicationRequestPlaneintrag   
 Title: "Beispiel Journey 07-02: Planeintrag 3"
 Description: "Bildet einen geänderten Planeintrag ab: Arzneimittel (Magelan-Tropfen) ersetzt reine Wirkstoffangabe, angepasste Dosierung."
-Usage: #example
-
+Usage: #inline
+* id = "7128c60c-126d-42b2-b575-dc26a2324b8b"
+* meta.versionId = "v2a455866f-a727-47fd-adef-f0f8591988f8"
 * contained[+] = at-emed-journey-medication-metagelan
 * courseOfTherapyType = $cs-medication-request-courseOfTherapyType#acute
 
@@ -19,7 +21,10 @@ Usage: #example
 // Referenz auf Contained Medication Ressource
 * medicationReference.reference = "#at-emed-journey-medication-metagelan"
 
-* subject = Reference(At-Emed-Example-Patient-01) "Anton Mustermann"
+* subject.type = "Patient"
+* subject.identifier.value = "GH:oeLdSEb0l+8kSdJWjOYyYmnYki0="
+* subject.identifier.system = "urn:oid:1.2.40.0.10.2.1.1.149"
+
 * authoredOn = "2026-03-22T16:10:00+00:00"
 * requester = Reference(At-Emed-Example-PractitionerRole-04) "Dr. Urlaubsvertretung"
 

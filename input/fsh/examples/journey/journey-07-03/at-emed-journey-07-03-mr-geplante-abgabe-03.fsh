@@ -19,11 +19,14 @@ Usage: #example
 // Referenz auf Contained Medication Ressource
 * medicationReference.reference = "#at-emed-journey-medication-metagelan"
 
-* subject = Reference(At-Emed-Example-Patient-01) "Anton Mustermann"
+* subject.type = "Patient"
+* subject.identifier.value = "GH:oeLdSEb0l+8kSdJWjOYyYmnYki0="
+* subject.identifier.system = "urn:oid:1.2.40.0.10.2.1.1.149"
+
 * authoredOn = "2026-03-22T16:10:00+00:00"
 * requester = Reference(At-Emed-Example-PractitionerRole-01) "Dr. Hausärztin"
 
-* basedOn = Reference(MedicationRequest/At-Emed-Journey-07-02-Mr-Planeintrag-03) "Planeintrag 3"
+* basedOn = Reference(Planeintrag-03-Wirkstoff-Metamizol-v2) "Planeintrag 3"
 // TODO: zusätzliche logische Referenz: reference.identifier 
 
 * groupIdentifier.value = "WYE82A2G8EEW"

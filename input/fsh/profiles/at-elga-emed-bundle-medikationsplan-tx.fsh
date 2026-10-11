@@ -32,6 +32,8 @@ Alle neuen bzw. geänderten und zu entfernenden Medikationsplaneinträge müssen
 // Liste
 * entry[Medikationsplan].resource 1..1
 * entry[Medikationsplan].resource only AtElgaEmedListMedikationsplan
+* entry[Medikationsplan].resource.entry.item.extension contains ResolveAsVersionSpecific named ResolveAsVersionSpecific 1..1
+* entry[Medikationsplan].resource.entry.item.extension[ResolveAsVersionSpecific].valueBoolean = true
 // Medikationsplaneinträge
 * entry[Medikationsplaneintrag].resource 1..1
 * entry[Medikationsplaneintrag].resource only AtElgaEmedMedicationRequestPlaneintrag

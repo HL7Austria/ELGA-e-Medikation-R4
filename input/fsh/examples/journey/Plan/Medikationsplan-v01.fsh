@@ -8,7 +8,10 @@ Description: "Beispiel eines leeren Mediaktionsplans (List-Ressource ohne Eintr√
 * status = #current
 * mode = #working
 * code = $cs-sct#736378000 "Medikationsplan"  
-* subject = Reference(At-Emed-Example-Patient-01) "Anton Mustermann"
+* subject.type = "Patient"
+* subject.identifier.value = "GH:oeLdSEb0l+8kSdJWjOYyYmnYki0="
+* subject.identifier.system = "urn:oid:1.2.40.0.10.2.1.1.149"
+
 * date = "2026-02-27T08:00:00+00:00" 
 // Verantworlich f√ºr die intitiale Erstellung ist die Flachanwendung
 * source = Reference(At-Emed-Example-Device-01)

@@ -6,8 +6,10 @@ Usage: #example
 
 * type = #searchset
 * timestamp = "2026-02-27T08:10:00+00:00"
+* link.url = "https://example.elga.com/base/List/$plan-read"
+* link.relation = #self
 
-* entry[Medikationsplan].resource = At-Emed-Journey-List-Medikationsplan-v2
+* entry[Medikationsplan].resource = At-Emed-Journey-List-Medikationsplan-v2-plan-read-response
 * entry[Medikationsplan].search.mode = #match
 * entry[Medikationsplan].fullUrl = "https://example.elga.com/base/List/4cb4dceb-173f-461a-a267-683ec33e4be1"
 // Medikationsplaneinträge
@@ -23,10 +25,3 @@ Usage: #example
 * entry[Authors].resource = At-Emed-Example-Device-01
 * entry[Authors].fullUrl = "https://example.elga.com/base/Device/At-Emed-Example-Device-01"
 * entry[Authors].search.mode = #include
-* link.url = "https://example.elga.com/base/List/$plan-read"
-* link.relation = #self
-
-
-
-
-// = zu response_bundle umbauen (mit patient usw)

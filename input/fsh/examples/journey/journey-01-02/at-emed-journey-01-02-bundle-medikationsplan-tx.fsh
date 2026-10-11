@@ -7,8 +7,8 @@ Usage: #example
 * type = #transaction
 * timestamp = "2026-02-27T08:10:00+00:00"
 // Liste 
-* entry[Medikationsplan].resource = At-Emed-Journey-List-Medikationsplan-v2-tx
-* entry[Medikationsplan].fullUrl = "https://example.elga.com/base/List/4cb4dceb-173f-461a-a267-683ec33e4be1" // -> vom server vergebene id verwenden, bei jedem put der liste verwenden
+* entry[Medikationsplan][+].resource = At-Emed-Journey-List-Medikationsplan-v2-tx
+* entry[Medikationsplan][=].fullUrl = "https://example.elga.com/base/List/4cb4dceb-173f-461a-a267-683ec33e4be1" // -> vom server vergebene id verwenden, bei jedem put der liste verwenden
 * entry[Medikationsplan][=].request.method = #PUT 
 * entry[Medikationsplan][=].request.url = "List/4cb4dceb-173f-461a-a267-683ec33e4be1"
 
