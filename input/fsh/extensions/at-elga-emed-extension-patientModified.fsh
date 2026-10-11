@@ -5,3 +5,4 @@ Description: "AT ELGA e-Medikation Extension, die Angibt, ob in einer Ressource 
 Context: List
 * value[x] 1..1
 * value[x] only boolean
+* valueBoolean MS
