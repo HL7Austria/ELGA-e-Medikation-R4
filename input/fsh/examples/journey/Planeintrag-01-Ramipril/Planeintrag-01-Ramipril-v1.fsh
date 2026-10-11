@@ -4,8 +4,8 @@ InstanceOf: AtElgaEmedMedicationRequestPlaneintrag
 Title: "Beispiel Journey 01-02: Planeintrag 1"
 Description: "Bildet einen Planeintrag mit dem Arzneimittel Ramipril und der Dosierungsanweisung ab."
 Usage: #inline
-* id = "6bacfe23-d469-4945-bf3c-90c7e647aa52"
-* meta.versionId = "v1aeb5e5e8-785a-430b-afef-ee57335b213d"
+* id = $idPlaneintrag01
+* meta.versionId = $idPlaneintrag01v1
 * contained[+] = at-emed-journey-medication-ramipril
 
 * courseOfTherapyType = $cs-medication-request-courseOfTherapyType#continuous

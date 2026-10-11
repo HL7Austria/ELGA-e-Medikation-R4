@@ -1,6 +1,6 @@
 Instance: At-Emed-Journey-01-02-Bundle-plan-read-response
 InstanceOf: AtElgaEmedBundleMedikationsplan   
-Title: "Beispiel Journey 01-02: Medikationsplan-Bundle"
+Title: "Beispiel Journey 01-02: Medikationsplan-Bundle $plan-read Response"
 Description: "Beispiel eines Medikationsplan-Bundles, das einen Mediaktionsplan (List) mit 2 Planeinträgen (MedicationRequests) referenziert."
 Usage: #example
 
@@ -11,13 +11,13 @@ Usage: #example
 
 * entry[Medikationsplan].resource = At-Emed-Journey-List-Medikationsplan-v2-plan-read-response
 * entry[Medikationsplan].search.mode = #match
-* entry[Medikationsplan].fullUrl = "https://example.elga.com/base/List/4cb4dceb-173f-461a-a267-683ec33e4be1"
+* entry[Medikationsplan].fullUrl = $srPlan
 // Medikationsplaneinträge
 * entry[Medikationsplaneintrag][+].resource = At-Emed-Journey-Planeintrag-01-Ramipril-v1
-* entry[Medikationsplaneintrag][=].fullUrl = "https://example.elga.com/base/MedicationRequest/6bacfe23-d469-4945-bf3c-90c7e647aa52"
+* entry[Medikationsplaneintrag][=].fullUrl = $srPlaneintrag01
 * entry[Medikationsplaneintrag][=].search.mode = #include
 * entry[Medikationsplaneintrag][+].resource = At-Emed-Journey-Planeintrag-02-Magistral-Dexpanthenol-v1
-* entry[Medikationsplaneintrag][=].fullUrl = "https://example.elga.com/base/MedicationRequest/55e4be12-0d10-454c-a85f-cfb5f849e391"
+* entry[Medikationsplaneintrag][=].fullUrl = $srPlaneintrag02
 * entry[Medikationsplaneintrag][=].search.mode = #include
 * entry[Patient].resource = At-Emed-Example-Patient-01
 * entry[Patient].fullUrl = "https://example.elga.com/base/Patient/At-Emed-Example-Patient-01"

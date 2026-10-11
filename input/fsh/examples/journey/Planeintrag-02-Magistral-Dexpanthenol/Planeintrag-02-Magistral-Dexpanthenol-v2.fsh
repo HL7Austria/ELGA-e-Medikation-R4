@@ -4,8 +4,8 @@ InstanceOf: AtElgaEmedMedicationRequestPlaneintrag
 Title: "Beispiel Journey 07-02: Planeintrag 2"
 Description: "Bildet einen abgelaufenen Planeintrag ab (Dexpanthenol-Salbe)."
 Usage: #example
-* id = "55e4be12-0d10-454c-a85f-cfb5f849e391"
-* meta.versionId = "v2bb6cfb1d-70bd-41a4-adc3-c6b998e3874b"
+* id = $idPlaneintrag02
+* meta.versionId = $idPlaneintrag02v2
 * contained[+] = contained-medication-magistral-01
 * courseOfTherapyType = $cs-medication-request-courseOfTherapyType#acute
 

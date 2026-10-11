@@ -25,9 +25,11 @@ Usage: #example
 
 * authoredOn = "2026-03-22T16:10:00+00:00"
 * requester = Reference(At-Emed-Example-PractitionerRole-01) "Dr. Hausärztin"
-
-* basedOn = Reference(Planeintrag-03-Wirkstoff-Metamizol-v2) "Planeintrag 3"
 // TODO: zusätzliche logische Referenz: reference.identifier 
+
+// ASW 11.10.2026 TODO sollte diese Referenz versionsspezifisch sein?
+//* basedOn.reference = $rrPlaneintrag03v2 // Reference(Planeintrag-03-Wirkstoff-Metamizol-v2) "Planeintrag 3"
+* basedOn.reference = $rrPlaneintrag03
 
 * groupIdentifier.value = "WYE82A2G8EEW"
 

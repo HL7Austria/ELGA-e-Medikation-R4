@@ -4,8 +4,8 @@ InstanceOf: AtElgaEmedMedicationRequestPlaneintrag
 Title: "Beispiel Journey 07-02: Planeintrag 3"
 Description: "Bildet einen geänderten Planeintrag ab: Arzneimittel (Magelan-Tropfen) ersetzt reine Wirkstoffangabe, angepasste Dosierung."
 Usage: #inline
-* id = "7128c60c-126d-42b2-b575-dc26a2324b8b"
-* meta.versionId = "v2a455866f-a727-47fd-adef-f0f8591988f8"
+* id = $idPlaneintrag03
+* meta.versionId = $idPlaneintrag03v2
 * contained[+] = at-emed-journey-medication-metagelan
 * courseOfTherapyType = $cs-medication-request-courseOfTherapyType#acute
 

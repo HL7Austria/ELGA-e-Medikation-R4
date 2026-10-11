@@ -4,7 +4,7 @@ InstanceOf: AtElgaEmedListMedikationsplan
 Title: "Beispiel Journey 06-02: Medikationsplan"
 Description: "Beispiel eines Medikationsplans mit 1 geänderten, 1 unveränderten und 1 neuen Planeintrag."
 Usage: #inline
-* id = "4cb4dceb-173f-461a-a267-683ec33e4be1"
+* id = $idPlan
 // versionid wird in der transaktion assigned
 * status = #current
 * mode = #working
@@ -21,16 +21,16 @@ Usage: #inline
 
 // Listeneinträge
 * entry[0].flag.coding = ElgaListEntryFlagCS#changed "Planeintrag geändert"
-* entry[=].item.reference = "MedicationRequest/6bacfe23-d469-4945-bf3c-90c7e647aa52"  //Reference(At-Emed-Journey-Planeintrag-01-Ramipril-v3)
+* entry[=].item.reference = $rrPlaneintrag01  //Reference(At-Emed-Journey-Planeintrag-01-Ramipril-v3)
 * entry[=].item.extension[ResolveAsVersionSpecific].valueBoolean = true
 
 
 * entry[+].flag.coding = ElgaListEntryFlagCS#unchanged "Planeintrag beibehalten"
-* entry[=].item.reference = "MedicationRequest/55e4be12-0d10-454c-a85f-cfb5f849e391" //Reference(At-Emed-Journey-Planeintrag-02-Magistral-Dexpanthenol-v1)
+* entry[=].item.reference = $rrPlaneintrag02 //Reference(At-Emed-Journey-Planeintrag-02-Magistral-Dexpanthenol-v1)
 * entry[=].item.extension[ResolveAsVersionSpecific].valueBoolean = true
 
 
 * entry[+].flag.coding = ElgaListEntryFlagCS#new "Neuer Planeintrag"
-* entry[=].item.reference = "urn:uuid:6852930e-6883-4301-b5c1-c142b746af8f" //Reference(Planeintrag-03-Wirkstoff-Metamizol-vPOST)
+* entry[=].item.reference = $POSTuuidPlaneintrag03 //Reference(Planeintrag-03-Wirkstoff-Metamizol-vPOST)
 * entry[=].item.extension[ResolveAsVersionSpecific].valueBoolean = true
 

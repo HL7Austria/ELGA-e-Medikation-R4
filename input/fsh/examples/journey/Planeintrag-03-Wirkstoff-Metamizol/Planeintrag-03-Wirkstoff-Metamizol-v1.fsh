@@ -4,8 +4,8 @@ InstanceOf: AtElgaEmedMedicationRequestPlaneintrag
 Title: "Beispiel Journey 06-02: Planeintrag 3"
 Description: "Bildet einen Planeintrag mit einer Wirkstoffangabe (Metamizol) und Dosierung ab."
 Usage: #inline
-* id = "7128c60c-126d-42b2-b575-dc26a2324b8b"
-* meta.versionId = "v19bb12b57-04a0-4d19-af1f-e78c3cc628cc"
+* id = $idPlaneintrag03
+* meta.versionId = $idPlaneintrag03v1
 * contained[+] = at-emed-journey-medication-wirkstoff-metamizol
 * courseOfTherapyType = $cs-medication-request-courseOfTherapyType#acute
 
