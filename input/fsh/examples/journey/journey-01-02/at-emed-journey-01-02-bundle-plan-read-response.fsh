@@ -22,6 +22,6 @@ Usage: #example
 * entry[Patient].resource = At-Emed-Example-Patient-01
 * entry[Patient].fullUrl = "https://example.elga.com/base/Patient/At-Emed-Example-Patient-01"
 * entry[Patient].search.mode = #include
-* entry[Authors].resource = At-Emed-Example-Device-01
-* entry[Authors].fullUrl = "https://example.elga.com/base/Device/At-Emed-Example-Device-01"
+* entry[Authors].resource = At-Emed-Example-PractitionerRole-01
+* entry[Authors].fullUrl = "https://example.elga.com/base/PractitionerRole/At-Emed-Example-PractitionerRole-01"
 * entry[Authors].search.mode = #include
