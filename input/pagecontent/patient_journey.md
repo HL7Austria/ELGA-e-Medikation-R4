@@ -82,11 +82,6 @@ Da für Herrn Mustermann noch nie ein Medikationsplan abgerufen wurde, erstellt 
     </div>
   </div>
   <div class="tab">
-    <input type="radio" id="tab-request-body-journey-01-01-01" name="tab-group-journey-01-01-01" />
-    <label for="tab-request-body-journey-01-01-01">Request Body</label>
-    <div class="content-in-tab">{% fragment Parameters/Journey-01-01-Request-Body-01 JSON %}</div>
-  </div>
-  <div class="tab">
     <input type="radio" id="tab-response-journey-01-01-01" name="tab-group-journey-01-01-01" />
     <label for="tab-response-journey-01-01-01">Response Body</label>
     <div class="content-in-tab">{% fragment Bundle/At-Emed-Journey-01-01-01-Bundle-Medikationsplan JSON %}</div>
@@ -162,10 +157,10 @@ Sie speichert den neuen Medikationsplan.
           <strong>Planeinträge erstellen:</strong>
           <ul>
             <li>
-              <a href="MedicationRequest-At-Emed-Journey-01-02-Mr-Planeintrag-01.html">Planeintrag 1: Ramipril 5 mg Tabletten, 1 x täglich morgens (Dauermedikation)</a>
+              <a href="MedicationRequest-At-Emed-Journey-Planeintrag-01-Ramipril-v1.html">Planeintrag 1: Ramipril 5 mg Tabletten, 1 x täglich morgens (Dauermedikation)</a>
             </li>
             <li>
-              <a href="MedicationRequest-At-Emed-Journey-01-02-Mr-Planeintrag-02.html">Planeintrag 2: Dexpanthenol-5-%-Salbe, 2 × täglich für 3 Wochen, dünn auftragen</a>
+              <a href="MedicationRequest-At-Emed-Journey-Planeintrag-02-Magistral-Dexpanthenol-v1.html">Planeintrag 2: Dexpanthenol-5-%-Salbe, 2 × täglich für 3 Wochen, dünn auftragen</a>
             </li>
           </ul>
         </li>
@@ -173,7 +168,7 @@ Sie speichert den neuen Medikationsplan.
           <strong>Medikationsplan aktualisieren:</strong>
           <ul>
             <li>
-              <a href="List-At-Emed-Journey-01-02-List-Medikationsplan.html">Medikationsplan ergänzt mit 2 Planeinträgen</a>
+              <a href="List-At-Emed-Journey-List-Medikationsplan-v1.html">Medikationsplan ergänzt mit 2 Planeinträgen</a>
             </li>
           </ul>
         </li>
@@ -245,8 +240,31 @@ dispense-search
   </div>
 </div>
 
-
-
+#### Journey-01-02: Request 02 - Medikationsplan lesen
+<div class="tabs">
+  <div class="tab">
+    <input type="radio" id="tab-request-journey-01-02-plan-read" name="tab-group-journey-01-02-plan-read" checked="true" />
+    <label for="tab-request-journey-01-02-plan-read" class="request-tab">Request</label>
+    <div class="content-in-tab">
+      <div class="request-panel">
+        <div class="request-code">
+          <span class="request-method-post">POST</span>
+          <code class="request-url">[base]/List/$plan-read</code>
+        </div>
+        <div class="request-meta">
+          <strong>Headers:</strong>
+          <code class="request-header">Content-Type: application/fhir+json</code>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tab">
+    <input type="radio" id="tab-response-body-journey-01-02-plan-read" name="tab-group-journey-01-02-plan-read" />
+    <label for="tab-response-body-journey-01-02-plan-read">Response Body</label>
+    <div class="content-in-tab">
+    {% fragment Bundle/At-Emed-Journey-01-02-Bundle-plan-read-response JSON %}</div>
+  </div>
+</div>
 
 
 Im aktualisierten Medikationsplan sind die neuen Planeinträge sowie das Datum der Bearbeitung und als verantwortliche Ärztin Dr. Hausärztin ersichtlich.
@@ -545,7 +563,7 @@ Möglichkeit prüfen, wie der Usecase: "Medikament soll in 2 Wochen für 1 Woche
           <strong>Planeintrag pausieren:</strong>
           <ul>
             <li>
-              <a href="MedicationRequest-At-Emed-Journey-05-01-Mr-Planeintrag-01.html">Planeintrag 1: Ramipril (Dauermedikation) pausieren</a>
+              <a href="MedicationRequest-At-Emed-Journey-Planeintrag-01-Ramipril-v2.html">Planeintrag 1: Ramipril (Dauermedikation) pausieren</a>
             </li>
           </ul>
         </li>
@@ -553,7 +571,7 @@ Möglichkeit prüfen, wie der Usecase: "Medikament soll in 2 Wochen für 1 Woche
           <strong>Medikationsplan aktualisieren:</strong>
           <ul>
             <li>
-              <a href="List-At-Emed-Journey-05-01-List-Medikationsplan.html">Medikationsplan: 1 Planeintrag aktualisiert, 1 Planeintrag unverändert</a>
+              <a href="List-At-Emed-Journey-List-Medikationsplan-v3.html">Medikationsplan: 1 Planeintrag aktualisiert, 1 Planeintrag unverändert</a>
             </li>
           </ul>
         </li>
@@ -629,7 +647,7 @@ Zusätzlich wird die pausierte Ramipril Medikation wieder aufgenommen, aber in d
           <strong>Planeintrag anpassen:</strong>
           <ul>
             <li>
-              <a href="MedicationRequest-At-Emed-Journey-06-02-Mr-Planeintrag-03.html">Neuer Planeintrag 1: Ramipril aktivieren + Dosierung ändern</a>
+              <a href="MedicationRequest-Planeintrag-03-Wirkstoff-Metamizol-vPOST.html">Neuer Planeintrag 1: Ramipril aktivieren + Dosierung ändern</a>
             </li>
           </ul>
         </li>
@@ -637,7 +655,7 @@ Zusätzlich wird die pausierte Ramipril Medikation wieder aufgenommen, aber in d
           <strong>Planeintrag hinzufügen:</strong>
           <ul>
             <li>
-              <a href="MedicationRequest-At-Emed-Journey-06-02-Mr-Planeintrag-03.html">Neuer Planeintrag 3: Wirstoff Metamizol (in Arbeit)</a>  <!-- TODO: Wirkstoffangabe sobald Profil verfügbar, akl 22.9.2026 -->
+              <a href="MedicationRequest-Planeintrag-03-Wirkstoff-Metamizol-vPOST.html">Neuer Planeintrag 3: Wirstoff Metamizol (in Arbeit)</a>  <!-- TODO: Wirkstoffangabe sobald Profil verfügbar, akl 22.9.2026 -->
             </li>
           </ul>
         </li>
@@ -645,7 +663,7 @@ Zusätzlich wird die pausierte Ramipril Medikation wieder aufgenommen, aber in d
           <strong>Medikationsplan aktualisieren:</strong>
           <ul>
             <li>
-              <a href="List-At-Emed-Journey-06-02-List-Medikationsplan.html">Medikationsplan: Planeintrag 1 geändert, Planeintrag 2 unverändert, Planeintrag 3 neu hinzugefügt</a>
+              <a href="List-At-Emed-Journey-List-Medikationsplan-v4.html">Medikationsplan: Planeintrag 1 geändert, Planeintrag 2 unverändert, Planeintrag 3 neu hinzugefügt</a>
             </li>
           </ul>
         </li>

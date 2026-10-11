@@ -4,9 +4,8 @@ InstanceOf: AtElgaEmedMedicationRequestPlaneintrag
 Title: "Beispiel Journey 01-02: Planeintrag 2"
 Description: "Bildet einen Planeintrag mit einer magistralen Zubereitung (Dexpanthenol-Salbe) und der Dosierungsanweisung ab."
 Usage: #inline
-* id = "55e4be12-0d10-454c-a85f-cfb5f849e391"
-* meta.versionId = "v101275d13-fd59-4781-99ae-744fb90a1ba0"
-
+* id = $idPlaneintrag02
+* meta.versionId = $idPlaneintrag02v1
 * contained[+] = contained-medication-magistral-01
 * courseOfTherapyType = $cs-medication-request-courseOfTherapyType#acute
 
@@ -23,7 +22,10 @@ Usage: #inline
 // Referenz auf Contained Medication Ressource
 * medicationReference.reference = "#contained-medication-magistral-01"
 
-* subject = Reference(At-Emed-Example-Patient-01) "Anton Mustermann"
+* subject.type = "Patient"
+* subject.identifier.value = "GH:oeLdSEb0l+8kSdJWjOYyYmnYki0="
+* subject.identifier.system = "urn:oid:1.2.40.0.10.2.1.1.149"
+
 * authoredOn = "2026-02-27T08:10:00+00:00"
 * requester = Reference(At-Emed-Example-PractitionerRole-01) "Dr. Hausärztin"
 

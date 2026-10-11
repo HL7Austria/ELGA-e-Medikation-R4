@@ -16,11 +16,14 @@ Usage: #example
 // Referenz auf Contained Medication Ressource
 * medicationReference.reference = "#contained-medication-magistral-01"
 
-* subject = Reference(At-Emed-Example-Patient-01) "Anton Mustermann"
+* subject.type = "Patient"
+* subject.identifier.value = "GH:oeLdSEb0l+8kSdJWjOYyYmnYki0="
+* subject.identifier.system = "urn:oid:1.2.40.0.10.2.1.1.149"
+
 * performer.actor = Reference(At-Emed-Example-Organization-02) "Amadeus Apotheke"
 
-* authorizingPrescription[geplanteAbgabe] = Reference(MedicationRequest/At-Emed-Journey-01-03-Mr-Geplante-Abgabe-02) "Geplante Abgabe 2"
-* authorizingPrescription[planeintrag] = Reference(MedicationRequest/At-Emed-Journey-Planeintrag-02-Magistral-Dexpanthenol-v1) "Planeintrag 2"
+* authorizingPrescription[geplanteAbgabe] = Reference(At-Emed-Journey-01-03-Mr-Geplante-Abgabe-02) "Geplante Abgabe 2"
+* authorizingPrescription[planeintrag] = Reference(At-Emed-Journey-Planeintrag-02-Magistral-Dexpanthenol-v1) "Planeintrag 2"
 
 * type = #FFP
 * quantity = 0 '0'

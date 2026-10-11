@@ -20,11 +20,14 @@ Usage: #example
 // Referenz auf Inline Medication Ressource
 * medicationReference.reference = "#contained-medication-magistral-01"
 
-* subject = Reference(At-Emed-Example-Patient-01) "Anton Mustermann"
+* subject.type = "Patient"
+* subject.identifier.value = "GH:oeLdSEb0l+8kSdJWjOYyYmnYki0="
+* subject.identifier.system = "urn:oid:1.2.40.0.10.2.1.1.149"
+
 * authoredOn = "2026-02-27T10:20:00+00:00"
 * requester = Reference(At-Emed-Example-PractitionerRole-01) "Dr. Hausärztin"
 
-* basedOn = Reference(MedicationRequest/At-Emed-Journey-Planeintrag-02-Magistral-Dexpanthenol-v1) "Planeintrag 2"
+* basedOn = Reference(At-Emed-Journey-Planeintrag-02-Magistral-Dexpanthenol-v1) "Planeintrag 2"
 // TODO: zusätzliche logische Referenz: reference.identifier 
 
 * groupIdentifier.value = "WYE82A2G8EEW"

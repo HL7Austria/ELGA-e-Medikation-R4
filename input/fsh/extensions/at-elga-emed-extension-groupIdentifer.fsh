@@ -6,3 +6,6 @@ Context: MedicationDispense
 * value[x] 1..1
 * value[x] only Identifier
 * valueIdentifier.system = $sys-eMed-groupIdentifier
+* valueIdentifier.system MS
+* valueIdentifier.value MS
+//ASW 11.10.2026 TODO hier noch weitere identifier Elemente als MS?

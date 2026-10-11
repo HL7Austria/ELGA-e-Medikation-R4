@@ -1,26 +1,32 @@
-Instance: At-Emed-Journey-07-02-List-Medikationsplan
+Instance: At-Emed-Journey-List-Medikationsplan-v5
+// war At-Emed-Journey-07-02-List-Medikationsplan
 InstanceOf: AtElgaEmedListMedikationsplan   
 Title: "Beispiel Journey 07-02: Medikationsplan"
 Description: "Beispiel eines Medikationsplans mit 1 geänderten, 1 unveränderten und 1 neuen Planeintrag."
-Usage: #example
-
+Usage: #inline
+* id = $idPlan
+* meta.versionId = $idPlanv5
 * status = #current
 * mode = #working
 * code = $cs-sct#736378000 "Medikationsplan"
 // logische referenz über bpkgh
-* subject = Reference(At-Emed-Example-Patient-01) "Anton Mustermann"
+* subject.type = "Patient"
+* subject.identifier.value = "GH:oeLdSEb0l+8kSdJWjOYyYmnYki0="
+* subject.identifier.system = "urn:oid:1.2.40.0.10.2.1.1.149"
+
 * date = "2026-03-22T16:10:00+00:00"
 // logische referenz über oid
 * source = Reference(At-Emed-Example-PractitionerRole-04) "Dr. Urlaubsvertretung"
 
 // Planeintrag unverändert
 * entry[0].flag.coding = ElgaListEntryFlagCS#unchanged "Planeintrag beibehalten"
-* entry[=].item = Reference(At-Emed-Journey-06-02-Mr-Planeintrag-01)
+* entry[=].item.reference = $rrPlaneintrag01v3 //Reference(At-Emed-Journey-Planeintrag-01-Ramipril-v3)
 
 // Abgelaufenen Planeintrag entfernen
 * entry[+].flag.coding = ElgaListEntryFlagCS#removed "Planeintrag entfernt"
-* entry[=].item = Reference(At-Emed-Journey-07-02-Mr-Planeintrag-02)
+* entry[=].item.reference = $rrPlaneintrag02v2  //Reference(At-Emed-Journey-Planeintrag-02-Magistral-Dexpanthenol-v2)
+
 
 // Planeintrag von Wirkstoff auf Arzneimittel gändert
 * entry[+].flag.coding = ElgaListEntryFlagCS#changed "Planeintrag geändert"
-* entry[=].item = Reference(At-Emed-Journey-07-02-Mr-Planeintrag-03)
+* entry[=].item.reference = $rrPlaneintrag03v2 //Reference(Planeintrag-03-Wirkstoff-Metamizol-v2)
