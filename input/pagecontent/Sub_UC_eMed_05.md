@@ -63,6 +63,7 @@ Kein weiterer ELGA-Zugriff:
 ##### Ablauf
 
 1. Der GDA ruft zur Ermittlung und Prüfung der zu dokumentierenden Abgaben den *aktuellen Medikationsplan* ([Plan-Read](Sub_UC_eMed_01.html#sub_uc_emed_01_01---aktuellen-medikationsplan-lesen-plan-read)), die zugehörigen *Geplanten Abgaben* ([Prescription-Search](Sub_UC_eMed_03.html#sub_uc_emed_03_01---geplante-abgaben-lesen-prescription-search))sowie bereits dokumentierte *Durchgeführte Abgaben* ([Dispense-Search](Sub_UC_eMed_03.html#sub_uc_emed_03_02---durchgeführte-abgaben-lesen-dispense-search)) ab.
+
 2. Der GDA führt anhand dessen und der Informationen des Patienten die entsprechenden Arzneimittelabgaben durch und dokumentiert diese in [Durchgeführten Abgaben](StructureDefinition-at-elga-emed-medicationdispense-durchgefuehrteabgabe.html) gemäß der jeweils zutreffenden Abgabeart (siehe Kapitel [Abgabearten](Sub_UC_eMed_05.html#abgabearten))
     - Existiert eine zugehörige *Geplante Abgabe* muss diese sowie der zugehörige Medikationsplaneintrag referenziert werden.
 3. Der GDA übermittelt die neu erstellten *Durchgeführten Abgaben* in einem [Durchgeführte Abgaben-Transaction Bundle](StructureDefinition-at-elga-emed-bundle-durchgefuehrteabgaben-tx.html) mittels **POST** [$dispense-write](Sub_UC_eMed_05.html#custom-operations) an die Fachanwendung (unahängig von ihrem *e-Med Groupidentifier*).
@@ -87,7 +88,8 @@ Da kein weiterer ELGA-Zugriff auf die Medikationsdaten des ELGA-Teilnehmers mög
 ##### Ablauf  
 
 1. Der GDA ruft mit [GroupIdentifier-Search](Sub_UC_eMed_03.html#sub_uc_emed_03_03---geplante-und-durchgeführte-abgaben-mittels-e-med-groupidentifier-lesen-groupidentifier-search) die zum vorliegenden *e-Med GroupIdentifier* zugehörigen *Geplanten Abgaben* und bereits dokumentierten *Durchgeführten Abgaben* ab.
-2.Der GDA führt anhand dieser und der Informationen des Patienten die entsprechenden Arzneimittelabgaben durch und dokumentiert diese in [Durchgeführten Abgaben](StructureDefinition-at-elga-emed-medicationdispense-durchgefuehrteabgabe.html) gemäß der jeweils zutreffenden Abgabeart (siehe Kapitel [Abgabearten](Sub_UC_eMed_05.html#abgabearten)):
+
+2. Der GDA führt anhand dieser und der Informationen des Patienten die entsprechenden Arzneimittelabgaben durch und dokumentiert diese in [Durchgeführten Abgaben](StructureDefinition-at-elga-emed-medicationdispense-durchgefuehrteabgabe.html) gemäß der jeweils zutreffenden Abgabeart (siehe Kapitel [Abgabearten](Sub_UC_eMed_05.html#abgabearten)):
     - Die zugehörige *Geplante Abgabe* und der *Medikationsplaneintrag* werden referenziert,
     - der vorliegende *e-Med GroupIdentifier* darin dokumentiert.
 3. Der GDA übermittelt die neu erstellten *Durchgeführten Abgaben* in einem [Durchgeführte Abgaben-Transaction Bundle](StructureDefinition-at-elga-emed-bundle-durchgefuehrteabgaben-tx.html) mittels **POST** [$dispense-write](Sub_UC_eMed_05.html#custom-operations) an die Fachanwendung.
