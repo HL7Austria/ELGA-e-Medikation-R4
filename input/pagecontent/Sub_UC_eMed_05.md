@@ -55,10 +55,6 @@ Liegt dem GDA eine **ELGA-Kontaktbestätigung** vor (z.B. über die e-card), kan
 
 Dabei können sowohl Arzneimittelabgaben zu bestehenden *Geplanten Abgaben* als auch Arzneimittelabgaben ohne Bezug zu einer *Geplanten Abgabe*, beispielsweise OTC-Abgaben, erfasst werden.
 
-Kein weiterer ELGA-Zugriff:
-- keine Dokumentations von OTC-Abgaben
-- kein Zugriff auf den Medikationsplan
-- keine weiteren Suchoperationen
 
 ##### Ablauf
 
@@ -82,8 +78,7 @@ Kein weiterer ELGA-Zugriff:
 
 Erfolgt der Zugriff **ohne ELGA-Kontaktbestätigung** über den ***e-Med GroupIdentifier*** (z.B. codiert im Datamatrixcode eines e-Rezepts), kann der GDA ausschließlich *Durchgeführte Abgaben* in der e-Medikation dokumentieren, die sich auf die dem *e-Med GroupIdentifier* zugeordneten *Geplanten Abgaben* beziehen.
 
-Da kein weiterer ELGA-Zugriff auf die Medikationsdaten des ELGA-Teilnehmers möglich ist, können weder der aktuelle Medikationsplan noch weitere *Geplante Abgaben* oder *Durchgeführte Abgaben* abgerufen werden.
-
+Da kein weiterer ELGA-Zugriff auf die Medikationsdaten des ELGA-Teilnehmers möglich ist, können weder der aktuelle Medikationsplan noch weitere *Geplante Abgaben* oder *Durchgeführte Abgaben* abgerufen bzw. Suchoperationen durchgeführt werden.
 
 ##### Ablauf  
 
