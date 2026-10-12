@@ -13,8 +13,9 @@ Jeder Listeneintrag enthält im Element List.entry.flag den Änderungsstatus des
 * meta MS
 * meta.versionId MS
 * meta.lastUpdated MS
-* meta.profile MS
-
+* meta.profile 1..1 MS
+* modifierExtension 0..0
+* modifierExtension ^short = "Fachliche Begründung: Für den Medikationsplan sind keine zusätzlichen Erweiterungen vorgesehen, die die Bedeutung der Ressource oder ihrer Elemente verändern."
 
 // ws: meta.version.id = kann für etag verwendet werden
 //* id + meta für etag
@@ -30,13 +31,14 @@ Jeder Listeneintrag enthält im Element List.entry.flag den Änderungsstatus des
 * extension contains AtElgaEmedExtensionPatientModified named PatientModified 0..1 MS
 * extension[PatientModified] ^short = "Boolean der angibt, ob diese Version des Plans durch Aktionen des Patienten verändert wurde (z.B. Einträge entfernt)."
 * extension[PatientModified].valueBoolean MS
+* extension[PatientModified].url MS
 
 //ASW 11.10.2026 TODO Invariante prüfen
 * obeys at-emed-list-same-patient
 
 * status 1..1 MS
-* status from ElgaListStatusVS (required)
-* status ^short = "Status des Medikationsplans. Mögliche Ausprägungen: [current | retired] Bedeutung: current: default | retired: nach Ableben des Patienten bis Ende der Aufbewahrungsfrist"
+* status = #current
+* status ^short = "Status des Medikationsplans. Fixer Wert: current"
 
 * mode 1..1 MS
 * mode = #working (exactly)
@@ -70,7 +72,7 @@ Jeder Listeneintrag enthält im Element List.entry.flag den Änderungsstatus des
 * encounter 0..0
 * encounter ^short = "Fachliche Begründung: Es wird derzeit kein Behandlungskontext dokumentiert."
 
-* date 1..1 MS
+* date 0..1 MS
 * date ^short = "Letzte Aktualisierung des Medikationsplans."
 
 * source 1..1 MS

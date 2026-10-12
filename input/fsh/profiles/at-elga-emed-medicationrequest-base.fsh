@@ -10,7 +10,9 @@ Description: "Die Basis für alle in eMed verwendeten MedicationRequests"
 * meta MS
 * meta.versionId MS
 * meta.lastUpdated MS
-* meta.profile MS
+* meta.profile 1..1 MS
+* modifierExtension 0..0
+* modifierExtension ^short = "Fachliche Begründung: Für den Medikationsplan sind keine zusätzlichen Erweiterungen vorgesehen, die die Bedeutung der Ressource oder ihrer Elemente verändern."
 
 //ASW 24.09.2026 TODO text 1..1
 * text MS

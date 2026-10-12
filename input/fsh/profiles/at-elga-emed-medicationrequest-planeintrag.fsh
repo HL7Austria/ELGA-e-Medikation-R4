@@ -13,17 +13,21 @@ Der Planeintrag kann in weiterer Folge als Grundlage für die Erstellung einer \
 * extension contains $medicationRequest-effectiveDosePeriod-r5 named effectiveDosePeriod 1..1
 * extension[effectiveDosePeriod] ^short = "Zeitraum, in dem das Arzneimittel eingenommen werden soll." //TODO wording prüfen ob wirklich Einnahmezeitraum vgl. Dosierung
 //ASW 22.09.2026 TODO beschreiben, dass bei Akutmedikation der Zeitraum der effectiveDosePeriod mit der Zeitlichen Einschränkung der Dosage übereinstimmen muss (bei mehreren dosageIntstrucitons müssen sowieso alle die gleiche zeitliche Einschränkung haben)
+* extension[effectiveDosePeriod] MS
+* extension[effectiveDosePeriod].valuePeriod MS
+* extension[effectiveDosePeriod].valuePeriod.start MS
+* extension[effectiveDosePeriod].valuePeriod.end MS
 
 * extension contains $medicationrequest-rendereddosageinstruction-r5 named renderedDosageInstruction 0..1
 * extension[renderedDosageInstruction] ^short = "Vollständige textuelle Zusammenfassung der Dosierungsanweisungen - wird von der Fachanwendung anhand der definiert Regeln befüllt."
-
+* extension[renderedDosageInstruction] MS
+* extension[renderedDosageInstruction].valueMarkdown MS
 // IHE extension statt Backport Extension: Verwendung zu klären
 // * extension contains $ihe-ext-medicationrequest-offlabeluse named offLabelUse 0..1 
 // * extension[offLabelUse] ^short = "Weist darauf hin, dass der verschreibende Arzt das Medikament wissentlich für eine Indikation, Altersgruppe, Dosierung oder Verabreichungsform verschrieben hat, die nicht von den Aufsichtsbehörden zugelassen ist und in der Verschreibungsinformation für das Produkt nicht erwähnt wird."
 
-* identifier 0..1 //1..1  MS  TODO: entfernt von AKL 7.9.2026
 //ASW 22.09.2026 - short entfernen - laut neuer guidance nicht relevant
-* identifier ^short = "Planeintrag-ID." // TODO: Verwendung einer logischen Planeintrag-ID prüfen. Details zur Herstellung von Bezügen von geänderten Planeinträgen, siehe Definition."
+// TODO: Verwendung einer logischen Planeintrag-ID prüfen. Details zur Herstellung von Bezügen von geänderten Planeinträgen, siehe Definition."
 // * identifier ^definition = """
 // Planeintrag-ID zur Herstellung eines Bezugs von geänderten Planeinträgen.
 // Vorteil: 
@@ -58,7 +62,7 @@ Der Planeintrag kann in weiterer Folge als Grundlage für die Erstellung einer \
 * category.coding 1..
 * category.coding.system = Canonical(MedicationRequestCategoryCS)
 * category.coding.system 1..1
-* category.coding.code = #1   // Display nicht fixieren -> Übersetzungen
+* category.coding.code = #Planeintrag   // Display nicht fixieren -> Übersetzungen
 //ASW 22.09.2026 TODO code von 1 zu plan ändern
 * category.coding.code 1..1
 * category from MedicationRequestCategoryVS (required)

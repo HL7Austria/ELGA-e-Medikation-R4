@@ -17,7 +17,7 @@ Usage: #example
 * status = $cs-medication-request-status#stopped "Stopped"
 * statusReason.coding = http://terminology.hl7.org/CodeSystem/medicationrequest-status-reason#abgl "Planeintrag Abgelaufen" 
 * intent = https://hl7.org/fhir/R4/valueset-medicationrequest-intent#order
-* category = MedicationRequestCategoryCS#1 "Planeintrag" 
+* category = MedicationRequestCategoryCS#Planeintrag "Planeintrag" 
 * reportedBoolean = false 
 
 // Referenz auf Contained Medication Ressource

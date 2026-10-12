@@ -4,8 +4,8 @@ Description: "Codesystem für zulässige Ausprägungen der MedicationRequest Kat
 * ^status = #active
 * ^experimental = true
 * ^caseSensitive = false
-* #1 "Planeintrag"
-* #2 "Geplante Abgabe"
+* #Planeintrag "Planeintrag"
+* #GeplAbgabe "Geplante Abgabe"
 
 
 ValueSet: MedicationRequestCategoryVS
