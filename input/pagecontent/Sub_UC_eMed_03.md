@@ -54,6 +54,11 @@ Von ELGA-Teilnehmern gelöschte *Geplanten Abgaben* stehen nicht mehr zur Verfü
 <p class="note-to-balloters">
 Offene Punkte: <br>
 Suchparameter: Umsetzung in Arbeit.
+
+ad: Suchkritierien: <br>
+- Geplante Abgabe zu einer Durchgeführten Abgabe: Reverse-Include erlaubt oder eigene Operation? <br>
+- Gültigkeitszeitraum des Rezepts (validityPeriod)? <br>
+- Erstellender GDA?<br>
 </p>
 </div>
 
@@ -65,18 +70,6 @@ Suchparameter: Umsetzung in Arbeit.
 4. Werden keine passenden Ressourcen gefunden, enthält das zurückgelieferte Searchset Bundle keine Einträge.
 7. Im Fehlerfall wird ein entsprechender *OperationOutcome* zurückgegeben.
 5. Optional kann der GDA den *Medikationsplan* (siehe [Sub_UC_eMed_01_01 - Aktuellen Medikationsplan lesen (Plan-Read)](Sub_UC_eMed_01.html#sub_uc_emed_01_01---aktuellen-medikationsplan-lesen-plan-read)) und *Durchgeführte Abgaben* (siehe [Sub_UC_eMed_03_02 - Durchgeführte Abgaben lesen (Dispense-Search)](Sub_UC_eMed_03.html#sub_uc_emed_03_02---durchgeführte-abgaben-lesen-dispense-search)) zur fachlichen Beurteilung abrufen.
-
-<div class="dragon">
-<p class="note-to-balloters">
-Offene Frage:<br>
-ad: Suchkritierien: <br>
-- Geplante Abgabe zu einer Durchgeführten Abgabe: Reverse-Include erlaubt oder eigene Operation? <br>
-- Gültigkeitszeitraum des Rezepts (validityPeriod)? <br>
-- Erstellender GDA?<br>
-</p>
-</div>
-
-##### Sequenzdiagramm
 
 [![overview](plantuml/UC_eMed_03_01.svg){: .mx-auto style="width:50%;"}](plantuml/UC_eMed_03_01.svg)
 
@@ -103,6 +96,13 @@ Die gefundenen *Durchgeführten Abgaben* können als Ausgangspunkt für weitere 
 
 Von ELGA-Teilnehmern gelöschte *Durchgeführten Abgaben* stehen nicht mehr zur Verfügung.
 
+<div class="dragon">
+<p class="note-to-balloters">
+Offene Punkte: <br>
+Suchparameter: Umsetzung in Arbeit.
+</p>
+</div>
+
 
 ##### Ablauf
 
@@ -112,16 +112,6 @@ Von ELGA-Teilnehmern gelöschte *Durchgeführten Abgaben* stehen nicht mehr zur 
 4. Werden keine passenden Ressourcen gefunden, enthält das zurückgelieferte Searchset Bundle keine Einträge.
 5. Im Fehlerfall wird ein entsprechender *OperationOutcome* zurückgegeben.
 6. Optional kann der GDA den *Medikationsplan* (siehe [Sub_UC_eMed_01_01 - Aktuellen Medikationsplan lesen (Plan-Read)](Sub_UC_eMed_01.html#sub_uc_emed_01_01---aktuellen-medikationsplan-lesen-plan-read)) oder *Geplante Abgaben* (siehe [Sub_UC_eMed_03_01 - Geplante Abgaben lesen (Prescription-Search)](Sub_UC_eMed_03.html#sub_uc_emed_03_01---geplante-abgaben-lesen-prescription-search)) zur fachlichen Beurteilung abrufen.
-
-
-<div class="dragon">
-<p class="note-to-balloters">
-Offene Punkte: <br>
-Suchparameter: Umsetzung in Arbeit.
-</p>
-</div>
-
-##### Sequenzdiagramm
 
 [![overview](plantuml/UC_eMed_03_02.svg){: .mx-auto style="width:50%;"}](plantuml/UC_eMed_03_02.svg)
 
@@ -147,8 +137,6 @@ Ein lesender Zugriff auf weitere *Geplante Abgaben* oder *Durchgeführte Abgaben
 4. Die Fachanwendung ermittelt alle *MedicationDispense*-Ressourcen mit dem übermittelten *e-Med GroupIdentifier*.
 5. Die Fachanwendung liefert die ermittelten *MedicationRequest*- und *MedicationDispense*-Ressourcen als Bundle vom Typ *searchset* zurück.
 6. Im Fehlerfall wird ein entsprechender *OperationOutcome* zurückgegeben.
-
-##### Sequenzdiagramm
 
 [![overview](plantuml/UC_eMed_03_03.svg){: .mx-auto style="width:60%;"}](plantuml/UC_eMed_03_03.svg)
 
