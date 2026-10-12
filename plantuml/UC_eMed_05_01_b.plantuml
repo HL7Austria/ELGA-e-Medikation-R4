@@ -1,6 +1,6 @@
 @startuml
 
-title Dispense-Write (ohne Kontakt)
+title Dispense-Write (ohne ELGA-Kontaktbestätigung)
 
 skinparam borderColor #000000
 skinparam backgroundColor #f5f5f5
@@ -58,52 +58,39 @@ activate GDA_Apo COLOR_APO
 
 ref over GDA_Apo, eMed_FA : [[Sub_UC_eMed_03.html#sub_uc_emed_03_03---geplante-und-durchgeführte-abgaben-mittels-e-med-groupidentifier-lesen-groupidentifier-search GroupIdentifier-Search]]
 note over GDA_Apo
-<i>Geplante Abgaben</i> und 
-<i>Durchgeführte Abgaben</i> zum 
-<b>vorliegenden <i>e-Med GroupIdentifier</i></b>
-abrufen
+Geplante Abgaben und 
+Durchgeführte Abgaben zum 
+<b>vorliegenden</b> e-Med
+GroupIdentifier abrufen
 end note
 
-== Neue Durchgeführte Abgaben vorbereiten und schreiben  ==
+== Durchgeführte Abgaben vorbereiten und schreiben  ==
 
-GDA_Apo -> GDA_Apo: Durchgeführte Abgaben erstellen
+GDA_Apo -> GDA_Apo: Je abgegebenes Arzneimittel\neine <i>Durchgeführte Abgabe</i>\nerstellen
 
-note over GDA_Apo
-Je Abgabe eine <i>Durchgeführte Abgabe</i> erstellen: 
-- referenziert zugehörige <i>Geplante Abgabe</i> und 
-<i>Medikationsplaneintrag</i>
-- enthält den <b>vorliegenden <i>e-Med GroupIdentifier</i></b>
-end note
-
-GDA_Apo -> eMed_FA: POST $dispense-write (Transaction Bundle MedicationDispense)
+GDA_Apo -> eMed_FA: POST $dispense-write\n(Durchgeführte Abgaben-Transaction Bundle)
 
 activate eMed_FA COLOR_EMED_FA
 
 eMed_FA -> eMed_FA: Prüfung\nTransaction Bundle
 alt COLOR_OK Durchgeführte Abgaben erstellt
 
-  note over eMed_FA
-  <i>Durchgeführte Abgaben</i>
-  gespeichert.
-  Je nach Abgabeart und Anzahl der 
-  Einlösungen kann durch die 
-  Fachanwendung automatisch ein 
-  Statuswechesl der zugehörigen 
-  <i>Geplanten Abgabe</i> erfolgen.
-  end note
+    note over eMed_FA
+    <i>Durchgeführte Abgaben</i>
+    mit vorliegendem
+    <b>e-Med GroupIdentifier</b> 
+    gespeichert 
+    + evtl. Statusänderung der 
+    zugehörigen <i>Geplanten Abgaben</i>
+    end note
 
   eMed_FA --> GDA_Apo: OK 
 
 else COLOR_ERROR Fehler
-  eMed_FA --> GDA_Apo: Fehler 
+  eMed_FA --> GDA_Apo: OperationOutcome 
   deactivate eMed_FA
+  deactivate GDA_Apo 
 
 end
 
-note over GDA_Apo
-Kein weiterer ELGA-Zugriff:
-- keine Dokumentations von OTC-Abgaben
-- kein Zugriff auf den Medikationsplan
-- keine weiteren Suchoperationen
-end note
 @enduml
