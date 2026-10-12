@@ -65,6 +65,7 @@ $plan-read gelesen und bearbeitet.
 end note
 
 GDA_1 -> eMed_FA: POST $plan-write (Medikationsplan-Transaction-Bundle + ETag)
+activate eMed_FA COLOR_EMED_FA
 
 eMed_FA -> eMed_FA: Prüfung des ETag\n(Optimistic Locking)
 

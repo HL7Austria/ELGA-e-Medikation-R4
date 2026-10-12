@@ -111,7 +111,7 @@ else gleichzeitige Erstellung <i>Geplante Abgabe</i>
     end note
 
   else COLOR_ERROR <i>Geplante Abgabe</i> Fehler
-    eMed_FA --> GDA_1: Fehler
+    eMed_FA --> GDA_1: OperationOutcome
 
     alt COLOR_OK Geplante Abgabe erneut übermitteln
       GDA_1 -> eMed_FA: POST $prescription-write\n(Geplante Abgaben-Transaction Bundle)

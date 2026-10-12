@@ -80,14 +80,14 @@ alt COLOR_OK nein: kein Medikationsplan persistiert
   eMed_FA -> GDA_1: Medikationsplan-Bundle\n(List.emptyReason = notstarted)\n+ ETag 
   deactivate eMed_FA
 
-
 else COLOR_ERROR ja: Medikationsplan persistiert 
 
+  deactivate GDA_1
   ref over GDA_1,eMed_FA
   Siehe Ablauf Plan-Read.
   end ref
 
-deactivate GDA_1
+
 end
 
 

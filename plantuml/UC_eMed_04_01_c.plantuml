@@ -102,7 +102,7 @@ else gleichzeitige Erstellung <i>Geplante Abgabe</i>
     eMed_FA -> GDA_1: OK (Ressourcen inkl. e-Med GroupIdentifier)
 
   else COLOR_ERROR Geplante Abgabe Fehler
-    eMed_FA --> GDA_1: Fehler 
+    eMed_FA --> GDA_1: OperationOutcome 
     deactivate eMed_FA
 
   end

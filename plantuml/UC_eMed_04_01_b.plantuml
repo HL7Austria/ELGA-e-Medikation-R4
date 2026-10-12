@@ -80,7 +80,7 @@ alt COLOR_OK Geplante Abgaben erstellt
   
 
 else COLOR_ERROR Geplante Abgaben Fehler
-  eMed_FA --> GDA_1: Fehler 
+  eMed_FA --> GDA_1: OperationOutcome 
   deactivate eMed_FA
 
 end
