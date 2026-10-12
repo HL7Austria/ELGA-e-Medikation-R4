@@ -42,7 +42,9 @@ Unter gewissen Voraussetzungen kann ein bestehender Medikationsplaneintrag angep
 
 Wird der zugehörige Planeintrag nach der Erstellung einer *Geplanten Abgabe* geändert, kann die *Geplante Abgabe* weiterhin gültig bleiben oder gegebenenfalls storniert werden (siehe [Sub_UC_eMed_04_03 - Geplante Abgabe stornieren ($prescription-discard)](Sub_UC_eMed_04.html#sub_uc_emed_04_03---geplante-abgabe-stornieren-prescription-discard)). 
 
-Medikationsplaneinträge können mehrfach rezeptiert werden und daher auch zu mehreren *Geplanten Abgaben* führen. <!-- Können von einer Planeintragsversion gleichzeitig mehrere Geplante Abgaben aktiv sein? oder gilt nicht eher: Es können zu einem Planeintrag mehrere aktive *Geplante Abgaben* existieren, aber nur eine je Planeintragversion.
+Medikationsplaneinträge können mehrfach rezeptiert werden und daher auch zu mehreren *Geplanten Abgaben* führen. 
+
+<!-- Können von einer Planeintragsversion gleichzeitig mehrere Geplante Abgaben aktiv sein? oder gilt nicht eher: Es können zu einem Planeintrag mehrere aktive *Geplante Abgaben* existieren, aber nur eine je Planeintragversion. -->
 
 Die Anzahl der *Geplanten Abgaben*, die mit demselben *e-Med Groupidentifier* gespeichert werden können, ist durch das Limit für die Anzahl der Medikamente je e-Rezept begrenzt.
 
