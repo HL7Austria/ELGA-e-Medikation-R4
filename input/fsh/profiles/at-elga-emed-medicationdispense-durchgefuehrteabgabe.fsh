@@ -10,9 +10,24 @@ Der aktuelle Status einer \"Durchgeführten Abgabe\" wird mittels \"status\"- un
 * . ^short = "Durchgeführte Abgabe eines Arzneimittels mit oder ohne Bezug zur geplanten Abgabe. Verwendet R5 Backport Extensions."
 
 * id 0..1 MS
+* id ^short = "Technische id der Ressource"
 * meta MS
-* text 0..1 MS  // TODO auf 1..1 setzen
+* meta.versionId MS
+* meta.lastUpdated MS
+* meta.profile 1..1 MS
+* modifierExtension 0..0
+* modifierExtension ^short = "Fachliche Begründung: Für den Medikationsplan sind keine zusätzlichen Erweiterungen vorgesehen, die die Bedeutung der Ressource oder ihrer Elemente verändern."
+
+//ASW 24.09.2026 TODO text 1..1
+* text MS
+//ASW 22.09.2026 TODO Beschreibung - so visualisiert wie im CDA mit XHTML -> How to fill the Narrative in -notes.html 
+// Bis zum Ballot nur Drachenbox
+* text.div MS
+* text.status MS
+
 * implicitRules 0..0
+* implicitRules ^short =  "Fachliche Begründung: Die Ressource wird nach den Regeln dieses Implementierungsleitfadens interpretiert. Zusätzliche implizite Verarbeitungsregeln werden nicht verwendet."
+
 
 * contained MS
 * contained ^short = "TODO"

@@ -13,7 +13,7 @@ Usage: #example
 
 * status = $cs-medication-request-status#active
 * intent = https://hl7.org/fhir/R4/valueset-medicationrequest-intent#order
-* category[mrcategory] = MedicationRequestCategoryCS#2 "Geplante Abgabe"
+* category[mrcategory] = MedicationRequestCategoryCS#GeplAbgabe "Geplante Abgabe"
 * category[recipetype] = $cs-medication-rezeptart#KASSEN "Kassenrezept"
 
 // Referenz auf Contained Medication Ressource

@@ -19,10 +19,17 @@ Es werden R5-Backport-Extensions verwendet."
 * extension contains $medicationRequest-effectiveDosePeriod-r5 named effectiveDosePeriod 0..1
 * extension[effectiveDosePeriod] ^short = "Zeitraum, in dem die Medikation eingenommen werden soll."
 * extension[effectiveDosePeriod] ^definition = "Zeitraum, über den die Medikation eingenommen werden soll. Wenn mehrere dosageInstruction-Zeilen vorhanden sind (z. B. bei einer ausschleichenden Dosierung), entspricht dieser Zeitraum dem frühesten Startdatum und dem spätesten Enddatum der dosageInstructions."
+* extension[effectiveDosePeriod] MS
+* extension[effectiveDosePeriod].url MS
+* extension[effectiveDosePeriod].valuePeriod MS
+* extension[effectiveDosePeriod].valuePeriod.start MS
+* extension[effectiveDosePeriod].valuePeriod.end MS
 
 * extension contains $medicationrequest-rendereddosageinstruction-r5 named renderedDosageInstruction 0..1
-* extension[renderedDosageInstruction] ^short = "Vollständige Darstellung der Dosierungsanweisungen"
-
+* extension[renderedDosageInstruction] ^short = "Vollständige textuelle Zusammenfassung der Dosierungsanweisungen - wird von der Fachanwendung anhand der definiert Regeln befüllt."
+* extension[renderedDosageInstruction] MS
+* extension[renderedDosageInstruction].url MS
+* extension[renderedDosageInstruction].valueMarkdown MS
 
 // IHE extension statt Backport Extension
 // * extension contains $ihe-ext-medicationrequest-offlabeluse named offLabelUse 0..1 
@@ -31,7 +38,6 @@ Es werden R5-Backport-Extensions verwendet."
 // verschrieben hat. Derzeit keine Verwendung in der geplanten Abgabe, implizit ist dieser Bezug in Zukunft durch Referenzierung der Diagnose herstellbar."
 // ENDE Extensions  ******************
 
-* identifier 0..0 
 //* identifier ^short = "Logischer Identifier. Keine Verwendung in der geplanten Abgabe." // TODO: Verwendung noch zu prüfen, evtl. basedon mit logischem Identifier ausreichend."
 
 * status 1..1 MS
@@ -40,7 +46,6 @@ Es werden R5-Backport-Extensions verwendet."
 //(nicht verwendet: on-hold, cancelled, draft, unknown)
 // completed: evtl. implizit mittels Custom Operation gesetzt, nachdem alle Abgaben durchgeführt wurden (Rezept komplett eingelöst) (TODO: techn. prüfen)
 
-* statusReason 0..0 
 // * statusReason ^short = "Grund des aktuellen Status: https://hl7.org/fhir/R4/valueset-medicationrequest-status-reason.html. Keine Verwendung in der geplanten Abgabe."
 
 * intent 1..1 MS
@@ -61,25 +66,32 @@ Es werden R5-Backport-Extensions verwendet."
 //TODO ASW BUG in this slicing
 * category[mrcategory] from MedicationRequestCategoryVS (required)
 * category[mrcategory].coding.system = Canonical(MedicationRequestCategoryCS)
-* category[mrcategory].coding.code = #2
+* category[mrcategory].coding.code MS
+* category[mrcategory].coding.system MS
+* category[mrcategory].coding.display MS
+* category[mrcategory].coding.version MS
+* category[mrcategory].coding.code = #GeplAbgabe (exactly)
 * category[mrcategory] ^short = "Kategorie zur Unterscheidung eines Medikationsplaneintrags von einer geplanten Abgabe (beide haben intent order)"
 //* category[recipetype] from $vs-medication-rezeptart (required)
 //* category[recipetype] from elga-medikationrezeptart (required)
 * category[recipetype].coding 1..
-* category[recipetype].coding.code 1..1
+* category[recipetype].coding.code 1..1 MS
+* category[recipetype].coding.display MS
+* category[recipetype].coding.version MS
 * category[recipetype] from elga-medikationrezeptart (required)
 * category[recipetype].coding.system = "https://termgit.elga.gv.at/CodeSystem/medikationrezeptart"
-* category[recipetype].coding.system 1..1
+* category[recipetype].coding.system 1..1 MS
 * category[recipetype]  ^short = "Kategorie zur Unterscheidung, ob ein Kassen-, Privat- oder Substitutionsrezept erstellt wurde."
 
-* priority 0..0
+
 // * priority ^short = "Priorität der geplanten Abgabe. Keine Verwendung in der geplanten Abgabe."
 
 * doNotPerform 0..0
+* doNotPerform ^short = "Fachliche Begründung: Die geplante Abgabe bildet einen positiven Abgabeauftrag ab; ein ausdrückliches Verbot einer Abgabe wird nicht als eigene geplante Abgabe dokumentiert."
 // * doNotPerform ^short = "Gibt an, ob die Geplante Abgabe untersagt ist. Keine Verwendung in der geplanten Abgabe."
 
 * reported[x] 0..0
-// * reported[x] ^short = "Keine Verwendung in der geplanten Abgabe."
+* reported[x] ^short = "Fachliche Begründung: Die geplante Abgabe wird als Auftrag dokumentiert; eine Kennzeichnung als lediglich berichteter Auftrag würde die Bedeutung der Ressource verändern und wird daher nicht verwendet."
 
 // --- Medication immer als Medication-Resource (mit oder ohne PZN, damit Handelsname angegeben werden kann und historisch verfügbar bleibt)
 * medication[x] 1..1 MS  
@@ -89,19 +101,23 @@ Es werden R5-Backport-Extensions verwendet."
    //ws planeintrag kann auch nur wirkstoffe enthalten; evtl. wirkstoff oder pzn; magistral, pzn, sonstige; todo bepr. mit medication ressource
 * medication[x] ^short = "Das Arzneimittel wird immer in einer contained Medication Ressource dokumentiert, damit 
 Arzneimittel mit und ohne PZN einheitlich dokumentiert werden können."
+* medicationReference MS
+* medicationReference.reference MS
+* medicationReference.identifier MS
+* medicationReference.identifier.system MS
+* medicationReference.identifier.value MS
+
 
 // --- Subject ---
 * subject only Reference(AtElgaCorePatient) 
 * subject 1..1 MS
 * subject ^short = "Patient, für den die Geplante Abgabe ausgestellt werden soll (über Zentralen Patientenindex identifiziert und Teilnehmer von ELGA e-Medikation)."
+* subject.reference MS
+* subject.identifier MS
+* subject.identifier.system MS
+* subject.identifier.value MS
 
-* encounter 0..0
-* encounter ^short = "Aufenthalt/Begegnung, während dessen die Geplante Abgabe erstellt wurde. Keine Verwendung in der geplanten Abgabe."
-
-* supportingInformation 0..0
-* supportingInformation ^short = "Referenz auf zusätzliche Informationen (Ressource Any)
-(z. B. Größe und Gewicht des Patienten), die die Verschreibung des Medikaments unterstützen. 
-Keine Verwendung in der geplanten Abgabe."
+//* supportingInformation ^short = "Referenz auf zusätzliche Informationen (Ressource Any) (z. B. Größe und Gewicht des Patienten), die die Verschreibung des Medikaments unterstützen. Keine Verwendung in der geplanten Abgabe."
 
 // -- AuthoredOn ---
 * authoredOn 1..1 MS
@@ -114,49 +130,47 @@ Keine Verwendung in der geplanten Abgabe."
 (eindeutig identifiziert über den GDA-Index und berechtigt auf die ELGA e-Medikation des Patienten zuzugreifen)."
 //TODO: HL7ATCore-Practitioner-Profile profilieren."
 
-* performer 0..0 
-* performer ^short = "Durchführende Person. Keine Verwendung in der geplanten Abgabe."
+* requester.reference MS
+* requester.identifier MS
+* requester.identifier.system MS
+* requester.identifier.value MS
 
-* performerType 0..0
-* performerType ^short = "Keine Verwendung in der geplanten Abgabe."
+//* recorder ^short = "Person der Dateineingabe. Keine Verwendung in der geplanten Abgabe." //  TODO: Gemäß Vorgaben im CDA, keine Verwendung. Abstimmung der Verwendung mit e-Diagnose." 
 
-* recorder 0..0
-* recorder ^short = "Person der Dateineingabe. Keine Verwendung in der geplanten Abgabe." //  TODO: Gemäß Vorgaben im CDA, keine Verwendung. Abstimmung der Verwendung mit e-Diagnose." 
-
-* reasonCode 0..0 
 //* reasonCode from $cs-sct (required)
-* reasonCode ^short = "Grund für die Verordnung des Arzneimittels als Code oder Referenz. Bis zur Verfügbarkeit von e-Diagnose keine Verwendung in geplanter Abgabe."
+//* reasonCode ^short = "Grund für die Verordnung des Arzneimittels als Code oder Referenz. Bis zur Verfügbarkeit von e-Diagnose keine Verwendung in geplanter Abgabe."
 
-* instantiatesCanonical 0..0 
-* instantiatesCanonical ^short = "URL, die auf eine Richtlinie/Guideline verweist, die von dieser 
-geplanten Abgabe ganz oder teilweise eingehalten wird. Keine Verwendung in der geplanten Abgabe."
+//* instantiatesCanonical ^short = "URL, die auf eine Richtlinie/Guideline verweist, die von dieser geplanten Abgabe ganz oder teilweise eingehalten wird. Keine Verwendung in der geplanten Abgabe."
 
-* instantiatesUri 0..0 
-* instantiatesUri ^short = "URL, die auf eine externe gepflegte Richtlinie/Guideline verweist, die von dieser 
-geplanten Abgabe ganz oder teilweise eingehalten wird. Keine Verwendung in der geplanten Abgabe."
+//* instantiatesUri ^short = "URL, die auf eine externe gepflegte Richtlinie/Guideline verweist, die von dieser geplanten Abgabe ganz oder teilweise eingehalten wird. Keine Verwendung in der geplanten Abgabe."
 
 * basedOn 1..1 MS
 * basedOn only Reference(AtElgaEmedMedicationRequestPlaneintrag) 
 * basedOn ^short = "Referenz auf die (aktuelle) Version des zugrundeliegenden Medikationsplaneintrags, auf dem diese Geplante Abgabe basiert."
 // TODO: zu prüfen: zusätzliche logische Referenz: reference.identifier 
 // {Medikationsplaneintrag-ID}_{Medikationsplaneintrag-ID_Version}."
+* basedOn.reference MS
 
 * groupIdentifier 0..1 MS
 * groupIdentifier ^short = "Als groupIdentifier dient die eMED-ID, die auch im e-Rezept mitgeführt wird. 
 Werden von einem:r Arzt:Ärtztin mehrere Arzneimittel gleichzeitig verordnet, wird für jedes Arzneimittel eine 
 Geplante Abgabe mit demselben groupIdentifier erstellt (bildet 'Rezept-Klammer')."
 //TODO: eMED-ID Wording ist evtl. aufgrund des Parallelbetriebs noch anzupassen"
+* groupIdentifier.system MS
+* groupIdentifier.value MS
 
+//TODO ASW 12.10.2026 im Planeintrag vorhanden - hier auch relevant?
 * courseOfTherapyType 0..0 
 * courseOfTherapyType ^short = "Gesamtmuster der Medikamentengabe (z.B. saisonal). Keine Verwendung in der geplanten Abgabe."
 
-* insurance 0..0
-* insurance ^short = "Versicherungsinformatinen als Coverage oder ClaimResponse Resource. Keine Verwendung in der geplanten Abgabe."
+
+//* insurance ^short = "Versicherungsinformatinen als Coverage oder ClaimResponse Resource. Keine Verwendung in der geplanten Abgabe."
 
 * note 0..* MS  
 * note ^short = "Zusätzliche Informationen zur geplanten Abgabe (Kommunikation zwischen Arzt und Apotheke, die nicht die Dosierung betreffen)." 
 //TODO: prüfen was CDA derzeit zulässt; HL7 Consultation, ob Feld benötigt" 
-
+* note.text MS
+* note.time MS
 
 //TODO Dosage und AtElgaEmedDosageDosierung entfernen sobald Dosierungen fertig sind
 * dosageInstruction MS
@@ -166,10 +180,8 @@ Geplante Abgabe mit demselben groupIdentifier erstellt (bildet 'Rezept-Klammer')
 * dispenseRequest 1..1 MS
 * dispenseRequest ^short = "Details zur geplanten Abgabe des Arzneimittels."
 
-* dispenseRequest.initialFill 0..0 
 //* dispenseRequest.initialFill.quantity ^short = "Anzahl der Einheiten für die erste Abgabe, z.B. 30 Kapseln oder 100 mg. Keine Verwendung in der geplanten Abgabe."   
 
-* dispenseRequest.dispenseInterval 0..0 
 //* dispenseRequest.dispenseInterval ^short = "Mindestzeitraum zwischen den Abgaben. Keine Verwendung in der geplanten Abgabe."
 
 * dispenseRequest.validityPeriod 1..1 MS 
@@ -181,6 +193,8 @@ Der Gültigkeitszeitraum ist abhängig von der **Rezeptart**:
 * **Privatrezept**: ab Erstelldatum maximal 365 Tage gültig, wenn die erste Einlösung innerhalb von 1 Monat ab Erstelldatum erfolgt (sonst Status abgelaufen). validityPeriod.start kein Datum in der Zukunft; Die Gültigkeitsdauer (validityPeriod.end) kann vom Arzt definiert werden.
 * **Substitutionsrezept**: Maximale Gültigkeitsdauer 12 Monate. Das validityPeriod.start darf maximal einen Monat in der Zukunft liegen, gültig bis das validityPeriod.end erreicht ist.
 """
+* dispenseRequest.validityPeriod.start MS
+* dispenseRequest.validityPeriod.end MS
 // TODO: Techn. Prüfung der Gültigkeitszeiträume
 // Falls das validityPeriod.start dem authoredOn-Datum entspricht, kann das start-Datum entfallen.
 // zu prüfen: Kann beim Kassenrezept validityPeriod.start in der Vergangenheit liegen, wenn die Geplante Abgabe in nachhinein erstellt wurde (z.B. wenn Arzt auf Urlaub und eine Notfallabgabe in der Apotheke durchgeführt wurde)?
@@ -201,22 +215,16 @@ Anzahl der weiteren möglichen Einlösungen:
 Da sich die Angaben zum Arzneimittel jeweils auf eine Packung der Arznei beziehen, MUSS die Anzahl der auszugebenden Packungen angegeben werden (mindestens 1). 
 Dies gilt für Arzneimittel mit PZN und magistralen Zubereitungen."
 
-* dispenseRequest.expectedSupplyDuration 0..0 
 //* dispenseRequest.expectedSupplyDuration.value ^short = "Dauer, für die die bereitgestellte Menge des Medikaments voraussichtlich ausreicht. Keine Verwendung in der geplanten Abgabe."
 
-* dispenseRequest.performer 0..0 
 //* dispenseRequest.performer ^short = "Apotheke oder andere Einrichtung, die die Geplante Abgabe einlösen soll. Keine Verwendung in der geplanten Abgabe."
 
-* substitution 0..0  
 //* substitution ^short = "Gibt an, ob das Arzneimittel substituiert werden darf (Absicht des Arztes, der die Geplante Abgabe erstellt). Keine Verwendung in der geplanten Abgabe." 
 
-* priorPrescription 0..0 
 //* priorPrescription ^short = "Im Falle einer Änderung wird auf die ersetzte Geplante Abgabe verwiesen. Keine Verwendung in der geplanten Abgabe."
 
-* detectedIssue 0..0
 //* detectedIssue ^short = "Klinisches Problem mit Maßnahme, mittels Referenz auf Ressouce DetectedIssue. Keine Verwendung in der geplanten Abgabe."
 
-* eventHistory 0..0
 // * eventHistory ^short = "Referenz auf Provenance-Ressourcen, die 
 // verschiedene relevante Versionen dieser Ressource dokumentieren. 
 // Keine Verwendung in der geplanten Abgabe."
