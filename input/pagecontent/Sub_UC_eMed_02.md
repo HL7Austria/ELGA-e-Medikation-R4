@@ -231,8 +231,6 @@ AtElgaEmedMedicationRequestPlaneintrag
     [...]
     authoredOn: Datum der Änderung des Planeintrags    
     requester: für die Änderung verantwortlicher GDA 
-    [...]
-    priorPrescription: Referenz auf ersetzte Planeintragsversion
 ```
  <!-- statusReason.coding: prüfen ob nur bei stopped und entered-in-error möglich sein soll, Invariante TODO: akl 29.09.2026
  priorPrescription: Referenz auf ersetzte Planeintragsversion in Beispielen ergänzen! -->
@@ -331,8 +329,7 @@ AtElgaEmedMedicationRequestPlaneintrag
     [...]
     authoredOn: Datum der Änderung des Planeintrags    
     requester: für die Änderung verantwortlicher GDA 
-    [...]
-    priorPrescription: Referenz auf ersetzte Planeintragsversion
+
 ```
 <!-- Grund für Aktivierung (optional) prüfen, akl 30.09.2026 -->
 
@@ -417,8 +414,6 @@ AtElgaEmedMedicationRequestPlaneintrag
     [...]
     authoredOn: Datum der Stornierung  
     requester: für die Stornierung verantwortlicher GDA 
-    [...]
-    priorPrescription: Referenz auf ersetzte Planeintragsversion
 ```
 
 
@@ -472,8 +467,7 @@ AtElgaEmedMedicationRequestPlaneintrag
     [...]
     authoredOn: Datum der Beendigung  
     requester: für die Beendigung verantwortlicher GDA 
-    [...]
-    priorPrescription: Referenz auf ersetzte Planeintragsversion
+
 ```
 
 ### Sub_UC_eMed_02_09 - Abgelaufenen Planeintrag weiterverordnen oder beenden 
@@ -483,7 +477,9 @@ Planeinträge mit abgelaufenem Einnahmezeitraum (überschrittenes Enddatum in *e
 **Varianten:**
 - **1.A** Möchte der GDA die Einnahme **weiterverordnen**, muss er entsprechende Anpassungen vornehmen (siehe [Sub_UC_eMed_02_03 - Planeintrag im Medikationsplan ändern](Sub_UC_eMed_02.html#sub_uc_emed_02_03---planeintrag-im-medikationsplan-ändern)).
 
-- **1.B** Soll die Einnahme **nicht weiterverordnet** werden, nimmt der GDA **keine Änderung** am List.entry.flag und der abgelaufene Planeintrag muss entsprechend angepasst werden.  <!-- TODO siehe unten . -->
+- **1.B** Soll die Einnahme **nicht weiterverordnet** werden, nimmt der GDA **keine Änderung** am List.entry.flag vor. Der abgelaufene Planeintrag muss entsprechend angepasst werden (siehe [Relevante Elemente (MedicationRequest - Planeintrag 1)(1.B)](Sub_UC_eMed_02.html#relevante-elemente-medicationrequest---planeintrag-1-6-1b))
+<!-- - **1.B** Soll die Einnahme **nicht weiterverordnet** werden, nimmt der GDA **keine Änderung** am List.entry.flag und dem abgelaufenen Planeintrag vor (auch kein Beendigungsgrund und keine Aktualisierung des GDAs im Planeintrag).  -->
+
 
 Er übermittelt mit **POST** [$plan-write](OperationDefinition-AtEmed.List.PlanWrite.html) den aktualisierten Medikationsplan in einem [Transaction Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplantx.html): 
 - alle geänderten Ressourcen (inkl. der beendeten) sind inline im Bundle enthalten
@@ -505,7 +501,7 @@ AtElgaEmedListMedikationsplan
         item: Referenz auf den Planeintrag 2  
 ```
 
-#### Relevante Elemente (MedicationRequest - Planeintrag 1)
+#### Relevante Elemente (MedicationRequest - Planeintrag 1) (1.B)
 
 <!-- ```JSON
 AtElgaEmedMedicationRequestPlaneintrag
@@ -514,12 +510,12 @@ AtElgaEmedMedicationRequestPlaneintrag
 
 ```JSON
 AtElgaEmedMedicationRequestPlaneintrag
-    extension:effectiveDosePeriod: liegt in der Vergangenheit         // bleibt unverändert
-    status: stopped                        // von Fachanwendung gesetzt, bleibt unverändert
-    statusReason.coding: abgelaufen        // von Fachanwendung gesetzt,´bleibt unverändert
+    extension:effectiveDosePeriod: liegt in der Vergangenheit   // bleibt unverändert
+    status: stopped                     
+    statusReason.coding: abgelaufen        
     [...]
-    authoredOn: Datum der aktuellen Bearbeitung         // vom GDA gesetzt
-    requester: das Ablaufen zur Kenntnis nehmender GDA  // vom GDA gesetzt
+    authoredOn: Datum der aktuellen Bearbeitung         
+    requester: das Ablaufen zur Kenntnis nehmender GDA  
 ```
 <!-- Todo: Prüfen, ob diese Annahmen korrekt sind, akl 30.9.2026
 priorPrescription überall rausnhemen -->
