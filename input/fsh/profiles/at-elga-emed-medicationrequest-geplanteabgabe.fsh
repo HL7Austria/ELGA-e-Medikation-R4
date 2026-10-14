@@ -9,12 +9,6 @@ Es werden R5-Backport-Extensions verwendet."
 * . ^short = "Geplante Abgabe eines Arzneimittels aus dem Medikationsplan. Verwendet R5 Backport Extensions."
 
 
-* contained MS
-* contained ^short = "TODO"
-//ASW 22.09.2026 TODO contained short
-* contained only AtElgaEmedMedicationStandardMedikation or AtElgaEmedMedicationMagistraleZubereitung
-
-
 // Extensions
 * extension contains $medicationRequest-effectiveDosePeriod-r5 named effectiveDosePeriod 0..1
 * extension[effectiveDosePeriod] ^short = "Zeitraum, in dem die Medikation eingenommen werden soll."
@@ -99,13 +93,13 @@ Es werden R5-Backport-Extensions verwendet."
 * medication[x] ^type.aggregation = #contained
 
    //ws planeintrag kann auch nur wirkstoffe enthalten; evtl. wirkstoff oder pzn; magistral, pzn, sonstige; todo bepr. mit medication ressource
-* medication[x] ^short = "Das Arzneimittel wird immer in einer contained Medication Ressource dokumentiert, damit 
-Arzneimittel mit und ohne PZN einheitlich dokumentiert werden können."
+* medication[x] ^short = "Das Arzneimittel wird in einer contained Medication Ressource oder als logische Referenz dokumentiert, damit Arzneimittel mit und ohne PZN einheitlich dokumentiert werden können."
 * medicationReference MS
 * medicationReference.reference MS
-* medicationReference.identifier MS
-* medicationReference.identifier.system MS
-* medicationReference.identifier.value MS
+// ASW TODO 14.10. medication hat keinen identifier - conditional reference im tx bundle - wie einschränken für unterschied zw. schreiben und lesen?
+//* medicationReference.identifier MS
+//* medicationReference.identifier.system MS
+//* medicationReference.identifier.value MS
 
 
 // --- Subject ---
@@ -214,6 +208,12 @@ Anzahl der weiteren möglichen Einlösungen:
 * dispenseRequest.quantity ^short = "Menge des Medikaments, die bei jeder Abgabe bereitgestellt werden soll.
 Da sich die Angaben zum Arzneimittel jeweils auf eine Packung der Arznei beziehen, MUSS die Anzahl der auszugebenden Packungen angegeben werden (mindestens 1). 
 Dies gilt für Arzneimittel mit PZN und magistralen Zubereitungen."
+* dispenseRequest.quantity.unit MS
+* dispenseRequest.quantity.value MS
+* dispenseRequest.quantity.code MS
+* dispenseRequest.modifierExtension 0..0
+* dispenseRequest.modifierExtension ^short = "Fachliche Begründung: Für die Abgabedetails sind keine zusätzlichen Erweiterungen vorgesehen, die deren Bedeutung verändern."
+
 
 //* dispenseRequest.expectedSupplyDuration.value ^short = "Dauer, für die die bereitgestellte Menge des Medikaments voraussichtlich ausreicht. Keine Verwendung in der geplanten Abgabe."
 
