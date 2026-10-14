@@ -108,6 +108,10 @@ und wann nicht
 In Arbeit.
 </div>
 
+#### Serverhalten bei Elementen ohne MS Markierung
+<div class="note-to-balloters" markdown="1">
+In Arbeit.
+</div>
 
 ### Befüllung der Narrativen Teile
 
