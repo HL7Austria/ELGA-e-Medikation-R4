@@ -10,7 +10,8 @@ Der lesende Zugriff umfasst:
 
 * den Abruf des **aktuellen Medikationsplans**, der für eine mögliche Bearbeitung aufbereitet ist ([Plan-Read](Sub_UC_eMed_01.html#sub_uc_emed_01_01---aktuellen-medikationsplan-lesen-plan-read)),
 * die Suche und den Abruf **historischer Versionen des Medikationsplans** ([Plan-History-Search](Sub_UC_eMed_01.html#sub_uc_emed_01_02---historische-medikationsplanversion-lesen-plan-history-search)),
-* die Suche und den Abruf **einzelner Medikationsplaneinträge** bzw. historischer Versionen ([Planentry-Search](Sub_UC_eMed_01.html#sub_uc_emed_01_04---medikationsplaneinträge-lesen-planentry-search))sowie 
+* die Suche und den Abruf **einzelner Medikationsplaneinträge** ([Planentry-Search](Sub_UC_eMed_01.html#sub_uc_emed_01_04---medikationsplaneinträge-lesen-planentry-search)) sowie 
+* die Suche und den Abruf **historischer Medikationsplaneintragversionen** ([Planentry-History-Search](Sub_UC_eMed_01.html#sub_uc_emed_01_04---medikationsplaneinträge-lesen-planentry-search)) sowie
 * Abruf eines **Verzeichnisses historischer Medikationspläne** ([Plan-History-Directory-Search](Sub_UC_eMed_01.html#sub_uc_emed_01_05---verzeichnis-historischer-medikationspläne-lesen-plan-history-directory-search)) <!-- Todo: -> keine fachliche Anforderung für Plan-History-Directory-Search? akl 25.09.2026 -->
 
 <div class="hinweisbox">
@@ -31,6 +32,8 @@ Hierfür erzeugt die Fachanwendung aus der aktuellen Version der [List](Structur
 1. Der Client führt ein **POST** [$plan-read](OperationDefinition-AtElgaEmed.List.Planread.html) aus.
 2. Die Fachanwendung prüft den Zustand des Medikationsplans und erzeugt ein Medikationsplan-Bundle zur Auslieferung (siehe [Prüfung des Planzustands und Erzeugung des Medikationsplan-Bundles](Sub_UC_eMed_01.html#prüfung-des-planzustands-und-erzeugung-des-medikationsplan-bundles)).
 3. Die Fachanwendung liefert das Medikationsplan-Bundle zurück. Dieses enthält im HTTP-Header den ***ETag*** der aktuellen Version der *List*-Ressource für das [**Optimistic Locking**](https://hl7.org/fhir/http.html#concurrency).
+
+<!-- Etag kapitel verlinken, TODO check ob noch im header   design_choices.html#optimistisches-locking-mit-etags-->
 
 Nachfolgend kann der Medikationsplan vom GDA bearbeitet und mittels [Plan-Write](Sub_UC_eMed_02.html#sub_uc_emed_02_01---medikationsplan-schreiben-plan-write) gespeichert werden.
 
@@ -67,6 +70,9 @@ Die **persistierten Ressourcen am Server** werden durch die Transformationen fü
   * Neue oder geänderte Planeinträge (*List.entry.flag = new* oder *changed*) werden auf ***unchanged*** gesetzt (siehe [Status des List.entry.flags im Medikationsplan](workflowmanagement.html#status-des-listentryflags-im-medikationsplan)).
   * Stornierte und beendete Planeinträge mit *List.entry.flag = **removed*** werden aus dem Medikationsplan **entfernt**.
   * Planeinträge mit **abgelaufenem Behandlungszeitraum** werden mit *List.entry.flag = removed* gekennzeichnet und werden mit **ausgeliefert**, um dem GDA die Möglichkeit zu geben, das Medikament weiterzuverodnen. Anderenfalls nimmt der GDA zur Kenntnis, dass der Planeintrag mit seinem nächsten Schreibvorgang entfernt wird.
+
+<!--   todo: auch medicationrequests mit neuem status vorbereitet -->
+
 * Sind nach der Transformation keine Planeinträge mehr vorhanden, wird *List.emptyReason = nilknown* gesetzt.
 <!-- Todo: wie ermittelt die Fachanwendung, ob Behandlungszeitraum abgelaufen akl 25.09.2026 -->
 3. **Es existiert ein leerer Medikationsplan** (mit einem [List.emptyReason](https://fhir.hl7.at/r4-ELGA-e-Medikation-main/ValueSet-ElgaListEmptyReasonVS.html)).
