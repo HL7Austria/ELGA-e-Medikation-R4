@@ -346,15 +346,16 @@ Ein GDA kann explizit dokumentieren, dass für den Patienten derzeit **keine Med
 
 Der GDA führt ein **POST** [$plan-read](OperationDefinition-AtElgaEmed.List.Planread.html) aus und bearbeitet die von der Fachanwendung im [Medikationsplan-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplan.html) bereitgestellten Ressourcen:
 
-Die Vorgehensweise unterscheidet sich je nach Inhalt des Medikationspans:
+Die Vorgehensweise unterscheidet sich je nach Inhalt des temporären Medikationsplans:
 1. der Medikationsplan ist **leer**: 
 * **A.** er befindet sich noch im **Initialzustand** mit *List.emptyReason = notstarted* oder 
-* **B.** er ist **nach dem Absetzen oder Stornieren aller Planeinträge** leer mit *List.emptyReason = unavailable*
-    In beiden Fällen erstellt der GDA eine neue Planversion mit *List.emptyReason = nilknown* und übermittelt mit **POST** [$plan-write](OperationDefinition-AtEmed.List.PlanWrite.html) den aktualisierten Medikationsplan in einem [Transaction Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplantx.html)
+* **B.** er ist **nach dem Absetzen oder Stornieren aller Planeinträge** leer mit *List.emptyReason = nilknown* <br>
+    In beiden Fällen übermittelt der GDA mit **POST** [$plan-write](OperationDefinition-AtEmed.List.PlanWrite.html) eine neue Planversion mit *List.emptyReason = nilknown* in einem [Transaction Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplantx.html).
+
 2. es bestehen **Planeinträge**: der GDA
 * **beendet** (siehe [Sub_UC_eMed_02_08 - Planeintrag im Medikationsplan beenden](Sub_UC_eMed_02.html#sub_uc_emed_02_08---planeintrag-im-medikationsplan-beenden)) und/oder
 * **storniert** (siehe [Sub_UC_eMed_02_07 - Planeintrag im Medikationsplan stornieren](Sub_UC_eMed_02.html#sub_uc_emed_02_07---planeintrag-im-medikationsplan-stornieren))
-    sämtliche Planeinträge. Beim nächsten [$plan-read](OperationDefinition-AtElgaEmed.List.PlanRead.html) erkennt die Fachanwendung diesen Zustand und liefert den Medikationsplan mit *List.emptyReason = unavailable* aus. Optional kann der GDA nun explizit einen leeren Plan dokumentieren (siehe 1.B).
+    sämtliche Planeinträge. Beim nächsten [$plan-read](OperationDefinition-AtElgaEmed.List.PlanRead.html) erkennt die Fachanwendung diesen Zustand und liefert den Medikationsplan mit *List.emptyReason = nilknown* aus. Optional kann der GDA nun explizit einen leeren Plan dokumentieren (siehe 1.B).
 
 <!-- (TODO: Invariante zur Überprüfung) -->
 
@@ -482,7 +483,7 @@ Planeinträge mit abgelaufenem Einnahmezeitraum (überschrittenes Enddatum in *e
 **Varianten:**
 - **1.A** Möchte der GDA die Einnahme **weiterverordnen**, muss er entsprechende Anpassungen vornehmen (siehe [Sub_UC_eMed_02_03 - Planeintrag im Medikationsplan ändern](Sub_UC_eMed_02.html#sub_uc_emed_02_03---planeintrag-im-medikationsplan-ändern)).
 
-- **1.B** Soll die Einnahme **nicht weiterverordnet** werden, nimmt der GDA **keine Änderung** am List.entry.flag und dem abgelaufenen Planeintrag vor (auch kein Beendigungsgrund und keine Aktualisierung des GDAs im Planeintrag). 
+- **1.B** Soll die Einnahme **nicht weiterverordnet** werden, nimmt der GDA **keine Änderung** am List.entry.flag und der abgelaufene Planeintrag muss entsprechend angepasst werden.  <!-- TODO siehe unten . -->
 
 Er übermittelt mit **POST** [$plan-write](OperationDefinition-AtEmed.List.PlanWrite.html) den aktualisierten Medikationsplan in einem [Transaction Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplantx.html): 
 - alle geänderten Ressourcen (inkl. der beendeten) sind inline im Bundle enthalten
@@ -506,23 +507,22 @@ AtElgaEmedListMedikationsplan
 
 #### Relevante Elemente (MedicationRequest - Planeintrag 1)
 
-```JSON
+<!-- ```JSON
 AtElgaEmedMedicationRequestPlaneintrag
     // unverändert (verantwortlicher GDA, Datum, Status bleiben unverändert)
-```
-<!-- 
+``` -->
+
 ```JSON
 AtElgaEmedMedicationRequestPlaneintrag
     extension:effectiveDosePeriod: liegt in der Vergangenheit         // bleibt unverändert
     status: stopped                        // von Fachanwendung gesetzt, bleibt unverändert
-    statusReason.coding: Grund für die vorhergehende Statunsänderung  // bleibt unverändert
+    statusReason.coding: abgelaufen        // von Fachanwendung gesetzt,´bleibt unverändert
     [...]
-    authoredOn: Datum der vorhergehenden Bearbeitung                  // bleibt unverändert 
-    requester: für die vorhergehende Bearbeitung verantwortlicher GDA  // bleibt unverändert 
-    [...]
-    priorPrescription: Referenz auf ersetzte Planeintragsversion
-``` -->
-<!-- Todo: Prüfen, ob diese Annahmen korrekt sind, akl 30.0.2026 -->
+    authoredOn: Datum der aktuellen Bearbeitung         // vom GDA gesetzt
+    requester: das Ablaufen zur Kenntnis nehmender GDA  // vom GDA gesetzt
+```
+<!-- Todo: Prüfen, ob diese Annahmen korrekt sind, akl 30.9.2026
+priorPrescription überall rausnhemen -->
 
 
 ### Sub_UC_eMed_02_10 - Reihenfolge der Planeinträge ändern
