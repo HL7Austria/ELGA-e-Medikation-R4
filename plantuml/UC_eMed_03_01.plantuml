@@ -1,5 +1,4 @@
-@startuml
-
+@startuml UC_eMed_03_01
 title Prescription-Search
 
 'skinparam actorStyle awesome
