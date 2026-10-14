@@ -138,7 +138,7 @@ Jeder Listeneintrag enthält im Element List.entry.flag den Änderungsstatus des
 
 * emptyReason 0..1 MS
 * emptyReason from ElgaListEmptyReasonVS (required)
-* emptyReason ^short = "Begründung, warum der Medikationsplan leer ist. Mögliche Ausprägungen: [notstarted |  nilknown | unavailable] Bedeutung: notstarted: Intitalzustand - noch nie befüllt | nilknown: Patient nimmt derzeit keine Medikamente ein | unavailable: Plan ist leer weil alle Einträge entfernt wurden"
+* emptyReason ^short = "Begründung, warum der Medikationsplan leer ist. Mögliche Ausprägungen: [notstarted |  nilknown ] Bedeutung: notstarted: Intitalzustand - noch nie befüllt; nilknown: Der Plan wurde vom GDA explizit als leer dokumentiert oder alle Einträge wurden abgesetzt, storniert oder gelöscht."
 * emptyReason.coding MS
 * emptyReason.coding 1..
 * emptyReason.coding.code MS
