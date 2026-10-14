@@ -1,6 +1,5 @@
-@startuml
-
-title Initial erstellter Medikationsplan
+@startuml UC_eMed_01_03
+title History-Search
 
 'skinparam actorStyle awesome
 
@@ -49,45 +48,44 @@ skinparam sequence {
 !define COLOR_E_REZEPT #cd3732a9
 
 !define COLOR_OK       #0F9ED525
+!define COLOR_OK_2     #34738d4e
 !define COLOR_ERROR    #E9713235
+
 
 actor GDA_1 as "GDA 1" COLOR_GDA_1
 participant eMed_FA as "e-Med FA" COLOR_EMED_FA
 
+
 autonumber
 
-GDA_1 -> eMed_FA: POST $plan-read
 activate GDA_1 COLOR_GDA_1
 
+
+alt Plan-History-Search
+GDA_1 -> eMed_FA: ""POST [base]/List/$history-search""\n""(inklusive aller referenzierten Ressourcen)""
+activate eMed_FA COLOR_EMED_FA
+else Planentry-History-Search
+GDA_1 -> eMed_FA: ""POST [base]/MedicationRequest/$history-search""
+else Plan-History-Directory-Search
+GDA_1 -> eMed_FA: ""POST [base]/List/$history-search""
+end
+
 note over GDA_1
-Erstmaliger Abruf des 
-Medikationsplans
+$history-search mit 
+usecase-abhängigen 
+Inputparametern
 end note
 
-activate eMed_FA COLOR_EMED_FA
-eMed_FA -> eMed_FA: Existiert ein\nMedikationsplan?
+eMed_FA -> eMed_FA: Ermittlung der\nRessorcen-Versionen\nggf. Rekonstruktion\nder historischen\nMedikationspläne
 
-alt COLOR_OK nein: kein Medikationsplan persistiert 
-
-  eMed_FA -> eMed_FA: Erzeugt initiale List\n(emptyReason = notstarted)
-  eMed_FA -> eMed_FA: Persistiert List-Version
-  eMed_FA -> eMed_FA: Erzeugt temporäres\nMedikationsplan-Bundle
-  
-  note over eMed_FA
-  Keine Transformation
-  erforderlich.
-  end note
-  eMed_FA -> GDA_1: Medikationsplan-Bundle\n(List.emptyReason = notstarted)\n+ ETag 
-  deactivate eMed_FA
-
-else COLOR_ERROR ja: Medikationsplan persistiert 
-
+group COLOR_OK alt: Historische nRessorcen-Version(en) gefunden?
+  eMed_FA -> GDA_1: Bundle (""type=searchset"") 
+else COLOR_OK_2 nein
+  eMed_FA -> GDA_1: Bundle (""type=searchset"") ohne Einträge
+else COLOR_ERROR Fehler
+  eMed_FA -> GDA_1: OperationOutcome
   deactivate GDA_1
-  ref over GDA_1,eMed_FA
-  Siehe Ablauf Plan-Read.
-  end ref
-
-
+  deactivate eMed_FA
 end
 
 
