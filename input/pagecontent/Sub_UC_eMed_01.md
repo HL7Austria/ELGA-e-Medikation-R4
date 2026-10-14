@@ -112,7 +112,6 @@ Soll die Erstellung durch das Berechtigungssystem beim ersten Aufruf eines Patie
 
 #### Suchparameter
 
-Die Suche nach Planeinträgen erfolgt mittels **GET**-Request unter Angabe geeigneter Suchparameter:<br>
 * **Medikation** (PZN, Arzneimittelname oder Wirkstoff)
 * **Einnahmezeitraum**
 * **Erstellungszeitpunkt**
