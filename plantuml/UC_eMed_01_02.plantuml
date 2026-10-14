@@ -1,7 +1,5 @@
-@startuml
-title Plan-History-Search
-
-'skinparam actorStyle awesome
+@startuml UC_eMed_01_02
+title Planentry-Search
 
 skinparam borderColor #000000
 skinparam backgroundColor #f5f5f5
@@ -41,44 +39,40 @@ skinparam sequence {
 }
 
 !define COLOR_GDA_1    #15608280
-!define COLOR_GDA_2    #96607D80
 !define COLOR_PATIENT  #196B2480
-!define COLOR_APO      #0F9ED590
 !define COLOR_EMED_FA  #e97232bd
-!define COLOR_E_REZEPT #cd3732a9
 
 !define COLOR_OK       #0F9ED525
 !define COLOR_OK_2     #34738d4e
 !define COLOR_ERROR    #E9713235
 
-
 actor GDA_1 as "GDA 1" COLOR_GDA_1
 participant eMed_FA as "e-Med FA" COLOR_EMED_FA
 
-
 autonumber
 
-GDA_1 -> eMed_FA: GET [base]/List/_history?include=*\n[Suchparameter]
+GDA_1 -> eMed_FA: ""GET [base]/MedicationRequest/""\n""(category="Planeintrag" & Suchparameter)""
 activate GDA_1 COLOR_GDA_1
 
 note over GDA_1
-Suche nach historischen 
-Planversionen.
+Medikationsplaneinträge
+suchen
 end note
 
-
 activate eMed_FA COLOR_EMED_FA
-eMed_FA -> eMed_FA: Ermittlung der List-Versionen\nund Rekonstruktion der\nhistorischen Medikationspläne
+eMed_FA -> eMed_FA: Ermittlung der\nentsprechenden\nMedicationRequests
 
-group COLOR_OK alt: Historische List-Version(en) gefunden?
-  eMed_FA -> GDA_1: Bundle (type=searchset) mit einem oder mehreren\nMedikationsplan-Bundles
+group COLOR_OK alt: Medikationsplaneintrag gefunden? [ja]
+  eMed_FA -> GDA_1: Bundle (""type=searchset"") mit einem oder mehreren\nMedicationRequest-Einträgen
 else COLOR_OK_2 nein
-  eMed_FA -> GDA_1: Bundle (type=searchset) ohne Einträge
+  eMed_FA -> GDA_1: Bundle (""type=searchset"") ohne Einträge
 else COLOR_ERROR Fehler
   eMed_FA -> GDA_1: OperationOutcome
   deactivate GDA_1
   deactivate eMed_FA
 end
 
+deactivate GDA_1
+deactivate eMed_FA
 
 @enduml
