@@ -179,11 +179,11 @@ menu:
   Anwendungsfälle:
     # Überblick: overview_use_case.html
     Überblick Use Cases: overview_sub_use_case.html
-    Medikationsplan lesen: Sub_UC_eMed_01.html
-    Medikationsplan schreiben: Sub_UC_eMed_02.html
-    Geplante Abgaben und Durchgeführte Abgaben lesen: Sub_UC_eMed_03.html
-    Geplante Abgabe schreiben: Sub_UC_eMed_04.html
-    Durchgeführte Abgabe schreiben: Sub_UC_eMed_05.html
+    UC 1 Medikationsplan lesen: Sub_UC_eMed_01.html
+    UC 2 Medikationsplan schreiben: Sub_UC_eMed_02.html
+    UC 3 Geplante Abgaben und Durchgeführte Abgaben lesen: Sub_UC_eMed_03.html
+    UC 4 Geplante Abgabe schreiben: Sub_UC_eMed_04.html
+    UC 5 Durchgeführte Abgabe schreiben: Sub_UC_eMed_05.html
     Patient Journey: patient_journey.html
 
   # Mappings: mapping.html
