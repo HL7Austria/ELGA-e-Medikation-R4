@@ -83,9 +83,8 @@ else COLOR_ERROR ja: Medikationsplan persistiert
 
   deactivate GDA_1
   ref over GDA_1,eMed_FA
-   siehe Ablauf [[Sub_UC_eMed_01.html#sub_uc_emed_01_01---aktuellen-medikationsplan-lesen-plan-read Plan-Read]]
+   siehe Ablauf Plan-Read
   end ref
-
 
 end
 
