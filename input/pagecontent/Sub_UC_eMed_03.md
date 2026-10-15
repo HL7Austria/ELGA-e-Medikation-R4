@@ -43,6 +43,12 @@ Die Suche nach [Geplante Abgaben](StructureDefinition-at-elga-emed-medicationreq
 * mit einem bestimmten *e-Med GroupIdentifier* 
 <!-- * Erstellender GDA? Todo akl 2.10. -->
 
+<div class="dragon">
+<p class="note-to-balloters">
+Ballot-Feedback: Gibt es zusätzliche Suchparameter die unterstützt werden sollen? <a href="nteractions.html#suchparameter-überblick">Suchparameter Überblick</a> <br>
+</p>
+</div>
+
 Die gefundenen *Geplanten Abgaben* können als Ausgangspunkt für weitere Abfragen verwendet werden:
 * zugehöriger Medikationsplaneintrag und Medikationsplanversion <!-- wie kommt man auf die Planversion? keine Referenz im Planeintrag auf die List(version) Todo akl 7.10. -->
    * da in einer *Geplanten Abgabe* die Referenz auf den zugehöigen Planeintrag (*basedOn*) nicht versioniert ist, zeigt die *Geplante Abgabe* immer auf den aktuellen Planeintrag. Dieser kann zwischenzeitlich von den Inhalten der *Geplanten Abgabe* abweichen.
@@ -52,15 +58,11 @@ Von ELGA-Teilnehmern gelöschte *Geplanten Abgaben* stehen nicht mehr zur Verfü
 
 <div class="dragon">
 <p class="note-to-balloters">
-Offene Punkte: <br>
-Suchparameter: Umsetzung in Arbeit.
-
-ad: Suchkritierien: <br>
-- Geplante Abgabe zu einer Durchgeführten Abgabe: Reverse-Include erlaubt oder eigene Operation? <br>
-- Gültigkeitszeitraum des Rezepts (validityPeriod)? <br>
-- Erstellender GDA?<br>
+Ballot-Feedback: Gibt es zusätzliche Suchparameter die unterstützt werden sollen? <a href="nteractions.html#suchparameter-überblick">Suchparameter Überblick</a> <br>
 </p>
 </div>
+
+<!-- - Gültigkeitszeitraum des Rezepts (validityPeriod)? <br> -->
 
 ##### Ablauf
 
@@ -98,8 +100,7 @@ Von ELGA-Teilnehmern gelöschte *Durchgeführten Abgaben* stehen nicht mehr zur 
 
 <div class="dragon">
 <p class="note-to-balloters">
-Offene Punkte: <br>
-Suchparameter: Umsetzung in Arbeit.
+Ballot-Feedback: Gibt es zusätzliche Suchparameter die unterstützt werden sollen? <a href="nteractions.html#suchparameter-überblick">Suchparameter Überblick</a> <br>
 </p>
 </div>
 

@@ -76,7 +76,7 @@ usecase-abhängigen
 Inputparametern
 end note
 
-eMed_FA -> eMed_FA: Ermittlung der\nRessorcen-Versionen\nggf. Rekonstruktion\nder historischen\nMedikationspläne
+eMed_FA -> eMed_FA: Ermittlung der\nRessorcen-Versionen\nggf. Auflösen\nder Referenzen der historischen\nMedikationspläne
 
 group COLOR_OK alt: Historische nRessorcen-Version(en) gefunden?
   eMed_FA -> GDA_1: Bundle (""type=searchset"") 

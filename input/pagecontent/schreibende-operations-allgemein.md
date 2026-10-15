@@ -8,3 +8,10 @@
 <div class="note-to-balloters" markdown="1">
 In Arbeit.
 </div>
+
+<div class="dragon">
+<p class="note-to-balloters">
+Offener Punkt:<br>
+- OperationOutcome noch zu definieren
+</p>
+</div>

@@ -13,10 +13,10 @@ Die Fachanwendung persistiert ausschließlich die einzelnen FHIR-Ressourcen. His
 
 <!-- TODO Pfeile zu Patient und Practitioner? Umrandung Medikationsplan-Bundle strichliert -->
 
-### Relevante Profile
+#### Relevante Profile
 
  
-#### Medikationsplan: AtElgaEmedListMedikationsplan (*List*)
+##### Medikationsplan: AtElgaEmedListMedikationsplan (*List*)
 
 Der Medikationsplan eines ELGA-Teilnehmers wird durch eine *List*-Ressource abgebildet. Diese enthält 0..* Einträge (*List.entry*), wobei jeder Entry genau eine Referenz (*Reference*) auf einen Planeintrag (*MedicationRequest*) in *List.entry.item* beinhaltet.
 
@@ -28,7 +28,7 @@ Die List-Ressource bildet gemeinsam mit den referenzierten Ressourcenversionen d
 
 
 
-#### Medikationsplaneintrag bzw. Planeintrag: AtElgaEmedMedicationRequestPlaneintrag (*MedicationRequest*)
+##### Medikationsplaneintrag bzw. Planeintrag: AtElgaEmedMedicationRequestPlaneintrag (*MedicationRequest*)
 
 Ein Planeintrag im Medikationsplan wird durch eine *MedicationRequest*-Ressource der Kategorie "Planeintrag" abgebildet. Die Ressource enthält genau ein Medikament mit der zugehörigen Dosierung, wobei das Medikament verpflichtend in einer contained *Medication*-Ressource innerhalb des MedicationRequests dokumentiert wird.
 Der Planeintrag kann in weiterer Folge als Grundlage für die Erstellung einer *Geplanten Abgabe* dienen. 
@@ -38,7 +38,7 @@ Der aktuelle Status eines Planeintrags wird im *status*-Element dokumentiert (si
 Abhängig vom List.entry.flag kann der Planeintrag nur bestimmte Statuswerte annehmen (siehe [Konsistenzregeln zwischen List.entry.flags und MedicationRequest-Status](workflowmanagement.html#konsistenzregeln-zwischen-listentryflags-und-medicationrequest-status)).
 
 
-#### Medikationsplan-Bundle: AtElgaEmedBundleMedikationsplan (*Medikationsplan-Bundle*)
+##### Medikationsplan-Bundle: AtElgaEmedBundleMedikationsplan (*Medikationsplan-Bundle*)
 
 Das Medikationsplan-Bundle dient ausschließlich der Auslieferung eines Medikationsplans. Es wird von der Fachanwendung bei Bedarf aus einer List-Ressource sowie den von dieser referenzierten Ressourcenversionen erzeugt und **nicht persistiert**.
 
@@ -103,24 +103,43 @@ und wann nicht
 
 -->
 
-### Kennzeichnung der relevanten Elemente
+
+
+
+### Fachliche Entscheidungen
+
+#### Abhängigkeit Planeintrag und geplante Abgabe
+<!-- welche Elemente gleich? soll die prüfung wirklich ablehnen bei abweichungen ect.?-->
+
+
+
+### Technische Entscheidungen
+
+
+#### Kennzeichnung der relevanten Elemente
 <div class="note-to-balloters" markdown="1">
 In Arbeit.
 </div>
 
-#### Serverhalten bei Elementen ohne MS Markierung
+##### Serverhalten bei Elementen ohne MS Markierung
 <div class="note-to-balloters" markdown="1">
 In Arbeit.
 </div>
 
-### Befüllung der Narrativen Teile
+#### Befüllung der Narrativen Teile
 
 <div class="note-to-balloters" markdown="1">
 In Arbeit.
 </div>
 
+#### Profile für die Abbildung von Operation In & Output
+<!-- TX, write-Response und lesende Operations brauchen eigene Profile -> implementer Feedback erwünscht-->
+<div class="note-to-balloters" markdown="1">
+In Arbeit.
+</div>
 
-### Informationen über GDA und Patienten
+
+#### Informationen über GDA und Patienten
 
 Stammdaten zu Gesundheitsdiensteanbietern (GDA) und Patienten werden ausschließlich von der e-Medikation-Fachanwendung, bzw. von den darüberliegenden zentralen Registern, verwaltet. Client-Anwendungen dürfen daher keine eigenen `Patient`-, `Practitioner`-, `PractitionerRole`- oder `Organization`-Ressourcen übermitteln. Es genügt, diese über ihren Identifier als logische Referenz (`Reference.identifier`) anzugeben:
 
@@ -130,32 +149,34 @@ Stammdaten zu Gesundheitsdiensteanbietern (GDA) und Patienten werden ausschließ
 Die e-Medikation-Fachanwendung löst diese Identifier gegen den GDA-I bzw. den Zentralen Patientenindex (ZPI) auf. Bei Bedarf legt sie die zugehörigen Ressourcen an und ersetzt die logischen Referenzen durch Referenzen auf diese Ressourcen. Beim Abruf von Daten enthalten die Ressourcen daher die aufgelösten Referenzen; die referenzierten Ressourcen können über die Fachanwendung abgerufen werden.
 
 
-### ID-Management
+#### ID-Management
 <div class="note-to-balloters" markdown="1">
 In Arbeit.
 </div>
 
-### Optimistisches Locking mit ETags
+#### Optimistisches Locking mit ETags
 <div class="note-to-balloters" markdown="1">
 In Arbeit.
 </div>
 
 
 
-### Verwendung der FHIR History Funktion
+#### Verwendung der FHIR History Funktion
 <div class="note-to-balloters" markdown="1">
 In Arbeit.
 </div>
 
-#### Versionierte Referenzen
+##### Versionierte Referenzen
 <div class="note-to-balloters" markdown="1">
 In Arbeit.
 </div>
 
-#### Löschen und Stornieren von versionierten Ressourcen
-
+##### Löschen und Stornieren von versionierten Ressourcen
+<!-- horizontales und vertikales löschen in FHIR -->
+<!-- fachlich und technische Beschreibung-->
 <div class="note-to-balloters" markdown="1">
 In Arbeit.
 </div>
+
 
 

@@ -62,7 +62,7 @@ und widerspricht dem Usecase:
 Der GDA führt ein **POST** [$plan-read](OperationDefinition-AtElgaEmed.List.Planread.html) aus und erhält von der Fachanwendung im [Medikationsplan-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplan.html) alle für die Erstellung der *Geplanten Abgaben* relevanten Ressourcen.
 
 <!-- im Planeintrag steht:   TODO klären, wie das in der Geplanten Abgabe gemacht wird akl 8.10.
-    - *medication*: zur Dokumentation des Arzneimittels wird die *Medication*-Ressource verwendet. Diese muss bei Medikamenten mit PZN beim Schreiben als **Logical Reference** mit **PZN und Name** angegeben werden (beim Lesen ist diese contained in der Ressource enthalten). Magistrale Zubereitungen sind immer als contained Ressource anzugeben (siehe Kapitel [Medikation](ELGA-e-Medikation-R4/output/medication.html)). -->
+    - *medication*: zur Dokumentation des Arzneimittels wird die *Medication*-Ressource verwendet. Diese muss bei Medikamenten mit PZN beim Schreiben als **Conditional Reference** mit **PZN und Name** angegeben werden (beim Lesen ist diese contained in der Ressource enthalten). Magistrale Zubereitungen sind immer als contained Ressource anzugeben (siehe Kapitel [Medikation](ELGA-e-Medikation-R4/output/medication.html)). -->
 
 Basierend auf den enthaltenen Planeinträgen erstellt der GDA neue *Gelplante Abgaben* wie folgt:
 
