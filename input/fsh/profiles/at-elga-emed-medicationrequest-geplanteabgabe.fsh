@@ -65,16 +65,20 @@ Es werden R5-Backport-Extensions verwendet."
 * category[mrcategory].coding.display MS
 * category[mrcategory].coding.version MS
 * category[mrcategory].coding.code = #GeplAbgabe (exactly)
+* category[mrcategory].text 0..0
+* category[mrcategory].text ^short = "Fachliche Begründung: TODO"
 * category[mrcategory] ^short = "Kategorie zur Unterscheidung eines Medikationsplaneintrags von einer geplanten Abgabe (beide haben intent order)"
 //* category[recipetype] from $vs-medication-rezeptart (required)
 //* category[recipetype] from elga-medikationrezeptart (required)
-* category[recipetype].coding 1..
+* category[recipetype].coding 1..1
 * category[recipetype].coding.code 1..1 MS
 * category[recipetype].coding.display MS
 * category[recipetype].coding.version MS
 * category[recipetype] from elga-medikationrezeptart (required)
 * category[recipetype].coding.system = "https://termgit.elga.gv.at/CodeSystem/medikationrezeptart"
 * category[recipetype].coding.system 1..1 MS
+* category[recipetype].text 0..0
+* category[recipetype].text ^short = "Fachliche Begründung: TODO"
 * category[recipetype]  ^short = "Kategorie zur Unterscheidung, ob ein Kassen-, Privat- oder Substitutionsrezept erstellt wurde."
 
 
@@ -110,6 +114,8 @@ Es werden R5-Backport-Extensions verwendet."
 * subject.identifier MS
 * subject.identifier.system MS
 * subject.identifier.value MS
+* subject.identifier.use 0..0
+* subject.identifier.use ^short = "Fachliche Begründung: TODO"
 
 //* supportingInformation ^short = "Referenz auf zusätzliche Informationen (Ressource Any) (z. B. Größe und Gewicht des Patienten), die die Verschreibung des Medikaments unterstützen. Keine Verwendung in der geplanten Abgabe."
 

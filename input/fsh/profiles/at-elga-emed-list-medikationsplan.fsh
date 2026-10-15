@@ -55,6 +55,8 @@ Jeder Listeneintrag enthält im Element List.entry.flag den Änderungsstatus des
 * code.coding.display MS
 //ASW 11.10.2026 TODO ist * code.coding.version MS?
 * code.coding.version MS
+* code.text 0..0
+* code.text ^short = "Fachliche Begründung: TODO"
 
 * subject 1..1 MS
 * subject ^short = "ELGA-Teilnehmer, für den der Medikationsplan dokumentiert wird."
@@ -64,6 +66,8 @@ Jeder Listeneintrag enthält im Element List.entry.flag den Änderungsstatus des
 * subject.identifier MS
 * subject.identifier.system MS
 * subject.identifier.value MS
+* subject.identifier.use 0..0
+* subject.identifier.use ^short = "Fachliche Begründung: TODO"
 //ASW 11.10.2026 TODO subject.identifier.type MS?
 //* subject.identifier.type MS
 
@@ -84,6 +88,8 @@ Jeder Listeneintrag enthält im Element List.entry.flag den Änderungsstatus des
 * source.identifier MS
 * source.identifier.system MS
 * source.identifier.value MS
+* source.identifier.use 0..0
+* source.identifier.use ^short = "Fachliche Begründung: TODO"
 //ASW 11.10.2026 TODO Invariante sodass entweder Reference.reference XOR Reference.identifier befüllt sein muss
 
 
@@ -110,7 +116,7 @@ Jeder Listeneintrag enthält im Element List.entry.flag den Änderungsstatus des
 * entry.flag 1..1 MS
 * entry.flag from ElgaListEntryFlagVS
 * entry.flag.coding MS
-* entry.flag.coding 1..
+* entry.flag.coding 1..1
 * entry.flag.coding.code MS
 * entry.flag.coding.code 1..1
 * entry.flag.coding.system MS
@@ -119,6 +125,8 @@ Jeder Listeneintrag enthält im Element List.entry.flag den Änderungsstatus des
 //ASW 11.10.2026 TODO ist * entry.flag.coding.version MS?
 * entry.flag.coding.version MS
 * entry.flag ^short = "Kennzeichnet die Art der Änderung des Medikationsplaneintrags: [New | Unchanged | Changed | Removed] Bedeutung: New: Neuer Planeintrag wird hinzugefügt | Unchanged: Bestehender Planeintrag wird beibehalten und zur Kenntnis genommen | Changed: Bestehender Planeintrag wird geändert | Removed: Bestehender Planeintrag wird entfernt"
+* entry.flag.text 0..0
+* entry.flag.text ^short = "Fachliche Begründung: TODO"
 
 * entry.deleted 0..0 
 //ASW 22.09.2026 * entry.deleted fachlich gelöscht
@@ -140,7 +148,7 @@ Jeder Listeneintrag enthält im Element List.entry.flag den Änderungsstatus des
 * emptyReason from ElgaListEmptyReasonVS (required)
 * emptyReason ^short = "Begründung, warum der Medikationsplan leer ist. Mögliche Ausprägungen: [notstarted |  nilknown ] Bedeutung: notstarted: Intitalzustand - noch nie befüllt; nilknown: Der Plan wurde vom GDA explizit als leer dokumentiert oder alle Einträge wurden abgesetzt, storniert oder gelöscht."
 * emptyReason.coding MS
-* emptyReason.coding 1..
+* emptyReason.coding 1..1
 * emptyReason.coding.code MS
 * emptyReason.coding.code 1..1
 * emptyReason.coding.system MS
@@ -148,6 +156,8 @@ Jeder Listeneintrag enthält im Element List.entry.flag den Änderungsstatus des
 * emptyReason.coding.display MS
 //ASW 11.10.2026 TODO ist * emptyReason.coding.version MS?
 * emptyReason.coding.version MS
+* emptyReason.text 0..0
+* emptyReason.text ^short = "Fachliche Begründung: TODO"
 
 
 Invariant: at-emed-list-same-patient

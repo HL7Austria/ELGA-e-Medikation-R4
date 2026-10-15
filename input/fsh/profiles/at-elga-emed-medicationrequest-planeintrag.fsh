@@ -48,7 +48,7 @@ Der Planeintrag kann in weiterer Folge als Grundlage für die Erstellung einer \
 * statusReason from AtElgaEmedValueSetPlaneintragStatusReasonVS
 * statusReason.coding ^short = "Codierte Begründung für den Status des Planeintrags."
 * statusReason.coding MS
-* statusReason.coding 1..
+* statusReason.coding 1..1
 * statusReason.coding.system 1..1 MS
 * statusReason.coding.code 1..1 MS
 * statusReason.coding.display MS
@@ -56,6 +56,7 @@ Der Planeintrag kann in weiterer Folge als Grundlage für die Erstellung einer \
 * statusReason.text 0..1  MS
 * statusReason.text ^short = "Begründung falls der Code 'other' angegeben wurde (Freitext)." 
 //ASW 22.09.2026 TODO Invariante - text darf nur verwendet werden wenn der code other ist
+//ASW 15.10.2026 TODO .text ersetzen durch note extension weil .text ja eigentlich nur die Textrepräsentation des codings ist und nicht eine Freitexterklärung
 // TODO: müssen bei bestimmten Status (z.B. stopped) zwingend Begründungen angegeben werden? Evtl. Invariante erstellen.
 * obeys at-emed-planeintrag-status-reason-beim-absetzen
 
@@ -64,13 +65,15 @@ Der Planeintrag kann in weiterer Folge als Grundlage für die Erstellung einer \
 * intent ^short = "Ein Planeintrag ist eine autorisierte ärztliche Anordnung und stellt eine verbindliche Einnahmeanweisung für den Patienten dar, auf dessen Basis eine Geplante Abgabe erstellt werden kann. Fixer Wert: \"order\". (req) proposal | plan | order | original-order | reflex-order | filler-order | instance-order | option. https://hl7.org/fhir/R4/valueset-medicationrequest-intent.html"
 
 * category 1..1 MS
-* category.coding 1.. MS
+* category.coding 1..1 MS
 * category.coding.system = Canonical(MedicationRequestCategoryCS)
 * category.coding.system 1..1 MS
 * category.coding.code 1..1 MS
 * category.coding.code = #Planeintrag  // Display nicht fixieren
 * category.coding.display MS
 * category.coding.version MS
+* category.text 0..0
+* category.text ^short = "Fachliche Begründung: TODO"
 * category from MedicationRequestCategoryVS (required)
 * category ^short = "Kategorie zur Unterscheidung eines Planeintrags von einer geplanten Abgabe (beide haben intent order)"
 
@@ -103,6 +106,8 @@ Der Planeintrag kann in weiterer Folge als Grundlage für die Erstellung einer \
 * subject.identifier MS
 * subject.identifier.system MS
 * subject.identifier.value MS
+* subject.identifier.use 0..0
+* subject.identifier.use ^short = "Fachliche Begründung: TODO"
 
 // -- AuthoredOn ---
 * authoredOn 1..1 MS
@@ -125,12 +130,13 @@ Der Planeintrag kann in weiterer Folge als Grundlage für die Erstellung einer \
 * courseOfTherapyType ^short = "Gesamtmuster der Medikamentengabe. Mögliche Ausprägungen: [continuous | acute ]" //TODO: seasonal evtl. durch Dosierungsinformationen abgedeckt
 // Invariante, die prüft: wenn continuous, dann kein Enddatum für Behandlungszeitraum.
 * courseOfTherapyType from AtElgaEmedValueSetCourseOfTherapyType
-* courseOfTherapyType.coding 1.. MS
+* courseOfTherapyType.coding 1..1 MS
 * courseOfTherapyType.coding.system 1..1 MS
 * courseOfTherapyType.coding.code 1..1 MS
 * courseOfTherapyType.coding.version MS
 * courseOfTherapyType.coding.display MS
-
+* courseOfTherapyType.text 0..0
+* courseOfTherapyType.text ^short = "Fachliche Begründung: TODO"
 * obeys e-med-continuous-medication-effectiveDosePeriod
 * obeys e-med-acute-medication-effectiveDosePeriod
 
