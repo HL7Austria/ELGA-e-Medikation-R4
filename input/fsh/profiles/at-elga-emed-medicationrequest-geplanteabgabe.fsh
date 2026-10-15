@@ -9,12 +9,6 @@ Es werden R5-Backport-Extensions verwendet."
 * . ^short = "Geplante Abgabe eines Arzneimittels aus dem Medikationsplan. Verwendet R5 Backport Extensions."
 
 
-* contained MS
-* contained ^short = "TODO"
-//ASW 22.09.2026 TODO contained short
-* contained only AtElgaEmedMedicationStandardMedikation or AtElgaEmedMedicationMagistraleZubereitung
-
-
 // Extensions
 * extension contains $medicationRequest-effectiveDosePeriod-r5 named effectiveDosePeriod 0..1
 * extension[effectiveDosePeriod] ^short = "Zeitraum, in dem die Medikation eingenommen werden soll."
@@ -71,16 +65,20 @@ Es werden R5-Backport-Extensions verwendet."
 * category[mrcategory].coding.display MS
 * category[mrcategory].coding.version MS
 * category[mrcategory].coding.code = #GeplAbgabe (exactly)
+* category[mrcategory].text 0..0
+* category[mrcategory].text ^short = "Fachliche Begründung: TODO"
 * category[mrcategory] ^short = "Kategorie zur Unterscheidung eines Medikationsplaneintrags von einer geplanten Abgabe (beide haben intent order)"
 //* category[recipetype] from $vs-medication-rezeptart (required)
 //* category[recipetype] from elga-medikationrezeptart (required)
-* category[recipetype].coding 1..
+* category[recipetype].coding 1..1
 * category[recipetype].coding.code 1..1 MS
 * category[recipetype].coding.display MS
 * category[recipetype].coding.version MS
 * category[recipetype] from elga-medikationrezeptart (required)
 * category[recipetype].coding.system = "https://termgit.elga.gv.at/CodeSystem/medikationrezeptart"
 * category[recipetype].coding.system 1..1 MS
+* category[recipetype].text 0..0
+* category[recipetype].text ^short = "Fachliche Begründung: TODO"
 * category[recipetype]  ^short = "Kategorie zur Unterscheidung, ob ein Kassen-, Privat- oder Substitutionsrezept erstellt wurde."
 
 
@@ -99,13 +97,13 @@ Es werden R5-Backport-Extensions verwendet."
 * medication[x] ^type.aggregation = #contained
 
    //ws planeintrag kann auch nur wirkstoffe enthalten; evtl. wirkstoff oder pzn; magistral, pzn, sonstige; todo bepr. mit medication ressource
-* medication[x] ^short = "Das Arzneimittel wird immer in einer contained Medication Ressource dokumentiert, damit 
-Arzneimittel mit und ohne PZN einheitlich dokumentiert werden können."
+* medication[x] ^short = "Das Arzneimittel wird in einer contained Medication Ressource oder als logische Referenz dokumentiert, damit Arzneimittel mit und ohne PZN einheitlich dokumentiert werden können."
 * medicationReference MS
 * medicationReference.reference MS
-* medicationReference.identifier MS
-* medicationReference.identifier.system MS
-* medicationReference.identifier.value MS
+// ASW TODO 14.10. medication hat keinen identifier - conditional reference im tx bundle - wie einschränken für unterschied zw. schreiben und lesen?
+//* medicationReference.identifier MS
+//* medicationReference.identifier.system MS
+//* medicationReference.identifier.value MS
 
 
 // --- Subject ---
@@ -116,6 +114,8 @@ Arzneimittel mit und ohne PZN einheitlich dokumentiert werden können."
 * subject.identifier MS
 * subject.identifier.system MS
 * subject.identifier.value MS
+* subject.identifier.use 0..0
+* subject.identifier.use ^short = "Fachliche Begründung: TODO"
 
 //* supportingInformation ^short = "Referenz auf zusätzliche Informationen (Ressource Any) (z. B. Größe und Gewicht des Patienten), die die Verschreibung des Medikaments unterstützen. Keine Verwendung in der geplanten Abgabe."
 
@@ -214,6 +214,12 @@ Anzahl der weiteren möglichen Einlösungen:
 * dispenseRequest.quantity ^short = "Menge des Medikaments, die bei jeder Abgabe bereitgestellt werden soll.
 Da sich die Angaben zum Arzneimittel jeweils auf eine Packung der Arznei beziehen, MUSS die Anzahl der auszugebenden Packungen angegeben werden (mindestens 1). 
 Dies gilt für Arzneimittel mit PZN und magistralen Zubereitungen."
+* dispenseRequest.quantity.unit MS
+* dispenseRequest.quantity.value MS
+* dispenseRequest.quantity.code MS
+* dispenseRequest.modifierExtension 0..0
+* dispenseRequest.modifierExtension ^short = "Fachliche Begründung: Für die Abgabedetails sind keine zusätzlichen Erweiterungen vorgesehen, die deren Bedeutung verändern."
+
 
 //* dispenseRequest.expectedSupplyDuration.value ^short = "Dauer, für die die bereitgestellte Menge des Medikaments voraussichtlich ausreicht. Keine Verwendung in der geplanten Abgabe."
 

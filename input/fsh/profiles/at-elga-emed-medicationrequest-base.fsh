@@ -13,8 +13,6 @@ Description: "Die Basis für alle in eMed verwendeten MedicationRequests"
 * meta.profile 1..1 MS
 * modifierExtension 0..0
 * modifierExtension ^short = "Fachliche Begründung: Für den Medikationsplan sind keine zusätzlichen Erweiterungen vorgesehen, die die Bedeutung der Ressource oder ihrer Elemente verändern."
-
-//ASW 24.09.2026 TODO text 1..1
 * text MS
 //ASW 22.09.2026 TODO Beschreibung - so visualisiert wie im CDA mit XHTML -> How to fill the Narrative in -notes.html 
 // Bis zum Ballot nur Drachenbox
@@ -23,6 +21,11 @@ Description: "Die Basis für alle in eMed verwendeten MedicationRequests"
 
 * implicitRules 0..0
 * implicitRules ^short =  "Fachliche Begründung: Die Ressource wird nach den Regeln dieses Implementierungsleitfadens interpretiert. Zusätzliche implizite Verarbeitungsregeln werden nicht verwendet."
+
+* contained MS
+* contained ^short = "TODO"
+//ASW 22.09.2026 TODO contained short
+* contained only AtElgaEmedMedicationStandardMedikation or AtElgaEmedMedicationMagistraleZubereitung
 
 // TODO: Invariante für repeating sequences * dosageInstruction.extension contains AtElgaEmedExtensionDosageRepeat??? named repeatCycle 0..1
 //TODO Invariante sodass die Extension nur erlaubt ist, wenn es mehrere Dosages gibt

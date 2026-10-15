@@ -15,9 +15,10 @@ Alle neuen bzw. geänderten und zu entfernenden Medikationsplaneinträge müssen
 * type = #transaction
 * type ^short = "Art des Bundles. Für schreibenden Zugriff immer Typ \"transaction\"."
  
-* timestamp 0..1 
-* timestamp ^short = "Zeitpunkt der Erstellung des Bundles."
 
+//* timestamp ^short = "Zeitpunkt der Erstellung des Bundles."
+// timestamp nicht notwendig 
+// total für transaction bundle nicht vorgesehen
 
 // Slicing legt fest, welche Entries erlaubt sind -> Unterscheidung der Slices anhand von Pfad und Typ 
 * entry MS
