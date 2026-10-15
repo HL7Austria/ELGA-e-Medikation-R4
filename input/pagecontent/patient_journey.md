@@ -385,10 +385,10 @@ Anschließend speichert sie die neuen *Durchgeführte Abgaben* in der e-Medikati
           <a href="Sub_UC_eMed_05.html#zugriffsvariante-a-durchgeführte-abgabe-mit-kontakt-schreiben">Sub_UC_eMed_05_01 - Durchgeführte Abgabe schreiben (Dispense-Write)(Variante A: Zugriff mit Kontakt)</a>
         </li>
         <li>
-          <a href="Sub_UC_eMed_05.html#sub_uc_emed_05_01_01_01---vollständige-einzelabgabe-erfassen">Sub_UC_eMed_05_01_01_01 - Vollständige Einzelabgabe erfassen</a>
+          <a href="Sub_UC_eMed_05.html#sub_uc_emed_05_01_01---vollständige-einzelabgabe-erfassen">Sub_UC_eMed_05_01_01 - Vollständige Einzelabgabe erfassen</a>
         </li>
         <li>
-          <a href="Sub_UC_eMed_05.html#sub_uc_emed_05_01_01_03---besorgerprozess">Sub_UC_eMed_05_01_01_03 - Besorgerprozess</a>
+          <a href="Sub_UC_eMed_05.html#sub_uc_emed_05_01_03---besorgerprozess">Sub_UC_eMed_05_01_03 - Besorgerprozess</a>
         </li>
       </ul>
     </div>
@@ -456,7 +456,7 @@ Anschließend speichert sie die neue *Durchgeführte Abgabe* in der e-Medikation
           <a href="Sub_UC_eMed_05.html#zugriffsvariante-a-durchgeführte-abgabe-mit-kontakt-schreiben">Sub_UC_eMed_05_01 - Durchgeführte Abgabe schreiben (Dispense-Write)(Variante A: Zugriff mit Kontakt)</a>
         </li>
         <li>
-          <a href="Sub_UC_eMed_05.html#sub_uc_emed_05_01_01_03---besorgerprozess">Sub_UC_eMed_05_01_01_03 - Besorgerprozess</a>
+          <a href="Sub_UC_eMed_05.html#sub_uc_emed_05_01_03---besorgerprozess">Sub_UC_eMed_05_01_03 - Besorgerprozess</a>
         </li>
       </ul>
     </div>
