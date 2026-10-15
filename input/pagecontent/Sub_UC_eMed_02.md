@@ -15,7 +15,7 @@ Der schreibende Zugriff umfasst folgende Bearbeitungen:
         * [pausieren bzw. reaktivieren](Sub_UC_eMed_02.html#sub_uc_emed_02_05---planeintrag-pausieren-oder-reaktivieren),
         * [beenden](Sub_UC_eMed_02.html#sub_uc_emed_02_08---planeintrag-im-medikationsplan-beenden),
         * [stornieren](Sub_UC_eMed_02.html#sub_uc_emed_02_07---planeintrag-im-medikationsplan-stornieren),
-        * [mit abgelaufenem Einnahmezeitraum weiterverordnen oder beenden](Sub_UC_eMed_02.html#sub_uc_emed_02_09---abgelaufenen-planeintrag-weiterverordnen-oder-beenden)
+        * [nach abgelaufenem Einnahmezeitraum weiterverordnen oder beenden](Sub_UC_eMed_02.html#sub_uc_emed_02_09---abgelaufenen-planeintrag-weiterverordnen-oder-beenden)
     * im **Medikationsplan**: 
         * die [Reihenfolge der Planeinträge ändern](Sub_UC_eMed_02.html#sub_uc_emed_02_10---reihenfolge-der-planeinträge-ändern)
         * einen [Leeren Medikationsplan dokumentieren](Sub_UC_eMed_02.html#sub_uc_emed_02_06---leeren-medikationsplan-dokumentieren).
@@ -37,7 +37,7 @@ Für GDA gilt zusätzich:
         <a href="Sub_UC_eMed_02.html">UC_eMed_02 Medikationsplan schreiben</a>
     </li>
     <li>
-    <a href="Sub_UC_eMed_06.html">UC_eMed_06 Teilnehmerrechte ausüben</a>
+        <a href="Sub_UC_eMed_06.html">UC_eMed_06 Teilnehmerrechte ausüben</a>
     </li>
 </ul>
 Es gelten die dort festgelegten Vorbedingungen. Alle Zugriffe werden protokolliert.  
@@ -79,10 +79,10 @@ Alle vom GDA ausgeführten, schreibenden Zugriffe auf den Medikationsplan erfolg
 
 1. Das GDA-System übermittelt den aktualisierten Medikationsplan mittels **POST** [$plan-write](OperationDefinition-AtElgaEmed.List.PlanWrite.html) als [Medikationsplan-Transaction-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplantx). <br>Der Request enthält:
     * alle **neuen**, **geänderten** und **zu entfernenden** Ressourcen im Transaction Bundle
-    * den von der Fachanwendung nach dem *$plan-read* übermittelten **ETag** (zur Durchführung des [Optimistic Locking](https://hl7.org/fhir/http.html#concurrency))
+    * im Header den von der Fachanwendung beim *$plan-read* übermittelten **ETag** (zur Durchführung des [Optimistic Locking](https://hl7.org/fhir/http.html#concurrency))
     * unveränderte Ressourcen werden ausschließlich referenziert.
 2. Die Fachanwendung prüft den übermittelten *ETag* gegen den *ETag* der aktuell persistierten Medikationsplan-Version.
-3. Ist der *ETag* gültig, validiert die Fachanwendung das *Medikationsplan-Transaction-Bundle* einschließlich der zulässigen [Zustandsübergänge](workflowmanagement.html#überblick-der-statusänderungen-der-e-medikation-ressourcen) der *List.Entry.Flags* und *MedicationReqeuest.Status*. 
+3. Ist der *ETag* gültig, validiert die Fachanwendung unter anderem das *Medikationsplan-Transaction-Bundle* einschließlich der zulässigen [Zustandsübergänge](workflowmanagement.html#überblick-der-statusänderungen-der-e-medikation-ressourcen) der *List.Entry.Flags* und *MedicationReqeuest.Status*. 
 4. Die Fachanwendung erstellt neue Versionen der geänderten Ressourcen und **persistiert** diese.
 5. Die Fachanwendung bestätigt die erfolgreiche Aktualisierung des Medikationsplans. 
 6. Schlägt die Validierung fehl, wird der Schreibvorgang mit einem **OperationOutcome** abgelehnt.
@@ -92,19 +92,6 @@ Alle vom GDA ausgeführten, schreibenden Zugriffe auf den Medikationsplan erfolg
 [![overview](plantuml/UC_eMed_02_01.svg){: .mx-auto style="width:60%;"}](plantuml/UC_eMed_02_01.svg)
 <br> 
 
-<div class="dragon">
-<p class="note-to-balloters">
-Offene Frage:<br>
-- Liefert die Fachanwendung mit der HTTP 200 OK Response im Body auch die Ressourcen, so wie sie persistiert wurden, wieder zurück? Bei neu angelegten Ressourcen ist erst dadurch für den Client die id ersichtlich (wird vom Server vergeben).
-</p>
-</div>
-
-<div class="dragon">
-<p class="note-to-balloters">
-Offener Punkt:<br>
-- OperationOutcome defnieren
-</p>
-</div>
 
 #### Custom Operations
 
@@ -131,7 +118,7 @@ Der GDA führt ein **POST** [$plan-read](OperationDefinition-AtElgaEmed.List.Pla
     - **Status** muss *active* oder *on-hold* sein (siehe [Status des MedicationRequests im Medikationsplaneintrag](workflowmanagement.html#status-des-medicationrequests-im-medikationsplaneintrag) und [Konsistenzregeln zwischen List.entry.flags und MedicationRequest-Status](workflowmanagement.html#konsistenzregeln-zwischen-listentryflags-und-medicationrequest-status))
     - **Kategorie** (*category*): "Planeintrag", zur Unterscheidung von *Geplanten Abgaben*
     - **Berichtete Medikation** (*reportedBoolean*): erhält den Wert *false*, wenn die Medikation vom Ersteller des Planeintrags (GDA) selbst stammt, sonst *true*
-    - **Medikation** (*medication*): zur Dokumentation des Arzneimittels wird die *Medication*-Ressource verwendet. Diese muss bei Medikamenten mit PZN beim Schreiben als **Logical Reference** mit **PZN und Name** dokumentiert werden (beim Lesen ist diese contained in der Ressource enthalten). Arznemittelverschreibungen ausschließlich basierend auf Wirkstoffangaben und Magistrale Zubereitungen sind immer als contained Ressource anzugeben (siehe Kapitel [Medikation](ELGA-e-Medikation-R4/output/medication.html)).
+    - **Medikation** (*medication*): zur Dokumentation des Arzneimittels wird die *Medication*-Ressource verwendet. Diese muss bei Medikamenten mit PZN beim Schreiben als **Conditional Reference** mit **PZN und Name** dokumentiert werden (beim Lesen ist diese contained in der Ressource enthalten). Arznemittelverschreibungen ausschließlich basierend auf Wirkstoffangaben und Magistrale Zubereitungen sind immer als contained Ressource anzugeben (siehe Kapitel [Medikation](ELGA-e-Medikation-R4/output/medication.html)).
     - **Informationen zur Erstellung** des Planeintrags: aktuelles Datum (*authoredOn*) und aktueller GDA als Ersteller (*requester*) 
     - **Art der Medikation** (*courseOfTherapyType*): Mögliche Ausprägungen sind *continuous* für Dauermedikation und *acute* für Akutmedikation. Bei Aktumedikation ist in *extension:effectiveDosePeriod* verpflichtend ein Enddatum für den Einnahmezeitraum zu dokumentieren. Bei Dauermedikation kann ein Enddatum dokumentiert werden. <!-- TODO: Achtung Inkonsistenz Invariante bei Dauermedikation Enddatum! -->
     - **Dosierung** (*dosageInstruction*): siehe [Dosierungen](dosages.html) 
@@ -170,7 +157,7 @@ AtElgaEmedMedicationRequestPlaneintrag
     dosageInstruction: Dosierung + Einnahmezeitraum (ab sofort | in der Zukunft)
 ```
 
-<!-- TODO medicationReference.reference mit logical reference;  akl 29.09.2026 
+<!-- TODO medicationReference.reference mit conditional reference;  akl 29.09.2026 
 - * medicationReference.reference = "Medication?code= https://termgit.elga.gv.at/CodeSystem/asp-liste|2450836" 
 - muss PZN mit Displayname dokumentiert werden? wenn ja, muss geprüft werden. sonst durch Server ergänzt und zwecks Prüfung zurückgeben. -->
 

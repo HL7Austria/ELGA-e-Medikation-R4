@@ -65,7 +65,7 @@ Medikationsplan als
 Medikationsplan-Bundle 
 end note
 
-== Medikationsplan bearbeiten und und schreiben ==
+== Medikationsplan bearbeiten und schreiben ==
 
 GDA_1 -> GDA_1: Planeinträge (MedicationRequests)\nbearbeiten
 GDA_1 -> GDA_1: Medikationsplan (List)\nanpassen
