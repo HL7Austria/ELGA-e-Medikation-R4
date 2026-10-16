@@ -13,7 +13,7 @@ Usage: #example
 * entry[Medikationsplan][=].request.url = $rrPlan
 
 // Medikationsplaneintrag 1: Ramipril wird pausiert
-* entry[Medikationsplaneintrag][+].resource = At-Emed-Journey-Planeintrag-01-Ramipril-v2
+* entry[Medikationsplaneintrag][+].resource = At-Emed-Journey-Planeintrag-01-Ramipril-v2-tx
 * entry[Medikationsplaneintrag][=].fullUrl = $srPlaneintrag01  // zu ersetzen mit vom Server vergebenen id (response-bundle: journey 01-02)
 * entry[Medikationsplaneintrag][=].request.method = #PUT
 * entry[Medikationsplaneintrag][=].request.url = $rrPlaneintrag01

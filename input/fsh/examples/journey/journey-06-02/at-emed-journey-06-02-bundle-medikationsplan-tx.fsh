@@ -13,7 +13,7 @@ Usage: #example
 * entry[Medikationsplan][=].request.url = $rrPlan
 
 // Planeintrag 1 aktivieren + ändern
-* entry[Medikationsplaneintrag][+].resource = At-Emed-Journey-Planeintrag-01-Ramipril-v3
+* entry[Medikationsplaneintrag][+].resource = At-Emed-Journey-Planeintrag-01-Ramipril-v3-tx
 * entry[Medikationsplaneintrag][=].fullUrl = $srPlaneintrag01  // vom server gelieferte id verwenden
 * entry[Medikationsplaneintrag][=].request.method = #PUT 
 * entry[Medikationsplaneintrag][=].request.url = $rrPlaneintrag01
