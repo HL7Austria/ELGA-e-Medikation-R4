@@ -4,8 +4,6 @@ Title: "Beispiel Journey 01-02: Planeintrag 1"
 Description: "Bildet einen Planeintrag mit dem Arzneimittel Ramipril und der Dosierungsanweisung ab."
 Usage: #inline
 
-* contained[+] = at-emed-journey-medication-ramipril
-
 * courseOfTherapyType = $cs-medication-request-courseOfTherapyType#continuous
 
 // R5 Backports
@@ -18,7 +16,7 @@ Usage: #inline
 * reportedBoolean = false 
 
 // Referenz auf Contained Medication Ressource
-* medicationReference.reference = "#at-emed-journey-medication-ramipril"
+* medicationReference.reference = "Medication?code=https://termgit.elga.gv.at/CodeSystem/asp-liste|2450836&code:text=RAMIPRIL"
 
 * subject.type = "Patient"
 * subject.identifier.value = "GH:oeLdSEb0l+8kSdJWjOYyYmnYki0="
