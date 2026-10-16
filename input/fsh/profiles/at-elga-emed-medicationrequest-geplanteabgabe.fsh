@@ -2,12 +2,7 @@ Profile: AtElgaEmedMedicationRequestGeplanteAbgabe
 Parent: AtElgaEmedMedicationRequestBase
 Id: at-elga-emed-medicationrequest-geplanteabgabe
 Title: "At ELGA e-Medikation MedicationRequest Geplante Abgabe"
-Description: "Bildet eine \"Geplante Abgabe\" eines Arzneimittels aus dem zugrundeliegenden Medikationsplaneintrag ab (\"MedicationRequest\"-Ressource mit Kategorie \"Geplante Abgabe\"):
-Sie enthält die verordnete Medikation und deren Dosierung und spielgelt die Inhalte des e-Rezepts wider. Geplante Abgaben dienen somit der Nachvollziehbarkeit der rezeptierten Arzneimittel in der e-Medikation. 
-Werden mehrere Medikamente gleichzeitig verschrieben und sollen demselben e-Rezept zugeordnet sein, wird für jedes Medikament eine \"Geplante Abgabe\" mit demselben \"e-Med GroupIdentifier\" erstellt (bildet 'Rezept-Klammer'). 
-Es werden R5-Backport-Extensions verwendet."
-* . ^short = "Geplante Abgabe eines Arzneimittels aus dem Medikationsplan. Verwendet R5 Backport Extensions."
-
+Description: "Profil einer \"Geplanten Abgabe\" eines Arzneimittels aus dem Medikationsplan."
 
 // Extensions
 * extension contains $medicationRequest-effectiveDosePeriod-r5 named effectiveDosePeriod 0..1
