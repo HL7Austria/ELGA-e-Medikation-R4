@@ -83,7 +83,7 @@ Description: "Bildet ein Arzneimittel in der \"Medication\"-Ressource ab. Wird g
 
 * ingredient 0..* MS
 * ingredient ^short = "Wirkstoffe."
-* ingredient.item[x] only CodeableConcept or Reference(AtElgaEmedSubstanceWirkstoff or AtElgaEmedMedicationStandardMedikation) // TODO Substance profilieren
+* ingredient.item[x] only CodeableConcept or Reference(AtElgaEmedMedicationStandardMedikation) // TODO Substance profilieren
 * ingredient.itemCodeableConcept 0..1 MS 
 // * ingredient.itemCodeableConcept ^short = "Inhaltsstoff codiert." TODO: prüfen, Einschränkung auf SPOR (EMA). Gemüß CDA v3:
 // Wirkstoff-Codes stammen aus der ATC-Klassifikation (Anatomical Therapeutic Chemical Classification), die von der WHO herausgegeben wird. 

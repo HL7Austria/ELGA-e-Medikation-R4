@@ -47,7 +47,7 @@ Description: "Bildet eine Magistrale Zubereitung in der \"Medication\"-Ressource
 // Evtl. in einer Substance-Ressource in der description (string).
 * ingredient 1..* MS
 * ingredient ^short = "Wirkstoffe."
-* ingredient.item[x] only CodeableConcept or Reference(AtElgaEmedSubstanceWirkstoff or AtElgaEmedMedicationStandardMedikation) 
+* ingredient.item[x] only CodeableConcept or Reference(AtElgaEmedMedicationStandardMedikation) 
 //ASW 22.09.2026 TODO hier alle 3 Varianten erlaubt? Substance nur contained?
 //* ingredient.itemCodeableConcept.coding.system 
 //ASW 22.09.2026 TODO ATC Code ValueSets & CodeSysteme existieren nur teilweise am Termgit - ATC WIDO bekommt jährlich eine neue oid und kann nicht im binding verwendet werden - Problem muss gelöst werden

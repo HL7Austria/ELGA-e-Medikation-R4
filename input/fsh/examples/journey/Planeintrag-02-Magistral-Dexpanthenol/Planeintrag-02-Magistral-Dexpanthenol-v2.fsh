@@ -3,7 +3,7 @@ Instance: At-Emed-Journey-Planeintrag-02-Magistral-Dexpanthenol-v2
 InstanceOf: AtElgaEmedMedicationRequestPlaneintrag   
 Title: "Beispiel Journey 07-02: Planeintrag 2"
 Description: "Bildet einen abgelaufenen Planeintrag ab (Dexpanthenol-Salbe)."
-Usage: #example
+Usage: #inline
 * id = $idPlaneintrag02
 * meta.versionId = $idPlaneintrag02v2
 * contained[+] = contained-medication-magistral-01
