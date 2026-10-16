@@ -158,71 +158,30 @@ In Arbeit.
 
 
 ##### Löschen von Medikationsplan und Medikationsplaneinträgen
-<!-- 
+
 Das Löschen von Medikationsplänen und Planeinträgen soll ausschließlich auf Veranlassung von ELGA-Teilnehmer:innen bzw. deren berechtigten Vertretungen möglich sein. Die konkreten Berechtigungen und Abläufe werden im Rahmen der Konzeption der **Teilnehmerrechte** festgelegt.
 
 Für das Löschen sind zwei unterschiedliche Konzepte zu unterscheiden: das **horizontale Löschen von Medikationsplaneinträgen** und das **vertikale Löschen von Medikationsplänen**.
 
-**Horizontales Löschen**
+**Horizontales Löschen von Medikationsplaneinträgen**
 
-Beim horizontalen Löschen wird ein Medikationsplaneintrag einschließlich sämtlicher Versionen der zugehörigen `MedicationRequest`-Ressource gelöscht. Der Medikationsplaneintrag scheint daher nicht mehr in den darauf referenzierenden Medikationsplanversionen (historische oder die aktuelle) auf. Die Löschung erfolgt unabhängig davon, ob es sich um einen aktuellen oder einen historischen Medikationsplaneintrag handelt.
+Beim horizontalen Löschen wird ein Medikationsplaneintrag (`MedicationRequest`) einschließlich aller Versionen unwiderruflich gelöscht. Der Eintrag ist damit weder in aktuellen noch in historischen Medikationsplanversionen sichtbar.
 
-Da durch die Löschung die ursprüngliche Dokumentation der Planeinträge nicht mehr vollständig nachvollziehbar ist, wird das `PatientModified`-Flag in den entsprechenden Medikationsplanversionen auf `true` gesetzt. Dieses kennzeichnet, dass die Integrität dieser Medikationsplanversionen aufgrund einer nachträglichen Änderung durch den Patienten bzw. dessen Vertretung nicht mehr gewährleistet ist.
+Da die ursprüngliche Dokumentation des Medikationsplaneintrags nicht mehr vollständig nachvollziehbar ist, wird das *PatientModified*-Flag auf *true* gesetzt. Die übrigen Medikationsplaneinträge und deren Versionshistorie bleiben unberührt.
 
-Die übrigen Planeinträge und deren Versionshistorie bleiben von der Löschung unberührt. Dadurch bleibt deren Verlauf weiterhin nachvollziehbar.
+Die übrigen Planeinträge und deren Versionshistorie bleiben von der Löschung unberührt. 
 
-**Vertikales Löschen**
+<!-- **Alternative:** Medikationsplaneinträge überschreiben
 
-Beim vertikalen Löschen werden einzelne Medikationsplanversionen (Versionen der `List`-Ressource) gelöscht. Die referenzierten Medikationsplaneinträge werden dabei nur dann ebenfalls gelöscht, wenn sie in keiner verbleibenden Medikationsplanversion mehr referenziert werden. Dadurch werden tote Referenzen vermieden und die Integrität der verbleibenden Medikationsplanversionen erhalten.
+Medikationsplaneinträge werden DataAbsentReason überschrieben, anstatt gelöscht zu werden.
 
-Das vertikale Löschen ermöglicht es, Medikationsplanversionen aus der Historie zu entfernen, ohne zwangsläufig die darin enthaltenen Planeinträge und deren Versionshistorie zu löschen. Die verbleibenden Medikationsplanversionen bleiben unverändert.
+Die betroffenen Medikationsplanversionen bleiben sichtbar, ihre ursprünglichen Inhalte sind jedoch nicht mehr vollständig nachvollziehbar. Es ist weiterhin erkennbar, welche Pläne betroffen sind und wie viele Einträge gelöscht wurden. Die übrigen Medikationsplaneinträge und deren Versionshistorie bleiben erhalten. -->
 
-Aus der Löschung einer Medikationsplanversion allein lässt sich nicht ableiten, dass ein bestimmter Besuch in einer Einrichtung verschleiert werden kann. Insbesondere bleiben Planeinträge erhalten, sofern sie in anderen Medikationsplanversionen weiterhin referenziert werden, beispielsweise aufgrund einer späteren Version mit einem anderen Autor.
+**Vertikales Löschen von Medikationsplänen**
 
-Wird der aktuelle Medikationsplan gelöscht, muss weiterhin ein aktueller Medikationsplan verfügbar sein. Dieser wird als leere `List`-Ressource mit dem Patienten als Autor repräsentiert.
+Beim vertikalen Löschen werden einzelne Medikationsplanversionen (Versionen der `List`-Ressource) unwiderruflich gelöscht. Die darin referenzierten Planeinträge werden nur dann einschließlich ihrer gespeicherten Versionen gelöscht, wenn sie in keiner verbleibenden Medikationsplanversion mehr referenziert werden. Dadurch bleiben bestehende Referenzen auflösbar.
 
-Für die Löschung von Planeinträgen gelten somit folgende Regeln:
-
-- **Keine weitere Referenz:** Ein Medikationsplaneintrag, der in keiner verbleibenden Medikationsplanversion mehr vorkommt, wird einschließlich sämtlicher Versionen gelöscht (z. B. Szenario 1_2).
-- **Weitere Referenz vorhanden:** Ein Medikationsplaneintrag, der in mindestens einer verbleibenden Medikationsplanversion weiterhin referenziert wird, bleibt erhalten. Dadurch werden tote Referenzen vermieden (z. B. Szenario 3_1).
-
-#### Begründung der Löschkonzepte
-
-Bei der Konzeption des Löschverhaltens sind insbesondere die Nachvollziehbarkeit der Medikationshistorie, die Integrität der Medikationsplanversionen und die Möglichkeit zu berücksichtigen, einzelne Medikationsplaneinträge zu löschen, ohne den Verlauf der übrigen Einträge zu beeinträchtigen.
-
-**Horizontales Löschen** ermöglicht die vollständige Entfernung eines Medikationsplaneintrags aus der aktuellen und historischen Dokumentation. Dadurch wird sichergestellt, dass der betreffende Eintrag nicht mehr sichtbar ist. Gleichzeitig bleibt der Verlauf der übrigen Planeinträge erhalten. Der Nachteil besteht darin, dass die ursprüngliche Verordnungshistorie nicht mehr vollständig nachvollzogen werden kann und die Integrität der betroffenen Medikationspläne nicht mehr gewährleistet ist. Das `PatientModified`-Flag macht diesen Umstand kenntlich.
-
-**Vertikales Löschen** entfernt hingegen Medikationsplanversionen als Ganzes. Planeinträge und deren Historie bleiben erhalten, sofern sie noch von anderen Medikationsplanversionen referenziert werden. Dadurch bleibt die Integrität der verbleibenden Medikationsplanversionen gewahrt. Gleichzeitig können nicht mehr benötigte Medikationsplanversionen aus der Historie entfernt werden, ohne die Historie der weiterhin verwendeten Planeinträge zu beeinträchtigen.
-
-Beide Konzepte verfolgen somit unterschiedliche Ziele: Während das horizontale Löschen auf die vollständige Entfernung einzelner Planeinträge abzielt, ermöglicht das vertikale Löschen die Entfernung einzelner Medikationsplanversionen unter Erhaltung weiterhin benötigter Planeinträge.
+Die verbleibenden Medikationsplanversionen und Medikationsplaneinträge bleiben unverändert. Die entfernten Planversionen sind jedoch nicht mehr Teil der verfügbaren Historie. Wird der aktuelle Medikationsplan gelöscht, muss eine leere *List*-Ressource mit dem Patienten als Autor als aktueller Medikationsplan verfügbar sein.
 
 
-#### Alternative 1: Medikationsplaneinträge durch Überschreiben unkenntlich machen („Tip-Ex“)
 
-Bei diesem Ansatz wird ein Medikationsplaneintrag nicht physisch gelöscht, sondern durch Überschreiben seiner Inhalte, beispielsweise mit leeren Werten oder einer Kennzeichnung als gelöscht, unkenntlich gemacht.
-
-Die ursprünglichen Medikationsplanversionen bleiben erhalten. Es ist weiterhin ersichtlich, welche Medikationspläne von der Änderung betroffen sind und wie viele Medikationsplaneinträge darin gelöscht wurden. Die Integrität der betroffenen Medikationspläne ist jedoch nicht mehr gegeben, da die ursprünglich dokumentierten Inhalte nicht mehr vollständig verfügbar sind.
-
-Die übrigen Planeinträge und deren Verlauf bleiben erhalten. Das Löschverhalten wäre für aktuelle und historische Planeinträge identisch.
-
-Da die Integrität der Medikationspläne nicht mehr gewährleistet ist, müsste ein GDA bei entsprechendem Klärungsbedarf nachvollziehen, welche Informationen fehlen. Dieser Ansatz würde die Nachvollziehbarkeit der von der Änderung betroffenen Medikationspläne verbessern, die ursprünglichen Planeinträge jedoch nicht unverändert erhalten.
-
-#### Alternative 2: Medikationspläne einschließlich nicht mehr benötigter Einträge aus der Historie löschen
-
-Bei diesem Ansatz wird eine Medikationsplanversion einschließlich der darin enthaltenen Medikationsplaneinträge aus der Historie entfernt. Medikationsplaneinträge werden jedoch nur dann gelöscht, wenn sie in keiner anderen verbleibenden Medikationsplanversion mehr vorkommen.
-
-Dadurch verschwinden die betroffenen Medikationsplanversionen und gegebenenfalls ausschließlich darin enthaltene Planeinträge vollständig aus der aktuellen und historischen Dokumentation. Die verbleibenden Medikationsplanversionen behalten ihre Integrität, da weiterhin referenzierte Planeinträge erhalten bleiben.
-
-Die Historie entspricht damit den vom GDA dokumentierten Medikationsplanversionen, abzüglich der gelöschten Planversionen und der ausschließlich darin enthaltenen Einträge. Das Löschverhalten wäre für aktuelle und historische Medikationsplanversionen identisch.
-
-Der Vorteil dieses Ansatzes liegt darin, dass ganze Medikationsplanversionen entfernt werden können, ohne die Integrität der verbleibenden Medikationsplanversionen zu beeinträchtigen. Gleichzeitig geht die Dokumentation der gelöschten Planversionen verloren.
-
-#### Alternative 3: Medikationsplaneinträge einschließlich ihrer gesamten Versionshistorie löschen
-
-Bei diesem Ansatz werden Planeinträge einschließlich sämtlicher Versionen ihrer `MedicationRequest`-Ressourcen gelöscht. Der betreffende Eintrag verschwindet dadurch vollständig aus den aktuellen und historischen Medikationsplänen.
-
-Die ursprüngliche Verordnungshistorie kann für den gelöschten Medikationsplaneintrag nicht mehr nachvollzogen werden. Die Integrität der betroffenen Medikationsplanversionen ist daher nicht mehr gewährleistet. Um diesen Umstand kenntlich zu machen, könnte der Autor der betroffenen Medikationsplanversionen auf den Patienten geändert werden.
-
-Die übrigen Planeinträge und deren Verlauf bleiben erhalten. Das Löschverhalten wäre für aktuelle und historische Planeinträge identisch.
-
-Der Vorteil dieses Ansatzes besteht in der vollständigen Entfernung eines Medikationsplaneintrags bei gleichzeitiger Erhaltung der Historie der übrigen Einträge. Der Nachteil liegt im Verlust der ursprünglichen Dokumentation und der eingeschränkten Nachvollziehbarkeit der betroffenen Medikationsplanversionen. -->
