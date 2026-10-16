@@ -84,7 +84,7 @@ Die Übereinstimmung wird nur beim Erstellen der *Geplanten Abgabe* gefordert. E
 |---|---|
 | Arzneimittel (`medication`) | identisch |
 | Dosierung (`dosageInstruction`) | identisch |
-| Einnahmezeitraum (`effectiveDosePeriod`) | nicht identisch; Im Planeintrag kann der Beginn in der Vergangenheit liegen (z. B. bei Nacherfassung oder Dauermedikation seit Monaten). |
+| Einnahmezeitraum (`effectiveDosePeriod`) | nicht identisch; Im Planeintrag kann der Beginn in der Vergangenheit liegen (z.B. bei Nacherfassung oder Dauermedikation seit Monaten). |
 | Status, Kategorie, Ersteller, `dispenseRequest.*` | nicht vergleichbar |
 
 **Abgrenzung der drei Ebenen**
@@ -92,7 +92,7 @@ Die Übereinstimmung wird nur beim Erstellen der *Geplanten Abgabe* gefordert. E
 | Beziehung | Fachliche Vorgabe |
 |---|---|
 | Planeintrag ↔ *Geplante Abgabe* | Arzneimittel und Dosierung identisch (bei Erstellung) |
-| *Geplante Abgabe* ↔ *Durchgeführte Abgabe* | Abweichungen möglich, dokumentiert in der *Durchgeführten Abgabe* (z. B. Präparat statt Wirkstoff) |
+| *Geplante Abgabe* ↔ *Durchgeführte Abgabe* | Abweichungen möglich, dokumentiert in der *Durchgeführten Abgabe* (z.B. Präparat statt Wirkstoff) |
 
 **Designentscheidung: Darf die *Geplante Abgabe* vom Planeintrag abweichen?**
 
