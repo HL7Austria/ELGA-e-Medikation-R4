@@ -1,4 +1,3 @@
-//ohne Kontakt
 Instance: AtElgaEmedReferencePlan
 InstanceOf: OperationDefinition
 Title: "eMed Operation $reference-plan"
@@ -9,7 +8,7 @@ Usage: #definition
 * status = #draft
 * kind = #operation
 * affectsState = true  // Ändert den Zustand am Server;
-* system = false       // Aufruf erfolgt auf Systemebene
+* system = false       
 * type = false   
 * instance = true
 * resource[+] = #MedicationDispense
