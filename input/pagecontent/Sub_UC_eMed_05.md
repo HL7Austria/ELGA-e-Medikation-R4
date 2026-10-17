@@ -238,12 +238,7 @@ Da kein weiterer ELGA-Zugriff auf die Medikationsdaten des ELGA-Teilnehmers mög
 <br> 
 
 #### Custom Operations
-
-<div class="dragon">
-<p class="note-to-balloters">
-Offene Punkte: <br>$dispense-write: in Arbeit.
-</p>
-</div>
+* *POST* [$dispense-write](OperationDefinition-at-emed-operation-dispense-write.html)
 
 <!--  TODO
 - Benötigt $dispense-write ohne Kontakt eigene Operation? 
@@ -290,12 +285,8 @@ Wenn eine stornierte *Durchgeführte Abgabe* Teil eines e-Rezepts mit weiteren *
 
 
 #### Custom Operations
+* *POST* [$dispense-discard](OperationDefinition-at-emed-operation-dispense-discard.html)
 
-<div class="dragon">
-<p class="note-to-balloters">
-Offene Punkte: <br>$dispense-discard: in Arbeit.
-</p>
-</div>
 
 ### Sub_UC_eMed_05_03 - Bezug zu einem Planeintrag herstellen/entfernen
 
@@ -304,14 +295,7 @@ Sofern für die [Durchgeführte Abgabe](StructureDefinition-at-elga-emed-medicat
 <!-- TODO: Wird Datum/Author aktualisert? -->
 
 #### Custom Operations
-
-<div class="dragon">
-<p class="note-to-balloters">
-Offene Punkte: 
-<br>$reference-plan: in Arbeit.
-<br>$dereference-plan: in Arbeit.
-</p>
-</div>
+* *POST* [$reference-plan](OperationDefinition-at-emed-operation-reference-plan.html)
 
 ### Sub_UC_eMed_05_04 - Durchgeführte Abgabe löschen (durch ELGA-Teilnehmer)
 <!-- «DELETE» (delete) [PAT]  -->

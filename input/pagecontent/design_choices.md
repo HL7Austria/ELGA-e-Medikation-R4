@@ -37,7 +37,7 @@ Abhängig vom List.entry.flag kann der Planeintrag nur bestimmte Statuswerte ann
 
 ##### Medikationsplan-Bundle: AtElgaEmedBundleMedikationsplan (*Medikationsplan-Bundle*)
 
-Das [Medikationsplan-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplan.html) dient ausschließlich der Auslieferung eines Medikationsplans in einem für die Bearbeitung durch den GDA aufbereiteten Zustand. Es wird von der Fachanwendung nach einer [$plan-read](OperationDefinition-AtElgaEmed.List.PlanRead.html)-Operation aus einer *List*-Ressource sowie den von dieser referenzierten Ressourcenversionen erzeugt und **nicht persistiert**.
+Das [Medikationsplan-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplan.html) dient ausschließlich der Auslieferung eines Medikationsplans in einem für die Bearbeitung durch den GDA aufbereiteten Zustand. Es wird von der Fachanwendung nach einer [$plan-read](OperationDefinition-at-emed-operation-plan-read.html)-Operation aus einer *List*-Ressource sowie den von dieser referenzierten Ressourcenversionen erzeugt und **nicht persistiert**.
 
 <!-- TODO: Iste ein Medikationsplan-Bundle nur das Ergebnis von Plan-Read oder auch Teil des Ergebnis von Plan-History-Read (in einem Searchset-Bundle)? -->
 
