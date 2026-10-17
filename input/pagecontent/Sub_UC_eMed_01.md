@@ -28,11 +28,11 @@ Es gelten die dort festgelegten Vorbedingungen. Alle Zugriffe werden protokollie
 
 *Plan-Read* dient dem Abruf des aktuellen Medikationsplans in einem für die Bearbeitung durch den GDA **aufbereiteten Zustand**.
 
-Hierfür erzeugt die Fachanwendung aus der aktuellen Version der [List](StructureDefinition-at-elga-emed-list-medikationsplan.html)-Ressource sowie den von ihr referenzierten Ressourcen ein **temporäres** [Medikationsplan-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplan.html) zur Auslieferung. Der Abruf erfolgt über die Custom Operation [$plan-read](OperationDefinition-at-emed-operation-plan-read.html).
+Hierfür erzeugt die Fachanwendung aus der aktuellen Version der [List](StructureDefinition-at-elga-emed-list-medikationsplan.html)-Ressource sowie den von ihr referenzierten Ressourcen ein **temporäres** [Medikationsplan-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplan.html) zur Auslieferung. Der Abruf erfolgt über die Custom Operation [$plan-read](OperationDefinition-at-elga-emed-operation-plan-read.html).
 
 #### Ablauf
 
-1. Der Client führt **POST** [$plan-read](OperationDefinition-at-emed-operation-plan-read.html) aus.
+1. Der Client führt **POST** [$plan-read](OperationDefinition-at-elga-emed-operation-plan-read.html) aus.
 2. Die Fachanwendung prüft den Zustand des Medikationsplans (siehe Kapitel [Prüfung des Planzustands und Erzeugung des Medikationsplan-Bundles](Sub_UC_eMed_01.html#prüfung-des-planzustands-und-erzeugung-des-medikationsplan-bundles)) und erzeugt ein [Medikationsplan-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplan.html) zur Auslieferung.
 3. Die Fachanwendung liefert das Medikationsplan-Bundle zurück. Dieses enthält im HTTP-Header den ***ETag*** der aktuellen Version der *List*-Ressource für das [**Optimistic Locking**](https://hl7.org/fhir/http.html#concurrency) (siehe auch [Designentscheidungen - Optimistisches Locking mit ETags](design_choices.html#optimistisches-locking-mit-etags)).
 
@@ -46,7 +46,7 @@ Nachfolgend kann der Medikationsplan vom GDA bearbeitet und mittels [Plan-Write]
 
 #### Custom Operations
 
-* *POST* [$plan-read](OperationDefinition-at-emed-operation-plan-read.html)
+* *POST* [$plan-read](OperationDefinition-at-elga-emed-operation-plan-read.html)
 
 #### Prüfung des Planzustands und Erzeugung des Medikationsplan-Bundles
 
@@ -81,7 +81,7 @@ D) Das **Medikationsplan-Bundle** ist zur Auslieferung bereit. Es enthält:
 
 #### Sub_UC_eMed_01_01_01 - Initial erstellter Medikationsplan
 
-Die initiale Erstellung eines Medikationsplans erfolgt ausschließlich durch die e-Medikation-Fachanwendung. Sie wird ausgelöst, wenn im Rahmen eines erstmaligen Aufrufs von [$plan-read](OperationDefinition-at-emed-operation-plan-read.html) noch kein Medikationsplan für den ELGA-Teilnehmer existiert.
+Die initiale Erstellung eines Medikationsplans erfolgt ausschließlich durch die e-Medikation-Fachanwendung. Sie wird ausgelöst, wenn im Rahmen eines erstmaligen Aufrufs von [$plan-read](OperationDefinition-at-elga-emed-operation-plan-read.html) noch kein Medikationsplan für den ELGA-Teilnehmer existiert.
 
 Der dabei erzeugte initiale Medikationsplan besitzt den Wert *List.emptyReason = notstarted*. Dieser kennzeichnet ausschließlich den **Initialzustand** des Medikationsplans und bedeutet, dass bisher noch keine Medikationsplaneinträge erfasst wurden. Er trifft jedoch keine Aussage darüber, ob der Patient Medikamente einnimmt.
 
@@ -99,7 +99,7 @@ Soll die Erstellung durch das Berechtigungssystem beim ersten Aufruf eines Patie
 
 #### Ablauf 
 
-1. Ein Client führt **POST** [$plan-read](OperationDefinition-at-emed-operation-plan-read.html) aus.
+1. Ein Client führt **POST** [$plan-read](OperationDefinition-at-elga-emed-operation-plan-read.html) aus.
 2. Die Fachanwendung prüft, ob bereits ein Medikationsplan existiert.
 3. Existiert noch kein Medikationsplan, erstellt die Fachanwendung initial eine List-Ressource mit *emptyReason = notstarted*.
 4. Die List-Ressource wird als erste Version persistiert.

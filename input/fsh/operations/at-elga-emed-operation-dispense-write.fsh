@@ -1,0 +1,43 @@
+Instance: AtElgaEmedDispenseWrite
+InstanceOf: OperationDefinition
+Title: "e-Med Operation für $dispense-write"
+Description: "Die $dispense-write Operation wird aufgerufen, wenn Durchgeführte Abgaben geschrieben werden sollen."
+Usage: #definition
+* id = "at-elga-emed-operation-dispense-write"
+* name = "AtElgaEmedDispenseWrite"
+* status = #draft
+* kind = #operation
+* affectsState = true  // Ändert den Zustand am Server
+* system = false       
+* type = true   // Aufruf auf Typeebene (Ressourcentyp)
+* instance = false   // Id von Instanz muss beim Aufruf nicht bekannt sein
+* code = #dispense-write
+* resource[+] = #MedicationRequest
+
+* parameter[+]
+* parameter[=].name = #durchgefuehrteAbgaben   
+* parameter[=].use = #in
+* parameter[=].min = 1
+* parameter[=].max = "1"
+* parameter[=].documentation = "Der *durchgefuehrteAbgaben* Parameter dient der Übermittlung der Durchgeführten Abgaben die geschrieben werden sollen."
+* parameter[=].type = #Bundle
+* parameter[=].targetProfile[+] = Canonical(AtElgaEmedBundleDurchgefuehrteAbgabenTx)
+
+* parameter[+]
+* parameter[=].name = #return
+* parameter[=].use = #out
+* parameter[=].min = 0
+* parameter[=].max = "1"
+* parameter[=].documentation = "Der *return* Parameter enthält die persistierten Ressourcen."
+* parameter[=].type = #Resource
+* parameter[=].targetProfile[+] = Canonical(Bundle)
+//TODO Profil für Response Bundle
+
+* parameter[+]
+* parameter[=].name = #return
+* parameter[=].use = #out
+* parameter[=].min = 0
+* parameter[=].max = "1"
+* parameter[=].documentation = "Der *return* Parameter im Falle eines Fehlers."
+* parameter[=].type = #Resource
+* parameter[=].targetProfile[+] = Canonical(AtElgaEmedOperationOutcome)

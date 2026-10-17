@@ -131,7 +131,7 @@ Ein lesender Zugriff auf weitere *Geplante Abgaben* oder *Durchgeführte Abgaben
 
 ##### Ablauf
 
-1. Der GDA führt die Custom Operation **POST** [$groupidentifier-search](OperationDefinition-at-emed-operation-groupidentifier-search.html) aus und übermittelt einen *e-Med GroupIdentifier*.
+1. Der GDA führt die Custom Operation **POST** [$groupidentifier-search](OperationDefinition-at-elga-emed-operation-groupidentifier-search.html) aus und übermittelt einen *e-Med GroupIdentifier*.
 2. Die Fachanwendung prüft den *e-Med GroupIdentifier*.
 3. Ist der *e-Med GroupIdentifier* gültig, ermittelt die Fachanwendung alle *MedicationRequest*-Ressourcen der Kategorie *Geplante Abgabe* mit dem übermittelten *e-Med GroupIdentifier*.
    <!-- 4 Ergibt die Suche mindestens eine offene Geplante Abgabe, ermittelt die Fachanwendung zusätzlich alle zugehörigen MedicationDispense*-Ressourcen mit: dem übermittelten e-Med GroupIdentifier und status = completed oder cancelled -->

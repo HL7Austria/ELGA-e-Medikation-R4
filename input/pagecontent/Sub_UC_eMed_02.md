@@ -58,9 +58,9 @@ Offene Frage:<br>
 
 Für jeden Schreibvorgang auf dem **aktuellen Medikationsplan MUSS** der folgende technische Ablauf eingehalten werden:
 
-1. **Aktuellen Medikationsplan abrufen**: mittels [$plan-read](OperationDefinition-at-emed-operation-plan-read.html) (siehe [Sub_UC_eMed_01_01 - Aktuellen Medikationsplan lesen (Plan-Read)](Sub_UC_eMed_01.html#sub_uc_emed_01_01---aktuellen-medikationsplan-lesen-plan-read)).
+1. **Aktuellen Medikationsplan abrufen**: mittels [$plan-read](OperationDefinition-at-elga-emed-operation-plan-read.html) (siehe [Sub_UC_eMed_01_01 - Aktuellen Medikationsplan lesen (Plan-Read)](Sub_UC_eMed_01.html#sub_uc_emed_01_01---aktuellen-medikationsplan-lesen-plan-read)).
 2. **Medikationsplan-Bundle bearbeiten**: Die im zurückgegebenen Medikationsplan-Bundle enthaltenen Ressourcen entsprechend dem jeweiligen fachlichen Anwendungsfall bearbeiten.
-3. **Aktualisierten Medikationsplan speichern**: mittels [$plan-write](OperationDefinition-at-emed-operation-plan-write.html) als [Medikationsplan-Transaction-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplantx.html) an die Fachanwendung übermitteln. Der technische Ablauf, einschließlich der Integritätsprüfung mittels *ETag*, wird im [Sub_UC_eMed_02_01 - Medikationsplan schreiben (Plan-Write)](Sub_UC_eMed_02.html#sub_uc_emed_02_01---medikationsplan-schreiben-plan-write) beschrieben.
+3. **Aktualisierten Medikationsplan speichern**: mittels [$plan-write](OperationDefinition-at-elga-emed-operation-plan-write.html) als [Medikationsplan-Transaction-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplantx.html) an die Fachanwendung übermitteln. Der technische Ablauf, einschließlich der Integritätsprüfung mittels *ETag*, wird im [Sub_UC_eMed_02_01 - Medikationsplan schreiben (Plan-Write)](Sub_UC_eMed_02.html#sub_uc_emed_02_01---medikationsplan-schreiben-plan-write) beschrieben.
 <!-- "Fachanwendung" generell mit "e-Medikationssystem" ersetzen? TODO akl 28.09.2026 -->
 
 <br>
@@ -72,12 +72,12 @@ Die nachfolgenden technischen Use Cases beschreiben die für den jeweiligen Anwe
 
 ### Sub_UC_eMed_02_01 - Medikationsplan schreiben (Plan-Write)
 
-Alle vom GDA ausgeführten, schreibenden Zugriffe auf den Medikationsplan erfolgen über die Custom Operation [$plan-write](OperationDefinition-at-emed-operation-plan-write.html). Die Fachanwendung verwendet den im Request übermittelten *ETag* zur Integritätsprüfung ([Optimistic Locking](https://hl7.org/fhir/http.html#concurrency)), um konkurrierende Änderungen am Medikationsplan zu erkennen.
+Alle vom GDA ausgeführten, schreibenden Zugriffe auf den Medikationsplan erfolgen über die Custom Operation [$plan-write](OperationDefinition-at-elga-emed-operation-plan-write.html). Die Fachanwendung verwendet den im Request übermittelten *ETag* zur Integritätsprüfung ([Optimistic Locking](https://hl7.org/fhir/http.html#concurrency)), um konkurrierende Änderungen am Medikationsplan zu erkennen.
 <!-- TODO: Link zur ETag-Beschreibung im ELGA-Core ergänzen -->
 
 #### Ablauf
 
-1. Das GDA-System übermittelt den aktualisierten Medikationsplan mittels **POST** [$plan-write](OperationDefinition-at-emed-operation-plan-write.html) als [Medikationsplan-Transaction-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplantx). <br>Der Request enthält:
+1. Das GDA-System übermittelt den aktualisierten Medikationsplan mittels **POST** [$plan-write](OperationDefinition-at-elga-emed-operation-plan-write.html) als [Medikationsplan-Transaction-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplantx). <br>Der Request enthält:
     * alle **neuen**, **geänderten** und **zu entfernenden** Ressourcen im Transaction Bundle
     * im Header den von der Fachanwendung beim *$plan-read* übermittelten **ETag** (zur Durchführung des [Optimistic Locking](https://hl7.org/fhir/http.html#concurrency))
     * unveränderte Ressourcen werden ausschließlich referenziert.
@@ -86,7 +86,7 @@ Alle vom GDA ausgeführten, schreibenden Zugriffe auf den Medikationsplan erfolg
 4. Die Fachanwendung erstellt neue Versionen der geänderten Ressourcen und **persistiert** diese.
 5. Die Fachanwendung bestätigt die erfolgreiche Aktualisierung des Medikationsplans. 
 6. Schlägt die Validierung fehl, wird der Schreibvorgang mit einem **OperationOutcome** abgelehnt.
-7. Stimmt der übermittelte *ETag* nicht mit dem der Fachanwendung überein, wird der Schreibvorgang mit einem *OperationOutcome* **abgelehnt**. Vor einem erneuten Schreibversuch muss der Medikationsplan mittels [$plan-read](OperationDefinition-at-emed-operation-plan-read.html) erneut abgerufen und auf Basis der aktuellen Version bearbeitet werden.
+7. Stimmt der übermittelte *ETag* nicht mit dem der Fachanwendung überein, wird der Schreibvorgang mit einem *OperationOutcome* **abgelehnt**. Vor einem erneuten Schreibversuch muss der Medikationsplan mittels [$plan-read](OperationDefinition-at-elga-emed-operation-plan-read.html) erneut abgerufen und auf Basis der aktuellen Version bearbeitet werden.
 
 <br>
 [![overview](plantuml/UC_eMed_02_01.svg){: .mx-auto style="width:60%;"}](plantuml/UC_eMed_02_01.svg)
@@ -95,7 +95,7 @@ Alle vom GDA ausgeführten, schreibenden Zugriffe auf den Medikationsplan erfolg
 
 #### Custom Operations
 
-* *POST* [$plan-write](OperationDefinition-at-emed-operation-plan-write.html)
+* *POST* [$plan-write](OperationDefinition-at-elga-emed-operation-plan-write.html)
 
 
 ### Sub_UC_eMed_02_02 - Planeintrag in Medikationsplan hinzufügen
@@ -105,7 +105,7 @@ Dabei muss er dokumentieren, ob dieser von ihm selbst stammt oder nicht (Fremdme
 
 #### Ablauf 
 
-Der GDA führt ein **POST** [$plan-read](OperationDefinition-at-emed-operation-plan-read.html) aus und bearbeitet die von der Fachanwendung im [Medikationsplan-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplan.html) bereitgestellten Ressourcen:
+Der GDA führt ein **POST** [$plan-read](OperationDefinition-at-elga-emed-operation-plan-read.html) aus und bearbeitet die von der Fachanwendung im [Medikationsplan-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplan.html) bereitgestellten Ressourcen:
 
 * *List*-Ressource bearbeiten: [AtElgaEmedListMedikationsplan](StructureDefinition-at-elga-emed-list-medikationsplan.html):
     - **Informationen zur Änderung**: aktuelles Datum (*List.date*) und aktueller GDA (*List.source*) 
@@ -123,11 +123,11 @@ Der GDA führt ein **POST** [$plan-read](OperationDefinition-at-emed-operation-p
     - **Art der Medikation** (*courseOfTherapyType*): Mögliche Ausprägungen sind *continuous* für Dauermedikation und *acute* für Akutmedikation. Bei Aktumedikation ist in *extension:effectiveDosePeriod* verpflichtend ein Enddatum für den Einnahmezeitraum zu dokumentieren. Bei Dauermedikation kann ein Enddatum dokumentiert werden. <!-- TODO: Achtung Inkonsistenz Invariante bei Dauermedikation Enddatum! -->
     - **Dosierung** (*dosageInstruction*): siehe [Dosierungen](dosages.html) 
 
-Im Anschluss übermittelt der GDA mit **POST** [$plan-write](OperationDefinition-at-emed-operation-plan-write.html) den aktualisierten Medikationsplan in einem [Transaction Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplantx.html):
+Im Anschluss übermittelt der GDA mit **POST** [$plan-write](OperationDefinition-at-elga-emed-operation-plan-write.html) den aktualisierten Medikationsplan in einem [Transaction Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplantx.html):
 - alle neuen *MedicationRequests* sind im Transaction Bundle enthalten
 - die unveränderten Ressourcen sind nicht im Bundle enthalten, sondern werden in der *List-Ressource* nur referenziert.
 
-Anmerkung: Beim nächsten [$plan-read](OperationDefinition-at-emed-operation-plan-read.html) ändert die Fachanwendung im zur Auslieferung bereitgestellten [Medikationsplan-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplan.html) den Status der List.entry.flags von *new* automatisch auf *unchanged*.
+Anmerkung: Beim nächsten [$plan-read](OperationDefinition-at-elga-emed-operation-plan-read.html) ändert die Fachanwendung im zur Auslieferung bereitgestellten [Medikationsplan-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplan.html) den Status der List.entry.flags von *new* automatisch auf *unchanged*.
 
 #### Relevante Elemente (List)
 
@@ -172,7 +172,7 @@ Bei fehlender **fachlicher Kontinuität** der Bearbeitung eines Planeintrages (z
 
 #### Ablauf 
 
-Der GDA führt ein **POST** [$plan-read](OperationDefinition-at-emed-operation-plan-read.html) aus und bearbeitet die von der Fachanwendung im [Medikationsplan-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplan.html) bereitgestellten Ressourcen:
+Der GDA führt ein **POST** [$plan-read](OperationDefinition-at-elga-emed-operation-plan-read.html) aus und bearbeitet die von der Fachanwendung im [Medikationsplan-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplan.html) bereitgestellten Ressourcen:
 
 * *List*-Ressource bearbeiten: [AtElgaEmedListMedikationsplan](StructureDefinition-at-elga-emed-list-medikationsplan.html):
     - **Informationen zur Änderung**: aktuelles Datum (*List.date*) und aktueller GDA (*List.source*) 
@@ -188,11 +188,11 @@ Der GDA führt ein **POST** [$plan-read](OperationDefinition-at-emed-operation-p
     - alle weiteren Elemente analog zu *MedicationRequest*-Ressource(n) erstellen, siehe [Sub_UC_eMed_02_02 - Planeintrag in Medikationsplan hinzufügen](Sub_UC_eMed_02.html#sub_uc_emed_02_02---planeintrag-in-medikationsplan-hinzufügen)
 
 
-Der GDA übermittelt mit **POST** [$plan-write](OperationDefinition-at-emed-operation-plan-write.html) den aktualisierten Medikationsplan in einem [Transaction Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplantx.html):
+Der GDA übermittelt mit **POST** [$plan-write](OperationDefinition-at-elga-emed-operation-plan-write.html) den aktualisierten Medikationsplan in einem [Transaction Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplantx.html):
 - alle geänderten *MedicationRequests* sind im Transaction Bundle enthalten
 
 
-Anmerkung: Beim nächsten [$plan-read](OperationDefinition-at-emed-operation-plan-read.html) ändert die Fachanwendung im zur Auslieferung bereitgestellten [Medikationsplan-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplan.html) den Status der List.entry.flags von *changed* automatisch auf *unchanged*. 
+Anmerkung: Beim nächsten [$plan-read](OperationDefinition-at-elga-emed-operation-plan-read.html) ändert die Fachanwendung im zur Auslieferung bereitgestellten [Medikationsplan-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplan.html) den Status der List.entry.flags von *changed* automatisch auf *unchanged*. 
 
 
 #### Relevante Elemente (List)
@@ -231,7 +231,7 @@ Bedingung dafür ist, dass der Einnahmezeitraum des im Planeintrag dokumentierte
 
 #### Ablauf
 
-Der GDA führt ein **POST** [$plan-read](OperationDefinition-at-emed-operation-plan-read.html) aus und bearbeitet die von der Fachanwendung im [Medikationsplan-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplan.html) bereitgestellten Ressourcen:
+Der GDA führt ein **POST** [$plan-read](OperationDefinition-at-elga-emed-operation-plan-read.html) aus und bearbeitet die von der Fachanwendung im [Medikationsplan-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplan.html) bereitgestellten Ressourcen:
 
 
 * *List*-Ressource bearbeiten: [AtElgaEmedListMedikationsplan](StructureDefinition-at-elga-emed-list-medikationsplan.html):
@@ -242,7 +242,7 @@ Der GDA führt ein **POST** [$plan-read](OperationDefinition-at-emed-operation-p
 
 * *MedicationRequest*-Ressource(n): Die zu behaltenden Planeinträge ([AtElgaEmedMedicationRequestPlaneintrag](StructureDefinition-at-elga-emed-medicationrequest-planeintrag.html)) bleiben **unverändert**.
 
-Der GDA übermittelt mit **POST** [$plan-write](OperationDefinition-at-emed-operation-plan-write.html) den aktualisierten Medikationsplan in einem [Transaction Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplantx.html):
+Der GDA übermittelt mit **POST** [$plan-write](OperationDefinition-at-elga-emed-operation-plan-write.html) den aktualisierten Medikationsplan in einem [Transaction Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplantx.html):
 - die unveränderten Ressourcen sind nicht im Bundle enthalten, sondern werden in der Liste **nur referenziert**.
 
 
@@ -272,7 +272,7 @@ TODO: Anja Dosierschemata prüfen + Link ergänzen akl 30.09.2026 -->
 
 #### Ablauf
 
-Der GDA führt ein **POST** [$plan-read](OperationDefinition-at-emed-operation-plan-read.html) aus und bearbeitet die von der Fachanwendung im [Medikationsplan-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplan.html) bereitgestellten Ressourcen:
+Der GDA führt ein **POST** [$plan-read](OperationDefinition-at-elga-emed-operation-plan-read.html) aus und bearbeitet die von der Fachanwendung im [Medikationsplan-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplan.html) bereitgestellten Ressourcen:
 
 
 * *List*-Ressource bearbeiten: [AtElgaEmedListMedikationsplan](StructureDefinition-at-elga-emed-list-medikationsplan.html):
@@ -287,10 +287,10 @@ Der GDA führt ein **POST** [$plan-read](OperationDefinition-at-emed-operation-p
     - **Grund für die Pausierung/Aktivierung** (*statusReason.coding*) optionalerer Grund für die Pausierung als Code oder Freitext (siehe [ValueSet-AtElgaEmedValueSetPlaneintragStatusReasonVS.html](AtElgaEmedValueSetPlaneintragStatusReasonVS)) 
     - falls weitere Elemente geändert werden, siehe [Sub_UC_eMed_02_03 - Planeintrag im Medikationsplan ändern](Sub_UC_eMed_02.html#sub_uc_emed_02_03---planeintrag-im-medikationsplan-ändern)
 
-Der GDA übermittelt mit **POST** [$plan-write](OperationDefinition-at-emed-operation-plan-write.html) den aktualisierten Medikationsplan in einem [Transaction Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplantx.html):
+Der GDA übermittelt mit **POST** [$plan-write](OperationDefinition-at-elga-emed-operation-plan-write.html) den aktualisierten Medikationsplan in einem [Transaction Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplantx.html):
 - alle geänderten Ressourcen sind inline im Bundle enthalten
 
-Anmerkung: Beim nächsten [$plan-read](OperationDefinition-at-emed-operation-plan-read.html) ändert die Fachanwendung im zur Auslieferung bereitgestellten [Medikationsplan-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplan.html) den Status der List.entry.flags von *changed* automatisch auf *unchanged*. 
+Anmerkung: Beim nächsten [$plan-read](OperationDefinition-at-elga-emed-operation-plan-read.html) ändert die Fachanwendung im zur Auslieferung bereitgestellten [Medikationsplan-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplan.html) den Status der List.entry.flags von *changed* automatisch auf *unchanged*. 
 
 
 #### Relevante Elemente (List)
@@ -328,18 +328,18 @@ Ein GDA kann explizit dokumentieren, dass für den Patienten derzeit **keine Med
 
 #### Ablauf 
 
-Der GDA führt ein **POST** [$plan-read](OperationDefinition-at-emed-operation-plan-read.html) aus und bearbeitet die von der Fachanwendung im [Medikationsplan-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplan.html) bereitgestellten Ressourcen:
+Der GDA führt ein **POST** [$plan-read](OperationDefinition-at-elga-emed-operation-plan-read.html) aus und bearbeitet die von der Fachanwendung im [Medikationsplan-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplan.html) bereitgestellten Ressourcen:
 
 Die Vorgehensweise unterscheidet sich je nach Inhalt des temporären Medikationsplans:
 1. der Medikationsplan ist **leer**: 
 * **A.** er befindet sich noch im **Initialzustand** mit *List.emptyReason = notstarted* oder 
 * **B.** er ist **nach dem Absetzen oder Stornieren aller Planeinträge** leer mit *List.emptyReason = nilknown* <br>
-    In beiden Fällen übermittelt der GDA mit **POST** [$plan-write](OperationDefinition-at-emed-operation-plan-write.html) eine neue Planversion mit *List.emptyReason = nilknown* in einem [Transaction Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplantx.html).
+    In beiden Fällen übermittelt der GDA mit **POST** [$plan-write](OperationDefinition-at-elga-emed-operation-plan-write.html) eine neue Planversion mit *List.emptyReason = nilknown* in einem [Transaction Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplantx.html).
 
 2. es bestehen **Planeinträge**: der GDA
 * **beendet** (siehe [Sub_UC_eMed_02_08 - Planeintrag im Medikationsplan beenden](Sub_UC_eMed_02.html#sub_uc_emed_02_08---planeintrag-im-medikationsplan-beenden)) und/oder
 * **storniert** (siehe [Sub_UC_eMed_02_07 - Planeintrag im Medikationsplan stornieren](Sub_UC_eMed_02.html#sub_uc_emed_02_07---planeintrag-im-medikationsplan-stornieren))
-    sämtliche Planeinträge. Beim nächsten [$plan-read](OperationDefinition-at-emed-operation-plan-read.html) erkennt die Fachanwendung diesen Zustand und liefert den Medikationsplan mit *List.emptyReason = nilknown* aus. Optional kann der GDA nun explizit einen leeren Plan dokumentieren (siehe 1.B).
+    sämtliche Planeinträge. Beim nächsten [$plan-read](OperationDefinition-at-elga-emed-operation-plan-read.html) erkennt die Fachanwendung diesen Zustand und liefert den Medikationsplan mit *List.emptyReason = nilknown* aus. Optional kann der GDA nun explizit einen leeren Plan dokumentieren (siehe 1.B).
 
 <!-- (TODO: Invariante zur Überprüfung) -->
 
@@ -358,7 +358,7 @@ Der GDA kann einen oder mehrere Planeinträge aufgrund einer falschen Eingabe st
 
 #### Ablauf
 
-Der GDA führt ein **POST** [$plan-read](OperationDefinition-at-emed-operation-plan-read.html) aus und bearbeitet die von der Fachanwendung im [Medikationsplan-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplan.html) bereitgestellten Ressourcen:
+Der GDA führt ein **POST** [$plan-read](OperationDefinition-at-elga-emed-operation-plan-read.html) aus und bearbeitet die von der Fachanwendung im [Medikationsplan-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplan.html) bereitgestellten Ressourcen:
 
 * *List*-Ressource bearbeiten: [AtElgaEmedListMedikationsplan](StructureDefinition-at-elga-emed-list-medikationsplan.html):
     - **Informationen zur Änderung**: aktuelles Datum (*List.date*) und aktueller GDA (*List.source*) 
@@ -373,10 +373,10 @@ Der GDA führt ein **POST** [$plan-read](OperationDefinition-at-emed-operation-p
     - falls weitere Elemente geändert werden, siehe [Sub_UC_eMed_02_03 - Planeintrag im Medikationsplan ändern](Sub_UC_eMed_02.html#sub_uc_emed_02_03---planeintrag-im-medikationsplan-ändern)
 
 
-Der GDA übermittelt mit **POST** [$plan-write](OperationDefinition-at-emed-operation-plan-write.html) den aktualisierten Medikationsplan in einem [Transaction Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplantx.html):
+Der GDA übermittelt mit **POST** [$plan-write](OperationDefinition-at-elga-emed-operation-plan-write.html) den aktualisierten Medikationsplan in einem [Transaction Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplantx.html):
 - alle zu entfernenden *MedicationRequests* sind im Transaction Bundle enthalten
 
-Anmerkung: Beim nächsten [$plan-read](OperationDefinition-at-emed-operation-plan-read.html) entfernt die Fachanwendung im zur Auslieferung bereitgestellten [Medikationsplan-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplan.html) die mit *removed* gekennzeichneten Einträge automatisch aus dem Mediaktionsplan. 
+Anmerkung: Beim nächsten [$plan-read](OperationDefinition-at-elga-emed-operation-plan-read.html) entfernt die Fachanwendung im zur Auslieferung bereitgestellten [Medikationsplan-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplan.html) die mit *removed* gekennzeichneten Einträge automatisch aus dem Mediaktionsplan. 
 
 #### Relevante Elemente (List)
 
@@ -410,7 +410,7 @@ Der GDA kann eine Medikation, welche in einen Planeintrag dokumentiert ist, been
 
 #### Ablauf
 
-Der GDA führt ein **POST** [$plan-read](OperationDefinition-at-emed-operation-plan-read.html) aus und bearbeitet die von der Fachanwendung im [Medikationsplan-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplan.html) bereitgestellten Ressourcen:
+Der GDA führt ein **POST** [$plan-read](OperationDefinition-at-elga-emed-operation-plan-read.html) aus und bearbeitet die von der Fachanwendung im [Medikationsplan-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplan.html) bereitgestellten Ressourcen:
 
 * *List*-Ressource bearbeiten: [AtElgaEmedListMedikationsplan](StructureDefinition-at-elga-emed-list-medikationsplan.html):
     - **Informationen zur Änderung**: aktuelles Datum (*List.date*) und aktueller GDA (*List.source*) 
@@ -424,11 +424,11 @@ Der GDA führt ein **POST** [$plan-read](OperationDefinition-at-emed-operation-p
     - **Grund für die Beendigung** (*statusReason.coding*) muss **verpflichend** mit als Code oder Freitext dokumentiert werden (siehe [ValueSet-AtElgaEmedValueSetPlaneintragStatusReasonVS.html](AtElgaEmedValueSetPlaneintragStatusReasonVS)) 
     - falls weitere Elemente geändert werden, siehe [Sub_UC_eMed_02_03 - Planeintrag im Medikationsplan ändern](Sub_UC_eMed_02.html#sub_uc_emed_02_03---planeintrag-im-medikationsplan-ändern)
 
-Der GDA übermittelt mit **POST** [$plan-write](OperationDefinition-at-emed-operation-plan-write.html) den aktualisierten Medikationsplan in einem [Transaction Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplantx.html):
+Der GDA übermittelt mit **POST** [$plan-write](OperationDefinition-at-elga-emed-operation-plan-write.html) den aktualisierten Medikationsplan in einem [Transaction Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplantx.html):
 - alle zu beendeten *MedicationRequests* sind im Transaction Bundle enthalten
 
 
-Anmerkung: Beim nächsten [$plan-read](OperationDefinition-at-emed-operation-plan-read.html) entfernt die Fachanwendung im zur Auslieferung bereitgestellten [Medikationsplan-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplan.html) die mit *removed* gekennzeichneten Einträge automatisch aus dem Mediaktionsplan. 
+Anmerkung: Beim nächsten [$plan-read](OperationDefinition-at-elga-emed-operation-plan-read.html) entfernt die Fachanwendung im zur Auslieferung bereitgestellten [Medikationsplan-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplan.html) die mit *removed* gekennzeichneten Einträge automatisch aus dem Mediaktionsplan. 
 
 
 #### Relevante Elemente (List)
@@ -468,10 +468,10 @@ Planeinträge mit abgelaufenem Einnahmezeitraum (überschrittenes Enddatum in *e
 <!-- - **1.B** Soll die Einnahme **nicht weiterverordnet** werden, nimmt der GDA **keine Änderung** am List.entry.flag und dem abgelaufenen Planeintrag vor (auch kein Beendigungsgrund und keine Aktualisierung des GDAs im Planeintrag).  -->
 
 
-Er übermittelt mit **POST** [$plan-write](OperationDefinition-at-emed-operation-plan-write.html) den aktualisierten Medikationsplan in einem [Transaction Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplantx.html): 
+Er übermittelt mit **POST** [$plan-write](OperationDefinition-at-elga-emed-operation-plan-write.html) den aktualisierten Medikationsplan in einem [Transaction Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplantx.html): 
 - alle geänderten Ressourcen (inkl. der beendeten) sind inline im Bundle enthalten
 
-Beim nächsten [$plan-read](OperationDefinition-at-emed-operation-plan-read.html) entfernt die Fachanwendung im zur Auslieferung bereitgestellten [Medikationsplan-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplan.html) die mit *removed* gekennzeichneten Einträge automatisch aus dem Mediaktionsplan. 
+Beim nächsten [$plan-read](OperationDefinition-at-elga-emed-operation-plan-read.html) entfernt die Fachanwendung im zur Auslieferung bereitgestellten [Medikationsplan-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplan.html) die mit *removed* gekennzeichneten Einträge automatisch aus dem Mediaktionsplan. 
 
 
 #### Relevante Elemente (List) (1.B)
@@ -515,7 +515,7 @@ Der Einnahmezeitraum der im Planeintrag dokumentierten Arzneimittel darf noch ni
 
 #### Ablauf
 
-Der GDA führt ein **POST** [$plan-read](OperationDefinition-at-emed-operation-plan-read.html) aus und bearbeitet die von der Fachanwendung im [Medikationsplan-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplan.html) bereitgestellten Ressourcen:
+Der GDA führt ein **POST** [$plan-read](OperationDefinition-at-elga-emed-operation-plan-read.html) aus und bearbeitet die von der Fachanwendung im [Medikationsplan-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplan.html) bereitgestellten Ressourcen:
 
 * *List*-Ressource bearbeiten: [AtElgaEmedListMedikationsplan](StructureDefinition-at-elga-emed-list-medikationsplan.html):
     - **Informationen zur Änderung**: aktuelles Datum (*List.date*) und aktueller GDA (*List.source*) 
@@ -524,7 +524,7 @@ Der GDA führt ein **POST** [$plan-read](OperationDefinition-at-emed-operation-p
 * *MedicationRequest*-Ressource(n): Planeinträge ([AtElgaEmedMedicationRequestPlaneintrag](StructureDefinition-at-elga-emed-medicationrequest-planeintrag.html)) bleiben **unverändert**.
 
 
-Der GDA übermittelt mit **POST** [$plan-write](OperationDefinition-at-emed-operation-plan-write.html) den aktualisierten Medikationsplan in einem [Transaction Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplantx.html):
+Der GDA übermittelt mit **POST** [$plan-write](OperationDefinition-at-elga-emed-operation-plan-write.html) den aktualisierten Medikationsplan in einem [Transaction Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplantx.html):
 - die unveränderten Ressourcen sind nicht im Bundle enthalten, sondern werden in der Liste nur referenziert
 - neue oder geänderte Ressourcen sind im Transaction Bundle enthalten,
 

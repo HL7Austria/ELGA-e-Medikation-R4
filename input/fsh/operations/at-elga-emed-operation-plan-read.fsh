@@ -1,6 +1,6 @@
 Instance: AtElgaEmedListPlanRead
 InstanceOf: OperationDefinition
-Title: "e-Med Operation für Plan-Read"
+Title: "e-Med Operation für $plan-read"
 Description: """
 Die $plan-read Operation ruft den aktuellen Medikationsplan eines
 ELGA-Teilnehmers in einem für die Bearbeitung durch den GDA aufbereiteten
@@ -15,8 +15,8 @@ Fachanwendung eine initiale List-Ressource mit List.emptyReason = notstarted.
 """
 Usage: #definition
 
-* id = "AtElgaEmed.List.PlanRead"
-* name = "AtElgaEmed_List_PlanRead"
+* id = "at-elga-emed-operation-plan-read"
+* name = "AtElgaEmedListPlanRead"
 * status = #draft
 * kind = #operation
 // Die Operation kann bei noch nicht vorhandenem Medikationsplan dessen initiale List-Ressource persistieren.
@@ -27,16 +27,6 @@ Usage: #definition
 * instance = false
 * resource[+] = #List
 * code = #plan-read
-
-
-* parameter[+]
-* parameter[=].name = #return
-* parameter[=].use = #out
-* parameter[=].min = 0
-* parameter[=].max = "1"
-* parameter[=].documentation = "Der *return* Parameter im Falle eines Fehlers."
-* parameter[=].type = #Resource
-* parameter[=].targetProfile[+] = Canonical(OperationOutcome)
 
 * parameter[+]
 * parameter[=].name = #return
@@ -54,3 +44,12 @@ erzeugte List-Ressource sowie sämtliche von ihr referenzierten Ressourcen.
 Der ETag der aktuellen persistierten List-Version wird im HTTP-
 Response-Header übermittelt und ist kein Ausgabeparameter der Operation.
 """
+
+* parameter[+]
+* parameter[=].name = #return
+* parameter[=].use = #out
+* parameter[=].min = 0
+* parameter[=].max = "1"
+* parameter[=].documentation = "Der *return* Parameter im Falle eines Fehlers."
+* parameter[=].type = #Resource
+* parameter[=].targetProfile[+] = Canonical(AtElgaEmedOperationOutcome)

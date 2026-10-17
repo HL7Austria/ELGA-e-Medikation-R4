@@ -238,7 +238,7 @@ Da kein weiterer ELGA-Zugriff auf die Medikationsdaten des ELGA-Teilnehmers mög
 <br> 
 
 #### Custom Operations
-* *POST* [$dispense-write](OperationDefinition-at-emed-operation-dispense-write.html)
+* *POST* [$dispense-write](OperationDefinition-at-elga-emed-operation-dispense-write.html)
 
 <!--  TODO
 - Benötigt $dispense-write ohne Kontakt eigene Operation? 
@@ -285,7 +285,7 @@ Wenn eine stornierte *Durchgeführte Abgabe* Teil eines e-Rezepts mit weiteren *
 
 
 #### Custom Operations
-* *POST* [$dispense-discard](OperationDefinition-at-emed-operation-dispense-discard.html)
+* *POST* [$dispense-discard](OperationDefinition-at-elga-emed-operation-dispense-discard.html)
 
 
 ### Sub_UC_eMed_05_03 - Bezug zu einem Planeintrag herstellen/entfernen
@@ -295,7 +295,7 @@ Sofern für die [Durchgeführte Abgabe](StructureDefinition-at-elga-emed-medicat
 <!-- TODO: Wird Datum/Author aktualisert? -->
 
 #### Custom Operations
-* *POST* [$reference-plan](OperationDefinition-at-emed-operation-reference-plan.html)
+* *POST* [$reference-plan](OperationDefinition-at-elga-emed-operation-reference-plan.html)
 
 ### Sub_UC_eMed_05_04 - Durchgeführte Abgabe löschen (durch ELGA-Teilnehmer)
 <!-- «DELETE» (delete) [PAT]  -->

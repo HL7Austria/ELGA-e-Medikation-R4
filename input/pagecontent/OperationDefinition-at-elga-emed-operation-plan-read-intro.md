@@ -1,4 +1,4 @@
-### Business Logik
+### Operation spezifische Business Logik
 
 Vor der Auslieferung prüft die Fachanwendung den Zustand des Medikationsplans:
 

@@ -1,9 +1,9 @@
 Instance: AtElgaEmedDispenseDiscard
 InstanceOf: OperationDefinition
-Title: "eMed Operation $dispense-discard"
+Title: "e-Med Operation für $dispense-discard"
 Description: "Operation für das Stornieren von Durchgeführten Abgaben"
 Usage: #definition
-* id = "at-emed-operation-dispense-discard"
+* id = "at-elga-emed-operation-dispense-discard"
 * name = "AtElgaEmedDispenseDiscard"
 * status = #draft
 * kind = #operation
@@ -18,6 +18,15 @@ Usage: #definition
 * parameter[=].use = #out
 * parameter[=].min = 0
 * parameter[=].max = "1"
-* parameter[=].documentation = "Die durchgeführte Abgabe so wie sie nach dem Ausführen der Operation am Server persistiert ist."
+* parameter[=].documentation = "Die Durchgeführte Abgabe so wie sie nach dem Ausführen der Operation am Server persistiert ist."
 * parameter[=].type = #Resource
 * parameter[=].targetProfile[+] = Canonical(AtElgaEmedMedicationDispenseDurchgefuehrteAbgabe)
+
+* parameter[+]
+* parameter[=].name = #return
+* parameter[=].use = #out
+* parameter[=].min = 0
+* parameter[=].max = "1"
+* parameter[=].documentation = "Der *return* Parameter im Falle eines Fehlers."
+* parameter[=].type = #Resource
+* parameter[=].targetProfile[+] = Canonical(AtElgaEmedOperationOutcome)

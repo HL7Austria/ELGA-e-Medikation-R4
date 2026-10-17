@@ -59,7 +59,7 @@ und widerspricht dem Usecase:
 
 #### Ablauf
 
-Der GDA führt ein **POST** [$plan-read](OperationDefinition-at-emed-operation-plan-read.html) aus und erhält von der Fachanwendung im [Medikationsplan-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplan.html) alle für die Erstellung der *Geplanten Abgaben* relevanten Ressourcen.
+Der GDA führt ein **POST** [$plan-read](OperationDefinition-at-elga-emed-operation-plan-read.html) aus und erhält von der Fachanwendung im [Medikationsplan-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplan.html) alle für die Erstellung der *Geplanten Abgaben* relevanten Ressourcen.
 
 <!-- im Planeintrag steht:   TODO klären, wie das in der Geplanten Abgabe gemacht wird akl 8.10.
     - *medication*: zur Dokumentation des Arzneimittels wird die *Medication*-Ressource verwendet. Diese muss bei Medikamenten mit PZN beim Schreiben als **Conditional Reference** mit **PZN und Name** angegeben werden (beim Lesen ist diese contained in der Ressource enthalten). Magistrale Zubereitungen sind immer als contained Ressource anzugeben (siehe Kapitel [Medikation](ELGA-e-Medikation-R4/output/medication.html)). -->
@@ -109,7 +109,7 @@ AtElgaEmedMedicationRequestGeplanteAbgabe
 ```
 
 ##### Custom Operations
-* *POST* [$prescription-write](OperationDefinition-at-emed-operation-prescription-write.html)
+* *POST* [$prescription-write](OperationDefinition-at-elga-emed-operation-prescription-write.html)
 
 
 
@@ -164,7 +164,7 @@ Die e-Medikation Fachanwendung ergänzt diesen und liefert ihn an den Client zur
 
 ##### Custom Operations
 
-* *POST* [$groupidentifier-create](OperationDefinition-at-emed-operation-groupidentifier-create.html)
+* *POST* [$groupidentifier-create](OperationDefinition-at-elga-emed-operation-groupidentifier-create.html)
 
 
 
@@ -194,7 +194,7 @@ AtElgaEmedMedicationRequestGeplanteAbgabe
 ```
 ##### Custom Operations
 
-* *POST* [$prescription-discard](OperationDefinition-at-emed-operation-prescription-discard.html)
+* *POST* [$prescription-discard](OperationDefinition-at-elga-emed-operation-prescription-discard.html)
 
 
 
