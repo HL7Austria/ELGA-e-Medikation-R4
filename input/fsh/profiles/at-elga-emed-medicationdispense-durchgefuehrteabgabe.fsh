@@ -38,6 +38,9 @@ Description: "Profil einer \"Durchgeführten Abgabe\" eines Arzneimittels aus de
 * extension contains $medicationDispense-recorded-r5 named recorded 1..1
 * extension[recorded] ^short = "Datum und Uhrzeit, zu denen die Abgabe erfasst wurde. Dies muss nicht unbedingt mit dem Zeitpunkt übereinstimmen, zu dem das Medikament dem Patienten ausgehändigt wurde (z.B. bei Nacherfassung der Abgabe)."
 
+* extension contains $medicationDispense-statusChanged-r5  named statusChanged 0..1
+* extension[statusChanged] ^short = "Datum der Statusänderung. Dies ist nur bei einem Status von: cancelled | entered-in-error | stopped relevant."
+
 * extension contains AtElgaEmedExtensionGroupIdentifier named groupIdentifier 0..1
 * extension[groupIdentifier] ^short = "Als groupIdentifier dient der e-Med GroupIdentifier der zugehörigen Geplanten Abgabe (wird auch im e-Rezept mitgeführt)."
 
@@ -51,7 +54,7 @@ Description: "Profil einer \"Durchgeführten Abgabe\" eines Arzneimittels aus de
 //* partOf ^short = "Auslösendes Ereignis (Referenz auf Procedure-Ressource). Keine Verwendung in der Durchgeführten Abgabe."
 
 * status 1..1 MS
-* status ^short = "Status der Durchgeführten Abgabe. Mögliche Ausprägungen: [completed | entered-in-error | stopped] Bedeutung: completed: Die Durchgeführte Abgabe ist abgeschlossen. | entered-in-error: Die Durchgeführte Abgabe wird aufgrund falscher Eingabe storniert. | stopped: Die Abgabe wird nicht durchgeführt (Medikament wird abgesetzt)."
+* status ^short = "Status der Durchgeführten Abgabe. Mögliche Ausprägungen: [completed | cancelled | entered-in-error ] Bedeutung: completed: Die Durchgeführte Abgabe ist abgeschlossen. | cancelled: Leerabgabe | entered-in-error: Die Durchgeführte Abgabe wird aufgrund falscher Eingabe storniert."
 // TODO: zu prüfen: 
 // * ob es einen Status in-progress / preparation geben soll, z.B. wenn Bestellvorgang gestartet wurde und der typ First Fill - Part Fill ist.
 // * Technische Prüfungen bezüglich Abhängigkeiten von status, typ, Rezeptart? (z.B. in-progress bei Bestellung o.ä.), evtl Operation 
