@@ -1,6 +1,9 @@
 Profile: AtElgaEmedOrganization
 Parent: HL7ATCoreOrganization
 Id: at-elga-emed-organization
+Title: "AT ELGA e-Medikation Organization"
+Description: "Profil für die Struktur von Organisationen"
+
 
 * identifier MS
 * identifier[GDA-OID] 1..1 MS

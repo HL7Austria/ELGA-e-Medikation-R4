@@ -1,7 +1,8 @@
 Profile: AtElgaEmedPractitioner
 Parent: HL7ATCorePractitioner
 Id: at-elga-emed-practitioner
-
+Title: "AT ELGA e-Medikation Practitioner"
+Description: "Profil für die Struktur der Practitioner Ressource"
 * identifier MS
 * identifier[GDA-OID] 1..1 MS
 * identifier[GDA-OID].use 0..0

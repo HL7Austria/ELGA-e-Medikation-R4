@@ -1,7 +1,8 @@
 Profile: AtElgaEmedPatient
 Parent: HL7ATCorePatient
 Id: at-elga-emed-patient
-
+Title: "AT ELGA e-Medikation Patient"
+Description: "Profil für die Struktur der Patienten Ressource"
 * name MS
 * name.family MS
 * name.given MS
