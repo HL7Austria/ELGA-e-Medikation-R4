@@ -1,18 +1,18 @@
 //ohne Kontakt nur mit groupIdentifier
-Instance: AtElgaEmedGroupIdentifierPrescriptionSearch
+Instance: AtElgaEmedGroupIdentifierSearch
 InstanceOf: OperationDefinition
-Title: "eMed Operation für GroupIdentifier Prescription Search"
-Description: "Die $groupidentifier-prescription-search Operation wird aufgerufen, wenn ein Zugriff auf geplante Abgaben mittels e-Med GroupIdentifier erfolgen soll."
+Title: "eMed Operation für GroupIdentifier Search"
+Description: "Die $groupidentifier-prescription-search Operation wird aufgerufen, wenn ein Zugriff auf Geplante und Durchgeführte Abgaben mittels e-Med GroupIdentifier erfolgen soll."
 Usage: #definition
-* id = "at-emed-operation-groupidentifier-prescription-search"
-* name = "AtElgaEmedGroupIdentifierPrescriptionSearch"
+* id = "at-emed-operation-groupidentifier-search"
+* name = "AtElgaEmedGroupIdentifierSearch"
 * status = #draft
 * kind = #operation
-* affectsState = false  // Ändert den Zustand am Server;
-* system = true       // Aufruf erfolgt auf Systemebene
+* affectsState = false 
+* system = true
 * type = false   
 * instance = false
-* code = #groupidentifier-prescription-search
+* code = #groupidentifier-search
 * parameter[+]
 * parameter[=].name = #groupidentifier
 * parameter[=].use = #in
@@ -25,7 +25,7 @@ Usage: #definition
 * parameter[=].use = #out
 * parameter[=].min = 0
 * parameter[=].max = "1"
-* parameter[=].documentation = "Der *return* Parameter enthält die angefragte(n) geplante(n) Abgabe(n)."
+* parameter[=].documentation = "Der *return* Parameter enthält die angefragte(n) Geplante(n) und Durchgeführten Abgabe(n)."
 * parameter[=].type = #Resource
 * parameter[=].targetProfile[+] = Canonical(Bundle) //TODO evtl. eigenes Bundle Profil
 * parameter[+]
@@ -35,4 +35,4 @@ Usage: #definition
 * parameter[=].max = "1"
 * parameter[=].documentation = "Der *return* Parameter gibt Auskunft über den Erfolg der Operation."
 * parameter[=].type = #Resource
-* parameter[=].targetProfile[+] = Canonical(OperationOutcome)
+* parameter[=].targetProfile[+] = Canonical(AtElgaEmedOperationOutcome)
