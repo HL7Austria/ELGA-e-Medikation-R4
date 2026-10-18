@@ -1,8 +1,12 @@
 Profile: AtElgaEmedDosageStandardAdministration
 Parent: AtElgaEmedDosageDosierung
 Id: at-elga-emed-dosage-standard-administration
+Title: "AT ELGA e-Medikation Standard-Tageszeiten-Dosierschema"
+Description: "Profil für das Standard-Tageszeiten-Dosierschema"
 
-* extension[DosageCategory].valueCodeableConcept = AtElgaEmedCodeSystemDosageCategory#standard (exactly)
+* extension[DosageCategory].valueCodeableConcept.coding.code = #standard
+
+
 * timing.repeat.when 1..
 * timing.repeat.when from ElgaTimingWhenStandardAdministrationVS
 

@@ -7,16 +7,14 @@
 }
 </style>
 
-<div class="dragon">
+<h3 class="no-number">Regeln für Standarddosierungen im Tageszeitenschema</h3>
+
+<div class="dragon" markdown="1">
 <p class="note-to-balloters">
-Offene Punkte:<br>
-In Arbeit.
-(doseAndRate in Textdarstellung,...)
+Die finale Beschreibung der Regeln für dieses Schema wird noch erarbeitet und im nächsten Ballot zur Verfügung gestellt. Feedback aus der Community ist erwünscht.
 </p>
 </div>
-
-
-<h3 class="no-number">Regeln für Standarddosierungen im Tageszeitenschema</h3>
+<br>
 
 <p>
   Dieses Profil repräsentiert strukturierte, wiederkehrende Dosierungen anhand
@@ -570,6 +568,14 @@ Dosage [1]
 
 
 <h3 class="no-number">Bildung der Textdarstellung</h3>
+
+<div class="dragon" markdown="1">
+<p class="note-to-balloters">
+Der finale Algorithmus für die Generierung der menschenlesbaren Textdarstellungen dieses Dosierschemas wird noch erarbeitet und im nächsten Ballot zur Verfügung gestellt. Feedback aus der Community ist erwünscht. Konkret wurden bisher nur Elemente aus <code>timing.repeat</code> und <code>doseAndRate</code> in die Textdarstellung aufgenommen. Weitere relevante Elemente (z.B. <code>site</code>, <code>route</code>, <code>method</code>, <code>additionalInstruction</code>,<code>timing.repeat.bounsPeriod[x]</code>) werden bis zum nächsten Ballot finalisiert.
+</p>
+</div>
+<br>
+
 
 <p>
 Die Textdarstellung wird je Einnahmeregel gebildet. Alle

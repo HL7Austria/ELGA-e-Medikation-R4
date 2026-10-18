@@ -314,11 +314,13 @@ groups:
     name: Dosierungen
     description: Dosierungsvarianten
     resources:
+     - StructureDefinition/at-elga-emed-timing
      - StructureDefinition/at-elga-emed-dosage-dosierung
      - StructureDefinition/at-elga-emed-dosage-standard-administration
      - StructureDefinition/at-elga-emed-dosage-freetext-administration
-     - StructureDefinition/at-elga-emed-dosage-frequency-administration
-     - StructureDefinition/at-elga-emed-dosage-timed-administration
+     #- StructureDefinition/at-elga-emed-dosage-frequency-administration
+     #- StructureDefinition/at-elga-emed-dosage-timed-administration
+     #- StructureDefinition/at-elga-emed-dosage-other-administration
   Stammdaten:
     name: Stammdaten
     description: Stammdaten

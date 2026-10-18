@@ -1,0 +1,29 @@
+flowchart BT
+    subgraph D["Einzelne Dosierungsanweisung — Dosage [0..*]"]
+        S["Strukturierte Dosierungsangaben<br/>z. B. timing, route, doseAndRate,..."]
+        A["<b>Dosage.additionalInstruction</b>[0..*]<br/>CodeableConcept<br/><br/>Anwendungshinweise / Warnungen"]
+        P["<b>Dosage.patientInstruction</b>[0..1]<br/>string<br/><br/>Patientenverständliche Anweisung"]
+        T["<b>Dosage.text</b>[0..1]<br/>string<br/><br/>Text der einzelnen Dosierungsanweisung"]
+    end
+
+    R["<b>.extension:renderedDosageInstruction</b><br/>Markdown<br/><br/>Gesamtdarstellung aller Dosierungsanweisungen"]
+
+    M["Arzneimittelinformationen der contained Medication"]
+
+    N["<b>.note [0..1].text</b><br/>Markdown<br/><br/>Ergänzende Hinweise zur Verordnung/Abgabe"]
+
+    O["Weitere wesentliche Angaben zur Verordnung/Abgabe z.B. effectiveDosePeriod, courseOfTherapyType,... "]
+
+    X["<b>MedicationRequest/MedicationDispense.text</b><br/>Narrative: status + div (XHTML)<br/><br/>Wesentliche Informationen der gesamten Verordnung/Abgabe"]
+
+    S -.-> T
+    A -.-> T
+    P -.-> T
+
+
+    T --> |Kombination der Textrepräsentation der Dosage Instanzen| R
+
+    R --> X
+    M --> X
+    N --> X
+    O --> X
