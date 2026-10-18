@@ -1,5 +1,5 @@
 ValueSet: DurchgefuehrteAbgabeTypVS
-Title: "ELGA e-Med Durchgeführte Abgabe Typ Value Set"
+Title: "ELGA e-Med Durchgeführte Abgabe Typ ValueSet"
 Description: "ValueSet für zulässige Ausprägungen eines Typs einer Durchgeführten Abgabe (MedicationDispense)."
 //https://terminology.hl7.org/7.1.0/en/ValueSet-v3-ActPharmacySupplyType.html
 * ^status = #active

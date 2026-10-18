@@ -91,14 +91,14 @@ Description: "Profil für einen Medikationsplaneintrag."
 * medication[x] ^type.aggregation = #contained
 * medication[x] ^short = "Das Arzneimittel wird in einer contained Medication Ressource oder als logische Referenz dokumentiert, damit Arzneimittel mit und ohne PZN einheitlich dokumentiert werden können."
 * medicationReference MS
-* medicationReference.reference MS
+* medicationReference.reference 1..1 MS
 // ASW TODO 14.10. medication hat keinen identifier - conditional reference im tx bundle - wie einschränken für unterschied zw. schreiben und lesen?
 //* medicationReference.identifier MS
 //* medicationReference.identifier.system MS
 //* medicationReference.identifier.value MS
 
 // --- Subject ---
-* subject only Reference(AtElgaCorePatient) // ag auch eu-patient, evtl nur verschl. bpkh, daten zpi verfügbar, auch mit svnr möglich, speicherfristen
+* subject only Reference(AtElgaEmedPatient) // ag auch eu-patient, evtl nur verschl. bpkh, daten zpi verfügbar, auch mit svnr möglich, speicherfristen
 * subject 1..1 MS
 * subject ^short = "ELGA-Teilnehmer, für den der Medikationsplan dokumentiert wird."
 * subject.reference MS
@@ -110,13 +110,18 @@ Description: "Profil für einen Medikationsplaneintrag."
 
 // -- AuthoredOn ---
 * authoredOn 1..1 MS
-* authoredOn ^short = "Datum der Erstellung des Planeintrags."
+* authoredOn ^short = "Datum der Verordnung des Planeintrags."
 
 // -- Requester --- //ag: sptäter organz. weg , practitioner role: name+orga
-* requester 1..1 MS  // zu hinterfragen, ob AtElgaCorePractitionerRole + HL7ATCoreOrganization nötig 
-* requester only Reference(AtElgaCorePractitioner or AtElgaCorePractitionerRole or HL7ATCoreOrganization)
-* requester ^short = "GDA welcher den Planeintrag erstellt hat und für den Inhalt verantwortlich ist. Eindeutig identifiziert über den GDA-Index und berechtigt auf die ELGA e-Medikation des Patienten zuzugreifen."
-
+* requester 1..1 MS  // zu hinterfragen, ob AtElgaEmedPractitionerRole + HL7ATCoreOrganization nötig 
+* requester only Reference(AtElgaEmedPractitioner or AtElgaEmedPractitionerRole or HL7ATCoreOrganization)
+* requester ^short = "GDA welcher den Planeintrag zuletzt bearbeitet hat und für den Inhalt verantwortlich ist. Eindeutig identifiziert über den GDA-Index und berechtigt auf die ELGA e-Medikation des Patienten zuzugreifen."
+* requester.reference MS
+* requester.identifier MS
+* requester.identifier.system MS
+* requester.identifier.value MS
+* requester.identifier.use 0..0
+* requester.identifier.use ^short = "Fachliche Begründung: TODO"
 //* recorder 0..0
 //* recorder ^short = "Die Person, die den Planeintrag im Auftrag eines GDA eingegeben hat." // TODO: Prüfen, ob eine juristische Verpflichtung zur Dokumentation der Schreibkraft besteht."
 //ASW 22.09.2026 TODO fachlich hinterfragen
@@ -144,7 +149,6 @@ Description: "Profil für einen Medikationsplaneintrag."
 //ASW 22.09.2026 TODO Author, Datum, mehrere erlaubt? Annotation profilieren 
 * note ^short = "Zusätzliche Informationen zum Planeintrag." // TODO: fachlich prüfen, an welchen Stellen Freitext erforderlich sein soll/muss. Auch im Kontext zu entered-in-error Informationen."
 * note.text MS
-* note.time MS
 
 * dispenseRequest 0..0 
 * dispenseRequest ^short = "Fachliche Begründung: Abgabedetails werden in der geplanten Abgabe und nicht im Planeintrag dokumentiert."

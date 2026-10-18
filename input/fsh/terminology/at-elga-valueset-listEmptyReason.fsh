@@ -1,6 +1,6 @@
 ValueSet: ElgaListEmptyReasonVS
 
-Title: "ELGA List Empty Reason Value Set"
+Title: "ELGA List Empty Reason ValueSet"
 Description: "ValueSet für zulässige Ausprägungen des Elements emptyReason einer Liste."
 * ^status = #active
 * ^experimental = true

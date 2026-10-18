@@ -12,7 +12,7 @@ Description: "CodeSystem für zulässige Ausprägungen des Flags eines List.Entr
 
 
 ValueSet: ElgaListEntryFlagVS
-Title: "ELGA List.entry.flag Value Set"
+Title: "ELGA List.entry.flag ValueSet"
 Description: "ValueSet für zulässige Ausprägungen Ausprägungen des Flags eines List.Entries in ELGA."
 * ^experimental = true
 * include codes from system ElgaListEntryFlagCS

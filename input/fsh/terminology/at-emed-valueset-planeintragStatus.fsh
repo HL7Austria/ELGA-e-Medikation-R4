@@ -1,5 +1,5 @@
 ValueSet: PlaneintragStatusVS
-Title: "ELGA e-Med Medikationsplaneintrag Status Value Set"
+Title: "ELGA e-Med Medikationsplaneintrag Status ValueSet"
 Description: "ValueSet für zulässige Ausprägungen eines Status eines Medikationsplaneintrags (MedicationRequest)."
 * ^experimental = true
 * ^status = #active

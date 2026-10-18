@@ -10,7 +10,7 @@ Description: "Codesystem für zulässige Ausprägungen des StatusReason eines Me
 * #ka "keine Aussage"
 
 ValueSet: AtElgaEmedValueSetPlaneintragStatusReasonVS
-Title: "ELGA e-Med Medikationsplaneintrag StatusReason Value Set"
+Title: "ELGA e-Med Medikationsplaneintrag StatusReason ValueSet"
 Description: "ValueSet für zulässige Ausprägungen des StatusReason eines Medikationsplaneintrags (MedicationRequest)."
 * ^experimental = true
 * ^status = #active

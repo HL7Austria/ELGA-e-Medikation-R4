@@ -8,7 +8,7 @@ Usage: #example
 * timestamp = "2026-03-14T13:12:00+00:00"
 * link.url = "https://example.elga.com/base/List/$plan-read"
 * link.relation = #self
-
+* total = 5
 * entry[Medikationsplan].resource = At-Emed-Journey-List-Medikationsplan-v3-plan-read-response
 * entry[Medikationsplan].search.mode = #match
 * entry[Medikationsplan].fullUrl = $srPlan

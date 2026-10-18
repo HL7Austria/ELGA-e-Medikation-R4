@@ -1,5 +1,5 @@
 ValueSet: DurchgefuehrteAbgabeStatusVS
-Title: "ELGA e-Med Durchgeführte Abgabe Status Value Set"
+Title: "ELGA e-Med Durchgeführte Abgabe Status ValueSet"
 Description: "ValueSet für zulässige Ausprägungen eines Status einer Durchgeführten Abgabe (MedicationDispense)."
 * ^experimental = true
 * ^status = #active

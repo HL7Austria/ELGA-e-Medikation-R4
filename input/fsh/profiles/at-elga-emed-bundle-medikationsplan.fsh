@@ -11,6 +11,8 @@ Description: "Profil für den Medikationsplan als Ergebnis der $plan-read Operat
 * type = #searchset
 * type ^short = "Art des Bundles. Für Medikationspläne immer \"searchset\"."
 
+* total 1..1 MS
+
 * link 1.. MS
 * link.url 1..1 MS
 * link.relation = #self
@@ -24,6 +26,8 @@ Description: "Profil für den Medikationsplan als Ergebnis der $plan-read Operat
 * entry ^slicing.discriminator[=].path = "resource"
 * entry ^slicing.rules = #closed  // als Entries sind nur List und MedicationRequest erlaubt
 * entry ^slicing.ordered = true  // erstes Entry soll die Liste sein
+* entry.modifierExtension 0..0
+* entry.modifierExtension ^short = "Fachliche Begründung: Es sind keine zusätzlichen Erweiterungen vorgesehen, die die Bedeutung der Ressource oder ihrer Elemente verändern."
 
 * entry contains 
     Medikationsplan 1..1 MS and    
@@ -71,7 +75,7 @@ Description: "Profil für den Medikationsplan als Ergebnis der $plan-read Operat
 * entry[Patient].search.modifierExtension 0..0
 * entry[Patient].search.modifierExtension ^short = "Fachliche Begründung: Es sind keine zusätzlichen Erweiterungen vorgesehen, die die Bedeutung der Ressource oder ihrer Elemente verändern."
 * entry[Patient].resource 1..1 MS
-* entry[Patient].resource only AtElgaCorePatient
+* entry[Patient].resource only AtElgaEmedPatient
 
 
 // Authors
@@ -86,5 +90,5 @@ Description: "Profil für den Medikationsplan als Ergebnis der $plan-read Operat
 * entry[Authors].search.modifierExtension 0..0
 * entry[Authors].search.modifierExtension ^short = "Fachliche Begründung: Es sind keine zusätzlichen Erweiterungen vorgesehen, die die Bedeutung der Ressource oder ihrer Elemente verändern."
 * entry[Authors].resource 1..1 MS
-* entry[Authors].resource only AtElgaCorePractitioner or AtElgaEmedDeviceFachanwendung or AtElgaCorePractitionerRole or AtElgaCoreOrganization
+* entry[Authors].resource only AtElgaEmedPractitioner or AtElgaEmedDeviceFachanwendung or AtElgaEmedPractitionerRole or AtElgaEmedOrganization
 

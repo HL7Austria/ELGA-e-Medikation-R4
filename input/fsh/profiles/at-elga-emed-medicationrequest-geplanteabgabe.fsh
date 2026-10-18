@@ -94,7 +94,7 @@ Description: "Profil einer \"Geplanten Abgabe\" eines Arzneimittels aus dem Medi
    //ws planeintrag kann auch nur wirkstoffe enthalten; evtl. wirkstoff oder pzn; magistral, pzn, sonstige; todo bepr. mit medication ressource
 * medication[x] ^short = "Das Arzneimittel wird in einer contained Medication Ressource oder als logische Referenz dokumentiert, damit Arzneimittel mit und ohne PZN einheitlich dokumentiert werden können."
 * medicationReference MS
-* medicationReference.reference MS
+* medicationReference.reference 1..1 MS
 // ASW TODO 14.10. medication hat keinen identifier - conditional reference im tx bundle - wie einschränken für unterschied zw. schreiben und lesen?
 //* medicationReference.identifier MS
 //* medicationReference.identifier.system MS
@@ -102,7 +102,7 @@ Description: "Profil einer \"Geplanten Abgabe\" eines Arzneimittels aus dem Medi
 
 
 // --- Subject ---
-* subject only Reference(AtElgaCorePatient) 
+* subject only Reference(AtElgaEmedPatient) 
 * subject 1..1 MS
 * subject ^short = "Patient, für den die Geplante Abgabe ausgestellt werden soll (über Zentralen Patientenindex identifiziert und Teilnehmer von ELGA e-Medikation)."
 * subject.reference MS
@@ -116,11 +116,11 @@ Description: "Profil einer \"Geplanten Abgabe\" eines Arzneimittels aus dem Medi
 
 // -- AuthoredOn ---
 * authoredOn 1..1 MS
-* authoredOn ^short = "Datum der Ausstellung der geplanten Abgabe."  
+* authoredOn ^short = "Datum der Verordnung der geplanten Abgabe."  
 
 // -- Requester ---
 * requester 1..1 MS 
-* requester only Reference(AtElgaCorePractitioner or AtElgaCorePractitionerRole or HL7ATCoreOrganization) 
+* requester only Reference(AtElgaEmedPractitioner or AtElgaEmedPractitionerRole or HL7ATCoreOrganization) 
 * requester ^short = "Der Arzt oder die Ärztin, die die Geplante Abgabe erstellt hat und für den Inhalt verantwortlich ist 
 (eindeutig identifiziert über den GDA-Index und berechtigt auf die ELGA e-Medikation des Patienten zuzugreifen)."
 //TODO: HL7ATCore-Practitioner-Profile profilieren."
@@ -161,11 +161,10 @@ Geplante Abgabe mit demselben groupIdentifier erstellt (bildet 'Rezept-Klammer')
 
 //* insurance ^short = "Versicherungsinformatinen als Coverage oder ClaimResponse Resource. Keine Verwendung in der geplanten Abgabe."
 
-* note 0..* MS  
+* note 0..1 MS  
 * note ^short = "Zusätzliche Informationen zur geplanten Abgabe (Kommunikation zwischen Arzt und Apotheke, die nicht die Dosierung betreffen)." 
 //TODO: prüfen was CDA derzeit zulässt; HL7 Consultation, ob Feld benötigt" 
 * note.text MS
-* note.time MS
 
 //TODO Dosage und AtElgaEmedDosageDosierung entfernen sobald Dosierungen fertig sind
 * dosageInstruction MS

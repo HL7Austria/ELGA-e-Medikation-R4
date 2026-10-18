@@ -56,7 +56,7 @@ Description: "Profil für einen Medikationsplan."
 
 * subject 1..1 MS
 * subject ^short = "ELGA-Teilnehmer, für den der Medikationsplan dokumentiert wird."
-* subject only Reference(AtElgaCorePatient) // TODO ELGA Patient ableiten
+* subject only Reference(AtElgaEmedPatient) // TODO ELGA Patient ableiten
 * subject.reference MS
 * subject.type MS
 * subject.identifier MS
@@ -77,7 +77,7 @@ Description: "Profil für einen Medikationsplan."
 
 * source 1..1 MS
 //ASW 22.09.2026 Patient nicht mehr möglich -> durch patientmodified abgebildet
-* source only Reference(AtElgaCorePractitioner or AtElgaCorePractitionerRole or AtElgaEmedDeviceFachanwendung)
+* source only Reference(AtElgaEmedPractitioner or AtElgaEmedPractitionerRole or AtElgaEmedDeviceFachanwendung)
 * source ^short = "Ersteller des Medikationsplans und für den Inhalt verantwortlich. Device nur für initiale Erstellung durch die Fachanwendung."
 * source.reference MS
 * source.type MS
