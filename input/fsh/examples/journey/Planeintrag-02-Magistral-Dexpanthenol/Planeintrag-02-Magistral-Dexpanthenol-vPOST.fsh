@@ -40,6 +40,8 @@ Usage: #inline
 * dosageInstruction[standardDosage].timing.repeat.when[+] = $cs-timing#EVE "Abends" 
 * dosageInstruction[standardDosage].timing.repeat.boundsDuration.value = 3
 * dosageInstruction[standardDosage].timing.repeat.boundsDuration.unit = "wk"
+* dosageInstruction[standardDosage].timing.repeat.boundsDuration.system = $cs-ucum
+* dosageInstruction[standardDosage].timing.repeat.boundsDuration.code = #wk 
 // * dosageInstruction[standardDosage].doseAndRate.doseQuantity.value = 2        // TODO: Angabe für Salbe
 // * dosageInstruction[standardDosage].doseAndRate.doseQuantity.system = $cs-ucum
 // * dosageInstruction[standardDosage].doseAndRate.doseQuantity = $cs-ucum#Stueck "Stück"

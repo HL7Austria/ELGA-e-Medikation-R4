@@ -39,6 +39,7 @@ Usage: #inline
 * dosageInstruction[standardDosage].timing.repeat.periodUnit = #d
 * dosageInstruction[standardDosage].timing.repeat.when[0] = $cs-event-timing#MORN  
 * dosageInstruction[standardDosage].timing.repeat.when[0] = $cs-event-timing#EVE  
+* dosageInstruction[standardDosage].doseAndRate.doseQuantity.value = 1
 * dosageInstruction[standardDosage].doseAndRate.doseQuantity = $cs-ucum#{Stueck} "Stück" // TODO
 * dosageInstruction[standardDosage].route = $cs-medikationartanwendung#100000073619 "zum Einnehmen"
 //* dosageInstruction.doseAndRate.doseQuantity = 10 'mg' "mg"  //TODO

@@ -82,7 +82,7 @@ Description: "Profil einer \"Durchgeführten Abgabe\" eines Arzneimittels aus de
 Arzneimittel mit und ohne PZN einheitlich dokumentiert werden können."
 
 // --- Subject ---
-* subject only Reference(AtElgaCorePatient) 
+* subject only Reference(AtElgaEmedPatient) 
 * subject 1..1 MS
 * subject ^short = "Patient, für den die Durchgeführte Abgabe ausgestellt wird (über Zentralen Patientenindex identifiziert und Teilnehmer von ELGA e-Medikation)."
 
@@ -94,10 +94,15 @@ Arzneimittel mit und ohne PZN einheitlich dokumentiert werden können."
 
 * performer 1..1 MS
 * performer ^short = "Durchführende Person" 
-//* performer.function 0..0 
-//* performer.function ^short = "Rolle der Person, die die Abgabe durchgeführt hat. Keine Verwendung in der Durchgeführten Abgabe."
+//ASW TODO performer slice für Referenz einfügenden GDA
+/* * performer ^slicing.discriminator[+].type = #value
+* performer ^slicing.discriminator[=].path = "function"
+* performer ^slicing.rules = #closed
+* performer ^slicing.ordered = false
+* performer.function 1..1
+* performer.function ^short = "Rolle der Person, die die Abgabe durchgeführt hat." */
 * performer.actor 1..1 MS
-* performer.actor only Reference(AtElgaCorePractitioner or AtElgaCorePractitionerRole or HL7ATCoreOrganization)
+* performer.actor only Reference(AtElgaEmedPractitioner or AtElgaEmedPractitionerRole or HL7ATCoreOrganization)
 * performer.actor ^short = "Refrenz auf Practitioner, PractitionerRole, Organization, 
 der/die die Durchgeführte Abgabe erstellt hat und für den Inhalt verantwortlich ist (identifiziert über den GDA-Index und berechtigt 
 auf die ELGA e-Medikation des Patienten zuzugreifen)."
@@ -105,8 +110,8 @@ auf die ELGA e-Medikation des Patienten zuzugreifen)."
 * location 0..0 
 //* location ^short = "Ort der Abgabe (Referenz auf Location Ressource). Keine Verwendung in durchgeführter Abgabe."
 
-
 // Slicing authorizingPrescription:  
+* authorizingPrescription 0..2 MS
 // - authorizingPrescription zur Unterscheidung der MedicationRequest-Referenzen: Planeintrag und Geplante Abgabe
 * authorizingPrescription ^slicing.discriminator[+].type = #value
 * authorizingPrescription ^slicing.discriminator[=].path = "resolve().category.coding.system"
@@ -130,6 +135,7 @@ Abgaben ohne Geplante Abgabe geben kann (z.B. Notfall oder OTC-Medikation)."
 // gespeichert werden, die auch wechselwirkungsrelevant sind.'"
 
 * type 1..1 MS  //TODO: Valueset
+* type from AtElgaEmedMedicationDispenseTypeVS
 * type ^short = "Art der Abgabe (z.B. für Teilabgaben). Mögliche Ausprägungen: [FFC | FFP | RFP | RFC | EM]. Bedeutung: FFC: First Fill - Complete | FFP: First Fill - Part Fill | RFP: Refill - Part Fill | RFC: Refill - Complete | EM: Emergency Supply."
 //z.B. FFC (First-Fill Complete für vollständig erfüllte Bestellungen), FFP (First-Fill Part Fill für teilweise erfüllte Bestellungen), 
  //ffc, ffp, Refill - Part Fill, refill complete: evtl. selbst definieren
@@ -166,26 +172,26 @@ Abgaben ohne Geplante Abgabe geben kann (z.B. Notfall oder OTC-Medikation)."
 * receiver 0..0
 //* receiver ^short = "Person, die das Medikament abgeholt hat. Referenz auf Patient oder Practitioner. Keine Verwendung in durchgeführter Abgabe."
 
-* note 0..* MS // analog zur geplanten abgabe
+* note 0..1 MS // analog zur geplanten abgabe
 * note ^short = "Zusätzliche Informationen zur Abgabe, die nicht anders dokumentiert werden kann."
 
 // TODO: Invariante für repeating sequences * dosageInstruction.extension contains AtElgaEmedExtensionDosageRepeat??? named repeatCycle 0..1
 //TODO Invariante sodass die Extension nur erlaubt ist, wenn es mehrere Dosages gibt
 * dosageInstruction ^slicing.discriminator.type = #value
-* dosageInstruction ^slicing.discriminator.path = "extension.value"
+* dosageInstruction ^slicing.discriminator.path = "extension.value.ofType(CodeableConcept).coding.code"
 * dosageInstruction ^slicing.rules = #closed
 * dosageInstruction ^slicing.ordered = false
 * dosageInstruction 1..* MS
 * dosageInstruction contains   
-    otherDosage 0.. MS and
-    timedDosage 0.. MS and
-    frequencyDosage 0.. MS and
+    //otherDosage 0.. MS and //TODO zukünftige Erweiterung
+    //timedDosage 0.. MS and //TODO zukünftige Erweiterung
+    //frequencyDosage 0.. MS and //TODO zukünftige Erweiterung
     freitextDosage 0.. MS and
     standardDosage 0.. MS
 // DOSAGE
-* dosageInstruction[otherDosage] only AtElgaEmedDosageOtherAdministration
-* dosageInstruction[timedDosage] only AtElgaEmedDosageTimedAdministration
-* dosageInstruction[frequencyDosage] only AtElgaEmedDosageFrequencyAdministration
+//* dosageInstruction[otherDosage] only AtElgaEmedDosageOtherAdministration
+//* dosageInstruction[timedDosage] only AtElgaEmedDosageTimedAdministration
+//* dosageInstruction[frequencyDosage] only AtElgaEmedDosageFrequencyAdministration
 * dosageInstruction[freitextDosage] only AtElgaEmedDosageFreeTextAdministration
 * dosageInstruction[standardDosage] only AtElgaEmedDosageStandardAdministration
 
@@ -207,7 +213,7 @@ Der Apotheker überprüft die Medikamentenverordnung vor der Abgabe und passt di
 
 // * substitution.responsibleParty 0..1 MS 
 // * substitution.responsibleParty ^short = "Für die Subistution Verantwortlicher."
-// * substitution.responsibleParty only Reference(AtElgaCorePractitioner or AtElgaCorePractitionerRole)
+// * substitution.responsibleParty only Reference(AtElgaEmedPractitioner or AtElgaEmedPractitionerRole)
 
 * detectedIssue 0..0
 * detectedIssue ^short = "Referenenz auf DetectedIssue Ressource. Keine Verwendung in durchgeführter Abgabe."

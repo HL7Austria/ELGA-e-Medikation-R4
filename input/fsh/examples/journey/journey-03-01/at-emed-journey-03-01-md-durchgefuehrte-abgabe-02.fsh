@@ -40,5 +40,7 @@ Usage: #example
 * dosageInstruction[standardDosage].timing.repeat.when[+] = $cs-timing#EVE "Abends" 
 * dosageInstruction[standardDosage].timing.repeat.boundsDuration.value = 3
 * dosageInstruction[standardDosage].timing.repeat.boundsDuration.unit = "wk"
+* dosageInstruction[standardDosage].timing.repeat.boundsDuration.system = $cs-ucum
+* dosageInstruction[standardDosage].timing.repeat.boundsDuration.code = #wk 
 * dosageInstruction[standardDosage].route = $cs-medikationartanwendung#100000073566 "Anwendung auf der Haut"
 
