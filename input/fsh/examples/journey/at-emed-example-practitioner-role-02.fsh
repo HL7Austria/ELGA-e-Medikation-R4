@@ -1,5 +1,5 @@
 Instance: At-Emed-Example-PractitionerRole-02
-InstanceOf: AtElgaCorePractitionerRole
+InstanceOf: AtElgaEmedPractitionerRole
 Title: "Beispiel PractitionerRole Apothekerin"
 Description: "Beispiel einer Apothekerin (Dr. Apothekerin + Apotheke)"
 Usage: #example

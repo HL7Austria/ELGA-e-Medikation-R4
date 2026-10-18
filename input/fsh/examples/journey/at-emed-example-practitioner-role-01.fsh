@@ -1,5 +1,5 @@
 Instance: At-Emed-Example-PractitionerRole-01
-InstanceOf: AtElgaCorePractitionerRole
+InstanceOf: AtElgaEmedPractitionerRole
 Title: "Beispiel PractitionerRole Allgemeinmedizinerin 01"
 Description: "Beispiel einer Allgemeinmedizinerin und ihrer Organisation (Dr. Hausärztin + Ordination)"
 Usage: #example

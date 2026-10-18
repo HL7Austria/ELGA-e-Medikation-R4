@@ -1,5 +1,5 @@
 Instance: At-Emed-Example-PractitionerRole-03
-InstanceOf: AtElgaCorePractitionerRole
+InstanceOf: AtElgaEmedPractitionerRole
 Title: "Beispiel PractitionerRole Ärztin im Krankenhaus"
 Description: "Beispiel einer Ärztin im Krankenhaus (Dr. Krankenhaus + Organisation)"
 Usage: #example

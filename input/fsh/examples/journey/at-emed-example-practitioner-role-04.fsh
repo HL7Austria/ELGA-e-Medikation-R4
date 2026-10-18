@@ -1,5 +1,5 @@
 Instance: At-Emed-Example-PractitionerRole-04
-InstanceOf: AtElgaCorePractitionerRole
+InstanceOf: AtElgaEmedPractitionerRole
 Title: "Beispiel PractitionerRole Urlaubsvertretung"
 Description: "Beispiel einer Urlaubsvertretung und ihrer Organisation (Dr. Urlaubsvertretung + Ordination)"
 Usage: #example
