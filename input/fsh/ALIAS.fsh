@@ -56,7 +56,7 @@ Alias: $cs-elga-gtelvogdarollen = https://termgit.elga.gv.at/CodeSystem/elga-gte
 // FHIR
 //Alias: $cs-event-timing = http://hl7.org/fhir/event-timing
 Alias: $cs-hl7-at-organizationtype = https://termgit.elga.gv.at/CodeSystem/elga-gtelvogdarollen
-
+Alias: $cs-http-codes = http://hl7.org/fhir/http-verb
 
 // terminology.hl7.org
 // Alias: $cs-v3-MaritalStatus = http://terminology.hl7.org/CodeSystem/v3-MaritalStatus

@@ -6,27 +6,35 @@ Description: "Das Bundle vom Typ Transaction dient dem schreibenden Zugriff und 
 die gemeinsam geschrieben werden sollen. Es müssen entweder alle oder keine der geplanten Abgaben einen groupIdentifier enthalten. 
 Ist kein groupIdentifier enthalten so erhalten alle geplanten Abgaben im Transaction Bundle einen neuen gemeinsamen groupIdentifier."
 
+* implicitRules 0..0
+* implicitRules ^short =  "Fachliche Begründung: Die Ressource wird nach den Regeln dieses Implementierungsleitfadens interpretiert. Zusätzliche implizite Verarbeitungsregeln werden nicht verwendet."
+
 * type 1..1 MS
 * type = #transaction
 * type ^short = "Art des Bundles. Für schreibenden Zugriff immer Typ \"transaction\"."
- 
-* timestamp 1..1 MS
-* timestamp ^short = "Zeitpunkt der Erstellung des Bundles."
 
-* link 0..0
-
+* entry MS
+//* entry.modifierExtension 0..0
+//* entry.modifierExtension ^short = "Fachliche Begründung: Es sind keine zusätzlichen Erweiterungen vorgesehen, die die Bedeutung der Ressource oder ihrer Elemente verändern."
 * entry ^slicing.discriminator[+].type = #type
 * entry ^slicing.discriminator[=].path = "resource"
-* entry ^slicing.rules = #closed  // als Entries sind nur List und MedicationRequest erlaubt
-//* entry ^slicing.ordered = true  // erstes Entry soll die Liste sein
+* entry ^slicing.rules = #closed
 * entry contains 
-    geplanteAbgaben 1..*
-* entry[geplanteAbgaben].resource 1..1
-* entry[geplanteAbgaben].resource only AtElgaEmedMedicationRequestGeplanteAbgabe
-* entry[geplanteAbgaben].link 0..0
+    geplanteAbgaben 1..* MS
+* entry[geplanteAbgaben].modifierExtension 0..0
+* entry[geplanteAbgaben].modifierExtension ^short = "Fachliche Begründung: Es sind keine zusätzlichen Erweiterungen vorgesehen, die die Bedeutung der Ressource oder ihrer Elemente verändern."
+* entry[geplanteAbgaben].fullUrl 1..1 MS
 * entry[geplanteAbgaben].fullUrl ^short = "Eindeutige URL für den Eintrag im Bundle. "
-* entry[geplanteAbgaben].request.method = #POST
+* entry[geplanteAbgaben].request 1..1 MS
+* entry[geplanteAbgaben].request.modifierExtension 0..0
+* entry[geplanteAbgaben].request.modifierExtension ^short = "Fachliche Begründung: Es sind keine zusätzlichen Erweiterungen vorgesehen, die die Bedeutung der Ressource oder ihrer Elemente verändern."
+* entry[geplanteAbgaben].request.method 1..1 MS
+* entry[geplanteAbgaben].request.method = $cs-http-codes#POST
+* entry[geplanteAbgaben].request.url 1..1 MS
 * entry[geplanteAbgaben].request.url = "MedicationRequest"
+* entry[geplanteAbgaben].resource only AtElgaEmedMedicationRequestGeplanteAbgabe
+* entry[geplanteAbgaben].resource 1..1 MS
+
 * entry obeys at-emed-geplante-abgaben-group-identifier-einheitlich
 
 Invariant: at-emed-geplante-abgaben-group-identifier-einheitlich

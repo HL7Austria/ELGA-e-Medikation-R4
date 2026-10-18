@@ -5,7 +5,6 @@ Description: "Beispiel eines Medikationsplan-Bundles, das einen Mediaktionsplan 
 Usage: #example
 
 * type = #searchset
-* timestamp = "2026-02-27T08:10:00+00:00"
 * link.url = "https://example.elga.com/base/List/$plan-read"
 * link.relation = #self
 
