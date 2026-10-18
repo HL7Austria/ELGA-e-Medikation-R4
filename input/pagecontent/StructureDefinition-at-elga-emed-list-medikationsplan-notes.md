@@ -143,3 +143,9 @@ Als Erweiterung des FHIR-Basisstandards können alle unten aufgeführten Suchpar
     <td><code>List.entry.item.resolve().ofType(MedicationRequest).medication.resolve().ofType(Medication).ingredient.item.ofType(CodeableConcept)</code></td>
   </tr>
 </table>
+
+
+#### Regeln für den Inhalt der narrativen Teile
+<div class="note-to-balloters" markdown="1">
+Dieser Teil der Spezifikation wird noch erarbeitet und im nächsten Ballot zur Verfügung gestellt.
+</div>
