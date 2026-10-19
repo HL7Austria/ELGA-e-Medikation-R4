@@ -123,8 +123,9 @@ Die Übereinstimmung wird ausschließlich zum Zeitpunkt der Erstellung der *Gepl
 
 - Wie bleibt der Medikationsplan verständlich, wenn das abgegebene Arzneimittel vom Wirkstoff oder Präparat im Planeintrag und von der geplanten Abgabe abweicht?
 - Soll `basedOn` versioniert werden, um die geprüfte Planeintrag-Version nachvollziehen zu können?
+
 </p>
-<div>
+</div>
 
 #### Automatische Statusänderungen der beim Plan-Read ausgelieferten Ressourcen
 <!-- Welche Felde können/sollen von der Fachanwendung vorbefüllt werden (Datumfelder, GDA, Patient, status bei list.entry.flag removed + default-Begründung: abgelaufen usw.)
@@ -143,7 +144,7 @@ Die Übereinstimmung wird ausschließlich zum Zeitpunkt der Erstellung der *Gepl
 
 * **Zu klären:** Soll der GDA den aufbereiteten Zustand erhalten (Variante A, aktuell), welcher den Schreibvorgang vereinfacht, bei dem er aber den Originalstatus der persistierten Ressourcen nicht sieht, oder den persistierten Originalzustand (Variante B)?**
 </p>
-<div>
+</div>
 
 <!-- - Das Beispiel Journey-01-02 zeigt *unchanged* mit *stopped*, UC_eMed_01 verlangt *removed* mit *stopped*. -->
 
@@ -241,14 +242,14 @@ Zusätzlich ist zu entscheiden, ob für lesende Interaktionen, beispielsweise GE
 Zur Diskussion steht, ob die Festlegung auf ein Bundle vom Typ searchset zusammen mit der Beschreibung der Operation ausreicht oder ob die erwartete Antwortstruktur weiter eingeschränkt werden soll. Ein eigenes Ausgabeprofil würde die strukturellen Erwartungen an die Antwort explizit beschreiben. Operationsspezifische Regeln wären weiterhin erforderlich, um die Auswahl der zurückgegebenen Ressourcen und gegebenenfalls durchzuführende Transformationen festzulegen.
 
 <div class="dragon" markdown="1">
-<p class="note-to-balloters">
+<div class="note-to-balloters">
 <ul>
 <li>Sind getrennte Ressourcenprofile für die Eingabe schreibender Operationen und die Rückgabe persistierter Ressourcen erforderlich, oder reichen gemeinsame Profile mit operationsspezifischen Regeln aus?</li>
 <li>Sollen serverseitig verwaltete Elemente wie <code>meta.versionId</code>, <code>meta.lastUpdated</code> und <code>Resource.text</code> in Schreibanfragen ausgeschlossen werden, oder sollen vorhandene Werte akzeptiert und serverseitig ignoriert beziehungsweise ersetzt werden?</li>
 <li>Benötigt die transformierte Ausgabe von <code>$plan-read</code> eigene Ressourcenprofile, oder reichen ein spezifisches Bundle-Profil und die dokumentierte Transformationslogik aus?</li>
 <li>Sollen für weitere lesende Interaktionen wie z.B. <code>$history-search</code> und  <code>GET [base]/MedicationDispense</code> eigene Ausgabe-Bundle-Profile definiert werden, die über die Festlegung von <code>Bundle.type = searchset</code> hinausgehen?</li>
 </ul>
-</p>
+</div>
 </div>
 
 #### Versionierung
@@ -323,7 +324,6 @@ Die Generierung berücksichtigt sowohl strukturierte Angaben als auch relevante 
 <div class="dragon" markdown="1">
 <p class="note-to-balloters">
 Der finale Algorithmus für die Generierung der menschenlesbaren Textdarstellungen der einzelnen Ressourcen und Dosierschemata wird noch erarbeitet und im nächsten Ballot zur Verfügung gestellt. Feedback aus der Community ist erwünscht.
- </ul>
 </p>
 </div>
 <br>
@@ -431,7 +431,7 @@ Für das Löschen einer historischen Medikationsplanversion wird folgender Ablau
 
 Die verbleibenden Medikationsplanversionen und die weiterhin benötigten Planeintragsversionen bleiben unverändert. Die gelöschte Planversion ist anschließend nicht mehr Teil der Historie.
 
-Die Entfernung einer einzelnen historischen Ressourcenversion entspricht konzeptionell der im FHIR-CI-Build beschriebenen Interaktion (delete-history-version)[https://build.fhir.org/http.html#delete-history-version]:
+Die Entfernung einer einzelnen historischen Ressourcenversion entspricht konzeptionell der im FHIR-CI-Build beschriebenen Interaktion [delete-history-version](https://build.fhir.org/http.html#delete-history-version):
 
 ```
 DELETE [base]/List/[id]/_history/[vid]
