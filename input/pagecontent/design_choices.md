@@ -71,11 +71,11 @@ Die Ausgabe eines Arzneimittels wird mit einer *Durchgeführte Abgaben* in einer
 ### Fachliche Designentscheidungen
 
 #### Abhängigkeit von Planeintrag und Geplanter Abgabe
-Gemäß Fachkonzept müssen Arzneimittel und Dosierung einer *Geplanten Abgabe* zum Zeitpunkt ihrer Erstellung mit dem zugehörigen Planeintrag identisch sein (siehe [Sub_UC_eMed_04_01](Sub_UC_eMed_04.html#sub_uc_emed_04_01---geplante-abgabe-erstellen-prescription-write)). Dies umfasst insbesondere das verordnete Arzneimittel einschließlich seiner PZN beziehungsweise die dokumentierten Wirkstoffe sowie die Dosierungsangaben. Enthält der Planeintrag nur Wirkstoffe, muss der Planeintrag zuvor angepasst und ein Präparat ausgewählt werden, bevor eine *Geplanten Abgabe* erstellt werden kann.
+Gemäß Fachkonzept müssen Arzneimittel und Dosierung einer *Geplanten Abgabe* zum Zeitpunkt ihrer Erstellung mit dem zugehörigen Planeintrag identisch sein (siehe [Sub_UC_eMed_04_01](Sub_UC_eMed_04.html#sub_uc_emed_04_01---geplante-abgabe-erstellen-prescription-write)). Dies umfasst insbesondere das verordnete Arzneimittel einschließlich seiner PZN beziehungsweise die dokumentierten Wirkstoffe sowie die Dosierungsangaben. Enthält der Planeintrag nur Wirkstoffe, muss der Planeintrag zuvor angepasst und ein Präparat ausgewählt werden, bevor eine *Geplante Abgabe* erstellt werden kann.
 
-Ziel dieser Vorgabe ist es, die Erstellung einer Geplanten Abgabe verbindlich mit der Aktualisierung des Medikationsplans zu verknüpfen. Der verordnende GDA soll die vorgesehene Medikation nicht ausschließlich in der Geplanten Abgabe dokumentieren, sondern erforderliche Änderungen auch im zugehörigen Planeintrag vornehmen. Der Medikationsplan soll dadurch die zum Zeitpunkt der Verordnung vorgesehene Medikation widerspiegeln. Eine neue Geplante Abgabe kann somit nicht auf Grundlage eines inhaltlich abweichenden Planeintrags erstellt werden.
+Ziel dieser Vorgabe ist es, die Erstellung einer *Geplanten Abgabe* verbindlich mit der Aktualisierung des Medikationsplans zu verknüpfen. Der verordnende GDA soll die vorgesehene Medikation nicht ausschließlich in der *Geplanten Abgabe* dokumentieren, sondern erforderliche Änderungen auch im zugehörigen Planeintrag vornehmen. Der Medikationsplan soll dadurch die zum Zeitpunkt der Verordnung vorgesehene Medikation widerspiegeln. Eine neue *Geplante Abgabe* kann somit nicht auf Grundlage eines inhaltlich abweichenden Planeintrags erstellt werden.
 
-Die Übereinstimmung wird ausschließlich zum Zeitpunkt der Erstellung der *Geplanten Abgabe* gefordert. Eine spätere Änderung des Planeintrags macht eine bereits erstellte Geplante Abgabe nicht automatisch ungültig. Da `basedOn` unversioniert ist, verweist diese Referenz auf den jeweils aktuellen Zustand des Planeintrags und hält nicht fest, welche Planeintragsversion bei der Erstellung der Geplanten Abgabe zugrunde lag.
+Die Übereinstimmung wird ausschließlich zum Zeitpunkt der Erstellung der *Geplanten Abgabe* gefordert. Eine spätere Änderung des Planeintrags macht eine bereits erstellte *Geplante Abgabe* nicht automatisch ungültig. Da `basedOn` unversioniert ist, verweist diese Referenz auf den jeweils aktuellen Zustand des Planeintrags und hält nicht fest, welche Planeintragsversion bei der Erstellung der *Geplanten Abgabe* zugrunde lag.
 
 
 **Vergleichsumfang**
@@ -102,28 +102,28 @@ Die Übereinstimmung wird ausschließlich zum Zeitpunkt der Erstellung der *Gepl
 | B: Konkretisierung zulässig | Die *Geplante Abgabe* darf einen Wirkstoff aus dem Planeintrag zu einem Präparat konkretisieren. Wirkstoff, Stärke, Darreichungsform und Dosierung bleiben trotzdem gleich, der Planeintrag bleibt unverändert. |
 
 *Vorteile von A:* 
-- Die Erstellung einer Geplanten Abgabe setzt voraus, dass die zu verordnende Medikation auch im Planeintrag dokumentiert ist. 
-- Medikationsplan und *Geplante Abgabe* sind widerspruchsfrei. Änderungen des Präparats oder der Dosierung können nicht ausschließlich in der Geplanten Abgabe vorgenommen werden. 
+- Die Erstellung einer *Geplanten Abgabe* setzt voraus, dass die zu verordnende Medikation auch im Planeintrag dokumentiert ist. 
+- Medikationsplan und *Geplante Abgabe* sind widerspruchsfrei. Änderungen des Präparats oder der Dosierung können nicht ausschließlich in der *Geplanten Abgabe* vorgenommen werden. 
 - Die Pflege des Medikationsplans wird dadurch verbindlich in den Verordnungsablauf eingebunden. 
-- Planeintrag und Geplante Abgabe verwenden zum Zeitpunkt der Erstellung dieselbe Arzneimittel- und Dosierungsdarstellung. 
+- Planeintrag und *Geplante Abgabe* verwenden zum Zeitpunkt der Erstellung dieselbe Arzneimittel- und Dosierungsdarstellung. 
+
 *Nachteile von A:* 
 - Der Planeintrag muss, falls dort nur ein Wirkstoff dokumentiert ist, vorab angepasst werden.
-- Eine Wirkstoff-Angabe im Medikationsplan wird durch das Erstellen einer geplante Abgabe früher oder später immer durch ein Präparat ersetzt.
+- Eine Wirkstoff-Angabe im Medikationsplan wird durch das Erstellen einer *Geplante Abgabe* früher oder später immer durch ein Präparat ersetzt.
 
 *Vorteile von B:* 
-- Eine wirkstoffbasierte Darstellung kann im Medikationsplan erhalten bleiben, während die Geplante Abgabe das konkret verordnete Präparat dokumentiert.
+- Eine wirkstoffbasierte Darstellung kann im Medikationsplan erhalten bleiben, während die G*eplante Abgabe* das konkret verordnete Präparat dokumentiert.
 - Eine reine Konkretisierung zum Präparat erfordert keine Änderung des Planeintrags.
 - Der Medikationsplan kann unabhängig von einzelnen Präparateentscheidungen auf Wirkstoffebene geführt werden.
 *Nachteile von B:* 
-- Die Prüfregel wird komplexer (Wirkstoffabgleich).Die Übereinstimmung lässt sich nicht allein anhand identischer Arzneimittelangaben prüfen. Es sind zusätzliche Regeln für die fachliche Zuordnung zwischen Wirkstoffangabe und Präparat erforderlich.
-- Medikationsplan und Geplante Abgabe enthalten unterschiedliche Darstellungsebenen derselben vorgesehenen Verordnung. Diese müssen für Anwender klar visualisiert werden.
+- Die Prüfregel wird komplexer (Wirkstoffabgleich). Die Übereinstimmung lässt sich nicht allein anhand identischer Arzneimittelangaben prüfen. Es sind zusätzliche Regeln für die fachliche Zuordnung zwischen Wirkstoffangabe und Präparat erforderlich.
+- Medikationsplan und *Geplante Abgabe* enthalten unterschiedliche Darstellungsebenen derselben vorgesehenen Verordnung. Diese müssen für Anwender klar visualisiert werden.
 
 <div class="dragon" markdown="1">
 <p class="note-to-balloters" markdown="1">
 
-- Wie bleibt der Medikationsplan verständlich, wenn das abgegebene Arzneimittel vom Wirkstoff oder Präparat im Planeintrag und von der geplanten Abgabe abweicht?
+- Wie bleibt der Medikationsplan verständlich, wenn das abgegebene Arzneimittel vom Wirkstoff oder Präparat im Planeintrag und von der <i>Geplanten Abgabe</i> abweicht?<br>
 - Soll `basedOn` versioniert werden, um die geprüfte Planeintrag-Version nachvollziehen zu können?
-
 </p>
 </div>
 
@@ -135,14 +135,14 @@ Die Übereinstimmung wird ausschließlich zum Zeitpunkt der Erstellung der *Gepl
 
 - *List.entry.flag* *new* und *changed* werden als *unchanged* ausgeliefert.
 - Einträge mit *removed* werden nicht ausgeliefert. Bleibt kein Eintrag übrig, wird *List.emptyReason = nilknown* gesetzt.
-- Abgelaufene Planeinträge werden mit *removed* und *stopped* ausgeliefert (siehe UC_eMed_02_09).
+- Abgelaufene Planeinträge werden mit *removed* und *stopped* ausgeliefert.
 
 *Plan-History-Search* liefert dagegen alle Inhalte, Status und Flags unverändert.
 
 <div class="dragon" markdown="1">
 <p class="note-to-balloters" markdown="1">
 
-* **Zu klären:** Soll der GDA den aufbereiteten Zustand erhalten (Variante A, aktuell), welcher den Schreibvorgang vereinfacht, bei dem er aber den Originalstatus der persistierten Ressourcen nicht sieht, oder den persistierten Originalzustand (Variante B)?**
+* - Soll der GDA den aufbereiteten Zustand erhalten (Variante A, aktuell), welcher den Schreibvorgang vereinfacht, bei dem er aber den Originalstatus der persistierten Ressourcen nicht sieht, oder den persistierten Originalzustand (Variante B)?
 </p>
 </div>
 
@@ -150,7 +150,7 @@ Die Übereinstimmung wird ausschließlich zum Zeitpunkt der Erstellung der *Gepl
 
 #### Gruppierung von Medikamenten
 <!-- - derzeit eigene MRs
-- kein Freitext auf List Ebene daher text der zu gruppen von medikamenten gehört muss in alle kopiert werden
+- kein Freitext auf List Ebene daher muss anweisung die zu gruppen von medikamenten gehört in alle zugehörigen planeinträge kopiert werden
 -  -->
 
 TODO
@@ -158,7 +158,7 @@ TODO
 ### Technische Designentscheidungen
 
 #### Kennzeichnung der relevanten Elemente
-Die in der e-Medikation relevanten Elemente werden nach einem Whitelisting-Ansatz festgelegt. Hierzu werden Elemente, die fachlich verarbeitet, gespeichert und in weiterer Folge für die Anzeige bereitgestellt werden sollen, in den Profilen explizit mit dem Must Support Flag MS gekennzeichnet.
+Die in der e-Medikation relevanten Elemente werden nach einem Whitelisting-Ansatz festgelegt. Hierzu werden Elemente, die fachlich verarbeitet, gespeichert und in weiterer Folge für die Anzeige bereitgestellt werden sollen, in den Profilen explizit mit dem *Must Support Flag MS* gekennzeichnet.
 
 Bei der Profilierung gelten folgende Regeln:
 - Elemente, die von der zentralen Fachanwendung fachlich verarbeitet werden sollen, MÜSSEN mit Must Support gekennzeichnet werden.
@@ -183,7 +183,8 @@ Bei der Kennzeichnung komplexer Elemente wird eindeutig festgelegt, welche ihrer
 <div class="dragon" markdown="1">
 <p class="note-to-balloters">
 Ergänzend könnten Obligations eingesetzt werden, um die mit der Kennzeichnung verbundenen Pflichten für die beteiligten Akteure präziser festzulegen.
-International werden Obligations von vielen Ländern für unterschiedliche use cases eingesetzt. Sollen Obligations eingesetzt werden, um die MS Markierungen noch aussagekräftiger zu machen? Feedback aus der Community ist erwünscht.
+International werden Obligations von vielen Ländern für unterschiedliche Use Cases eingesetzt.<br>
+Sollen Obligations eingesetzt werden, um die MS Markierungen noch aussagekräftiger zu machen? Feedback aus der Community ist erwünscht.
 </p>
 </div>
 
@@ -216,13 +217,13 @@ Die für die Eingabe zulässige Darstellung ist damit nicht in allen Fällen mit
 
 ###### Sonderfall $plan-read
 
-Die Operation $plan-read unterscheidet sich von der Rückgabe persistierter Ressourcen, da sie für die Auslieferung einen aufbereiteten Medikationsplan erzeugt. Dabei werden unter anderem Flags angepasst und zum Entfernen markierte Planeinträge aus der ausgelieferten Darstellung entfernt. Diese Transformationen verändern die persistierten Ressourcen nicht. 
+Die Operation *$plan-read* unterscheidet sich von der Rückgabe persistierter Ressourcen, da sie für die Auslieferung einen aufbereiteten Medikationsplan erzeugt. Dabei werden unter anderem Flags angepasst und zum Entfernen markierte Planeinträge aus der ausgelieferten Darstellung entfernt. Diese Transformationen verändern die persistierten Ressourcen nicht. 
 
 Für die Profilierung sind somit drei unterschiedliche Darstellungen zu berücksichtigen:
 
 - die vom Client übermittelte Eingabe eines Schreibvorgangs;
 - die persistierten Ressourcen und deren Rückgabe nach einem erfolgreichen Schreibvorgang;
-- die für $plan-read transformierte Auslieferungsdarstellung.
+- die für *$plan-read* transformierte Auslieferungsdarstellung.
 
 
 ##### Mögliche Ansätze zur Profilierung
@@ -237,14 +238,14 @@ Gemeinsame Ressourcenprofile beschreiben die fachlichen Inhalte. Abweichende Anf
 
 ##### Ausgabeprofile für weitere lesende Interaktionen
 
-Zusätzlich ist zu entscheiden, ob für lesende Interaktionen, beispielsweise GET von geplanten Abgaben oder $history-search, eigene Ausgabe-Bundle-Profile definiert werden sollen.
+Zusätzlich ist zu entscheiden, ob für lesende Interaktionen, beispielsweise GET von *Geplanten Abgaben* oder *$history-search*, eigene Ausgabe-Bundle-Profile definiert werden sollen.
 
-Zur Diskussion steht, ob die Festlegung auf ein Bundle vom Typ searchset zusammen mit der Beschreibung der Operation ausreicht oder ob die erwartete Antwortstruktur weiter eingeschränkt werden soll. Ein eigenes Ausgabeprofil würde die strukturellen Erwartungen an die Antwort explizit beschreiben. Operationsspezifische Regeln wären weiterhin erforderlich, um die Auswahl der zurückgegebenen Ressourcen und gegebenenfalls durchzuführende Transformationen festzulegen.
+Zur Diskussion steht, ob die Festlegung auf ein Bundle vom Typ *searchset* zusammen mit der Beschreibung der Operation ausreicht oder ob die erwartete Antwortstruktur weiter eingeschränkt werden soll. Ein eigenes Ausgabeprofil würde die strukturellen Erwartungen an die Antwort explizit beschreiben. Operationsspezifische Regeln wären weiterhin erforderlich, um die Auswahl der zurückgegebenen Ressourcen und gegebenenfalls durchzuführende Transformationen festzulegen.
 
 <div class="dragon" markdown="1">
 <div class="note-to-balloters">
 <ul>
-<li>Sind getrennte Ressourcenprofile für die Eingabe schreibender Operationen und die Rückgabe persistierter Ressourcen erforderlich, oder reichen gemeinsame Profile mit operationsspezifischen Regeln aus?</li>
+<li>Sind getrennte Ressourcenprofile für die Eingabe schreibender Operationen und die Rückgabe persistierter Ressourcen erforderlich oder reichen gemeinsame Profile mit operationsspezifischen Regeln aus?</li>
 <li>Sollen serverseitig verwaltete Elemente wie <code>meta.versionId</code>, <code>meta.lastUpdated</code> und <code>Resource.text</code> in Schreibanfragen ausgeschlossen werden, oder sollen vorhandene Werte akzeptiert und serverseitig ignoriert beziehungsweise ersetzt werden?</li>
 <li>Benötigt die transformierte Ausgabe von <code>$plan-read</code> eigene Ressourcenprofile, oder reichen ein spezifisches Bundle-Profil und die dokumentierte Transformationslogik aus?</li>
 <li>Sollen für weitere lesende Interaktionen wie z.B. <code>$history-search</code> und  <code>GET [base]/MedicationDispense</code> eigene Ausgabe-Bundle-Profile definiert werden, die über die Festlegung von <code>Bundle.type = searchset</code> hinausgehen?</li>
@@ -253,24 +254,29 @@ Zur Diskussion steht, ob die Festlegung auf ein Bundle vom Typ searchset zusamme
 </div>
 
 #### Versionierung
+
 TODO
+
 ##### Versionierte Referenzen
+
 TODO
-<!-- wann und warum versionierte Referenzen verwendet werden
-und wann nicht
 
-o	Referenzmanagement (Patient + Prakt. ohne Version), Geplante + Durchgef. Abg. ohne versionierte Referenzen
-
-wie erkennt client aktuelle liste? (passt nirgends richtig dazu)
+<!-- 
+- wann und warum versionierte Referenzen verwendet werden und wann nicht
+- Referenzmanagement (Patient + Prakt. ohne Version), Geplante + Durchgef. Abg. ohne versionierte Referenzen
+- wie erkennt client aktuelle liste? (passt nirgends richtig dazu)
 version nicht aufsteigend, mit etag (soll nicht version verraten), datum: timestamp dann relevant
-man könnte liste retired setzen, snapshot ua? -->
+man könnte liste retired setzen, snapshot ua? 
+-->
 
 #### ID-Management
+
 TODO
-<!-- o	id-Management (optional bei POST, verpflichtend bei PUT, bei Auslieferung von der Fachanwendung immer befüllt) -->
+<!-- id-Management (optional bei POST, verpflichtend bei PUT, bei Auslieferung von der Fachanwendung immer befüllt) -->
 
 #### Optimistisches Locking mit ETags
 TODO
+
 Der ETag identifiziert die persistierte List-Version. Die Fachanwendung nutzt ihn beim Plan-Write, um zu erkennen, ob zwischen Plan-Read und Plan-Write jemand anderes den Plan geändert hat (Optimistic Locking). Ist die Version gleich geblieben, gilt das Write als konfliktfrei.
 
 <!-- o	meta.versionid kann als etag verwendet werden; implementierungsabh.
@@ -317,9 +323,9 @@ Das folgende Beispiel zeigt denselben Eintrag einmal als übermittelte und einma
 
 #### Befüllung der Narrativen Teile
 
-Für die im IG festgelegten Ressourcen wird die menschenlesbare Darstellung (Resource.text) zentral durch die Fachanwendung erzeugt. Ziel ist eine einheitliche und nachvollziehbare Darstellung der wesentlichen Ressourceninhalte. Die Narrative muss dem jeweils gespeicherten beziehungsweise ausgelieferten Zustand entsprechen und nach serverseitigen Änderungen oder Transformationen entsprechend angepasst werden.
+Für die im IG festgelegten Ressourcen wird die menschenlesbare Darstellung (Resource.text) zentral durch die Fachanwendung erzeugt. Ziel ist eine einheitliche und nachvollziehbare Darstellung der wesentlichen Ressourceninhalte. Die Narrative muss dem jeweils gespeicherten bzw. ausgelieferten Zustand entsprechen und nach serverseitigen Änderungen oder Transformationen entsprechend angepasst werden.
 
-Die Generierung berücksichtigt sowohl strukturierte Angaben als auch relevante Freitextinformationen. Die Narrative ergänzt die strukturierten Daten, ersetzt diese jedoch nicht. Davon zu unterscheiden sind fachlich erfasste Freitexte, beispielsweise ergänzende Hinweise oder eine nicht strukturiert abbildbare Dosierungsanweisung; diese bleiben eigenständige Inhalte und werden bei der Generierung berücksichtigt. Die unterschiedlichen Textfelder und ihr jeweiliger Geltungsbereich sind im Abschnitt [Textdarstellungen und ergänzende Hinweise im Kapitel der Dosierungen](dosages.html#textdarstellungen-und-ergänzende-hinweise) beschrieben.
+Die Generierung berücksichtigt sowohl strukturierte Angaben als auch Freitextinformationen. Die Narrative ergänzt die strukturierten Daten, ersetzt diese jedoch nicht. Davon zu unterscheiden sind fachlich erfasste Freitexte, beispielsweise ergänzende Hinweise oder eine nicht strukturiert abbildbare Dosierungsanweisung; diese bleiben eigenständige Inhalte und werden bei der Generierung berücksichtigt. Die unterschiedlichen Textfelder und ihr jeweiliger Geltungsbereich sind im Abschnitt [Textdarstellungen und ergänzende Hinweise im Kapitel der Dosierungen](dosages.html#textdarstellungen-und-ergänzende-hinweise) beschrieben.
 
 <div class="dragon" markdown="1">
 <p class="note-to-balloters">
@@ -339,17 +345,15 @@ Dieser Abschnitt beschreibt die zur Diskussion stehenden Konzepte für das Lösc
 </p>
 </div>
 
+<br>
 Das fachliche Stornieren durch einen GDA ist vom Löschen auf Veranlassung von ELGA-Teilnehmer:innen zu unterscheiden.
 
-Beim Stornieren wird ein fachlicher Sachverhalt zurückgenommen beziehungsweise als nicht mehr gültig gekennzeichnet. Die betroffenen Ressourcen bleiben erhalten und es wird nur der status geändert sodass die ursprüngliche Dokumentation und die nachfolgende Stornierung nachvollziehbar bleiben. Die konkrete Abbildung erfolgt entsprechend den für die jeweilige Ressource festgelegten Status- und Workflowregeln.
+Beim Stornieren wird ein fachlicher Sachverhalt zurückgenommen beziehungsweise als nicht mehr gültig gekennzeichnet. Die betroffenen Ressourcen bleiben erhalten und es wird nur der *status* geändert, sodass die ursprüngliche Dokumentation und die nachfolgende Stornierung nachvollziehbar bleiben. Die konkrete Abbildung erfolgt entsprechend den für die jeweilige Ressource festgelegten Status- und Workflowregeln.
 
 Das Löschen auf Veranlassung von ELGA-Teilnehmer:innen verfolgt hingegen das Ziel, die betroffenen Inhalte dauerhaft aus dem verfügbaren Datenbestand einschließlich der jeweils betroffenen Historie zu entfernen. Eine reine Statusänderung oder das Ausblenden aus dem aktuellen Medikationsplan reicht dafür nicht aus.
 
 Der genaue Umfang dieser Löschung wird im Rahmen der Teilnehmerrechte festgelegt.
-<!-- horizontales und vertikales löschen in FHIR -->
-<!-- fachlich und technische Beschreibung-->
 
-<!-- abgrenzung stornieren durch gda, bleibt nachvollziehbar, löschen durch teilnehmer rückstandslos? -->
 
 ##### Löschen von Medikationsplan und Medikationsplaneinträgen
 
@@ -418,7 +422,7 @@ Als weitere fachliche Alternative kann diskutiert werden, gelöschte Einträge d
 
 Beim vertikalen Löschen werden einzelne Medikationsplanversionen (Versionen der `List`-Ressource) unwiderruflich gelöscht. Die darin referenzierten Planeinträge werden nicht pauschal einschließlich ihrer gesamten Historie gelöscht. Stattdessen wird für jede referenzierte MedicationRequest-Version geprüft, ob sie von einer verbleibenden Medikationsplanversion weiterhin referenziert wird.
 
-Nur die nicht MedicationRequest-Versionen auf die keine Referenz mehr zeigt sollen zusätzlich gelöscht werden. Andere Versionen des MedicationRequests bleiben erhalten. Dadurch bleiben bestehende Referenzen auflösbar.
+Nur die MedicationRequest-Versionen auf die keine Referenz mehr zeigt, sollen zusätzlich gelöscht werden. Andere Versionen des MedicationRequests bleiben erhalten. Dadurch bleiben bestehende Referenzen auflösbar.
 
 **Löschen einer historischen Medikationsplanversion**
 
@@ -437,7 +441,7 @@ Die Entfernung einer einzelnen historischen Ressourcenversion entspricht konzept
 DELETE [base]/List/[id]/_history/[vid]
 DELETE [base]/MedicationRequest/[id]/_history/[vid]
 ```
-Diese Interaktion schließt die jeweils aktuelle Ressourcenversion ausdrücklich aus. Sollte eine zu entfernende MedicationRequest-Version zugleich deren aktuelle Version sein, ist daher ein gesondertes Vorgehen erforderlich. Daher würde auch hier eine custom Operation `[base]/MedicationRequest $delete-history` bzw. `[base]/List $delete-history` zum Einsatz kommen.
+Diese Interaktion schließt die jeweils aktuelle Ressourcenversion ausdrücklich aus. Sollte eine zu entfernende MedicationRequest-Version zugleich deren aktuelle Version sein, ist daher ein gesondertes Vorgehen erforderlich. Daher würde auch hier eine Custom Operation `[base]/MedicationRequest $delete-history` bzw. `[base]/List $delete-history` zum Einsatz kommen.
 
 
 **Löschen der aktuellen Medikationsplanversion**
@@ -460,12 +464,13 @@ Beim vertikalen Löschen kann eine MedicationRequest-Version betroffen sein, die
 
 Für diesen Fall ist zu entscheiden, ob eine ältere verbleibende MedicationRequest-Version wieder als aktuelle Version bereitgestellt werden soll.
 
-Die Entscheidung ist insbesondere für unversionierte Referenzen relevant. Im bisherigen Design ist beispielsweise die Referenz einer Geplanten Abgabe auf ihren Planeintrag über basedOn unversioniert. Daher muss geprüft werden, welche Auswirkungen eine Löschung oder ein Wechsel des aktuellen Planeintragszustands auf diese Referenzen hat.
+Die Entscheidung ist insbesondere für unversionierte Referenzen relevant. Im bisherigen Design ist beispielsweise die Referenz einer *Geplanten Abgabe* auf ihren Planeintrag über basedOn unversioniert. Daher muss geprüft werden, welche Auswirkungen eine Löschung oder ein Wechsel des aktuellen Planeintragszustands auf diese Referenzen hat.
 
 **Übergreifende Anforderungen und offene Abgrenzungen**
+
 Unabhängig von der gewählten technischen Variante sind folgende Punkte festzulegen:
 
-- Referenzintegrität: Die Prüfung darf sich nicht ausschließlich auf List.entry.item beschränken, wenn weitere Ressourcen auf den betroffenen Planeintrag oder eine seiner Versionen verweisen. Insbesondere ist zu entscheiden, wie Referenzen aus Geplanten und Durchgeführten Abgaben behandelt werden.
+- Referenzintegrität: Die Prüfung darf sich nicht ausschließlich auf List.entry.item beschränken, wenn weitere Ressourcen auf den betroffenen Planeintrag oder eine seiner Versionen verweisen. Insbesondere ist zu entscheiden, wie Referenzen aus *Geplanten Abgaben* und *Durchgeführten Abgaben* behandelt werden.
 - Abgeleitete Inhalte: Narrative, Suchergebnisse und erzeugte Bundles dürfen die gelöschten Inhalte nicht weiterhin enthalten.
 
 
@@ -477,7 +482,7 @@ Die beschriebenen Löschkonzepte sind bislang nicht im IG umgesetzt. Zu diesem A
 <li>Ist die Unterscheidung zwischen horizontalem Löschen eines Planeintrags einschließlich aller Versionen und vertikalem Löschen einzelner Medikationsplanversionen fachlich ausreichend?</li>
 <li>Wie sollen historische Medikationsplanversionen beim horizontalen Löschen bereinigt werden: unter Beibehaltung ihrer bisherigen <code>meta.versionId</code> oder durch bereinigte Ersatzdarstellungen mit neuer Versionskennung? Welche Alternativen vermeiden eine Veränderung bereits identifizierter historischer Inhalte?</li>
 <li>Wie können bei einer Ersatzdarstellung die ursprüngliche zeitliche Einordnung, die Zuordnung zum fachlichen Planzustand und bestehende versionierte Referenzen erhalten beziehungsweise nachvollziehbar behandelt werden?</li>
-<li>Sollen betroffene <code>List.entry</code>-Elemente vollständig entfernt werden, oder soll ein Hinweis auf gelöschte Inhalte erhalten bleiben? Darf daraus die Anzahl gelöschter Einträge erkennbar sein?</li>
+<li>Sollen betroffene <code>List.entry</code>-Elemente vollständig entfernt werden oder soll ein Hinweis auf gelöschte Inhalte erhalten bleiben? Darf daraus die Anzahl gelöschter Einträge erkennbar sein?</li>
 <li>Ist es fachlich richtig, beim Löschen der aktuellen Medikationsplanversion einen neuen leeren Plan mit der Fachanwendung als Autor und <code>PatientModified = true</code> bereitzustellen? Welcher Wert für <code>List.emptyReason</code> soll diesen Zustand beschreiben?</li>
 <li>Wie soll eine zu löschende aktuelle <code>MedicationRequest</code>-Version behandelt werden, wenn ältere Versionen weiterhin benötigt werden? Darf eine ältere Version wieder zur aktuellen Version werden, insbesondere im Hinblick auf unversionierte Referenzen?</li>
 <li>Welche weiteren Referenzen, insbesondere aus Geplanten und Durchgeführten Abgaben, müssen bei der Bestimmung des Löschumfangs berücksichtigt werden?</li>
