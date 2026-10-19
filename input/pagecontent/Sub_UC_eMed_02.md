@@ -21,8 +21,8 @@ Der schreibende Zugriff umfasst folgende Bearbeitungen:
         * einen [Leeren Medikationsplan dokumentieren](Sub_UC_eMed_02.html#sub_uc_emed_02_06---leeren-medikationsplan-dokumentieren).
 
 * **ELGA-Teilnehmer** und deren Vertretungen können
-  * einzelne aktuelle oder historische [Planeinträge löschen](Sub_UC_eMed_02.html#sub_uc_emed_02_11---planeintrag-durch-elga-teilnehmer-löschen) oder
-  * den aktuellen oder historische Versionen des gesamten [Medikationsplans löschen](Sub_UC_eMed_02.html#sub_uc_emed_02_12---medikationsplan-durch-elga-teilnehmer-löschen).
+  * aktuelle oder historische [Planeinträge löschen](Sub_UC_eMed_02.html#sub_uc_emed_02_11---planeintrag-durch-elga-teilnehmer-löschen) oder
+  * die aktuelle oder historische Versionen des gesamten [Medikationsplans löschen](Sub_UC_eMed_02.html#sub_uc_emed_02_12---medikationsplan-durch-elga-teilnehmer-löschen).
 
 Jede Änderung am Medikationsplan führt zur Erstellung einer **neuen Medikationsplanversion**.
 Für GDA gilt zusätzich: 
@@ -78,9 +78,8 @@ Alle vom GDA ausgeführten, schreibenden Zugriffe auf den Medikationsplan erfolg
 #### Ablauf
 
 1. Das GDA-System übermittelt den aktualisierten Medikationsplan mittels **POST** [$plan-write](OperationDefinition-at-elga-emed-operation-plan-write.html) als [Medikationsplan-Transaction-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplantx). <br>Der Request enthält:
-    * alle **neuen**, **geänderten** und **zu entfernenden** Ressourcen im Transaction Bundle
-    * im Header den von der Fachanwendung beim *$plan-read* übermittelten **ETag** (zur Durchführung des [Optimistic Locking](https://hl7.org/fhir/http.html#concurrency))
-    * unveränderte Ressourcen werden ausschließlich referenziert.
+    * alle **neuen**, **geänderten** und **zu entfernenden** Ressourcen im Transaction Bundle (unveränderte Ressourcen werden ausschließlich referenziert)
+    * im Header den von der Fachanwendung beim *$plan-read* übermittelten **ETag** (zur Durchführung des [Optimistic Locking](https://hl7.org/fhir/http.html#concurrency)).
 2. Die Fachanwendung prüft den übermittelten *ETag* gegen den *ETag* der aktuell persistierten Medikationsplan-Version.
 3. Ist der *ETag* gültig, validiert die Fachanwendung unter anderem das *Medikationsplan-Transaction-Bundle* einschließlich der zulässigen [Zustandsübergänge](workflowmanagement.html#überblick-der-statusänderungen-der-e-medikation-ressourcen) der *List.Entry.Flags* und *MedicationReqeuest.Status*. 
 4. Die Fachanwendung erstellt neue Versionen der geänderten Ressourcen und **persistiert** diese.
@@ -117,7 +116,7 @@ Der GDA führt ein **POST** [$plan-read](OperationDefinition-at-elga-emed-operat
     - **Einnahmezeitraum** (*extension:effectiveDosePeriod*): Einnahme-Startdatum kann in der Zukunft oder in der Vergangenheit liegen (Nacherfassung); <!-- jedoch nicht vor dem Erfassungsdatum der aktuellen Medikationsplanversion??  TODO akl 29.09.2026 --> das Einnahme-Enddatum darf nicht in der Vergangenheit liegen.
     - **Status** muss *active* oder *on-hold* sein (siehe [Status des MedicationRequests im Medikationsplaneintrag](workflowmanagement.html#status-des-medicationrequests-im-medikationsplaneintrag) und [Konsistenzregeln zwischen List.entry.flags und MedicationRequest-Status](workflowmanagement.html#konsistenzregeln-zwischen-listentryflags-und-medicationrequest-status))
     - **Kategorie** (*category*): "Planeintrag", zur Unterscheidung von *Geplanten Abgaben*
-    - **Berichtete Medikation** (*reportedBoolean*): erhält den Wert *false*, wenn die Medikation vom Ersteller des Planeintrags (GDA) selbst stammt, sonst *true*
+    - **Kennzeichnung, ob die Medikationsinformation berichtet wurde** (*reportedBoolean*): erhält den Wert *false*, wenn die Medikation vom Ersteller des Planeintrags (GDA) selbst stammt, sonst *true*
     - **Medikation** (*medication*): zur Dokumentation des Arzneimittels wird die *Medication*-Ressource verwendet. Diese muss bei Medikamenten mit PZN beim Schreiben als **Conditional Reference** mit **PZN und Name** dokumentiert werden (beim Lesen ist diese contained in der Ressource enthalten). Arznemittelverschreibungen ausschließlich basierend auf Wirkstoffangaben und Magistrale Zubereitungen sind immer als contained Ressource anzugeben (siehe Kapitel [Medikation](ELGA-e-Medikation-R4/output/medication.html)).
     - **Informationen zur Erstellung** des Planeintrags: aktuelles Datum (*authoredOn*) und aktueller GDA als Ersteller (*requester*) 
     - **Art der Medikation** (*courseOfTherapyType*): Mögliche Ausprägungen sind *continuous* für Dauermedikation und *acute* für Akutmedikation. Bei Aktumedikation ist in *extension:effectiveDosePeriod* verpflichtend ein Enddatum für den Einnahmezeitraum zu dokumentieren. Bei Dauermedikation kann ein Enddatum dokumentiert werden. <!-- TODO: Achtung Inkonsistenz Invariante bei Dauermedikation Enddatum! -->
@@ -147,14 +146,15 @@ AtElgaEmedListMedikationsplan
 
 ```JSON
 AtElgaEmedMedicationRequestPlaneintrag
-    status: active | on-hold
-    category: "Planeintrag"         //Kategorie zur Unterscheidung der MedicationRequests
+    extension:effectiveDosePeriod: Einnahmezeitraum  // ab sofort oder in der Zukunft
+    status: active | on-hold        // aktiv oder pausiert
+    category: "Planeintrag"         // Kategorie zur Unterscheidung der MedicationRequests
     reportedBoolean: false | true       // false, wenn vom Ersteller des Planeintrags
-    medicationReference.reference: Medikation mit PZN oder Magistrale Zubereitung // Contained Medication 
+    medicationReference.reference: Medikation mit PZN oder Magistrale Zubereitung // Conditional Reference oder Contained Medication 
     authoredOn: Datum der Erstellung des Planeintrags    
     requester: für die Erstellung veranwortlicher GDA      // wird auf Übereinstimmung mit List.source geprüft
     courseOfTherapyType: continuous | acute
-    dosageInstruction: Dosierung + Einnahmezeitraum (ab sofort | in der Zukunft)
+    dosageInstruction: Dosierung 
 ```
 
 <!-- TODO medicationReference.reference mit conditional reference;  akl 29.09.2026 
@@ -182,8 +182,8 @@ Der GDA führt ein **POST** [$plan-read](OperationDefinition-at-elga-emed-operat
 
 * *MedicationRequest*-Ressource(n) bearbeiten: [AtElgaEmedMedicationRequestPlaneintrag](StructureDefinition-at-elga-emed-medicationrequest-planeintrag.html): 
     <!-- - *id*: bestehende *id* darf **nicht geändert** werden -->
-    - **Einnahmezeitraum** (*extension:effectiveDosePeriod*): ein optionales Enddatum darf nicht in der Vergangenheit liegen
-    - **Status** muss mit *active* oder *on-hold* sein (siehe [Status des MedicationRequests im Medikationsplaneintrag](workflowmanagement.html#status-des-medicationrequests-im-medikationsplaneintrag) und [Konsistenzregeln zwischen List.entry.flags und MedicationRequest-Status](workflowmanagement.html#konsistenzregeln-zwischen-listentryflags-und-medicationrequest-status))
+    - **Einnahmezeitraum** (*extension:effectiveDosePeriod*): falls ein Enddatum existiert, darf es nicht in der Vergangenheit liegen
+    - **Status** muss *active* oder *on-hold* sein (siehe [Status des MedicationRequests im Medikationsplaneintrag](workflowmanagement.html#status-des-medicationrequests-im-medikationsplaneintrag) und [Konsistenzregeln zwischen List.entry.flags und MedicationRequest-Status](workflowmanagement.html#konsistenzregeln-zwischen-listentryflags-und-medicationrequest-status))
     - **Grund für die Änderung** (*statusReason.coding*) optional codiert oder Freitext
     - alle weiteren Elemente analog zu *MedicationRequest*-Ressource(n) erstellen, siehe [Sub_UC_eMed_02_02 - Planeintrag in Medikationsplan hinzufügen](Sub_UC_eMed_02.html#sub_uc_emed_02_02---planeintrag-in-medikationsplan-hinzufügen)
 
@@ -284,7 +284,7 @@ Der GDA führt ein **POST** [$plan-read](OperationDefinition-at-elga-emed-operat
 * *MedicationRequest*-Ressource(n) bearbeiten: [AtElgaEmedMedicationRequestPlaneintrag](StructureDefinition-at-elga-emed-medicationrequest-planeintrag.html): 
     <!-- - *id*: bestehende *id* darf **nicht geändert** werden -->
     - **Status** muss beim **Pausieren** mit *on-hold* und beim **Reaktivieren** mit *active* dokumentiert werden (siehe [Status des MedicationRequests im Medikationsplaneintrag](workflowmanagement.html#status-des-medicationrequests-im-medikationsplaneintrag) und [Konsistenzregeln zwischen List.entry.flags und MedicationRequest-Status](workflowmanagement.html#konsistenzregeln-zwischen-listentryflags-und-medicationrequest-status))
-    - **Grund für die Pausierung/Aktivierung** (*statusReason.coding*) optionalerer Grund für die Pausierung als Code oder Freitext (siehe [ValueSet-AtElgaEmedValueSetPlaneintragStatusReasonVS.html](AtElgaEmedValueSetPlaneintragStatusReasonVS)) 
+    - **Grund für die Pausierung** (*statusReason.coding*) verpflichtender Grund für die Pausierung als Code oder Freitext (siehe [ValueSet-AtElgaEmedValueSetPlaneintragStatusReasonVS.html](AtElgaEmedValueSetPlaneintragStatusReasonVS)) <!-- TODO muss der Grund beim Aktivieren wieder entfernt werden? akl. 19.10.-->
     - falls weitere Elemente geändert werden, siehe [Sub_UC_eMed_02_03 - Planeintrag im Medikationsplan ändern](Sub_UC_eMed_02.html#sub_uc_emed_02_03---planeintrag-im-medikationsplan-ändern)
 
 Der GDA übermittelt mit **POST** [$plan-write](OperationDefinition-at-elga-emed-operation-plan-write.html) den aktualisierten Medikationsplan in einem [Transaction Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplantx.html):
@@ -312,7 +312,7 @@ AtElgaEmedListMedikationsplan
 ```JSON
 AtElgaEmedMedicationRequestPlaneintrag
     status: Pausierung: on-hold | Aktivierung: active
-    statusReason.coding: Grund der Pausierung (verplfichtend), Grund für Aktivierung (optional)
+    statusReason.coding: Grund der Pausierung (verpflichtend) // kein statusReason bei der Aktivierung
     [...]
     authoredOn: Datum der Änderung des Planeintrags    
     requester: für die Änderung verantwortlicher GDA 
@@ -333,7 +333,7 @@ Der GDA führt ein **POST** [$plan-read](OperationDefinition-at-elga-emed-operat
 Die Vorgehensweise unterscheidet sich je nach Inhalt des temporären Medikationsplans:
 1. der Medikationsplan ist **leer**: 
 * **A.** er befindet sich noch im **Initialzustand** mit *List.emptyReason = notstarted* oder 
-* **B.** er ist **nach dem Absetzen oder Stornieren aller Planeinträge** leer mit *List.emptyReason = nilknown* <br>
+* **B.** er ist **nach dem Absetzen oder Stornieren aller Planeinträge** leer und wurde von der Fachanwendung beim Ausliefern vorbereitet mit *List.emptyReason = nilknown* <br>
     In beiden Fällen übermittelt der GDA mit **POST** [$plan-write](OperationDefinition-at-elga-emed-operation-plan-write.html) eine neue Planversion mit *List.emptyReason = nilknown* in einem [Transaction Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplantx.html).
 
 2. es bestehen **Planeinträge**: der GDA
@@ -369,7 +369,6 @@ Der GDA führt ein **POST** [$plan-read](OperationDefinition-at-elga-emed-operat
 * *MedicationRequest*-Ressource(n) bearbeiten: [AtElgaEmedMedicationRequestPlaneintrag](StructureDefinition-at-elga-emed-medicationrequest-planeintrag.html): 
     <!-- - *id*: bestehende *id* darf **nicht geändert** werden -->
     - **Status** muss ***entered-in-error*** sein (siehe [Status des MedicationRequests im Medikationsplaneintrag](workflowmanagement.html#status-des-medicationrequests-im-medikationsplaneintrag) und [Konsistenzregeln zwischen List.entry.flags und MedicationRequest-Status](workflowmanagement.html#konsistenzregeln-zwischen-listentryflags-und-medicationrequest-status))
-    - **Grund für die Stornierung** (*statusReason.coding*) muss **verpflichend** mit als Code oder Freitext dokumentiert werden (siehe [ValueSet-AtElgaEmedValueSetPlaneintragStatusReasonVS.html](AtElgaEmedValueSetPlaneintragStatusReasonVS)) 
     - falls weitere Elemente geändert werden, siehe [Sub_UC_eMed_02_03 - Planeintrag im Medikationsplan ändern](Sub_UC_eMed_02.html#sub_uc_emed_02_03---planeintrag-im-medikationsplan-ändern)
 
 
@@ -397,7 +396,6 @@ AtElgaEmedListMedikationsplan
 ```JSON
 AtElgaEmedMedicationRequestPlaneintrag
     status: entered-in-error
-    statusReason.coding: Grund für die Stornierung  // verpflichtend
     [...]
     authoredOn: Datum der Stornierung  
     requester: für die Stornierung verantwortlicher GDA 
@@ -406,7 +404,7 @@ AtElgaEmedMedicationRequestPlaneintrag
 
 ### Sub_UC_eMed_02_08 - Planeintrag im Medikationsplan beenden 
 
-Der GDA kann eine Medikation, welche in einen Planeintrag dokumentiert ist, beenden. Es wird keine Unterscheidung getroffen, ob die Medikation regulär abgeschlossen oder vorzeitig beendet wird. Ein Grund ist verpflichtend anzugeben.
+Der GDA kann eine Medikation, welche in einen Planeintrag dokumentiert ist, beenden. Es wird keine Unterscheidung getroffen, ob die Medikation regulär abgeschlossen oder vorzeitig beendet wird. Ein Absetzgrund ist verpflichtend anzugeben.
 
 #### Ablauf
 
@@ -421,7 +419,7 @@ Der GDA führt ein **POST** [$plan-read](OperationDefinition-at-elga-emed-operat
 * *MedicationRequest*-Ressource(n) bearbeiten: [AtElgaEmedMedicationRequestPlaneintrag](StructureDefinition-at-elga-emed-medicationrequest-planeintrag.html): 
     <!-- - *id*: bestehende *id* darf **nicht geändert** werden -->
     - **Status** muss ***stopped*** sein (siehe [Status des MedicationRequests im Medikationsplaneintrag](workflowmanagement.html#status-des-medicationrequests-im-medikationsplaneintrag) und [Konsistenzregeln zwischen List.entry.flags und MedicationRequest-Status](workflowmanagement.html#konsistenzregeln-zwischen-listentryflags-und-medicationrequest-status))
-    - **Grund für die Beendigung** (*statusReason.coding*) muss **verpflichend** mit als Code oder Freitext dokumentiert werden (siehe [ValueSet-AtElgaEmedValueSetPlaneintragStatusReasonVS.html](AtElgaEmedValueSetPlaneintragStatusReasonVS)) 
+    - **Absetzgrund** (*statusReason.coding*) muss **verpflichend** mit Code dokumentiert werden. Existiert im Valueset (siehe [ValueSet-AtElgaEmedValueSetPlaneintragStatusReasonVS.html](AtElgaEmedValueSetPlaneintragStatusReasonVS)) kein passender Code, muss "other" ausgewählt werden und ein Freitext in *coding.text* dokumentiert werden.
     - falls weitere Elemente geändert werden, siehe [Sub_UC_eMed_02_03 - Planeintrag im Medikationsplan ändern](Sub_UC_eMed_02.html#sub_uc_emed_02_03---planeintrag-im-medikationsplan-ändern)
 
 Der GDA übermittelt mit **POST** [$plan-write](OperationDefinition-at-elga-emed-operation-plan-write.html) den aktualisierten Medikationsplan in einem [Transaction Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplantx.html):
@@ -450,7 +448,7 @@ AtElgaEmedListMedikationsplan
 ```JSON
 AtElgaEmedMedicationRequestPlaneintrag
     status: stopped
-    statusReason.coding: Grund für das Beenden  // verpflichtend
+    statusReason.coding: Absetzgrund  // verpflichtend
     [...]
     authoredOn: Datum der Beendigung  
     requester: für die Beendigung verantwortlicher GDA 
@@ -556,8 +554,7 @@ AtElgaEmedMedicationRequestPlaneintrag
 
 <div class="dragon">
 <p class="note-to-balloters">
-Offene Fragen:
-Ausüben der Teilnehmerrechte in Arbeit.
+Ausüben der Teilnehmerrechte: in Arbeit.
 </p>
 </div>
 
@@ -635,8 +632,7 @@ Gelöschte Planeinträge können von historischen Planversionen oder bestehenden
 
 <div class="dragon">
 <p class="note-to-balloters">
-Offene Fragen:
-Ausüben der Teilnehmerrechte in Arbeit.
+Ausüben der Teilnehmerrechte: in Arbeit.
 </p>
 </div>
 
