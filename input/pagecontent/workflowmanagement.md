@@ -268,7 +268,7 @@ Eine [Durchgeführte Abgabe](design_choices.html#durchgeführte-abgabe-AtElgaEme
       <td><em>Durchgeführte Abgabe</em> erfassen</td>
     </tr>
     <tr>
-      <td><em>Geplante Abgabe</em> verwerfen</td>
+      <td><em>Geplante Abgabe</em> stornieren</td>
       <td>active</td>
       <td>Planeintrag bleibt active, unabhängig von Status der geplanten Abgabe (*)</td>
       <td>entered-in-error</td>
@@ -313,7 +313,7 @@ Eine [Durchgeführte Abgabe](design_choices.html#durchgeführte-abgabe-AtElgaEme
       <td>entered-in-error</td>
       <td>STORNIERT</td>
       <td>bei fehlerhafter Eingabe</td>
-      <td><em>Durchgeführte Abgabe</em> verwerfen</td>
+      <td><em>Durchgeführte Abgabe</em> stornieren</td>
     </tr>
   </tbody>
 </table>

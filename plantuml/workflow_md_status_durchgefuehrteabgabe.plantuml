@@ -3,8 +3,8 @@ title MedicationDispense.status (Durchgeführte Abgabe)
 
 (*) --> [abgegeben oder bestellt] completed  
 (*) --> [Leerabgabe] cancelled
-cancelled --> [verwerfen] "entered-in-error"
-completed --> [verwerfen] "entered-in-error"
+cancelled --> [stornieren] "entered-in-error"
+completed --> [stornieren] "entered-in-error"
 cancelled --> (*)
 completed --> (*)
 "entered-in-error" --> (*)
