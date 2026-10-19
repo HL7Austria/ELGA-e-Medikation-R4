@@ -17,7 +17,9 @@ Usage: #inline
 * subject.identifier.system = "urn:oid:1.2.40.0.10.2.1.1.149"
 * date = "2026-02-27T08:10:00+00:00"
 // logische referenz über oid
-* source = Reference(At-Emed-Example-PractitionerRole-01) "Dr. Hausärztin"
+* source.identifier.system = "urn:ietf:rfc:3986"
+* source.identifier.value = "urn:oid:1.2.40.0.34.99.4613.4"
+
 // * orderedBy = http://terminology.hl7.org/CodeSystem/list-order#user
 
 // Listeneinträge
