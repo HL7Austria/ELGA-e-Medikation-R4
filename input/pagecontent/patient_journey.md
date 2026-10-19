@@ -89,7 +89,7 @@ Da für Herrn Mustermann noch nie ein Medikationsplan abgerufen wurde, erstellt 
 </div>
 
 
-##### Journey-01-01: Request 02 - geplante Abgaben Abrufen
+##### Journey-01-01: Request 02 - Geplante Abgaben abrufen
 <div class="tabs">
   <div class="tab">
     <input type="radio" id="tab-request-journey-01-01-02" name="tab-group-journey-01-01-02" checked="true" />
