@@ -72,8 +72,6 @@ pages:
     title: Herausforderungen  
   design_choices.md:
     title: Designentscheidungen
-  # dosaging.md:
-  #   title: Dosierschemata
   actors.md:
     title: Akteure
   workflowmanagement.md:
@@ -87,15 +85,6 @@ pages:
   medication.md:
     title: Medikation
   overview_use_case.md:
-    #   title: UC_eMed_01 - Medikationsplan lesen
-    # UC_eMed_02.md:
-    #   title: UC_eMed_02 - Medikationsplan schreiben
-    # UC_eMed_03.md:
-    #   title: UC_eMed_03 - Geplante und Durchgeführte Abgaben lesen
-    # UC_eMed_04.md:
-    #   title: UC_eMed_04 - Geplante Abgabe schreiben
-    # UC_eMed_05.md:
-    #   title: UC_eMed_05 - Durchgeführte Abgabe schreiben
     overview_sub_use_case.md:
       title: Use Cases Übersicht (fachlich und technisch)
     Sub_UC_eMed_01.md:
@@ -104,33 +93,29 @@ pages:
       title: ​Technische Use Cases für Medikationsplan schreiben (UC_eMed_02)
     Sub_UC_eMed_03.md:
       title: ​Technische Use Cases für Geplante und Durchgeführte Abgaben lesen (UC_eMed_03)
-    # Sub_UC_eMed_03.md:
-    #   title: ​Technische Use Cases für Geplante Abgaben lesen (UC_eMed_03)
-    # Sub_UC_eMed_03.md:
-    #   title: ​Technische Use Cases für Durchgeführte Abgaben lesen (UC_eMed_03)
-    # Sub_UC_eMed_03.md:
-    #   title: ​Technische Use Cases für Geplante und Durchgeführte Abgaben mittels e-Med GroupIdentifier lesen (UC_eMed_03)
     Sub_UC_eMed_04.md:
       title: ​Technische Use Cases für Geplante Abgabe schreiben (UC_eMed_04)
     Sub_UC_eMed_05.md:
       title: ​Technische Use Cases für Durchgeführte Abgabe schreiben (UC_eMed_05)
     patient_journey.md:
       title: Patient Journey
+    contributors.md:
+      title: Autoren und Mitwirkende
+    download.md:
+      title: Download
+    publication_info.md:
+        title: Publikationsinformationen
+    # mapping.md:
+    #   title: Mappings
+    dependencies.md:
+      title: Dependencies
+    copyright.md:
+      title: Copyright
+        # known_issues.md:
+      #   title: Known Issues
+    imprint.md:
+      title: Impressum
 
-  # mapping.md:
-  #   title: Mappings
-  # imprint.md:
-  #   title: Impressum
-  # authors.md:
-  #   title: Mitwirkende
-  # downloads.md:
-  #   title: Downloads
-  # dependencies.md:
-  #   title: Dependencies
-  # copyright.md:
-  #   title: Copyright
-  # known_issues.md:
-  #   title: Known Issues
 
 
 # The parameters property represents IG.definition.parameter. Rather
@@ -185,16 +170,16 @@ menu:
     UC 4 Geplante Abgabe schreiben: Sub_UC_eMed_04.html
     UC 5 Durchgeführte Abgabe schreiben: Sub_UC_eMed_05.html
     Patient Journey: patient_journey.html
-
   # Mappings: mapping.html
   Artifacts: artifacts.html
-  # About:
-  #   Impressum: imprint.html
-  #   Mitwirkende: authors.html
-  #   Downloads:  downloads.html
-  #   Dependencies: dependencies.html
-  #   Copyright: copyright.html
-  #   Known Issues: known_issues.html
+  About:
+    Autoren und Mitwirkende: contributors.html
+    Download: download.html
+    Publikationsinformationen: publication_info.html
+    Dependencies: dependencies.html
+    Copyright: copyright.html
+    # Known Issues
+    Impressum: imprint.html
 
 
 
