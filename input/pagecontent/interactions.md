@@ -141,7 +141,7 @@ Standardabfrage mit _include
 <td><strong>POST</strong></td>
 <td><code>/MedicationRequest</code></td>
 <td><code>$prescription-discard</code></td>
-<td>Eigene geplante Abgabe verwerfen</td>
+<td>Eigene Geplante Abgabe stornieren</td>
 <td>GDA</td>
 <td></td>
 </tr>
@@ -232,7 +232,7 @@ Optionale Abfrage mit _include
 <td><strong>POST</strong></td>
 <td><code>/MedicationDispense</code></td>
 <td><code>$dispense-discard</code></td>
-<td>Eigene durchgeführte Abgabe verwerfen</td>
+<td>Eigene durchgeführte Abgabe stornieren</td>
 <td>GDA</td>
 <td></td>
 </tr>
