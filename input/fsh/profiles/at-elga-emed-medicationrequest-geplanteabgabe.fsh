@@ -80,11 +80,11 @@ Description: "Profil einer \"Geplanten Abgabe\" eines Arzneimittels aus dem Medi
 // * priority ^short = "Priorität der geplanten Abgabe. Keine Verwendung in der geplanten Abgabe."
 
 * doNotPerform 0..0
-* doNotPerform ^short = "Fachliche Begründung: Die geplante Abgabe bildet einen positiven Abgabeauftrag ab; ein ausdrückliches Verbot einer Abgabe wird nicht als eigene geplante Abgabe dokumentiert."
+* doNotPerform ^short = "Fachliche Begründung: Die Geplante Abgabe bildet einen positiven Abgabeauftrag ab; ein ausdrückliches Verbot einer Abgabe wird nicht als eigene Geplante Abgabe dokumentiert."
 // * doNotPerform ^short = "Gibt an, ob die Geplante Abgabe untersagt ist. Keine Verwendung in der geplanten Abgabe."
 
 * reported[x] 0..0
-* reported[x] ^short = "Fachliche Begründung: Die geplante Abgabe wird als Auftrag dokumentiert; eine Kennzeichnung als lediglich berichteter Auftrag würde die Bedeutung der Ressource verändern und wird daher nicht verwendet."
+* reported[x] ^short = "Fachliche Begründung: Die Geplante Abgabe wird als Auftrag dokumentiert; eine Kennzeichnung als lediglich berichteter Auftrag würde die Bedeutung der Ressource verändern und wird daher nicht verwendet."
 
 // --- Medication immer als Medication-Resource (mit oder ohne PZN, damit Handelsname angegeben werden kann und historisch verfügbar bleibt)
 * medication[x] 1..1 MS  

@@ -1,7 +1,7 @@
 Profile: AtElgaEmedBundleGeplanteAbgabenTx
 Parent: Bundle
 Id: at-elga-emed-bundle-geplanteabgaben-tx
-Title: "AT ELGA e-Medikation Transaction Bundle geplante Abgaben"
+Title: "AT ELGA e-Medikation Transaction Bundle Geplante Abgaben"
 Description: "Das Bundle vom Typ Transaction dient dem schreibenden Zugriff und besteht aus allen geplanten Abgaben, 
 die gemeinsam geschrieben werden sollen. Es müssen entweder alle oder keine der geplanten Abgaben einen groupIdentifier enthalten. 
 Ist kein groupIdentifier enthalten so erhalten alle geplanten Abgaben im Transaction Bundle einen neuen gemeinsamen groupIdentifier."

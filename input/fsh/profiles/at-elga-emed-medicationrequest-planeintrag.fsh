@@ -83,7 +83,7 @@ Description: "Profil für einen Medikationsplaneintrag."
 
 * reported[x] MS
 * reportedBoolean 1..1 MS
-* reportedBoolean ^short = "Quelle der Information. Bedeutung: false: Verordnung durch den Planeintrag erstellenden GDA | true: Fremdmedikation oder Eigenmedikation des Patienten."
+* reportedBoolean ^short = "Kennzeichnet, ob die Medikationsinformation berichtet wurde. Bedeutung: false: Verordnung durch den Planeintrag erstellenden GDA | true: Fremdmedikation oder Eigenmedikation des Patienten."
 
 // --- Medication immer als Medication-Resource (mit oder ohne PZN, damit Handelsname angegeben werden kann und historisch verfügbar bleibt)
 * medication[x] 1..1 MS  
