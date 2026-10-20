@@ -45,7 +45,7 @@ Die Suche nach [Geplanten Abgaben](StructureDefinition-at-elga-emed-medicationre
 
 <div class="dragon">
 <p class="note-to-balloters">
-Ballot-Feedback: Gibt es zusätzliche Suchparameter die unterstützt werden sollen? <a href="nteractions.html#suchparameter-überblick">Suchparameter Überblick</a> <br>
+Ballot-Feedback: Gibt es zusätzliche Suchparameter die unterstützt werden sollen? <a href="interactions.html#suchparameter-überblick">Suchparameter Überblick</a> <br>
 </p>
 </div>
 
@@ -98,7 +98,7 @@ Von ELGA-Teilnehmern gelöschte *Durchgeführte Abgaben* stehen nicht mehr zur V
 
 <div class="dragon">
 <p class="note-to-balloters">
-Ballot-Feedback: Gibt es zusätzliche Suchparameter die unterstützt werden sollen? <a href="nteractions.html#suchparameter-überblick">Suchparameter Überblick</a> <br>
+Ballot-Feedback: Gibt es zusätzliche Suchparameter die unterstützt werden sollen? <a href="interactions.html#suchparameter-überblick">Suchparameter Überblick</a> <br>
 </p>
 </div>
 

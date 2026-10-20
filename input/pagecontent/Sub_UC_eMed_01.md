@@ -126,7 +126,7 @@ Soll die Erstellung durch das Berechtigungssystem beim ersten Aufruf eines Patie
 
 <div class="dragon">
 <p class="note-to-balloters">
-Ballot-Feedback: Gibt es zusätzliche Suchparameter die unterstützt werden sollen? <a href="nteractions.html#suchparameter-überblick">Suchparameter Überblick</a> <br>
+Ballot-Feedback: Gibt es zusätzliche Suchparameter die unterstützt werden sollen? <a href="interactions.html#suchparameter-überblick">Suchparameter Überblick</a> <br>
 </p>
 </div>
 <br>
@@ -190,7 +190,7 @@ Der Abruf erfolgt mittels POST [$history-search](Sub_UC_eMed_01.html#custom-oper
 
 <div class="dragon">
 <p class="note-to-balloters">
-Ballot-Feedback: Gibt es zusätzliche Suchparameter die unterstützt werden sollen? <a href="nteractions.html#suchparameter-überblick">Suchparameter Überblick</a> <br>
+Ballot-Feedback: Gibt es zusätzliche Suchparameter die unterstützt werden sollen? <a href="interactions.html#suchparameter-überblick">Suchparameter Überblick</a> <br>
 </p>
 </div>
 <br>
@@ -213,7 +213,7 @@ Der Abruf erfolgt mittels POST [$history-search](Sub_UC_eMed_01.html#custom-oper
 
 <div class="dragon">
 <p class="note-to-balloters">
-Ballot-Feedback: Gibt es zusätzliche Suchparameter die unterstützt werden sollen? <a href="nteractions.html#suchparameter-überblick">Suchparameter Überblick</a> <br>
+Ballot-Feedback: Gibt es zusätzliche Suchparameter die unterstützt werden sollen? <a href="interactions.html#suchparameter-überblick">Suchparameter Überblick</a> <br>
 </p>
 </div>
 <br> 
