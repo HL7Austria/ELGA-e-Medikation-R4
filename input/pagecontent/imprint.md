@@ -1,6 +1,5 @@
 ### Impressum und Haftungsausschluss
 
-<!-- TODO https://jira-elga.atlassian.net/browse/EDIAG-8 -->
 
 *Medieneigentümer, Herausgeber, Hersteller, Verleger:*<br/>
 ELGA GmbH, Treustraße 35-43, Wien, Österreich. Telefon: +43.1.2127050<br/>
