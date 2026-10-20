@@ -20,6 +20,13 @@ Description: "Profil für das Standard-Tageszeiten-Dosierschema"
 * timing.repeat.timeOfDay 0..0 // kann der Aussage von .when widersprechen
 * timing.repeat.offset 0..0
 
+* timing.repeat.count 0..0
+* timing.repeat.countMax 0..0
+* timing.event 0..0
+* timing.repeat.duration 0..0
+* timing.repeat.durationMax 0..0
+* timing.repeat.durationUnit 0..0
+
 * obeys frequencySameAsWhenCount
 * obeys weekdaysRequireWeeklyPeriod
 * obeys frequencyEqualsEventWeekdayProduct

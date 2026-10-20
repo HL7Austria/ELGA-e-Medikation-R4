@@ -10,12 +10,13 @@ Usage: #example
 //* manufacturer = Reference(AtElgaEmed-Example-Organization-Apo-01) "Amadeus Apotheke"
 * form.coding = https://termgit.elga.gv.at/CodeSystem/medikationdarreichungsform#100000073713 "Salbe"
 
-* ingredient[+].itemCodeableConcept = $cs-atc#A11HA30 "Dexpanthenol"
-* ingredient[=].strength.numerator = 5 'g' "g"
-* ingredient[=].strength.denominator = 100 'g' "g"
-* ingredient[+].itemCodeableConcept.text = "Salbengrundlage"
-* ingredient[=].isActive = false
-* ingredient[=].strength.numerator.value = 95
-* ingredient[=].strength.numerator.unit = "g"
-* ingredient[=].strength.denominator.value = 100
-* ingredient[=].strength.denominator.unit = "g"
+* ingredient[activeIngredient].itemCodeableConcept = $cs-atc#A11HA30 "Dexpanthenol"
+* ingredient[activeIngredient].isActive = true
+* ingredient[activeIngredient].strength.numerator = 5 'g' "g"
+* ingredient[activeIngredient].strength.denominator = 100 'g' "g"
+* ingredient[inactiveIngredient].itemCodeableConcept.text = "Salbengrundlage"
+* ingredient[inactiveIngredient].isActive = false
+* ingredient[inactiveIngredient].strength.numerator.value = 95
+* ingredient[inactiveIngredient].strength.numerator.unit = "g"
+* ingredient[inactiveIngredient].strength.denominator.value = 100
+* ingredient[inactiveIngredient].strength.denominator.unit = "g"

@@ -83,7 +83,7 @@ Die finale Beschreibung der Regeln für dieses Schema wird noch erarbeitet und i
         period: 1
         periodUnit: d
         when: MORN (morgens) | NIGHT (nachts)
-        doseAndRate
+    doseAndRate
         doseQuantity
         value: 1
         unit: Stück</code></pre>
@@ -571,7 +571,7 @@ Dosage [1]
 
 <div class="dragon" markdown="1">
 <p class="note-to-balloters">
-Der finale Algorithmus für die Generierung der menschenlesbaren Textdarstellungen dieses Dosierschemas wird noch erarbeitet und im nächsten Ballot zur Verfügung gestellt. Feedback aus der Community ist erwünscht. Konkret wurden bisher nur Elemente aus <code>timing.repeat</code> und <code>doseAndRate</code> in die Textdarstellung aufgenommen. Weitere relevante Elemente (z.B. <code>site</code>, <code>route</code>, <code>method</code>, <code>additionalInstruction</code>,<code>timing.repeat.bounsPeriod[x]</code>) werden bis zum nächsten Ballot finalisiert.
+Der finale Algorithmus für die Generierung der menschenlesbaren Textdarstellungen dieses Dosierschemas wird noch erarbeitet und im nächsten Ballot zur Verfügung gestellt. Feedback aus der Community ist erwünscht. Konkret wurden bisher nur Elemente aus <code>timing.repeat</code> und <code>doseAndRate</code> in die Textdarstellung aufgenommen. Weitere relevante Elemente (z.B. <code>site</code>, <code>route</code>, <code>method</code>, <code>additionalInstruction</code>,<code>timing.repeat.bounsPeriod[x],...</code>) werden bis zum nächsten Ballot finalisiert.
 </p>
 </div>
 <br>
