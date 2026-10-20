@@ -28,14 +28,14 @@ Es gelten die dort festgelegten Vorbedingungen. Alle Zugriffe werden protokollie
 
 ### Sub_UC_eMed_03_01 - Geplante Abgaben lesen (Prescription-Search)
 
-*Prescription-Search* dient der Suche nach [Geplante Abgaben](StructureDefinition-at-elga-emed-medicationrequest-geplanteabgabe.html) eines ELGA-Teilnehmers, um vorgesehene Arzneimittelabgaben einzusehen. Als *Geplante Abgabe* gilt eine *MedicationRequest*-Ressource mit *category = "Geplante Abgabe"*.
+*Prescription-Search* dient der Suche nach [Geplante Abgaben](StructureDefinition-at-elga-emed-medicationrequest-geplanteabgabe.html) eines ELGA-Teilnehmers, um vorgesehene Arzneimittelabgaben einzusehen. Als *Geplante Abgabe* gilt eine *MedicationRequest*-Ressource mit *category "Geplante Abgabe"*.
 
 *Geplante Abgaben* dokumentieren medizinische Inhalte des e-Rezepts. Wurden mehrere Arzneimittel gleichzeitig verordnet und sind demselben e-Rezept zugeordnet, sind die zugehörigen *Geplanten Abgaben* mit demselben *e-Med GroupIdentifier* zu versehen, den auch das e-Rezept mitführt (bildet damit die Rezept-Klammer). 
 
 
 #### Suchparameter
 
-Die Suche nach [Geplante Abgaben](StructureDefinition-at-elga-emed-medicationrequest-geplanteabgabe.html) erfolgt mittels **GET**-Request unter Angabe geeigneter Suchparameter:
+Die Suche nach [Geplanten Abgaben](StructureDefinition-at-elga-emed-medicationrequest-geplanteabgabe.html) erfolgt mittels **GET**-Request unter Angabe geeigneter Suchparameter:
 * alle (ohne Einschränkung) <!-- TODO sinnvoll? akl 2.10. -->
 * in einem bestimmten Zeitraum erfasste 
 * mit bestimmter Medikation: PZN/Name bzw. Wirkstoff (inkl. Magistraler Zubereitungen) 
@@ -49,6 +49,8 @@ Ballot-Feedback: Gibt es zusätzliche Suchparameter die unterstützt werden soll
 </p>
 </div>
 
+<br>
+
 Die gefundenen *Geplanten Abgaben* können als Ausgangspunkt für weitere Abfragen verwendet werden:
 * zugehöriger Medikationsplaneintrag und Medikationsplanversion <!-- wie kommt man auf die Planversion? keine Referenz im Planeintrag auf die List(version) Todo akl 7.10. -->
    * da in einer *Geplanten Abgabe* die Referenz auf den zugehöigen Planeintrag (*basedOn*) nicht versioniert ist, zeigt die *Geplante Abgabe* immer auf den aktuellen Planeintrag. Dieser kann zwischenzeitlich von den Inhalten der *Geplanten Abgabe* abweichen.
@@ -56,17 +58,11 @@ Die gefundenen *Geplanten Abgaben* können als Ausgangspunkt für weitere Abfrag
 
 Von ELGA-Teilnehmern gelöschte *Geplanten Abgaben* stehen nicht mehr zur Verfügung.
 
-<div class="dragon">
-<p class="note-to-balloters">
-Ballot-Feedback: Gibt es zusätzliche Suchparameter die unterstützt werden sollen? <a href="nteractions.html#suchparameter-überblick">Suchparameter Überblick</a> <br>
-</p>
-</div>
-
 <!-- - Gültigkeitszeitraum des Rezepts (validityPeriod)? <br> -->
 
 ##### Ablauf
 
-1. Der GDA führt einen **GET**-Request auf den Prescription-Search-Endpunkt mit *MedicationRequest.category = "Geplante Abgabe"* und Suchparametern aus 
+1. Der GDA führt einen **GET**-Request auf den Prescription-Search-Endpunkt mit *MedicationRequest.category "Geplante Abgabe"* und Suchparametern aus 
 2. Die Fachanwendung ermittelt die den Suchkriterien entsprechenden *Geplanten Abgaben*.
 3. Die Fachanwendung liefert das Suchergebnis als Bundle vom Typ *searchset* zurück.
 4. Werden keine passenden Ressourcen gefunden, enthält das zurückgelieferte Searchset Bundle keine Einträge.
@@ -78,9 +74,9 @@ Ballot-Feedback: Gibt es zusätzliche Suchparameter die unterstützt werden soll
 
 ### Sub_UC_eMed_03_02 - Durchgeführte Abgaben lesen (Dispense-Search)
 
-*Dispense-Search* dient dem Suche nach [Durchgeführten Abgaben](StructureDefinition-at-elga-emed-medicationdispense-durchgefuehrteabgabe.html) eines ELGA-Teilnehmers, um bereits dokumentierte Arzneimittelabgaben einzusehen.
+*Dispense-Search* dient der Suche nach [Durchgeführten Abgaben](StructureDefinition-at-elga-emed-medicationdispense-durchgefuehrteabgabe.html) eines ELGA-Teilnehmers, um bereits dokumentierte Arzneimittelabgaben einzusehen.
 
-*Durchgeführten Abgaben* spiegeln den Status der Abgaben des e-Rezepts wider. Eine *Durchgeführte Abgabe*, die auf einer *Geplanten Abgabe* basiert, enthält den *e-Med GroupIdentifier* der zugehörigen *Geplanten Abgabe*. Dadurch können zusammengehörige *Geplante Abgaben* und *Durchgeführte Abgaben* über denselben *e-Med GroupIdentifier* identifiziert und gemeinsam abgerufen werden.
+*Durchgeführte Abgaben* spiegeln den Status der Abgaben des e-Rezepts wider. Eine *Durchgeführte Abgabe*, die auf einer *Geplanten Abgabe* basiert, enthält den *e-Med GroupIdentifier* der zugehörigen *Geplanten Abgabe*. Dadurch können zusammengehörige *Geplante Abgaben* und *Durchgeführte Abgaben* über denselben *e-Med GroupIdentifier* identifiziert und gemeinsam abgerufen werden.
 
 #### Suchparameter 
 
