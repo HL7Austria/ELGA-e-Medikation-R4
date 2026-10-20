@@ -83,7 +83,6 @@ Es werden täglich zwei Stück morgens, zwei Stück abends und ein Stück nachts
     <tr>
       <th>Dosierungsanweisung</th>
       <th> sequence </th>
-      <th> dayOfWeek </th>
       <th> when </th>
       <th> frequency </th>
       <th> period  /  periodUnit </th>

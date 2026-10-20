@@ -15,8 +15,6 @@ Description: "Bildet ein Arzneimittel in der \"Medication\"-Ressource ab. Wird g
 * id 0..1 MS
 * id ^short = "Technische id der Ressource"
 * meta MS
-* meta.versionId MS
-* meta.lastUpdated MS
 * meta.profile 1..1 MS
 * modifierExtension 0..0
 * modifierExtension ^short = "Fachliche Begründung: Für den Medikationsplan sind keine zusätzlichen Erweiterungen vorgesehen, die die Bedeutung der Ressource oder ihrer Elemente verändern."
@@ -83,17 +81,29 @@ Description: "Bildet ein Arzneimittel in der \"Medication\"-Ressource ab. Wird g
 
 * ingredient 0..* MS
 * ingredient ^short = "Wirkstoffe."
-* ingredient.item[x] only CodeableConcept or Reference(AtElgaEmedMedicationStandardMedikation) // TODO Substance profilieren
-* ingredient.itemCodeableConcept 0..1 MS 
+* ingredient.item[x] only CodeableConcept
+* ingredient.itemCodeableConcept.text 0..0
+* ingredient.itemCodeableConcept.text ^short = "Fachliche Begründung: TODO"
+* ingredient.itemCodeableConcept 1..1 MS 
 // * ingredient.itemCodeableConcept ^short = "Inhaltsstoff codiert." TODO: prüfen, Einschränkung auf SPOR (EMA). Gemüß CDA v3:
 // Wirkstoff-Codes stammen aus der ATC-Klassifikation (Anatomical Therapeutic Chemical Classification), die von der WHO herausgegeben wird. 
 // Weitere Codes, wie auch die deutsche Bezeichnung der Codes, entsprechen dem GKV-Arzneimittelindex im Wissenschaftlichen Institut der AOK (WidO), 
 // AOK Bundesverband GbR, Deutschland, welcher auf den WHO ATC basiert.
 // Zusätzlich kommen ergänzende Codes aus dem Arzneimittelverzeichnis der AGES zum Einsatz.
-* ingredient.itemReference 0..1 MS
-* ingredient.itemReference ^type.aggregation = #contained
-//* ingredient.itemReference.reference obeys contained-sub  // contained Substance
-* ingredient.itemReference ^short = "Referenz auf Ressourcen Substance im Fall von magistraler Anwendung."
+* ingredient.itemCodeableConcept.coding ^slicing.discriminator.type = #value
+* ingredient.itemCodeableConcept.coding ^slicing.discriminator.path = "$this"
+* ingredient.itemCodeableConcept.coding ^slicing.rules = #open
+* ingredient.itemCodeableConcept.coding ^slicing.ordered = false
+* ingredient.itemCodeableConcept.coding  contains 
+    ATCWidO 0..1 MS and
+    WirkstoffeAges 0..1 MS 
+* ingredient.itemCodeableConcept.coding[ATCWidO] from AtElgaEmedValueSetATC (required)
+* ingredient.itemCodeableConcept.coding[ATCWidO].system 1..1 MS
+* ingredient.itemCodeableConcept.coding[ATCWidO].code 1..1 MS
+* ingredient.itemCodeableConcept.coding[WirkstoffeAges] from https://termgit.elga.gv.at/ValueSet/elga-wirkstoffe-ages (required)
+* ingredient.itemCodeableConcept.coding[WirkstoffeAges].system 1..1 MS
+* ingredient.itemCodeableConcept.coding[WirkstoffeAges].code 1..1 MS
+* ingredient.itemCodeableConcept ^short = "Inhaltsstoff codiert. Wirkstoff-Codes stammen aus der ATC-Klassifikation (Anatomical Therapeutic Chemical Classification), die von der WHO herausgegeben wird. Weitere Codes, wie auch die deutsche Bezeichnung der Codes, entsprechen dem GKV-Arzneimittelindex im Wissenschaftlichen Institut der AOK (WidO), AOK Bundesverband GbR, Deutschland, welcher auf den WHO ATC basiert. Zusätzlich kommen ergänzende Codes aus dem Arzneimittelverzeichnis der AGES zum Einsatz."
 
 * ingredient.isActive 0..1 MS
 * ingredient.isActive ^short = "Aktive Wirkstoff TRUE/FALSE"
