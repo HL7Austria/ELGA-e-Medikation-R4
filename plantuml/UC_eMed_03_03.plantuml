@@ -73,7 +73,7 @@ eMed_FA -> eMed_FA: Prüfung\ne-Med GroupIdentifier
 
 group COLOR_OK alt: e-Med GroupIdentifier gültig? [ja]
 
-  eMed_FA -> eMed_FA: Ermitteln von MedicationRequests mit:\n- category = "Geplante Abgabe" und\n- groupIdentifier = e-Med GroupIdentifier
+  eMed_FA -> eMed_FA: Ermitteln von MedicationRequests mit:\n- category "Geplante Abgabe" und\n- groupIdentifier = e-Med GroupIdentifier
 
   eMed_FA -> eMed_FA: Ermitteln von MedicationDispenses mit:\n- extension:groupIdentifier = e-Med GroupIdentifier
 
