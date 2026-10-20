@@ -29,15 +29,14 @@ Die **fachlichen Varianten der Erfassung** und die Inhalte von *Durchgeführten 
 ℹ️ Die fachlichen Anforderungen dieses Use Cases werden beschrieben in:
 <ul>
     <li>
-        <a href="Sub_UC_eMed_05.html">UC_eMed_05 Durchgeführte Abgabe schreiben</a>
+        <a href="https://dev.elga.gv.at/apis/emed/use-cases/">UC_eMed_05 Durchgeführte Abgabe schreiben</a>
     </li>
     <li>
-    <a href="Sub_UC_eMed_06.html">UC_eMed_06 Teilnehmerrechte ausüben</a>
+    <a href="https://dev.elga.gv.at/apis/emed/use-cases/">UC_eMed_06 Teilnehmerrechte ausüben</a>
     </li>
 </ul>
 Es gelten die dort festgelegten Vorbedingungen. Alle Zugriffe werden protokolliert.  
 </div>
-<!--Todo: Link korrigieren, Link zu allgemeinen BES-UCs ergänzen akl 25.09.2026 -->
 
 
 ### Sub_UC_eMed_05_01 - Durchgeführte Abgabe erstellen 
@@ -54,7 +53,6 @@ MedicationDispense-Ressource: [AtElgaEmedMedicationDispenseDurchgefuehrteAbgabe]
 * **Abgegebene Packungen** (*quantity*): dokumentiert die tatsächlich abgegeben Packungsanzahl. Die Fachanwendung prüft diese Menge jedoch nicht im Kontext einer gegebenenfalls zugrunde liegenden *Geplanten Abgabe*. 
 * **Zugehörige [Geplante Abgabe](StructureDefinition-at-elga-emed-medicationrequest-geplanteabgabe.html)**: Sofern diese vorliegt, muss diese im Element *authorizingPrescription\[geplanteAbgabe\]* referenziert werden. 
 * **Zugehöriger [Planeintrag](StructureDefinition-at-elga-emed-medicationrequest-planeintrag.html):** Sofern eine Geplante Abgabe vorliegt, muss auch der zugehörige Planeintrag über *MedicationDispense.authorizingPrescription\[planeintrag\]* referenziert werden. 
-<!-- TODO: ist kommt die Referenz auf den Planeintrag zustande? Automatisch durch die Fachanwendung oder durch den GDA? -> ergänzen in Relevante Elmente --> 
 * **Zeitpunkt der Übergabe**: Datum der Aushändigung (*whenHandedOver*)
 
 Die **fachlichen Varianten** der *Durchgeführten Abgabe* werden in den folgenden Use Cases beschrieben.
@@ -199,12 +197,12 @@ Dabei können sowohl Arzneimittelabgaben zu bestehenden *Geplanten Abgaben* als 
 
 1. Der GDA ruft zur Ermittlung und Prüfung der zu dokumentierenden Abgaben den *aktuellen Medikationsplan* ([Plan-Read](Sub_UC_eMed_01.html#sub_uc_emed_01_01---aktuellen-medikationsplan-lesen-plan-read)), die zugehörigen *Geplanten Abgaben* ([Prescription-Search](Sub_UC_eMed_03.html#sub_uc_emed_03_01---geplante-abgaben-lesen-prescription-search)) sowie bereits dokumentierte *Durchgeführte Abgaben* ([Dispense-Search](Sub_UC_eMed_03.html#sub_uc_emed_03_02---durchgeführte-abgaben-lesen-dispense-search)) ab.
 
-2. Der GDA führt anhand dessen und der Informationen des Patienten die entsprechenden Arzneimittelabgaben durch und dokumentiert diese in [Durchgeführten Abgaben](StructureDefinition-at-elga-emed-medicationdispense-durchgefuehrteabgabe.html) gemäß der jeweils zutreffenden Abgabeart (siehe Kapitel [Abgabearten](Sub_UC_eMed_05.html#abgabearten))
+2. Der GDA führt anhand dessen und der Informationen des Patienten die entsprechenden Arzneimittelabgaben durch und dokumentiert diese in [Durchgeführten Abgaben](StructureDefinition-at-elga-emed-medicationdispense-durchgefuehrteabgabe.html) gemäß der jeweils zutreffenden Abgabeart (siehe Kapitel [Sub_UC_eMed_05_01 - Durchgeführte Abgabe erstellen](Sub_UC_eMed_05.html#sub_uc_emed_05_01---durchgeführte-abgabe-erstellen))
 - Existiert eine zugehörige *Geplante Abgabe* muss diese sowie der zugehörige Medikationsplaneintrag referenziert werden.
 3. Der GDA übermittelt die neu erstellten *Durchgeführten Abgaben* in einem [Durchgeführte Abgaben-Transaction Bundle](StructureDefinition-at-elga-emed-bundle-durchgefuehrteabgaben-tx.html) mittels **POST** [$dispense-write](Sub_UC_eMed_05.html#custom-operations) an die Fachanwendung (unahängig von ihrem *e-Med Groupidentifier*).
 <!-- * *Durchgeführte Abgaben* mit unterschiedlichen *e-Med GroupIdentifier* **MÜSSEN** in separaten Transaction Bundles übermittelt werden. -->
 4. Die Fachanwendung validiert das Transaction Bundle und die darin enthaltenen *Durchgeführten Abgaben*.
-5. Bei erfolgreicher Prüfung werden die *Durchgeführten Abgaben* gespeichert. Abhängig von Abgabeart und Anzahl der Einlösungen kann die Fachanwendung automatisch eine Statusänderung der zugehörigen *Geplanten Abgabe* durchführen. Die entsprechenden fachlichen Regeln sind in den Use Cases der jeweiligen [Abgabearten](Sub_UC_eMed_05.html#abgabearten) beschrieben.
+5. Bei erfolgreicher Prüfung werden die *Durchgeführten Abgaben* gespeichert. Abhängig von Abgabeart und Anzahl der Einlösungen kann die Fachanwendung automatisch eine Statusänderung der zugehörigen *Geplanten Abgabe* durchführen. Die entsprechenden fachlichen Regeln sind in den Use Cases der jeweiligen Abgabeart beschrieben (siehe Kapitel [Sub_UC_eMed_05_01 - Durchgeführte Abgabe erstellen](Sub_UC_eMed_05.html#sub_uc_emed_05_01---durchgeführte-abgabe-erstellen)).
 6. Bei erfolgreicher Verarbeitung bestätigt die Fachanwendung den Schreibvorgang.
 7. Schlägt die Prüfung des Transaction Bundles fehl, wird der Schreibvorgang mit einem **OperationOutcome** abgelehnt.
 
@@ -222,12 +220,12 @@ Da kein weiterer ELGA-Zugriff auf die Medikationsdaten des ELGA-Teilnehmers mög
 
 1. Der GDA ruft mit [GroupIdentifier-Search](Sub_UC_eMed_03.html#sub_uc_emed_03_03---geplante-und-durchgeführte-abgaben-mittels-e-med-groupidentifier-lesen-groupidentifier-search) die zum vorliegenden *e-Med GroupIdentifier* zugehörigen *Geplanten Abgaben* und bereits dokumentierten *Durchgeführten Abgaben* ab.
 
-2. Der GDA führt anhand dieser und der Informationen des Patienten die entsprechenden Arzneimittelabgaben durch und dokumentiert diese in [Durchgeführten Abgaben](StructureDefinition-at-elga-emed-medicationdispense-durchgefuehrteabgabe.html) gemäß der jeweils zutreffenden Abgabeart (siehe Kapitel [Abgabearten](Sub_UC_eMed_05.html#abgabearten)):
+2. Der GDA führt anhand dieser und der Informationen des Patienten die entsprechenden Arzneimittelabgaben durch und dokumentiert diese in [Durchgeführten Abgaben](StructureDefinition-at-elga-emed-medicationdispense-durchgefuehrteabgabe.html) gemäß der jeweils zutreffenden Abgabeart (siehe Kapitel [Sub_UC_eMed_05_01 - Durchgeführte Abgabe erstellen](Sub_UC_eMed_05.html#sub_uc_emed_05_01---durchgeführte-abgabe-erstellen)):
 - Die zugehörige *Geplante Abgabe* und der *Medikationsplaneintrag* werden referenziert,
 - der vorliegende *e-Med GroupIdentifier* darin dokumentiert.
 3. Der GDA übermittelt die neu erstellten *Durchgeführten Abgaben* in einem [Durchgeführte Abgaben-Transaction Bundle](StructureDefinition-at-elga-emed-bundle-durchgefuehrteabgaben-tx.html) mittels **POST** [$dispense-write](Sub_UC_eMed_05.html#custom-operations) an die Fachanwendung.
 4. Die Fachanwendung validiert das Transaction Bundle und die darin enthaltenen *Durchgeführten Abgaben*, insbesondere deren Zuordnung zum vorliegenden *e-Med GroupIdentifier*.
-5. Bei erfolgreicher Prüfung werden die *Durchgeführten Abgaben* gespeichert. Abhängig von Abgabeart und Anzahl der Einlösungen kann die Fachanwendung automatisch eine Statusänderung der zugehörigen *Geplanten Abgabe* durchführen. Die entsprechenden fachlichen Regeln sind in den Use Cases der jeweiligen [Abgabearten](Sub_UC_eMed_05.html#abgabearten) beschrieben.
+5. Bei erfolgreicher Prüfung werden die *Durchgeführten Abgaben* gespeichert. Abhängig von Abgabeart und Anzahl der Einlösungen kann die Fachanwendung automatisch eine Statusänderung der zugehörigen *Geplanten Abgabe* durchführen. Die entsprechenden fachlichen Regeln sind in den Use Cases der jeweiligen Abgabeart (siehe Kapitel [Sub_UC_eMed_05_01 - Durchgeführte Abgabe erstellen](Sub_UC_eMed_05.html#sub_uc_emed_05_01---durchgeführte-abgabe-erstellen)) beschrieben.
 6. Bei erfolgreicher Verarbeitung bestätigt die Fachanwendung den Schreibvorgang.
 7. Schlägt die Prüfung des Transaction Bundles fehl, wird der Schreibvorgang mit einem **OperationOutcome** abgelehnt.
 

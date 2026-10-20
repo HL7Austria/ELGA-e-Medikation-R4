@@ -10,18 +10,17 @@ Der lesende Zugriff umfasst:
 
 * den Abruf des **aktuellen Medikationsplans**, der für eine mögliche Bearbeitung aufbereitet ist ([Plan-Read](Sub_UC_eMed_01.html#sub_uc_emed_01_01---aktuellen-medikationsplan-lesen-plan-read)),
 
-* die Suche und den Abruf **einzelner aktueller Planeinträge** ([Planentry-Search](Sub_UC_eMed_01.html#sub_uc_emed_01_02---medikationsplaneinträge-lesen-planentry-search)) sowie 
+* die Suche und den Abruf **aktueller Planeinträge** ([Planentry-Search](Sub_UC_eMed_01.html#sub_uc_emed_01_02---medikationsplaneinträge-suchen-planentry-search)) sowie 
 
 * die Suche und den Abruf (History-Search): 
   * historischer Medikationsplanversionen ([Plan-History-Search](Sub_UC_eMed_01.html#sub_uc_emed_01_03_01---historische-medikationsplanversionen-suchen-plan-history-search))
-  * historischer Planeintragsversionen ([Planentry-History-Search](Sub_UC_eMed_01.html#sub_uc_emed_01_03_02---historische-Planeintragsversionen-suchen-planentry-history-search))
+  * historischer Planeintragsversionen ([Planentry-History-Search](Sub_UC_eMed_01.html#sub_uc_emed_01_03_02---historische-planeintragsversionen-suchen-planentry-history-search))
   * Verzeichnis historischer Medikationsplanversionen ([Plan-History-Directory-Search](Sub_UC_eMed_01.html#sub_uc_emed_01_03_03---verzeichnis-der-medikationspanversionen-lesen-plan-history-directory-search))
 
 <div class="hinweisbox">
-ℹ️ Die fachlichen Anforderungen dieses Use Cases werden im <a href="Sub_UC_eMed_01.html">UC_eMed_01 Medikationsplan lesen</a> beschrieben.<br> 
+ℹ️ Die fachlichen Anforderungen dieses Use Cases werden im  <a href="https://dev.elga.gv.at/apis/emed/use-cases/">UC_eMed_01 Medikationsplan lesen</a> beschrieben.<br> 
 Es gelten die dort festgelegten Vorbedingungen. Alle Zugriffe werden protokolliert. 
 </div>
-<!--Todo: Link korrigieren, Link zu allgemeinen BES-UCs ergänzen akl 25.09.2026 -->
 
 
 ### Sub_UC_eMed_01_01 - Aktuellen Medikationsplan lesen (Plan-Read)
@@ -57,16 +56,15 @@ Die **persistierten Ressourcen am Server** werden durch die Transformationen fü
 #### Ablauf
 
 A) **Es existiert kein Medikationsplan**:
-* Es wird gemäß [Sub_UC_eMed_01_01_01 initialer Medikationsplan]((Sub_UC_eMed_01.html#sub_uc_emed_01_01_01---initial-erstellter-medikationsplan)) erstellt ([List](StructureDefinition-at-elga-emed-list-medikationsplan.html)-Ressource mit *List.emptyReason = notstarted*).
+* Es wird ein initialer Medikationsplan erstellt (siehe [Sub_UC_eMed_01_01_01 - Initial erstellter Medikationsplan](Sub_UC_eMed_01.html#sub_uc_emed_01_01_01---initial-erstellter-medikationsplan)) mit einer [List](StructureDefinition-at-elga-emed-list-medikationsplan.html)-Ressource und *List.emptyReason = notstarted*.
 * Es erfolgt keine Transformation.
 
 B) **Es existiert ein Medikationsplan mit Planeinträgen**:
 * Folgende Transformationen werden durchgeführt (siehe [Status des List.entry.flags im Medikationsplan](workflowmanagement.html#status-des-listentryflags-im-medikationsplan)):
   * Neue oder geänderte Planeinträge (*List.entry.flag = new* oder *changed*) werden auf ***unchanged*** gesetzt.
   * Stornierte und beendete Planeinträge mit *List.entry.flag = **removed*** werden aus dem Medikationsplan **entfernt**.
-  * Planeinträge mit **abgelaufenem Behandlungszeitraum** werden mit *List.entry.flag = removed* gekennzeichnet und werden mit **ausgeliefert**, um dem GDA die Möglichkeit zu geben, das Arzneimittel weiterzuverodnen. Anderenfalls nimmt der GDA zur Kenntnis, dass der Planeintrag mit seinem nächsten Schreibvorgang entfernt wird. <!--   todo: auch medicationrequests mit neuem status vorbereitet -> wenn nein, muss der GDA jedenfalls "etwas tun"  akl. 14.10.-->
+  * Planeinträge mit **abgelaufenem Behandlungszeitraum** werden mit *List.entry.flag = removed* gekennzeichnet und werden mit **ausgeliefert**, um dem GDA die Möglichkeit zu geben, das Arzneimittel weiterzuverodnen. Anderenfalls nimmt der GDA zur Kenntnis, dass der Planeintrag mit seinem nächsten Schreibvorgang entfernt wird. 
   * Sind nach der Transformation keine Planeinträge mehr vorhanden, wird *List.emptyReason = nilknown* gesetzt.
-<!-- Todo: wie ermittelt die Fachanwendung, ob Behandlungszeitraum abgelaufen akl 25.09.2026 -->
 
 C) **Es existiert ein leerer Medikationsplan** (mit einem [List.emptyReason](https://fhir.hl7.at/r4-ELGA-e-Medikation-main/ValueSet-ElgaListEmptyReasonVS.html)).
 * Es erfolgt keine Transformation.
@@ -87,15 +85,6 @@ Der dabei erzeugte initiale Medikationsplan besitzt den Wert *List.emptyReason =
 
 Die Initialisierung kann sowohl durch ein GDA-System als auch durch den ELGA-Teilnehmer über das Zugangsportal ausgelöst werden.
 
-<!--
-TODO ASW 15.10. Interne Architekturfrage
-<div class="dragon">
-<p class="note-to-balloters">
-Offene Punkte:<br>
-Soll die Erstellung durch das Berechtigungssystem beim ersten Aufruf eines Patienten getriggert werden (nicht mehr Teil von $plan-read)?
-</p>
-</div>
--->
 
 #### Ablauf 
 
@@ -135,13 +124,6 @@ Die gefundenen Planeinträge können als Ausgangspunkt für weitere Abfragen ver
 
 * *Geplante Abgaben* ([Prescription-Search](Sub_UC_eMed_03.html#sub_uc_emed_03_01---geplante-abgaben-lesen-prescription-search)) 
 * *Durchgeführte Abgaben* ([Dispense-Search](Sub_UC_eMed_03.html#sub_uc_emed_03_02---durchgeführte-abgaben-lesen-dispense-search)) 
-
-<!-- <div class="dragon">
-<p class="note-to-balloters">
-Offene Punkte:<br>
-- Sind die Referenzen in Geplanten Abgaben und Durchgeführten Abgaben versioniert?<br>
-</p>
-</div> Todo: akl 2.10. dzt. Annahme: nein  -> gehört zu Geplanten u Durchgef.Abgaben -->
 
 
 #### Ablauf
