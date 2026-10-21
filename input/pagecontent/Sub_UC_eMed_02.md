@@ -480,7 +480,7 @@ AtElgaEmedMedicationRequestPlaneintrag
 AtElgaEmedMedicationRequestPlaneintrag
     extension:effectiveDosePeriod: liegt in der Vergangenheit   // bleibt unverändert
     status: stopped                     
-    statusReason.coding: abgelaufen        
+    statusReason.coding: abgl                   // abgelaufen        
     [...]
     authoredOn: Datum der aktuellen Bearbeitung         
     requester: das Ablaufen zur Kenntnis nehmender GDA  
