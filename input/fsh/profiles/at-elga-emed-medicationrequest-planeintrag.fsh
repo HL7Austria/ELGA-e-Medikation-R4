@@ -33,7 +33,7 @@ Description: "Profil für einen Medikationsplaneintrag."
 * statusReason 0..1 MS   //(ex) https://hl7.org/fhir/R4/valueset-medicationrequest-status-reason.html."
 * statusReason ^short = "Begründung für den Status des Planeintrags."
 * statusReason from AtElgaEmedValueSetPlaneintragStatusReasonVS
-* statusReason.coding ^short = "Codierte Begründung für den Status. Wenn status stopped oder on-hold, verpflichtend anzugeben, bei zeitlich abgelaufenem Planeintrag: fester Wert: \"abgl\". Existiert kein passender Code, muss \"other\" ausgewählt werden und ein Freitext in dokumentiert werden."
+* statusReason.coding ^short = "Codierte Begründung für den Status. Wenn status stopped oder on-hold, verpflichtend anzugeben. Existiert kein passender Code, muss \"other\" ausgewählt werden und ein Freitext in dokumentiert werden."
 * statusReason.coding MS
 * statusReason.coding 1..1
 * statusReason.coding.system 1..1 MS
@@ -44,7 +44,7 @@ Description: "Profil für einen Medikationsplaneintrag."
 * statusReason.text ^short = "Begründung falls der Code 'other' angegeben wurde (Freitext)." 
 //ASW 22.09.2026 TODO Invariante - text darf nur verwendet werden wenn der code other ist
 //ASW 15.10.2026 TODO .text ersetzen durch note extension weil .text ja eigentlich nur die Textrepräsentation des codings ist und nicht eine Freitexterklärung
-* obeys at-emed-planeintrag-status-reason-beim-absetzen
+* obeys at-emed-planeintrag-status-reason-beim-absetzen-oder-pausieren
 
 * intent 1..1 MS
 * intent = https://hl7.org/fhir/R4/valueset-medicationrequest-intent#order
@@ -125,7 +125,7 @@ Description: "Profil für einen Medikationsplaneintrag."
 * courseOfTherapyType.coding.display MS
 * courseOfTherapyType.text 0..0
 * courseOfTherapyType.text ^short = "Fachliche Begründung: TODO"
-* obeys e-med-continuous-medication-effectiveDosePeriod
+//* obeys e-med-continuous-medication-effectiveDosePeriod
 * obeys e-med-acute-medication-effectiveDosePeriod
 
 * note 0..1 MS 
@@ -148,26 +148,21 @@ Description: "Profil für einen Medikationsplaneintrag."
 // * expression = "toString().matches('^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\\\.[0-9]+)?(Z|(\\\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?$')"
 
 
-// Todo: dzt. widersprüchlich zu UC2 -> auskommentieren akl 21.10.2026?
-Invariant: e-med-continuous-medication-effectiveDosePeriod
-Description: "Eine Dauermedikation (courseOfTherapyType = #continuous) darf kein Enddatum besitzen."
-* severity = #error
-* expression = "courseOfTherapyType.where(coding.code='continuous' and coding.system = 'http://terminology.hl7.org/CodeSystem/medicationrequest-course-of-therapy').exists() implies extension.where(url = 'http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationRequest.effectiveDosePeriod').value.ofType(Period).end.exists().not()"
 
+// Invariant: e-med-continuous-medication-effectiveDosePeriod
+// Description: "Eine Dauermedikation (courseOfTherapyType = #continuous) darf kein Enddatum besitzen."
+// * severity = #error
+// * expression = "courseOfTherapyType.where(coding.code='continuous' and coding.system = 'http://terminology.hl7.org/CodeSystem/medicationrequest-course-of-therapy').exists() implies extension.where(url = 'http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationRequest.effectiveDosePeriod').value.ofType(Period).end.exists().not()"
 
 Invariant: e-med-acute-medication-effectiveDosePeriod
 Description: "Eine Akutmedikation (courseOfTherapyType = #acute) muss ein Enddatum besitzen."
 * severity = #error
 * expression = "courseOfTherapyType.where(coding.code='acute' and coding.system = 'http://terminology.hl7.org/CodeSystem/medicationrequest-course-of-therapy').exists() implies extension.where(url = 'http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationRequest.effectiveDosePeriod').value.ofType(Period).end.exists()"
 
-// Todo: ändern: stopped und on-hold brauchen statusReason akl 21.10.2026
-entered-in-error braucht kein statusReason 
-Invariant: at-emed-planeintrag-status-reason-beim-absetzen
-Description: "Bei Status 'stopped' oder 'entered-in-error' muss ein statusReason angegeben werden."
+// Todo: ändern: stopped und on-hold brauchen statusReason, entered-in-error nicht, akl 21.10.2026
+Invariant: at-emed-planeintrag-status-reason-beim-absetzen-oder-pausieren
+Description: "Bei Status 'stopped' oder 'on-hold' muss ein statusReason angegeben werden."
 * severity = #error
-* expression = "(status = 'stopped' or status = 'entered-in-error') implies statusReason.coding.code.exists()"
-//ASW 22.09.2026 TODO statusReason nur bei diesen Statusvarianten nicht bei active ect.
-
-//ASW 22.09.2026 TODO bei on hold auch statusreason???
+* expression = "(status = 'stopped' or status = 'on-hold') implies statusReason.coding.code.exists()"
 
 //ASW 22.09.2026 TODO path bei invarianten mit angeben
