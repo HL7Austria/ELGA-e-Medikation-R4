@@ -20,7 +20,10 @@ Usage: #example
 * subject.identifier.value = "GH:oeLdSEb0l+8kSdJWjOYyYmnYki0="
 * subject.identifier.system = "urn:oid:1.2.40.0.10.2.1.1.149"
 
-* performer.actor = Reference(At-Emed-Example-Organization-02) "Amadeus Apotheke"
+* performer[dispenseGDA].actor = Reference(At-Emed-Example-Organization-02) "Amadeus Apotheke"  //oid
+* performer[dispenseGDA].function = AtElgaEmedValueSetMedicationDispensePerformerFunctionCS#dispenseGDA
+
+* whenHandedOver = "2026-02-28T11:00:00+00:00" 
 
 * authorizingPrescription[geplanteAbgabe] = Reference(At-Emed-Journey-01-03-Mr-Geplante-Abgabe-02) "Geplante Abgabe 2"
 * authorizingPrescription[planeintrag] = Reference(At-Emed-Journey-Planeintrag-02-Magistral-Dexpanthenol-v1) "Planeintrag 2"
