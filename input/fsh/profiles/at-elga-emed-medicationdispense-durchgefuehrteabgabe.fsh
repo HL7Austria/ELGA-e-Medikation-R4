@@ -29,48 +29,38 @@ Description: "Profil einer \"Durchgeführten Abgabe\" eines Arzneimittels aus de
 //TODO contained short
 * contained only AtElgaEmedMedicationStandardMedikation or AtElgaEmedMedicationMagistraleZubereitung
 
-
-// Extensions   ***************** TODO
+// Extensions
 * extension contains $medicationdispense-rendereddosageinstruction-r5 named renderedDosageInstruction 0..1
 * extension[renderedDosageInstruction] ^short = "Vollständige Darstellung der Dosierungsanweisungen"
-
+* extension[renderedDosageInstruction] MS
+* extension[renderedDosageInstruction].url MS
+* extension[renderedDosageInstruction].valueMarkdown MS
 // TODO Extension für Nacherfassung einer Abgabe  
 * extension contains $medicationDispense-recorded-r5 named recorded 1..1
 * extension[recorded] ^short = "Datum und Uhrzeit, zu denen die Abgabe erfasst wurde. Dies muss nicht unbedingt mit dem Zeitpunkt übereinstimmen, zu dem das Medikament dem Patienten ausgehändigt wurde (z.B. bei Nacherfassung der Abgabe)."
-
+* extension[recorded] MS
+* extension[recorded].url MS
+* extension[recorded].valueDateTime MS
 * extension contains $medicationDispense-statusChanged-r5  named statusChanged 0..1
 * extension[statusChanged] ^short = "Datum der Statusänderung. Dies ist nur bei einem Status von: cancelled | entered-in-error | stopped relevant."
-
+* extension[statusChanged] MS
+* extension[statusChanged].url MS
+* extension[statusChanged].valueDateTime MS
 * extension contains AtElgaEmedExtensionGroupIdentifier named groupIdentifier 0..1
 * extension[groupIdentifier] ^short = "Als groupIdentifier dient der e-Med GroupIdentifier der zugehörigen Geplanten Abgabe (wird auch im e-Rezept mitgeführt)."
-
+* extension[groupIdentifier] MS
+* extension[groupIdentifier].url MS
+* extension[groupIdentifier].valueIdentifier MS
+* extension[groupIdentifier].valueIdentifier.use 0..0
 // Invariante: wenn eine Referenz auf eine geplante Abgabe existiert dann muss auch der groupIdentifier befüllt sein. Ausnahme: Alle GroupIdentifier eines Transaction Bundles sind noch leer -> werden von der Fachanwendung befüllt
 
-// ENDE Extensions  ******************
-
-* identifier 0..0 
-
-* partOf 0..0 
-//* partOf ^short = "Auslösendes Ereignis (Referenz auf Procedure-Ressource). Keine Verwendung in der Durchgeführten Abgabe."
 
 * status 1..1 MS
+//* status from AtElgaEmedValueSetMedicationDispenseStatusVS
 * status ^short = "Status der Durchgeführten Abgabe. Mögliche Ausprägungen: [completed | cancelled | entered-in-error ] Bedeutung: completed: Die Durchgeführte Abgabe ist abgeschlossen. | cancelled: Leerabgabe | entered-in-error: Die Durchgeführte Abgabe wird aufgrund falscher Eingabe storniert."
 // TODO: zu prüfen: 
 // * ob es einen Status in-progress / preparation geben soll, z.B. wenn Bestellvorgang gestartet wurde und der typ First Fill - Part Fill ist.
 // * Technische Prüfungen bezüglich Abhängigkeiten von status, typ, Rezeptart? (z.B. in-progress bei Bestellung o.ä.), evtl Operation 
-
-
-* statusReason[x] 0..0
-// * statusReason[x] ^short = "Grund für den aktuellen Status, z.B. warum keine Abgabe erfolgte (zB. Produkt nicht verfügbar). Code oder Referenz (DetectedIssue)"
-// * statusReasonCodeableConcept 0..1    //TODO: Verwendung zu prüfen
-// * statusReasonCodeableConcept ^short = "Grund für den aktuellen Status als Code. (ex) https://hl7.org/fhir/R4/valueset-medicationdispense-status-reason.html"
-// * statusReasonReference 0..0
-// * statusReasonReference ^short = "Referenz auf DetectedIssue-Ressource. Keine Verwendung in der Durchgeführten Abgabe."
-
-//TODO: statusChanged R6 -> um Datum zu dokumentieren, wann Abgabe abgesetzt wurde
-
-* category 0..0 
-//* category ^short = "Angabe, wo das abgegebene Medikament voraussichtlich eingenommen oder verabreicht wird (z.B. stationär oder ambulant). Keine Verwendung in der Durchgeführten Abgabe."
 
 
 // --- Medication immer als Medication-Resource (mit oder ohne PZN, damit Handelsname angegeben werden kann und historisch verfügbar bleibt)
@@ -78,37 +68,58 @@ Description: "Profil einer \"Durchgeführten Abgabe\" eines Arzneimittels aus de
 * medication[x] only Reference(AtElgaEmedMedicationStandardMedikation or AtElgaEmedMedicationMagistraleZubereitung)  
 * medication[x] ^type.aggregation = #contained
 
-* medication[x] ^short = "Abgegebenes Medikament. Das Medikament wird immer in einer contained Medication Ressource dokumentiert, damit 
-Arzneimittel mit und ohne PZN einheitlich dokumentiert werden können."
+* medication[x] ^short = "Das Arzneimittel wird in einer contained Medication Ressource oder als conditional reference dokumentiert, damit Arzneimittel mit und ohne PZN einheitlich dokumentiert werden können."
+* medicationReference MS
+* medicationReference.reference 1..1 MS
 
 // --- Subject ---
 * subject only Reference(AtElgaEmedPatient) 
 * subject 1..1 MS
-* subject ^short = "Patient, für den die Durchgeführte Abgabe ausgestellt wird (über Zentralen Patientenindex identifiziert und Teilnehmer von ELGA e-Medikation)."
+* subject ^short = "Patient, für den die Geplante Abgabe ausgestellt werden soll (über Zentralen Patientenindex identifiziert und Teilnehmer von ELGA e-Medikation)."
+* subject.reference MS
+* subject.identifier MS
+* subject.identifier.system MS
+* subject.identifier.value MS
+* subject.identifier.use 0..0
+* subject.identifier.use ^short = "Fachliche Begründung: TODO"
 
-* context 0..0
-// * context ^short = "Referenz auf Encounter oder EpisodeOfCare. Keine Verwendung in der Durchgeführten Abgabe."
-
-* supportingInformation 0..0 
-// * supportingInformation ^short = "Referenz (Any) auf zusätzliche Informationen, die die Abgabe des Medikaments unterstützen. Keine Verwendung in der Durchgeführten Abgabe."
 
 * performer 1..1 MS
 * performer ^short = "Durchführende Person" 
-//ASW TODO performer slice für Referenz einfügenden GDA
-/* * performer ^slicing.discriminator[+].type = #value
+* performer.function from AtElgaEmedValueSetMedicationDispensePerformerFunctionVS
+* performer.function ^short = "Rolle der Person, die die Abgabe durchgeführt hat."
+* performer.actor only Reference(AtElgaEmedPractitioner or AtElgaEmedPractitionerRole or HL7ATCoreOrganization)
+* performer.actor ^short = "Refrenz auf Practitioner, PractitionerRole, Organization,der/die die Durchgeführte Abgabe erstellt hat und für den Inhalt verantwortlich ist (identifiziert über den GDA-Index und berechtigt 
+auf die ELGA e-Medikation des Patienten zuzugreifen)."
+* performer ^slicing.discriminator[+].type = #value
 * performer ^slicing.discriminator[=].path = "function"
 * performer ^slicing.rules = #closed
 * performer ^slicing.ordered = false
-* performer.function 1..1
-* performer.function ^short = "Rolle der Person, die die Abgabe durchgeführt hat." */
-* performer.actor 1..1 MS
-* performer.actor only Reference(AtElgaEmedPractitioner or AtElgaEmedPractitionerRole or HL7ATCoreOrganization)
-* performer.actor ^short = "Refrenz auf Practitioner, PractitionerRole, Organization, 
-der/die die Durchgeführte Abgabe erstellt hat und für den Inhalt verantwortlich ist (identifiziert über den GDA-Index und berechtigt 
-auf die ELGA e-Medikation des Patienten zuzugreifen)."
+* performer contains dispenseGDA 0..1 MS and referenceGDA 0.. MS
 
-* location 0..0 
-//* location ^short = "Ort der Abgabe (Referenz auf Location Ressource). Keine Verwendung in durchgeführter Abgabe."
+* performer[dispenseGDA].modifierExtension 0..0
+* performer[dispenseGDA].function 1..1 MS
+* performer[dispenseGDA].function.coding 1..1 MS
+* performer[dispenseGDA].function.coding.code 1..1 MS
+* performer[dispenseGDA].function.coding.code = #dispenseGDA
+* performer[dispenseGDA].function.coding.system 1..1 MS
+* performer[dispenseGDA].function.coding.system = Canonical(AtElgaEmedValueSetMedicationDispensePerformerFunctionCS)
+* performer[dispenseGDA].function.coding.display MS
+* performer[dispenseGDA].function.coding.version MS
+* performer[dispenseGDA].function.text 0..0
+* performer[dispenseGDA].actor 1..1 MS
+
+* performer[referenceGDA].modifierExtension 0..0
+* performer[referenceGDA].function 1..1 MS
+* performer[referenceGDA].function.coding 1..1 MS
+* performer[referenceGDA].function.coding.code 1..1 MS
+* performer[referenceGDA].function.coding.code = #referenceGDA
+* performer[referenceGDA].function.coding.system 1..1 MS
+* performer[referenceGDA].function.coding.system = Canonical(AtElgaEmedValueSetMedicationDispensePerformerFunctionCS)
+* performer[referenceGDA].function.coding.display MS
+* performer[referenceGDA].function.coding.version MS
+* performer[referenceGDA].function.text 0..0
+* performer[referenceGDA].actor 1..1 MS
 
 // Slicing authorizingPrescription:  
 * authorizingPrescription 0..2 MS
@@ -134,7 +145,7 @@ Abgaben ohne Geplante Abgabe geben kann (z.B. Notfall oder OTC-Medikation)."
 // zu prüfen (gemäß CDA): 'Ohne Verordnungsbezug kann nur die Abgabe jener OTC-Präparate in der e-Medikation 
 // gespeichert werden, die auch wechselwirkungsrelevant sind.'"
 
-* type 1..1 MS  //TODO: Valueset
+* type 1..1 MS
 * type from AtElgaEmedMedicationDispenseTypeVS
 * type ^short = "Art der Abgabe (z.B. für Teilabgaben). Mögliche Ausprägungen: [FFC | FFP | RFP | RFC | EM]. Bedeutung: FFC: First Fill - Complete | FFP: First Fill - Part Fill | RFP: Refill - Part Fill | RFC: Refill - Complete | EM: Emergency Supply."
 //z.B. FFC (First-Fill Complete für vollständig erfüllte Bestellungen), FFP (First-Fill Part Fill für teilweise erfüllte Bestellungen), 
@@ -157,23 +168,12 @@ Abgaben ohne Geplante Abgabe geben kann (z.B. Notfall oder OTC-Medikation)."
 * quantity 1..1 MS 
 * quantity ^short = "Abgegebene Packungsanzahl."
 
-* daysSupply 0..0 //1 MS
-//* daysSupply ^short = "Tage, für die die abgegebene Menge ausreicht"
-
-* whenPrepared 0..0 //1 MS
-//* whenPrepared ^short = "Zeitpunkt, zu dem das Produkt verpackt und geprüft wurde."
-
-* whenHandedOver 0..1 MS  // geändert von  1..1 akl
+* whenHandedOver 1..1 MS
 * whenHandedOver ^short = "Der Zeitpunkt, zu dem das abgegebene Produkt dem Patienten oder seinem Vertreter zur Verfügung gestellt wurde."
-
-* destination 0..0
-//* destination ^short = "Ort an den das Medikament geschickt wurde (Referenz auf Location Ressource). Keine Verwendung in durchgeführter Abgabe."
-
-* receiver 0..0
-//* receiver ^short = "Person, die das Medikament abgeholt hat. Referenz auf Patient oder Practitioner. Keine Verwendung in durchgeführter Abgabe."
 
 * note 0..1 MS // analog zur geplanten abgabe
 * note ^short = "Zusätzliche Informationen zur Abgabe, die nicht anders dokumentiert werden kann."
+* note.text MS
 
 // TODO: Invariante für repeating sequences * dosageInstruction.extension contains AtElgaEmedExtensionDosageRepeat??? named repeatCycle 0..1
 //TODO Invariante sodass die Extension nur erlaubt ist, wenn es mehrere Dosages gibt
@@ -198,10 +198,7 @@ Abgaben ohne Geplante Abgabe geben kann (z.B. Notfall oder OTC-Medikation)."
 //TODO Dosage und AtElgaEmedDosageDosierung entfernen sobald Dosierungen fertig sind
 * dosageInstruction ^short = "Gibt an, wie das abgegebene Arzneimittel vom Patienten einzunehmen ist. 
 Der Apotheker überprüft die Medikamentenverordnung vor der Abgabe und passt die Dosierungsanweisung gegebenenfalls auf Grundlage des tatsächlich abgegebenen Produkts an."
-//TODO: Dosiervarianten.
 
-* substitution 0..0 // MS  ws: nur implizit
-* substitution ^short = "Gibt an, ob im Rahmen der Abgabe eine Substitution vorgenommen wurde oder nicht."
 // * substitution.wasSubstituted 1..1
 // * substitution.wasSubstituted ^short = "TRUE, wenn der Apotheker ein anderes Medikament oder Produkt als das verschriebene abgegeben hat."
 
@@ -214,10 +211,3 @@ Der Apotheker überprüft die Medikamentenverordnung vor der Abgabe und passt di
 // * substitution.responsibleParty 0..1 MS 
 // * substitution.responsibleParty ^short = "Für die Subistution Verantwortlicher."
 // * substitution.responsibleParty only Reference(AtElgaEmedPractitioner or AtElgaEmedPractitionerRole)
-
-* detectedIssue 0..0
-* detectedIssue ^short = "Referenenz auf DetectedIssue Ressource. Keine Verwendung in durchgeführter Abgabe."
-
-* eventHistory 0..0
-* eventHistory ^short = "Bezeichnet eine Liste von Provenance-Ressourcen, die verschiedene relevante Versionen 
-dieser Ressource dokumentieren." // TODO: Verwendung prüfen.
