@@ -1,6 +1,6 @@
 {% include styleheader.md %}
 
-Die Ressource **`MedicationRequest`** bildet einen Planeintrag des Medikationsplans ab. 
+Die Ressource **`MedicationRequest`** mit der Kategorie "Planeintrag" bildet einen Planeintrag des Medikationsplans ab. 
 
 Ein Planeintrag ist eine autorisierte ärztliche Anordnung und stellt eine verbindliche Einnahmeanweisung für den Patienten dar.
 

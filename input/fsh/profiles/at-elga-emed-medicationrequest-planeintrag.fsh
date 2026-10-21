@@ -3,12 +3,11 @@ Parent: AtElgaEmedMedicationRequestBase
 Id: at-elga-emed-medicationrequest-planeintrag
 Title: "At ELGA e-Medikation MedicationRequest Planeintrag"
 Description: "Profil für einen Medikationsplaneintrag." 
-* . ^short = "Planeintrag"
 
 * extension MS
 // Extensions
 * extension contains $medicationRequest-effectiveDosePeriod-r5 named effectiveDosePeriod 1..1
-* extension[effectiveDosePeriod] ^short = "Zeitraum, in dem das Arzneimittel eingenommen werden soll. Bei Dauermedikation kann optional ein Enddatum dokumentiert werden. Bei Aktumedikation ist verpflichtend ein Enddatum zu dokumentieren. Der Einnahmezeitraum muss mit den zeitlichen Einschränkungen der Dosage übereinstimmen" //TODO wording prüfen ob wirklich Einnahmezeitraum vgl. Dosierung
+* extension[effectiveDosePeriod] ^short = "Zeitraum, in dem das Arzneimittel eingenommen werden soll. Bei Dauermedikation kann optional ein Enddatum dokumentiert werden. Bei Aktumedikation ist verpflichtend ein Enddatum zu dokumentieren. Der Einnahmezeitraum muss mit den zeitlichen Einschränkungen der Dosage übereinstimmen." //TODO wording prüfen ob wirklich Einnahmezeitraum vgl. Dosierung
 * extension[effectiveDosePeriod] MS
 * extension[effectiveDosePeriod].valuePeriod MS
 * extension[effectiveDosePeriod].valuePeriod.start MS
@@ -22,12 +21,11 @@ Description: "Profil für einen Medikationsplaneintrag."
 * extension[renderedDosageInstruction].url MS
 // IHE extension: Verwendung zu klären
 // * extension contains $ihe-ext-medicationrequest-offlabeluse named offLabelUse 0..1 
-// * extension[offLabelUse] ^short = "Weist darauf hin, dass der verschreibende Arzt das Medikament wissentlich für eine Indikation, Altersgruppe, Dosierung oder Verabreichungsform verschrieben hat, die nicht von den Aufsichtsbehörden zugelassen ist und in der Verschreibungsinformation für das Produkt nicht erwähnt wird."
 
 * status 1..1 MS
 * status from PlaneintragStatusVS (required)
 * status ^short = "Status des Planeintrags. Mögliche Ausprägungen: [active | on-hold | stopped | entered-in-error]. Bedeutung: active: aktuell einzunehmende Medikation | on-hold: pausierte Medikation (aktuell nicht einzunehmen) | stopped: wird nicht weiter verordnet (unabhängig ob vorzeitig abgesetzt, abgeschlossen oder Behandlungszeitraum abgelaufen)   
-| entered-in-error: fehlerhafter Planeintrag storniert und abgeschlossen"
+| entered-in-error: fehlerhafter Planeintrag storniert"
 
 //ASW 22.09.2026 TODO short einfügen
 * statusReason 0..1 MS   //(ex) https://hl7.org/fhir/R4/valueset-medicationrequest-status-reason.html."
