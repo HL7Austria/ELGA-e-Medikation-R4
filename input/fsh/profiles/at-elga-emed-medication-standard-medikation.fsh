@@ -79,7 +79,7 @@ Description: "Bildet ein Arzneimittel in der \"Medication\"-Ressource ab. Wird g
 * amount.denominator 0..0
 * amount ^short = "Die Gesamtmenge des Arzneimittels in der Verpackung."
 
-* ingredient 0..* MS
+* ingredient 1..* MS
 * ingredient ^short = "Wirkstoffe."
 * ingredient.item[x] only CodeableConcept
 * ingredient.itemCodeableConcept.text 0..0
