@@ -34,7 +34,7 @@ Description: "Profil für einen Medikationsplan."
 
 * status 1..1 MS
 * status = #current
-* status ^short = "Status des Medikationsplans. Fixer Wert: current"
+* status ^short = "Status des Medikationsplans. Fixer Wert: current."
 
 * mode 1..1 MS
 * mode = #working (exactly)
@@ -42,7 +42,7 @@ Description: "Profil für einen Medikationsplan."
 
 
 * code 1..1 MS 
-* code ^short = "Code der den Medikationsplan identifiziert"
+* code ^short = "Code, der den Medikationsplan identifiziert."
 * code.coding 1..1 MS
 * code.coding.code 1..1 MS
 * code.coding.code = #736378000 (exactly)
@@ -52,7 +52,7 @@ Description: "Profil für einen Medikationsplan."
 //ASW 11.10.2026 TODO ist * code.coding.version MS?
 * code.coding.version MS
 * code.text 0..0
-* code.text ^short = "Fachliche Begründung: TODO"
+//* code.text ^short = "Fachliche Begründung: TODO"
 
 * subject 1..1 MS
 * subject ^short = "ELGA-Teilnehmer, für den der Medikationsplan dokumentiert wird."
@@ -63,7 +63,7 @@ Description: "Profil für einen Medikationsplan."
 * subject.identifier.system MS
 * subject.identifier.value MS
 * subject.identifier.use 0..0
-* subject.identifier.use ^short = "Fachliche Begründung: TODO"
+//* subject.identifier.use ^short = "Fachliche Begründung: TODO"
 //ASW 11.10.2026 TODO subject.identifier.type MS?
 //* subject.identifier.type MS
 
@@ -85,12 +85,11 @@ Description: "Profil für einen Medikationsplan."
 * source.identifier.system MS
 * source.identifier.value MS
 * source.identifier.use 0..0
-* source.identifier.use ^short = "Fachliche Begründung: TODO"
+//* source.identifier.use ^short = "Fachliche Begründung: TODO"
 //ASW 11.10.2026 TODO Invariante sodass entweder Reference.reference XOR Reference.identifier befüllt sein muss
 
-
 * orderedBy 0..0
-* orderedBy ^short = "Fachliche Begründung: TODO"
+//* orderedBy ^short = "Fachliche Begründung: TODO"
 
 //ASW 22.09.2026 .orderedBy fachlich gelöscht
 //ASW 24.09.2026 TODO: Fachliche Begründung? - eigentlich sollte hier eher ein fixed value verwendet werden?
@@ -103,7 +102,7 @@ Description: "Profil für einen Medikationsplan."
 
 //ASW 22.09.2026 .note fachlich gelöscht
 * note 0..0 
-* note ^short = "Fachliche Begründung: Auf dieser Ebene keine Freitext-Anmerkungen im Medikationsplan. Freitext ist in den jeweiligen MedicationRequests(Planeinträgen möglich)" 
+* note ^short = "Fachliche Begründung: Auf dieser Ebene existieren keine Freitext-Anmerkungen im Medikationsplan. Freitext ist in den jeweiligen MedicationRequests (Planeinträgen möglich)." 
 
 // --- Entries ---
 * entry 0..* MS
@@ -120,9 +119,9 @@ Description: "Profil für einen Medikationsplan."
 * entry.flag.coding.display MS
 //ASW 11.10.2026 TODO ist * entry.flag.coding.version MS?
 * entry.flag.coding.version MS
-* entry.flag ^short = "Kennzeichnet die Art der Änderung des Medikationsplaneintrags: [New | Unchanged | Changed | Removed] Bedeutung: New: Neuer Planeintrag wird hinzugefügt | Unchanged: Bestehender Planeintrag wird beibehalten und zur Kenntnis genommen | Changed: Bestehender Planeintrag wird geändert | Removed: Bestehender Planeintrag wird entfernt"
+* entry.flag ^short = "Kennzeichnet die Art der Änderung des Medikationsplaneintrags: [new | unchanged | changed | removed]. Bedeutung: new: Neuer Planeintrag wird hinzugefügt | unchanged: Bestehender Planeintrag wird beibehalten und zur Kenntnis genommen | changed: Bestehender Planeintrag wird geändert | removed: Bestehender Planeintrag wird entfernt"
 * entry.flag.text 0..0
-* entry.flag.text ^short = "Fachliche Begründung: TODO"
+//* entry.flag.text ^short = "Fachliche Begründung: TODO"
 
 * entry.deleted 0..0 
 //ASW 22.09.2026 * entry.deleted fachlich gelöscht
@@ -132,7 +131,7 @@ Description: "Profil für einen Medikationsplan."
 * entry.date 0..0 
 //ASW 22.09.2026 * entry.date fachlich gelöscht
 //ASW 24.09.2026 relevant für directory search?
-* entry.date ^short = "Fachliche Begründung: Das Datum der initialen Aufnahme eines Eintrags wird nicht auf Ebene der Liste dokumentiert. Datumsinformationen werden im referenzierten Medikationsplaneintrag dokumentiert."
+* entry.date ^short = "Fachliche Begründung: Das Datum der initialen Aufnahme eines Eintrags wird nicht auf Ebene der Liste, sondern im referenzierten Medikationsplaneintrag dokumentiert."
 
 * entry.item 1..1 MS
 * entry.item only Reference(AtElgaEmedMedicationRequestPlaneintrag)
@@ -142,7 +141,7 @@ Description: "Profil für einen Medikationsplan."
 
 * emptyReason 0..1 MS
 * emptyReason from ElgaListEmptyReasonVS (required)
-* emptyReason ^short = "Begründung, warum der Medikationsplan leer ist. Mögliche Ausprägungen: [notstarted |  nilknown ] Bedeutung: notstarted: Intitalzustand - noch nie befüllt; nilknown: Der Plan wurde vom GDA explizit als leer dokumentiert oder alle Einträge wurden abgesetzt, storniert oder gelöscht."
+* emptyReason ^short = "Begründung, welshalb der Medikationsplan leer ist. Mögliche Ausprägungen: [notstarted |  nilknown ] Bedeutung: notstarted: Intitalzustand - noch nie befüllt; nilknown: Der Plan wurde vom GDA explizit als leer dokumentiert oder alle Einträge wurden abgesetzt, storniert oder gelöscht."
 * emptyReason.coding MS
 * emptyReason.coding 1..1
 * emptyReason.coding.code MS
@@ -153,7 +152,7 @@ Description: "Profil für einen Medikationsplan."
 //ASW 11.10.2026 TODO ist * emptyReason.coding.version MS?
 * emptyReason.coding.version MS
 * emptyReason.text 0..0
-* emptyReason.text ^short = "Fachliche Begründung: TODO"
+//* emptyReason.text ^short = "Fachliche Begründung: TODO"
 
 
 Invariant: at-emed-list-same-patient
