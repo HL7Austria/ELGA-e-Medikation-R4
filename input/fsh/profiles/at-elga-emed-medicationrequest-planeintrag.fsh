@@ -74,7 +74,7 @@ Description: "Profil für einen Medikationsplaneintrag."
 * medication[x] 1..1 MS  
 * medication[x] only Reference(AtElgaEmedMedicationStandardMedikation or AtElgaEmedMedicationMagistraleZubereitung)  
 * medication[x] ^type.aggregation = #contained
-* medication[x] ^short = "Das Arzneimittel wird in einer contained Medication Ressource oder als logische Referenz dokumentiert, damit Arzneimittel mit und ohne PZN einheitlich dokumentiert werden können."
+* medication[x] ^short = "Das Arzneimittel wird in einer contained Medication Ressource oder als conditional reference dokumentiert, damit Arzneimittel mit und ohne PZN einheitlich dokumentiert werden können."
 * medicationReference MS
 * medicationReference.reference 1..1 MS
 // ASW TODO 14.10. medication hat keinen identifier - conditional reference im tx bundle - wie einschränken für unterschied zw. schreiben und lesen?

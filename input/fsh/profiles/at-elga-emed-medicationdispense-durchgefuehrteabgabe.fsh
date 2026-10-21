@@ -23,7 +23,6 @@ Description: "Profil einer \"Durchgeführten Abgabe\" eines Arzneimittels aus de
 * implicitRules 0..0
 * implicitRules ^short =  "Fachliche Begründung: Die Ressource wird nach den Regeln dieses Implementierungsleitfadens interpretiert. Zusätzliche implizite Verarbeitungsregeln werden nicht verwendet."
 
-
 * contained MS
 * contained ^short = "TODO"
 //TODO contained short
@@ -92,7 +91,7 @@ Description: "Profil einer \"Durchgeführten Abgabe\" eines Arzneimittels aus de
 * performer.actor ^short = "Refrenz auf Practitioner, PractitionerRole, Organization,der/die die Durchgeführte Abgabe erstellt hat und für den Inhalt verantwortlich ist (identifiziert über den GDA-Index und berechtigt 
 auf die ELGA e-Medikation des Patienten zuzugreifen)."
 * performer ^slicing.discriminator[+].type = #value
-* performer ^slicing.discriminator[=].path = "function"
+* performer ^slicing.discriminator[=].path = "function.coding.code"
 * performer ^slicing.rules = #closed
 * performer ^slicing.ordered = false
 * performer contains dispenseGDA 0..1 MS and referenceGDA 0.. MS

@@ -72,18 +72,18 @@ Description: "Bildet eine Magistrale Zubereitung in der \"Medication\"-Ressource
 //* ingredient[activeIngredient].itemCodeableConcept.coding.system 
 //ASW 22.09.2026 TODO ATC Code ValueSets & CodeSysteme existieren nur teilweise am Termgit - ATC WIDO bekommt jährlich eine neue oid und kann nicht im binding verwendet werden - Problem muss gelöst werden
 * ingredient[activeIngredient].itemCodeableConcept.coding ^slicing.discriminator.type = #value
-* ingredient[activeIngredient].itemCodeableConcept.coding ^slicing.discriminator.path = "$this"
+* ingredient[activeIngredient].itemCodeableConcept.coding ^slicing.discriminator.path = "system"
 * ingredient[activeIngredient].itemCodeableConcept.coding ^slicing.rules = #open
 * ingredient[activeIngredient].itemCodeableConcept.coding ^slicing.ordered = false
 * ingredient[activeIngredient].itemCodeableConcept.coding  contains 
     ATCWidO 0..1 MS and
     WirkstoffeAges 0..1 MS 
-* ingredient[activeIngredient].itemCodeableConcept.coding[ATCWidO] from AtElgaEmedValueSetATC (required)
+* ingredient[activeIngredient].itemCodeableConcept.coding[ATCWidO].system = "https://termgit.elga.gv.at/CodeSystem/atc-deutsch-wido"
 * ingredient[activeIngredient].itemCodeableConcept.coding[ATCWidO].system 1..1 MS
 * ingredient[activeIngredient].itemCodeableConcept.coding[ATCWidO].code 1..1 MS
 * ingredient[activeIngredient].itemCodeableConcept.coding[ATCWidO].display MS
 * ingredient[activeIngredient].itemCodeableConcept.coding[ATCWidO].version MS
-* ingredient[activeIngredient].itemCodeableConcept.coding[WirkstoffeAges] from https://termgit.elga.gv.at/ValueSet/elga-wirkstoffe-ages (required)
+* ingredient[activeIngredient].itemCodeableConcept.coding[WirkstoffeAges].system = "https://termgit.elga.gv.at/CodeSystem/medikation-ages-wirkstoffe"
 * ingredient[activeIngredient].itemCodeableConcept.coding[WirkstoffeAges].system 1..1 MS
 * ingredient[activeIngredient].itemCodeableConcept.coding[WirkstoffeAges].code 1..1 MS
 * ingredient[activeIngredient].itemCodeableConcept.coding[WirkstoffeAges].display MS

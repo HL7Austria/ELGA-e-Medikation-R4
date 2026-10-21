@@ -8,7 +8,7 @@ Usage: #inline
 //* meta.versionId = "v25cd90b82-be84-41c1-ae4b-715d232fec20"
 * status = #current
 * mode = #working
-* code = $cs-sct#736378000 "Medikationsplan"
+* code = $cs-sct#736378000 
 // logische referenz über bpkgh
 * subject.type = "Patient"
 * subject.identifier.value = "GH:oeLdSEb0l+8kSdJWjOYyYmnYki0="
