@@ -440,7 +440,7 @@ AtElgaEmedMedicationRequestPlaneintrag
 
 ### Sub_UC_eMed_02_09 - Abgelaufenen Planeintrag weiterverordnen oder beenden 
 
-Planeinträge mit abgelaufenem Einnahmezeitraum (überschrittenes Enddatum in *extension:effectiveDosePeriod*) werden in dem von der Fachanwendung ausgelieferten [Medikationsplan-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplan.html) automatisch mit *List.entry.flag = removed* und *MedicationRequest.status = stopped* markiert.
+Planeinträge mit abgelaufenem Einnahmezeitraum (überschrittenes Enddatum in *extension:effectiveDosePeriod*) werden in dem von der Fachanwendung ausgelieferten [Medikationsplan-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplan.html) automatisch mit *List.entry.flag = removed* markiert.
 
 **Varianten:**
 - **1.A** Möchte der GDA die Einnahme **weiterverordnen**, muss er entsprechende Anpassungen vornehmen (siehe [Sub_UC_eMed_02_03 - Planeintrag im Medikationsplan ändern](Sub_UC_eMed_02.html#sub_uc_emed_02_03---planeintrag-im-medikationsplan-ändern)).
