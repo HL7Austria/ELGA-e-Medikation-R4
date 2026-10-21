@@ -44,7 +44,7 @@ Es gelten die dort festgelegten Vorbedingungen. Alle Zugriffe werden protokollie
 Ein GDA dokumentiert die Abgabe eines Arzneimittels für einen ELGA-Teilnehmer in einer *Durchgeführten Abgabe* wie folgt:
 
 MedicationDispense-Ressource: [AtElgaEmedMedicationDispenseDurchgefuehrteAbgabe](StructureDefinition-at-elga-emed-medicationdispense-durchgefuehrteabgabe.html)
-* **Informationen zur Erstellung/Aktualisierung**: aktuelles Datum und durchführende, für die Abgabe verantwortliche Person (*extension:recorded*, *performer.actor*)
+* **Informationen zur Erstellung/Aktualisierung**: aktuelles Datum (extension:recorded*) und durchführender, für die Abgabe verantwortlicher GDA (*performer:dispenseGDA* mit *dispenseGDA.function* = "dispenseGDA")
 * **e-Med GroupIdentifier** (*extension:groupIdentifier*): Sofern eine zugehörige *Geplante Abgabe* vorliegt, muss der entsprechende *e-Med GroupIdentifier* in der *Durchgeführte Abgabe* dokumentiert werden. Dies ermöglicht einen gemeinsamen Abruf zusammengehöriger *Geplanter Abgaben* und *Durchgeführter Abgaben* (siehe [Sub_UC_eMed_03_03 - Geplante und Durchgeführte Abgaben mittels e-Med GroupIdentifier lesen (GroupIdentifier-Search)](Sub_UC_eMed_03.html#sub_uc_emed_03_03---geplante-und-durchgeführte-abgaben-mittels-e-med-groupidentifier-lesen-groupidentifier-search)).
 * **Status**: *status* (siehe [Status des MedicationDispense in der Durchgeführten Abgabe](workflowmanagement.html#status-des-medicationdispense-in-der-durchgeführten-abgabe)) und *type* bestimmen den Status einer *Durchgeführten Abgabe* und können sich auf den Status der zugehörigen *Geplanten Abgabe* auswirken (siehe [Abhängigkeiten der Geplanten Abgabe und der Durchgeführten Abgaben](workflowmanagement.html#abhängigkeiten-der-geplanten-abgabe-und-der-durchgeführten-abgaben)):
     * Über ***type*** werden Einzelabgabe, Teilabgaben/Besorgerprozess und Leerabgabe unterschieden (siehe [Durchgeführte Abgabe - Varianten der (Teil-)Abgabe](workflowmanagement.html#varianten-der-teil-abgabe)). Für Teilabgaben, Besorgerprozesse und Leerabgaben muss die jeweils vorgegebene **Sequenz** der zulässigen *type*-Werte eingehalten werden.
@@ -265,9 +265,12 @@ Wenn eine stornierte *Durchgeführte Abgabe* Teil eines e-Rezepts mit weiteren *
 
 ### Sub_UC_eMed_05_03 - Bezug zu einem Planeintrag herstellen/entfernen
 
-Sofern für die [Durchgeführte Abgabe](StructureDefinition-at-elga-emed-medicationdispense-durchgefuehrteabgabe.html) im Nachhinein ein *Planeintrag* erstellt wurde, kann auch nachträglich jederzeit von einem GDA (unabhängig vom Erfasser) mit **POST** [$reference-plan](Sub_UC_eMed_05.html#custom-operations-2) ein *Planeintrag* (in *authorizingPrescription\[planeintrag\]*) referenziert werden. 
+Sofern für eine [Durchgeführte Abgabe](StructureDefinition-at-elga-emed-medicationdispense-durchgefuehrteabgabe.html) ein Planeintrag vorliegt, kann ein GDA nachträglich und unabhängig davon, welcher GDA die Abgabe erfasst hat, mittels **POST** [$reference-plan](Sub_UC_eMed_05.html#custom-operations-2) einen Planeintrag in referenzieren oder die bestehende Referenz ändern.
 
-<!-- TODO: Wird Datum/Author aktualisert? -->
+Dabei werden der die Referenz herstellende GDA als *performer:referenceGDA* mit *dispenseGDA.function = referenceGDA* sowie der Zeitpunkt der Änderung in *extension:statusChanged* dokumentiert. Die Referenz zum Planeintrag wird in *authorizingPrescription\[planeintrag\]* dokumentiert.
+
+Die Operation kann wiederholt aufgerufen werden, um die Referenz zu ändern.
+
 
 #### Custom Operations
 * *POST* [$reference-plan](OperationDefinition-at-elga-emed-operation-reference-plan.html)
