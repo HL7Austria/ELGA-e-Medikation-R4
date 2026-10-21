@@ -7,7 +7,7 @@ Description: "Beispiel eines leeren Mediaktionsplans (List-Ressource ohne Eintr√
 * meta.versionId = $idPlanv1
 * status = #current
 * mode = #working
-* code = $cs-sct#736378000 "Medikationsplan"  
+* code = $cs-sct#736378000   
 * subject.type = "Patient"
 * subject.identifier.value = "GH:oeLdSEb0l+8kSdJWjOYyYmnYki0="
 * subject.identifier.system = "urn:oid:1.2.40.0.10.2.1.1.149"

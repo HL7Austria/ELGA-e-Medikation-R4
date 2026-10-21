@@ -10,7 +10,7 @@ Usage: #inline
 //in Transaction Bundle keine Version befüllt
 * status = #current
 * mode = #working
-* code = $cs-sct#736378000 "Medikationsplan"
+* code = $cs-sct#736378000 
 // logische referenz über bpkgh
 * subject.type = "Patient"
 * subject.identifier.value = "GH:oeLdSEb0l+8kSdJWjOYyYmnYki0="

@@ -91,16 +91,16 @@ Description: "Bildet ein Arzneimittel in der \"Medication\"-Ressource ab. Wird g
 // AOK Bundesverband GbR, Deutschland, welcher auf den WHO ATC basiert.
 // Zusätzlich kommen ergänzende Codes aus dem Arzneimittelverzeichnis der AGES zum Einsatz.
 * ingredient.itemCodeableConcept.coding ^slicing.discriminator.type = #value
-* ingredient.itemCodeableConcept.coding ^slicing.discriminator.path = "$this"
+* ingredient.itemCodeableConcept.coding ^slicing.discriminator.path = "system"
 * ingredient.itemCodeableConcept.coding ^slicing.rules = #open
 * ingredient.itemCodeableConcept.coding ^slicing.ordered = false
 * ingredient.itemCodeableConcept.coding  contains 
     ATCWidO 0..1 MS and
     WirkstoffeAges 0..1 MS 
-* ingredient.itemCodeableConcept.coding[ATCWidO] from AtElgaEmedValueSetATC (required)
+* ingredient.itemCodeableConcept.coding[ATCWidO].system = "https://termgit.elga.gv.at/CodeSystem/atc-deutsch-wido"
 * ingredient.itemCodeableConcept.coding[ATCWidO].system 1..1 MS
 * ingredient.itemCodeableConcept.coding[ATCWidO].code 1..1 MS
-* ingredient.itemCodeableConcept.coding[WirkstoffeAges] from https://termgit.elga.gv.at/ValueSet/elga-wirkstoffe-ages (required)
+* ingredient.itemCodeableConcept.coding[WirkstoffeAges].system = "https://termgit.elga.gv.at/CodeSystem/medikation-ages-wirkstoffe"
 * ingredient.itemCodeableConcept.coding[WirkstoffeAges].system 1..1 MS
 * ingredient.itemCodeableConcept.coding[WirkstoffeAges].code 1..1 MS
 * ingredient.itemCodeableConcept ^short = "Inhaltsstoff codiert. Wirkstoff-Codes stammen aus der ATC-Klassifikation (Anatomical Therapeutic Chemical Classification), die von der WHO herausgegeben wird. Weitere Codes, wie auch die deutsche Bezeichnung der Codes, entsprechen dem GKV-Arzneimittelindex im Wissenschaftlichen Institut der AOK (WidO), AOK Bundesverband GbR, Deutschland, welcher auf den WHO ATC basiert. Zusätzlich kommen ergänzende Codes aus dem Arzneimittelverzeichnis der AGES zum Einsatz."

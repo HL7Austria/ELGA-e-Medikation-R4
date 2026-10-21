@@ -1,6 +1,6 @@
 CodeSystem: AtElgaEmedOperationOutcomeDetailsCS
 Id: at-emed-codesystem-operationoutcome-details
-Title: "AT e-Medikation OperationOutcome Details"
+Title: "CodeSystem für AT e-Medikation OperationOutcome Details"
 Description: "Dieses Codesystem legt die möglichen Fehlercodes im Rahmen der e-Medikation-Fachanwendung fest."
 * ^status = #active
 * ^experimental = false
@@ -10,7 +10,7 @@ Description: "Dieses Codesystem legt die möglichen Fehlercodes im Rahmen der e-
 
 ValueSet: AtElgaEmedOperationOutcomeDetailsVS
 Id: at-elga-emed-operationoutcome-details
-Title: "AT e-Medikation OperationOutcome Details"
+Title: "ValueSet für AT e-Medikation OperationOutcome Details"
 Description: "Value-Set mit den für e-Medikation zulässigen detaillierten Fehlercodes."
 * ^status = #active
 * ^experimental = false

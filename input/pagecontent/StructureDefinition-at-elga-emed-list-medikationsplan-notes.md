@@ -49,7 +49,7 @@ Als Erweiterung des FHIR-Basisstandards können alle unten aufgeführten Suchpar
   <tr>
     <td>code</td>
     <td><a href="https://hl7.org/fhir/R4/search.html#token">token</a></td>
-    <td><div><a href="list.html">List</a>: Art der Liste (in diesem Fall: Medikationsplan)</div></td>
+    <td><div> Art der Liste (in diesem Fall: Medikationsplan)</div></td>
     <td><code>List.code</code></td>
   </tr>
   <tr>
