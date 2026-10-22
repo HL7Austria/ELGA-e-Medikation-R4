@@ -2,7 +2,7 @@ Profile: AtElgaEmedMedicationDispenseDurchgefuehrteAbgabe
 Parent: MedicationDispense
 Id: at-elga-emed-medicationdispense-durchgefuehrteabgabe
 Title: "AT ELGA e-Medikation MedicationDispense Durchgeführte Abgabe"
-Description: "Profil einer \"Durchgeführten Abgabe\" eines Arzneimittels aus dem Medikationsplan."
+Description: "Profil einer \"Durchgeführten Abgabe\" eines Arzneimittels."
 
 * id 0..1 MS
 * id ^short = "Technische id der Ressource"
@@ -15,8 +15,8 @@ Description: "Profil einer \"Durchgeführten Abgabe\" eines Arzneimittels aus de
 
 //ASW 24.09.2026 TODO text 1..1
 * text MS
+* text.status ^short = "Siehe Notes - \"Regeln für den Inhalt der narrativen Teile in den Notes\"."  
 //ASW 22.09.2026 TODO Beschreibung - so visualisiert wie im CDA mit XHTML -> How to fill the Narrative in -notes.html 
-// Bis zum Ballot nur Drachenbox
 * text.div MS
 * text.status MS
 
@@ -24,17 +24,16 @@ Description: "Profil einer \"Durchgeführten Abgabe\" eines Arzneimittels aus de
 * implicitRules ^short =  "Fachliche Begründung: Die Ressource wird nach den Regeln dieses Implementierungsleitfadens interpretiert. Zusätzliche implizite Verarbeitungsregeln werden nicht verwendet."
 
 * contained MS
-* contained ^short = "TODO"
-//TODO contained short
+* contained ^short = "Es sind nur die hier definierten contained Medication-Ressourcen zulässig. Contained (eingebettete) Ressourcen werden nicht separat versioniert, sondern ausschließlich im Rahmen der übergeordneten Ressource versioniert."
 * contained only AtElgaEmedMedicationStandardMedikation or AtElgaEmedMedicationMagistraleZubereitung
 
 // Extensions
 * extension contains $medicationdispense-rendereddosageinstruction-r5 named renderedDosageInstruction 0..1
-* extension[renderedDosageInstruction] ^short = "Vollständige Darstellung der Dosierungsanweisungen"
+* extension[renderedDosageInstruction] ^short = "Vollständige textuelle Zusammenfassung der Dosierungsanweisungen - wird von der Fachanwendung anhand der definiert Regeln befüllt."  // Todo Link zum Kapitel, sobald vorhanden. akl 21.10.2026
 * extension[renderedDosageInstruction] MS
 * extension[renderedDosageInstruction].url MS
 * extension[renderedDosageInstruction].valueMarkdown MS
-// TODO Extension für Nacherfassung einer Abgabe  
+// Extension für Nacherfassung einer Abgabe  
 * extension contains $medicationDispense-recorded-r5 named recorded 1..1
 * extension[recorded] ^short = "Datum und Uhrzeit, zu denen die Abgabe erfasst wurde. Dies muss nicht unbedingt mit dem Zeitpunkt übereinstimmen, zu dem das Medikament dem Patienten ausgehändigt wurde (z.B. bei Nacherfassung der Abgabe)."
 * extension[recorded] MS
@@ -56,7 +55,7 @@ Description: "Profil einer \"Durchgeführten Abgabe\" eines Arzneimittels aus de
 
 * status 1..1 MS
 //* status from AtElgaEmedValueSetMedicationDispenseStatusVS
-* status ^short = "Status der Durchgeführten Abgabe. Mögliche Ausprägungen: [completed | cancelled | entered-in-error ] Bedeutung: completed: Die Durchgeführte Abgabe ist abgeschlossen. | cancelled: Leerabgabe | entered-in-error: Die Durchgeführte Abgabe wird aufgrund falscher Eingabe storniert."
+* status ^short = "Status der Durchgeführten Abgabe. Mögliche Ausprägungen: [completed | cancelled | entered-in-error ] Bedeutung: completed: Die Durchgeführte Abgabe ist abgeschlossen (Einzel- oder Teilabgabe durchgeführt) | cancelled: Leerabgabe wird durchgeführt | entered-in-error: Die Durchgeführte Abgabe wird aufgrund eines Fehlers storniert."
 // TODO: zu prüfen: 
 // * ob es einen Status in-progress / preparation geben soll, z.B. wenn Bestellvorgang gestartet wurde und der typ First Fill - Part Fill ist.
 // * Technische Prüfungen bezüglich Abhängigkeiten von status, typ, Rezeptart? (z.B. in-progress bei Bestellung o.ä.), evtl Operation 

@@ -12,8 +12,8 @@ Description: "Bildet eine Magistrale Zubereitung in der \"Medication\"-Ressource
 
 //ASW 24.09.2026 TODO text 1..1
 * text MS
+* text.status ^short = "Siehe Notes - \"Regeln für den Inhalt der narrativen Teile in den Notes\"."  
 //ASW 22.09.2026 TODO Beschreibung - so visualisiert wie im CDA mit XHTML -> How to fill the Narrative in -notes.html 
-// Bis zum Ballot nur Drachenbox
 * text.div MS
 * text.status MS
 

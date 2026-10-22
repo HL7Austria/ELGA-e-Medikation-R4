@@ -15,7 +15,6 @@ Description: "Die Basis für alle in eMed verwendeten MedicationRequests"
 * modifierExtension ^short = "Fachliche Begründung: Für den Medikationsplan sind keine zusätzlichen Erweiterungen vorgesehen, die die Bedeutung der Ressource oder ihrer Elemente verändern."
 * text MS
 //ASW 22.09.2026 TODO Beschreibung - so visualisiert wie im CDA mit XHTML -> How to fill the Narrative in -notes.html 
-// Bis zum Ballot nur Drachenbox
 * text.div MS
 * text.status MS
 
