@@ -12,7 +12,6 @@ Darüber hinaus stehen formatspezifische Definitionsdateien zur Verfügung:
 
 - [XML](../definitions.xml.zip)
 - [JSON](../definitions.json.zip)
-- [TTL](../definitions.ttl.zip)
 
 Diese Dateien sollten bei der Erzeugung von Implementierungsartefakten stets die erste Wahl sein, da sie sämtliche Regeln enthalten, die die Gültigkeit dieser Profile bestimmen. Implementierende müssen darüber hinaus mit dem Inhalt der Spezifikation und der jeweils geltenden Profile vertraut sein, um eine konforme Implementierung zu erstellen. Siehe dazu die Übersicht zur [Validierung von FHIR-Profilen und -Ressourcen]({{ site.data.fhir.path }}validation.html).
 

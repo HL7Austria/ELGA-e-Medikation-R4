@@ -97,7 +97,7 @@ pages:
       title: Patient Journey
     contributors.md:
       title: Autoren und Mitwirkende
-    download.md:
+    downloads.md:
       title: Download
     publication_info.md:
         title: Publikationsinformationen
@@ -167,7 +167,7 @@ menu:
   Artifacts: artifacts.html
   About:
     Autoren und Mitwirkende: contributors.html
-    Download: download.html
+    Download: downloads.html
     Publikationsinformationen: publication_info.html
     Dependencies: dependencies.html
     Copyright: copyright.html

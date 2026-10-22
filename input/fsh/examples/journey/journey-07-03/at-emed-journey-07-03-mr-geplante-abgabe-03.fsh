@@ -6,7 +6,7 @@ Usage: #example
 
 * contained[+] = at-emed-journey-medication-metagelan
 * text.status = #generated
-* text.div = "<div>TODO: Some Narrative</div>"
+* text.div = "<div xmlns=\"http://www.w3.org/1999/xhtml\">TODO: Some Narrative</div>"
 // R5 Backports
 * extension[effectiveDosePeriod].valuePeriod.start = "2026-03-19"
 * extension[renderedDosageInstruction].valueMarkdown = "1-1-1-1 | 4 x täglich 40 Tropfen"
