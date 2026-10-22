@@ -134,20 +134,20 @@ Description: "Profil einer \"Geplanten Abgabe\" eines Arzneimittels aus dem Medi
 
 //TODO Dosage und AtElgaEmedDosageDosierung entfernen sobald Dosierungen fertig sind
 * dosageInstruction MS
-* dosageInstruction ^short  = "Angabe der Dosierinformationen strukturiert oder als Freitext." //TODO: Inhalte AtElgaEmedDosageDosierung fachlich prüfen.
+* dosageInstruction ^short  = "Angabe der Dosierinformationen strukturiert oder als Freitext. Muss bei der Erstellung mit der dosageInstruction im zugehörigen Planeintrag übereinstimmen." //TODO: Inhalte AtElgaEmedDosageDosierung fachlich prüfen.
 
 // DISPENSE REQUEST
 * dispenseRequest 1..1 MS
-* dispenseRequest ^short = "Informationen zur geplanten Abgabe des Arzneimittels."
+* dispenseRequest ^short = "Informationen zur vorgesehenen Abgabe des Arzneimittels."
 
 * dispenseRequest.validityPeriod 1..1 MS 
-* dispenseRequest.validityPeriod ^short = "Gültigkeitszeitraum einer Geplante Abgabe (abhängig von der Rezeptart)."
+* dispenseRequest.validityPeriod ^short = "Gültigkeitszeitraum der Geplante Abgabe (u.a. abhängig von der Rezeptart)."
 * dispenseRequest.validityPeriod.start MS
 * dispenseRequest.validityPeriod.end MS
 * dispenseRequest.numberOfRepeatsAllowed 1..1 MS   
-* dispenseRequest.numberOfRepeatsAllowed ^short = "Die Anzahl der weiteren möglichen Einlösungen (abhängig von der Rezeptart)."
+* dispenseRequest.numberOfRepeatsAllowed ^short = "Die Anzahl der möglichen weiteren Einlösungen (u.a. abhängig von der Rezeptart)."
 * dispenseRequest.quantity 1..1 MS
-* dispenseRequest.quantity ^short = "Bereitzustellende Menge bei jeder Abgabe bereitgestellt."
+* dispenseRequest.quantity ^short = "Bereitzustellende Menge bei jeder Einlösung."
 * dispenseRequest.quantity.unit MS
 * dispenseRequest.quantity.value MS
 * dispenseRequest.quantity.code MS
