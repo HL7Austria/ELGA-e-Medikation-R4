@@ -13,6 +13,7 @@ Usage: #inline
 * subject.type = "Patient"
 * subject.identifier.value = "GH:oeLdSEb0l+8kSdJWjOYyYmnYki0="
 * subject.identifier.system = "urn:oid:1.2.40.0.10.2.1.1.149"
+* subject.reference = "Patient/At-Emed-Example-Patient-01"
 
 * date = "2026-03-14T13:10:00+00:00"
 // logische referenz über oid
