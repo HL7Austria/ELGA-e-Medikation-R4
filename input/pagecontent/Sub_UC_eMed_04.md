@@ -237,10 +237,8 @@ AtElgaEmedMedicationRequestGeplanteAbgabe
 
 ### Sub_UC_eMed_04_07 - Geplante Abgabe löschen (durch ELGA-Teilnehmer) (Prescription-Delete)
 
-<div class="dragon">
-<p class="note-to-balloters">
-- Umsetzung der Teilnehmerrechte: in Arbeit.
-</p>
+<div class="note-to-balloters" markdown="1">
+Dieser Teil der Spezifikation wird noch erarbeitet und im nächsten Ballot zur Verfügung gestellt.
 </div>
 
 <br>

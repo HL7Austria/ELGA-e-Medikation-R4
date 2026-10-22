@@ -8,3 +8,10 @@ Die **`List`**-Ressource bildet den Medikationsplan ab und enthält keinen oder 
 
 Relevante Use Cases:
  - [Technische Use Cases für Medikationsplan schreiben (UC_eMed_02)](Sub_UC_eMed_02.html)
+
+
+ <div class="note-to-balloters" markdown="1">
+
+Die Übersetzungen der `short-descriptions` werden noch erarbeitet und im nächsten Ballot zur Verfügung gestellt.
+
+</div>

@@ -3,7 +3,7 @@ Instance: Planeintrag-03-Wirkstoff-Metamizol-v1
 InstanceOf: AtElgaEmedMedicationRequestPlaneintrag   
 Title: "Beispiel Journey 06-02: Planeintrag 3"
 Description: "Bildet einen Planeintrag mit einer Wirkstoffangabe (Metamizol) und Dosierung ab."
-Usage: #inline
+Usage: #example
 * id = $idPlaneintrag03
 * meta.versionId = $idPlaneintrag03v1
 * contained[+] = at-emed-journey-medication-wirkstoff-metamizol
@@ -25,6 +25,7 @@ Usage: #inline
 * subject.type = "Patient"
 * subject.identifier.value = "GH:oeLdSEb0l+8kSdJWjOYyYmnYki0="
 * subject.identifier.system = "urn:oid:1.2.40.0.10.2.1.1.149"
+* subject.reference = "Patient/At-Emed-Example-Patient-01"
 
 * authoredOn = "2026-03-19T12:10:00+00:00"
 * requester = Reference(At-Emed-Example-PractitionerRole-03) "Dr. Krankenhaus"

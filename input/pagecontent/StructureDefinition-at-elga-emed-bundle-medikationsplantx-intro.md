@@ -7,3 +7,9 @@ Das Medikationsplan-Bundle vom Typ `transaction` dient dem schreibenden Zugriff 
 Alle neuen bzw. geänderten und zu entfernenden Medikationsplaneinträge müssen inline im Bundle enthalten sein, alle unveränderten Ressourcen werden referenziert.
 
 Details zur `$plan-write`-Operation siehe [Sub_UC_eMed_02_01 - Medikationsplan schreiben (Plan-Write)](Sub_UC_eMed_02.html#sub_uc_emed_02_01---medikationsplan-schreiben-plan-write).
+
+<div class="note-to-balloters" markdown="1">
+
+Die Übersetzungen der `short-descriptions` werden noch erarbeitet und im nächsten Ballot zur Verfügung gestellt.
+
+</div>
