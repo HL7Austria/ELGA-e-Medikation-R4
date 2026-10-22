@@ -120,7 +120,7 @@ Description: "Profil einer \"Geplanten Abgabe\" eines Arzneimittels aus dem Medi
 * basedOn.reference MS
 
 * groupIdentifier 0..1 MS
-* groupIdentifier ^short = "Der e-Med GroupIdentifier bildet die Rezept-Klammer. Geplante Abgaben, die demselben e-Rezept zugeordnet sind, führen denselben e-Med GroupIdentifier."
+* groupIdentifier ^short = "Der \"e-Med GroupIdentifier\" bildet die Rezept-Klammer. Geplante Abgaben, die demselben e-Rezept zugeordnet sind, führen denselben e-Med GroupIdentifier."
 * groupIdentifier.system MS
 * groupIdentifier.value MS
 

@@ -40,26 +40,21 @@ Description: "Profil einer \"Durchgeführten Abgabe\" eines Arzneimittels."
 * extension[recorded].url MS
 * extension[recorded].valueDateTime MS
 * extension contains $medicationDispense-statusChanged-r5  named statusChanged 0..1
-* extension[statusChanged] ^short = "Datum der Statusänderung. Dies ist nur bei einem Status von: cancelled | entered-in-error | stopped relevant."
+* extension[statusChanged] ^short = "Datum der Statusänderung. Dies ist nur bei einem Status von entered-in-error relevant."  //Todo: kann nicht bei reference-plan verwendet werden, da kein Statuswechsel erfolgt; akl 22.10.2026
 * extension[statusChanged] MS
 * extension[statusChanged].url MS
 * extension[statusChanged].valueDateTime MS
 * extension contains AtElgaEmedExtensionGroupIdentifier named groupIdentifier 0..1
-* extension[groupIdentifier] ^short = "Als groupIdentifier dient der e-Med GroupIdentifier der zugehörigen Geplanten Abgabe (wird auch im e-Rezept mitgeführt)."
+* extension[groupIdentifier] ^short = "Als groupIdentifier dient der \"e-Med GroupIdentifier\" der zugehörigen Geplanten Abgabe (wird auch im e-Rezept mitgeführt)."
 * extension[groupIdentifier] MS
 * extension[groupIdentifier].url MS
 * extension[groupIdentifier].valueIdentifier MS
 * extension[groupIdentifier].valueIdentifier.use 0..0
 // Invariante: wenn eine Referenz auf eine geplante Abgabe existiert dann muss auch der groupIdentifier befüllt sein. Ausnahme: Alle GroupIdentifier eines Transaction Bundles sind noch leer -> werden von der Fachanwendung befüllt
 
-
 * status 1..1 MS
 //* status from AtElgaEmedValueSetMedicationDispenseStatusVS
 * status ^short = "Status der Durchgeführten Abgabe. Mögliche Ausprägungen: [completed | cancelled | entered-in-error ] Bedeutung: completed: Die Durchgeführte Abgabe ist abgeschlossen (Einzel- oder Teilabgabe durchgeführt) | cancelled: Leerabgabe wird durchgeführt | entered-in-error: Die Durchgeführte Abgabe wird aufgrund eines Fehlers storniert."
-// TODO: zu prüfen: 
-// * ob es einen Status in-progress / preparation geben soll, z.B. wenn Bestellvorgang gestartet wurde und der typ First Fill - Part Fill ist.
-// * Technische Prüfungen bezüglich Abhängigkeiten von status, typ, Rezeptart? (z.B. in-progress bei Bestellung o.ä.), evtl Operation 
-
 
 // --- Medication immer als Medication-Resource (mit oder ohne PZN, damit Handelsname angegeben werden kann und historisch verfügbar bleibt)
 * medication[x] 1..1 MS  
