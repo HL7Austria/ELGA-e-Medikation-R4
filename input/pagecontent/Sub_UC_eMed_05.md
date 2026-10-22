@@ -136,7 +136,7 @@ Der Status der *Geplanten Abgabe* bleibt während des Besorgerprozesses *active*
 
 #### Sub_UC_eMed_05_01_04 Leerabgabe erfassen
 
-Mit einer *Leerabgabe* dokumentiert der GDA (Apotheker bzw. Arzt mit Hausapotheke), dass der Patient ein Arzneimittel einer *Geplanten Abgabe* nicht benötigt. 
+Mit einer *Leerabgabe* dokumentiert der GDA (Apotheker bzw. Arzt mit Hausapotheke), dass der Patient ein Arzneimittel einer *Geplanten Abgabe* nicht benötigt (z.B. Arzneimittel wurde abgesetzt oder ist noch ausreichend vorhanden).
 
 Hierfür erstellt er eine [Durchgeführte Abgabe](StructureDefinition-at-elga-emed-medicationdispense-durchgefuehrteabgabe.html) wie folgt:
 * ***status***: *cancelled* 
@@ -148,6 +148,8 @@ Hierfür erstellt er eine [Durchgeführte Abgabe](StructureDefinition-at-elga-em
 Dieser Einlösevorgang ist damit beendet. <!-- TODO zu prüfen: Nur der Einlösevorgang oder überhaupt die Abgabe? akl 13.10. -->
 
 Die Anzahl der möglichen Einlösungen einer *Geplanten Abgabe* reduziert sich nach einer Leerabgabe, d.h. sie bleibt weiterhin *active* wenn weitere Einlösungen möglich sind. Nur wenn alle möglichen Einlösungen mit *cancelled* gespeichert wurden, wird die zugehörige *Geplante Abgabe* automatisch auf *cancelled* gesetzt, sonst auf *completed*.
+
+Wird die letztmögliche gecancelete *Durchgeführte Abgabe* storniert, wird der Status der zugehörigen *Geplanten Abgabe* durch die Fachanwendung wieder auf *active* gesetzt.
 
 <!-- Kann wieder rückgängig gemacht werden (durch Storno). (S31. v2 Absetzdatum + GDA relevant (statusChanged R6)  -->
 
@@ -251,13 +253,12 @@ Ein GDA (Apotheke) kann von ihm erstellte [Durchgeführte Abgaben](StructureDefi
 
 Um die bei Teilabgaben in *type* definierte Sequenz *FFP → RFP → RFC* konsistent zu halten, darf immer nur die zuletzt gespeicherte *Durchgeführte Abgabe* storniert werden. Diese *Durchgeführten Abgaben* können nur sequenziell in umgekehrter Reihenfolge ihrer Erstellung storniert werden.
 
-Um eine *Durchgeführte Abgabe* zu stornieren, führt der GDA **POST** [$dispense-discard](Sub_UC_eMed_05.html#custom-operations-1) aus:
-* **Informationen zur Stornierung**: aktuelles Datum und verantwortliche Person (*extension:recorded*, *performer.actor*)
-* **status***: wird auf *entered-in-error* gesetzt,
+Um eine *Durchgeführte Abgabe* zu stornieren, führt der GDA **POST** [$dispense-discard](Sub_UC_eMed_05.html#custom-operations-1) aus. Dabei wird das Datum der Statusänderung in *extension:statusChanged* dokumentiert und *status* auf ***entered-in-error*** gesetzt.
 
 Eine stornierte *Durchgeführte Abgabe* kann nicht mehr bearbeitet werden und ist nur noch über eine Suche mit dem Filter *status = entered-in-error* abrufbar.
 Wenn eine stornierte *Durchgeführte Abgabe* Teil eines e-Rezepts mit weiteren *Geplanten Abgaben* ist (gleicher *e-Med GroupIdentifier*), wirkt sich dies nicht auf den Status der anderen Geplanten Abgaben aus.
 
+Wird die letztmögliche *Durchgeführte Abgabe* storniert, wird der Status der zugehörigen *Geplanten Abgabe* durch die Fachanwendung wieder auf *active* gesetzt.
 
 #### Custom Operations
 * *POST* [$dispense-discard](OperationDefinition-at-elga-emed-operation-dispense-discard.html)
