@@ -13,7 +13,7 @@ Usage: #inline
 * extension[renderedDosageInstruction].valueMarkdown = "1-0-1-0 | Täglich 1-0-1-0 für 3 Wochen" 
 
 * status = $cs-medication-request-status#active
-* intent = https://hl7.org/fhir/R4/valueset-medicationrequest-intent#order
+* intent = http://hl7.org/fhir/CodeSystem/medicationrequest-intent#order
 * category = MedicationRequestCategoryCS#Planeintrag "Planeintrag" 
 * reportedBoolean = false
 

@@ -15,7 +15,7 @@ Usage: #inline
 * extension[renderedDosageInstruction].valueMarkdown = "1-0-1-0 | Täglich: 1-0-1-0" 
 
 * status = $cs-medication-request-status#active	"Active"
-* intent = https://hl7.org/fhir/R4/valueset-medicationrequest-intent#order
+* intent = http://hl7.org/fhir/CodeSystem/medicationrequest-intent#order
 * category = MedicationRequestCategoryCS#Planeintrag "Planeintrag" 
 * reportedBoolean = false 
 
@@ -38,7 +38,7 @@ Usage: #inline
 * dosageInstruction[standardDosage].timing.repeat.period = 1
 * dosageInstruction[standardDosage].timing.repeat.periodUnit = #d
 * dosageInstruction[standardDosage].timing.repeat.when[0] = $cs-event-timing#MORN  
-* dosageInstruction[standardDosage].timing.repeat.when[0] = $cs-event-timing#EVE  
+* dosageInstruction[standardDosage].timing.repeat.when[1] = $cs-event-timing#EVE  
 * dosageInstruction[standardDosage].doseAndRate.doseQuantity.value = 1
 * dosageInstruction[standardDosage].doseAndRate.doseQuantity = $cs-ucum#{Stueck} "Stück" // TODO
 * dosageInstruction[standardDosage].route = $cs-medikationartanwendung#100000073619 "zum Einnehmen"
