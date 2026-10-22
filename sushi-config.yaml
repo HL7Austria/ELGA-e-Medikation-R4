@@ -81,9 +81,8 @@ pages:
     title: Dosierungen
   medication.md:
     title: Medikation
-  overview_use_case.md:
-    overview_sub_use_case.md:
-      title: Use Cases Übersicht (fachlich und technisch)
+  overview_sub_use_case.md:
+    title: Use Cases Übersicht (fachlich und technisch)
     Sub_UC_eMed_01.md:
       title: ​Technische Use Cases für Medikationsplan lesen (UC_eMed_01)
     Sub_UC_eMed_02.md:
@@ -157,7 +156,6 @@ menu:
     Dosierungen: dosages.html
     Medikation: medication.html
   Anwendungsfälle:
-    # Überblick: overview_use_case.html
     Überblick Use Cases: overview_sub_use_case.html
     UC 1 Medikationsplan lesen: Sub_UC_eMed_01.html
     UC 2 Medikationsplan schreiben: Sub_UC_eMed_02.html
