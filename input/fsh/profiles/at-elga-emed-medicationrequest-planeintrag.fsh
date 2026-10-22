@@ -3,12 +3,11 @@ Parent: AtElgaEmedMedicationRequestBase
 Id: at-elga-emed-medicationrequest-planeintrag
 Title: "At ELGA e-Medikation MedicationRequest Planeintrag"
 Description: "Profil für einen Medikationsplaneintrag." 
-* . ^short = "Planeintrag"
 
 * extension MS
 // Extensions
 * extension contains $medicationRequest-effectiveDosePeriod-r5 named effectiveDosePeriod 1..1
-* extension[effectiveDosePeriod] ^short = "Zeitraum, in dem das Arzneimittel eingenommen werden soll. Bei Dauermedikation kann optional ein Enddatum dokumentiert werden. Bei Aktumedikation ist verpflichtend ein Enddatum zu dokumentieren. Der Einnahmezeitraum muss mit den zeitlichen Einschränkungen der Dosage übereinstimmen" //TODO wording prüfen ob wirklich Einnahmezeitraum vgl. Dosierung
+* extension[effectiveDosePeriod] ^short = "Zeitraum, in dem das Arzneimittel eingenommen werden soll. Bei Dauermedikation kann optional ein Enddatum dokumentiert werden. Bei Aktumedikation ist verpflichtend ein Enddatum zu dokumentieren. Der Einnahmezeitraum muss mit den zeitlichen Einschränkungen der Dosage übereinstimmen." //TODO wording prüfen ob wirklich Einnahmezeitraum vgl. Dosierung
 * extension[effectiveDosePeriod] MS
 * extension[effectiveDosePeriod].valuePeriod MS
 * extension[effectiveDosePeriod].valuePeriod.start MS
@@ -22,12 +21,11 @@ Description: "Profil für einen Medikationsplaneintrag."
 * extension[renderedDosageInstruction].url MS
 // IHE extension: Verwendung zu klären
 // * extension contains $ihe-ext-medicationrequest-offlabeluse named offLabelUse 0..1 
-// * extension[offLabelUse] ^short = "Weist darauf hin, dass der verschreibende Arzt das Medikament wissentlich für eine Indikation, Altersgruppe, Dosierung oder Verabreichungsform verschrieben hat, die nicht von den Aufsichtsbehörden zugelassen ist und in der Verschreibungsinformation für das Produkt nicht erwähnt wird."
 
 * status 1..1 MS
 * status from PlaneintragStatusVS (required)
 * status ^short = "Status des Planeintrags. Mögliche Ausprägungen: [active | on-hold | stopped | entered-in-error]. Bedeutung: active: aktuell einzunehmende Medikation | on-hold: pausierte Medikation (aktuell nicht einzunehmen) | stopped: wird nicht weiter verordnet (unabhängig ob vorzeitig abgesetzt, abgeschlossen oder Behandlungszeitraum abgelaufen)   
-| entered-in-error: fehlerhafter Planeintrag storniert und abgeschlossen"
+| entered-in-error: fehlerhafter Planeintrag storniert"
 
 //ASW 22.09.2026 TODO short einfügen
 * statusReason 0..1 MS   //(ex) https://hl7.org/fhir/R4/valueset-medicationrequest-status-reason.html."
@@ -47,7 +45,7 @@ Description: "Profil für einen Medikationsplaneintrag."
 * obeys at-emed-planeintrag-status-reason-beim-absetzen-oder-pausieren
 
 * intent 1..1 MS
-* intent = https://hl7.org/fhir/R4/valueset-medicationrequest-intent#order
+* intent = #order 
 * intent ^short = "Fixer Wert: \"order\"."
 
 * category 1..1 MS
@@ -74,7 +72,7 @@ Description: "Profil für einen Medikationsplaneintrag."
 * medication[x] 1..1 MS  
 * medication[x] only Reference(AtElgaEmedMedicationStandardMedikation or AtElgaEmedMedicationMagistraleZubereitung)  
 * medication[x] ^type.aggregation = #contained
-* medication[x] ^short = "Das Arzneimittel wird in einer contained Medication Ressource oder als conditional reference dokumentiert, damit Arzneimittel mit und ohne PZN einheitlich dokumentiert werden können."
+* medication[x] ^short = "Das Arzneimittel wird in einer contained Medication Ressource oder als Conditional Reference dokumentiert."
 * medicationReference MS
 * medicationReference.reference 1..1 MS
 // ASW TODO 14.10. medication hat keinen identifier - conditional reference im tx bundle - wie einschränken für unterschied zw. schreiben und lesen?
@@ -97,8 +95,8 @@ Description: "Profil für einen Medikationsplaneintrag."
 * authoredOn 1..1 MS
 * authoredOn ^short = "Datum der Erstellung des Planeintrags."
 
-// -- Requester --- //ag: sptäter organz. weg , practitioner role: name+orga
-* requester 1..1 MS  // zu hinterfragen, ob AtElgaEmedPractitionerRole + HL7ATCoreOrganization nötig 
+// -- Requester --- 
+* requester 1..1 MS  
 * requester only Reference(AtElgaEmedPractitioner or AtElgaEmedPractitionerRole or HL7ATCoreOrganization)
 * requester ^short = "GDA, welcher den Planeintrag zuletzt bearbeitet hat und für den Inhalt verantwortlich ist."
 * requester.reference MS
@@ -108,8 +106,7 @@ Description: "Profil für einen Medikationsplaneintrag."
 * requester.identifier.use 0..0
 //* requester.identifier.use ^short = "Fachliche Begründung: TODO"
 //* recorder 0..0
-//* recorder ^short = "Die Person, die den Planeintrag im Auftrag eines GDA eingegeben hat." // TODO: Prüfen, ob eine juristische Verpflichtung zur Dokumentation der Schreibkraft besteht."
-//ASW 22.09.2026 TODO fachlich hinterfragen
+//* recorder ^short = "Die Person, die den Planeintrag im Auftrag eines GDA erfasst hat." // TODO: Prüfen, ob eine juristische Verpflichtung zur Dokumentation der Schreibkraft besteht."
 
 
 * groupIdentifier 0..0
@@ -124,14 +121,12 @@ Description: "Profil für einen Medikationsplaneintrag."
 * courseOfTherapyType.coding.version MS
 * courseOfTherapyType.coding.display MS
 * courseOfTherapyType.text 0..0
-* courseOfTherapyType.text ^short = "Fachliche Begründung: TODO"
+//* courseOfTherapyType.text ^short = "Fachliche Begründung: TODO"
 //* obeys e-med-continuous-medication-effectiveDosePeriod
 * obeys e-med-acute-medication-effectiveDosePeriod
 
 * note 0..1 MS 
-//ASW 22.09.2026 TODO Verwendung zu klären - evtl in Dosierung ausreichend
-//ASW 22.09.2026 TODO Author, Datum, mehrere erlaubt? Annotation profilieren 
-* note ^short = "Zusätzliche Informationen zum Planeintrag." // TODO: fachlich prüfen, an welchen Stellen Freitext erforderlich sein soll/muss. Auch im Kontext zu entered-in-error Informationen."
+* note ^short = "Zusätzliche Informationen zum Planeintrag, die nicht die Dosierung betreffen." 
 * note.text MS
 
 * dispenseRequest 0..0 

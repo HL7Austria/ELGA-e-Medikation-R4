@@ -14,7 +14,7 @@ Der schreibende Zugriff umfasst folgende Bearbeitungen:
 * **ELGA-Teilnehmer** und deren Vertretungen können *Geplante Abgaben*:
     * [löschen](Sub_UC_eMed_04.html#sub_uc_emed_04_07---geplante-abgabe-löschen-durch-elga-teilnehmer-prescription-delete)
 * **Automatisch** durch die **Fachanwendung** umgesetzt werden:
-    * [Beenden](Sub_UC_eMed_04.html#sub_uc_emed_04_04---geplante-abgabe-beenden-durch-fachanwendung)
+    * [Abschließen](Sub_UC_eMed_04.html#sub_uc_emed_04_04---geplante-abgabe-abgeschlossen-durch-fachanwendung)
     * [Ablauf](Sub_UC_eMed_04.html#sub_uc_emed_04_05---geplante-abgabe-abgelaufen-durch-fachanwendung)
     * [Canceln](Sub_UC_eMed_04.html#sub_uc_emed_04_06---geplante-abgabe-gecancelt-durch-fachanwendung)
 
@@ -32,7 +32,6 @@ Es gelten die dort festgelegten Vorbedingungen. Alle Zugriffe werden protokollie
 </div>
 
 
-
 ### Sub_UC_eMed_04_01 - Geplante Abgabe erstellen (Prescription-Write)
 
 Der GDA kann basierend auf der **aktuellen Version** eines bestehenden *Medikationsplaneintrags* eine oder mehrere [Geplante Abgaben](StructureDefinition-at-elga-emed-medicationrequest-geplanteabgabe.html) erstellen. Für jedes zu rezeptierende Arzneimittel wird eine eigene *Geplante Abgabe* erstellt, um die medizinische Inhalte des e-Rezepts zu dokumentieren. 
@@ -48,7 +47,7 @@ Medikationsplaneinträge können mehrfach rezeptiert werden und daher auch zu me
 
 Die Anzahl der *Geplanten Abgaben*, die mit demselben *e-Med GroupIdentifier* gespeichert werden können, ist durch das Limit für die Anzahl der Medikamente je e-Rezept begrenzt.
 
-Der Status der *Geplanten Abgabe* bleibt solange *active*, bis sie zeitlich abläuft (siehe [Sub_UC_eMed_04_05 - Geplante Abgabe abgelaufen (durch Fachanwendung)](Sub_UC_eMed_04.html#sub_uc_emed_04_04---geplante-abgabe-beenden-durch-fachanwendung)) oder die letztmögliche Einlösung erfolgt ist .
+Der Status der *Geplanten Abgabe* bleibt solange *active*, bis sie zeitlich abläuft (siehe [Sub_UC_eMed_04_05 - Geplante Abgabe abgelaufen (durch Fachanwendung)](Sub_UC_eMed_04.html#sub_uc_emed_04_05---geplante-abgabe-abgelaufen-durch-fachanwendung)) oder die letztmögliche Einlösung erfolgt ist .
 
 
 #### Ablauf
@@ -67,7 +66,7 @@ Basierend auf den enthaltenen Planeinträgen erstellt der GDA neue *Gelplante Ab
     - **Referenz auf den zugrundeliegenden Planeintrag** (*basedOn*): wird **nicht versioniert**, verweist somit immer auf den aktuellen Planeintrag, auch wenn dieser zukünftig geändert wird.
     - **Dosierung** (*dosageInstruction*): muss **identisch** sein mit der des Planeintrags.
     - **e-Med GroupIdentifier** (*groupIdentifier*): 
-        - Alle zeitgleich erstellten *Geplanten Abgaben*, die zum selben e-Rezept gehören, müssen den selben *e-Med GroupIdentifier* tragen und **im selben [Geplante Abgaben-Transaction Bundle](StructureDefinition-at-elga-emed-bundle-geplanteabgaben-tx.html)** übermittelt werden. Der *e-Med GroupIdentifier* ermöglicht zusammengehörige *Geplante Abgaben* und *Durchgeführte Abgaben* gemeinsam abzurufen und kann über unterschiedliche Varianten bezogen werden (siehe [Sub_UC_eMed_04_02 - e-Med GroupIdentifier beziehen](Sub_UC_eMed_04.html#sub_uc_emed_04_02---e-med-groupidentifier-beziehen)). Er bleibt grundsätzlich solange gültig, solange die *Geplante Abgabe = active* ist. 
+        - Alle gemeinsam erstellten *Geplanten Abgaben*, die zum selben e-Rezept gehören, müssen den selben *e-Med GroupIdentifier* tragen und **im selben [Geplante Abgaben-Transaction Bundle](StructureDefinition-at-elga-emed-bundle-geplanteabgaben-tx.html)** übermittelt werden. Der *e-Med GroupIdentifier* ermöglicht zusammengehörige *Geplante Abgaben* und *Durchgeführte Abgaben* gemeinsam abzurufen und kann über unterschiedliche Varianten bezogen werden (siehe [Sub_UC_eMed_04_02 - e-Med GroupIdentifier beziehen](Sub_UC_eMed_04.html#sub_uc_emed_04_02---e-med-groupidentifier-beziehen)). Er bleibt grundsätzlich solange gültig, solange die *Geplante Abgabe = active* ist. 
         -  Fehlt im übermittelten [Geplante Abgaben-Transaction Bundle](StructureDefinition-at-elga-emed-bundle-geplanteabgaben-tx.html) bei allen *Geplanten Abgaben* der *e-Med GroupIdentifier*, vergibt ihn die Fachanwendung. Alle enthaltenen *Geplanten Abgaben* gehören dann zum selben *e-Med GroupIdentifier*.
     - **Gültigkeitszeitraum der Einlösung** (*dispenseRequest.validityPeriod*) und 
     - **Anzahl möglicher weiterer Einlösungen** (*dispenseRequest.numberOfRepeatsAllowed*) sind abhängig von der ausgewählten Rezeptart (siehe [Gültigkeit von Geplanten Abgaben basierend auf der Rezeptart](workflowmanagement.html#gültigkeit-von-geplanten-abgaben-basierend-auf-der-rezeptart))
@@ -179,7 +178,7 @@ AtElgaEmedMedicationRequestGeplanteAbgabe
 
 * *POST* [$prescription-discard](OperationDefinition-at-elga-emed-operation-prescription-discard.html)
 
-### Sub_UC_eMed_04_04 - Geplante Abgabe beenden (durch Fachanwendung)
+### Sub_UC_eMed_04_04 - Geplante Abgabe abgeschlossen (durch Fachanwendung)
 <!-- TODO: abschließen -> Workflowdiagramm  akl 20.10.-->
 
 Wurden alle möglichen Einlösungen einer *Geplanten Abgabe* planmäßig durchgeführt und entsprechende *Durchgeführte Abgaben* erstellt (siehe [Sub_UC_eMed_05_01 - Durchgeführte Abgabe erstellen](Sub_UC_eMed_05.html#sub_uc_emed_05_01---durchgeführte-abgabe-erstellen)), setzt die Fachanwendung die *Geplante Abgabe* **automatisch** auf den Status ***completed*** (siehe [Status des MedicationRequests in der Geplanten Abgabe](workflowmanagement.html#status-des-medicationrequests-in-der-geplanten-abgabe)). Die *Geplante Abgabe* ist damit abgeschlossen.
