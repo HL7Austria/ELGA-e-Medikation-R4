@@ -12,7 +12,7 @@ Usage: #example
 * extension[renderedDosageInstruction].valueMarkdown = "1-1-1-1 | 4 x täglich 40 Tropfen"
 
 * status = $cs-medication-request-status#active
-* intent = https://hl7.org/fhir/R4/valueset-medicationrequest-intent#order
+* intent = http://hl7.org/fhir/CodeSystem/medicationrequest-intent#order
 * category[mrcategory] = MedicationRequestCategoryCS#GeplAbgabe "Geplante Abgabe"
 * category[recipetype] = $cs-medication-rezeptart#KASSEN "Kassenrezept"
 

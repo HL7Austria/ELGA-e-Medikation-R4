@@ -11,10 +11,11 @@ Usage: #inline
 
 // R5 Backports
 * extension[effectiveDosePeriod].valuePeriod.start = "2026-03-19"
+* extension[effectiveDosePeriod].valuePeriod.end = "2026-03-26"
 * extension[renderedDosageInstruction].valueMarkdown = "1-1-1-1 | 4x täglich 1000 mg"
 
 * status = $cs-medication-request-status#active
-* intent = https://hl7.org/fhir/R4/valueset-medicationrequest-intent#order
+* intent = http://hl7.org/fhir/CodeSystem/medicationrequest-intent#order
 * category = MedicationRequestCategoryCS#Planeintrag "Planeintrag" 
 * reportedBoolean = false
 
