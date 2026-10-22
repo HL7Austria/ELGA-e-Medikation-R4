@@ -161,7 +161,7 @@ Standardabfrage mit _include
 <td><code>search-type</code></td>
 <td>Geplante Abgaben suchen (<code>?category=GeplAbgabe</code>)</td>
 <td>GDA, PAT</td>
-<td><a href="StructureDefinition-at-elga-emed-medicationrequest-geplanteAbgabe.html#search-parameters">Geplante Abgabe (Search-) parameters</a></td>
+<td><a href="StructureDefinition-at-elga-emed-medicationrequest-geplanteabgabe.html#search-parameters">Geplante Abgabe (Search-) parameters</a></td>
 </tr>
 
 <tr>
@@ -269,6 +269,6 @@ Optionale Abfrage mit _include
 </table>
 
 
-#### Suchparameter Überblick
+### Suchparameter Überblick
 
 [![diagram](searchparameter_overview.png){: style="width: 60%"}](searchparameter_overview.png)

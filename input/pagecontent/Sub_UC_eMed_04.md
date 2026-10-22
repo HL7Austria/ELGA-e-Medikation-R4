@@ -182,7 +182,7 @@ AtElgaEmedMedicationRequestGeplanteAbgabe
 ### Sub_UC_eMed_04_04 - Geplante Abgabe beenden (durch Fachanwendung)
 <!-- TODO: abschließen -> Workflowdiagramm  akl 20.10.-->
 
-Wurden alle möglichen Einlösungen einer *Geplanten Abgabe* planmäßig durchgeführt und entsprechende *Durchgeführte Abgaben* erstellt (siehe [Sub_UC_eMed_05_01 - Durchgeführte Abgabe erfassen](Sub_UC_eMed_05.html#Sub_UC_eMed_05_01---durchgeführte-abgabe-erfassen)), setzt die Fachanwendung die *Geplante Abgabe* **automatisch** auf den Status ***completed*** (siehe [Status des MedicationRequests in der Geplanten Abgabe](workflowmanagement.html#status-des-medicationrequests-in-der-geplanten-abgabe)). Die *Geplante Abgabe* ist damit abgeschlossen.
+Wurden alle möglichen Einlösungen einer *Geplanten Abgabe* planmäßig durchgeführt und entsprechende *Durchgeführte Abgaben* erstellt (siehe [Sub_UC_eMed_05_01 - Durchgeführte Abgabe erstellen](Sub_UC_eMed_05.html#sub_uc_emed_05_01---durchgeführte-abgabe-erstellen)), setzt die Fachanwendung die *Geplante Abgabe* **automatisch** auf den Status ***completed*** (siehe [Status des MedicationRequests in der Geplanten Abgabe](workflowmanagement.html#status-des-medicationrequests-in-der-geplanten-abgabe)). Die *Geplante Abgabe* ist damit abgeschlossen.
 
 **Sonderfall**: Wird die letzte *Durchgeführte Abgabe* im Anschluss storniert (Status *entered-in-error*), wird der Status der *Geplanten Abgabe* durch die Fachanwendung wieder auf *active* gesetzt.
 

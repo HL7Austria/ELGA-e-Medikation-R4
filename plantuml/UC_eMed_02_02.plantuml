@@ -57,7 +57,7 @@ autonumber
 
 activate GDA_1 COLOR_GDA_1
 
-ref over GDA_1, eMed_FA : [[OperationDefinition-at-elga-emed-operation-plan-read.html Plan-Read]]
+ref over GDA_1, eMed_FA : [[../OperationDefinition-at-elga-emed-operation-plan-read.html Plan-Read]]
 
 note over GDA_1
 GDA erhält den aktuellen 
@@ -75,7 +75,7 @@ siehe Use Case
 Beschreibungen
 end note
 
-ref over GDA_1, eMed_FA : [[OperationDefinition-at-elga-emed-operation-plan-write.html Plan-Write]]
+ref over GDA_1, eMed_FA : [[../OperationDefinition-at-elga-emed-operation-plan-write.html Plan-Write]]
 deactivate GDA_1
 
 note over eMed_FA
