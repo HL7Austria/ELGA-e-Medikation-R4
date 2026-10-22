@@ -35,7 +35,7 @@ Je nach Zugriffsart (Plan-History-Search, Plan-Read oder Write) ergeben sich unt
 
 <br>
 
-#### Status des MedicationRequests im Medikationsplaneintrag
+#### Status des Medikationsplaneintrags (MedicationRequest)
 
 Das *status*-Element der MedicationRequest-Ressource beschreibt den **aktuellen Zustand eines Medikationsplaneintrags**. 
 
@@ -143,7 +143,7 @@ Da der Status eines Medikationsplaneintrags im Medikationsplan auf **zwei Ebenen
 
 <br>
 
-#### Status des MedicationRequests in der Geplanten Abgabe
+#### Status der Geplanten Abgabe (MedicationRequest)
 
 Eine [Geplante Abgabe](design_choices.html#geplante-abgabe-atelgaemedmedicationrequestgeplanteabgabe-medicationrequest) kann, abhängig vom jeweiligen ([Use Case für Geplante Abgabe schreiben](Sub_UC_eMed_04.html)), unterschiedliche Status einnehmen (Element *status*):<br><br>
 
@@ -186,15 +186,15 @@ Eine [Geplante Abgabe](design_choices.html#geplante-abgabe-atelgaemedmedicationr
 [^2] Ist der Gültigkeitszeitraum überschritten erhält die zugehörige *Geplante Abgabe* den Status abgelaufen (*stopped*). Das Einlösen eines Rezepts nach Ablauf der Gültigkeit wird durch e-Medikation nicht verhindert. Die Abgabe kann in diesem Fall ohne Verordnungsbezug in e-Medikation gespeichert werden. 
 <br><br>
 
-#### Status des MedicationDispense in der Durchgeführten Abgabe
+#### Status der Durchgeführten Abgabe (MedicationDispense)
 
 Eine [Durchgeführte Abgabe](design_choices.html#durchgeführte-abgabe-atelgaemedmedicationdispensedurchgefuehrteabgabe-medicationdispense) kann, abhängig vom jeweiligen [Use Case für Durchgeführte Abgabe schreiben](Sub_UC_eMed_05.html), unterschiedliche Status einnehmen (Element *status*). 
 
 
 | MedicationDispense.status | Beschreibung |
 |--------|------|
-| **completed** | Einzel- oder Teilabgabe wurde durchgeführt |
-| **cancelled** | *Durchgeführte Abgabe* gecancelt: Der Patient benötigt die Medikation einer geplanten Abgabe nicht (z.B. Medikation "abgesetzt" oder Medikation noch ausreichend vorhanden) |
+| **completed** | Die Durchgeführte Abgabe ist abgeschlossen (Einzel- oder Teilabgabe durchgeführt). |
+| **cancelled** | *Durchgeführte Abgabe* gecancelt (Leerabgabe): Der Patient benötigt die Medikation einer *Geplanten Abgabe* nicht. |
 | **entered-in-error** | Vorhandene *Durchgeführte Abgabe* (im Status *completed* oder *cancelled*) wird aufgrund eines Fehlers storniert (eine mögliche beendete *Geplante Abgabe*, wird dadurch wieder *aktiv*)|
 
 
