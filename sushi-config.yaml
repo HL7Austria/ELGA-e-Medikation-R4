@@ -71,8 +71,6 @@ pages:
     title: Herausforderungen  
   design_choices.md:
     title: Designentscheidungen
-  actors.md:
-    title: Akteure
   workflowmanagement.md:
     title: Workflowmanagement
   # obligations.md:
@@ -153,8 +151,6 @@ menu:
     Herausforderungen: challenges.html
   Funktionales:
     Designentscheidungen: design_choices.html
-    Akteure: actors.html
-    # Dosierschemata: dosaging.html
     Workflowmanagement: workflowmanagement.html
     # Obligations: obligations.html
     Transaktionen: interactions.html
