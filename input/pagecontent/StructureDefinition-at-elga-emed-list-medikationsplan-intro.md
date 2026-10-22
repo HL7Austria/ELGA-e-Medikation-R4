@@ -7,4 +7,4 @@ Die **`List`**-Ressource bildet den Medikationsplan ab und enthält keinen oder 
 - Ein leerer Medikationsplan muss mit einem `emtptyReason` gekennzeichnet sein.
 
 Relevante Use Cases:
- - [Technische Use Cases für Medikationsplan schreiben (UC_eMed_02)](Sub_UC_eMed_02.html#%E2%80%8Btechnische-use-cases-für-medikationsplan-schreiben-uc_emed_02)
+ - [Technische Use Cases für Medikationsplan schreiben (UC_eMed_02)](Sub_UC_eMed_02.html)

@@ -8,4 +8,4 @@ Er enthält genau ein Arzneimittel mit dessen Dosierung, wobei das Arzneimittel 
 Der Planeintrag kann in weiterer Folge als Grundlage für die Erstellung einer \"Geplanten Abgabe\" dienen.
 
 Relevante Use Cases:
- - [Technische Use Cases für Medikationsplan schreiben (UC_eMed_02)](Sub_UC_eMed_02.html#%E2%80%8Btechnische-use-cases-für-medikationsplan-schreiben-uc_emed_02)
+ - [Technische Use Cases für Medikationsplan schreiben (UC_eMed_02)](Sub_UC_eMed_02.html)

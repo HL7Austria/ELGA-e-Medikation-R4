@@ -50,10 +50,10 @@ Da für Herrn Mustermann noch nie ein Medikationsplan abgerufen wurde, erstellt 
           <a href="Sub_UC_eMed_01.html#sub_uc_emed_01_01---aktuellen-medikationsplan-lesen-plan-read">Sub_UC_eMed_01_01 - Aktuellen Medikationsplan lesen (Plan-Read)</a>
         </li>
         <li>
-          <a href="Sub_UC_eMed_03.html#sub_uc_emed_07_01---geplante-abgaben-lesen-prescription-search">Sub_UC_eMed_03_01 - Geplante Abgaben lesen (Prescription-Search)</a>
+          <a href="Sub_UC_eMed_03.html#sub_uc_emed_03_01---geplante-abgaben-lesen-prescription-search">Sub_UC_eMed_03_01 - Geplante Abgaben lesen (Prescription-Search)</a>
         </li>
         <li>
-          <a href="Sub_UC_eMed_03.html#sub_uc_emed_07_02---durchgeführte-abgaben-lesen-dispense-search">Sub_UC_eMed_03_02 - Durchgeführte Abgaben lesen (Dispense-Search)</a>
+          <a href="Sub_UC_eMed_03.html#sub_uc_emed_03_02---durchgeführte-abgaben-lesen-dispense-search">Sub_UC_eMed_03_02 - Durchgeführte Abgaben lesen (Dispense-Search)</a>
         </li>
         <li>
           <a href="Sub_UC_eMed_01.html#sub_uc_emed_01_01_01---initial-erstellter-medikationsplan">Sub_UC_eMed_01_01_01 - Initial erstellter Medikationsplan</a>
@@ -157,10 +157,10 @@ Sie speichert den neuen Medikationsplan.
           <strong>Planeinträge erstellen:</strong>
           <ul>
             <li>
-              <a href="MedicationRequest-At-Emed-Journey-Planeintrag-01-Ramipril-v1.html">Planeintrag 1: Ramipril 5 mg Tabletten, 1 x täglich morgens (Dauermedikation)</a>
+              <a href="Bundle-At-Emed-Journey-01-02-Bundle-Medikationsplan-Tx.html#MedicationRequest_5e947f71-6881-46cc-9b06-81a1743aa674">Planeintrag 1: Ramipril 5 mg Tabletten, 1 x täglich morgens (Dauermedikation)</a>
             </li>
             <li>
-              <a href="MedicationRequest-At-Emed-Journey-Planeintrag-02-Magistral-Dexpanthenol-v1.html">Planeintrag 2: Dexpanthenol-5-%-Salbe, 2 × täglich für 3 Wochen, dünn auftragen</a>
+              <a href="Bundle-At-Emed-Journey-01-02-Bundle-Medikationsplan-Tx.html#MedicationRequest_7f1294a2-f592-4547-881c-c15d1debc165">Planeintrag 2: Dexpanthenol-5-%-Salbe, 2 × täglich für 3 Wochen, dünn auftragen</a>
             </li>
           </ul>
         </li>
@@ -168,7 +168,7 @@ Sie speichert den neuen Medikationsplan.
           <strong>Medikationsplan aktualisieren:</strong>
           <ul>
             <li>
-              <a href="List-At-Emed-Journey-List-Medikationsplan-v1.html">Medikationsplan ergänzt mit 2 Planeinträgen</a>
+              <a href="Bundle-At-Emed-Journey-01-02-Bundle-Medikationsplan-Tx.html#List_4cb4dceb-173f-461a-a267-683ec33e4be1">Medikationsplan ergänzt mit 2 Planeinträgen</a>
             </li>
           </ul>
         </li>
@@ -179,7 +179,7 @@ Sie speichert den neuen Medikationsplan.
               <a href="Bundle-At-Emed-Journey-01-02-Bundle-Medikationsplan-Tx.html">Transaction Bundle</a>
             </li>
             <li>
-              <a href="Practitioner-At-Emed-Example-PractitionerRole-01.html">Dr. Hausärztin</a>
+              <a href="PractitionerRole-At-Emed-Example-PractitionerRole-01.html">Dr. Hausärztin</a>
             </li>
           </ul>
         </li>
@@ -376,13 +376,13 @@ Anschließend speichert sie die neuen *Durchgeführte Abgaben* in der e-Medikati
           <a href="Sub_UC_eMed_01.html#sub_uc_emed_01_01---aktuellen-medikationsplan-lesen-plan-read">Sub_UC_eMed_01_01 - Aktuellen Medikationsplan lesen (Plan-Read)</a>
         </li>
         <li>
-          <a href="Sub_UC_eMed_03.html#sub_uc_emed_07_01---geplante-abgaben-lesen-prescription-search">Sub_UC_eMed_03_01 - Geplante Abgaben lesen (Prescription-Search)</a>
+          <a href="Sub_UC_eMed_03.html#sub_uc_emed_03_01---geplante-abgaben-lesen-prescription-search">Sub_UC_eMed_03_01 - Geplante Abgaben lesen (Prescription-Search)</a>
         </li>
         <li>
-          <a href="Sub_UC_eMed_03.html#sub_uc_emed_07_02---durchgeführte-abgaben-lesen-dispense-search">Sub_UC_eMed_03_02 - Durchgeführte Abgaben lesen (Dispense-Search)</a>
+          <a href="Sub_UC_eMed_03.html#sub_uc_emed_03_02---durchgeführte-abgaben-lesen-dispense-search">Sub_UC_eMed_03_02 - Durchgeführte Abgaben lesen (Dispense-Search)</a>
         </li>
         <li>
-          <a href="Sub_UC_eMed_05.html#zugriffsvariante-a-durchgeführte-abgabe-mit-kontakt-schreiben">Sub_UC_eMed_05_01 - Durchgeführte Abgabe schreiben (Dispense-Write)(Variante A: Zugriff mit Kontakt)</a>
+          <a href="Sub_UC_eMed_05.html#variante-a-durchgeführte-abgabe-mit-elga-kontaktbestätigung-schreiben">Sub_UC_eMed_05_01 - Durchgeführte Abgabe schreiben (Dispense-Write)(Variante A: Zugriff mit Kontakt)</a>
         </li>
         <li>
           <a href="Sub_UC_eMed_05.html#sub_uc_emed_05_01_01---vollständige-einzelabgabe-erfassen">Sub_UC_eMed_05_01_01 - Vollständige Einzelabgabe erfassen</a>
@@ -447,13 +447,13 @@ Anschließend speichert sie die neue *Durchgeführte Abgabe* in der e-Medikation
           <a href="Sub_UC_eMed_01.html#sub_uc_emed_01_01---aktuellen-medikationsplan-lesen-plan-read">Sub_UC_eMed_01_01 - Aktuellen Medikationsplan lesen (Plan-Read)</a>
         </li>
         <li>
-          <a href="Sub_UC_eMed_03.html#sub_uc_emed_07_01---geplante-abgaben-lesen-prescription-search">Sub_UC_eMed_03_01 - Geplante Abgaben lesen (Prescription-Search)</a>
+          <a href="Sub_UC_eMed_03.html#sub_uc_emed_03_01---geplante-abgaben-lesen-prescription-search">Sub_UC_eMed_03_01 - Geplante Abgaben lesen (Prescription-Search)</a>
         </li>
         <li>
-          <a href="Sub_UC_eMed_03.html#sub_uc_emed_07_02---durchgeführte-abgaben-lesen-dispense-search">Sub_UC_eMed_03_02 - Durchgeführte Abgaben lesen (Dispense-Search)</a>
+          <a href="Sub_UC_eMed_03.html#sub_uc_emed_03_02---durchgeführte-abgaben-lesen-dispense-search">Sub_UC_eMed_03_02 - Durchgeführte Abgaben lesen (Dispense-Search)</a>
         </li>
         <li>
-          <a href="Sub_UC_eMed_05.html#zugriffsvariante-a-durchgeführte-abgabe-mit-kontakt-schreiben">Sub_UC_eMed_05_01 - Durchgeführte Abgabe schreiben (Dispense-Write)(Variante A: Zugriff mit Kontakt)</a>
+          <a href="Sub_UC_eMed_05.html#variante-a-durchgeführte-abgabe-mit-elga-kontaktbestätigung-schreiben">Sub_UC_eMed_05_01 - Durchgeführte Abgabe schreiben (Dispense-Write)(Variante A: Zugriff mit Kontakt)</a>
         </li>
         <li>
           <a href="Sub_UC_eMed_05.html#sub_uc_emed_05_01_03---besorgerprozess">Sub_UC_eMed_05_01_03 - Besorgerprozess</a>
@@ -516,10 +516,10 @@ Er kann auch sehen, dass er keine offenen *Geplanten Abgaben* hat und sieht in d
           <a href="Sub_UC_eMed_01.html#sub_uc_emed_01_01---aktuellen-medikationsplan-lesen-plan-read">Sub_UC_eMed_01_01 - Aktuellen Medikationsplan lesen (Plan-Read)</a>
         </li>
         <li>
-          <a href="Sub_UC_eMed_03.html#sub_uc_emed_07_01---geplante-abgaben-lesen-prescription-search">Sub_UC_eMed_03_01 - Geplante Abgaben lesen (Prescription-Search)</a>
+          <a href="Sub_UC_eMed_03.html#sub_uc_emed_03_01---geplante-abgaben-lesen-prescription-search">Sub_UC_eMed_03_01 - Geplante Abgaben lesen (Prescription-Search)</a>
         </li>
         <li>
-          <a href="Sub_UC_eMed_03.html#sub_uc_emed_07_02---durchgeführte-abgaben-lesen-dispense-search">Sub_UC_eMed_03_02 - Durchgeführte Abgaben lesen (Dispense-Search)</a>
+          <a href="Sub_UC_eMed_03.html#sub_uc_emed_03_02---durchgeführte-abgaben-lesen-dispense-search">Sub_UC_eMed_03_02 - Durchgeführte Abgaben lesen (Dispense-Search)</a>
         </li>
       </ul>
     </div>
@@ -563,7 +563,7 @@ Möglichkeit prüfen, wie der Usecase: "Medikament soll in 2 Wochen für 1 Woche
           <strong>Planeintrag pausieren:</strong>
           <ul>
             <li>
-              <a href="MedicationRequest-At-Emed-Journey-Planeintrag-01-Ramipril-v2.html">Planeintrag 1: Ramipril (Dauermedikation) pausieren</a>
+              <a href="Bundle-At-Emed-Journey-05-01-Bundle-Medikationsplan-Tx.html#MedicationRequest_6bacfe23-d469-4945-bf3c-90c7e647aa52">Planeintrag 1: Ramipril (Dauermedikation) pausieren</a>
             </li>
           </ul>
         </li>
@@ -571,7 +571,7 @@ Möglichkeit prüfen, wie der Usecase: "Medikament soll in 2 Wochen für 1 Woche
           <strong>Medikationsplan aktualisieren:</strong>
           <ul>
             <li>
-              <a href="List-At-Emed-Journey-List-Medikationsplan-v3.html">Medikationsplan: 1 Planeintrag aktualisiert, 1 Planeintrag unverändert</a>
+              <a href="Bundle-At-Emed-Journey-05-01-Bundle-Medikationsplan-Tx.html#List_4cb4dceb-173f-461a-a267-683ec33e4be1">Medikationsplan: 1 Planeintrag aktualisiert, 1 Planeintrag unverändert</a>
             </li>
           </ul>
         </li>
@@ -595,10 +595,10 @@ Möglichkeit prüfen, wie der Usecase: "Medikament soll in 2 Wochen für 1 Woche
           <a href="Sub_UC_eMed_01.html#sub_uc_emed_01_01---aktuellen-medikationsplan-lesen-plan-read">Sub_UC_eMed_01_01 - Aktuellen Medikationsplan lesen (Plan-Read)</a>
         </li>
         <li>
-          <a href="Sub_UC_eMed_03.html#sub_uc_emed_07_01---geplante-abgaben-lesen-prescription-search">Sub_UC_eMed_03_01 - Geplante Abgaben lesen (Prescription-Search)</a>
+          <a href="Sub_UC_eMed_03.html#sub_uc_emed_03_01---geplante-abgaben-lesen-prescription-search">Sub_UC_eMed_03_01 - Geplante Abgaben lesen (Prescription-Search)</a>
         </li>
         <li>
-          <a href="Sub_UC_eMed_03.html#sub_uc_emed_07_02---durchgeführte-abgaben-lesen-dispense-search">Sub_UC_eMed_03_02 - Durchgeführte Abgaben lesen (Dispense-Search)</a>
+          <a href="Sub_UC_eMed_03.html#sub_uc_emed_03_02---durchgeführte-abgaben-lesen-dispense-search">Sub_UC_eMed_03_02 - Durchgeführte Abgaben lesen (Dispense-Search)</a>
         </li>
         <li>
           <a href="Sub_UC_eMed_02.html#sub_uc_emed_02_05---planeintrag-pausieren-oder-reaktivieren">Sub_UC_eMed_02_05 - Planeintrag pausieren oder reaktivieren</a>
@@ -647,7 +647,7 @@ Zusätzlich wird die pausierte Ramipril Medikation wieder aufgenommen, aber in d
           <strong>Planeintrag anpassen:</strong>
           <ul>
             <li>
-              <a href="MedicationRequest-Planeintrag-03-Wirkstoff-Metamizol-vPOST.html">Neuer Planeintrag 1: Ramipril aktivieren + Dosierung ändern</a>
+              <a href="Bundle-At-Emed-Journey-06-02-Bundle-Medikationsplan-Tx.html#MedicationRequest_6bacfe23-d469-4945-bf3c-90c7e647aa52">Neuer Planeintrag 1: Ramipril aktivieren + Dosierung ändern</a>
             </li>
           </ul>
         </li>
@@ -655,7 +655,7 @@ Zusätzlich wird die pausierte Ramipril Medikation wieder aufgenommen, aber in d
           <strong>Planeintrag hinzufügen:</strong>
           <ul>
             <li>
-              <a href="MedicationRequest-Planeintrag-03-Wirkstoff-Metamizol-vPOST.html">Neuer Planeintrag 3: Wirstoff Metamizol (in Arbeit)</a>  <!-- TODO: Wirkstoffangabe sobald Profil verfügbar, akl 22.9.2026 -->
+              <a href="Bundle-At-Emed-Journey-06-02-Bundle-Medikationsplan-Tx.html#MedicationRequest_6852930e-6883-4301-b5c1-c142b746af8f">Neuer Planeintrag 3: Wirstoff Metamizol (in Arbeit)</a>  <!-- TODO: Wirkstoffangabe sobald Profil verfügbar, akl 22.9.2026 -->
             </li>
           </ul>
         </li>
@@ -663,7 +663,7 @@ Zusätzlich wird die pausierte Ramipril Medikation wieder aufgenommen, aber in d
           <strong>Medikationsplan aktualisieren:</strong>
           <ul>
             <li>
-              <a href="List-At-Emed-Journey-List-Medikationsplan-v4.html">Medikationsplan: Planeintrag 1 geändert, Planeintrag 2 unverändert, Planeintrag 3 neu hinzugefügt</a>
+              <a href="Bundle-At-Emed-Journey-06-02-Bundle-Medikationsplan-Tx.html#List_4cb4dceb-173f-461a-a267-683ec33e4be1">Medikationsplan: Planeintrag 1 geändert, Planeintrag 2 unverändert, Planeintrag 3 neu hinzugefügt</a>
             </li>
           </ul>
         </li>
@@ -687,10 +687,10 @@ Zusätzlich wird die pausierte Ramipril Medikation wieder aufgenommen, aber in d
           <a href="Sub_UC_eMed_01.html#sub_uc_emed_01_01---aktuellen-medikationsplan-lesen-plan-read">Sub_UC_eMed_01_01 - Aktuellen Medikationsplan lesen (Plan-Read)</a>
         </li>
         <li>
-          <a href="Sub_UC_eMed_02_02 - Planeintrag in Medikationsplan hinzufügen">Sub_UC_eMed_02.html#sub_uc_emed_02_02---planeintrag-in-medikationsplan-hinzufügen</a>
+          <a href="Sub_UC_eMed_02.html#sub_uc_emed_02_02---planeintrag-in-medikationsplan-hinzufügen">Sub_UC_eMed_02_02 - Planeintrag in Medikationsplan hinzufügen</a>
         </li>
         <li>
-          <a href="Sub_UC_eMed_02_03 - Planeintrag im Medikationsplan ändern">Sub_UC_eMed_02.html#sub_uc_emed_02_03---planeintrag-im-medikationsplan-ändern</a>
+          <a href="Sub_UC_eMed_02.html#sub_uc_emed_02_03---planeintrag-im-medikationsplan-ändern">Sub_UC_eMed_02_03 - Planeintrag im Medikationsplan ändern</a>
         </li>
         <li>
         Referenz auf Wirkstoffangabe im Medikationsplan: in Arbeit.  <!-- TODO Kapitel akl 21.9.2026 -->
@@ -740,7 +740,7 @@ Wie wird von der Fachanwendung festgestellt, ob ein Behandlungszeitraum abgelauf
           <strong>Planeintrag anpassen:</strong>
           <ul>
             <li>
-              <a href="MedicationRequest-At-Emed-Journey-07-01-Mr-Planeintrag-03.html">Neuer Planeintrag 3: passendes Arzneimittel zur Wirkstoffeangabe verodnen</a>
+              <a href="Bundle-At-Emed-Journey-07-02-Bundle-Medikationsplan-Tx.html#MedicationRequest_7128c60c-126d-42b2-b575-dc26a2324b8b">Neuer Planeintrag 3: passendes Arzneimittel zur Wirkstoffeangabe verodnen</a>
             </li>
           </ul>
         </li>
@@ -748,7 +748,7 @@ Wie wird von der Fachanwendung festgestellt, ob ein Behandlungszeitraum abgelauf
           <strong>abgelaufenen Planeintrag bestätigen:</strong> (keine Änderung erforderlich)
           <ul>
             <li>
-              <a href="MedicationRequest-At-Emed-Journey-07-01-Mr-Planeintrag-02.html">Neuer Planeintrag 2: Statusänderung wurde bereits durch Fachanwendung vorgenommen</a>
+              <a href="Bundle-At-Emed-Journey-07-02-Bundle-Medikationsplan-Tx.html#MedicationRequest_55e4be12-0d10-454c-a85f-cfb5f849e391">Neuer Planeintrag 2: Statusänderung wurde bereits durch Fachanwendung vorgenommen</a>
             </li>
           </ul>
         </li>
@@ -756,7 +756,7 @@ Wie wird von der Fachanwendung festgestellt, ob ein Behandlungszeitraum abgelauf
           <strong>Medikationsplan aktualisieren:</strong>
           <ul>
             <li>
-              <a href="List-At-Emed-Journey-07-01-List-Medikationsplan.html">Medikationsplan: Planeintrag 1 unverändert, Planeintrag 2 abgelaufen, Planeintrag 3: Wirkstoffangabe mit Arzneimittel ersetzt</a>
+              <a href="Bundle-At-Emed-Journey-07-02-Bundle-Medikationsplan-Tx.html#List_4cb4dceb-173f-461a-a267-683ec33e4be1">Medikationsplan: Planeintrag 1 unverändert, Planeintrag 2 abgelaufen, Planeintrag 3: Wirkstoffangabe mit Arzneimittel ersetzt</a>
             </li>
           </ul>
         </li>
@@ -764,7 +764,7 @@ Wie wird von der Fachanwendung festgestellt, ob ein Behandlungszeitraum abgelauf
           <strong>Transaction Bundle:</strong>
           <ul>
             <li>
-              <a href="Bundle-At-Emed-Journey-07-01-Bundle-Medikationsplan-Tx.html">Transaction Bundle</a>
+              <a href="Bundle-At-Emed-Journey-07-02-Bundle-Medikationsplan-Tx.html">Transaction Bundle</a>
             </li>
           </ul>
         </li>
@@ -780,7 +780,7 @@ Wie wird von der Fachanwendung festgestellt, ob ein Behandlungszeitraum abgelauf
           <a href="Sub_UC_eMed_01.html#sub_uc_emed_01_01---aktuellen-medikationsplan-lesen-plan-read">Sub_UC_eMed_01_01 - Aktuellen Medikationsplan lesen (Plan-Read)</a>
         </li>
         <li>
-          <a href="Sub_UC_eMed_02_03 - Planeintrag im Medikationsplan ändern">Sub_UC_eMed_02.html#sub_uc_emed_02_03---planeintrag-im-medikationsplan-ändern</a>
+          <a href="Sub_UC_eMed_02.html#sub_uc_emed_02_03---planeintrag-im-medikationsplan-ändern">Sub_UC_eMed_02_03 - Planeintrag im Medikationsplan ändern</a>
         </li>
         <li>
         Abgelaufener Planeintrag: zu verlinken.  <!-- TODO Kapitel akl 21.9.2026 -->
@@ -809,7 +809,7 @@ Zuletzt erstellt Dr. Urlaubsvertretung eine *Geplante Abgabe* für zwei Packunge
           <strong>Geplante Abgaben erstellen:</strong>
           <ul>
             <li>
-              <a href="MedicationRequest-At-Emed-Journey-07-02-Mr-Geplante-Abgabe-03.html">Geplante Abgabe zu Planeintrag 3 (Metagelan )</a>
+              <a href="MedicationRequest-At-Emed-Journey-07-03-Mr-Geplante-Abgabe-03.html">Geplante Abgabe zu Planeintrag 3 (Metagelan )</a>
             </li>
           </ul>
         </li>
@@ -817,7 +817,7 @@ Zuletzt erstellt Dr. Urlaubsvertretung eine *Geplante Abgabe* für zwei Packunge
           <strong>Transaction Bundle:</strong>
           <ul>
             <li>
-            <a href="Bundle-At-Emed-Journey-07-02-Bundle-Geplante-Abgaben-Tx.html">Transaction Bundle mit Geplanter Abgabe</a>
+            <a href="Bundle-At-Emed-Journey-07-03-Bundle-Geplante-Abgaben-Tx.html">Transaction Bundle mit Geplanter Abgabe</a>
             </li>
           </ul>
         </li>

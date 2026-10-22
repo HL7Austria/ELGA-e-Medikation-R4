@@ -2,7 +2,7 @@
 
 <!--  Technische Use Cases für Geplante Abgabe schreiben (UC_eMed_04) -->
 
-Dieser technische Use Case beschreibt den schreibenden Zugriff [berechtigter Akteure](actors.html#rollen-und-berechtigungen) auf [Geplante Abgaben](StructureDefinition-at-elga-emed-medicationrequest-geplanteabgabe.html) eines ELGA-Teilnehmers.
+Dieser technische Use Case beschreibt den schreibenden Zugriff berechtigter Akteure auf [Geplante Abgaben](StructureDefinition-at-elga-emed-medicationrequest-geplanteabgabe.html) eines ELGA-Teilnehmers.
 
 Für ELGA-Teilnehmer (bzw. deren Vertretungen) erfolgt der schreibende Zugriff im Rahmen der Ausübung von Teilnehmerrechten ausschließlich über das ELGA-Zugangsportal. Für GDA erfolgt der schreibende Zugriff über die e-Medikation-Schnittstelle des jeweiligen GDA-Systems.
 
@@ -181,7 +181,7 @@ AtElgaEmedMedicationRequestGeplanteAbgabe
 ### Sub_UC_eMed_04_04 - Geplante Abgabe abgeschlossen (durch Fachanwendung)
 <!-- TODO: abschließen -> Workflowdiagramm  akl 20.10.-->
 
-Wurden alle möglichen Einlösungen einer *Geplanten Abgabe* planmäßig durchgeführt und entsprechende *Durchgeführte Abgaben* erstellt (siehe [Sub_UC_eMed_05_01 - Durchgeführte Abgabe erfassen](Sub_UC_eMed_05.html#Sub_UC_eMed_05_01---durchgeführte-abgabe-erfassen)), setzt die Fachanwendung die *Geplante Abgabe* **automatisch** auf den Status ***completed*** (siehe [Status des MedicationRequests in der Geplanten Abgabe](workflowmanagement.html#status-des-medicationrequests-in-der-geplanten-abgabe)). Die *Geplante Abgabe* ist damit abgeschlossen.
+Wurden alle möglichen Einlösungen einer *Geplanten Abgabe* planmäßig durchgeführt und entsprechende *Durchgeführte Abgaben* erstellt (siehe [Sub_UC_eMed_05_01 - Durchgeführte Abgabe erstellen](Sub_UC_eMed_05.html#sub_uc_emed_05_01---durchgeführte-abgabe-erstellen)), setzt die Fachanwendung die *Geplante Abgabe* **automatisch** auf den Status ***completed*** (siehe [Status des MedicationRequests in der Geplanten Abgabe](workflowmanagement.html#status-des-medicationrequests-in-der-geplanten-abgabe)). Die *Geplante Abgabe* ist damit abgeschlossen.
 
 **Sonderfall**: Wird die letzte *Durchgeführte Abgabe* im Anschluss storniert (Status *entered-in-error*), wird der Status der *Geplanten Abgabe* durch die Fachanwendung wieder auf *active* gesetzt.
 

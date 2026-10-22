@@ -12,7 +12,7 @@ Usage: #definition
 * type = true   // Aufruf auf Typeebene (Ressourcentyp)
 * instance = false   // Id von Instanz muss beim Aufruf nicht bekannt sein
 * code = #dispense-write
-* resource[+] = #MedicationRequest
+* resource[+] = #MedicationDispense
 
 * parameter[+]
 * parameter[=].name = #durchgefuehrteAbgaben   
