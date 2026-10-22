@@ -29,13 +29,13 @@ Description: "Profil einer \"Durchgeführten Abgabe\" eines Arzneimittels."
 
 // Extensions
 * extension contains $medicationdispense-rendereddosageinstruction-r5 named renderedDosageInstruction 0..1
-* extension[renderedDosageInstruction] ^short = "Vollständige textuelle Zusammenfassung der Dosierungsanweisungen - wird von der Fachanwendung anhand der definiert Regeln befüllt."  // Todo Link zum Kapitel, sobald vorhanden. akl 21.10.2026
+* extension[renderedDosageInstruction] ^short = "Vollständige textuelle Zusammenfassung der Dosierungsanweisungen - wird von der Fachanwendung anhand der definierten Regeln befüllt.."  // Todo Link zum Kapitel, sobald vorhanden. akl 21.10.2026
 * extension[renderedDosageInstruction] MS
 * extension[renderedDosageInstruction].url MS
 * extension[renderedDosageInstruction].valueMarkdown MS
 // Extension für Nacherfassung einer Abgabe  
 * extension contains $medicationDispense-recorded-r5 named recorded 1..1
-* extension[recorded] ^short = "Datum und Uhrzeit, zu denen die Abgabe erfasst wurde. Dies muss nicht unbedingt mit dem Zeitpunkt übereinstimmen, zu dem das Medikament dem Patienten ausgehändigt wurde (z.B. bei Nacherfassung der Abgabe)."
+* extension[recorded] ^short = "Datum und Uhrzeit, zu denen die Geplante Abgabe erfasst wurde."
 * extension[recorded] MS
 * extension[recorded].url MS
 * extension[recorded].valueDateTime MS
@@ -61,29 +61,28 @@ Description: "Profil einer \"Durchgeführten Abgabe\" eines Arzneimittels."
 * medication[x] only Reference(AtElgaEmedMedicationStandardMedikation or AtElgaEmedMedicationMagistraleZubereitung)  
 * medication[x] ^type.aggregation = #contained
 
-* medication[x] ^short = "Das Arzneimittel wird in einer contained Medication Ressource oder als conditional reference dokumentiert, damit Arzneimittel mit und ohne PZN einheitlich dokumentiert werden können."
+* medication[x] ^short = "Das Arzneimittel wird in einer contained Medication Ressource oder als Conditional Reference dokumentiert. Diese kann, sofern ein zugehöriger Planeintrag und eine Geplante Abgabe vorliegen, von der dort angegebenen Medikation abweichen."
 * medicationReference MS
 * medicationReference.reference 1..1 MS
+
 
 // --- Subject ---
 * subject only Reference(AtElgaEmedPatient) 
 * subject 1..1 MS
-* subject ^short = "Patient, für den die Geplante Abgabe ausgestellt werden soll (über Zentralen Patientenindex identifiziert und Teilnehmer von ELGA e-Medikation)."
+* subject ^short = "ELGA-Teilnehmer, für den die Durchgeführte Abgabe dokumentiert wird."
 * subject.reference MS
 * subject.identifier MS
 * subject.identifier.system MS
 * subject.identifier.value MS
 * subject.identifier.use 0..0
-* subject.identifier.use ^short = "Fachliche Begründung: TODO"
+//* subject.identifier.use ^short = "Fachliche Begründung: TODO"
 
-
+// --- performer ---
 * performer 1..1 MS
-* performer ^short = "Durchführende Person" 
+//* performer ^short = "Verantwortlicher GDA." 
 * performer.function from AtElgaEmedValueSetMedicationDispensePerformerFunctionVS
-* performer.function ^short = "Rolle der Person, die die Abgabe durchgeführt hat."
+//* performer.function ^short = "Rolle der Person, die die Abgabe durchgeführt hat."
 * performer.actor only Reference(AtElgaEmedPractitioner or AtElgaEmedPractitionerRole or HL7ATCoreOrganization)
-* performer.actor ^short = "Refrenz auf Practitioner, PractitionerRole, Organization,der/die die Durchgeführte Abgabe erstellt hat und für den Inhalt verantwortlich ist (identifiziert über den GDA-Index und berechtigt 
-auf die ELGA e-Medikation des Patienten zuzugreifen)."
 * performer ^slicing.discriminator[+].type = #value
 * performer ^slicing.discriminator[=].path = "function.coding.code"
 * performer ^slicing.rules = #closed
@@ -92,6 +91,7 @@ auf die ELGA e-Medikation des Patienten zuzugreifen)."
 
 * performer[dispenseGDA].modifierExtension 0..0
 * performer[dispenseGDA].function 1..1 MS
+* performer[dispenseGDA].function ^short = "Rolle des der Abgabe durchführenden GDA. Fester Wert: dispenseGDA."
 * performer[dispenseGDA].function.coding 1..1 MS
 * performer[dispenseGDA].function.coding.code 1..1 MS
 * performer[dispenseGDA].function.coding.code = #dispenseGDA
@@ -101,9 +101,11 @@ auf die ELGA e-Medikation des Patienten zuzugreifen)."
 * performer[dispenseGDA].function.coding.version MS
 * performer[dispenseGDA].function.text 0..0
 * performer[dispenseGDA].actor 1..1 MS
+* performer[dispenseGDA].actor ^short = "GDA, der die Abgabe durchführt und verantwortet."
 
 * performer[referenceGDA].modifierExtension 0..0
 * performer[referenceGDA].function 1..1 MS
+* performer[referenceGDA].function ^short = "Rolle des den Planeintrag nachträglich referenzierenden GDA. Fester Wert: referenceGDA."
 * performer[referenceGDA].function.coding 1..1 MS
 * performer[referenceGDA].function.coding.code 1..1 MS
 * performer[referenceGDA].function.coding.code = #referenceGDA
@@ -113,6 +115,7 @@ auf die ELGA e-Medikation des Patienten zuzugreifen)."
 * performer[referenceGDA].function.coding.version MS
 * performer[referenceGDA].function.text 0..0
 * performer[referenceGDA].actor 1..1 MS
+* performer[referenceGDA].actor ^short = "GDA, der nachträglich eine Referenz zu einem Planeintrag herstellt."
 
 // Slicing authorizingPrescription:  
 * authorizingPrescription 0..2 MS
@@ -130,42 +133,22 @@ auf die ELGA e-Medikation des Patienten zuzugreifen)."
 
 * authorizingPrescription[geplanteAbgabe] only Reference(AtElgaEmedMedicationRequestGeplanteAbgabe)
 * authorizingPrescription[planeintrag] only Reference(AtElgaEmedMedicationRequestPlaneintrag)
-* authorizingPrescription ^short = "Referenz auf zugehörige Geplante Abgabe (MedicationRequest), sofern diese existiert bzw. 
-Planeintrag (MedicationRequest). Es muss nicht zwingend eine Geplante Abgabe referenziert werden, da es auch durchgeführte 
-Abgaben ohne Geplante Abgabe geben kann (z.B. Notfall oder OTC-Medikation)."
+* authorizingPrescription ^short = "Verpflichtende Referenzen auf zugehörige Geplante Abgabe (MedicationRequest) bzw. zugehörigen 
+Planeintrag (MedicationRequest), sofern diese existieren."
 // TODO Invariante oder Ergänzung durch Fachanwendung: Wenn Geplante Abgabe referenziert, muss auch auf den Planeintrag referenziert werden. 
-
-// zu prüfen (gemäß CDA): 'Ohne Verordnungsbezug kann nur die Abgabe jener OTC-Präparate in der e-Medikation 
-// gespeichert werden, die auch wechselwirkungsrelevant sind.'"
 
 * type 1..1 MS
 * type from AtElgaEmedMedicationDispenseTypeVS
-* type ^short = "Art der Abgabe (z.B. für Teilabgaben). Mögliche Ausprägungen: [FFC | FFP | RFP | RFC | EM]. Bedeutung: FFC: First Fill - Complete | FFP: First Fill - Part Fill | RFP: Refill - Part Fill | RFC: Refill - Complete | EM: Emergency Supply."
-//z.B. FFC (First-Fill Complete für vollständig erfüllte Bestellungen), FFP (First-Fill Part Fill für teilweise erfüllte Bestellungen), 
- //ffc, ffp, Refill - Part Fill, refill complete: evtl. selbst definieren
-// für Leerabgabe: complete-Ausprägung; Emergency supply offen (OTC), complete
-
-// EM	Emergency Supply: kein Geplante Abgabe (Rezept) für ein verschreibungspflichtes Rezept vorhanden
-// SO	Script Owing: kein Geplante Abgabe (Rezept) für ein verschreibungspflichtes Rezept vorhanden, geplante Verordnung wird im nachhinen vom GDA erstellt (Rezept nachbringen)
-// FFPS First fill, part fill, partial strength: Eine Erstabgabe, bei der die gelieferte Menge weniger als eine vollständige Wiederholung der bestellten Menge beträgt. (Beispiel: Bei einer Bestellung von 90 Tabletten und 3 Nachfüllungen könnte eine Teilabgabe nur 30 Tabletten umfassen.) Dies gilt auch, wenn die gelieferte Stärke geringer ist als die bestellte Stärke (z. B. 10 mg bei einer Bestellung von 50 mg, wobei bei einer späteren Abgabe 40-mg-Tabletten ausgegeben werden).
-// FFCS first fill complete, partial strength: A first fill where the quantity supplied is equal to one full repetition of the ordered amount. (e.g. If the order was 90 tablets, 3 refills, a complete fill would be for the full 90 tablets) and also where the strength supplied is less than the ordered strength (e.g. 10mg for an order of 50mg where a subsequent fill will dispense 40mg tablets).
-
-// Gemäß CDA: Der Prozess des „Besorgers“ (wenn ein Arzneimittel nicht lagernd ist und bestellt werden muss) wird in der e-Medikation abgebildet. 
-// Dabei wird das Rezept von der Apotheke eingelöst, und die Abgabe wird als Teilabgabe gekennzeichnet 
-// (siehe Markierung FFP „First Fill, Part Fill“ oder RFP „Refill - Part Fill“). 
-// Die Verordnung wird nicht in den Status EINGELÖST versetzt und es können solange weitere Abgaben dispensiert werden, 
-// bis eine Abgabe mit der Markierung RFC „Refill - Complete“ gespeichert wird. Die Kennzeichnung zeigt, 
-// dass das Arzneimittel dem Patienten noch nicht ausgehändigt wurde. Die Kennzeichnung zeigt auch, ob alle Packungen einer Verordnung bzw. 
-// teilweise Packungen einer Verordnung bestellt werden. Solange eine Abgabe mit der Kennzeichnung „Besorger“ vorhanden ist, muss die Abgabe mit der eMED-ID abrufbar sein.
+* type ^short = "Art der Abgabe. Mögliche Ausprägungen: [FFC | FFP | RFP | RFC | EM]. Bedeutung: FFC: First Fill - Complete (Beendigung einer Einzelabgabe) | FFP: First Fill - Part Fill (1. Teilabgabe oder Besorgerprozess) | RFP: Refill - Part Fill (weitere Teilabgabe) | RFC: Refill - Complete (letzte Teilabgabe) | EM: Emergency Supply."
 
 * quantity 1..1 MS 
 * quantity ^short = "Abgegebene Packungsanzahl."
 
-* whenHandedOver 1..1 MS
-* whenHandedOver ^short = "Der Zeitpunkt, zu dem das abgegebene Produkt dem Patienten oder seinem Vertreter zur Verfügung gestellt wurde."
+* whenHandedOver 1..1 MS  
+* whenHandedOver ^short = "Der Zeitpunkt, zu dem das Arzneimittel aushändigt wurde. Kann vom Erstellzeitpunkt der Durchgeführten Abgabe abweichen (z.B. bei Nacherfassung der Abgabe)."
 
-* note 0..1 MS // analog zur geplanten abgabe
-* note ^short = "Zusätzliche Informationen zur Abgabe, die nicht anders dokumentiert werden kann."
+* note 0..1 MS 
+* note ^short = "Zusätzliche Informationen zur Abgabe, die nicht die Dosierung betreffen."
 * note.text MS
 
 // TODO: Invariante für repeating sequences * dosageInstruction.extension contains AtElgaEmedExtensionDosageRepeat??? named repeatCycle 0..1
@@ -189,18 +172,4 @@ Abgaben ohne Geplante Abgabe geben kann (z.B. Notfall oder OTC-Medikation)."
 * dosageInstruction[standardDosage] only AtElgaEmedDosageStandardAdministration
 
 //TODO Dosage und AtElgaEmedDosageDosierung entfernen sobald Dosierungen fertig sind
-* dosageInstruction ^short = "Gibt an, wie das abgegebene Arzneimittel vom Patienten einzunehmen ist. 
-Der Apotheker überprüft die Medikamentenverordnung vor der Abgabe und passt die Dosierungsanweisung gegebenenfalls auf Grundlage des tatsächlich abgegebenen Produkts an."
-
-// * substitution.wasSubstituted 1..1
-// * substitution.wasSubstituted ^short = "TRUE, wenn der Apotheker ein anderes Medikament oder Produkt als das verschriebene abgegeben hat."
-
-// * substitution.type 0..1 MS
-// * substitution.type ^short = "Typ der Substitution: z.B. E equivalent, http://terminology.hl7.org/ValueSet/v3-ActSubstanceAdminSubstitutionCode" 
-
-// * substitution.reason 0..* MS
-// * substitution.reason ^short = "Grund für die Substitution: z.B. OS out of stock, https://hl7.org/fhir/R4/v3/SubstanceAdminSubstitutionReason/vs.html"
-
-// * substitution.responsibleParty 0..1 MS 
-// * substitution.responsibleParty ^short = "Für die Subistution Verantwortlicher."
-// * substitution.responsibleParty only Reference(AtElgaEmedPractitioner or AtElgaEmedPractitionerRole)
+* dosageInstruction ^short = "Gibt an, wie das abgegebene Arzneimittel vom Patienten einzunehmen ist. Diese kann, sofern ein zugehöriger Planeintrag und eine Geplante Abgabe vorliegen, von der dort angegebenen Dosierung abweichen."

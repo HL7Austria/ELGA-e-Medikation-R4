@@ -14,7 +14,7 @@ Description: "Profil einer \"Geplanten Abgabe\" eines Arzneimittels aus dem Medi
 * extension[effectiveDosePeriod].valuePeriod.end MS
 
 * extension contains $medicationrequest-rendereddosageinstruction-r5 named renderedDosageInstruction 0..1
-* extension[renderedDosageInstruction] ^short = "Vollständige textuelle Zusammenfassung der Dosierungsanweisungen - wird von der Fachanwendung anhand der definiert Regeln befüllt."  // Todo Link zum Kapitel, sobald vorhanden. akl 21.10.2026
+* extension[renderedDosageInstruction] ^short = "Vollständige textuelle Zusammenfassung der Dosierungsanweisungen - wird von der Fachanwendung anhand der definierten Regeln befüllt.."  // Todo Link zum Kapitel, sobald vorhanden. akl 21.10.2026
 * extension[renderedDosageInstruction] MS
 * extension[renderedDosageInstruction].url MS
 * extension[renderedDosageInstruction].valueMarkdown MS
