@@ -10,3 +10,9 @@ Der aktuelle Status einer Geplanten Abgabe wird im *status*-Element dokumentiert
 
 Relevante Use Cases:
  - [Sub_UC_eMed_04_01 - Geplante Abgabe erstellen (Prescription-Write)](Sub_UC_eMed_04.html#sub_uc_emed_04_01---geplante-abgabe-erstellen-prescription-write)
+
+<div class="note-to-balloters" markdown="1">
+
+Die Übersetzungen der `short-descriptions` werden noch erarbeitet und im nächsten Ballot zur Verfügung gestellt.
+
+</div>

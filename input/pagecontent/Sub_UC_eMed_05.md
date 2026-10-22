@@ -277,10 +277,9 @@ Die Operation kann wiederholt aufgerufen werden, um die Referenz zu ändern.
 
 ### Sub_UC_eMed_05_04 - Durchgeführte Abgabe löschen (durch ELGA-Teilnehmer)
 <!-- «DELETE» (delete) [PAT]  -->
-<div class="dragon">
-<p class="note-to-balloters">
-- Umsetzung der Teilnehmerrechte: in Arbeit.
-</p>
+
+<div class="note-to-balloters" markdown="1">
+Dieser Teil der Spezifikation wird noch erarbeitet und im nächsten Ballot zur Verfügung gestellt.
 </div>
 
 <br>
