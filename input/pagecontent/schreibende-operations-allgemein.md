@@ -19,7 +19,7 @@ Die folgenden Regeln gelten für alle schreibenden Operations dieses Implementie
 - Vor der Verarbeitung MUSS geprüft werden, ob der Aufrufer der Operation für den betroffenen Patienten und die betroffenen Ressourcen berechtigt ist.
 - Es MUSS geprüft werden, dass der schreibende GDA nach der Transaktion auch als Autor der veränderten Ressourcen dokumentiert ist.
 - Alle patientenbezogenen Ressourcen des fachlichen Schreibvorgangs MÜSSEN demselben ELGA-Teilnehmer zugeordnet sein. Dies MUSS auch für referenzierte bestehende Ressourcen und für die durch Folgeänderungen betroffenen Ressourcen geprüft werden.
-- Client-Anwendungen dürfen keine eigenen Patient-, Practitioner-, PractitionerRole- oder Organization-Ressourcen zur Stammdatenanlage oder -änderung übermitteln. Die Identifikation erfolgt gemäß IG über die vorgegebenen logischen Referenzen.
+- Client-Anwendungen dürfen keine eigenen Patient-, Practitioner- oder Organization-Ressourcen zur Stammdatenanlage oder -änderung übermitteln. Die Identifikation erfolgt gemäß IG über die vorgegebenen logischen Referenzen.
 
 #### Validierung
 - Die Fachanwendung MUSS den Zustand der Ressourcen validieren, der nach Anwendung aller übermittelten Änderungen, Referenzauflösungen und serverseitigen Ergänzungen entstehen würde. Schlägt eine erforderliche Prüfung fehl, MUSS die Operation abgelehnt werden. Es DÜRFEN KEINE fachlichen Teiländerungen persistiert werden.

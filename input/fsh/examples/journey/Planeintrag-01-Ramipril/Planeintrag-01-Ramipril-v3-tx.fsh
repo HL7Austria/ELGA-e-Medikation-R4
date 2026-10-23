@@ -24,7 +24,7 @@ Usage: #inline
 * subject.identifier.system = "urn:oid:1.2.40.0.10.2.1.1.149"
 
 * authoredOn = "2026-03-19T12:10:00+00:00"
-* requester = Reference(At-Emed-Example-PractitionerRole-03) "Dr. Krankenhaus"
+* requester = Reference(At-Emed-Example-Practitioner-03) "Dr. Krankenhaus"
 
 //* note.text = "Freitext Informationen zum Medikationsplaneintrag."
 

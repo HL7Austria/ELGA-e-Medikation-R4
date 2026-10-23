@@ -24,7 +24,7 @@ Usage: #example
 * subject.identifier.system = "urn:oid:1.2.40.0.10.2.1.1.149"
 
 * authoredOn = "2026-03-22T16:10:00+00:00"
-* requester = Reference(At-Emed-Example-PractitionerRole-01) "Dr. Hausärztin"
+* requester = Reference(At-Emed-Example-Practitioner-01) "Dr. Hausärztin"
 // TODO: zusätzliche logische Referenz: reference.identifier 
 
 // ASW 11.10.2026 TODO sollte diese Referenz versionsspezifisch sein?

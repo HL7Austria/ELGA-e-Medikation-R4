@@ -100,7 +100,7 @@ Description: "Profil einer Geplanten Abgabe eines Arzneimittels aus dem Medikati
 
 // -- Requester ---
 * requester 1..1 MS 
-* requester only Reference(AtElgaEmedPractitioner or AtElgaEmedPractitionerRole or HL7ATCoreOrganization) 
+* requester only Reference(AtElgaEmedPractitioner or AtElgaEmedPractitionerRole) //Organization hier nicht möglich da in der Liste und somit im Planeintra keine Organization erlaubt ist
 * requester ^short = "GDA, welcher die Geplante Abgabe erstellt hat und für den Inhalt verantwortlich ist."
 * requester.reference MS
 * requester.identifier MS

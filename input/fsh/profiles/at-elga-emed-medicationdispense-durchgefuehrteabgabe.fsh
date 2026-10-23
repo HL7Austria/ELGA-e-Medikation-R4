@@ -82,7 +82,7 @@ Description: "Profil einer Durchgeführten Abgabe eines Arzneimittels."
 //* performer ^short = "Verantwortlicher GDA." 
 * performer.function from AtElgaEmedValueSetMedicationDispensePerformerFunctionVS
 //* performer.function ^short = "Rolle der Person, die die Abgabe durchgeführt hat."
-* performer.actor only Reference(AtElgaEmedPractitioner or AtElgaEmedPractitionerRole or HL7ATCoreOrganization)
+* performer.actor only Reference(AtElgaEmedPractitioner or AtElgaEmedPractitionerRole)
 * performer ^slicing.discriminator[+].type = #value
 * performer ^slicing.discriminator[=].path = "function.coding.code"
 * performer ^slicing.rules = #closed
