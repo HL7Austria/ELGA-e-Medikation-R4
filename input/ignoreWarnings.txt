@@ -27,7 +27,6 @@ Reference to experimental CodeSystem https://fhir.hl7.at/elga/emed/r4/CodeSystem
 Reference to draft CodeSystem http://hl7.org/fhir/CodeSystem/medicationrequest-status|4.0.1
 Reference to draft CodeSystem http://hl7.org/fhir/list-status|4.0.1	
 A definition for CodeSystem 'https://termgit.elga.gv.at/CodeSystem/elga-gtelvogdarollen' could not be found, so the code cannot be validated
-ValueSet 'https://termgit.elga.gv.at/ValueSet/hl7-at-practitionerrole' not found
 
 #AT Core Warnings
 No definition could be found for URL value 'urn:oid:1.2.40.0.10.1.4.3.1'

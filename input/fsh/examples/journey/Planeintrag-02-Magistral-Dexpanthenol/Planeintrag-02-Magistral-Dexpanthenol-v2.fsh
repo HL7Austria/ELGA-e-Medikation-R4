@@ -29,7 +29,7 @@ Usage: #inline
 * subject.reference = "Patient/At-Emed-Example-Patient-01"
 
 * authoredOn = "2026-02-27T08:10:00+00:00"
-* requester = Reference(At-Emed-Example-PractitionerRole-01) "Dr. Hausärztin"
+* requester = Reference(At-Emed-Example-Practitioner-01) "Dr. Hausärztin"
 
 //* note.text = "Freitext Informationen zum Medikationsplaneintrag."
 

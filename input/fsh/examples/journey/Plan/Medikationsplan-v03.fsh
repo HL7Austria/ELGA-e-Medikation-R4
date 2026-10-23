@@ -17,7 +17,7 @@ Usage: #inline
 
 * date = "2026-03-14T13:10:00+00:00"
 // logische referenz über oid
-* source = Reference(At-Emed-Example-PractitionerRole-01) "Dr. Hausärztin"
+* source = Reference(At-Emed-Example-Practitioner-01) "Dr. Hausärztin"
 // * orderedBy = http://terminology.hl7.org/CodeSystem/list-order#user
 
 // Listeneinträge

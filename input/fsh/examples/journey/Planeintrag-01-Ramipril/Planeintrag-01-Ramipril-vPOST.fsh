@@ -23,7 +23,7 @@ Usage: #inline
 * subject.identifier.system = "urn:oid:1.2.40.0.10.2.1.1.149"
  //Reference(At-Emed-Example-Patient-01) "Anton Mustermann"
 * authoredOn = "2026-02-27T08:10:00+00:00" 
-* requester = Reference(At-Emed-Example-PractitionerRole-01) "Dr. Hausärztin"
+* requester = Reference(At-Emed-Example-Practitioner-01) "Dr. Hausärztin"
 
 //* note.text = "Freitext Informationen zum Medikationsplaneintrag."
 

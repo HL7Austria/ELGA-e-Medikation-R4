@@ -179,7 +179,7 @@ Sie speichert den neuen Medikationsplan.
               <a href="Bundle-At-Emed-Journey-01-02-Bundle-Medikationsplan-Tx.html">Transaction Bundle</a>
             </li>
             <li>
-              <a href="PractitionerRole-At-Emed-Example-PractitionerRole-01.html">Dr. Hausärztin</a>
+              <a href="Practitioner-At-Emed-Example-Practitioner-01.html">Dr. Hausärztin</a>
             </li>
           </ul>
         </li>
