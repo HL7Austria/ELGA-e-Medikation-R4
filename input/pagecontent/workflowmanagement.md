@@ -1,12 +1,16 @@
+{% include styleheader.md %}
+
+
 ### Überblick der Statusänderungen der e-Medikation Ressourcen 
 
+[![diagram](Workflowmanagement_status_abhaengigkeiten.svg){: style="width: 100%"}](Workflowmanagement_status_abhaengigkeiten.svg)
 <br>
 
 #### Status des List.entry.flags im Medikationsplan
 
-Ein *Medikationsplaneintrag* kann, abhängig vom jeweiligen ([Use Case für Medikationsplan schreiben](Sub_UC_eMed_02.html)), unterschiedliche Status einnehmen. Dieser Status wird sowohl in der MedicationRequest-Ressource selbst als auch auf List-Ebene im Element List.entry.flag dokumentiert.
+Ein *Medikationsplaneintrag* kann, abhängig vom jeweiligen ([Use Case für Medikationsplan schreiben](Sub_UC_eMed_02.html)), unterschiedliche Status einnehmen. Dieser Status wird sowohl in der MedicationRequest-Ressource selbst als auch auf **List-Ebene** im *List.entry.flag* dokumentiert.
 
-Das *flag*-Element eines Entries der List-Ressource beschreibt die **Art der Änderung eines Mediaktionsplaneintrags auf Listenebene** und kann folgende Status einnehmen (siehe [CodeSystem-ElgaListEntryFlagCS](CodeSystem-ElgaListEntryFlagCS.html)):
+Das *List.entry.flag* kann folgende Status einnehmen (siehe [CodeSystem-ElgaListEntryFlagCS](CodeSystem-ElgaListEntryFlagCS.html)):
 <br><br>
 
 | List.entry.flag | Beschreibung |
@@ -26,12 +30,92 @@ Je nach Zugriffsart (Plan-History-Search, Plan-Read oder Write) ergeben sich unt
 <br>
 <br>
 
-| List.entry.flag | Plan-History-Search | Plan-Read | Plan-Write |
-|--------|------|------|------|
-| **new** |- List-Entries, die vom Vorgänger-GDA mit *new* geflaggt wurden, bleiben beim Plan-History-Search **unverändert**.<br>- Die neuen MedicationRequests sind im Medikationsplan-Bundle enthalten.|- List-Entries, die vom Vorgänger-GDA mit *new* geflaggt wurden, werden beim Plan-Read von der **Fachanwendung** als **unchanged** geflaggt.<br>- Die betreffenden MedicationRequests sind im Medikationsplan-Bundle enthalten.|- List-Entries, die beim schreibenden Zugriff vom aktuellen GDA mit *new* geflaggt wurden, werden dem Medikationsplan neu hinzugefügt.<br>- Die betreffenden MedicationRequests müssen im Transaction Bundle **enthalten** sein.|
-| **unchanged** |- List-Entries, die vom Vorgänger-GDA mit *unchanged* geflaggt wurden, bleiben beim Plan-History-Search **unverändert**.<br>- Die unveränderten MedicationRequests sind im Medikationsplan-Bundle enthalten. |- List-Entries, die vom Vorgänger-GDA als *unchanged* geflaggt wurden, bleiben beim Plan-Read von der Fachanwendung unverändert.<br>- Die betreffenden MedicationRequests sind im Medikationsplan-Bundle enthalten.|- List-Entries, die vom aktuellen GDA nicht verändert wurden, bleiben beim schreibenden Zugriff mit *unchanged* geflaggt. Sie gelten somit als zur Kenntnis genommen.<br>-  Die betreffenden MedicationRequests sind nicht im Transaction Bundle enthalten, sondern werden in der Liste **nur referenziert**.|
-|  **changed**  |- List-Entries, die vom Vorgänger-GDA mit *changed* geflaggt wurden, bleiben beim Plan-History-Search **unverändert**.<br>- Die geänderten MedicationRequests sind im Medikationsplan-Bundle enthalten.|- List-Entries, die vom Vorgänger-GDA mit *changed* geflaggt wurden, werden beim Plan-Read von der **Fachanwendung** als **unchanged** geflaggt.<br>- Die betreffenden MedicationRequests sind im Medikationsplan-Bundle enthalten. |- List-Entries, die vom aktuellen GDA mit *changed* geflaggt werden, wurden geändert.<br>- Die betreffenden MedicationRequests müssen im Transaction Bundle **enthalten** sein.|
-|  **removed**  |- List-Entries, die vom Vorgänger-GDA mit *removed* geflaggt wurden, bleiben beim Plan-History-Search **unverändert**.<br>- Die zum Entfernen markierten MedicationRequests sind im Medikationsplan-Bundle enthalten. |- List-Entries, die vom Vorgänger-GDA mit *removed* geflaggt wurden, werden beim Plan-Read von der **Fachanwendung entfernt**.<br>- Die betreffenden MedicationRequests sind im Medikationsplan-Bundle **nicht enthalten**.|- List-Entries, die beim schreibenden Zugriff vom aktuellen GDA mit *removed* geflaggt wurden, sollen aus dem Medikationsplan entfernt werden.<br>- Die betreffenden MedicationRequests werden u.a. mit dem entsprechenden Status geflaggt und müssen im Transaction Bundle **enthalten** sein. |
+<div class="table-responsive">
+  <table>
+      <thead>
+          <tr>
+              <th>List.entry.flag</th>
+              <th>Plan-History-Search</th>
+              <th>Plan-Read</th>
+              <th>Plan-Write</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr>
+              <td><strong>new</strong></td>
+              <td>
+                  - List-Entries, die vom Vorgänger-GDA mit <em>new</em> geflaggt wurden, bleiben beim Plan-History-Search
+                  <strong>unverändert</strong>.<br />- Die neuen MedicationRequests sind im Medikationsplan-Bundle
+                  enthalten.
+              </td>
+              <td>
+                  - List-Entries, die vom Vorgänger-GDA mit <em>new</em> geflaggt wurden, werden beim Plan-Read von der
+                  <strong>Fachanwendung</strong> als <strong>unchanged</strong> geflaggt.<br />- Die betreffenden
+                  MedicationRequests sind im Medikationsplan-Bundle enthalten.
+              </td>
+              <td>
+                  - List-Entries, die beim schreibenden Zugriff vom aktuellen GDA mit <em>new</em> geflaggt wurden, werden
+                  dem Medikationsplan neu hinzugefügt.<br />- Die betreffenden MedicationRequests müssen im Transaction
+                  Bundle <strong>enthalten</strong> sein.
+              </td>
+          </tr>
+          <tr>
+              <td><strong>unchanged</strong></td>
+              <td>
+                  - List-Entries, die vom Vorgänger-GDA mit <em>unchanged</em> geflaggt wurden, bleiben beim
+                  Plan-History-Search <strong>unverändert</strong>.<br />- Die unveränderten MedicationRequests sind im
+                  Medikationsplan-Bundle enthalten.
+              </td>
+              <td>
+                  - List-Entries, die vom Vorgänger-GDA als <em>unchanged</em> geflaggt wurden, bleiben beim Plan-Read von
+                  der Fachanwendung unverändert.<br />- Die betreffenden MedicationRequests sind im Medikationsplan-Bundle
+                  enthalten.
+              </td>
+              <td>
+                  - List-Entries, die vom aktuellen GDA nicht verändert wurden, bleiben beim schreibenden Zugriff mit
+                  <em>unchanged</em> geflaggt. Sie gelten somit als zur Kenntnis genommen.<br />- Die betreffenden
+                  MedicationRequests sind nicht im Transaction Bundle enthalten, sondern werden in der Liste
+                  <strong>nur referenziert</strong>.
+              </td>
+          </tr>
+          <tr>
+              <td><strong>changed</strong></td>
+              <td>
+                  - List-Entries, die vom Vorgänger-GDA mit <em>changed</em> geflaggt wurden, bleiben beim
+                  Plan-History-Search <strong>unverändert</strong>.<br />- Die geänderten MedicationRequests sind im
+                  Medikationsplan-Bundle enthalten.
+              </td>
+              <td>
+                  - List-Entries, die vom Vorgänger-GDA mit <em>changed</em> geflaggt wurden, werden beim Plan-Read von
+                  der <strong>Fachanwendung</strong> als <strong>unchanged</strong> geflaggt.<br />- Die betreffenden
+                  MedicationRequests sind im Medikationsplan-Bundle enthalten.
+              </td>
+              <td>
+                  - List-Entries, die vom aktuellen GDA mit <em>changed</em> geflaggt werden, wurden geändert.<br />- Die
+                  betreffenden MedicationRequests müssen im Transaction Bundle <strong>enthalten</strong> sein.
+              </td>
+          </tr>
+          <tr>
+              <td><strong>removed</strong></td>
+              <td>
+                  - List-Entries, die vom Vorgänger-GDA mit <em>removed</em> geflaggt wurden, bleiben beim
+                  Plan-History-Search <strong>unverändert</strong>.<br />- Die zum Entfernen markierten MedicationRequests
+                  sind im Medikationsplan-Bundle enthalten.
+              </td>
+              <td>
+                  - List-Entries, die vom Vorgänger-GDA mit <em>removed</em> geflaggt wurden, werden beim Plan-Read von
+                  der <strong>Fachanwendung entfernt</strong>.<br />- Die betreffenden MedicationRequests sind im
+                  Medikationsplan-Bundle <strong>nicht enthalten</strong>.
+              </td>
+              <td>
+                  - List-Entries, die beim schreibenden Zugriff vom aktuellen GDA mit <em>removed</em> geflaggt wurden,
+                  sollen aus dem Medikationsplan entfernt werden.<br />- Die betreffenden MedicationRequests werden u.a.
+                  mit dem entsprechenden Status geflaggt und müssen im Transaction Bundle <strong>enthalten</strong> sein.
+              </td>
+          </tr>
+      </tbody>
+  </table>
+</div>
 
 <br>
 
@@ -46,7 +130,7 @@ Im Kontext des Medikationsplans kann dieses Element folgende Statuswerte annehme
 |---------------|------|
 | **active** | Der Planeintrag dokumentiert eine aktuell einzunehmende Medikation. |
 | **on-hold** | Der Planeintrag dokumentiert ein pausierte Medikation (aktuell nicht einzunehmen). |
-| **stopped** | Der Planeintrag ist nicht länger aktiv. Die Medikation wird nicht weiter verordnet. Dies gilt unabhängig davon, ob der Behandlungszeitraum abgelaufen ist, die Medikation vorzeitig abgesetzt wurde. Der Planeintrag wird damit abgeschlossen (Endzustand). (\*)
+| **stopped** | Der Planeintrag ist nicht länger aktiv. Die Medikation wird nicht weiter verordnet. Dies gilt unabhängig davon, ob der Einnahmezeitraum abgelaufen ist oder die Medikation vorzeitig abgesetzt wurde. Der Planeintrag wird damit abgeschlossen (Endzustand). (\*)
 | **entered-in-error** | Der Planeintrag ist storniert. Der Planeintrag wird damit abgeschlossen (Endzustand). |
 
 (\*) Abweichung vom verpflichtenden Value-Set [medicationrequest-status](https://hl7.org/fhir/R4/valueset-medicationrequest-status.html): Der Status *stopped* vereint die Defintionen von *completed* und *stopped* und entspricht dem Stataus *ended* aus FHIR R6. 
@@ -63,84 +147,73 @@ Im Kontext des Medikationsplans kann dieses Element folgende Statuswerte annehme
 Da der Status eines Medikationsplaneintrags im Medikationsplan auf **zwei Ebenen** geführt wird (List.entry.flag und MedicationRequest.status), müssen diese beiden Ebenen zur Sicherstellung einer konsistenten Verarbeitung inhaltlich aufeinander abgestimmt sein. Die folgende Tabelle beschreibt die geltenden Konsistenzregeln zwischen List.entry.flag und MedicationRequest.status in Abhängigkeit vom jeweiligen Use Case:
 <br><br>
 
-
-<table>
-  <colgroup>
-    <col style="width: 30%">
-    <col style="width: 20%"> 
-    <col style="width: 20%">
-    <col style="width: 30%">
-  </colgroup>
-  <thead>
-    <tr>
-      <th>Use Case</th>
-      <th>List.entry.flag</th>
-      <th>MedicationRequest-Status<br>(Planeintrag)</th>
-      <th>Beschreibung</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td rowspan="2"><span style="font-weight:normal">Neuen Planeintrag zum Medikationsplan hinzufügen</span></td>
-      <td><span style="font-weight:bold">new</span></td>
-      <td><span style="font-weight:bold">active</span></td>
-      <td>
-        <span style="font-weight:normal">Neuer Planeintrag wird erstellt und ist aktiv</span><br>
-        <span style="font-weight:normal">- der Behandlungszeitraum kann in der Zukunft liegen</span>
-      </td>
-    </tr>
-    <tr>
-      <td><span style="font-weight:bold">new</span></td>
-      <td><span style="font-weight:bold">on-hold</span></td>
-      <td><span style="font-weight:normal">Neuer Planeintrag wird erstellt, wird aber pausiert</span></td>
-    </tr>
-    <tr>
-      <td rowspan="2"><span style="font-weight:normal">Bestehenden Planeintrag im Medikationsplan beibehalten/zur Kenntnis nehmen</span></td>
-      <td><span style="font-weight:bold">unchanged</span></td>
-      <td><span style="font-weight:bold">active</span></td>
-      <td>
-        <span style="font-weight:normal">Bestehender Planeintrag bleibt unverändert</span><br>
-        <span style="font-weight:normal">- der Behandlungszeitraum darf noch nicht abgelaufen sein</span>
-      </td>
-    </tr>
-    <tr>
-      <td><span style="font-weight:bold">unchanged</span></td>
-      <td><span style="font-weight:bold">on-hold</span></td>
-      <td>
-        <span style="font-weight:normal">Bestehender Planeintrag bleibt unverändert pausiert</span><br>
-        <span style="font-weight:normal">- der Behandlungszeitraum darf noch nicht abgelaufen sein</span>
-      </td>
-    </tr>
-    <tr>
-      <td rowspan="2"><span style="font-weight:normal">Bestehenden Planeintrag im Medikationsplan ändern</span></td>
-      <td><span style="font-weight:bold">changed</span></td>
-      <td><span style="font-weight:bold">active</span></td>
-      <td><span style="font-weight:normal">Bestehender Planeintrag wird geändert</span></td>
-    </tr>
-    <tr>
-      <td><span style="font-weight:bold">changed</span></td>
-      <td><span style="font-weight:bold">on-hold</span></td>
-      <td><span style="font-weight:normal">Bestehender Planeintrag wird geändert und pausiert</span></td>
-    </tr>
-    <!-- <tr>
-      <td rowspan="3"><span style="font-weight:normal">Bestehenden Planeintrag aus Medikationsplan entfernen</span></td>
-      <td><span style="font-weight:bold">removed</span></td>
-      <td><span style="font-weight:bold">completed</span></td>
-      <td><span style="font-weight:normal">Bestehender Planeintrag wird beendet. Die Therapie wurde wie geplant durchgeführt und ist abgeschlossen.</span></td>
-    </tr> -->
-    <tr>
-      <td><span style="font-weight:bold">removed</span></td>
-      <td><span style="font-weight:bold">stopped</span></td>
-      <td><span style="font-weight:normal">Bestehender Planeintrag wird <!-- vor Ablauf des Behandlungszeitraums --> dauerhaft gestoppt. Die Medikation wurde <!-- >, bevor alle geplanten Einnahmen oder Verabreichungen durchgeführt wurden, --> abgesetzt.</span></td>
-    </tr>
-    <tr>
-      <td><span style="font-weight:bold">removed</span></td>
-      <td><span style="font-weight:bold">entered-in-error</span></td>
-      <td><span style="font-weight:normal">Bestehender Planeintrag wird aufgrund eines Fehlers storniert</span></td>
-    </tr>
-  </tbody>
-</table>
-
+<div class="table-responsive">
+  <table>
+    <thead>
+      <tr>
+        <th>Use Case</th>
+        <th>List.entry.flag</th>
+        <th>MedicationRequest-Status<br>(Planeintrag)</th>
+        <th>Beschreibung</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td rowspan="2" class="use-case-heading">Neuen Planeintrag zum Medikationsplan hinzufügen</td>
+        <td><b>new</b></td>
+        <td><b>active</b></td>
+        <td>
+          Neuer Planeintrag wird erstellt und ist aktiv. Der Einnahmezeitraum kann in der Zukunft liegen.
+        </td>
+      </tr>
+      <tr>
+        <td><b>new</b></td>
+        <td><b>on-hold</b></td>
+        <td>Neuer Planeintrag wird erstellt, wird aber pausiert.</td>
+      </tr>
+      <tr>
+        <td rowspan="2" class="use-case-heading">Bestehenden Planeintrag im Medikationsplan beibehalten/zur Kenntnis nehmen</td>
+        <td><b>unchanged</b></td>
+        <td><b>active</b></td>
+        <td>
+          Bestehender Planeintrag bleibt unverändert. Der Einnahmezeitraum darf noch nicht abgelaufen sein.
+        </td>
+      </tr>
+      <tr>
+        <td><b>unchanged</b></td>
+        <td><b>on-hold</b></td>
+        <td>
+          Bestehender Planeintrag bleibt unverändert pausiert. Der Einnahmezeitraum darf noch nicht abgelaufen sein.
+        </td>
+      </tr>
+      <tr>
+        <td rowspan="2" class="use-case-heading">Bestehenden Planeintrag im Medikationsplan ändern</td>
+        <td><b>changed</b></td>
+        <td><b>active</b></td>
+        <td>Bestehender Planeintrag wird geändert.</td>
+      </tr>
+      <tr>
+        <td><b>changed</b></td>
+        <td><b>on-hold</b></td>
+        <td>Bestehender Planeintrag wird geändert und pausiert.</td>
+      </tr>
+      <tr>
+        <td rowspan="2" class="use-case-heading">Bestehenden Planeintrag aus Medikationsplan entfernen</td>
+        <td><b>removed</b></td>
+        <td><b>stopped</b></td>
+        <td>
+          Bestehender Planeintrag wird dauerhaft gestoppt.
+          Die Medikation wird nicht weiter verordnet.
+        </td>
+      </tr>
+      <tr>
+        <td><b>removed</b></td>
+        <td><b>entered-in-error</b></td>
+        <td>Bestehender Planeintrag wird aufgrund eines Fehlers storniert.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 <br>
 
 #### Status der Geplanten Abgabe (MedicationRequest)
@@ -174,19 +247,75 @@ Eine [Geplante Abgabe](design_choices.html#geplante-abgabe-atelgaemedmedicationr
 
 #### Gültigkeit von Geplanten Abgaben basierend auf der Rezeptart
 
+{% include styleheader.md %}
 
-| Rezeptart | Gültigkeit[^2] | Einlösungen[^1] | Verlängerung
-|-------|------|-------|------|
-| Kassenrezept | <br>• 1 Monat ab Beginn des Gültigkeitszeitraums (ab Datum der Verordnung) <br><br>z.B. Rezept wurde am 15.5. ausgestellt und kann bis inkl. 15.6. eingelöst werden | 1× (kann nur in 1 Apotheke eingelöst werden) | Im Zuge des "Besorgerprozesses" (Medikament muss erst bestellt werden) wird bei einer gespeicherten Teilabgabe die gesamte Gültigkeitsdauer auf 3 Monate verlängert.|
-| Privatrezept | Gültigkeit festgelegt durch verordnenden GDA:<br>• mindestens: 1 Monat ab Beginn des Gültigkeitszeitraums<br>• maximal: 1 Jahr ab Beginn des Gültigkeitszeitraums (1. Einlösung muss innerhalb eines Monats ab Datum der Verordnung erfolgen) | Bis zu 6× (durch den Verordner festgelegt); kann in mehreren Apotheken eingelöst werden (je nach Anzahl der Einlösemöglichkeiten) | Keine Verlängerung möglich. |
-| Substitutionsrezept | Gültigkeit festgelegt durch verordnenden GDA:<br>• beliebige Dauer ab Beginn des Gültigkeitszeitraums <br>•	Wenn kein Datum angegeben: Beginn des Gültigkeitszeitraums + 1 Monat | 1× | Keine Verlängerung möglich. |
+<div class="table-responsive">
+  <table>
+    <thead>
+      <tr>
+        <th>Rezeptart</th>
+        <th>Gültigkeit<sup>[1]</sup></th>
+        <th>Einlösungen<sup>[2]</sup></th>
+        <th>Verlängerung</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Kassenrezept</td>
+        <td>
+          <ul>
+            <li>1 Monat ab Beginn des Gültigkeitszeitraums (ab Datum der Verordnung)</li>
+          </ul>
+          z.B: Rezept wurde am 15.5. ausgestellt und kann bis inkl. 15.6. eingelöst werden.
+        </td>
+        <td>1× (kann nur in 1 Apotheke eingelöst werden)</td>
+        <td>
+          Im Zuge des „Besorgerprozesses“ (Medikament muss erst bestellt werden)
+          wird bei einer gespeicherten Teilabgabe die gesamte Gültigkeitsdauer
+          auf 3 Monate verlängert.
+        </td>
+      </tr>
+      <tr>
+        <td>Privatrezept</td>
+        <td>
+          Gültigkeit festgelegt durch verordnenden GDA:
+          <ul>
+            <li>Mindestens: 1 Monat ab Beginn des Gültigkeitszeitraums</li>
+            <li>
+              Maximal: 1 Jahr ab Beginn des Gültigkeitszeitraums
+              (1. Einlösung muss innerhalb eines Monats ab Datum der Verordnung erfolgen)
+            </li>
+          </ul>
+        </td>
+        <td>
+          Bis zu 6× (durch den Verordner festgelegt); kann in mehreren Apotheken
+          eingelöst werden (je nach Anzahl der Einlösemöglichkeiten)
+        </td>
+        <td>Keine Verlängerung möglich.</td>
+      </tr>
+      <tr>
+        <td>Substitutionsrezept</td>
+        <td>
+          Gültigkeit festgelegt durch verordnenden GDA:
+          <ul>
+            <li>Beliebige Dauer ab Beginn des Gültigkeitszeitraums</li>
+            <li>
+              Wenn kein Datum angegeben: Beginn des Gültigkeitszeitraums + 1 Monat
+            </li>
+          </ul>
+        </td>
+        <td>1×</td>
+        <td>Keine Verlängerung möglich.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
-
-[^1] Die Anzahl der Einlösungen gibt an, wie oft ein Rezept eingelöst werden darf. Ist keine Einlösung mehr möglich erhält die zugehörige *Geplante Abgabe* den Status eingelöst (*completed*).<br>
-[^2] Ist der Gültigkeitszeitraum überschritten erhält die zugehörige *Geplante Abgabe* den Status abgelaufen (*stopped*). Das Einlösen eines Rezepts nach Ablauf der Gültigkeit wird durch e-Medikation nicht verhindert. Die Abgabe kann in diesem Fall ohne Verordnungsbezug in e-Medikation gespeichert werden. 
+[1] Die Anzahl der Einlösungen gibt an, wie oft ein Rezept eingelöst werden darf. Ist keine Einlösung mehr möglich erhält die zugehörige *Geplante Abgabe* den Status eingelöst (*completed*).<br>
+[2] Ist der Gültigkeitszeitraum überschritten erhält die zugehörige *Geplante Abgabe* den Status abgelaufen (*stopped*). Das Einlösen eines Rezepts nach Ablauf der Gültigkeit wird durch e-Medikation nicht verhindert. Die Abgabe kann in diesem Fall ohne Verordnungsbezug in e-Medikation gespeichert werden. 
 <br><br>
 
-#### Status der Durchgeführten Abgabe (MedicationDispense)
+#### Status des MedicationDispense in der Durchgeführten Abgabe
 
 Eine [Durchgeführte Abgabe](design_choices.html#durchgeführte-abgabe-atelgaemedmedicationdispensedurchgefuehrteabgabe-medicationdispense) kann, abhängig vom jeweiligen [Use Case für Durchgeführte Abgabe schreiben](Sub_UC_eMed_05.html), unterschiedliche Status einnehmen (Element *status*). 
 
@@ -195,7 +324,7 @@ Eine [Durchgeführte Abgabe](design_choices.html#durchgeführte-abgabe-atelgaeme
 |--------|------|
 | **completed** | Die Durchgeführte Abgabe ist abgeschlossen (Einzel- oder Teilabgabe durchgeführt). |
 | **cancelled** | *Durchgeführte Abgabe* gecancelt (Leerabgabe): Der Patient benötigt die Medikation einer *Geplanten Abgabe* nicht. |
-| **entered-in-error** | Vorhandene *Durchgeführte Abgabe* (im Status *completed* oder *cancelled*) wird aufgrund eines Fehlers storniert (eine mögliche beendete *Geplante Abgabe*, wird dadurch wieder *aktiv*)|
+| **entered-in-error** | Vorhandene *Durchgeführte Abgabe* (im Status *completed* oder *cancelled*) wird aufgrund eines Fehlers storniert (eine mögliche abgeschlossene *Geplante Abgabe*, wird dadurch wieder *aktiv*)|
 
 
 <!-- |  **preparation**  | *Durchgeführte Abgabe* wird vorbereitet (zubereitet oder bestellt) | -->
@@ -208,22 +337,6 @@ Eine [Durchgeführte Abgabe](design_choices.html#durchgeführte-abgabe-atelgaeme
 
 #### Abhängigkeiten der *Geplanten Abgabe* und der *Durchgeführten Abgaben*
 
-
-<style> 
-/*TODO: falls table-responsive verwendet werden soll, sollte dieser style ausgelagert werden damit er auf allen pages verfügbar ist*/
-.table-responsive {
-    display: block;
-    width: 100%;
-    overflow-x: auto;
-    max-height: 800px;
-    overflow-y: auto;
-}
-.table-responsive > table { width: 100%; }
-.table-responsive th, .table-responsive td { padding: 15px; background: #f5f5f5; }
-.table-responsive table { border-collapse: separate; border-spacing: 3px; }
-/* Sticky header */
-.table-responsive th { position: sticky; top: 0; background: rgb(228, 228, 228); z-index: 2; }
-</style>
 
 
 <div class="table-responsive">
@@ -246,7 +359,7 @@ Eine [Durchgeführte Abgabe](design_choices.html#durchgeführte-abgabe-atelgaeme
     <tr>
       <td><em>Geplante Abgabe</em> basierend auf Planeintrag erfassen</td>
       <td>active</td>
-      <td>Planeintrag bleibt active, unabhängig von Status der geplanten Abgabe (*)</td>
+      <td>Planeintrag bleibt active, unabhängig von Status der Geplanten Abgabe (*)</td>
       <td>active</td>
       <td>OFFEN</td>
       <td>z.B. 6 Einlösungen bei Privatrezept</td>
@@ -258,7 +371,7 @@ Eine [Durchgeführte Abgabe](design_choices.html#durchgeführte-abgabe-atelgaeme
     <tr>
       <td><em>Geplante Abgabe</em> beenden (durch Fachanwendung)</td>
       <td>active</td>
-      <td>Planeintrag bleibt active, unabhängig von Status der geplanten Abgabe (*)</td>
+      <td>Planeintrag bleibt active, unabhängig von Status der Geplanten Abgabe (*)</td>
       <td>completed</td>
       <td>EINGELÖST</td>
       <td>auf Basis der Durchgeführten Abgaben automatisch gesetzt durch Fachanwendung; dh. Alle möglichen Einlösungen sind abgechlossen (entweder completed oder cancelled)</td>
@@ -270,7 +383,7 @@ Eine [Durchgeführte Abgabe](design_choices.html#durchgeführte-abgabe-atelgaeme
     <tr>
       <td><em>Geplante Abgabe</em> stornieren</td>
       <td>active</td>
-      <td>Planeintrag bleibt active, unabhängig von Status der geplanten Abgabe (*)</td>
+      <td>Planeintrag bleibt active, unabhängig von Status der Geplanten Abgabe (*)</td>
       <td>entered-in-error</td>
       <td>STORNIERT</td>
       <td>bei fehlerhafter Eingabe, wenn noch keine Abgabe durchgeführt</td>
@@ -282,25 +395,25 @@ Eine [Durchgeführte Abgabe](design_choices.html#durchgeführte-abgabe-atelgaeme
     <tr>
       <td><em>Geplante Abgabe</em> abgelaufen (durch Fachanwendung)</td>
       <td>active</td>
-      <td>Planeintrag bleibt active, unabhängig von Status der geplanten Abgabe (*)</td>
+      <td>Planeintrag bleibt active, unabhängig von Status der Geplanten Abgabe (*)</td>
       <td>stopped</td>
       <td>ABGELAUFEN</td>
       <td>automatisch erkannt durch Fachanwendung</td>
       <td>kein relevanter Status</td>
       <td>kein relevanter Status</td>
-      <td>noch keine bzw. noch nicht alle mögl. Einlösungen erfolgt<br/>Zu abgelaufenen geplanten Abgaben können keine Abgaben mehr gespeichert werden. Die (nachträgliche) Speicherung von Abgaben zu einem abgelaufenen Rezept kann im Anlassfall allerdings ohne Verordnungsbezug erfolgen.</td>
+      <td>noch keine bzw. noch nicht alle mögl. Einlösungen erfolgt.<br/>Zu abgelaufenen Geplanten Abgaben können keine Abgaben mehr gespeichert werden. Die (nachträgliche) Speicherung von Abgaben zu einem abgelaufenen Rezept kann im Anlassfall allerdings ohne Verordnungsbezug erfolgen.</td>
       <td>&nbsp;</td>
     </tr>
     <tr>
       <td><em>Geplante Abgabe</em> nicht abgegeben (durch Fachanwendung)</td>
       <td>active</td>
-      <td>Planeintrag bleibt active, unabhängig von Status der geplanten Abgabe (*)</td>
+      <td>Planeintrag bleibt active, unabhängig von Status der Geplanten Abgabe (*)</td>
       <td>cancelled</td>
       <td>NICHT_ABGEGEBEN</td>
       <td>automatisch, wenn alle Einlösungen im MedicationDispense den Status "cancelled" erhalten haben</td>
       <td>cancelled</td>
       <td>ABGESETZT</td>
-      <td>Apotheker dokumentiert in der Durchgeführten Abgabe, dass der Patient das Medikament in der geplanten Abgabe nicht einnimmt (mit Packungen 0) (entspricht der Leerabgabe).<br/>Kann wieder rückgängig gemacht werden (durch Storno)</td>
+      <td>Apotheker dokumentiert in der Durchgeführten Abgabe, dass der Patient das Medikament in der Geplanten Abgabe nicht benötigt (mit Packungen 0) (Leerabgabe).<br/>Eine Stornierung ist möglich.</td>
       <td><em>Durchgeführten Abgabe</em> abgesetzt</td>
     </tr>
     <tr>
@@ -319,7 +432,7 @@ Eine [Durchgeführte Abgabe](design_choices.html#durchgeführte-abgabe-atelgaeme
 </table>
 </div>
 
-<br>(\*) solange ein evtl. Behandlungszeitraum nicht überschritten
+<br>(\*) solange ein evtl. Einnahmezeitraum nicht überschritten
 
 <br>
 
@@ -333,17 +446,95 @@ Im Element *MedicationDispense.type* einer Durchgeführten Abgabe wird die Art d
 
 <br>
 
-| Abgabenart                                                                           | *Geplante Abgabe* (MedicationRequest-Status)                   | Beschreibung                                                                                                                                                              | *Durchgeführte Abgabe* (MedicationDispense-Status)                                                       | Beschreibung                                                                                                                                  |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| Einzelabgabe (einmalige Einlösemöglichkeit)                                          | completed                                                    | Sofern *Geplante Abgabe* vorhanden, wird diese nach erfolgter Abgabe automatisch auf *completed* gesetzt.                                                                 | type: FFC (First Fill - Complete)<br>quantity:  x Packungen<br>status: „completed“                     | Abgabe abgeschlossen                                                                                                                          |
-| Vollständige Einzelabgabe (bei mehrmaliger Einlösemöglichkeit)                       | active<br><br>wenn letzte Einlösung abgeschlossen: completed | *Geplante Abgabe* bleibt nach erfolgter Abgabe *active* und wird erst nach der letzten möglichen Einlösung von der Fachanwendung automatisch auf *completed* gesetzt.     | type: FFC (First Fill - Complete)<br>quantity: x Packungen<br>status: „completed“                      | je Einlösung wird eine *Durchgeführte Abgabe* erstellt                                                                                        |
-| 1\. Teilabgabe                                                                       | active                                                       | *Geplante Abgabe* bleibt *active*                                                                                                                                         | type: FFP (First Fill - Part Fill)<br>quantity: x Packungen<br>status: „completed“                     | Je Teilabgabe wird eine *Durchgeführte Abgabe* erstellt. *Geplante Abgabe* kann nicht mehr in einer anderen Apotheke abgegeben werden           |
-| Weitere Teilabgabe                                                                   | active                                                       | *Geplante Abgabe* bleibt *active*                                                                                                                                         | type: RFP (Refill - Part Fill)<br>quantity: x Packungen<br>status: „completed“                         |                                                                                                                                               |
-| Letzte Teilabgabe                                                                    | completed                                                    | *Geplante Abgabe* bleibt *active*, solange weitere Einlösungen möglich. Danach setzt die Fachanwendung den Status der *Geplanten Abgabe* auf *completed*.         | type:  RFC (Refill - Complete)<br>quantity:  x Packungen<br>status: „completed“                        |                                                                                                                                               |
-| "Besorgerprozess": Arzneimittel von Apotheke bestellt / zubereitet (ohne Abgabe)     | active                                                       | *Geplante Abgabe* bleibt *active*                                                                                                                                         | type: FFP (First Fill - Part Fill)<br>quantity: 0 Packungen (wurden ausgegeben)<br>status: „completed“ | Arzneimittel bestellt oder Magistrale Zubereitung in Vorbereitung. Geplante Abgabe kann nicht mehr in einer anderen Apotheke abgegeben werden |
-| "Besorgerprozess": Arzneimittel nach Teilabgaben von Apotheke bestellt (ohne Abgabe) | active                                                       | *Geplante Abgabe* bleibt *active*                                                                                                                                         | type: FFP (Refill – Part Fill)<br>quantity: 0 Packungen (wurden  ausgegeben)<br>status: „completed“    |         Arzneimittel nach bereits erfolgter Teilabgabe bestellt oder Magistrale Zubereitung in Vorbereitung.                                                                                                                                     |
-| Leerabgabe beendet Einzelabgabe                                                      | cancelled                                                    | wenn alle möglichen Einlösungen mit *cancelled* gespeichert wurden, wird die zugehörige *Geplante Abgabe* automatisch auf *cancelled* gesetzt, sonst auf *completed*. | type: FFC (First Fill - Complete)<br>quantity:  0 Packungen<br>status: „cancelled“                     | Das Arzneimittel einer geplanten Abgabe wird vom Patienten nicht benötigt und daher als Leerabgabe vermerkt.                                  |
-| Leerabgabe beendet Teilabgabe                                                       | completed oder cancelled                                     | wenn alle möglichen Einlösungen mit *cancelled* gespeichert wurden, wird die zugehörige *Geplante Abgabe* automatisch auf *cancelled* gesetzt, sonst auf *completed*. | type: RFC (Refill - Complete)<br>quantity: 0 Packungen<br>status: „cancelled“                          | Teilabgabe wird vom Patienten nicht benötigt und daher als Leerabgabe vermerkt. Dieser Einlösevorgang ist damit beendet.                      |
-| Notabgabe                                                                            |  -                                                           | keine *Geplante Abgabe* vorhanden                                                                                                                                         | type: FFC (First Fill - Complete)<br>quantity: x Packungen<br>status: „completed“                      | Das Medikament wurde ohne zugrundeliegende *Geplante Abgabe* abgegeben.<br>Es wird kein Rezept nachgereicht                                   |
-| Rezept wird nachgebracht                                                             |  -                                                           | keine *Geplante Abgabe* vorhanden                                                                                                                                         | type: FFC (First Fill - Complete)<br>quantity: x Packungen<br>status: „completed“                      | Medikament wurde abgegeben, das formale Rezept wird später nachgereicht. Planeintrag kann nacherfasst werden.                                 |
-| OTC Abgabe (rezeptfrei)                                                              |  -                                                           | keine *Geplante Abgabe* vorhanden                                                                                                                                         | type: FFC (First Fill - Complete)<br>quantity: x Packungen<br>status: „completed“                      | Rezeptfreies MedA52:E57ikament wurde abgegeben. Ein Planeintrag für Wechselwirkungsrelevante Medikatmente soll nacherfasst werden.            |
+<div class="table-responsive">
+  <table>
+    <thead>
+      <tr>
+        <th>Abgabenart</th>
+        <th><em><strong>Geplante Abgabe</strong></em> (MedicationRequest-Status)</th>
+        <th>Beschreibung</th>
+        <th><em><strong>Durchgeführte Abgabe</strong></em> (MedicationDispense-Status)</th>
+        <th>Beschreibung</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Einzelabgabe (einmalige Einlösemöglichkeit)</td>
+        <td>completed</td>
+        <td>Sofern <em>Geplante Abgabe</em> vorhanden, wird diese nach erfolgter Abgabe automatisch auf <em>completed</em> gesetzt.</td>
+        <td>type: FFC (First Fill - Complete)<br>quantity: x Packungen<br>status: „completed“</td>
+        <td>Abgabe abgeschlossen</td>
+      </tr>
+      <tr>
+        <td>Vollständige Einzelabgabe (bei mehrmaliger Einlösemöglichkeit)</td>
+        <td>active<br><br>wenn letzte Einlösung abgeschlossen: completed</td>
+        <td><em>Geplante Abgabe</em> bleibt nach erfolgter Abgabe <em>active</em> und wird erst nach der letzten möglichen Einlösung von der Fachanwendung automatisch auf <em>completed</em> gesetzt.</td>
+        <td>type: FFC (First Fill - Complete)<br>quantity: x Packungen<br>status: „completed“</td>
+        <td>je Einlösung wird eine <em>Durchgeführte Abgabe</em> erstellt</td>
+      </tr>
+      <tr>
+        <td>1. Teilabgabe</td>
+        <td>active</td>
+        <td><em>Geplante Abgabe</em> bleibt <em>active</em></td>
+        <td>type: FFP (First Fill - Part Fill)<br>quantity: x Packungen<br>status: „completed“</td>
+        <td>Je Teilabgabe wird eine <em>Durchgeführte Abgabe</em> erstellt. <em>Geplante Abgabe</em> kann nicht mehr in einer anderen Apotheke abgegeben werden</td>
+      </tr>
+      <tr>
+        <td>Weitere Teilabgabe</td>
+        <td>active</td>
+        <td><em>Geplante Abgabe</em> bleibt <em>active</em></td>
+        <td>type: RFP (Refill – Part Fill)<br>quantity: x Packungen<br>status: „completed“</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>Letzte Teilabgabe</td>
+        <td>completed</td>
+        <td><em>Geplante Abgabe</em> bleibt <em>active</em>, solange weitere Einlösungen möglich. Danach setzt die Fachanwendung den Status der <em>Geplanten Abgabe</em> auf <em>completed</em>.</td>
+        <td>type: RFC (Refill - Complete)<br>quantity: x Packungen<br>status: „completed“</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>"Besorgerprozess": Arzneimittel von Apotheke bestellt / zubereitet (ohne Abgabe)</td>
+        <td>active</td>
+        <td><em>Geplante Abgabe</em> bleibt <em>active</em></td>
+        <td>type: FFP (First Fill - Part Fill)<br>quantity: 0 Packungen (wurden ausgegeben)<br>status: „completed“</td>
+        <td>Arzneimittel bestellt oder Magistrale Zubereitung in Vorbereitung.</td>
+      </tr>
+      <tr>
+        <td>"Besorgerprozess": Arzneimittel nach Teilabgaben von Apotheke bestellt (ohne Abgabe)</td>
+        <td>active</td>
+        <td><em>Geplante Abgabe</em> bleibt <em>active</em></td>
+        <td>type: FFP (Refill – Part Fill)<br>quantity: 0 Packungen (wurden ausgegeben)<br>status: „completed“</td>
+        <td>Arzneimittel nach bereits erfolgter Teilabgabe bestellt oder Magistrale Zubereitung in Vorbereitung.</td>
+      </tr>
+      <tr>
+        <td>Leerabgabe beendet Einzelabgabe</td>
+        <td>cancelled</td>
+        <td>wenn alle möglichen Einlösungen mit <em>cancelled</em> gespeichert wurden, wird die zugehörige <em>Geplante Abgabe</em> automatisch auf <em>cancelled</em> gesetzt, sonst auf <em>completed</em>.</td>
+        <td>type: FFC (First Fill - Complete)<br>quantity: 0 Packungen<br>status: „cancelled“</td>
+        <td>Das Arzneimittel einer Geplanten Abgabe wird vom Patienten nicht benötigt und daher als Leerabgabe vermerkt.</td>
+      </tr>
+      <tr>
+        <td>Leerabgabe beendet Teilabgabe</td>
+        <td>completed oder cancelled</td>
+        <td>wenn alle möglichen Einlösungen mit <em>cancelled</em> gespeichert wurden, wird die zugehörige <em>Geplante Abgabe</em> automatisch auf <em>cancelled</em> gesetzt, sonst auf <em>completed</em>.</td>
+        <td>type: RFC (Refill - Complete)<br>quantity: 0 Packungen<br>status: „cancelled“</td>
+        <td>Teilabgabe wird vom Patienten nicht benötigt und daher als Leerabgabe vermerkt. Dieser Einlösevorgang ist damit beendet.</td>
+      </tr>
+      <tr>
+        <td>Notabgabe</td>
+        <td>-</td>
+        <td>keine <em>Geplante Abgabe</em> vorhanden</td>
+        <td>type: FFC (First Fill - Complete)<br>quantity: x Packungen<br>status: „completed“</td>
+        <td>Das Medikament wurde ohne zugrundeliegende <em>Geplante Abgabe</em> abgegeben. Ein Planeintrag kann nacherfasst werden.</td>
+      </tr>
+      <tr>
+        <td>OTC Abgabe (rezeptfrei)</td>
+        <td>-</td>
+        <td>keine <em>Geplante Abgabe</em> vorhanden</td>
+        <td>type: FFC (First Fill - Complete)<br>quantity: x Packungen<br>status: „completed“</td>
+        <td>Rezeptfreies Medikament wurde abgegeben. Ein Planeintrag kann nacherfasst werden.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
