@@ -32,7 +32,7 @@ Usage: #example
 
 * groupIdentifier.value = "WYE82A2G8EEW"
 
-// * note.text = "Freitext zur geplanten Abgabe (Info von Arzt an Apotheke)."
+// * note.text = "Freitext zur Geplanten Abgabe (Info von Arzt an Apotheke)."
 
 * dosageInstruction[standardDosage].extension[DosageCategory].valueCodeableConcept = AtElgaEmedCodeSystemDosageCategory#standard
 * dosageInstruction[standardDosage].sequence = 1
