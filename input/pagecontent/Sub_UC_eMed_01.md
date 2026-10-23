@@ -35,7 +35,6 @@ Hierfür erzeugt die Fachanwendung aus der aktuellen Version der [List](Structur
 2. Die Fachanwendung prüft den Zustand des Medikationsplans (siehe Kapitel [Prüfung des Planzustands und Erzeugung des Medikationsplan-Bundles](Sub_UC_eMed_01.html#prüfung-des-planzustands-und-erzeugung-des-medikationsplan-bundles)) und erzeugt ein [Medikationsplan-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplan.html) zur Auslieferung.
 3. Die Fachanwendung liefert das Medikationsplan-Bundle zurück. Dieses enthält im HTTP-Header den ***ETag*** der aktuellen Version der *List*-Ressource für das [**Optimistic Locking**](https://hl7.org/fhir/http.html#concurrency) (siehe auch [Designentscheidungen - Optimistisches Locking mit ETags](design_choices.html#optimistisches-locking-mit-etags)).
 
-<!-- TODO check ob ETAG noch im header akl. 14.10. -->
 
 Nachfolgend kann der Medikationsplan vom GDA bearbeitet und mittels [Plan-Write](Sub_UC_eMed_02.html#sub_uc_emed_02_01---medikationsplan-schreiben-plan-write) gespeichert werden.
 
