@@ -2,7 +2,7 @@ Profile: AtElgaEmedMedicationRequestGeplanteAbgabe
 Parent: AtElgaEmedMedicationRequestBase
 Id: at-elga-emed-medicationrequest-geplanteabgabe
 Title: "At ELGA e-Medikation MedicationRequest Geplante Abgabe"
-Description: "Profil einer \"Geplanten Abgabe\" eines Arzneimittels aus dem Medikationsplan."
+Description: "Profil einer Geplanten Abgabe eines Arzneimittels aus dem Medikationsplan."
 
 // Extensions
 * extension contains $medicationRequest-effectiveDosePeriod-r5 named effectiveDosePeriod 0..1
@@ -107,7 +107,7 @@ Description: "Profil einer \"Geplanten Abgabe\" eines Arzneimittels aus dem Medi
 * requester.identifier.system MS
 * requester.identifier.value MS
 
-//* recorder ^short = "Person der Dateineingabe. Keine Verwendung in der geplanten Abgabe." //  TODO: Gemäß Vorgaben im CDA, keine Verwendung. Abstimmung der Verwendung mit e-Diagnose." 
+//* recorder ^short = "Person der Dateineingabe. Keine Verwendung in der Geplanten Abgabe." //  TODO: Gemäß Vorgaben im CDA, keine Verwendung. Abstimmung der Verwendung mit e-Diagnose." 
 
 //* reasonCode from $cs-sct (required)
 //* reasonCode ^short = "Grund für die Verordnung des Arzneimittels als Code oder Referenz. Bis zur Verfügbarkeit von e-Diagnose keine Verwendung in Geplanter Abgabe."

@@ -2,7 +2,7 @@ Profile: AtElgaEmedMedicationDispenseDurchgefuehrteAbgabe
 Parent: MedicationDispense
 Id: at-elga-emed-medicationdispense-durchgefuehrteabgabe
 Title: "AT ELGA e-Medikation MedicationDispense Durchgeführte Abgabe"
-Description: "Profil einer \"Durchgeführten Abgabe\" eines Arzneimittels."
+Description: "Profil einer Durchgeführten Abgabe eines Arzneimittels."
 
 * id 0..1 MS
 * id ^short = "Technische id der Ressource"
@@ -50,7 +50,7 @@ Description: "Profil einer \"Durchgeführten Abgabe\" eines Arzneimittels."
 * extension[groupIdentifier].url MS
 * extension[groupIdentifier].valueIdentifier MS
 * extension[groupIdentifier].valueIdentifier.use 0..0
-// Invariante: wenn eine Referenz auf eine geplante Abgabe existiert dann muss auch der groupIdentifier befüllt sein. Ausnahme: Alle GroupIdentifier eines Transaction Bundles sind noch leer -> werden von der Fachanwendung befüllt
+// Invariante: wenn eine Referenz auf eine Geplante Abgabe existiert dann muss auch der groupIdentifier befüllt sein. Ausnahme: Alle GroupIdentifier eines Transaction Bundles sind noch leer -> werden von der Fachanwendung befüllt
 
 * status 1..1 MS
 //* status from AtElgaEmedValueSetMedicationDispenseStatusVS

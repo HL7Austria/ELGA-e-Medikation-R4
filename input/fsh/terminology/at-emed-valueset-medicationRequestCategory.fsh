@@ -1,6 +1,6 @@
 CodeSystem: MedicationRequestCategoryCS
 Title: "ELGA e-Med MedicationRequest Kategorie CodeSystem"
-Description: "Codesystem für zulässige Ausprägungen der MedicationRequest Kategorie. Dient der Unterscheidung von geplanten Abgaben und Medikationsplaneinträgen."
+Description: "Codesystem für zulässige Ausprägungen der MedicationRequest Kategorie. Dient der Unterscheidung von Geplanten Abgaben und Medikationsplaneinträgen."
 * ^status = #active
 * ^experimental = true
 * ^caseSensitive = false
@@ -10,6 +10,6 @@ Description: "Codesystem für zulässige Ausprägungen der MedicationRequest Kat
 
 ValueSet: MedicationRequestCategoryVS
 Title: "ELGA e-Med MedicationRequest Kategorie ValueSet"
-Description: "ValueSet für zulässige Ausprägungen der MedicationRequest Kategorie. Dient der Unterscheidung von geplanten Abgaben und Medikationsplaneinträgen"
+Description: "ValueSet für zulässige Ausprägungen der MedicationRequest Kategorie. Dient der Unterscheidung von Geplanten Abgaben und Medikationsplaneinträgen"
 * ^experimental = true
 * include codes from system MedicationRequestCategoryCS

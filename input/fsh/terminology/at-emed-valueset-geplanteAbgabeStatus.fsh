@@ -1,6 +1,6 @@
 ValueSet: GeplanteAbgabeStatusVS
 Title: "ELGA e-Med Geplante Abgabe Status ValueSet"
-Description: "ValueSet für zulässige Ausprägungen eines Status einer geplanten Abgabe (MedicationRequest)."
+Description: "ValueSet für zulässige Ausprägungen eines Status einer Geplanten Abgabe (MedicationRequest)."
 * ^status = #active
 * ^experimental = true
 //* include codes from system $cs-medication-request-status
