@@ -90,5 +90,5 @@ Description: "Profil für den Medikationsplan als Ergebnis der $plan-read Operat
 * entry[Authors].search.modifierExtension 0..0
 * entry[Authors].search.modifierExtension ^short = "Fachliche Begründung: Es sind keine zusätzlichen Erweiterungen vorgesehen, die die Bedeutung der Ressource oder ihrer Elemente verändern."
 * entry[Authors].resource 1..1 MS
-* entry[Authors].resource only AtElgaEmedPractitioner or AtElgaEmedDeviceFachanwendung or AtElgaEmedPractitionerRole or AtElgaEmedOrganization
+* entry[Authors].resource only AtElgaEmedPractitioner or AtElgaEmedDeviceFachanwendung or AtElgaEmedPractitionerRole
 

@@ -1,37 +1,31 @@
 Instance: At-Emed-Example-Organization-02
-InstanceOf: HL7ATCoreOrganization
+InstanceOf: AtElgaEmedOrganization
 Title: "Beispiel Organisation Apotheke"
 Description: "Beispiel Organisation: Apotheke."
 Usage: #example
-* identifier[0].system = "urn:ietf:rfc:3986"
-* identifier[=].value = "urn:oid:1.2.40.0.34.99.4613.3"
-* identifier[=].assigner.display = "Bundesministerium für Gesundheit"
-* identifier[+].system = "urn:oid:1.2.40.0.34.4.10"
-* identifier[=].value = "K101+"
-* identifier[=].assigner.display = "Österreichisches Bundesministerium für Gesundheit"
-* identifier[+].system = "urn:oid:1.2.40.0.10.1.4.3.2"
-* identifier[=].value = "123456789"
-* identifier[=].assigner.display = "Dachverband der österreichischen Sozialversicherungsträger"
+* identifier[GDA-OID].system = "urn:ietf:rfc:3986"
+* identifier[GDA-OID].value = "urn:oid:1.2.40.0.34.99.4613.3"
+* identifier[GDA-OID].assigner.display = "Bundesministerium für Gesundheit"
+* identifier[KANR].system = "urn:oid:1.2.40.0.34.4.10"
+* identifier[KANR].value = "K101+"
+* identifier[KANR].assigner.display = "Österreichisches Bundesministerium für Gesundheit"
+* identifier[VPNR].system = "urn:oid:1.2.40.0.10.1.4.3.2"
+* identifier[VPNR].value = "123456789"
+* identifier[VPNR].assigner.display = "Dachverband der österreichischen Sozialversicherungsträger"
 * type = $cs-hl7-at-organizationtype#311 "Öffentliche Apotheke"
 * name = "Amadeus Apotheke"
-* address.use = #work
-* address.type = #both
-* address.line = "Apotheken-Gasse 1-7 Haupteingang"
-* address.line.extension[0].url = "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName"
-* address.line.extension[=].valueString = "Apotheken-Gasse"
-* address.line.extension[+].url = "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber"
-* address.line.extension[=].valueString = "1-7"
-* address.line.extension[+].url = "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-additionalLocator"
-* address.line.extension[=].valueString = "Haupteingang"
-* address.line.extension[+].url = "http://hl7.at/fhir/HL7ATCoreProfiles/4.0.1/StructureDefinition/at-core-ext-address-additionalInformation"
-* address.line.extension[=].valueString = "Barrierefreier Zugang"
-* address.city = "St. Wolfgang"
-* address.state = "Salzburg"
-* address.postalCode = "5350"
-* address.country = "AUT"
-* contact.telecom[0].system = #email
-* contact.telecom[=].value = "info@amadeusapotheke.at"
-* contact.telecom[=].use = #work
-* contact.telecom[+].system = #phone
-* contact.telecom[=].value = "+43.6138.3453446.0"
-* contact.telecom[=].use = #home
+* contact.address.use = #work
+* contact.address.type = #both
+* contact.address.line = "Apotheken-Gasse 1-7 Haupteingang"
+* contact.address.line.extension[0].url = "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName"
+* contact.address.line.extension[=].valueString = "Apotheken-Gasse"
+* contact.address.line.extension[+].url = "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber"
+* contact.address.line.extension[=].valueString = "1-7"
+* contact.address.line.extension[+].url = "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-additionalLocator"
+* contact.address.line.extension[=].valueString = "Haupteingang"
+* contact.address.line.extension[+].url = "http://hl7.at/fhir/HL7ATCoreProfiles/4.0.1/StructureDefinition/at-core-ext-address-additionalInformation"
+* contact.address.line.extension[=].valueString = "Barrierefreier Zugang"
+* contact.address.city = "St. Wolfgang"
+* contact.address.state = "Salzburg"
+* contact.address.postalCode = "5350"
+* contact.address.country = "AUT"

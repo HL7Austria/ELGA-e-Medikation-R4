@@ -20,7 +20,7 @@ Usage: #example
 * subject.identifier.value = "GH:oeLdSEb0l+8kSdJWjOYyYmnYki0="
 * subject.identifier.system = "urn:oid:1.2.40.0.10.2.1.1.149"
 
-* performer[dispenseGDA].actor = Reference(At-Emed-Example-Organization-02) "Amadeus Apotheke"  //oid
+* performer[dispenseGDA].actor = Reference(At-Emed-Example-Practitioner-02) //oid
 * performer[dispenseGDA].function = AtElgaEmedValueSetMedicationDispensePerformerFunctionCS#dispenseGDA
 
 * whenHandedOver = "2026-02-28T11:00:00+00:00" 

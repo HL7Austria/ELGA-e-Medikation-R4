@@ -24,11 +24,3 @@ Usage: #example
 * entry[Authors].resource = At-Emed-Example-Practitioner-01
 * entry[Authors].fullUrl = "https://example.elga.com/base/Practitioner/At-Emed-Example-Practitioner-01"
 * entry[Authors].search.mode = #include
-
-//ASW 11.10.2026 TODO sollen die rekursiv referenzierten Ressourcen auch beim plan-read zurürckkommen?
-/* * entry[Authors].resource = At-Emed-Example-Organization-01
-* entry[Authors].fullUrl = "https://example.elga.com/base/Practitioner/At-Emed-Example-Practitioner-01"
-* entry[Authors].search.mode = #include
-* entry[Authors].resource = At-Emed-Example-Practitioner-01
-* entry[Authors].fullUrl = "https://example.elga.com/base/Organization/At-Emed-Example-Organization-01"
-* entry[Authors].search.mode = #include */
