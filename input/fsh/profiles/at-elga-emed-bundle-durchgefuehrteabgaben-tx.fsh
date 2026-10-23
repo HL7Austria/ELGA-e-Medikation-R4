@@ -2,8 +2,7 @@ Profile: AtElgaEmedBundleDurchgefuehrteAbgabenTx
 Parent: Bundle
 Id: at-elga-emed-bundle-durchgefuehrteabgaben-tx
 Title: "AT ELGA e-Medikation Transaction Bundle durchgeführte Abgaben"
-Description: "Das Bundle vom Typ Transaction dient dem schreibenden Zugriff und besteht aus allen Durchgeführten Abgaben, 
-die gemeinsam geschrieben werden sollen."
+Description: "Profil für das Schreiben des Medikationsplans mit der $dispense-write Operation."
 
 * implicitRules 0..0
 * implicitRules ^short =  "Fachliche Begründung: Die Ressource wird nach den Regeln dieses Implementierungsleitfadens interpretiert. Zusätzliche implizite Verarbeitungsregeln werden nicht verwendet."
