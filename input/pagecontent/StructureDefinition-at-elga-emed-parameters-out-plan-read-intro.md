@@ -1,0 +1,3 @@
+Bei Erfolg enthält die Antwort das temporäre, für die Bearbeitung aufbereitete Medikationsplan-Bundle mit der aktuellen, gegebenenfalls transformierten oder initial erzeugten List-Ressource sowie sämtlichen von ihr referenzierten Ressourcen (siehe [$plan-read](OperationDefinition-at-elga-emed-operation-plan-read.html)). Zusätzlich können OperationOutcome(s) mit Hinweisen der Schwere *information* oder *warning* enthalten sein. Im Fehlerfall enthält die Antwort kein Medikationsplan-Bundle, sondern ausschließlich OperationOutcome(s) mit dem Fehler, der zur Ablehnung der Operation geführt hat.
+
+Der ETag der aktuellen persistierten List-Version wird im HTTP-Response-Header übermittelt und ist nicht Teil dieser Parameters-Ressource.

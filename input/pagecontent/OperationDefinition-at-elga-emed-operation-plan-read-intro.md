@@ -1,4 +1,7 @@
 ### Operation spezifische Business Logik
+Die e-Medikation-Fachanwendung erzeugt aus der aktuellen Version
+der List-Ressource sowie sämtlichen von ihr referenzierten Ressourcen
+ein temporäres Medikationsplan-Bundle zur Auslieferung.
 
 Vor der Auslieferung prüft die Fachanwendung den Zustand des Medikationsplans:
 

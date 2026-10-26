@@ -328,6 +328,7 @@ groups:
       - StructureDefinition/at-elga-emed-operationoutcome
       # $plan-read
       - StructureDefinition/at-elga-emed-bundle-medikationsplan
+      - StructureDefinition/at-elga-emed-parameters-out-plan-read
       # $plan-write
       - StructureDefinition/at-elga-emed-bundle-medikationsplantx
       - StructureDefinition/at-elga-emed-bundle-medikationsplan-write-response
