@@ -13,20 +13,12 @@ Usage: #definition
 * instance = true
 * resource[+] = #MedicationDispense
 * code = #dispense-discard
-* parameter[+]
-* parameter[=].name = #return
-* parameter[=].use = #out
-* parameter[=].min = 0
-* parameter[=].max = "1"
-* parameter[=].documentation = "Die Durchgeführte Abgabe so wie sie nach dem Ausführen der Operation am Server persistiert ist."
-* parameter[=].type = #Resource
-* parameter[=].targetProfile[+] = Canonical(AtElgaEmedMedicationDispenseDurchgefuehrteAbgabe)
 
 * parameter[+]
 * parameter[=].name = #return
 * parameter[=].use = #out
-* parameter[=].min = 0
+* parameter[=].min = 1
 * parameter[=].max = "1"
-* parameter[=].documentation = "Der *return* Parameter im Falle eines Fehlers."
+* parameter[=].documentation = "Der *return* Parameter enthält je nach Erfolg der Operation entweder die stornierte Durchgeführte Abgabe (sowie ggf. die dadurch in ihrem Status geänderte Geplante Abgabe), so wie sie nach dem Ausführen der Operation am Server persistiert ist oder ein OperationOutcome mit dem Fehler, der zur Ablehnung der Operation geführt hat."
 * parameter[=].type = #Resource
-* parameter[=].targetProfile[+] = Canonical(AtElgaEmedOperationOutcome)
+* parameter[=].targetProfile[+] = Canonical(AtElgaEmedParametersOutDispenseDiscard)

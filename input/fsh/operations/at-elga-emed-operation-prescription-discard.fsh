@@ -17,17 +17,8 @@ Usage: #definition
 * parameter[+]
 * parameter[=].name = #return
 * parameter[=].use = #out
-* parameter[=].min = 0
+* parameter[=].min = 1
 * parameter[=].max = "1"
-* parameter[=].documentation = "Die Geplante Abgabe so wie sie nach dem Ausführen der Operation am Server persistiert ist."
+* parameter[=].documentation = "Der *return* Parameter enthält je nach Erfolg der Operation entweder die stornierte Geplante Abgabe, so wie sie nach dem Ausführen der Operation am Server persistiert ist oder ein OperationOutcome mit dem Fehler, der zur Ablehnung der Operation geführt hat."
 * parameter[=].type = #Resource
-* parameter[=].targetProfile[+] = Canonical(AtElgaEmedMedicationRequestGeplanteAbgabe)
-
-* parameter[+]
-* parameter[=].name = #return
-* parameter[=].use = #out
-* parameter[=].min = 0
-* parameter[=].max = "1"
-* parameter[=].documentation = "Der *return* Parameter im Falle eines Fehlers."
-* parameter[=].type = #Resource
-* parameter[=].targetProfile[+] = Canonical(AtElgaEmedOperationOutcome)
+* parameter[=].targetProfile[+] = Canonical(AtElgaEmedParametersOutPrescriptionDiscard)

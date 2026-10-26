@@ -336,10 +336,14 @@ groups:
       - StructureDefinition/at-elga-emed-bundle-geplanteabgaben-tx
       - StructureDefinition/at-elga-emed-bundle-geplanteabgaben-write-response
       - StructureDefinition/at-elga-emed-parameters-out-prescription-write
+      # $prescription-discard
+      - StructureDefinition/at-elga-emed-parameters-out-prescription-discard
       # $dispense-write
       - StructureDefinition/at-elga-emed-bundle-durchgefuehrteabgaben-tx
       - StructureDefinition/at-elga-emed-bundle-durchgefuehrteabgaben-write-response
       - StructureDefinition/at-elga-emed-parameters-out-dispense-write
+      # $dispense-discard
+      - StructureDefinition/at-elga-emed-parameters-out-dispense-discard
   Suchparameter:
     name: Suchparameter
     description: Suchparameter
