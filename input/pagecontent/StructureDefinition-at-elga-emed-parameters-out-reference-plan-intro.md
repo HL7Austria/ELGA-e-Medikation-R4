@@ -1,0 +1,4 @@
+Die $reference-plan Operation wird direkt auf Instanzebene einer Durchgeführten Abgabe aufgerufen. Dem Server wird dabei lediglich optional die Referenz auf einen Planeintrag, jedoch keine Ressource übermittelt, weshalb weder ein Transaction-Response Bundle noch OperationOutcome(s) mit Hinweisen zu ignorierten Must-Support Elementen zurückgegeben werden. Die Antwort enthält daher immer entweder das Ergebnis der Operation oder Fehler:
+
+* Bei Erfolg enthält die Antwort ausschließlich die Durchgeführte Abgabe, zu der die Referenz auf den Planeintrag hinzugefügt bzw. von der sie entfernt wurde, so wie sie nach dem Ausführen der Operation am Server persistiert ist.
+* Im Fehlerfall enthält die Antwort ausschließlich ein OperationOutcome mit dem Fehler, der zur Ablehnung der Operation geführt hat.

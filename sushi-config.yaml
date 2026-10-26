@@ -344,6 +344,8 @@ groups:
       - StructureDefinition/at-elga-emed-parameters-out-dispense-write
       # $dispense-discard
       - StructureDefinition/at-elga-emed-parameters-out-dispense-discard
+      # $reference-plan
+      - StructureDefinition/at-elga-emed-parameters-out-reference-plan
   Suchparameter:
     name: Suchparameter
     description: Suchparameter

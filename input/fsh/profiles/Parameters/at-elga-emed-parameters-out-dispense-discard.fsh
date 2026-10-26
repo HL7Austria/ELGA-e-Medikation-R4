@@ -63,9 +63,9 @@ Description: "Profil für den Rückgabewert der $dispense-discard Operation."
 * parameter.name MS
 
 Invariant: at-emed-dispense-discard-out-ergebnis
-Description: "Es ist entweder die stornierte Durchgeführte Abgabe (Erfolgsfall) oder ein OperationOutcome mit einem Issue der Schwere 'error' oder 'fatal' (Fehlerfall) enthalten, nicht beides."
+Description: "Es ist entweder die stornierte Durchgeführte Abgabe (Erfolgsfall) oder mindestens ein OperationOutcome mit einem Issue der Schwere 'error' oder 'fatal' (Fehlerfall) enthalten."
 * severity = #error
-* expression = "(parameter.resource.ofType(MedicationDispense).exists() and parameter.resource.ofType(OperationOutcome).empty()) or (parameter.resource.ofType(MedicationDispense).empty() and parameter.resource.ofType(OperationOutcome).issue.where(severity = 'error' or severity = 'fatal').exists())"
+* expression = "parameter.resource.ofType(MedicationDispense).exists()  or (parameter.resource.ofType(MedicationDispense).empty() and parameter.resource.ofType(OperationOutcome).issue.where(severity = 'error' or severity = 'fatal').exists())"
 
 Invariant: at-emed-dispense-discard-out-geplanteabgabe
 Description: "Eine Geplante Abgabe darf nur enthalten sein, wenn auch die stornierte Durchgeführte Abgabe enthalten ist."
