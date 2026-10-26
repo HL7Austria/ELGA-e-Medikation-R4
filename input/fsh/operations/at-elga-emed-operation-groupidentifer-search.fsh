@@ -25,17 +25,8 @@ Usage: #definition
 * parameter[+]
 * parameter[=].name = #return
 * parameter[=].use = #out
-* parameter[=].min = 0
+* parameter[=].min = 1
 * parameter[=].max = "1"
-* parameter[=].documentation = "Der *return* Parameter enthält die angefragte(n) Geplante(n) und Durchgeführten Abgabe(n)."
+* parameter[=].documentation = "Der *return* Parameter enthält je nach Erfolg der Operation OperationOutcome(s) und falls die Operation erfolgreich war auch das Bundle mit den angefragten Geplanten und Durchgeführten Abgaben."
 * parameter[=].type = #Resource
-* parameter[=].targetProfile[+] = Canonical(Bundle) //TODO evtl. eigenes Bundle Profil
-
-* parameter[+]
-* parameter[=].name = #return
-* parameter[=].use = #out
-* parameter[=].min = 0
-* parameter[=].max = "1"
-* parameter[=].documentation = "Der *return* Parameter im Falle eines Fehlers."
-* parameter[=].type = #Resource
-* parameter[=].targetProfile[+] = Canonical(AtElgaEmedOperationOutcome)
+* parameter[=].targetProfile[+] = Canonical(AtElgaEmedParametersOutGroupIdentifierSearch)

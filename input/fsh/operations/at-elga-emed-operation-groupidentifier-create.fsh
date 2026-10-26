@@ -15,27 +15,11 @@ Usage: #definition
 * code = #groupidentifier-create
 
 * parameter[+]
-* parameter[=].name = #groupidentifier
-* parameter[=].use = #out
-* parameter[=].min = 0
-* parameter[=].max = "1"
-* parameter[=].documentation = "Der *groupidentifier* Parameter enthält den angefragten GroupIdentifier."
-* parameter[=].type = #string
-
-* parameter[+]
-* parameter[=].name = #datamatrixcode
-* parameter[=].use = #out
-* parameter[=].min = 0
-* parameter[=].max = "1"
-* parameter[=].documentation = "Der *datamatrixcode* Parameter enthält den DataMatrix-Code."
-* parameter[=].type = #Attachment
-//Quelle: https://www.chipkarte.at/de/javadoc/at/chipkarte/client/elgaad/soap/EmedIdErstellenErgebnis.html#EmedIdErstellenErgebnis--
-
-* parameter[+]
 * parameter[=].name = #return
 * parameter[=].use = #out
-* parameter[=].min = 0
+* parameter[=].min = 1
 * parameter[=].max = "1"
-* parameter[=].documentation = "Der *return* Parameter im Falle eines Fehlers."
+* parameter[=].documentation = "Der *return* Parameter enthält je nach Erfolg der Operation entweder den neu erzeugten e-Med GroupIdentifier und den zugehörigen DataMatrix-Code oder ein OperationOutcome mit dem Fehler, der zur Ablehnung der Operation geführt hat."
 * parameter[=].type = #Resource
-* parameter[=].targetProfile[+] = Canonical(AtElgaEmedOperationOutcome)
+* parameter[=].targetProfile[+] = Canonical(AtElgaEmedParametersOutGroupIdentifierCreate)
+//Quelle DataMatrix-Code: https://www.chipkarte.at/de/javadoc/at/chipkarte/client/elgaad/soap/EmedIdErstellenErgebnis.html#EmedIdErstellenErgebnis--

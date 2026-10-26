@@ -347,6 +347,11 @@ groups:
       - StructureDefinition/at-elga-emed-parameters-out-dispense-discard
       # $reference-plan
       - StructureDefinition/at-elga-emed-parameters-out-reference-plan
+      # $groupidentifier-create
+      - StructureDefinition/at-elga-emed-parameters-out-groupidentifier-create
+      # $groupidentifier-search
+      - StructureDefinition/at-elga-emed-bundle-groupidentifier-search-result
+      - StructureDefinition/at-elga-emed-parameters-out-groupidentifier-search
   Suchparameter:
     name: Suchparameter
     description: Suchparameter
