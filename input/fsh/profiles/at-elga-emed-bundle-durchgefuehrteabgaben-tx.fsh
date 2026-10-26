@@ -1,7 +1,7 @@
 Profile: AtElgaEmedBundleDurchgefuehrteAbgabenTx
 Parent: Bundle
 Id: at-elga-emed-bundle-durchgefuehrteabgaben-tx
-Title: "AT ELGA e-Medikation Transaction Bundle durchgeführte Abgaben"
+Title: "AT ELGA e-Medikation Transaction Bundle Durchgeführte Abgaben"
 Description: "Profil für das Schreiben des Medikationsplans mit der $dispense-write Operation."
 
 * implicitRules 0..0
