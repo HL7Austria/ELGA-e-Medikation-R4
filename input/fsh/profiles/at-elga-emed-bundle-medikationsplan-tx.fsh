@@ -12,9 +12,6 @@ Description: "Profil für das Schreiben des Medikationsplans mit der $plan-write
 * type ^short = "Art des Bundles. Für schreibenden Zugriff immer Typ \"transaction\"."
  
 // Slicing legt fest, welche Entries erlaubt sind -> Unterscheidung der Slices anhand von Pfad und Typ 
-* entry MS
-* entry.modifierExtension 0..0
-* entry.modifierExtension ^short = "Fachliche Begründung: Es sind keine zusätzlichen Erweiterungen vorgesehen, die die Bedeutung der Ressource oder ihrer Elemente verändern."
 * entry ^slicing.discriminator[+].type = #type   
 * entry ^slicing.discriminator[=].path = "resource"
 * entry ^slicing.rules = #closed  // als Entries sind nur List und MedicationRequest erlaubt
@@ -51,3 +48,8 @@ Description: "Profil für das Schreiben des Medikationsplans mit der $plan-write
 * entry[Medikationsplaneintrag].request.url 1..1 MS
 * entry[Medikationsplaneintrag].resource 1..1 MS
 * entry[Medikationsplaneintrag].resource only AtElgaEmedMedicationRequestPlaneintrag
+
+// Allgemeine Regeln für alle Entries
+* entry MS
+* entry.modifierExtension 0..0
+* entry.modifierExtension ^short = "Fachliche Begründung: Es sind keine zusätzlichen Erweiterungen vorgesehen, die die Bedeutung der Ressource oder ihrer Elemente verändern."

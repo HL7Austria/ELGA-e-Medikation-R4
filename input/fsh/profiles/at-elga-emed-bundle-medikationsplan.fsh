@@ -21,15 +21,11 @@ Description: "Profil für den Medikationsplan als Ergebnis der $plan-read Operat
 * link.modifierExtension ^short = "Fachliche Begründung: Es sind keine zusätzlichen Erweiterungen vorgesehen, die die Bedeutung der Ressource oder ihrer Elemente verändern."
 
 // Slicing legt fest, welche Entries erlaubt sind -> Unterscheidung der Slices anhand von Pfad und Typ 
-* entry MS
-* entry ^slicing.discriminator[+].type = #type   
+* entry ^slicing.discriminator[+].type = #type
 * entry ^slicing.discriminator[=].path = "resource"
 * entry ^slicing.rules = #closed  // als Entries sind nur List und MedicationRequest erlaubt
 * entry ^slicing.ordered = true  // erstes Entry soll die Liste sein
-* entry.modifierExtension 0..0
-* entry.modifierExtension ^short = "Fachliche Begründung: Es sind keine zusätzlichen Erweiterungen vorgesehen, die die Bedeutung der Ressource oder ihrer Elemente verändern."
-
-* entry contains 
+* entry contains
     Medikationsplan 1..1 MS and    
     Medikationsplaneintrag 0..* MS and
     Patient 1..1 MS and
@@ -91,4 +87,9 @@ Description: "Profil für den Medikationsplan als Ergebnis der $plan-read Operat
 * entry[Authors].search.modifierExtension ^short = "Fachliche Begründung: Es sind keine zusätzlichen Erweiterungen vorgesehen, die die Bedeutung der Ressource oder ihrer Elemente verändern."
 * entry[Authors].resource 1..1 MS
 * entry[Authors].resource only AtElgaEmedPractitioner or AtElgaEmedDeviceFachanwendung or AtElgaEmedPractitionerRole
+
+// Allgemeine Regeln für alle Entries
+* entry MS
+* entry.modifierExtension 0..0
+* entry.modifierExtension ^short = "Fachliche Begründung: Es sind keine zusätzlichen Erweiterungen vorgesehen, die die Bedeutung der Ressource oder ihrer Elemente verändern."
 

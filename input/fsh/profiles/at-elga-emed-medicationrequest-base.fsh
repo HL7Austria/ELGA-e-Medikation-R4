@@ -31,7 +31,6 @@ Description: "Die Basis für alle in eMed verwendeten MedicationRequests"
 * dosageInstruction ^slicing.discriminator.path = "extension.value.ofType(CodeableConcept).coding.code"
 * dosageInstruction ^slicing.rules = #closed
 * dosageInstruction ^slicing.ordered = false
-* dosageInstruction 1..* MS
 * dosageInstruction contains   
     //otherDosage 0.. MS and
     //timedDosage 0.. MS and
@@ -44,6 +43,8 @@ Description: "Die Basis für alle in eMed verwendeten MedicationRequests"
 //* dosageInstruction[frequencyDosage] only AtElgaEmedDosageFrequencyAdministration
 * dosageInstruction[freitextDosage] only AtElgaEmedDosageFreeTextAdministration
 * dosageInstruction[standardDosage] only AtElgaEmedDosageStandardAdministration
+
+* dosageInstruction 1..* MS
 
 * obeys allDosagesSameCategory
 * obeys FirstDosageSequenceNumberExists

@@ -51,6 +51,7 @@ Description: "Profil einer Durchgeführten Abgabe eines Arzneimittels."
 * extension[groupIdentifier].valueIdentifier MS
 * extension[groupIdentifier].valueIdentifier.use 0..0
 // Invariante: wenn eine Referenz auf eine Geplante Abgabe existiert dann muss auch der groupIdentifier befüllt sein. Ausnahme: Alle GroupIdentifier eines Transaction Bundles sind noch leer -> werden von der Fachanwendung befüllt
+* extension MS
 
 * status 1..1 MS
 //* status from AtElgaEmedValueSetMedicationDispenseStatusVS
@@ -78,11 +79,6 @@ Description: "Profil einer Durchgeführten Abgabe eines Arzneimittels."
 //* subject.identifier.use ^short = "Fachliche Begründung: TODO"
 
 // --- performer ---
-* performer 1..1 MS
-//* performer ^short = "Verantwortlicher GDA." 
-* performer.function from AtElgaEmedValueSetMedicationDispensePerformerFunctionVS
-//* performer.function ^short = "Rolle der Person, die die Abgabe durchgeführt hat."
-* performer.actor only Reference(AtElgaEmedPractitioner or AtElgaEmedPractitionerRole)
 * performer ^slicing.discriminator[+].type = #value
 * performer ^slicing.discriminator[=].path = "function.coding.code"
 * performer ^slicing.rules = #closed
@@ -117,8 +113,19 @@ Description: "Profil einer Durchgeführten Abgabe eines Arzneimittels."
 * performer[referenceGDA].actor 1..1 MS
 * performer[referenceGDA].actor ^short = "GDA, der nachträglich eine Referenz zu einem Planeintrag herstellt."
 
+* performer 1.. MS
+//* performer ^short = "Verantwortlicher GDA." 
+* performer.function from AtElgaEmedValueSetMedicationDispensePerformerFunctionVS
+* performer.function MS
+//* performer.function ^short = "Rolle der Person, die die Abgabe durchgeführt hat."
+* performer.actor only Reference(AtElgaEmedPractitioner or AtElgaEmedPractitionerRole)
+* performer.actor MS
+
+* performer.modifierExtension 0..0
+* performer.modifierExtension ^short = "Fachliche Begründung: Für den Medikationsplan sind keine zusätzlichen Erweiterungen vorgesehen, die die Bedeutung der Ressource oder ihrer Elemente verändern."
+
+
 // Slicing authorizingPrescription:  
-* authorizingPrescription 0..2 MS
 // - authorizingPrescription zur Unterscheidung der MedicationRequest-Referenzen: Planeintrag und Geplante Abgabe
 * authorizingPrescription ^slicing.discriminator[+].type = #value
 * authorizingPrescription ^slicing.discriminator[=].path = "resolve().category.coding.system"
@@ -133,6 +140,8 @@ Description: "Profil einer Durchgeführten Abgabe eines Arzneimittels."
 
 * authorizingPrescription[geplanteAbgabe] only Reference(AtElgaEmedMedicationRequestGeplanteAbgabe)
 * authorizingPrescription[planeintrag] only Reference(AtElgaEmedMedicationRequestPlaneintrag)
+
+* authorizingPrescription 0..2 MS
 * authorizingPrescription ^short = "Verpflichtende Referenzen auf zugehörige Geplante Abgabe (MedicationRequest) bzw. zugehörigen 
 Planeintrag (MedicationRequest), sofern diese existieren."
 // TODO Invariante oder Ergänzung durch Fachanwendung: Wenn Geplante Abgabe referenziert, muss auch auf den Planeintrag referenziert werden. 
@@ -157,7 +166,6 @@ Planeintrag (MedicationRequest), sofern diese existieren."
 * dosageInstruction ^slicing.discriminator.path = "extension.value.ofType(CodeableConcept).coding.code"
 * dosageInstruction ^slicing.rules = #closed
 * dosageInstruction ^slicing.ordered = false
-* dosageInstruction 1..* MS
 * dosageInstruction contains   
     //otherDosage 0.. MS and //TODO zukünftige Erweiterung
     //timedDosage 0.. MS and //TODO zukünftige Erweiterung
@@ -172,4 +180,5 @@ Planeintrag (MedicationRequest), sofern diese existieren."
 * dosageInstruction[standardDosage] only AtElgaEmedDosageStandardAdministration
 
 //TODO Dosage und AtElgaEmedDosageDosierung entfernen sobald Dosierungen fertig sind
+* dosageInstruction 1..* MS
 * dosageInstruction ^short = "Gibt an, wie das abgegebene Arzneimittel vom Patienten einzunehmen ist. Diese kann, sofern ein zugehöriger Planeintrag und eine Geplante Abgabe vorliegen, von der dort angegebenen Dosierung abweichen."

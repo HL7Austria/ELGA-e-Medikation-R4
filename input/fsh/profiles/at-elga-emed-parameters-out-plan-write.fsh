@@ -6,7 +6,6 @@ Description: "Profil für den Rückgabewert der $plan-write Operation."
 
 * obeys at-emed-plan-write-out-ergebnis
 
-* parameter 1..* MS
 * parameter ^slicing.discriminator[+].type = #type
 * parameter ^slicing.discriminator[=].path = "resource"
 * parameter ^slicing.rules = #closed  // als Parameter sind nur OperationOutcome und Bundle erlaubt
@@ -35,6 +34,9 @@ Description: "Profil für den Rückgabewert der $plan-write Operation."
 * parameter[medikationsplan].resource 1..1 MS
 * parameter[medikationsplan].resource only AtElgaEmedBundleMedikationsplanWriteResponse
 * parameter[medikationsplan].part 0..0
+
+// Allgemeine Regeln für alle Parameter
+* parameter 1..* MS
 
 Invariant: at-emed-plan-write-out-ergebnis
 Description: "Ist kein Bundle mit dem persistierten Medikationsplan enthalten (Fehlerfall), muss mindestens ein OperationOutcome mit einem Issue der Schwere 'error' oder 'fatal' enthalten sein."

@@ -47,8 +47,6 @@ Description: "Bildet eine Magistrale Zubereitung in der Medication-Ressource ab.
 
 // TODO: prüfen, wie Freitext bei magistraler Zubereitung abgebildet wird:
 // Evtl. in einer Substance-Ressource in der description (string).
-* ingredient 1..* MS
-* ingredient ^short = "Wirkstoffe."
 * ingredient ^slicing.discriminator.type = #value
 * ingredient ^slicing.discriminator.path = "isActive"
 * ingredient ^slicing.rules = #open
@@ -68,7 +66,6 @@ Description: "Bildet eine Magistrale Zubereitung in der Medication-Ressource ab.
 * ingredient[activeIngredient].itemCodeableConcept 1..1 MS 
 * ingredient[activeIngredient].itemCodeableConcept.text 0..0
 * ingredient[activeIngredient].itemCodeableConcept.text ^short = "Fachliche Begründung: TODO"
-* ingredient[activeIngredient].itemCodeableConcept.coding 1..1 MS
 //* ingredient[activeIngredient].itemCodeableConcept.coding.system 
 //ASW 22.09.2026 TODO ATC Code ValueSets & CodeSysteme existieren nur teilweise am Termgit - ATC WIDO bekommt jährlich eine neue oid und kann nicht im binding verwendet werden - Problem muss gelöst werden
 * ingredient[activeIngredient].itemCodeableConcept.coding ^slicing.discriminator.type = #value
@@ -88,6 +85,7 @@ Description: "Bildet eine Magistrale Zubereitung in der Medication-Ressource ab.
 * ingredient[activeIngredient].itemCodeableConcept.coding[WirkstoffeAges].code 1..1 MS
 * ingredient[activeIngredient].itemCodeableConcept.coding[WirkstoffeAges].display MS
 * ingredient[activeIngredient].itemCodeableConcept.coding[WirkstoffeAges].version MS
+* ingredient[activeIngredient].itemCodeableConcept.coding 1..1 MS
 * ingredient[activeIngredient].itemCodeableConcept ^short = "Inhaltsstoff codiert. Wirkstoff-Codes stammen aus der ATC-Klassifikation (Anatomical Therapeutic Chemical Classification), die von der WHO herausgegeben wird. Weitere Codes, wie auch die deutsche Bezeichnung der Codes, entsprechen dem GKV-Arzneimittelindex im Wissenschaftlichen Institut der AOK (WidO), AOK Bundesverband GbR, Deutschland, welcher auf den WHO ATC basiert. Zusätzlich kommen ergänzende Codes aus dem Arzneimittelverzeichnis der AGES zum Einsatz."
 
 * ingredient[inactiveIngredient].isActive = false
@@ -100,7 +98,5 @@ Description: "Bildet eine Magistrale Zubereitung in der Medication-Ressource ab.
 * ingredient[inactiveIngredient].itemCodeableConcept 1..1 MS
 * ingredient[inactiveIngredient].itemCodeableConcept.text MS
 
-
-* batch 0..0 // MS
-//ASW 22.09.2026 offen ob 0..0
-* batch ^short = "Informationen zur Charge des Arzneimittels." 
+* ingredient 1..* MS
+* ingredient ^short = "Wirkstoffe."

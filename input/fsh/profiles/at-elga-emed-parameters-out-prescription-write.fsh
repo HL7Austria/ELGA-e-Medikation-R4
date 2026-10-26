@@ -6,7 +6,6 @@ Description: "Profil für den Rückgabewert der $prescription-write Operation."
 
 * obeys at-emed-prescription-write-out-ergebnis
 
-* parameter 1..* MS
 * parameter ^slicing.discriminator[+].type = #type
 * parameter ^slicing.discriminator[=].path = "resource"
 * parameter ^slicing.rules = #closed  // als Parameter sind nur OperationOutcome und Bundle erlaubt
@@ -35,6 +34,9 @@ Description: "Profil für den Rückgabewert der $prescription-write Operation."
 * parameter[geplanteAbgaben].resource 1..1 MS
 * parameter[geplanteAbgaben].resource only AtElgaEmedBundleGeplanteAbgabenWriteResponse
 * parameter[geplanteAbgaben].part 0..0
+
+// Allgemeine Regeln für alle Parameter
+* parameter 1..* MS
 
 Invariant: at-emed-prescription-write-out-ergebnis
 Description: "Ist kein Bundle mit persistierten Geplanten Abgaben enthalten (Fehlerfall), muss mindestens ein OperationOutcome mit einem Issue der Schwere 'error' oder 'fatal' enthalten sein."

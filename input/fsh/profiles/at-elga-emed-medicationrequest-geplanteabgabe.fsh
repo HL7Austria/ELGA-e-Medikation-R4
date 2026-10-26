@@ -43,6 +43,7 @@ Description: "Profil einer Geplanten Abgabe eines Arzneimittels aus dem Medikati
     recipetype 1..1 MS
 //TODO ASW BUG in this slicing
 * category[mrcategory] from MedicationRequestCategoryVS (required)
+* category[mrcategory].coding 1..1 MS
 * category[mrcategory].coding.system = Canonical(MedicationRequestCategoryCS)
 * category[mrcategory].coding.code MS
 * category[mrcategory].coding.system MS
@@ -54,7 +55,7 @@ Description: "Profil einer Geplanten Abgabe eines Arzneimittels aus dem Medikati
 * category[mrcategory] ^short = "Kategorie zur Unterscheidung einer Geplanten Abgabe von einem Planeintrag (beide haben intent order)."
 //* category[recipetype] from $vs-medication-rezeptart (required)
 //* category[recipetype] from elga-medikationrezeptart (required)
-* category[recipetype].coding 1..1
+* category[recipetype].coding 1..1 MS
 * category[recipetype].coding.code 1..1 MS
 * category[recipetype].coding.display MS
 * category[recipetype].coding.version MS
@@ -106,6 +107,7 @@ Description: "Profil einer Geplanten Abgabe eines Arzneimittels aus dem Medikati
 * requester.identifier MS
 * requester.identifier.system MS
 * requester.identifier.value MS
+* requester.identifier.use 0..0
 
 //* recorder ^short = "Person der Dateineingabe. Keine Verwendung in der Geplanten Abgabe." //  TODO: Gemäß Vorgaben im CDA, keine Verwendung. Abstimmung der Verwendung mit e-Diagnose." 
 
@@ -123,6 +125,7 @@ Description: "Profil einer Geplanten Abgabe eines Arzneimittels aus dem Medikati
 * groupIdentifier ^short = "Der \"e-Med GroupIdentifier\" bildet die Rezept-Klammer. Geplante Abgaben, die demselben e-Rezept zugeordnet sind, führen denselben e-Med GroupIdentifier."
 * groupIdentifier.system MS
 * groupIdentifier.value MS
+* groupIdentifier.use 0..0
 
 //TODO ASW 12.10.2026 im Planeintrag vorhanden - hier auch relevant?
 * courseOfTherapyType 0..0 

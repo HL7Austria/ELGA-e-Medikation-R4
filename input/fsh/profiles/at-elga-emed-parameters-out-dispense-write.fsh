@@ -6,7 +6,6 @@ Description: "Profil für den Rückgabewert der $dispense-write Operation."
 
 * obeys at-emed-dispense-write-out-ergebnis
 
-* parameter 1..* MS
 * parameter ^slicing.discriminator[+].type = #type
 * parameter ^slicing.discriminator[=].path = "resource"
 * parameter ^slicing.rules = #closed  // als Parameter sind nur OperationOutcome und Bundle erlaubt
@@ -35,6 +34,9 @@ Description: "Profil für den Rückgabewert der $dispense-write Operation."
 * parameter[durchgefuehrteAbgaben].resource 1..1 MS
 * parameter[durchgefuehrteAbgaben].resource only AtElgaEmedBundleDurchgefuehrteAbgabenWriteResponse
 * parameter[durchgefuehrteAbgaben].part 0..0
+
+// Allgemeine Regeln für alle Parameter
+* parameter 1..* MS
 
 Invariant: at-emed-dispense-write-out-ergebnis
 Description: "Ist kein Bundle mit persistierten Durchgeführten Abgaben enthalten (Fehlerfall), muss mindestens ein OperationOutcome mit einem Issue der Schwere 'error' oder 'fatal' enthalten sein."
