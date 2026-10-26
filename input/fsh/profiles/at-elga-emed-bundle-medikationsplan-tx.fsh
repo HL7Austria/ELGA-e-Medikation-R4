@@ -34,8 +34,10 @@ Description: "Profil für das Schreiben des Medikationsplans mit der $plan-write
 * entry[Medikationsplan].request.url 1..1 MS
 * entry[Medikationsplan].resource only AtElgaEmedListMedikationsplan
 * entry[Medikationsplan].resource 1..1 MS
-* entry[Medikationsplan].resource.entry.item.extension contains ResolveAsVersionSpecific named ResolveAsVersionSpecific 1..1
+* entry[Medikationsplan].resource.entry.item.extension MS
+* entry[Medikationsplan].resource.entry.item.extension contains ResolveAsVersionSpecific named ResolveAsVersionSpecific 1..1 MS
 * entry[Medikationsplan].resource.entry.item.extension[ResolveAsVersionSpecific].valueBoolean = true
+* entry[Medikationsplan].resource.entry.item.extension[ResolveAsVersionSpecific].valueBoolean MS
 
 // Medikationsplaneinträge
 * entry[Medikationsplaneintrag].modifierExtension 0..0
