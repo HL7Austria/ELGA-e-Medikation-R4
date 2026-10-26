@@ -26,10 +26,11 @@ table thead th {
 
 <thead>
 <tr>
-<th style="width:10%">HTTP</th>
-<th style="width:30%">Endpunkt</th>
-<th style="width:25%">Custom-Operation/FHIR-Interaction</th>
-<th style="width:20%">Beschreibung</th>
+<th style="width:5%">HTTP</th>
+<th style="width:20%">Endpunkt</th>
+<th style="width:20%">Custom-Operation/FHIR-Interaction</th>
+<th style="width:10%">Profil</th>
+<th style="width:30%">Beschreibung</th>
 <th style="width:5%; text-align:center;">Rollen</th>
 <th style="width:10%;">(Such-) parameter</th>
 </tr>
@@ -41,6 +42,7 @@ table thead th {
 <td><strong>POST</strong></td>
 <td><code>/</code></td>
 <td><code>$groupidentifier-create</code></td>
+<td></td>
 <td>Erzeugen eines neuen e-Med GroupIdentifiers für Geplante Abgaben</td>
 <td>GDA</td>
 <td></td>
@@ -50,6 +52,7 @@ table thead th {
 <td><strong>POST</strong></td>
 <td><code>/</code></td>
 <td><code>$groupidentifier-search</code></td>
+<td></td>
 <td>Geplante und durchgeführte Abgaben mittels e-Med GroupIdentifier lesen</td>
 <td>GDA</td>
 <td></td>
@@ -59,6 +62,7 @@ table thead th {
 <td><strong>POST</strong></td>
 <td><code>/List</code></td>
 <td><code>$plan-read</code></td>
+<td>Medikationsplan</td>
 <td>Aktuelle Medikationsplanversion lesen</td>
 <td>GDA, PAT</td>
 <td></td>
@@ -68,6 +72,7 @@ table thead th {
 <td><strong>POST</strong></td>
 <td><code>/List</code></td>
 <td><code>$plan-write</code></td>
+<td>Medikationsplan</td>
 <td>Neue Version eines Medikationsplans schreiben</td>
 <td>GDA</td>
 <td></td>
@@ -76,8 +81,9 @@ table thead th {
 <tr>
 <td><strong>POST</strong></td>
 <td><code>/List</code></td>
-<td><code>$patient-plan-write</code></td>
-<td>Medikationsplaneinträge löschen</td>
+<td><code>$history-delete</code></td>
+<td>Medikationsplan</td>
+<td>Aktuelle oder historische Medikationsplanversion löschen</td>
 <td>PAT</td>
 <td></td>
 </tr>
@@ -85,26 +91,17 @@ table thead th {
 <tr>
 <td><strong>POST</strong></td>
 <td><code>/List</code></td>
-<td><code>$plan-delete</code></td>
-<td>Aktuelle oder historische Medikationsplanversion löschen</td>
-<td>PAT</td>
-<td></td>
-</tr>
-
-<tr>
-<td><strong>GET</strong></td>
-<td><code>/List/_history</code></td>
-<td><code>history-type</code></td>
+<td><code>$history-search</code></td>
+<td>Medikationsplan</td>
 <td>
 plan-history-search & plan-history-directory-search:<br>
-In historischen Medikationsplanversion(en) suchen und alle referenzierten Ressourcen inkludieren<br> z.B.
-(<code>_include=*&amp;item=MedicationRequest/[id]&amp;date=...</code>)<br>
-Directory-Search wenn include nicht verwendet wird.
+In historischen Medikationsplanversion(en) suchen und alle referenzierten Ressourcen inkludieren. Directory-Search wenn der Parameter<code>include</code> nicht verwendet wird.
 </td>
 <td>GDA, PAT</td>
 <td><a href="StructureDefinition-at-elga-emed-list-medikationsplan.html#search-parameters">List (Search-) parameters</a></td>
 </tr>
 
+<!--
 <tr>
 <td><strong>GET</strong></td>
 <td><code>/List/[id]/_history</code></td>
@@ -127,65 +124,101 @@ Standardabfrage mit _include
 <td>GDA, PAT</td>
 <td></td>
 </tr>
+-->
+
+<!-- MedicationRequest: typbezogene Interaktionen -->
 
 <tr style="border-top:3px solid #666;">
-<td><strong>POST</strong></td>
-<td><code>/MedicationRequest</code></td>
-<td><code>$prescription-write</code></td>
-<td>Geplante Abgabe schreiben</td>
-<td>GDA</td>
-<td></td>
+  <td><strong>POST</strong></td>
+  <td><code>/MedicationRequest</code></td>
+  <td><code>$prescription-write</code></td>
+  <td><a href="StructureDefinition-at-elga-emed-medicationrequest-geplanteabgabe.html">Geplante Abgabe</a></td>
+  <td>Geplante Abgabe schreiben</td>
+  <td>GDA</td>
+  <td></td>
 </tr>
 
 <tr>
-<td><strong>POST</strong></td>
-<td><code>/MedicationRequest</code></td>
-<td><code>$prescription-discard</code></td>
-<td>Eigene Geplante Abgabe stornieren</td>
-<td>GDA</td>
-<td></td>
+  <td><strong>POST</strong></td>
+  <td><code>/MedicationRequest</code></td>
+  <td><code>$history-search</code></td>
+  <td><a href="StructureDefinition-at-elga-emed-medicationrequest-planeintrag.html">Planeintrag</a></td>
+  <td>
+  In historischen Planeintragsversionen suchen und alle
+  referenzierten Ressourcen inkludieren.
+  Nur MedicationRequests ohne referenzierte Ressourcen, wenn <code>include</code> nicht verwendet wird.<br>
+  Gilt ausschließlich für Planeinträge, nicht für geplante Abgaben.
+  </td>
+  <td>GDA, PAT</td>
+  <td>
+    <a href="StructureDefinition-at-elga-emed-medicationrequest-planeintrag.html#search-parameters">Planeintrag (Search-) parameters</a>
+  </td>
 </tr>
 
 <tr>
-<td><strong>POST</strong></td>
-<td><code>/MedicationRequest</code></td>
-<td><code>$plan-entry-delete</code></td>
-<td>Planeintrag löschen</td>
-<td>GDA</td>
-<td></td>
+  <td><strong>GET</strong></td>
+  <td><code>/MedicationRequest?category=Planeintrag</code></td>
+  <td><code>search-type</code></td>
+  <td><a href="StructureDefinition-at-elga-emed-medicationrequest-planeintrag.html">Planeintrag</a></td>
+  <td>
+    planentry-search: Aktuelle Planeinträge suchen
+    (<code>?category=Planeintrag</code>)
+  </td>
+  <td>GDA, PAT</td>
+  <td>
+    <a href="StructureDefinition-at-elga-emed-medicationrequest-planeintrag.html#search-parameters">Planeintrag (Search-) parameters</a>
+  </td>
 </tr>
 
 <tr>
-<td><strong>GET</strong></td>
-<td><code>/MedicationRequest?category=GeplAbgabe</code></td>
-<td><code>search-type</code></td>
-<td>Geplante Abgaben suchen (<code>?category=GeplAbgabe</code>)</td>
-<td>GDA, PAT</td>
-<td><a href="StructureDefinition-at-elga-emed-medicationrequest-geplanteabgabe.html#search-parameters">Geplante Abgabe (Search-) parameters</a></td>
+  <td><strong>GET</strong></td>
+  <td><code>/MedicationRequest?category=GeplAbgabe</code></td>
+  <td><code>search-type</code></td>
+  <td><a href="StructureDefinition-at-elga-emed-medicationrequest-geplanteabgabe.html">Geplante Abgabe</a></td>
+  <td>prescription-search: Geplante Abgaben suchen
+    (<code>?category=GeplAbgabe</code>)
+  </td>
+  <td>GDA, PAT</td>
+  <td>
+    <a href="StructureDefinition-at-elga-emed-medicationrequest-geplanteabgabe.html#search-parameters">Geplante Abgabe (Search-) parameters</a>
+  </td>
+</tr>
+
+<!-- MedicationRequest: instanzbezogene Interaktionen -->
+
+
+<tr>
+  <td><strong>POST</strong></td>
+  <td><code>/MedicationRequest/[id]</code></td>
+  <td><code>$prescription-discard</code></td>
+  <td><a href="StructureDefinition-at-elga-emed-medicationrequest-geplanteabgabe.html">Geplante Abgabe</a></td>
+  <td>Eigene geplante Abgabe stornieren</td>
+  <td>GDA</td>
+  <td></td>
 </tr>
 
 <tr>
-<td><strong>GET</strong></td>
-<td><code>/MedicationRequest?category=Planeintrag</code></td>
-<td><code>search-type</code></td>
-<td>Planeinträge suchen (<code>?category=Planeintrag</code>)</td>
-<td>GDA, PAT</td>
-<td><a href="StructureDefinition-at-elga-emed-medicationrequest-planeintrag.html#search-parameters">Planeintrag (Search-) parameters</a></td>
+  <td><strong>POST</strong></td>
+  <td><code>/MedicationRequest/[id]</code></td>
+  <td><code>$planentry-delete</code></td>
+  <td><a href="StructureDefinition-at-elga-emed-medicationrequest-planeintrag.html">Planeintrag</a></td>
+  <td>Gesamte Historie eines Planeintrags löschen</td>
+  <td>PAT</td>
+  <td></td>
 </tr>
 
 <tr>
-<td><strong>GET</strong></td>
-<td><code>/MedicationRequest/_history?category=Planeintrag</code></td>
-<td><code>history-type</code></td>
-<td>
-In historischen Planeintragsversion(en) suchen und alle referenzierten Ressourcen inkludieren<br> z.B.
-(<code>_include=*&amp;category=Planeintrag&amp;autor=Practitioner/[id]&amp;medication-code=...&amp;date=...&...</code>)<br>
-Directory-Search wenn include nicht verwendet wird.
-</td>
-<td>GDA, PAT</td>
-<td><a href="StructureDefinition-at-elga-emed-medicationrequest-planeintrag.html#search-parameters">Planeintrag (Search-) parameters</a></td>
+  <td><strong>DELETE</strong></td>
+  <td><code>/MedicationRequest/[id]</code></td>
+  <td><code>delete</code></td>
+  <td><a href="StructureDefinition-at-elga-emed-medicationrequest-geplanteabgabe.html">Geplante Abgabe</a></td>
+  <td>prescription-delete: Geplante Abgabe löschen; nur für geplante Abgaben</td>
+  <td>PAT</td>
+  <td></td>
 </tr>
+<!-- Wie kann man hier abfangen, dass nur geplante Abgaben gelöscht werden können und keine Planeinträge?-->
 
+<!--
 <tr>
 <td><strong>GET</strong></td>
 <td><code>/MedicationRequest/[id]/_history</code></td>
@@ -203,65 +236,64 @@ Die gesamte Historie eines Medikationsplaneintrags abrufen<br>
 <td><code>vread</code></td>
 <td>
 eine historische Planeintragsversion lesen<br>
-Optionale Abfrage mit _include
 </td>
 <td>GDA, PAT</td>
 <td></td>
 </tr>
+-->
 
-
-<tr>
-<td><strong>DELETE</strong></td>
-<td><code>/MedicationRequest</code></td>
-<td><code>prescription-delete</code></td>
-<td>Geplante Abgabe löschen</td>
-<td>PAT</td>
-<td></td>
-</tr>
-
+  <!-- MedicationDispense: typbezogene Interaktionen -->
 <tr style="border-top:3px solid #666;">
-<td><strong>POST</strong></td>
-<td><code>/MedicationDispense</code></td>
-<td><code>$dispense-write</code></td>
-<td>Durchgeführte Abgabe schreiben</td>
-<td>GDA</td>
-<td></td>
+  <td><strong>POST</strong></td>
+  <td><code>/MedicationDispense</code></td>
+  <td><code>$dispense-write</code></td>
+  <td><a href="StructureDefinition-at-elga-emed-medicationdispense-durchgefuehrteabgabe.html">Durchgeführte Abgabe</a></td>
+  <td>Durchgeführte Abgabe schreiben</td>
+  <td>GDA</td>
+  <td></td>
 </tr>
 
 <tr>
-<td><strong>POST</strong></td>
-<td><code>/MedicationDispense</code></td>
-<td><code>$dispense-discard</code></td>
-<td>Eigene durchgeführte Abgabe stornieren</td>
-<td>GDA</td>
-<td></td>
+  <td><strong>GET</strong></td>
+  <td><code>/MedicationDispense</code></td>
+  <td><code>search-type</code></td>
+  <td><a href="StructureDefinition-at-elga-emed-medicationdispense-durchgefuehrteabgabe.html">Durchgeführte Abgabe</a></td>
+  <td>dispense-search: Durchgeführte Abgaben suchen</td>
+  <td>GDA, PAT</td>
+  <td>
+    <a href="StructureDefinition-at-elga-emed-medicationdispense-durchgefuehrteabgabe.html#search-parameters">MedicationDispense (Search-) parameters</a>
+  </td>
+</tr>
+
+<!-- MedicationDispense: instanzbezogene Interaktionen -->
+<tr>
+  <td><strong>POST</strong></td>
+  <td><code>/MedicationDispense/[id]</code></td>
+  <td><code>$dispense-discard</code></td>
+  <td><a href="StructureDefinition-at-elga-emed-medicationdispense-durchgefuehrteabgabe.html">Durchgeführte Abgabe</a></td>
+  <td>Eigene durchgeführte Abgabe stornieren</td>
+  <td>GDA</td>
+  <td></td>
 </tr>
 
 <tr>
-<td><strong>POST</strong></td>
-<td><code>/MedicationDispense</code></td>
-<td><code>$reference-plan</code></td>
-<td>Referenz auf Medikationsplan erstellen</td>
-<td>GDA</td>
-<td></td>
+  <td><strong>POST</strong></td>
+  <td><code>/MedicationDispense/[id]</code></td>
+  <td><code>$reference-plan</code></td>
+  <td><a href="StructureDefinition-at-elga-emed-medicationdispense-durchgefuehrteabgabe.html">Durchgeführte Abgabe</a></td>
+  <td>Referenz auf Medikationsplan erstellen</td>
+  <td>GDA</td>
+  <td></td>
 </tr>
 
 <tr>
-<td><strong>GET</strong></td>
-<td><code>/MedicationDispense</code></td>
-<td><code>search-type</code></td>
-<td>dispense-search: Durchgeführte Abgaben suchen</td>
-<td>GDA, PAT</td>
-<td><a href="StructureDefinition-at-elga-emed-medicationdispense-durchgefuehrteabgabe.html#search-parameters">MedicationDispense (Search-) parameters</a></td>
-</tr>
-
-<tr>
-<td><strong>DELETE</strong></td>
-<td><code>/MedicationDispense</code></td>
-<td><code>dispense-delete</code></td>
-<td>Durchgeführte Abgabe löschen</td>
-<td>PAT</td>
-<td></td>
+  <td><strong>DELETE</strong></td>
+  <td><code>/MedicationDispense/[id]</code></td>
+  <td><code>delete</code></td>
+  <td><a href="StructureDefinition-at-elga-emed-medicationdispense-durchgefuehrteabgabe.html">Durchgeführte Abgabe</a></td>
+  <td>dispense-delete: Durchgeführte Abgabe löschen</td>
+  <td>PAT</td>
+  <td></td>
 </tr>
 
 </tbody>
