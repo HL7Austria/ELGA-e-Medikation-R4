@@ -285,6 +285,7 @@ groups:
     description: Medikation
     resources:
       - StructureDefinition/at-elga-emed-medication-standard-medikation
+      - StructureDefinition/at-elga-emed-medication-wirkstoff
       # - StructureDefinition/at-elga-emed-substance-wirkstoff
       - StructureDefinition/at-elga-emed-medication-magistrale-zubereitung
   Dosierungen:

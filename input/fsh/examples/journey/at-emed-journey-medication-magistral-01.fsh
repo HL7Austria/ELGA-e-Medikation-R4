@@ -8,7 +8,8 @@ Usage: #inline
 //* status = #active
 //* manufacturer = Reference(AtElgaEmed-Example-Organization-Apo-01) "Amadeus Apotheke"
 * form.coding = https://termgit.elga.gv.at/CodeSystem/medikationdarreichungsform#100000073713 "Salbe"
-
+* extension[Rezeptur].valueMarkdown = "TODO: Beispielrezeptur"
+* code.text = "Dexpanthenol-5-%-Salbe"
 * ingredient[activeIngredient].itemCodeableConcept = $cs-atc#A11HA30 "Dexpanthenol"
 * ingredient[activeIngredient].strength.numerator = 5 'g' "g"
 * ingredient[activeIngredient].strength.denominator = 100 'g' "g"

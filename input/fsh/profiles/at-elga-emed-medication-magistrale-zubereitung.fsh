@@ -20,11 +20,11 @@ Description: "Bildet eine Magistrale Zubereitung in der Medication-Ressource ab.
 * implicitRules 0..0
 * implicitRules ^short =  "Fachliche Begründung: Die Ressource wird nach den Regeln dieses Implementierungsleitfadens interpretiert. Zusätzliche implizite Verarbeitungsregeln werden nicht verwendet."
 
-* extension contains AtElgaEmedExtensionRezeptur named Rezeptur 0..1 MS
+* extension contains AtElgaEmedExtensionRezeptur named Rezeptur 1..1 MS
 * extension[Rezeptur].valueMarkdown 1..1 MS
 * extension[Rezeptur].valueMarkdown ^short = "Angabe der Rezeptur für die Zubereitung"
 
-* code MS
+* code 1..1 MS
 * code.text 1..1 MS
 * code.text ^short = "Titel der Medikation"
 * status 0..0 
@@ -36,13 +36,20 @@ Description: "Bildet eine Magistrale Zubereitung in der Medication-Ressource ab.
 
 * amount 0..1 MS  
 * amount.numerator 1..1 MS
+* amount.numerator.value 1..1 MS
 * amount.numerator.code 1..1 MS
 * amount.numerator.code from $vs-emed-mengenart (required)
+* amount.numerator.unit MS
 * amount.numerator.comparator 0..0
 * amount.numerator.comparator ^short = "Fachliche Begründung: TODO"
-* amount.denominator.value = 1
-* amount.denominator.code 0..0
-* amount.denominator.unit 0..0
+* amount.denominator 1..1 MS
+* amount.denominator.value 1..1 MS
+* amount.denominator.code MS
+* amount.denominator.code from $vs-emed-mengenart (required)
+* amount.denominator.unit MS
+* amount.denominator.comparator 0..0
+* amount.denominator.comparator ^short = "Fachliche Begründung: TODO"
+
 * amount ^short = "Die Gesamtmenge des Arzneimittels in der Verpackung."
 
 // TODO: prüfen, wie Freitext bei magistraler Zubereitung abgebildet wird:
@@ -100,3 +107,7 @@ Description: "Bildet eine Magistrale Zubereitung in der Medication-Ressource ab.
 
 * ingredient 1..* MS
 * ingredient ^short = "Wirkstoffe."
+* ingredient.modifierExtension 0..0
+* ingredient.modifierExtension ^short = "Fachliche Begründung: Für den Medikationsplan sind keine zusätzlichen Erweiterungen vorgesehen, die die Bedeutung der Ressource oder ihrer Elemente verändern."
+* ingredient.item[x] MS
+* ingredient.item[x] only CodeableConcept

@@ -23,7 +23,7 @@ Description: "Die Basis für alle in eMed verwendeten MedicationRequests"
 
 * contained MS
 * contained ^short = "Es sind nur die hier definierten contained Medication-Ressourcen zulässig. Contained (eingebettete) Ressourcen werden nicht separat versioniert, sondern ausschließlich im Rahmen der übergeordneten Ressource versioniert."
-* contained only AtElgaEmedMedicationStandardMedikation or AtElgaEmedMedicationMagistraleZubereitung
+* contained only AtElgaEmedMedicationStandardMedikation or AtElgaEmedMedicationMagistraleZubereitung or AtElgaEmedMedicationWirkstoff
 
 // TODO: Invariante für repeating sequences * dosageInstruction.extension contains AtElgaEmedExtensionDosageRepeat??? named repeatCycle 0..1
 //TODO Invariante sodass die Extension nur erlaubt ist, wenn es mehrere Dosages gibt

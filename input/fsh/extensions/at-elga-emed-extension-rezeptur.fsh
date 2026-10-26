@@ -6,3 +6,4 @@ Context: Medication
 * value[x] 1..1
 * value[x] only markdown
 * valueMarkdown MS
+* url MS

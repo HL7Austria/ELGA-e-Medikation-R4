@@ -9,3 +9,4 @@ Context: MedicationDispense
 * valueIdentifier.system MS
 * valueIdentifier.value MS
 //ASW 11.10.2026 TODO hier noch weitere identifier Elemente als MS?
+* url MS

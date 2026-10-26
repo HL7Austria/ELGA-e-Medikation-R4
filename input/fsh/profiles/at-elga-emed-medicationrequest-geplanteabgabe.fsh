@@ -4,6 +4,9 @@ Id: at-elga-emed-medicationrequest-geplanteabgabe
 Title: "At ELGA e-Medikation MedicationRequest Geplante Abgabe"
 Description: "Profil einer Geplanten Abgabe eines Arzneimittels aus dem Medikationsplan."
 
+* contained only AtElgaEmedMedicationStandardMedikation or AtElgaEmedMedicationMagistraleZubereitung
+
+
 // Extensions
 * extension contains $medicationRequest-effectiveDosePeriod-r5 named effectiveDosePeriod 0..1
 * extension[effectiveDosePeriod] ^short = "Geplanter Einnahmezeitraum. Beginn: aktuelles Datum oder in der Zukunft, Ende: Datum in der Zukunft oder unbefristet. Der geplante Einnahmezeitraum muss mit den zeitlichen Einschränkungen der Dosage übereinstimmen."

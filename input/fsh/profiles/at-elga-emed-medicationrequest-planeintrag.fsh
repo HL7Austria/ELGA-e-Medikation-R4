@@ -70,7 +70,7 @@ Description: "Profil für einen Medikationsplaneintrag."
 
 // --- Medication 
 * medication[x] 1..1 MS  
-* medication[x] only Reference(AtElgaEmedMedicationStandardMedikation or AtElgaEmedMedicationMagistraleZubereitung)  
+* medication[x] only Reference(AtElgaEmedMedicationStandardMedikation or AtElgaEmedMedicationMagistraleZubereitung or AtElgaEmedMedicationWirkstoff)  
 * medication[x] ^type.aggregation = #contained
 * medication[x] ^short = "Das Arzneimittel wird in einer contained Medication Ressource oder als Conditional Reference dokumentiert."
 * medicationReference MS
