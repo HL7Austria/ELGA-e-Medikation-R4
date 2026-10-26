@@ -68,7 +68,7 @@ Eine *Geplante Abgabe* eines Arzneimittels wird durch eine *MedicationRequest*-R
 Die Ausgabe eines Arzneimittels wird mit einer *Durchgeführte Abgaben* in einer *MedicationDispense*-Ressource dokumentiert und dient der Nachvollziehbarkeit der abgegebenen Arzneimittel in der e-Medikation, siehe [Profil Durchgeführte Abgabe](StructureDefinition-at-elga-emed-medicationdispense-durchgefuehrteabgabe.html).
 
 
-<h3 class="no-number">Fachliche Designentscheidungen</h3>
+### Fachliche Designentscheidungen
 
 #### Abhängigkeit von Planeintrag und Geplanter Abgabe
 Gemäß Fachkonzept müssen Arzneimittel und Dosierung einer *Geplanten Abgabe* zum Zeitpunkt ihrer Erstellung mit dem zugehörigen Planeintrag identisch sein (siehe [Sub_UC_eMed_04_01](Sub_UC_eMed_04.html#sub_uc_emed_04_01---geplante-abgabe-erstellen-prescription-write)). Dies umfasst insbesondere das verordnete Arzneimittel einschließlich seiner PZN, beziehungsweise die dokumentierten Wirkstoffe, sowie die Dosierungsangaben. Enthält der Planeintrag nur Wirkstoffe, muss der Planeintrag zuvor angepasst und ein Präparat ausgewählt werden, bevor eine *Geplante Abgabe* erstellt werden kann.
@@ -121,11 +121,11 @@ Die Übereinstimmung wird ausschließlich zum Zeitpunkt der Erstellung der *Gepl
 - Medikationsplan und *Geplante Abgabe* enthalten unterschiedliche Darstellungsebenen derselben vorgesehenen Verordnung. Diese müssen für Anwender klar visualisiert werden.
 
 <div class="dragon" markdown="1">
-<p class="note-to-balloters" markdown="1">
+<div class="note-to-balloters" markdown="1">
 
 - Wie bleibt der Medikationsplan verständlich, wenn das abgegebene Arzneimittel vom Wirkstoff oder Präparat im Planeintrag und von der <i>Geplanten Abgabe</i> abweicht?<br>
 - Soll `basedOn` versioniert werden, um die geprüfte Planeintrag-Version nachvollziehen zu können?
-</p>
+</div>
 </div>
 
 #### Automatische Statusänderungen der beim Plan-Read ausgelieferten Ressourcen
@@ -141,10 +141,10 @@ Die Übereinstimmung wird ausschließlich zum Zeitpunkt der Erstellung der *Gepl
 *Plan-History-Search* liefert dagegen alle Inhalte, Status und Flags unverändert.
 
 <div class="dragon" markdown="1">
-<p class="note-to-balloters" markdown="1">
+<div class="note-to-balloters" markdown="1">
 
 * - Soll der GDA den aufbereiteten Zustand erhalten (Variante A, aktuell), welcher den Schreibvorgang vereinfacht, bei dem er aber den Originalstatus der persistierten Ressourcen nicht sieht, oder den persistierten Originalzustand (Variante B)?
-</p>
+</div>
 </div>
 
 <!-- - Das Beispiel Journey-01-02 zeigt *unchanged* mit *stopped*, UC_eMed_01 verlangt *removed* mit *stopped*. -->
@@ -201,7 +201,7 @@ Ein Hinweis zur gemeinsamen bzw. zeitlich versetzten Einnahme muss daher als Fre
 </div>
 </div>
 
-<h3 class="no-number">Technische Designentscheidungen</h3>
+### Technische Designentscheidungen
 
 #### Kennzeichnung der relevanten Elemente
 Die in der e-Medikation relevanten Elemente werden nach einem Whitelisting-Ansatz festgelegt. Hierzu werden Elemente, die fachlich verarbeitet, gespeichert und in weiterer Folge für die Anzeige bereitgestellt werden sollen, in den Profilen explizit mit dem *Must Support Flag MS* gekennzeichnet.
@@ -227,11 +227,11 @@ Bei der Kennzeichnung komplexer Elemente wird eindeutig festgelegt, welche ihrer
 
 
 <div class="dragon" markdown="1">
-<p class="note-to-balloters">
+<div class="note-to-balloters" markdown="1">
 Ergänzend könnten Obligations eingesetzt werden, um die mit der Kennzeichnung verbundenen Pflichten für die beteiligten Akteure präziser festzulegen.
 International werden Obligations von vielen Ländern für unterschiedliche Use Cases eingesetzt.<br>
 Sollen Obligations eingesetzt werden, um die MS Markierungen noch aussagekräftiger zu machen? Feedback aus der Community ist erwünscht.
-</p>
+</div>
 </div>
 
 
@@ -307,7 +307,7 @@ Historische Versionen können von GDAs nicht bearbeitet werden. Änderungen erfo
 
 **Entstehung neuer Versionen**
 
-Jedes Update, das zu einer inhaltlichen Änderung einer Ressource führt, erzeugt eine neue Version. Die Fachanwendung vergibt dabei eine neue `meta.versionId` und setzt `meta.lastUpdated` auf den Speicherzeitpunkt (siehe [Allgemeine Business-Logik für schreibende Operations](schreibende-operations-allgemein.html)). Die Response enthält die neu vergebene Version.
+Jedes Update, das zu einer inhaltlichen Änderung einer Ressource führt, erzeugt eine neue Version. Die Fachanwendung vergibt dabei eine neue `meta.versionId` und setzt `meta.lastUpdated` auf den Speicherzeitpunkt. Die Response enthält die neu vergebene Version.
 
 Ist die übermittelte Ressource inhaltlich identisch mit ihrer aktuellen Version, wird keine neue Version erzeugt. Damit wird verhindert, dass wiederholtes Speichern derselben Daten zu einer Vielzahl inhaltsgleicher Versionen führt. Beim Vergleich bleiben die serverseitig verwalteten Elemente `meta.versionId`, `meta.lastUpdated` und die von der Fachanwendung erzeugte Narrative (`Resource.text`) unberücksichtigt. Die Response enthält in diesem Fall die unveränderte aktuelle Version.
 
@@ -493,9 +493,9 @@ Die e-Medikation-Fachanwendung löst diese Identifier gegen den GDA-I bzw. den Z
 Bei Referenzen, die auf mehrere Ressourcentypen verweisen können (z. B. `requester`, `performer` oder `List.source`), ergibt sich aus dem jewiligen `Reference.identifer.system`, ob es sich um eine OID oder ein bPK-GH handelt. Die e-Medikation-Fachanwendung kann daraus den Identifier eindeutig zuordnen. Verweise auf Einträge (`List.entry.item`) sind hingegen immer Referenzen auf bereits in der e-Medikation-Fachanwendung gespeicherte Ressourcen (`Reference.reference`) oder Ressourcen, welche im TransactionBundle mitgeliefert werden.
 
 <div class="dragon" markdown="1">
-<p class="note-to-balloters" markdown="1">
+<div class="note-to-balloters" markdown="1">
 Aktuell wird in einer AG des TC FHIR daran gearbeitet, wie die e-Medikation-Fachanwendung die Informationen aus dem GDA-I auf Basis einer OID auf die `Practitioner`-, `PractitionerRole`- und/oder `Organization`-Ressourcen umlegen kann. Die Ergebnisse dieser AG werden in die Implementierung der e-Medikation-Fachanwendung einfließen.
-</p>
+</div>
 </div>
 
 <br>
@@ -527,9 +527,9 @@ Für die im IG festgelegten Ressourcen wird die menschenlesbare Darstellung (Res
 Die Generierung berücksichtigt sowohl strukturierte Angaben als auch Freitextinformationen. Die Narrative ergänzt die strukturierten Daten, ersetzt diese jedoch nicht. Davon zu unterscheiden sind fachlich erfasste Freitexte, beispielsweise ergänzende Hinweise oder eine nicht strukturiert abbildbare Dosierungsanweisung; diese bleiben eigenständige Inhalte und werden bei der Generierung berücksichtigt. Die unterschiedlichen Textfelder und ihr jeweiliger Geltungsbereich sind im Abschnitt [Textdarstellungen und ergänzende Hinweise im Kapitel der Dosierungen](dosages.html#textdarstellungen-und-ergänzende-hinweise) beschrieben.
 
 <div class="dragon" markdown="1">
-<p class="note-to-balloters">
+<div class="note-to-balloters" markdown="1">
 Der finale Algorithmus für die Generierung der menschenlesbaren Textdarstellungen der einzelnen Ressourcen und Dosierschemata wird noch erarbeitet und im nächsten Ballot zur Verfügung gestellt. Feedback aus der Community ist erwünscht.
-</p>
+</div>
 </div>
 <br>
 
@@ -539,9 +539,9 @@ Der finale Algorithmus für die Generierung der menschenlesbaren Textdarstellung
 #### Löschen und Stornieren von versionierten Ressourcen
 
 <div class="dragon" markdown="1">
-<p class="note-to-balloters">
+<div class="note-to-balloters" markdown="1">
 Dieser Abschnitt beschreibt die zur Diskussion stehenden Konzepte für das Löschen und Stornieren versionierter Ressourcen sowie deren Auswirkungen auf den Medikationsplan und seine Historie. Die beschriebenen Löschvarianten sind bislang nicht im IG umgesetzt. Insbesondere zur Behandlung historischer Ressourcenversionen, zur Referenzintegrität und zur technischen Umsetzbarkeit wird Feedback aus der Community erbeten.
-</p>
+</div>
 </div>
 
 <br>
@@ -674,9 +674,8 @@ Unabhängig von der gewählten technischen Variante sind folgende Punkte festzul
 
 
 <div class="dragon" markdown="1">
-<p class="note-to-balloters">
+<div class="note-to-balloters" markdown="1">
 Die beschriebenen Löschkonzepte sind bislang nicht im IG umgesetzt. Zu diesem Abschnitt wird besonders um fachliches und technisches Feedback gebeten. Insbesondere sollen Erfahrungen aus der Implementierung versionierender FHIR-Server und vergleichbarer Konzepte berücksichtigt werden.
-</p>
 <ul>
 <li>Ist die Unterscheidung zwischen horizontalem Löschen eines Planeintrags einschließlich aller Versionen und vertikalem Löschen einzelner Medikationsplanversionen fachlich ausreichend?</li>
 <li>Wie sollen historische Medikationsplanversionen beim horizontalen Löschen bereinigt werden: unter Beibehaltung ihrer bisherigen <code>meta.versionId</code> oder durch bereinigte Ersatzdarstellungen mit neuer Versionskennung? Welche Alternativen vermeiden eine Veränderung bereits identifizierter historischer Inhalte?</li>
@@ -688,4 +687,5 @@ Die beschriebenen Löschkonzepte sind bislang nicht im IG umgesetzt. Zu diesem A
 <li>Welche der beschriebenen Varianten können bestehende FHIR-R4-Server umsetzen? Welche zusätzlichen Operationen oder serverinternen Funktionen wären erforderlich?</li>
 <li>Wie sollen  <code>meta.versionId</code>, <code>meta.lastUpdated</code>, ETags nach einer Löschung behandelt werden?</li>
 </ul>
+</div>
 </div>
