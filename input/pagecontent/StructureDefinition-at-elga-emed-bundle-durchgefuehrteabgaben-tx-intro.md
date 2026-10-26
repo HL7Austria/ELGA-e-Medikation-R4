@@ -1,7 +1,7 @@
 {% include styleheader.md %}
 
 
-"Das Bundle vom Typ `transaction` dient dem schreibenden Zugriff und besteht aus allen Durchgeführten Abgaben, die gemeinsam geschrieben werden sollen."
+Das Bundle vom Typ `transaction` dient dem schreibenden Zugriff und besteht aus allen Durchgeführten Abgaben, die gemeinsam geschrieben werden sollen.
 
 Details siehe [Sub_UC_eMed_05_01 - Durchgeführte Abgabe erstellen](Sub_UC_eMed_05.html#sub_uc_emed_05_01---durchgeführte-abgabe-erstellen).
 
