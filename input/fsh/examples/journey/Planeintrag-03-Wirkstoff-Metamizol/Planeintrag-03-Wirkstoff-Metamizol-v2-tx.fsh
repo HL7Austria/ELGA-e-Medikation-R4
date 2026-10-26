@@ -5,7 +5,7 @@ Title: "Beispiel Journey 07-02: Planeintrag 3"
 Description: "Bildet einen geänderten Planeintrag ab: Arzneimittel (Magelan-Tropfen) ersetzt reine Wirkstoffangabe, angepasste Dosierung."
 Usage: #inline
 * id = $idPlaneintrag03
-* meta.versionId = $idPlaneintrag03v2
+
 * courseOfTherapyType = $cs-medication-request-courseOfTherapyType#acute
 
 // R5 Backports
