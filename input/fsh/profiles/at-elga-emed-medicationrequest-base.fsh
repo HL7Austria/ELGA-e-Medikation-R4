@@ -14,6 +14,7 @@ Description: "Die Basis für alle in eMed verwendeten MedicationRequests"
 * modifierExtension 0..0
 * modifierExtension ^short = "Fachliche Begründung: Für den Medikationsplan sind keine zusätzlichen Erweiterungen vorgesehen, die die Bedeutung der Ressource oder ihrer Elemente verändern."
 * text MS
+* text ^short = "Narrative - wird immer durch die Fachanwendung generiert."
 //ASW 22.09.2026 TODO Beschreibung - so visualisiert wie im CDA mit XHTML -> How to fill the Narrative in -notes.html 
 * text.div MS
 * text.status MS

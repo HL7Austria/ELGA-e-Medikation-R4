@@ -143,7 +143,7 @@ Die Übereinstimmung wird ausschließlich zum Zeitpunkt der Erstellung der *Gepl
 <div class="dragon" markdown="1">
 <div class="note-to-balloters" markdown="1">
 
-* - Soll der GDA den aufbereiteten Zustand erhalten (Variante A, aktuell), welcher den Schreibvorgang vereinfacht, bei dem er aber den Originalstatus der persistierten Ressourcen nicht sieht, oder den persistierten Originalzustand (Variante B)?
+* - Soll der GDA den aufbereiteten Zustand erhalten (aktuell), welcher den Schreibvorgang vereinfacht, bei dem er aber den Originalstatus der persistierten Ressourcen nicht sieht, oder den persistierten Originalzustand?
 </div>
 </div>
 
@@ -383,13 +383,12 @@ Die Referenzen von *Geplanten Abgaben* und *Durchgeführten Abgaben* auf Planein
 
 **Referenzen auf Patient und GDA**
 
-Referenzen auf Patient, Practitioner, PractitionerRole und Organization sind nicht versioniert. Die Identität des Patienten bzw. GDA ist über die logische Referenz dauerhaft festgelegt. Die angezeigten Stammdaten (z.B. Name, Fachrichtung, Organisation) entsprechen jedoch dem aktuellen Stand der jeweiligen Ressource und nicht zwingend dem Stand zum Zeitpunkt der Dokumentation. Ob dies für die Historie ausreicht, hängt auch davon ab, wie die Fachanwendung Änderungen aus GDA-I und ZPI in die Ressourcen übernimmt (siehe [Informationen über GDA und Patienten](#informationen-über-gda-und-patienten)).
+Referenzen auf Patient, Practitioner, PractitionerRole und Organization sind nicht versioniert. Die Identität des Patienten bzw. GDA ist über die logische Referenz dauerhaft festgelegt. Die angezeigten Stammdaten (z.B. Name, Fachrichtung, Organisation) entsprechen jedoch dem aktuellen Stand der jeweiligen Ressource und nicht zwingend dem Stand zum Zeitpunkt der Dokumentation.
 
 <div class="dragon" markdown="1">
 <div class="note-to-balloters">
 <ul>
 <li>Sollen die Referenzen von <i>Geplanten Abgaben</i> und <i>Durchgeführten Abgaben</i> auf Planeinträge versioniert werden oder soll der Verweis weiterhin auf die jeweils aktuelle Version zeigen? (siehe auch <a href="#abhängigkeit-von-planeintrag-und-geplanter-abgabe">Abhängigkeit von Planeintrag und Geplanter Abgabe</a>)</li>
-<li>Müssen Referenzen auf Patient und GDA für die Historie versioniert sein, damit z.B. Name und Rolle des GDA zum Zeitpunkt der Dokumentation erhalten bleiben? Alternativ könnte der Name in <code>Reference.display</code> festgehalten werden.</li>
 <li>Wie soll die Fachanwendung reagieren, wenn ein Client im Medikationsplan-Transaction-Bundle bereits eine versionierte Referenz in <code>List.entry.item</code> übermittelt: Ablehnen, oder akzeptieren, sofern sie auf die aktuelle Version verweist?</li>
 </ul>
 </div>
@@ -470,7 +469,7 @@ Die Bildung des ETags ist implementierungsabhängig. Clients DÜRFEN den Wert nu
 
 Anstelle des HTTP-Headers kann der ETag im Medikationsplan-Transaction-Bundle über [Bundle.entry.request.ifMatch](https://hl7.org/fhir/R4/bundle-definitions.html#Bundle.entry.request.ifMatch) des *List*-Eintrags übermittelt werden. Damit wäre das Bundle in sich vollständig. Ein zusätzlicher HTTP-Header für die Custom Operation wäre nicht erforderlich.
 
-<div class="dragon" markdown="1">
+<!-- <div class="dragon" markdown="1">
 <div class="note-to-balloters">
 <ul>
 <li>Soll der ETag beim $plan-write im HTTP-Header <code>If-Match</code> oder in <code>Bundle.entry.request.ifMatch</code> des <i>List</i>-Eintrags im Medikationsplan-Transaction-Bundle übermittelt werden?</li>
@@ -479,7 +478,7 @@ Anstelle des HTTP-Headers kann der ETag im Medikationsplan-Transaction-Bundle ü
 <li>Ist ein Optimistic Locking auch für schreibende Operations auf <i>Geplante Abgaben</i> und <i>Durchgeführte Abgaben</i> erforderlich, oder reichen die Regeln für zulässige Statusübergänge aus?</li>
 </ul>
 </div>
-</div>
+</div> -->
 
 #### Informationen über GDA und Patienten
 
@@ -522,7 +521,7 @@ Das folgende Beispiel zeigt denselben Eintrag einmal als übermittelte und einma
 
 #### Befüllung der Narrativen Teile
 
-Für die im IG festgelegten Ressourcen wird die menschenlesbare Darstellung (Resource.text) zentral durch die Fachanwendung erzeugt. Ziel ist eine einheitliche und nachvollziehbare Darstellung der wesentlichen Ressourceninhalte. Die Narrative muss dem jeweils gespeicherten bzw. ausgelieferten Zustand entsprechen und nach serverseitigen Änderungen oder Transformationen entsprechend angepasst werden.
+Für die im IG festgelegten Ressourcen wird die menschenlesbare Darstellung (Resource.text) zentral durch die Fachanwendung erzeugt. Ziel ist eine einheitliche und nachvollziehbare Darstellung der wesentlichen Ressourceninhalte. Die Narrative muss dem jeweils gespeicherten bzw. ausgelieferten Zustand entsprechen und nach serverseitigen Änderungen oder Transformationen entsprechend angepasst werden. Ebenso wird `extension:renderedDosageInstruction` immer durch die Fachanwendung generiert; `Dosage.text` wird bei strukturierten Dosierungen generiert und enthält nur bei der Dosierungskategorie `freitext` die vom GDA erfasste Dosierungsanweisung.
 
 Die Generierung berücksichtigt sowohl strukturierte Angaben als auch Freitextinformationen. Die Narrative ergänzt die strukturierten Daten, ersetzt diese jedoch nicht. Davon zu unterscheiden sind fachlich erfasste Freitexte, beispielsweise ergänzende Hinweise oder eine nicht strukturiert abbildbare Dosierungsanweisung; diese bleiben eigenständige Inhalte und werden bei der Generierung berücksichtigt. Die unterschiedlichen Textfelder und ihr jeweiliger Geltungsbereich sind im Abschnitt [Textdarstellungen und ergänzende Hinweise im Kapitel der Dosierungen](dosages.html#textdarstellungen-und-ergänzende-hinweise) beschrieben.
 

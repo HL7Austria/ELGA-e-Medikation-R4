@@ -16,7 +16,7 @@ Description: "Basisprofil für alle Dosierungschemata"
 * sequence ^short = "Die Reihenfolge der Dosierungsanweisungen. Entfällt bei Einzeldosierung."
 
 * text 0..1 MS
-* text ^short = "Freitext-Dosierungsanweisung, wenn keine strukturierte Angabe möglich ist."
+* text ^short = "Textdarstellung der Dosierung: bei strukturierter Dosierung durch die Fachanwendung generiert, sonst Freitext-Dosierungsanweisung (wenn keine strukturierte Angabe möglich ist)."
 
 * additionalInstruction 0..* MS // 0..1
 * additionalInstruction ^short = "Codierte Anweisungen oder Warnhinweise für den Patienten, z.B. zur Einnahme oder zur Aufbewahrung des Arzneimittels. (ex):

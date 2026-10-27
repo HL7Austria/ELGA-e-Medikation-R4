@@ -346,9 +346,9 @@ Der finale Algorithmus für die Generierung der menschenlesbaren Textdarstellung
 
 Die strukturierte Dosierung ist die primäre, maschinenlesbare Repräsentation. **Die Textdarstellung unterstützt die menschliche Lesbarkeit, darf jedoch nicht als Ersatz für strukturierte Daten verwendet werden, wenn die Dosierung durch ein unterstütztes Dosierschema vollständig abbildbar ist.**
 
-Für strukturierte Dosierungen soll `Dosage.text` aus den strukturierten Elementen der jeweiligen `Dosage` vom Server generiert und befüllt werden. Bei mehreren `dosageInstruction`-Einträgen fasst `renderedDosageInstruction` die Dosierung des gesamten MedicationRequest beziehungsweise MedicationDispense zusammen. Der genaue Algorithmus für die Zusammenführung mehrerer paralleler und sequenzieller Dosierungsanweisungen wird noch festgelegt.
+`MedicationRequest.text` bzw. `MedicationDispense.text` und `extension:renderedDosageInstruction` werden immer durch die e-Medikation-Fachanwendung generiert. Für strukturierte Dosierungen wird `Dosage.text` aus den strukturierten Elementen der jeweiligen `Dosage` durch die Fachanwendung generiert und befüllt. Bei mehreren `dosageInstruction`-Einträgen fasst `renderedDosageInstruction` die Dosierung des gesamten MedicationRequest beziehungsweise MedicationDispense zusammen. Der genaue Algorithmus für die Zusammenführung mehrerer paralleler und sequenzieller Dosierungsanweisungen wird noch festgelegt.
 
-Kann eine Dosierung nicht mit einem unterstützten Schema vollständig und widerspruchsfrei strukturiert dargestellt werden, ist die Dosierungskategorie `freitext` zu verwenden. In diesem Fall enthält `Dosage.text` die maßgebliche Dosierungsanweisung.
+Kann eine Dosierung nicht mit einem unterstützten Schema vollständig und widerspruchsfrei strukturiert dargestellt werden, ist die Dosierungskategorie `freitext` zu verwenden. In diesem Fall enthält `Dosage.text` die vom GDA erfasste, maßgebliche Freitext-Dosierungsanweisung; `extension:renderedDosageInstruction` und die Narrative werden auch in diesem Fall durch die Fachanwendung generiert.
 
 Die folgenden Elemente unterstützen die menschenlesbare Darstellung von Ressourcen, welche eine Dosierung enthalten. Sie unterscheiden sich in ihrem Geltungsbereich: Die Narrative beschreibt den MedicationRequest/MedicationDispense als Ganzes, die Dosierungstexte beschreiben die Einnahme bzw. Anwendung und ergänzende Hinweise enthalten weitere Informationen. Nicht alle Texte werden aus strukturierten Daten generiert. Insbesondere können Freitextanweisungen Informationen enthalten, die nicht zusätzlich strukturiert vorliegen.
 
@@ -360,6 +360,7 @@ Die folgenden Elemente unterstützen die menschenlesbare Darstellung von Ressour
       <th>Element Pfad</th>
       <th>Datentyp</th>
       <th>Erklärung</th>
+      <th>Befüllt durch</th>
     </tr>
   </thead>
   <tbody>
@@ -371,6 +372,7 @@ Die folgenden Elemente unterstützen die menschenlesbare Darstellung von Ressour
         Enthält die für das Verständnis relevanten Informationen einschließlich der Dosierung und der
         (<code>contained</code>) <code>Medication</code>.
       </td>
+      <td>Wird immer durch die Fachanwendung generiert.</td>
     </tr>
     <tr>
       <td><code>MedicationRequest.note.text</code></td>
@@ -379,6 +381,7 @@ Die folgenden Elemente unterstützen die menschenlesbare Darstellung von Ressour
         Zusätzliche Informationen zum Planeintrag, z. B. „Kontrolle der Blutwerte
         innerhalb von vier Wochen erforderlich“.
       </td>
+      <td>Wird durch den Client befüllt.</td>
     </tr>
     <tr>
       <td><code>MedicationRequest.extension:renderedDosageInstruction</code></td>
@@ -386,6 +389,7 @@ Die folgenden Elemente unterstützen die menschenlesbare Darstellung von Ressour
       <td>
         Da ein MedicationRequest/MedicationDispense mehrere Dosages besitzten kann bildet renderedDosageInstruction eine gesamte Textrepräsentation aller Medicationrequest.dosageInstructions ab. Gibt es nur eine dosageInstruction so entspricht der Inhalt von extension:renderedDosageInstruction dem Inhalt von dosageInstruction.text.
       </td>
+      <td>Wird immer durch die Fachanwendung generiert.</td>
     </tr>
     <tr>
       <td><code>MedicationRequest.dosageInstruction.text</code></td>
@@ -393,6 +397,8 @@ Die folgenden Elemente unterstützen die menschenlesbare Darstellung von Ressour
       <td>
         Textrepräsentation einer einzelnen <code>Dosage</code>-Instanz.
         Berücksichtigt auch die Inhalte von <code>additionalInstruction</code> und <code>patientInstruction</code>. Bei einer Dosierung die nicht strukturiert abgebildet werden kann, stellt dieses Element das Freitextfeld für die Repräsentation der Dosierung dar.
+      </td>
+      <td>bei strukturierter Dosierung durch die Fachanwendung generiert; bei Dosierungskategorie <code>freitext</code> vom GDA erfasster Freitext.
       </td>
     </tr>
     <tr>
@@ -402,6 +408,7 @@ Die folgenden Elemente unterstützen die menschenlesbare Darstellung von Ressour
         Ergänzende Einnahme- oder Anwendungshinweise und Warnhinweise, die codiert
         angegeben werden können.
       </td>
+      <td>Wird durch den Client befüllt.</td>
     </tr>
     <tr>
       <td><code>MedicationRequest.dosageInstruction.patientInstruction</code></td>
@@ -409,6 +416,7 @@ Die folgenden Elemente unterstützen die menschenlesbare Darstellung von Ressour
       <td>
        Zusätzlicher Einnahme-/Anwendungshinweis für den Patienten.
       </td>
+      <td>Wird durch den Client befüllt.</td>
     </tr>
   </tbody>
 </table>
