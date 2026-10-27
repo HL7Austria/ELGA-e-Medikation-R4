@@ -63,7 +63,7 @@ Da für Herrn Mustermann noch nie ein Medikationsplan abgerufen wurde, erstellt 
   </div>
 </div>
 
-##### Journey-01-01: Request 01 - Medikationsplan abrufen
+##### Journey-01-01: Request 01 - Medikationsplan abrufen ($plan-read)
 <div class="tabs">
   <div class="tab">
     <input type="radio" id="tab-request-journey-01-01-01" name="tab-group-journey-01-01-01" checked="true" />
@@ -74,22 +74,18 @@ Da für Herrn Mustermann noch nie ein Medikationsplan abgerufen wurde, erstellt 
           <span class="request-method-post">POST</span>
           <code class="request-url">[base]/List/$plan-read</code>
         </div>
-        <div class="request-meta">
-          <strong>Headers:</strong>
-          <code class="request-header">Content-Type: application/fhir+json</code>
-        </div>
       </div>
+      <p>Die Operation besitzt keine Eingabeparameter, der Request enthält keinen Body.</p>
     </div>
   </div>
   <div class="tab">
     <input type="radio" id="tab-response-journey-01-01-01" name="tab-group-journey-01-01-01" />
     <label for="tab-response-journey-01-01-01">Response Body</label>
-    <div class="content-in-tab">{% fragment Bundle/At-Emed-Journey-01-01-01-Bundle-Medikationsplan JSON %}</div>
+    <div class="content-in-tab">{% fragment Parameters/At-Emed-Journey-01-01-01-Parameters-Out-Plan-Read JSON %}</div>
   </div>
 </div>
 
-
-##### Journey-01-01: Request 02 - Geplante Abgaben abrufen
+##### Journey-01-01: Request 02 - Geplante Abgaben abrufen (Prescription-Search)
 <div class="tabs">
   <div class="tab">
     <input type="radio" id="tab-request-journey-01-01-02" name="tab-group-journey-01-01-02" checked="true" />
@@ -98,11 +94,7 @@ Da für Herrn Mustermann noch nie ein Medikationsplan abgerufen wurde, erstellt 
       <div class="request-panel">
         <div class="request-code">
           <span class="request-method-get">GET</span>
-          <code class="request-url">[base]/MedicationRequest?category=https://fhir.hl7.at/elga/emed/r4/CodeSystem/MedicationRequestCategoryCS|2&amp;status=active</code>
-        </div>
-        <div class="request-meta">
-          <strong>Headers:</strong>
-          <code class="request-header">Content-Type: application/fhir+json</code>
+          <code class="request-url">[base]/MedicationRequest?category=https://fhir.hl7.at/elga/emed/r4/CodeSystem/MedicationRequestCategoryCS|GeplAbgabe&amp;status=active</code>
         </div>
       </div>
     </div>
@@ -114,8 +106,7 @@ Da für Herrn Mustermann noch nie ein Medikationsplan abgerufen wurde, erstellt 
   </div>
 </div>
 
-##### Journey-01-01: Request 03 - Durchgeführte Abgaben Abrufen
-
+##### Journey-01-01: Request 03 - Durchgeführte Abgaben abrufen (Dispense-Search)
 <div class="tabs">
   <div class="tab">
     <input type="radio" id="tab-request-journey-01-01-03" name="tab-group-journey-01-01-03" checked="true" />
@@ -124,11 +115,7 @@ Da für Herrn Mustermann noch nie ein Medikationsplan abgerufen wurde, erstellt 
       <div class="request-panel">
         <div class="request-code">
           <span class="request-method-get">GET</span>
-          <code class="request-url">[base]/MedicationDispense?recorded=lt2025-01-01</code>
-        </div>
-        <div class="request-meta">
-          <strong>Headers:</strong>
-          <code class="request-header">Content-Type: application/fhir+json</code>
+          <code class="request-url">[base]/MedicationDispense</code>
         </div>
       </div>
     </div>
@@ -139,6 +126,7 @@ Da für Herrn Mustermann noch nie ein Medikationsplan abgerufen wurde, erstellt 
     <div class="content-in-tab">{% fragment Bundle/at-emed-journey-01-01-03-bundle-durchgefuehrte-abgaben JSON %}</div>
   </div>
 </div>
+
 
 
 
@@ -202,76 +190,61 @@ Sie speichert den neuen Medikationsplan.
   </div>
 </div>
 
-<!-- Request-Response-Box 
-Plan-Read
-prescription-search
-dispense-search
- -->
-
-#### Journey-01-02: Request 01 - Medikationsplan schreiben
+##### Journey-01-02: Request 01 - Medikationsplan schreiben ($plan-write)
 <div class="tabs">
   <div class="tab">
-    <input type="radio" id="tab-request-journey-01-02" name="tab-group-journey-01-02" checked="true" />
-    <label for="tab-request-journey-01-02" class="request-tab">Request</label>
+    <input type="radio" id="tab-request-journey-01-02-01" name="tab-group-journey-01-02-01" checked="true" />
+    <label for="tab-request-journey-01-02-01" class="request-tab">Request</label>
     <div class="content-in-tab">
       <div class="request-panel">
         <div class="request-code">
           <span class="request-method-post">POST</span>
           <code class="request-url">[base]/List/$plan-write</code>
         </div>
-        <div class="request-meta">
-          <strong>Headers:</strong>
-          <code class="request-header">Content-Type: application/fhir+json</code>
-        </div>
       </div>
     </div>
   </div>
   <div class="tab">
-    <input type="radio" id="tab-request-body-journey-01-02" name="tab-group-journey-01-02" />
-    <label for="tab-request-body-journey-01-02">Request Body</label>
-    <div class="content-in-tab">
-    Todo Replace with Parameter wrapper:
-    {% fragment Bundle/At-Emed-Journey-01-02-Bundle-Medikationsplan-Tx JSON %}</div>
+    <input type="radio" id="tab-request-body-journey-01-02-01" name="tab-group-journey-01-02-01" />
+    <label for="tab-request-body-journey-01-02-01">Request Body</label>
+    <div class="content-in-tab">{% fragment Parameters/At-Emed-Journey-01-02-Parameters-In-Plan-Write JSON %}</div>
   </div>
   <div class="tab">
-    <input type="radio" id="tab-response-journey-01-02" name="tab-group-journey-01-02" />
-    <label for="tab-response-journey-01-02">Response Body</label>
-    <div class="content-in-tab">{% fragment Bundle/At-Emed-Journey-01-02-Bundle-plan-write-response JSON %}</div>
+    <input type="radio" id="tab-response-journey-01-02-01" name="tab-group-journey-01-02-01" />
+    <label for="tab-response-journey-01-02-01">Response Body</label>
+    <div class="content-in-tab">{% fragment Parameters/At-Emed-Journey-01-02-Parameters-Out-Plan-Write JSON %}</div>
   </div>
 </div>
 
-#### Journey-01-02: Request 02 - Medikationsplan lesen
+##### Journey-01-02: Request 02 - Medikationsplan lesen ($plan-read)
 <div class="tabs">
   <div class="tab">
-    <input type="radio" id="tab-request-journey-01-02-plan-read" name="tab-group-journey-01-02-plan-read" checked="true" />
-    <label for="tab-request-journey-01-02-plan-read" class="request-tab">Request</label>
+    <input type="radio" id="tab-request-journey-01-02-02" name="tab-group-journey-01-02-02" checked="true" />
+    <label for="tab-request-journey-01-02-02" class="request-tab">Request</label>
     <div class="content-in-tab">
       <div class="request-panel">
         <div class="request-code">
           <span class="request-method-post">POST</span>
           <code class="request-url">[base]/List/$plan-read</code>
         </div>
-        <div class="request-meta">
-          <strong>Headers:</strong>
-          <code class="request-header">Content-Type: application/fhir+json</code>
-        </div>
       </div>
+      <p>Die Operation besitzt keine Eingabeparameter, der Request enthält keinen Body.</p>
     </div>
   </div>
   <div class="tab">
-    <input type="radio" id="tab-response-body-journey-01-02-plan-read" name="tab-group-journey-01-02-plan-read" />
-    <label for="tab-response-body-journey-01-02-plan-read">Response Body</label>
-    <div class="content-in-tab">
-    {% fragment Bundle/At-Emed-Journey-01-02-Bundle-plan-read-response JSON %}</div>
+    <input type="radio" id="tab-response-journey-01-02-02" name="tab-group-journey-01-02-02" />
+    <label for="tab-response-journey-01-02-02">Response Body</label>
+    <div class="content-in-tab">{% fragment Parameters/At-Emed-Journey-01-02-Parameters-Out-Plan-Read JSON %}</div>
   </div>
 </div>
+
 
 
 Im aktualisierten Medikationsplan sind die neuen Planeinträge sowie das Datum der Bearbeitung und als verantwortliche Ärztin Dr. Hausärztin ersichtlich.
 
 #### Journey-01-03
 
-Dr. Hausärztin erstellt für beide Medikamente ein Kassenrezept (Papier oder e-Rezept) und dokumentiert den Rezeptiervorgang in einer *Geplante Abgabe* in der e-Medikation. Herr Mustermann kann nun mit dem Rezept die Medikamente in der Apotheke abholen. 
+Dr. Hausärztin erstellt für beide Medikamente ein Kassenrezept (Papier oder e-Rezept) und dokumentiert den Rezeptiervorgang in einer *Geplante Abgabe* in der e-Medikation. Dazu bezieht ihre Software vorab einen *e-Med GroupIdentifier* (Variante A), der beiden *Geplanten Abgaben* sowie dem e-Rezept mitgegeben wird und diese miteinander verknüpft. Herr Mustermann kann nun mit dem Rezept die Medikamente in der Apotheke abholen. 
 
 <div class="tabs">
   <div class="tab">
@@ -283,10 +256,18 @@ Dr. Hausärztin erstellt für beide Medikamente ein Kassenrezept (Papier oder e-
           <strong>Geplante Abgaben erstellen:</strong>
           <ul>
             <li>
-              <a href="MedicationRequest-At-Emed-Journey-01-03-Mr-Geplante-Abgabe-01.html">Geplante Abgabe zu Planeintrag 1 (Ramipril)</a>
+              <a href="MedicationRequest-d9d43746-69ab-4ed8-9200-3a939f7224de.html">Geplante Abgabe zu Planeintrag 1 (Ramipril)</a>
             </li>
             <li>
-              <a href="MedicationRequest-At-Emed-Journey-01-03-Mr-Geplante-Abgabe-02.html">Geplante Abgabe zu Planeintrag 2 (Dexpanthenol-Salbe)</a>
+              <a href="MedicationRequest-f564f377-ef44-4943-9bb2-fccc8a5db24a.html">Geplante Abgabe zu Planeintrag 2 (Dexpanthenol-Salbe)</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <strong>e-Med GroupIdentifier:</strong>
+          <ul>
+            <li>
+              <a href="Parameters-At-Emed-Journey-01-03-Parameters-Out-GroupIdentifier-Create.html">e-Med GroupIdentifier mit DataMatrix-Code</a>
             </li>
           </ul>
         </li>
@@ -294,7 +275,10 @@ Dr. Hausärztin erstellt für beide Medikamente ein Kassenrezept (Papier oder e-
           <strong>Transaction Bundle:</strong>
           <ul>
             <li>
-            <a href="Bundle-At-Emed-Journey-01-03-Bundle-Geplante-Abgaben-Tx.html">Transaction Bundle mit Geplante Abgaben</a>
+              <a href="Bundle-At-Emed-Journey-01-03-Bundle-Geplante-Abgaben-Tx.html">Transaction Bundle mit Geplanten Abgaben</a>
+            </li>
+            <li>
+              <a href="Bundle-At-Emed-Journey-01-03-Bundle-Geplante-Abgaben-Write-Response.html">Transaction-Response Bundle mit persistierten Geplanten Abgaben</a>
             </li>
           </ul>
         </li>
@@ -314,6 +298,54 @@ Dr. Hausärztin erstellt für beide Medikamente ein Kassenrezept (Papier oder e-
         </li>
       </ul>
     </div>
+  </div>
+</div>
+
+##### Journey-01-03: Request 01 - e-Med GroupIdentifier beziehen ($groupidentifier-create)
+<div class="tabs">
+  <div class="tab">
+    <input type="radio" id="tab-request-journey-01-03-01" name="tab-group-journey-01-03-01" checked="true" />
+    <label for="tab-request-journey-01-03-01" class="request-tab">Request</label>
+    <div class="content-in-tab">
+      <div class="request-panel">
+        <div class="request-code">
+          <span class="request-method-post">POST</span>
+          <code class="request-url">[base]/$groupidentifier-create</code>
+        </div>
+      </div>
+      <p>Die Operation besitzt keine Eingabeparameter, der Request enthält keinen Body.</p>
+    </div>
+  </div>
+  <div class="tab">
+    <input type="radio" id="tab-response-journey-01-03-01" name="tab-group-journey-01-03-01" />
+    <label for="tab-response-journey-01-03-01">Response Body</label>
+    <div class="content-in-tab">{% fragment Parameters/At-Emed-Journey-01-03-Parameters-Out-GroupIdentifier-Create JSON %}</div>
+  </div>
+</div>
+
+##### Journey-01-03: Request 02 - Geplante Abgaben schreiben ($prescription-write)
+<div class="tabs">
+  <div class="tab">
+    <input type="radio" id="tab-request-journey-01-03-02" name="tab-group-journey-01-03-02" checked="true" />
+    <label for="tab-request-journey-01-03-02" class="request-tab">Request</label>
+    <div class="content-in-tab">
+      <div class="request-panel">
+        <div class="request-code">
+          <span class="request-method-post">POST</span>
+          <code class="request-url">[base]/MedicationRequest/$prescription-write</code>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tab">
+    <input type="radio" id="tab-request-body-journey-01-03-02" name="tab-group-journey-01-03-02" />
+    <label for="tab-request-body-journey-01-03-02">Request Body</label>
+    <div class="content-in-tab">{% fragment Parameters/At-Emed-Journey-01-03-Parameters-In-Prescription-Write JSON %}</div>
+  </div>
+  <div class="tab">
+    <input type="radio" id="tab-response-journey-01-03-02" name="tab-group-journey-01-03-02" />
+    <label for="tab-response-journey-01-03-02">Response Body</label>
+    <div class="content-in-tab">{% fragment Parameters/At-Emed-Journey-01-03-Parameters-Out-Prescription-Write JSON %}</div>
   </div>
 </div>
 

@@ -3,7 +3,7 @@ InstanceOf: AtElgaEmedDeviceFachanwendung
 Title: "Beispiel Journey 01: e-Med Fachanwendung"
 Description: "Beispiel der e-Med Fachanwendung, die den Mediaktionsplan initial erstellt."
 Usage: #example
-* type = $cs-sct#49062001 "Gerät"
+* type = $cs-sct#49062001 "Device"
 * text.status = #additional
 * text.div = "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>e-Medikation Fachanwendung.</p></div>"
 * deviceName.name = "e-Med Fachanwendung"

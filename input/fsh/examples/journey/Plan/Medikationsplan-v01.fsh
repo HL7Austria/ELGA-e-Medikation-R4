@@ -5,6 +5,9 @@ Title: "Beispiel Journey 01-01: Leerer Medikationsplan"
 Description: "Beispiel eines leeren Mediaktionsplans (List-Ressource ohne Einträge)"
 * id = $idPlan
 * meta.versionId = $idPlanv1
+* meta.lastUpdated = "2026-02-27T08:00:00.120+00:00"
+* text.status = #generated
+* text.div = "<div xmlns=\"http://www.w3.org/1999/xhtml\">TODO</div>"
 * status = #current
 * mode = #working
 * code = $cs-sct#736378000   

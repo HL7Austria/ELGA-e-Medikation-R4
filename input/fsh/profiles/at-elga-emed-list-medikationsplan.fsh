@@ -158,4 +158,4 @@ Description: "Profil für einen Medikationsplan."
 Invariant: at-emed-list-same-patient
 Description: "Alle in der Liste referenzierten Patienten müssen gleich sein"
 * severity = #error
-* expression = "subject.resolve() = entry.item.resolve().ofType(MedicationRequest).subject.resolve()"
+* expression = "entry.item.resolve().ofType(MedicationRequest).all(subject.identifier.system = %context.subject.identifier.system and subject.identifier.value = %context.subject.identifier.value)"

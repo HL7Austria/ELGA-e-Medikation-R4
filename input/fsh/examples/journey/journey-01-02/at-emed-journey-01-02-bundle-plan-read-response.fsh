@@ -7,7 +7,7 @@ Usage: #example
 * type = #searchset
 * link.url = "https://example.elga.com/base/List/$plan-read"
 * link.relation = #self
-* total = 5
+* total = 1
 * entry[Medikationsplan].resource = At-Emed-Journey-List-Medikationsplan-v2-plan-read-response
 * entry[Medikationsplan].search.mode = #match
 * entry[Medikationsplan].fullUrl = $srPlan

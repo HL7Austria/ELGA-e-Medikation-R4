@@ -19,7 +19,7 @@ Usage: #inline
 * reportedBoolean = false
 
 // Referenz auf Contained Medication Ressource
-* medicationReference.reference = "Medication?code=https://termgit.elga.gv.at/CodeSystem/asp-liste|4467812&code:text=METAGELAN TR 500MG/ML"
+* medicationReference.reference = "Medication?code=https://termgit.elga.gv.at/CodeSystem/asp-liste|4467812&code:text=METAGELAN%20TR%20500MG%2FML"
 
 * subject.type = "Patient"
 * subject.identifier.value = "GH:oeLdSEb0l+8kSdJWjOYyYmnYki0="

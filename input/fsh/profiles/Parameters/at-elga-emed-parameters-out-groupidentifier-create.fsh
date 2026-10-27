@@ -54,6 +54,7 @@ Description: "Profil für den Rückgabewert der $groupidentifier-create Operatio
 * parameter[dataMatrixCode].value[x] only Attachment
 * parameter[dataMatrixCode].valueAttachment.contentType 1..1 MS
 // TODO fixen contentType festlegen
+* parameter[dataMatrixCode].valueAttachment.contentType = #image/png
 * parameter[dataMatrixCode].valueAttachment.data 1..1 MS
 * parameter[dataMatrixCode].resource 0..0
 * parameter[dataMatrixCode].resource ^short = "Fachliche Begründung: Der Parameter transportiert ausschließlich einen Wert, eine Ressource ist nicht vorgesehen."

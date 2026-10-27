@@ -98,15 +98,23 @@ group GROUP_ARZT 27.2.2026 · Arztbesuch
   Arzt_2 -> Arzt_2: Medikationsplan bearbeiten +\nneue Planeinträge erstellen
   Arzt_2 -> eMed_FA: neuen Medikationsplan speichern: $plan-write
   activate eMed_FA COLOR_EMED_FA
-  eMed_FA -> Arzt_2: Medikationsplan 
+  eMed_FA -> Arzt_2: persistierter Medikationsplan
+  deactivate eMed_FA
+  Arzt_2 -> eMed_FA: aktualisierten Medikationsplan abrufen:\n$plan-read
+  activate eMed_FA COLOR_EMED_FA
+  eMed_FA -> Arzt_2: Medikationsplan mit 2 Planeinträgen
   deactivate eMed_FA
 
   == Journey-01-03 ==
 
-  Arzt_2 -> Arzt_2: 2 Geplante Abgaben erstellen\n(Ramipril + Dexpanthenol-Salbe)
-  Arzt_2 -> eMed_FA: Geplante Abgaben speichern: $dispense-write
+  Arzt_2 -> eMed_FA: e-Med GroupIdentifier beziehen:\n$groupidentifier-create
   activate eMed_FA COLOR_EMED_FA
-  eMed_FA -> Arzt_2: Geplante Abgaben
+  eMed_FA -> Arzt_2: e-Med GroupIdentifier + DataMatrix-Code
+  deactivate eMed_FA
+  Arzt_2 -> Arzt_2: 2 Geplante Abgaben erstellen\n(Ramipril + Dexpanthenol-Salbe)
+  Arzt_2 -> eMed_FA: Geplante Abgaben speichern:\n$prescription-write
+  activate eMed_FA COLOR_EMED_FA
+  eMed_FA -> Arzt_2: persistierte Geplante Abgaben
   deactivate eMed_FA
   Arzt_2 -> Patient: Rezept aushändigen
   deactivate Arzt_2

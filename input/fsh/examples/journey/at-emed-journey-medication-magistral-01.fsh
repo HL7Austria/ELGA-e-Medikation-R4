@@ -10,13 +10,13 @@ Usage: #inline
 * form.coding = https://termgit.elga.gv.at/CodeSystem/medikationdarreichungsform#100000073713 "Salbe"
 * extension[Rezeptur].valueMarkdown = "TODO: Beispielrezeptur"
 * code.text = "Dexpanthenol-5-%-Salbe"
+* amount.numerator = 100 'g' "g"
+* amount.denominator.value = 1
 * ingredient[activeIngredient].itemCodeableConcept = $cs-atc#A11HA30 "Dexpanthenol"
 * ingredient[activeIngredient].strength.numerator = 5 'g' "g"
 * ingredient[activeIngredient].strength.denominator = 100 'g' "g"
 * ingredient[activeIngredient].isActive = true
 * ingredient[inactiveIngredient].itemCodeableConcept.text = "Salbengrundlage"
 * ingredient[inactiveIngredient].isActive = false
-* ingredient[inactiveIngredient].strength.numerator.value = 95
-* ingredient[inactiveIngredient].strength.numerator.unit = "g"
-* ingredient[inactiveIngredient].strength.denominator.value = 100
-* ingredient[inactiveIngredient].strength.denominator.unit = "g"
+* ingredient[inactiveIngredient].strength.numerator = 95 'g' "g"
+* ingredient[inactiveIngredient].strength.denominator = 100 'g' "g"

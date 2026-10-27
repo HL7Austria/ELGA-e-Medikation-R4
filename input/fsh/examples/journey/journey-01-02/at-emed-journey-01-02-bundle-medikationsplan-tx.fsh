@@ -5,7 +5,6 @@ Description: "Beispiel eines Transaction Bundles, das einen Mediaktionsplan (Lis
 Usage: #example
 
 * type = #transaction
-* timestamp = "2026-02-27T08:10:00+00:00"
 // Liste 
 * entry[Medikationsplan][+].resource = At-Emed-Journey-List-Medikationsplan-v2-tx
 * entry[Medikationsplan][=].fullUrl = $srPlan // -> vom server vergebene id verwenden, bei jedem put der liste verwenden

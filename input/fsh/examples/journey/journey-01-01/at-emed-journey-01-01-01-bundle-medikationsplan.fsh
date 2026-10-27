@@ -3,9 +3,8 @@ InstanceOf: AtElgaEmedBundleMedikationsplan
 Title: "Beispiel Journey 01-01-01: Medikationsplan-Bundle"
 Description: "Beispiel eines Medikationsplan-Bundles, mit leerem Mediaktionsplan (referenziert List-Ressource ohne Einträge)."
 Usage: #example
-* total = 3
+* total = 1
 * type = #searchset
-//* timestamp = "2026-02-27T08:00:00+00:00" 
 * entry[Medikationsplan].resource = At-Emed-Journey-List-Medikationsplan-v1
 * entry[Medikationsplan].search.mode = #match
 * entry[Medikationsplan].fullUrl = $srPlan

@@ -72,3 +72,19 @@ Alias: $srPlaneintrag03v1 = https://example.elga.com/base/MedicationRequest/7128
 Alias: $idPlaneintrag03v2 = v2a455866f-a727-47fd-adef-f0f8591988f8
 Alias: $rrPlaneintrag03v2 = MedicationRequest/7128c60c-126d-42b2-b575-dc26a2324b8b/_history/v2a455866f-a727-47fd-adef-f0f8591988f8
 Alias: $srPlaneintrag03v2 = https://example.elga.com/base/MedicationRequest/7128c60c-126d-42b2-b575-dc26a2324b8b/_history/v2a455866f-a727-47fd-adef-f0f8591988f8
+
+// Geplante Abgabe 01 (Journey 01-03)
+Alias: $POSTuuidGeplanteAbgabe01 = urn:uuid:e68fbdbe-a04e-408b-a98f-865af70b1741
+Alias: $srGeplanteAbgabe01 = https://example.elga.com/base/MedicationRequest/d9d43746-69ab-4ed8-9200-3a939f7224de
+Alias: $idGeplanteAbgabe01 = d9d43746-69ab-4ed8-9200-3a939f7224de
+//v1
+Alias: $idGeplanteAbgabe01v1 = v17f105b2f-3c48-4513-9d1a-cd37ffd47469
+Alias: $srGeplanteAbgabe01v1 = https://example.elga.com/base/MedicationRequest/d9d43746-69ab-4ed8-9200-3a939f7224de/_history/v17f105b2f-3c48-4513-9d1a-cd37ffd47469
+
+// Geplante Abgabe 02 (Journey 01-03)
+Alias: $POSTuuidGeplanteAbgabe02 = urn:uuid:bc10cdbb-2fa8-4176-ac50-1f2b82275010
+Alias: $srGeplanteAbgabe02 = https://example.elga.com/base/MedicationRequest/f564f377-ef44-4943-9bb2-fccc8a5db24a
+Alias: $idGeplanteAbgabe02 = f564f377-ef44-4943-9bb2-fccc8a5db24a
+//v1
+Alias: $idGeplanteAbgabe02v1 = v12e98d46b-0356-4ec1-afb8-433f65596d1d
+Alias: $srGeplanteAbgabe02v1 = https://example.elga.com/base/MedicationRequest/f564f377-ef44-4943-9bb2-fccc8a5db24a/_history/v12e98d46b-0356-4ec1-afb8-433f65596d1d

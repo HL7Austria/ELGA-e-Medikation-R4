@@ -157,6 +157,7 @@ Description: "Profil einer Geplanten Abgabe eines Arzneimittels aus dem Medikati
 * dispenseRequest.quantity.unit MS
 * dispenseRequest.quantity.value MS
 * dispenseRequest.quantity.code MS
+* dispenseRequest.quantity.system MS
 * dispenseRequest.modifierExtension 0..0
 * dispenseRequest.modifierExtension ^short = "Fachliche Begründung: Für die Abgabedetails sind keine zusätzlichen Erweiterungen vorgesehen, die deren Bedeutung verändern."
 

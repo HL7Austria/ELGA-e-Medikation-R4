@@ -19,7 +19,7 @@ Usage: #inline
 * reportedBoolean = false 
 
 // Referenz auf Contained Medication Ressource
-* medicationReference.reference = "Medication?code=https://termgit.elga.gv.at/CodeSystem/asp-liste|2450836&code:text=RAMIPRIL"
+* medicationReference.reference = "Medication?code=https://termgit.elga.gv.at/CodeSystem/asp-liste|2450836&code:text=RAMIPRIL%20HEX%20TBL%205MG"
 
 * subject.type = "Patient"
 * subject.identifier.value = "GH:oeLdSEb0l+8kSdJWjOYyYmnYki0="

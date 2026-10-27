@@ -6,6 +6,9 @@ Description: "Beispiel eines Medikationsplans, der 2 neue Planeinträge referenz
 Usage: #inline
 * id = $idPlan
 * meta.versionId = $idPlanv2
+* meta.lastUpdated = "2026-02-27T08:10:00.312+00:00"
+* text.status = #generated
+* text.div = "<div xmlns=\"http://www.w3.org/1999/xhtml\">TODO</div>"
 * status = #current
 * mode = #working
 * code = $cs-sct#736378000 
@@ -19,7 +22,7 @@ Usage: #inline
 // logische referenz über oid
 * source.identifier.system = "urn:ietf:rfc:3986"
 * source.identifier.value = "urn:oid:1.2.40.0.34.99.4613.4"
-* source = Reference(At-Emed-Example-Practitioner-01) "Dr. Hausärztin"
+* source = Reference(At-Emed-Example-Practitioner-01)
 // * orderedBy = http://terminology.hl7.org/CodeSystem/list-order#user
 
 // Listeneinträge
