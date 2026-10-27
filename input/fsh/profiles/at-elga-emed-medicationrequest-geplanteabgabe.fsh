@@ -13,7 +13,7 @@ Description: "Profil einer Geplanten Abgabe eines Arzneimittels aus dem Medikati
 * extension[effectiveDosePeriod] MS
 * extension[effectiveDosePeriod].url MS
 * extension[effectiveDosePeriod].valuePeriod MS
-* extension[effectiveDosePeriod].valuePeriod.start MS
+* extension[effectiveDosePeriod].valuePeriod.start 1..1 MS
 * extension[effectiveDosePeriod].valuePeriod.end MS
 
 * extension contains $medicationrequest-rendereddosageinstruction-r5 named renderedDosageInstruction 0..1

@@ -10,7 +10,7 @@ Description: "Profil für einen Planeintrag."
 * extension[effectiveDosePeriod] ^short = "Zeitraum, in dem das Arzneimittel eingenommen werden soll. Bei Dauermedikation kann optional ein Enddatum dokumentiert werden. Bei Aktumedikation ist verpflichtend ein Enddatum zu dokumentieren. Der Einnahmezeitraum muss mit den zeitlichen Einschränkungen der Dosage übereinstimmen." //TODO wording prüfen ob wirklich Einnahmezeitraum vgl. Dosierung
 * extension[effectiveDosePeriod] MS
 * extension[effectiveDosePeriod].valuePeriod MS
-* extension[effectiveDosePeriod].valuePeriod.start MS
+* extension[effectiveDosePeriod].valuePeriod.start 1..1 MS
 * extension[effectiveDosePeriod].valuePeriod.end MS
 * extension[effectiveDosePeriod].url MS
 

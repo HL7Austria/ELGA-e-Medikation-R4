@@ -308,8 +308,8 @@ groups:
      - StructureDefinition/at-elga-emed-organization
      - StructureDefinition/at-elga-emed-practitionerrole
      - StructureDefinition/at-elga-emed-device-fachanwendung
-  Operationen:
-    name: Operationen
+  Operations:
+    name: Operations
     description: Definitionen der im Leitfaden enthaltenen Custom Operations
     resources:
       - OperationDefinition/at-elga-emed-operation-plan-read

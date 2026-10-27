@@ -438,7 +438,7 @@ Ein Beispiel zeigt das [plan-write Response Bundle](Bundle-At-Emed-Journey-01-02
 <div class="dragon" markdown="1">
 <div class="note-to-balloters">
 <ul>
-<li>Soll <code>Resource.id</code> bei neuen Ressourcen (POST) weggelassen werden müssen, statt optional zu sein und ignoriert zu werden?</li>
+<li>Kann die <code>Resource.id</code> bei neuen Ressourcen (POST) befüllt sein und wird von der Fachanwendung ignoriert oder darf das Element gar nicht vorhanden sein?</li>
 </ul>
 </div>
 </div>
