@@ -308,50 +308,73 @@ groups:
      - StructureDefinition/at-elga-emed-organization
      - StructureDefinition/at-elga-emed-practitionerrole
      - StructureDefinition/at-elga-emed-device-fachanwendung
-  Operations:
-    name: Operations
-    description: Definitionen der im Leitfaden enthaltenen Custom Operations
+  OpPlanRead:
+    name: $plan-read
+    description: Operation $plan-read inkl. Ein- und Ausgabeparameter
     resources:
       - OperationDefinition/at-elga-emed-operation-plan-read
-      - OperationDefinition/at-elga-emed-operation-plan-write
-      - OperationDefinition/at-elga-emed-operation-reference-plan
-      - OperationDefinition/at-elga-emed-operation-prescription-write
-      - OperationDefinition/at-elga-emed-operation-prescription-discard
-      - OperationDefinition/at-elga-emed-operation-dispense-write
-      - OperationDefinition/at-elga-emed-operation-dispense-discard
-      - OperationDefinition/at-elga-emed-operation-groupidentifier-create
-      - OperationDefinition/at-elga-emed-operation-groupidentifier-search
-  OperationParameter:
-    name: Ein- und Ausgabeparameter der Interaktionen
-    description: Profile für die Ein- und Ausgabe der Operationen (Transaction-Bundles, Response-Bundles, OperationOutcome, Parameters)
-    resources:
-      - StructureDefinition/at-elga-emed-operationoutcome
-      # $plan-read
       - StructureDefinition/at-elga-emed-bundle-medikationsplan
       - StructureDefinition/at-elga-emed-parameters-out-plan-read
-      # $plan-write
+  OpPlanWrite:
+    name: $plan-write
+    description: Operation $plan-write inkl. Ein- und Ausgabeparameter
+    resources:
+      - OperationDefinition/at-elga-emed-operation-plan-write
       - StructureDefinition/at-elga-emed-bundle-medikationsplantx
       - StructureDefinition/at-elga-emed-bundle-medikationsplan-write-response
       - StructureDefinition/at-elga-emed-parameters-out-plan-write
-      # $prescription-write
+  OpReferencePlan:
+    name: $reference-plan
+    description: Operation $reference-plan inkl. Ein- und Ausgabeparameter
+    resources:
+      - OperationDefinition/at-elga-emed-operation-reference-plan
+      - StructureDefinition/at-elga-emed-parameters-out-reference-plan
+  OpPrescriptionWrite:
+    name: $prescription-write
+    description: Operation $prescription-write inkl. Ein- und Ausgabeparameter
+    resources:
+      - OperationDefinition/at-elga-emed-operation-prescription-write
       - StructureDefinition/at-elga-emed-bundle-geplanteabgaben-tx
       - StructureDefinition/at-elga-emed-bundle-geplanteabgaben-write-response
       - StructureDefinition/at-elga-emed-parameters-out-prescription-write
-      # $prescription-discard
+  OpPrescriptionDiscard:
+    name: $prescription-discard
+    description: Operation $prescription-discard inkl. Ein- und Ausgabeparameter
+    resources:
+      - OperationDefinition/at-elga-emed-operation-prescription-discard
       - StructureDefinition/at-elga-emed-parameters-out-prescription-discard
-      # $dispense-write
+  OpDispenseWrite:
+    name: $dispense-write
+    description: Operation $dispense-write inkl. Ein- und Ausgabeparameter
+    resources:
+      - OperationDefinition/at-elga-emed-operation-dispense-write
       - StructureDefinition/at-elga-emed-bundle-durchgefuehrteabgaben-tx
       - StructureDefinition/at-elga-emed-bundle-durchgefuehrteabgaben-write-response
       - StructureDefinition/at-elga-emed-parameters-out-dispense-write
-      # $dispense-discard
+  OpDispenseDiscard:
+    name: $dispense-discard
+    description: Operation $dispense-discard inkl. Ein- und Ausgabeparameter
+    resources:
+      - OperationDefinition/at-elga-emed-operation-dispense-discard
       - StructureDefinition/at-elga-emed-parameters-out-dispense-discard
-      # $reference-plan
-      - StructureDefinition/at-elga-emed-parameters-out-reference-plan
-      # $groupidentifier-create
+  OpGroupidentifierCreate:
+    name: $groupidentifier-create
+    description: Operation $groupidentifier-create inkl. Ein- und Ausgabeparameter
+    resources:
+      - OperationDefinition/at-elga-emed-operation-groupidentifier-create
       - StructureDefinition/at-elga-emed-parameters-out-groupidentifier-create
-      # $groupidentifier-search
+  OpGroupidentifierSearch:
+    name: $groupidentifier-search
+    description: Operation $groupidentifier-search inkl. Ein- und Ausgabeparameter
+    resources:
+      - OperationDefinition/at-elga-emed-operation-groupidentifier-search
       - StructureDefinition/at-elga-emed-bundle-groupidentifier-search-result
       - StructureDefinition/at-elga-emed-parameters-out-groupidentifier-search
+  OperationCommon:
+    name: Gemeinsame Profile der Operationen
+    description: Profile, die von allen Operationen verwendet werden
+    resources:
+      - StructureDefinition/at-elga-emed-operationoutcome
   Suchparameter:
     name: Suchparameter
     description: Suchparameter
