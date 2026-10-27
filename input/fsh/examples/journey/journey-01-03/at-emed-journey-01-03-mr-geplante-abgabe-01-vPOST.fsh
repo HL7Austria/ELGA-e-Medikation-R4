@@ -3,7 +3,6 @@ InstanceOf: AtElgaEmedMedicationRequestGeplanteAbgabe
 Title: "Beispiel Journey 01-03: Geplante Abgabe 1 (Request)"
 Description: "Bildet eine vom GDA übermittelte Geplante Abgabe des Arzneimittels Ramipril mit Dosierungsanweisungen gemäß zugehörigem Planeintrag ab."
 Usage: #inline
-* contained[+] = at-emed-journey-medication-ramipril
 // R5 Backports
 * extension[effectiveDosePeriod].valuePeriod.start = "2026-02-27"
 * extension[renderedDosageInstruction].valueMarkdown = "1-0-0-0 | Täglich: 1-0-0-0"
@@ -13,8 +12,8 @@ Usage: #inline
 * category[mrcategory] = MedicationRequestCategoryCS#GeplAbgabe "Geplante Abgabe"
 * category[recipetype] = $cs-medication-rezeptart#KASSEN "Kassenrezept"
 
-// Referenz auf Contained Medication Ressource
-* medicationReference.reference = "#at-emed-journey-medication-ramipril"
+// Conditional Reference über PZN und Bezeichnung; wird von der Fachanwendung aufgelöst und als contained Medication persistiert
+* medicationReference.reference = "Medication?code=https://termgit.elga.gv.at/CodeSystem/asp-liste|2450836&code:text=RAMIPRIL%20HEX%20TBL%205MG"
 
 // logische Referenz über bPK-GH
 * subject.identifier.value = "GH:oeLdSEb0l+8kSdJWjOYyYmnYki0="

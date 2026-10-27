@@ -315,7 +315,7 @@ Eine [Geplante Abgabe](design_choices.html#geplante-abgabe-atelgaemedmedicationr
 [2] Ist der Gültigkeitszeitraum überschritten erhält die zugehörige *Geplante Abgabe* den Status abgelaufen (*stopped*). Das Einlösen eines Rezepts nach Ablauf der Gültigkeit wird durch e-Medikation nicht verhindert. Die Abgabe kann in diesem Fall ohne Verordnungsbezug in e-Medikation gespeichert werden. 
 <br><br>
 
-#### Status des MedicationDispense in der Durchgeführten Abgabe
+#### Status der Durchgeführten Abgabe (MedicationDispense)
 
 Eine [Durchgeführte Abgabe](design_choices.html#durchgeführte-abgabe-atelgaemedmedicationdispensedurchgefuehrteabgabe-medicationdispense) kann, abhängig vom jeweiligen [Use Case für Durchgeführte Abgabe schreiben](Sub_UC_eMed_05.html), unterschiedliche Status einnehmen (Element *status*). 
 

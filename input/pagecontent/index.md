@@ -1,6 +1,6 @@
 {% include styleheader.md %}
 
-# e-Medikation (v4)
+### e-Medikation (v4)
 
 Der vorliegende **FHIR Implementation Guide e‑Medikation Version 4** ersetzt die bestehende, auf CDA basierende Version 2 der e‑Medikation. 
 - Mit Version 4 wird die bestehende Umsetzung der e‑Medikation um die Funktionalität des e‑Medikationsplans ergänzt. 

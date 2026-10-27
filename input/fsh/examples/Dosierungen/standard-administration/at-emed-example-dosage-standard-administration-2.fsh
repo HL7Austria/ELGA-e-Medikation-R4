@@ -35,7 +35,7 @@ Usage: #example
 * dosageInstruction[standardDosage][0].timing.repeat.when[+] = $cs-timing#EVE "Abends" 
 * dosageInstruction[standardDosage][0].doseAndRate.doseQuantity.value = 2
 * dosageInstruction[standardDosage][0].doseAndRate.doseQuantity.system = $cs-ucum
-* dosageInstruction[standardDosage][0].doseAndRate.doseQuantity.code = #Stueck
+* dosageInstruction[standardDosage][0].doseAndRate.doseQuantity.code = #{Stueck}
 * dosageInstruction[standardDosage][0].doseAndRate.doseQuantity.unit = "Stück"
 
 * dosageInstruction[standardDosage][1].extension[DosageCategory].valueCodeableConcept = AtElgaEmedCodeSystemDosageCategory#standard 
@@ -46,5 +46,5 @@ Usage: #example
 * dosageInstruction[standardDosage][1].timing.repeat.when[0] = $cs-timing#NIGHT "Nachts"
 * dosageInstruction[standardDosage][1].doseAndRate.doseQuantity.value = 1
 * dosageInstruction[standardDosage][1].doseAndRate.doseQuantity.system = $cs-ucum
-* dosageInstruction[standardDosage][1].doseAndRate.doseQuantity.code = #Stueck
+* dosageInstruction[standardDosage][1].doseAndRate.doseQuantity.code = #{Stueck}
 * dosageInstruction[standardDosage][1].doseAndRate.doseQuantity.unit = "Stück"

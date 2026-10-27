@@ -131,6 +131,10 @@ pages:
 parameters:
   generate-turtle: false
   excludettl: true
+  # lokale Kopien von termgit-Ressourcen behalten ihre termgit-Canonicals
+  special-url:
+    - https://termgit.elga.gv.at/CodeSystem/medikationrezeptart
+    - https://termgit.elga.gv.at/ValueSet/elga-medikationrezeptart
 
 #
 # ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮

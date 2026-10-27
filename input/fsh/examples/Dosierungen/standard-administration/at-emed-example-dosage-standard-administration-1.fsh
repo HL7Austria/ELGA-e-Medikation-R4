@@ -36,5 +36,5 @@ Usage: #example
 * dosageInstruction[standardDosage].timing.repeat.when[+] = $cs-timing#EVE "Abends" 
 * dosageInstruction[standardDosage].doseAndRate.doseQuantity.value = 1
 * dosageInstruction[standardDosage].doseAndRate.doseQuantity.system = $cs-ucum
-* dosageInstruction[standardDosage].doseAndRate.doseQuantity.code = #Stueck
+* dosageInstruction[standardDosage].doseAndRate.doseQuantity.code = #{Stueck}
 * dosageInstruction[standardDosage].doseAndRate.doseQuantity.unit = "Stück"
