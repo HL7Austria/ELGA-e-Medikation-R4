@@ -2,7 +2,7 @@ Profile: AtElgaEmedMedicationRequestPlaneintrag
 Parent: AtElgaEmedMedicationRequestBase
 Id: at-elga-emed-medicationrequest-planeintrag
 Title: "At ELGA e-Medikation MedicationRequest Planeintrag"
-Description: "Profil für einen Medikationsplaneintrag." 
+Description: "Profil für einen Planeintrag." 
 
 * extension MS
 // Extensions
@@ -93,7 +93,7 @@ Description: "Profil für einen Medikationsplaneintrag."
 
 // -- AuthoredOn ---
 * authoredOn 1..1 MS
-* authoredOn ^short = "Datum der Erstellung des Planeintrags."
+* authoredOn ^short = "Datum der Erstellung/Änderung des Planeintrags."
 
 // -- Requester --- 
 * requester 1..1 MS  
