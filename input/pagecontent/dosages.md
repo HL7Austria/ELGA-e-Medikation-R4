@@ -340,7 +340,6 @@ Die Auswirkungen von Timing.repeat.offset wurden in dieser Version noch nicht be
 <div class="dragon" markdown="1">
 <p class="note-to-balloters">
 Der finale Algorithmus für die Generierung der menschenlesbaren Textdarstellungen der einzelnen Ressourcen und Dosierschemata wird noch erarbeitet und im nächsten Ballot zur Verfügung gestellt. Feedback aus der Community ist erwünscht.
- </ul>
 </p>
 </div>
 <br>
@@ -385,7 +384,7 @@ Die folgenden Elemente unterstützen die menschenlesbare Darstellung von Ressour
       <td><code>MedicationRequest.extension:renderedDosageInstruction</code></td>
       <td><code>markdown</code> (<code>valueMarkdown</code>)</td>
       <td>
-        Da ein MedicationRequest/MedicationDispense mehrere Dosages besitzten kann bildet renderedDosageInstruction eine gesamte Textrepräsentation aller Medicationrequest.dosageInstructions ab. Gibt es nur eine dosageInstruction so entspricht der inhalt von extension:renderedDosageInstruction dem Inhalt von dosageInstruction.text.
+        Da ein MedicationRequest/MedicationDispense mehrere Dosages besitzten kann bildet renderedDosageInstruction eine gesamte Textrepräsentation aller Medicationrequest.dosageInstructions ab. Gibt es nur eine dosageInstruction so entspricht der Inhalt von extension:renderedDosageInstruction dem Inhalt von dosageInstruction.text.
       </td>
     </tr>
     <tr>
@@ -393,7 +392,7 @@ Die folgenden Elemente unterstützen die menschenlesbare Darstellung von Ressour
       <td><code>string</code></td>
       <td>
         Textrepräsentation einer einzelnen <code>Dosage</code>-Instanz.
-        Berücksichtigt auch die Inhalte von <code>additionalInstruction</code> und <code>patientInstruction</code>. Bei einer Dosierung die nicht strukturiert abgebildet werden kann stellt dieses Element das Freitextfeld für die Repräsentation der Dosierung dar.
+        Berücksichtigt auch die Inhalte von <code>additionalInstruction</code> und <code>patientInstruction</code>. Bei einer Dosierung die nicht strukturiert abgebildet werden kann, stellt dieses Element das Freitextfeld für die Repräsentation der Dosierung dar.
       </td>
     </tr>
     <tr>
@@ -408,7 +407,7 @@ Die folgenden Elemente unterstützen die menschenlesbare Darstellung von Ressour
       <td><code>MedicationRequest.dosageInstruction.patientInstruction</code></td>
       <td><code>string</code></td>
       <td>
-       Zusätzlicher Einnahme/Anwendungs-hinweis für den Patienten.
+       Zusätzlicher Einnahme-/Anwendungshinweis für den Patienten.
       </td>
     </tr>
   </tbody>
