@@ -302,9 +302,6 @@ AtElgaEmedMedicationRequestPlaneintrag
     requester: für die Änderung verantwortlicher GDA 
 
 ```
-<!-- Grund für Aktivierung (optional) prüfen, akl 30.09.2026 -->
-
-
 
 ### Sub_UC_eMed_02_06 - Leeren Medikationsplan dokumentieren
 

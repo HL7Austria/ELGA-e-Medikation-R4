@@ -53,7 +53,7 @@ table thead th {
 <td><code>/</code></td>
 <td><code>$groupidentifier-search</code></td>
 <td></td>
-<td>Geplante und durchgeführte Abgaben mittels e-Med GroupIdentifier lesen</td>
+<td>Geplante und Durchgeführte Abgaben mittels e-Med GroupIdentifier lesen</td>
 <td>GDA</td>
 <td></td>
 </tr>
@@ -147,7 +147,7 @@ Standardabfrage mit _include
   In historischen Planeintragsversionen suchen und alle
   referenzierten Ressourcen inkludieren.
   Nur MedicationRequests ohne referenzierte Ressourcen, wenn <code>include</code> nicht verwendet wird.<br>
-  Gilt ausschließlich für Planeinträge, nicht für geplante Abgaben.
+  Gilt ausschließlich für Planeinträge, nicht für Geplante Abgaben.
   </td>
   <td>GDA, PAT</td>
   <td>
@@ -192,7 +192,7 @@ Standardabfrage mit _include
   <td><code>/MedicationRequest/[id]</code></td>
   <td><code>$prescription-discard</code></td>
   <td><a href="StructureDefinition-at-elga-emed-medicationrequest-geplanteabgabe.html">Geplante Abgabe</a></td>
-  <td>Eigene geplante Abgabe stornieren</td>
+  <td>Eigene Geplante Abgabe stornieren</td>
   <td>GDA</td>
   <td></td>
 </tr>
@@ -212,11 +212,11 @@ Standardabfrage mit _include
   <td><code>/MedicationRequest/[id]</code></td>
   <td><code>delete</code></td>
   <td><a href="StructureDefinition-at-elga-emed-medicationrequest-geplanteabgabe.html">Geplante Abgabe</a></td>
-  <td>prescription-delete: Geplante Abgabe löschen; nur für geplante Abgaben</td>
+  <td>prescription-delete: Geplante Abgabe löschen; nur für Geplante Abgaben</td>
   <td>PAT</td>
   <td></td>
 </tr>
-<!-- Wie kann man hier abfangen, dass nur geplante Abgaben gelöscht werden können und keine Planeinträge?-->
+<!-- Wie kann man hier abfangen, dass nur Geplante Abgaben gelöscht werden können und keine Planeinträge?-->
 
 <!--
 <tr>

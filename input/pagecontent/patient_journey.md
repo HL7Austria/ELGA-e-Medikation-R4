@@ -114,7 +114,7 @@ Da für Herrn Mustermann noch nie ein Medikationsplan abgerufen wurde, erstellt 
   </div>
 </div>
 
-##### Journey-01-01: Request 03 - durchgeführte Abgaben Abrufen
+##### Journey-01-01: Request 03 - Durchgeführte Abgaben Abrufen
 
 <div class="tabs">
   <div class="tab">

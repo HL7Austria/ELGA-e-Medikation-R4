@@ -116,7 +116,7 @@ Liefert die e-Medikation Fachanwendung einen Fehler zurück, kann nach Fehlerkor
 
 ###### Variante A: Normalfall
 
-[![overview](plantuml/UC_eMed_04_01_a_normal.svg){: .mx-auto style="width:60%;"}](plantuml/UC_eMed_04_01_a_normal.svg)
+[![overview](plantuml/UC_eMed_04_01_a_normal.svg){: .mx-auto style="width:50%;"}](plantuml/UC_eMed_04_01_a_normal.svg)
 
 <br>
 
@@ -179,7 +179,6 @@ AtElgaEmedMedicationRequestGeplanteAbgabe
 * *POST* [$prescription-discard](OperationDefinition-at-elga-emed-operation-prescription-discard.html)
 
 ### Sub_UC_eMed_04_04 - Geplante Abgabe abgeschlossen (durch Fachanwendung)
-<!-- TODO: abschließen -> Workflowdiagramm  akl 20.10.-->
 
 Wurden alle möglichen Einlösungen einer *Geplanten Abgabe* planmäßig durchgeführt und entsprechende *Durchgeführte Abgaben* erstellt (siehe [Sub_UC_eMed_05_01 - Durchgeführte Abgabe erstellen](Sub_UC_eMed_05.html#sub_uc_emed_05_01---durchgeführte-abgabe-erstellen)), setzt die Fachanwendung die *Geplante Abgabe* **automatisch** auf den Status ***completed*** (siehe [Status der Geplanten Abgabe (MedicationRequest)](workflowmanagement.html#status-der-geplanten-abgabe-medicationrequest)). Die *Geplante Abgabe* ist damit abgeschlossen.
 

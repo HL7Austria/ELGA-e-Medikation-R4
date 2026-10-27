@@ -21,7 +21,7 @@ Der Standardzugriff erfolgt nach Kontaktbestätigung des ELGA-Teilnehmers (z.B. 
 Alternativ steht **ohne Kontaktbestätigung** des ELGA-Teilnehmers der Zugriff mittels *e-Med GroupIdentifier* (z.B. über den DataMatrix-Code eines e-Rezepts) zur Verfügung. Dieser ermöglicht ausschließlich einen **eingeschränkten ELGA-Zugriff** auf die dem *e-Med GroupIdentifier* zugeordneten *Geplanten Abgaben* und *Durchgeführten Abgaben* und wird in [Sub_UC_eMed_03_03 - Geplante und Durchgeführte Abgaben mittels e-Med GroupIdentifier lesen (GroupIdentifier-Search)](Sub_UC_eMed_03.html#sub_uc_emed_03_03---geplante-und-durchgeführte-abgaben-mittels-e-med-groupidentifier-lesen-groupidentifier-search) beschrieben.
 
 <div class="hinweisbox">
-ℹ️ Die fachlichen Anforderungen dieses Use Cases werden im <a href="https://dev.elga.gv.at/apis/emed/use-cases/">UC_eMed_03 Geplante und durchgeführte Abgaben lesen</a> beschrieben.<br> 
+ℹ️ Die fachlichen Anforderungen dieses Use Cases werden im <a href="https://dev.elga.gv.at/apis/emed/use-cases/">UC_eMed_03 Geplante und Durchgeführte Abgaben lesen</a> beschrieben.<br> 
 Es gelten die dort festgelegten Vorbedingungen. Alle Zugriffe werden protokolliert. 
 </div>
 
@@ -35,7 +35,7 @@ Es gelten die dort festgelegten Vorbedingungen. Alle Zugriffe werden protokollie
 #### Suchparameter
 
 Die Suche nach [Geplanten Abgaben](StructureDefinition-at-elga-emed-medicationrequest-geplanteabgabe.html) erfolgt mittels **GET**-Request unter Angabe geeigneter Suchparameter:
-* alle (ohne Einschränkung) <!-- TODO sinnvoll? akl 2.10. -->
+* alle (ohne Einschränkung)
 * in einem bestimmten Zeitraum erfasste 
 * mit bestimmter Medikation: PZN/Name bzw. Wirkstoff (inkl. Magistraler Zubereitungen) 
 * mit einem bestimmten [status](ValueSet-GeplanteAbgabeStatusVS.html)  <!-- Todo: entered-in-error nicht, weil nur eigene storniert werden können? -->
@@ -80,10 +80,10 @@ Von ELGA-Teilnehmern gelöschte *Geplanten Abgaben* stehen nicht mehr zur Verfü
 #### Suchparameter 
 
 Die Suche nach [Durchgeführten Abgaben](StructureDefinition-at-elga-emed-medicationdispense-durchgefuehrteabgabe.html) erfolgt mittels **GET**-Request unter Angabe geeigneter Suchparameter:
-* alle (ohne Einschränkung) <!-- TODO sinnvoll? akl 2.10. -->
+* alle (ohne Einschränkung) 
 * in einem bestimmten Zeitraum erfasste 
 * mit bestimmter Medikation: PZN/Name bzw. Wirkstoff (inkl. Magistraler Zubereitungen) 
-* mit einem bestimmten [status](ValueSet-DurchgefuehrteAbgabeStatusVS.html) <!-- Todo: entered-in-error nicht, weil nur eigene storniert werden können? -->
+* mit einem bestimmten [status](ValueSet-DurchgefuehrteAbgabeStatusVS.html) 
 <!-- - mit einem bestimmten [type](ValueSet-DurchgefuehrteAbgabeTypVS.html) (Abgabeart) TODO akl 7.10. steht dzt nicht als Suchkriterium in UC3 -->
 * mit einem bestimmten *e-Med GroupIdentifier* 
 <!-- * Erstellender GDA? Todo akl 2.10. -->
