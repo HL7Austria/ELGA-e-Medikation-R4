@@ -82,7 +82,7 @@ pages:
   dosages.md:
     title: Dosierungen
   medication.md:
-    title: Medikation
+    title: Medikation - Repräsentation von Arzneimitteln
   overview_sub_use_case.md:
     title: Use Cases Übersicht (fachlich und technisch)
     Sub_UC_eMed_01.md:
