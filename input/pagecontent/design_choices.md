@@ -2,16 +2,15 @@
 
 ### Übersicht der Relevanten Ressourcen
 
-Die folgende Abbildung zeigt den Aufbau des Medikationsplans sowie das Zusammenwirken der dabei verwendeten FHIR-Ressourcen.
+Die folgende Abbildung veranschaulicht den Aufbau der e-Medikation und das Zusammenspiel der verwendeten FHIR-Ressourcen.
 
-Zentrale Ressource ist der Medikationsplan (*List*), der die einzelnen Medikationsplaneinträge (*MedicationRequest*) referenziert. Basierend auf diesen Planeinträgen werden *Geplante Abgaben* (*MedicationRequest*) erstellt, auf deren Grundlage *Durchgeführte Abgaben* (*MedicationDispense*) dokumentiert werden können.
+Zentrale Ressource ist der Medikationsplan (*List*), der die einzelnen Planeinträge (*MedicationRequest*) referenziert. Auf Basis der Planeinträge werden *Geplante Abgaben* (MedicationRequest) erstellt. Diese bilden die Grundlage für die Dokumentation der tatsächlich erfolgten *Durchgeführten Abgaben* (MedicationDispense).
 
-Die Fachanwendung persistiert ausschließlich die einzelnen FHIR-Ressourcen. Historische Zustände werden durch versionierte Ressourcen und versionierte Referenzen abgebildet <!--Todo: prüfen, ob zutreffend akl 12.10. -->. Medikationsplan-Bundles dienen ausschließlich der Auslieferung eines Medikationsplans und werden bei Bedarf aus den entsprechenden Ressourcenversionen erzeugt.
+Die Fachanwendung persistiert ausschließlich die einzelnen FHIR-Ressourcen. Historische Zustände werden durch versionierte Ressourcen und versionierte Referenzen abgebildet. Medikationsplan-Bundles dienen ausschließlich der Auslieferung eines Medikationsplans und werden bei Bedarf aus den entsprechenden Ressourcenversionen erzeugt.
 
 <br>
 [![diagram](Uebersicht_e_Medikation_Ressourcen.svg){: style="width: 100%"}](Uebersicht_e_Medikation_Ressourcen.svg)
 
-<!-- TODO Pfeile zu Patient und Practitioner? Umrandung Medikationsplan-Bundle strichliert -->
 
  
 #### Medikationsplan: AtElgaEmedListMedikationsplan (*List*)
@@ -24,7 +23,7 @@ Die List-Ressource bildet gemeinsam mit den referenzierten Ressourcenversionen d
 
 #### Medikationsplaneintrag bzw. Planeintrag: AtElgaEmedMedicationRequestPlaneintrag (*MedicationRequest*)
 
-Ein Planeintrag im Medikationsplan wird durch eine [MedicationRequest](StructureDefinition-at-elga-emed-list-medikationsplan.html)-Ressource der Kategorie "Planeintrag" abgebildet. Die Ressource enthält genau ein verordnetes Arzneimittel mit der zugehörigen Dosierung.
+Ein Planeintrag wird durch eine [MedicationRequest](StructureDefinition-at-elga-emed-list-medikationsplan.html)-Ressource der Kategorie "Planeintrag" abgebildet. Die Ressource enthält genau ein verordnetes Arzneimittel mit der zugehörigen Dosierung.
 
 Der Planeintrag kann in weiterer Folge als Grundlage für die Erstellung einer *Geplanten Abgabe* dienen. 
 
@@ -33,39 +32,13 @@ In Abhängigkeit des zugehörigen List.entry.flags im Medikationsplan kann der P
 Abhängig vom List.entry.flag kann der Planeintrag nur bestimmte Statuswerte annehmen (siehe [Konsistenzregeln zwischen List.entry.flags und MedicationRequest-Status](workflowmanagement.html#konsistenzregeln-zwischen-listentryflags-und-medicationrequest-status)).
 
 
-<!-- ##### Medikationsplan-Bundle: AtElgaEmedBundleMedikationsplan (*Medikationsplan-Bundle*)
-
-Das [Medikationsplan-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplan.html) dient ausschließlich der Auslieferung eines Medikationsplans in einem für die Bearbeitung durch den GDA aufbereiteten Zustand. Es wird von der Fachanwendung nach einer [$plan-read](OperationDefinition-at-elga-emed-operation-plan-read.html)-Operation aus einer *List*-Ressource sowie den von dieser referenzierten Ressourcenversionen erzeugt und **nicht persistiert**. -->
-
-<!-- TODO: Iste ein Medikationsplan-Bundle nur das Ergebnis von Plan-Read oder auch Teil des Ergebnis von Plan-History-Read (in einem Searchset-Bundle)? -->
-
-<!-- #### Geplante Abgabe Transaction-Bundle: AtElgaEmedBundleGeplanteAbgabeTX (*Transaction Bundle*)
-
-Ein Bundle vom Typ Transaction, das beim Speichern von [Geplanten Abgaben](design_choices.html#geplante-abgabe-atelgaemedmedicationrequestgeplanteabgabe-medicationrequest) mittels [Prescription-Write](OperationDefinition-at-elga-emed-operation-prescription-write.html) auf den Medikationsplan an die Fachanwendung übermittelt wird. 
-
-Die im Bundle enthaltenen *Geplanten Abgaben* müssen mit dem gleichen *e-Med GroupIdentifier* gekennzeichnet sein. Fehlt dieser bei allen *Geplanten Abgaben* im Transaction Bundle, wird er von der Fachanwendung ergänzt. 
-
-Profil in Arbeit. -->
-
-<!-- 
-TODO: Erklärung Planreferenz in Durchgeführte Abgabe, damit ersichtlich, wenn Abgabe (Arznei/Dosierung) abweichend (/Substituion) -->
-
-
-<!-- #### Medikationsplan-Transaction-Bundle: AtElgaEmedBundleMedikationsplanTx (*Transaction Bundle*)
-
-Ein Bundle vom Typ Transaction, das beim [Plan-Write](OperationDefinition-at-elga-emed-operation-plan-write.html) an die Fachanwendung übermittelt wird. 
-Das Bundle enthält den [Medikationsplan](design_choices.html#medikationsplan-atelgaemedlistmedikationsplan-list) mit Referenzen auf die *Medikationsplaneinträge*. Alle neuen bzw. geänderten und zu entfernenden Medikationsplaneinträge müssen inline im Bundle enthalten sein, alle unveränderten Ressourcen werden referenziert.
-
-Das Transaction Bundle dient der Aktualisierung aller enthaltenen Ressourcen und wird selbst nicht persisitert. -->
-
-
 #### *Geplante Abgabe*: AtElgaEmedMedicationRequestGeplanteAbgabe (*MedicationRequest*)
 
-Eine *Geplante Abgabe* eines Arzneimittels wird durch eine *MedicationRequest*-Ressource der Kategorie *Geplante Abgabe* abgebildet und dient der Nachvollziehbarkeit der rezeptierten Arzneimittel in der e-Medikation, siehe [Profil *Geplante Abgabe*](StructureDefinition-at-elga-emed-medicationrequest-geplanteabgabe.html).
+Eine geplante Ausgabe eines Arzneimittels wird durch eine *MedicationRequest*-Ressource der Kategorie *Geplante Abgabe* abgebildet und dient der Nachvollziehbarkeit der rezeptierten Arzneimittel in der e-Medikation, siehe [Profil *Geplante Abgabe*](StructureDefinition-at-elga-emed-medicationrequest-geplanteabgabe.html).
 
 #### *Durchgeführte Abgabe*: AtElgaEmedMedicationDispenseDurchgefuehrteAbgabe (*MedicationDispense*)
 
-Die Ausgabe eines Arzneimittels wird mit einer *Durchgeführte Abgaben* in einer *MedicationDispense*-Ressource dokumentiert und dient der Nachvollziehbarkeit der abgegebenen Arzneimittel in der e-Medikation, siehe [Profil Durchgeführte Abgabe](StructureDefinition-at-elga-emed-medicationdispense-durchgefuehrteabgabe.html).
+Die tatsächliche Ausgabe eines Arzneimittels wird mit einer *Durchgeführte Abgaben* in einer *MedicationDispense*-Ressource dokumentiert und dient der Nachvollziehbarkeit der abgegebenen Arzneimittel in der e-Medikation, siehe [Profil Durchgeführte Abgabe](StructureDefinition-at-elga-emed-medicationdispense-durchgefuehrteabgabe.html).
 
 
 ### Fachliche Designentscheidungen
@@ -92,38 +65,12 @@ Die Übereinstimmung wird ausschließlich zum Zeitpunkt der Erstellung der *Gepl
 | Beziehung | Fachliche Vorgabe |
 |---|---|
 | Planeintrag ↔ *Geplante Abgabe* | Arzneimittel und Dosierung identisch (bei Erstellung) |
-| *Geplante Abgabe* ↔ *Durchgeführte Abgabe* | Abweichungen möglich, dokumentiert in der *Durchgeführten Abgabe* (z.B. Präparat statt Wirkstoff) |
+| *Geplante Abgabe* ↔ *Durchgeführte Abgabe* | Abweichungen möglich, dokumentiert in der *Durchgeführten Abgabe* (z.B. verordnetes Präparat nicht lieferbar, andere Packungsgröße o.ä.) |
 
-**Designentscheidung: Darf die *Geplante Abgabe* vom Planeintrag abweichen?**
-
-| Variante | Beschreibung |
-|---|---|
-| A: strikte Übereinstimmung  (aktuell) | Abweichung ist nicht zulässig. Für ein Präparat wird zuerst der Planeintrag angepasst. |
-| B: Konkretisierung zulässig | Die *Geplante Abgabe* darf einen Wirkstoff aus dem Planeintrag zu einem Präparat konkretisieren. Wirkstoff, Stärke, Darreichungsform und Dosierung bleiben trotzdem gleich, der Planeintrag bleibt unverändert. |
-
-*Vorteile von A:* 
-- Die Erstellung einer *Geplanten Abgabe* setzt voraus, dass die zu verordnende Medikation auch im Planeintrag dokumentiert ist. 
-- Medikationsplan und *Geplante Abgabe* sind widerspruchsfrei. Änderungen des Präparats oder der Dosierung können nicht ausschließlich in der *Geplanten Abgabe* vorgenommen werden. 
-- Die Pflege des Medikationsplans wird dadurch verbindlich in den Verordnungsablauf eingebunden. 
-- Planeintrag und *Geplante Abgabe* verwenden zum Zeitpunkt der Erstellung dieselbe Arzneimittel- und Dosierungsdarstellung. 
-
-*Nachteile von A:* 
-- Der Planeintrag muss, falls dort nur ein Wirkstoff dokumentiert ist, vorab angepasst werden.
-- Eine Wirkstoff-Angabe im Medikationsplan wird durch das Erstellen einer *Geplante Abgabe* früher oder später immer durch ein Präparat ersetzt.
-
-*Vorteile von B:* 
-- Eine wirkstoffbasierte Darstellung kann im Medikationsplan erhalten bleiben, während die G*eplante Abgabe* das konkret verordnete Präparat dokumentiert.
-- Eine reine Konkretisierung zum Präparat erfordert keine Änderung des Planeintrags.
-- Der Medikationsplan kann unabhängig von einzelnen Präparateentscheidungen auf Wirkstoffebene geführt werden.
-
-*Nachteile von B:* 
-- Die Prüfregel wird komplexer (Wirkstoffabgleich). Die Übereinstimmung lässt sich nicht allein anhand identischer Arzneimittelangaben prüfen. Es sind zusätzliche Regeln für die fachliche Zuordnung zwischen Wirkstoffangabe und Präparat erforderlich.
-- Medikationsplan und *Geplante Abgabe* enthalten unterschiedliche Darstellungsebenen derselben vorgesehenen Verordnung. Diese müssen für Anwender klar visualisiert werden.
 
 <div class="dragon" markdown="1">
 <div class="note-to-balloters" markdown="1">
-
-- Wie bleibt der Medikationsplan verständlich, wenn das abgegebene Arzneimittel vom Wirkstoff oder Präparat im Planeintrag und von der <i>Geplanten Abgabe</i> abweicht?<br>
+- Wie bleibt der Medikationsplan verständlich, wenn das abgegebene Arzneimittel vom Präparat im Planeintrag abweicht?<br>
 - Soll `basedOn` versioniert werden, um die geprüfte Planeintrag-Version nachvollziehen zu können?
 </div>
 </div>
@@ -327,7 +274,7 @@ Die aktuelle Version einer Ressource wird über [read](https://hl7.org/fhir/R4/h
 <li>Welche Elemente sollen beim Vergleich auf inhaltliche Gleichheit unberücksichtigt bleiben?</li>
 <li>Wie soll die Fachanwendung reagieren, wenn ein Planeintrag mit <i>List.entry.flag = changed</i> übermittelt wird, der inhaltlich identisch mit der aktuellen Version ist: Ablehnen oder ohne neue Planeintragsversion als <i>unchanged</i> behandeln?</li>
 <li>Soll ein Plan-Write, bei dem alle Planeinträge unverändert bleiben, eine neue Medikationsplanversion erzeugen (aktuell) oder nur dann, wenn sich Planeinträge ändern?</li>
-<li>Soll es eine zusätzliche Kennung in den Daten des Medikationsplans geben, um die aktuelle Version des Medikationsplans zu markieren? Aus den Ergebnisse einer historischen Suche kann nicht abgeleitet werden, ob die aktuelle Version der Liste enthalten ist. Derzeit kann die aktuelle Version nur über plan-read ermittelt werden. </li>
+<li>Soll es eine zusätzliche Kennung in den Daten des Medikationsplans geben, um die aktuelle Version des Medikationsplans zu markieren? Aus den Ergebnissen einer historischen Suche kann nicht abgeleitet werden, ob die aktuelle Version der Liste enthalten ist. Derzeit kann die aktuelle Version nur über plan-read ermittelt werden. </li>
 </ul>
 </div>
 </div>
