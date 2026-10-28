@@ -76,7 +76,10 @@ Description: "Bildet ein Arzneimittel in der \"Medication\"-Ressource ab. Wird g
 * amount.numerator 1..1 MS
 * amount.numerator.code 1..1 MS
 * amount.numerator.code from $vs-emed-mengenart (required)
-* amount.denominator 0..0
+* amount.denominator 1..1 MS
+* amount.denominator.value 1..1 MS
+* amount.denominator.code MS
+* amount.denominator.code from $vs-emed-mengenart (required)
 * amount ^short = "Die Gesamtmenge des Arzneimittels in der Verpackung."
 
 * ingredient 1..* MS

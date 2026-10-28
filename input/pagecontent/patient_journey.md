@@ -752,16 +752,6 @@ Dr. Urlaubsvertretung ruft die e-Medikation von Herrn Mustermann ab und ändert 
 
 Der Behandlungszeitraum für die **Dexpanthenol-Salbe** ist zwischenzeitlich **abgelaufen**. Dr. Urlaubsvertretung stellt fest, dass keine weitere Behandung nötig ist. Der von der Fachanwendung zur Entfernung markierte Planeintrag wird durch die Aktualisierung des Medikationsplans bestätigt und beim nächsten Abruf nicht mehr in Plan enthalten sein.
 
-<div class="dragon">
-<p class="note-to-balloters">
-Offene Punkte:<br>
-Wie wird von der Fachanwendung festgestellt, ob ein Behandlungszeitraum abgelaufen ist? <br>
-- extension[effectiveDosePeriod].valuePeriod.start + Dosierinformationen (für 3 Wochen) <br>
-- überschrittenes Datum in extension[effectiveDosePeriod].valuePeriod.end <br>
--> bei beiden Varianten unklar, wann das Medikament abgeholt bzw. die Behandlung wirklich begonnen wurde (Abholdatum geht nur aus MediacationDispense hervor)
-</p>
-</div>
-
 <div class="tabs">
   <div class="tab">
     <input type="radio" id="tab-beispiele-07-01" name="tab-group-patient-journey-07-01" checked="true">
