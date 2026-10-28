@@ -78,7 +78,6 @@ Description: "Profil einer Geplanten Abgabe eines Arzneimittels aus dem Medikati
 // --- Medication 
 * medication[x] 1..1 MS  
 * medication[x] only Reference(AtElgaEmedMedicationStandardMedikation or AtElgaEmedMedicationMagistraleZubereitung)  
-* medication[x] ^type.aggregation = #contained
 * medication[x] ^short = "Das Arzneimittel wird in einer contained Medication Ressource oder als Conditional Reference dokumentiert. Muss bei der Erstellung mit der medication im zugehörigen Planeintrag übereinstimmen."
 * medicationReference MS
 * medicationReference.reference 1..1 MS
@@ -127,6 +126,7 @@ Description: "Profil einer Geplanten Abgabe eines Arzneimittels aus dem Medikati
 * groupIdentifier 0..1 MS
 * groupIdentifier ^short = "Der \"e-Med GroupIdentifier\" bildet die Rezept-Klammer. Geplante Abgaben, die demselben e-Rezept zugeordnet sind, führen denselben e-Med GroupIdentifier."
 * groupIdentifier.system MS
+* valueIdentifier.system = $sys-eMed-groupIdentifier
 * groupIdentifier.value MS
 * groupIdentifier.use 0..0
 

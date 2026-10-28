@@ -57,6 +57,7 @@ Description: "Profil einer Durchgeführten Abgabe eines Arzneimittels."
 * status 1..1 MS
 //* status from AtElgaEmedValueSetMedicationDispenseStatusVS
 * status ^short = "Status der Durchgeführten Abgabe. Mögliche Ausprägungen: [completed | cancelled | entered-in-error ] Bedeutung: completed: Die Durchgeführte Abgabe ist abgeschlossen (Einzel- oder Teilabgabe durchgeführt) | cancelled: Leerabgabe wird durchgeführt | entered-in-error: Die Durchgeführte Abgabe wird aufgrund eines Fehlers storniert."
+* status from AtElgaEmedValueSetMedicationDispenseStatusVS
 
 // --- Medication immer als Medication-Resource (mit oder ohne PZN, damit Handelsname angegeben werden kann und historisch verfügbar bleibt)
 * medication[x] 1..1 MS  

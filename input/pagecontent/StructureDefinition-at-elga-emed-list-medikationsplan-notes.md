@@ -1,7 +1,7 @@
 {% include styleheader.md %}
 
 #### Search Parameters
-
+<!-- 
 <div class="note">
 <p><b>Historische Planversionen (<code>_history</code>)</b></p>
 <p>
@@ -15,7 +15,7 @@
 <p>
 Als Erweiterung des FHIR-Basisstandards können alle unten aufgeführten Suchparameter auch auf die History-Interaktion angewendet werden. Die Suche wirkt dann auf alle gespeicherten Versionen und nicht nur auf die aktuelle. Beispiel: <code>[base]/List/_history?date=ge2026-01-01</code>. Die Standard-History-Parameter (<code>_since</code>, <code>_at</code>, <code>_count</code>) bleiben zusätzlich nutzbar.
 </p>
-</div>
+</div> -->
 
 <table class="list">
   <tr>
