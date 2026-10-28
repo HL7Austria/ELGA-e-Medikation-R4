@@ -112,7 +112,7 @@ group GROUP_APO 28.2.2026 · Abgabe in der Apotheke (Besorgerprozess)
   Apotheke -> eMed_FA: e-Medikation abrufen
   eMed_FA -> Apotheke: <$document> Medikationsplan, Geplante Abgaben für\nRamipril + Dexpanthenol-Salbe
   Apotheke -> Patient: Ramipril aushändigen <$capsule>
-  Apotheke -> Patient: Abholzettel für Dexpanthenol-Salbe aushändigen 
+  Apotheke -> Patient: Abholzettel für Dexpanthenol-Salbe aushändigen (optional)
   Apotheke -> eMed_FA: Durchgeführte Abgaben erstellen\nRamipril: Vollständige Abgabe\nDexpanthenol-Salbe (Besorgerprozess)
 end
 

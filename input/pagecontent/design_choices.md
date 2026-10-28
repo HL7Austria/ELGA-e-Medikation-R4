@@ -9,7 +9,7 @@ Zentrale Ressource ist der Medikationsplan (*List*), der die einzelnen Medikatio
 Die Fachanwendung persistiert ausschließlich die einzelnen FHIR-Ressourcen. Historische Zustände werden durch versionierte Ressourcen und versionierte Referenzen abgebildet <!--Todo: prüfen, ob zutreffend akl 12.10. -->. Medikationsplan-Bundles dienen ausschließlich der Auslieferung eines Medikationsplans und werden bei Bedarf aus den entsprechenden Ressourcenversionen erzeugt.
 
 <br>
-[![diagram](Uebersicht_e_Medikation_Ressourcen.drawio.svg){: style="width: 100%"}](Uebersicht_e_Medikation_Ressourcen.drawio.svg)
+[![diagram](Uebersicht_e_Medikation_Ressourcen.svg){: style="width: 100%"}](Uebersicht_e_Medikation_Ressourcen.svg)
 
 <!-- TODO Pfeile zu Patient und Practitioner? Umrandung Medikationsplan-Bundle strichliert -->
 
