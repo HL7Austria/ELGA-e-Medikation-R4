@@ -43,10 +43,10 @@ Um widersprüchliche Anweisungen zu vermeiden, ist entweder Dosage.timing oder D
 //* timing.code.coding from $vs-einnahmezeitpunkte (required)
 
 
-* asNeededBoolean 0..1 MS
-* asNeededBoolean ^short = "Bedarfsmedikation: Ja/Nein"
-* asNeededCodeableConcept 0..0 
-* asNeededCodeableConcept ^short = "Bedarfsmedikation: Grund für die Bedarfsmedikation" //TODO: Vermutlich reicht ein genereller Grund für die Medikation im Planeintrag (wenn e-Diagnose verfügbar)."
+// Grund für die Bedarfsmedikation (asNeededCodeableConcept) wird nicht verwendet //TODO: Vermutlich reicht ein genereller Grund für die Medikation im Planeintrag (wenn e-Diagnose verfügbar)."
+* asNeeded[x] only boolean
+* asNeeded[x] MS
+* asNeeded[x] ^short = "Bedarfsmedikation: Ja/Nein"
 
 * site 0..1 MS // evtl aus asp-liste? eindeutig? spezielle körperstelle betreffend;
 * site ^short = "Körperstelle, an der das Medikament angewendet wird, z.B. Haut, Auge, Ohr etc."

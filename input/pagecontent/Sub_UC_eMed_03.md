@@ -59,7 +59,7 @@ Von ELGA-Teilnehmern gelöschte *Geplanten Abgaben* stehen nicht mehr zur Verfü
 
 <!-- - Gültigkeitszeitraum des Rezepts (validityPeriod)? <br> -->
 
-##### Ablauf
+#### Ablauf
 
 1. Der GDA führt einen **GET**-Request auf den Prescription-Search-Endpunkt mit *MedicationRequest.category "Geplante Abgabe"* und Suchparametern aus 
 2. Die Fachanwendung ermittelt die den Suchkriterien entsprechenden *Geplanten Abgaben*.
@@ -102,7 +102,7 @@ Ballot-Feedback: Gibt es zusätzliche Suchparameter die unterstützt werden soll
 </div>
 
 
-##### Ablauf
+#### Ablauf
 
 1. Der GDA führt einen **GET**-Request auf den MedicationDispense-Search-Endpunkt mit Suchparametern aus.
 2. Die Fachanwendung ermittelt alle den Suchkriterien entsprechenden *Durchgeführten Abgaben*.
@@ -126,7 +126,7 @@ Ein lesender Zugriff auf weitere *Geplante Abgaben* oder *Durchgeführte Abgaben
 
 <!-- Todo: Wie Zugriff auf alle selbst erstellten Ressourcen möglich? -->
 
-##### Ablauf
+#### Ablauf
 
 1. Der GDA führt die Custom Operation **POST** [$groupidentifier-search](OperationDefinition-at-elga-emed-operation-groupidentifier-search.html) aus und übermittelt einen *e-Med GroupIdentifier*.
 2. Die Fachanwendung prüft den *e-Med GroupIdentifier*.
@@ -139,7 +139,7 @@ Ein lesender Zugriff auf weitere *Geplante Abgaben* oder *Durchgeführte Abgaben
 [![overview](plantuml/UC_eMed_03_03.svg){: .mx-auto style="width:60%;"}](plantuml/UC_eMed_03_03.svg)
 
 
-##### Custom Operations
+#### Custom Operations
 
 * *POST* [$groupidentifier-search](OperationDefinition-at-elga-emed-operation-groupidentifier-search.html)
 

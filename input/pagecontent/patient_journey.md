@@ -378,7 +378,7 @@ Anschließend speichert sie die neuen *Durchgeführte Abgaben* in der e-Medikati
           <strong>Durchgeführte Abgaben erstellen:</strong>
           <ul>
             <li>
-              <a href="MedicationDispense-At-Emed-Journey-02-01-Md-Durchgefuehrte-Abgabe-01.html">Durchgeführte Abgabe (Ramipril)</a> (Vollständige Einzelabgabe)
+              <a href="Bundle-At-Emed-Journey-02-01-Bundle-Durchgefuehrte-Abgaben-Tx.html">Durchgeführte Abgabe (Ramipril)</a> (Vollständige Einzelabgabe)
             </li>
             <li>
               <a href="MedicationDispense-At-Emed-Journey-02-01-Md-Durchgefuehrte-Abgabe-02.html">Durchgeführte Abgabe (Dexpanthenol-Salbe)</a> (Besorgerprozess)
@@ -841,7 +841,7 @@ Zuletzt erstellt Dr. Urlaubsvertretung eine *Geplante Abgabe* für zwei Packunge
           <strong>Geplante Abgaben erstellen:</strong>
           <ul>
             <li>
-              <a href="MedicationRequest-At-Emed-Journey-07-03-Mr-Geplante-Abgabe-03.html">Geplante Abgabe zu Planeintrag 3 (Metagelan )</a>
+              <a href="Bundle-At-Emed-Journey-07-03-Bundle-Geplante-Abgaben-Tx.html">Geplante Abgabe zu Planeintrag 3 (Metagelan )</a>
             </li>
           </ul>
         </li>
