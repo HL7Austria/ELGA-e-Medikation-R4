@@ -60,7 +60,8 @@ Die nachfolgenden technischen Use Cases beschreiben die für den jeweiligen Anwe
 
 ### Sub_UC_eMed_02_01 - Medikationsplan schreiben (Plan-Write)
 
-Alle vom GDA ausgeführten, schreibenden Zugriffe auf den Medikationsplan erfolgen über die Custom Operation [$plan-write](OperationDefinition-at-elga-emed-operation-plan-write.html). Die Fachanwendung verwendet den im Request übermittelten *ETag* zur Integritätsprüfung ([Optimistic Locking](https://hl7.org/fhir/http.html#concurrency)), um konkurrierende Änderungen am Medikationsplan zu erkennen.
+Alle vom GDA ausgeführten, schreibenden Zugriffe auf den Medikationsplan erfolgen über die Custom Operation [$plan-write](OperationDefinition-at-elga-emed-operation-plan-write.html). Die Fachanwendung verwendet den im Request übermittelten *ETag* zur Integritätsprüfung ([**Optimistic Locking**](https://hl7.org/fhir/http.html#concurrency)), um konkurrierende Änderungen am Medikationsplan zu erkennen (siehe auch [Designentscheidungen - Optimistisches Locking mit ETags](design_choices.html#optimistisches-locking-mit-etags)).
+
 
 #### Ablauf
 
