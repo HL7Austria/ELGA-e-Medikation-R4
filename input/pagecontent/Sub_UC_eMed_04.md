@@ -25,7 +25,10 @@ von *Geplanten Abgaben*.
 ℹ️ Die fachlichen Anforderungen dieses Use Cases werden beschrieben in:
 <ul>
     <li>
-        <a href="https://dev.elga.gv.at/apis/emed/use-cases/">UC_eMed_04 Geplante Abgabe schreiben</a>
+        <a href="https://dev.elga.gv.at/apis/emed/use-cases/assets/pdfs/UC_eMed_04%20Geplante%20Abgabe%20schreiben.pdf">UC_eMed_04 Geplante Abgabe schreiben</a>
+    </li>
+        <li>
+    <a href="https://dev.elga.gv.at/apis/emed/use-cases/assets/pdfs/UC_eMed_06%20Teilnehmerrechte%20aus%C3%BCben.pdf">UC_eMed_06 Teilnehmerrechte ausüben</a>
     </li>
 </ul>
 Es gelten die dort festgelegten Vorbedingungen. Alle Zugriffe werden protokolliert.  

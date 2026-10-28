@@ -29,10 +29,10 @@ Die **fachlichen Varianten der Erfassung** und die Inhalte von *Durchgeführten 
 ℹ️ Die fachlichen Anforderungen dieses Use Cases werden beschrieben in:
 <ul>
     <li>
-        <a href="https://dev.elga.gv.at/apis/emed/use-cases/">UC_eMed_05 Durchgeführte Abgabe schreiben</a>
+        <a href="https://dev.elga.gv.at/apis/emed/use-cases/assets/pdfs/UC_eMed_05%20Durchgef%C3%BChrte%20Abgabe%20schreiben.pdf">UC_eMed_05 Durchgeführte Abgabe schreiben</a>
     </li>
     <li>
-    <a href="https://dev.elga.gv.at/apis/emed/use-cases/">UC_eMed_06 Teilnehmerrechte ausüben</a>
+    <a href="https://dev.elga.gv.at/apis/emed/use-cases/assets/pdfs/UC_eMed_06%20Teilnehmerrechte%20aus%C3%BCben.pdf">UC_eMed_06 Teilnehmerrechte ausüben</a>
     </li>
 </ul>
 Es gelten die dort festgelegten Vorbedingungen. Alle Zugriffe werden protokolliert.  

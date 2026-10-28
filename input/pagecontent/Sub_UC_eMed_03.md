@@ -21,7 +21,7 @@ Der Standardzugriff erfolgt nach Kontaktbestätigung des ELGA-Teilnehmers (z.B. 
 Alternativ steht **ohne Kontaktbestätigung** des ELGA-Teilnehmers der Zugriff mittels *e-Med GroupIdentifier* (z.B. über den DataMatrix-Code eines e-Rezepts) zur Verfügung. Dieser ermöglicht ausschließlich einen **eingeschränkten ELGA-Zugriff** auf die dem *e-Med GroupIdentifier* zugeordneten *Geplanten Abgaben* und *Durchgeführten Abgaben* und wird in [Sub_UC_eMed_03_03 - Geplante und Durchgeführte Abgaben mittels e-Med GroupIdentifier lesen (GroupIdentifier-Search)](Sub_UC_eMed_03.html#sub_uc_emed_03_03---geplante-und-durchgeführte-abgaben-mittels-e-med-groupidentifier-lesen-groupidentifier-search) beschrieben.
 
 <div class="hinweisbox">
-ℹ️ Die fachlichen Anforderungen dieses Use Cases werden im <a href="https://dev.elga.gv.at/apis/emed/use-cases/">UC_eMed_03 Geplante und Durchgeführte Abgaben lesen</a> beschrieben.<br> 
+ℹ️ Die fachlichen Anforderungen dieses Use Cases werden im <a href="https://dev.elga.gv.at/apis/emed/use-cases/assets/pdfs/UC_eMed_03%20Geplante%20und%20durchgef%C3%BChrte%20Abgaben%20lesen.pdf">UC_eMed_03 Geplante und Durchgeführte Abgaben lesen</a> beschrieben.<br> 
 Es gelten die dort festgelegten Vorbedingungen. Alle Zugriffe werden protokolliert. 
 </div>
 

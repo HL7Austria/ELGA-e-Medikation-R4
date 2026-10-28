@@ -18,7 +18,7 @@ Der lesende Zugriff umfasst:
   * Verzeichnis historischer Medikationsplanversionen ([Plan-History-Directory-Search](Sub_UC_eMed_01.html#sub_uc_emed_01_03_03---verzeichnis-der-medikationspanversionen-lesen-plan-history-directory-search))
 
 <div class="hinweisbox">
-ℹ️ Die fachlichen Anforderungen dieses Use Cases werden im  <a href="https://dev.elga.gv.at/apis/emed/use-cases/">UC_eMed_01 Medikationsplan lesen</a> beschrieben.<br> 
+ℹ️ Die fachlichen Anforderungen dieses Use Cases werden im  <a href="https://dev.elga.gv.at/apis/emed/use-cases/assets/pdfs/UC_eMed_01%20Medikationsplan%20lesen.pdf">UC_eMed_01 Medikationsplan lesen</a> beschrieben.<br> 
 Es gelten die dort festgelegten Vorbedingungen. Alle Zugriffe werden protokolliert. 
 </div>
 
