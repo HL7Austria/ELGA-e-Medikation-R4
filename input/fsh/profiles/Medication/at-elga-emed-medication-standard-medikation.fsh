@@ -1,7 +1,7 @@
 Profile: AtElgaEmedMedicationStandardMedikation
 Parent: Medication
 Id: at-elga-emed-medication-standard-medikation
-Title: "AT ELGA e-Medikation Medication Medikation"
+Title: "AT ELGA e-Medikation Medication Profil für die Standardmedikation mit PZN"
 Description: "Bildet ein Arzneimittel in der \"Medication\"-Ressource ab. Wird grundsätzlich verwendet in Planeintrag, Geplanter Abgabe und Durchgeführter Abgabe."
 // TODO: Medication aktuell nur geprüft im Kontext Planeintrag.
 // Unterschieden werden folgende Fälle:

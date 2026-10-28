@@ -23,7 +23,7 @@ Description: "Bildet einen Wirkstoff in der Medication-Ressource ab. Wird grunds
 * extension contains AtElgaEmedExtensionRezeptur named Rezeptur 0..0 MS
 
 * code MS
-* code.text 1..1 MS
+* code.text MS
 * code.text ^short = "Titel der Medikation"
 * status 0..0 
 * status ^short = "Keine Verwendung. Entered-in-error führt zu inkonsistenten Zuständen."
