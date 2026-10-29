@@ -247,8 +247,6 @@ Eine [Geplante Abgabe](design_choices.html#geplante-abgabe-atelgaemedmedicationr
 
 #### Gültigkeit von Geplanten Abgaben basierend auf der Rezeptart
 
-{% include styleheader.md %}
-
 <div class="table-responsive">
   <table>
     <thead>
@@ -504,7 +502,7 @@ Im Element *MedicationDispense.type* einer Durchgeführten Abgabe wird die Art d
         <td>"Besorgerprozess": Arzneimittel nach Teilabgaben von Apotheke bestellt (ohne Abgabe)</td>
         <td>active</td>
         <td><em>Geplante Abgabe</em> bleibt <em>active</em></td>
-        <td>type: FFP (Refill – Part Fill)<br>quantity: 0 Packungen (wurden ausgegeben)<br>status: „completed“</td>
+        <td>type: RFP (Refill – Part Fill)<br>quantity: 0 Packungen (wurden ausgegeben)<br>status: „completed“</td>
         <td>Arzneimittel nach bereits erfolgter Teilabgabe bestellt oder Magistrale Zubereitung in Vorbereitung.</td>
       </tr>
       <tr>

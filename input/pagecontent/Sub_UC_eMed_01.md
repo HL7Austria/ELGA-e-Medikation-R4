@@ -65,7 +65,7 @@ B) **Es existiert ein Medikationsplan mit Planeinträgen**:
   * Planeinträge mit **abgelaufenem Behandlungszeitraum** werden mit *List.entry.flag = removed* gekennzeichnet und werden mit **ausgeliefert**, um dem GDA die Möglichkeit zu geben, das Arzneimittel weiterzuverordnen. Anderenfalls nimmt der GDA zur Kenntnis, dass der Planeintrag mit seinem nächsten Schreibvorgang entfernt wird. 
   * Sind nach der Transformation keine Planeinträge mehr vorhanden, wird *List.emptyReason = nilknown* gesetzt.
 
-C) **Es existiert ein leerer Medikationsplan** (mit einem [List.emptyReason](https://fhir.hl7.at/r4-ELGA-e-Medikation-main/ValueSet-ElgaListEmptyReasonVS.html)).
+C) **Es existiert ein leerer Medikationsplan** (mit einem [List.emptyReason](ValueSet-ElgaListEmptyReasonVS.html)).
 * Es erfolgt keine Transformation.
 
 D) Das **Medikationsplan-Bundle** ist zur Auslieferung bereit. Es enthält:

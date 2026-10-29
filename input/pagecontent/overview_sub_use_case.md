@@ -2,7 +2,7 @@
 
 ### Fachliche Use Cases
 
-Die fachlichen Use Cases sind hier nachzulesen: Link zu ergänzen.  <!-- TODO -->
+Die fachlichen Use Cases sind [hier](https://dev.elga.gv.at/apis/emed/use-cases/) nachzulesen.
 
 #### Use Case Diagramm
 

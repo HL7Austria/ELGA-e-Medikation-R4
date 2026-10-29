@@ -21,6 +21,15 @@ Usage: #definition
 * parameter[=].max = "1"
 * parameter[=].documentation = "Referenz auf den Planeintrag mit welchem die Durchgeführte Abgabe verbunden werden soll."
 * parameter[=].type = #Reference
+* parameter[=].targetProfile[+] = Canonical(AtElgaEmedMedicationRequestPlaneintrag)
+
+* parameter[+]
+* parameter[=].name = #remove-reference
+* parameter[=].use = #in
+* parameter[=].min = 0
+* parameter[=].max = "1"
+* parameter[=].documentation = "Parameter, um anzugeben, dass die Verlinkung zwischen Durchgeführer Abgabe und Planeintrag entfernt werden soll."
+* parameter[=].type = #boolean
 
 * parameter[+]
 * parameter[=].name = #return

@@ -170,7 +170,6 @@ Der GDA führt ein **POST** [$plan-read](OperationDefinition-at-elga-emed-operat
     <!-- - *id*: bestehende *id* darf **nicht geändert** werden -->
     - **Einnahmezeitraum** (*extension:effectiveDosePeriod*): falls ein Enddatum existiert, darf es nicht in der Vergangenheit liegen
     - **Status** muss *active* oder *on-hold* sein (siehe [Status des Medikationsplaneintrags (MedicationRequest)](workflowmanagement.html#status-des-medikationsplaneintrags-medicationrequest) und [Konsistenzregeln zwischen List.entry.flags und MedicationRequest-Status](workflowmanagement.html#konsistenzregeln-zwischen-listentryflags-und-medicationrequest-status))
-    - **Grund für die Änderung** (*statusReason.coding*) optional codiert oder Freitext
     - alle weiteren Elemente analog zu *MedicationRequest*-Ressource(n) erstellen, siehe [Sub_UC_eMed_02_02 - Planeintrag in Medikationsplan hinzufügen](Sub_UC_eMed_02.html#sub_uc_emed_02_02---planeintrag-in-medikationsplan-hinzufügen)
 
 
@@ -200,7 +199,6 @@ AtElgaEmedListMedikationsplan
 ```JSON
 AtElgaEmedMedicationRequestPlaneintrag
     status: active | on-hold
-    statusReason.coding: Grund der Änderung // optional
     [...]
     authoredOn: Datum der Änderung des Planeintrags    
     requester: für die Änderung verantwortlicher GDA 
@@ -335,7 +333,7 @@ AtElgaEmedListMedikationsplan
 
 ### Sub_UC_eMed_02_07 - Planeintrag im Medikationsplan stornieren
 
-Der GDA kann einen oder mehrere Planeinträge aufgrund einer falschen Eingabe stornieren. Ein Grund ist verpflichtend anzugeben.
+Der GDA kann einen oder mehrere Planeinträge aufgrund einer falschen Eingabe stornieren.
 
 #### Ablauf
 
@@ -356,7 +354,7 @@ Der GDA führt ein **POST** [$plan-read](OperationDefinition-at-elga-emed-operat
 Der GDA übermittelt mit **POST** [$plan-write](OperationDefinition-at-elga-emed-operation-plan-write.html) den aktualisierten Medikationsplan in einem [Transaction Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplantx.html):
 - alle zu entfernenden *MedicationRequests* sind im Transaction Bundle enthalten
 
-Anmerkung: Beim nächsten [$plan-read](OperationDefinition-at-elga-emed-operation-plan-read.html) entfernt die Fachanwendung im zur Auslieferung bereitgestellten [Medikationsplan-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplan.html) die mit *removed* gekennzeichneten Einträge automatisch aus dem Mediaktionsplan. 
+Anmerkung: Beim nächsten [$plan-read](OperationDefinition-at-elga-emed-operation-plan-read.html) entfernt die Fachanwendung im zur Auslieferung bereitgestellten [Medikationsplan-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplan.html) die mit *removed* gekennzeichneten Einträge automatisch aus dem Medikationsplan. 
 
 #### Relevante Elemente (List)
 
@@ -407,7 +405,7 @@ Der GDA übermittelt mit **POST** [$plan-write](OperationDefinition-at-elga-emed
 - alle zu beendeten *MedicationRequests* sind im Transaction Bundle enthalten
 
 
-Anmerkung: Beim nächsten [$plan-read](OperationDefinition-at-elga-emed-operation-plan-read.html) entfernt die Fachanwendung im zur Auslieferung bereitgestellten [Medikationsplan-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplan.html) die mit *removed* gekennzeichneten Einträge automatisch aus dem Mediaktionsplan. 
+Anmerkung: Beim nächsten [$plan-read](OperationDefinition-at-elga-emed-operation-plan-read.html) entfernt die Fachanwendung im zur Auslieferung bereitgestellten [Medikationsplan-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplan.html) die mit *removed* gekennzeichneten Einträge automatisch aus dem Medikationsplan. 
 
 
 #### Relevante Elemente (List)
@@ -450,7 +448,7 @@ Planeinträge mit abgelaufenem Einnahmezeitraum (überschrittenes Enddatum in *e
 Er übermittelt mit **POST** [$plan-write](OperationDefinition-at-elga-emed-operation-plan-write.html) den aktualisierten Medikationsplan in einem [Transaction Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplantx.html): 
 - alle geänderten Ressourcen (inkl. der beendeten) sind inline im Bundle enthalten
 
-Beim nächsten [$plan-read](OperationDefinition-at-elga-emed-operation-plan-read.html) entfernt die Fachanwendung im zur Auslieferung bereitgestellten [Medikationsplan-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplan.html) die mit *removed* gekennzeichneten Einträge automatisch aus dem Mediaktionsplan. 
+Beim nächsten [$plan-read](OperationDefinition-at-elga-emed-operation-plan-read.html) entfernt die Fachanwendung im zur Auslieferung bereitgestellten [Medikationsplan-Bundle](StructureDefinition-at-elga-emed-bundle-medikationsplan.html) die mit *removed* gekennzeichneten Einträge automatisch aus dem Medikationsplan. 
 
 
 #### Relevante Elemente (List) (1.B)

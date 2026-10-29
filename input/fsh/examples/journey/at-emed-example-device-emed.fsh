@@ -1,7 +1,7 @@
 Instance: At-Emed-Example-Device-01
 InstanceOf: AtElgaEmedDeviceFachanwendung
 Title: "Beispiel Journey 01: e-Med Fachanwendung"
-Description: "Beispiel der e-Med Fachanwendung, die den Mediaktionsplan initial erstellt."
+Description: "Beispiel der e-Med Fachanwendung, die den Medikationsplan initial erstellt."
 Usage: #example
 * type = $cs-sct#49062001 "Device"
 * text.status = #additional

@@ -272,7 +272,7 @@ eine historische Planeintragsversion lesen<br>
   <td><code>/MedicationDispense/[id]</code></td>
   <td><code>$dispense-discard</code></td>
   <td><a href="StructureDefinition-at-elga-emed-medicationdispense-durchgefuehrteabgabe.html">Durchgeführte Abgabe</a></td>
-  <td>Eigene durchgeführte Abgabe stornieren</td>
+  <td>Eigene Durchgeführte Abgabe stornieren</td>
   <td>GDA</td>
   <td></td>
 </tr>

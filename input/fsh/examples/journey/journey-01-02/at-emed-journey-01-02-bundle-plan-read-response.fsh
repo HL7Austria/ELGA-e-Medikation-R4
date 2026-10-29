@@ -1,7 +1,7 @@
 Instance: At-Emed-Journey-01-02-Bundle-plan-read-response
 InstanceOf: AtElgaEmedBundleMedikationsplan   
 Title: "Beispiel Journey 01-02: Medikationsplan-Bundle $plan-read Response"
-Description: "Beispiel eines Medikationsplan-Bundles, das einen Mediaktionsplan (List) mit 2 Planeinträgen (MedicationRequests) referenziert."
+Description: "Beispiel eines Medikationsplan-Bundles, das einen Medikationsplan (List) mit 2 Planeinträgen (MedicationRequests) referenziert."
 Usage: #example
 
 * type = #searchset

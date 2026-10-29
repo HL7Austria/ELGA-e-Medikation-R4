@@ -266,7 +266,7 @@ Wird die letztmögliche *Durchgeführte Abgabe* storniert, wird der Status der z
 
 Sofern für eine [Durchgeführte Abgabe](StructureDefinition-at-elga-emed-medicationdispense-durchgefuehrteabgabe.html) ein Planeintrag vorliegt, kann ein GDA nachträglich und unabhängig davon, welcher GDA die Abgabe erfasst hat, mittels **POST** [$reference-plan](Sub_UC_eMed_05.html#custom-operations-2) einen Planeintrag referenzieren oder die bestehende Referenz ändern.
 
-Dabei werden der die Referenz herstellende GDA als *performer:referenceGDA* mit *dispenseGDA.function = referenceGDA* sowie der Zeitpunkt dokumentiert. Die Referenz zum Planeintrag wird in *authorizingPrescription\[planeintrag\]* dokumentiert.
+Dabei werden der die Referenz herstellende GDA als *performer:referenceGDA* mit *performer.function = referenceGDA* sowie der Zeitpunkt dokumentiert. Die Referenz zum Planeintrag wird in *authorizingPrescription\[planeintrag\]* dokumentiert. Die Operation kann auch verwendet werden, um die Verknüpfung zwischen Durchgeführter Abgabe und Planeintrag wieder aufzuheben.
 
 Die Operation kann wiederholt aufgerufen werden, um die Referenz zu ändern.
 

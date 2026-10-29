@@ -4,10 +4,8 @@ Description: "Codesystem für zulässige Ausprägungen der MedicationDispense Pe
 * ^status = #active
 * ^experimental = true
 * ^caseSensitive = false
-* #dispenseGDA "Planeintrag verknüpfender GDA"
-* #referenceGDA "Abgebender GDA"
-//TODO bessere codes
-
+* #dispenseGDA "Abgebender GDA"
+* #referenceGDA "Planeintrag verknüpfender GDA"
 
 ValueSet: AtElgaEmedValueSetMedicationDispensePerformerFunctionVS
 Title: "ELGA e-Med MedicationDispense Performer Function ValueSet"

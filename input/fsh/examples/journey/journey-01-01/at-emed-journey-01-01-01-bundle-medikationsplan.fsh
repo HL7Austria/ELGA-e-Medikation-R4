@@ -1,7 +1,7 @@
 Instance: At-Emed-Journey-01-01-01-Bundle-Medikationsplan
 InstanceOf: AtElgaEmedBundleMedikationsplan   
 Title: "Beispiel Journey 01-01-01: Medikationsplan-Bundle"
-Description: "Beispiel eines Medikationsplan-Bundles, mit leerem Mediaktionsplan (referenziert List-Ressource ohne Einträge)."
+Description: "Beispiel eines Medikationsplan-Bundles, mit leerem Medikationsplan (referenziert List-Ressource ohne Einträge)."
 Usage: #example
 * total = 1
 * type = #searchset

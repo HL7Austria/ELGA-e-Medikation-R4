@@ -2,7 +2,7 @@ Instance: At-Emed-Journey-List-Medikationsplan-v1
 InstanceOf: AtElgaEmedListMedikationsplan   
 Usage: #inline
 Title: "Beispiel Journey 01-01: Leerer Medikationsplan"
-Description: "Beispiel eines leeren Mediaktionsplans (List-Ressource ohne Einträge)"
+Description: "Beispiel eines leeren Medikationsplans (List-Ressource ohne Einträge)"
 * id = $idPlan
 * meta.versionId = $idPlanv1
 * meta.lastUpdated = "2026-02-27T08:00:00.120+00:00"
