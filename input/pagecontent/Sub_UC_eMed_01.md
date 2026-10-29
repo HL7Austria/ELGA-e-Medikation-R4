@@ -188,7 +188,7 @@ Der Abruf erfolgt mittels POST [$history-search](Sub_UC_eMed_01.html#custom-oper
 * **Medikation** (PZN, Arzneimittelname oder Wirkstoff)
 * **Einnahmezeitraum**
 * **Erstellungszeitpunkt**
-* [**Status**] (ValueSet-PlaneintragStatusVS.html)
+* [**Status**](ValueSet-PlaneintragStatusVS.html)
 * [**StatusReason**](ValueSet-AtElgaEmedValueSetPlaneintragStatusReasonVS.html)
 <!-- * Erstellender GDA? Todo akl 2.10. -->
 

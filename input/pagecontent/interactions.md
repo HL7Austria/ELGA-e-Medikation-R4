@@ -6,7 +6,8 @@
 [![diagram](eMed_Interactions.png){: style="width: 60%"}](eMed_Interactions.png) -->
 
 <div class="note-to-balloters" markdown="1">
-Die Umsetzung des Patientenkontakts in den Transaktionen ist nicht Teil des Ballots. Der konkrete Zugriff wird in der Lösungsarchitektur beschrieben.
+
+Die Umsetzung des Patientenkontakts in den Transaktionen ist nicht Teil des Ballots. Der konkrete Zugriff wird in der [Lösungsarchitektur](https://dev.elga.gv.at/apis/emed/latest/emed-fhir-anbindung/) beschrieben.
  
 In diesem IG werden daher alle Requests ab dem `/[type]` dargestellt.
 </div>
