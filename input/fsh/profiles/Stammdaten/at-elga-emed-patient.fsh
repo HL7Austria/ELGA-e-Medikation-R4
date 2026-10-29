@@ -18,13 +18,16 @@ Description: "Profil für die Struktur der Patienten Ressource"
 
 * implicitRules 0..0
 * implicitRules ^short =  "Fachliche Begründung: Die Ressource wird nach den Regeln dieses Implementierungsleitfadens interpretiert. Zusätzliche implizite Verarbeitungsregeln werden nicht verwendet."
-
+* active 0..0
 * name MS
 * name.use 0..0
 * name.family MS
 * name.given MS
 * name.prefix MS
 * name.suffix MS
+
+* deceased[x] 0..0
+* link 0..0
 
 * birthDate MS
 * gender MS
@@ -35,6 +38,7 @@ Description: "Profil für die Struktur der Patienten Ressource"
 * identifier[bPK].system MS
 * identifier[bPK].value MS
 * identifier[bPK].type MS
+* identifier[bPK].type.coding MS
 * identifier[bPK].type.coding.system MS
 * identifier[bPK].type.coding.code MS
 * identifier[bPK].type.coding.display MS
@@ -45,6 +49,7 @@ Description: "Profil für die Struktur der Patienten Ressource"
 * identifier[socialSecurityNumber].use ^short = "Fachliche Begründung: TODO"
 * identifier[socialSecurityNumber].system MS
 * identifier[socialSecurityNumber].value MS
+* identifier[socialSecurityNumber].type.coding MS
 * identifier[socialSecurityNumber].type MS
 * identifier[socialSecurityNumber].type.coding.system MS
 * identifier[socialSecurityNumber].type.coding.code MS
@@ -57,6 +62,7 @@ Description: "Profil für die Struktur der Patienten Ressource"
 * identifier[localPatientId].system MS
 * identifier[localPatientId].value MS
 * identifier[localPatientId].type MS
+* identifier[localPatientId].type.coding MS
 * identifier[localPatientId].type.coding.system MS
 * identifier[localPatientId].type.coding.code MS
 * identifier[localPatientId].type.coding.display MS

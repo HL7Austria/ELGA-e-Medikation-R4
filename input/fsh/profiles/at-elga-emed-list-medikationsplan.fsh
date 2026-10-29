@@ -50,7 +50,6 @@ Description: "Profil für einen Medikationsplan."
 * code.coding.system 1..1 MS
 * code.coding.system = $cs-sct
 * code.coding.display MS
-//ASW 11.10.2026 TODO ist * code.coding.version MS?
 * code.coding.version MS
 * code.text 0..0
 //* code.text ^short = "Fachliche Begründung: TODO"
@@ -67,8 +66,6 @@ Description: "Profil für einen Medikationsplan."
 //* subject.identifier.use ^short = "Fachliche Begründung: TODO"
 //ASW 11.10.2026 TODO subject.identifier.type MS?
 //* subject.identifier.type MS
-
-//ASW 11.10.2026 TODO Invariante sodass entweder Reference.reference XOR Reference.identifier befüllt sein muss
 
 * encounter 0..0
 * encounter ^short = "Fachliche Begründung: Es wird derzeit kein Behandlungskontext dokumentiert."
@@ -87,7 +84,6 @@ Description: "Profil für einen Medikationsplan."
 * source.identifier.value MS
 * source.identifier.use 0..0
 //* source.identifier.use ^short = "Fachliche Begründung: TODO"
-//ASW 11.10.2026 TODO Invariante sodass entweder Reference.reference XOR Reference.identifier befüllt sein muss
 
 * orderedBy 0..0
 //* orderedBy ^short = "Fachliche Begründung: TODO"
@@ -101,7 +97,6 @@ Description: "Profil für einen Medikationsplan."
 // * orderedBy ^short = "Dokumentiert, wie die Reihenfolge der Einträge festgelegt wurde."
 // Mögliche Codes: user | system | event-date | entry-date| priority | alphabetic | category | patient"
 
-//ASW 22.09.2026 .note fachlich gelöscht
 * note 0..0 
 * note ^short = "Fachliche Begründung: Auf dieser Ebene existieren keine Freitext-Anmerkungen im Medikationsplan. Freitext ist in den jeweiligen MedicationRequests (Planeinträgen möglich)." 
 
@@ -120,14 +115,12 @@ Description: "Profil für einen Medikationsplan."
 * entry.flag.coding.system MS
 * entry.flag.coding.system 1..1
 * entry.flag.coding.display MS
-//ASW 11.10.2026 TODO ist * entry.flag.coding.version MS?
 * entry.flag.coding.version MS
 * entry.flag ^short = "Kennzeichnet die Art der Änderung des Medikationsplaneintrags: [new | unchanged | changed | removed]. Bedeutung: new: Neuer Planeintrag wird hinzugefügt | unchanged: Bestehender Planeintrag wird beibehalten und zur Kenntnis genommen | changed: Bestehender Planeintrag wird geändert | removed: Bestehender Planeintrag wird entfernt"
 * entry.flag.text 0..0
 //* entry.flag.text ^short = "Fachliche Begründung: TODO"
 
 * entry.deleted 0..0 
-//ASW 22.09.2026 * entry.deleted fachlich gelöscht
 * entry.deleted ^short = "Fachliche Begründung: Keine Verwendung im Medikationsplan (da list.mode immer working)."
 //Kann nur verwendet werden, wenn list.mode = changes
 
@@ -152,7 +145,7 @@ Description: "Profil für einen Medikationsplan."
 * emptyReason.coding.system MS
 * emptyReason.coding.system 1..1
 * emptyReason.coding.display MS
-//ASW 11.10.2026 TODO ist * emptyReason.coding.version MS?
+* emptyReason.coding.version MS
 * emptyReason.coding.version MS
 * emptyReason.text 0..0
 //* emptyReason.text ^short = "Fachliche Begründung: TODO"

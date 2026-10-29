@@ -4,6 +4,7 @@ Id: at-elga-emed-device-fachanwendung
 Title: "At ELGA e-Medikation Device Fachanwendung"
 Description: "Das Device, welches die eMed Fachanwendung abbildet"
 * status = #active
+* status 1..1 MS
 //TODO
 * id 1..1 MS
 * id ^short = "Technische id der Ressource"
