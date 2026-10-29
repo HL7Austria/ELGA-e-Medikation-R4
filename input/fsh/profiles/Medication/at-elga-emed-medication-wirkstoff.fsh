@@ -32,6 +32,13 @@ Description: "Bildet einen Wirkstoff in der Medication-Ressource ab. Wird grunds
 * form from $vs-emed-doseform (required)
 * form ^short = "Die Darreichungsform des Arzneimittels."
 
+* form.coding 1..1 MS
+* form.coding.code 1..1 MS
+* form.coding.system 1..1 MS
+* form.coding.display MS
+* form.coding.version MS
+* form.text 0..0
+
 * amount 0..1 MS  
 * amount.numerator 1..1 MS
 * amount.numerator.value 1..1 MS

@@ -8,6 +8,7 @@ Description: "Profil einer Geplanten Abgabe eines Arzneimittels aus dem Medikati
 
 
 // Extensions
+
 * extension contains $medicationRequest-effectiveDosePeriod-r5 named effectiveDosePeriod 0..1
 * extension[effectiveDosePeriod] ^short = "Geplanter Einnahmezeitraum. Beginn: aktuelles Datum oder in der Zukunft, Ende: Datum in der Zukunft oder unbefristet. Der geplante Einnahmezeitraum muss mit den zeitlichen Einschränkungen der Dosage übereinstimmen."
 * extension[effectiveDosePeriod] MS
@@ -21,7 +22,7 @@ Description: "Profil einer Geplanten Abgabe eines Arzneimittels aus dem Medikati
 * extension[renderedDosageInstruction] MS
 * extension[renderedDosageInstruction].url MS
 * extension[renderedDosageInstruction].valueMarkdown MS
-
+* extension MS
 // IHE extension: Verwendung zu klären
 // * extension contains $ihe-ext-medicationrequest-offlabeluse named offLabelUse 0..1 
 
@@ -68,6 +69,7 @@ Description: "Profil einer Geplanten Abgabe eines Arzneimittels aus dem Medikati
 * category[recipetype].text 0..0
 * category[recipetype].text ^short = "Fachliche Begründung: TODO"
 * category[recipetype]  ^short = "Kategorie zur Unterscheidung, ob ein Kassen-, Privat- oder Substitutionsrezept erstellt wurde."
+* category MS
 
 * doNotPerform 0..0
 * doNotPerform ^short = "Fachliche Begründung: Die Geplante Abgabe bildet einen positiven Abgabeauftrag ab; ein ausdrückliches Verbot einer Abgabe wird nicht als eigene Geplante Abgabe dokumentiert."

@@ -14,6 +14,7 @@ Description: "AT ELGA e-Medikation Timing"
 * repeat ^short = "Wiederholungsangaben des Timings"
 
 * repeat.extension contains TimingDayOfMonth named TimingDayOfMonth 0..1 MS
+* repeat.extension MS
 
 * repeat.bounds[x] MS
 * repeat.boundsPeriod MS

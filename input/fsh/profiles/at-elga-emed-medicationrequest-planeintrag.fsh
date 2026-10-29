@@ -4,7 +4,6 @@ Id: at-elga-emed-medicationrequest-planeintrag
 Title: "At ELGA e-Medikation MedicationRequest Planeintrag"
 Description: "Profil für einen Planeintrag." 
 
-* extension MS
 // Extensions
 * extension contains $medicationRequest-effectiveDosePeriod-r5 named effectiveDosePeriod 1..1
 * extension[effectiveDosePeriod] ^short = "Zeitraum, in dem das Arzneimittel eingenommen werden soll. Bei Dauermedikation kann optional ein Enddatum dokumentiert werden. Bei Aktumedikation ist verpflichtend ein Enddatum zu dokumentieren. Der Einnahmezeitraum muss mit den zeitlichen Einschränkungen der Dosage übereinstimmen." //TODO wording prüfen ob wirklich Einnahmezeitraum vgl. Dosierung
@@ -19,6 +18,7 @@ Description: "Profil für einen Planeintrag."
 * extension[renderedDosageInstruction] MS
 * extension[renderedDosageInstruction].valueMarkdown MS
 * extension[renderedDosageInstruction].url MS
+* extension MS
 // IHE extension: Verwendung zu klären
 // * extension contains $ihe-ext-medicationrequest-offlabeluse named offLabelUse 0..1 
 

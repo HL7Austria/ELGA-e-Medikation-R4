@@ -23,12 +23,20 @@ Description: "Bildet eine Magistrale Zubereitung in der Medication-Ressource ab.
 * extension contains AtElgaEmedExtensionRezeptur named Rezeptur 1..1 MS
 * extension[Rezeptur].valueMarkdown 1..1 MS
 * extension[Rezeptur].valueMarkdown ^short = "Angabe der Rezeptur für die Zubereitung"
+* extension MS
 
 * code 1..1 MS
 * code.text 1..1 MS
 * code.text ^short = "Titel der Medikation"
 * status 0..0 
 * status ^short = "Keine Verwendung. Entered-in-error führt zu inkonsistenten Zuständen."
+
+* form.coding 1..1 MS
+* form.coding.code 1..1 MS
+* form.coding.system 1..1 MS
+* form.coding.display MS
+* form.coding.version MS
+* form.text 0..0
 
 * form 0..1 MS 
 * form from $vs-emed-doseform (required)

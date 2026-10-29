@@ -43,9 +43,14 @@ Description: "Bildet ein Arzneimittel in der \"Medication\"-Ressource ab. Wird g
 //    PCID 0..1 MS
     //ASW 21.09.2026 TODO: noch zu klären welche weiteren identifikatoren erlaubt sind
 // Invariante eines der beiden muss vorhanden sein
+
+* code.coding 1..1 MS
+* code.coding.code 1..1 MS
 * code.coding.system = "https://termgit.elga.gv.at/CodeSystem/asp-liste" (exactly)
-* code.coding 1..1
-* code.coding.code 1..1
+* code.coding.system 1..1 MS
+* code.coding.display MS
+* code.coding.version MS
+* code.text 0..0
 //* code.coding[PCID].system = "1.2.40.0.34.4.27" //ASW 21.09.2026: TODO Codesystem
 //* code.coding[PCID].code 1..1
 * code ^short = "Code des Arzneimittels. Hier muss die Pharmazentralnummer (PZN) aus der ASP-Liste angegeben werden."
@@ -65,9 +70,20 @@ Description: "Bildet ein Arzneimittel in der \"Medication\"-Ressource ab. Wird g
  Keine Verwendung."
 
 
+* form.coding 1..1 MS
+* form.coding.code 1..1 MS
+* form.coding.system 1..1 MS
+* form.coding.display MS
+* form.coding.version MS
+* form.text 0..0
+
 * form 0..1 MS
 * form from $vs-emed-doseform (required)
 * form ^short = "Die Darreichungsform des Arzneimittels."
+
+
+
+
 // Gem. CDA V3: 
 // Für die e-Medikation ist das CodeSystem ​Medikation_Darreichungsform 1.2.40.0.10.1.4.3.4.3.5 zu verwenden.
 // Für den eHDSI Kontext ist das CodeSystem 0.4.0.127.0.16.1.1.2.1 zu verwenden."
@@ -76,8 +92,10 @@ Description: "Bildet ein Arzneimittel in der \"Medication\"-Ressource ab. Wird g
 * amount.numerator 1..1 MS
 * amount.numerator.code 1..1 MS
 * amount.numerator.code from $vs-emed-mengenart (required)
+* amount.numerator.comparator 0..0
 * amount.denominator 1..1 MS
 * amount.denominator.value 1..1 MS
+* amount.denominator.comparator 0..0
 * amount.denominator.code MS
 * amount.denominator.code from $vs-emed-mengenart (required)
 * amount ^short = "Die Gesamtmenge des Arzneimittels in der Verpackung."
@@ -88,6 +106,7 @@ Description: "Bildet ein Arzneimittel in der \"Medication\"-Ressource ab. Wird g
 * ingredient.itemCodeableConcept.text 0..0
 * ingredient.itemCodeableConcept.text ^short = "Fachliche Begründung: TODO"
 * ingredient.itemCodeableConcept 1..1 MS 
+* ingredient.itemCodeableConcept obeys at-emed-medication-ingredient-atcwido-oder-wirkstoffeages
 // * ingredient.itemCodeableConcept ^short = "Inhaltsstoff codiert." TODO: prüfen, Einschränkung auf SPOR (EMA). Gemüß CDA v3:
 // Wirkstoff-Codes stammen aus der ATC-Klassifikation (Anatomical Therapeutic Chemical Classification), die von der WHO herausgegeben wird. 
 // Weitere Codes, wie auch die deutsche Bezeichnung der Codes, entsprechen dem GKV-Arzneimittelindex im Wissenschaftlichen Institut der AOK (WidO), 
@@ -103,16 +122,27 @@ Description: "Bildet ein Arzneimittel in der \"Medication\"-Ressource ab. Wird g
 * ingredient.itemCodeableConcept.coding[ATCWidO].system = "https://termgit.elga.gv.at/CodeSystem/atc-deutsch-wido"
 * ingredient.itemCodeableConcept.coding[ATCWidO].system 1..1 MS
 * ingredient.itemCodeableConcept.coding[ATCWidO].code 1..1 MS
+* ingredient.itemCodeableConcept.coding[ATCWidO].version MS
+* ingredient.itemCodeableConcept.coding[ATCWidO].display MS
+
 * ingredient.itemCodeableConcept.coding[WirkstoffeAges].system = "https://termgit.elga.gv.at/CodeSystem/medikation-ages-wirkstoffe"
 * ingredient.itemCodeableConcept.coding[WirkstoffeAges].system 1..1 MS
 * ingredient.itemCodeableConcept.coding[WirkstoffeAges].code 1..1 MS
-* ingredient.itemCodeableConcept ^short = "Inhaltsstoff codiert. Wirkstoff-Codes stammen aus der ATC-Klassifikation (Anatomical Therapeutic Chemical Classification), die von der WHO herausgegeben wird. Weitere Codes, wie auch die deutsche Bezeichnung der Codes, entsprechen dem GKV-Arzneimittelindex im Wissenschaftlichen Institut der AOK (WidO), AOK Bundesverband GbR, Deutschland, welcher auf den WHO ATC basiert. Zusätzlich kommen ergänzende Codes aus dem Arzneimittelverzeichnis der AGES zum Einsatz."
+* ingredient.itemCodeableConcept.coding[WirkstoffeAges].version MS
+* ingredient.itemCodeableConcept.coding[WirkstoffeAges].display MS
 
+* ingredient.itemCodeableConcept ^short = "Inhaltsstoff codiert. Wirkstoff-Codes stammen aus der ATC-Klassifikation (Anatomical Therapeutic Chemical Classification), die von der WHO herausgegeben wird. Weitere Codes, wie auch die deutsche Bezeichnung der Codes, entsprechen dem GKV-Arzneimittelindex im Wissenschaftlichen Institut der AOK (WidO), AOK Bundesverband GbR, Deutschland, welcher auf den WHO ATC basiert. Zusätzlich kommen ergänzende Codes aus dem Arzneimittelverzeichnis der AGES zum Einsatz."
+* ingredient.itemCodeableConcept.coding 1.. MS
+* ingredient.itemCodeableConcept.text 0..0
 * ingredient.isActive 0..1 MS
 * ingredient.isActive ^short = "Aktive Wirkstoff TRUE/FALSE"
 
 * ingredient.strength 0..1 MS
 * ingredient.strength ^short = "Menge der vorhandenen Zutaten."
+
+* ingredient.modifierExtension 0..0
+* ingredient.modifierExtension ^short = "Fachliche Begründung: Für den Medikationsplan sind keine zusätzlichen Erweiterungen vorgesehen, die die Bedeutung der Ressource oder ihrer Elemente verändern."
+
 
 * batch 0..0 // MS
 * batch ^short = "Informationen zur Charge des Arzneimittels." 
@@ -122,3 +152,8 @@ Description: "Bildet ein Arzneimittel in der \"Medication\"-Ressource ab. Wird g
 // Description: "Substance must be contained"
 // Severity: #error
 // Expression: "reference.startsWith('#')"
+
+Invariant: at-emed-medication-ingredient-atcwido-oder-wirkstoffeages
+Description: "Der Wirkstoff muss entweder mit einem Code aus ATC (WIdO) oder aus dem AGES-Wirkstoffverzeichnis angegeben werden."
+* severity = #error
+* expression = "coding.where(system = 'https://termgit.elga.gv.at/CodeSystem/atc-deutsch-wido' or system = 'https://termgit.elga.gv.at/CodeSystem/medikation-ages-wirkstoffe').exists()"

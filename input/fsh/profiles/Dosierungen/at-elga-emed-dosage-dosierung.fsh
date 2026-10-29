@@ -11,6 +11,7 @@ Description: "Basisprofil für alle Dosierungschemata"
 //* obeys DosageStructuredOrFreeTextWarning and DosageStructuredRequiresBoth and DosageDoseUnitSameCode and DosageWarnungViererschemaInText and FreeTextSingleDosageOnlyWarning
 
 * extension contains AtElgaEmedExtensionDosageCategory named DosageCategory 1.. MS
+* extension MS
 
 * sequence 1..1 MS
 * sequence ^short = "Die Reihenfolge der Dosierungsanweisungen. Entfällt bei Einzeldosierung."

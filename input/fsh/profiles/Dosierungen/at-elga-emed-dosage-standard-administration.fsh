@@ -5,6 +5,7 @@ Title: "AT ELGA e-Medikation Standard-Tageszeiten-Dosierschema"
 Description: "Profil für das Standard-Tageszeiten-Dosierschema"
 
 * extension[DosageCategory].valueCodeableConcept.coding.code = #standard
+* extension MS
 
 
 * timing.repeat.when 1..
