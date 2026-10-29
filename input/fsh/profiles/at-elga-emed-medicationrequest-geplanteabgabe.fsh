@@ -126,7 +126,7 @@ Description: "Profil einer Geplanten Abgabe eines Arzneimittels aus dem Medikati
 * groupIdentifier 0..1 MS
 * groupIdentifier ^short = "Der \"e-Med GroupIdentifier\" bildet die Rezept-Klammer. Geplante Abgaben, die demselben e-Rezept zugeordnet sind, führen denselben e-Med GroupIdentifier."
 * groupIdentifier.system MS
-* valueIdentifier.system = $sys-eMed-groupIdentifier
+* groupIdentifier.system = $sys-eMed-groupIdentifier
 * groupIdentifier.value MS
 * groupIdentifier.use 0..0
 
