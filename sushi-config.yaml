@@ -33,14 +33,14 @@ contact:
 
 
 dependencies:
-  hl7.fhir.eu.mpd: 0.1.0-ballot
+  #hl7.fhir.eu.mpd: 0.1.0-ballot
   hl7.at.fhir.core.r4: 2.0.0
   # ihe.pharm.mpd.r4: 1.0.0-comment-2
   # hl7.fhir.eu.extensions.r4: 0.1.1-ballot
   # hl7.fhir.eu.base: 0.1.0-ballot
   # hl7.at.fhir.elga.aps.r4: current
   hl7.fhir.uv.xver-r5.r4: 0.1.0
-  ihe.pharm.mpd.r4: 1.0.0-comment-2
+  #ihe.pharm.mpd.r4: 1.0.0-comment-2
 
 #   hl7.fhir.us.core: 3.1.0
 #   hl7.fhir.us.mcode:
@@ -129,7 +129,6 @@ pages:
 #   generate-uml: source
 
 parameters:
-  generate-turtle: false
   excludettl: true
   # lokale Kopien von termgit-Ressourcen behalten ihre termgit-Canonicals
   special-url:
