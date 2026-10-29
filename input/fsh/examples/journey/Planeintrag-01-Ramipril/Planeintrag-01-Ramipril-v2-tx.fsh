@@ -10,7 +10,6 @@ Usage: #inline
 
 // R5 Backports
 * extension[effectiveDosePeriod].valuePeriod.start = "2026-02-27"
-* extension[renderedDosageInstruction].valueMarkdown = "1-0-0-0 | Täglich: 1-0-0-0" 
 
 * status = $cs-medication-request-status#on-hold
 * statusReason.coding = http://terminology.hl7.org/CodeSystem/medicationrequest-status-reason#surg "Patient scheduled for surgery."
@@ -26,7 +25,8 @@ Usage: #inline
 * subject.identifier.system = "urn:oid:1.2.40.0.10.2.1.1.149"
 
 * authoredOn = "2026-03-14T13:10:00+00:00"
-* requester = Reference(At-Emed-Example-Practitioner-01) "Dr. Hausärztin"
+* requester.identifier.system = "urn:ietf:rfc:3986"
+* requester.identifier.value = "urn:oid:1.2.40.0.34.99.4613.1"
 
 //* note.text = "Freitext Informationen zum Medikationsplaneintrag."
 

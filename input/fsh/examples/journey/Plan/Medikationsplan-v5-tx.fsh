@@ -17,7 +17,8 @@ Usage: #inline
 
 * date = "2026-03-22T16:10:00+00:00"
 // logische referenz über oid
-* source = Reference(At-Emed-Example-Practitioner-04) "Dr. Urlaubsvertretung"
+* source.identifier.system = "urn:ietf:rfc:3986"
+* source.identifier.value = "urn:oid:1.2.40.0.34.99.4613.4"
 
 // Planeintrag unverändert
 * entry[0].flag.coding = ElgaListEntryFlagCS#unchanged "Planeintrag beibehalten"

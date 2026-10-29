@@ -27,7 +27,7 @@ Usage: #inline
 * authoredOn = "2026-02-27T08:10:00+00:00"
 // logische Referenz über GDA-OID
 * requester.identifier.system = "urn:ietf:rfc:3986"
-* requester.identifier.value = "urn:oid:1.2.40.0.34.99.4613.4"
+* requester.identifier.value = "urn:oid:1.2.40.0.34.99.4613.1"
 
 //* note.text = "Freitext Informationen zum Medikationsplaneintrag."
 

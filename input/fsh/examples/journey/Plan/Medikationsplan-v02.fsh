@@ -16,12 +16,12 @@ Usage: #inline
 * subject.type = "Patient"
 * subject.identifier.value = "GH:oeLdSEb0l+8kSdJWjOYyYmnYki0="
 * subject.identifier.system = "urn:oid:1.2.40.0.10.2.1.1.149"
-* subject.reference = "Patient/At-Emed-Example-Patient-01"
+* subject.reference = Reference(At-Emed-Example-Patient-01)
 
 * date = "2026-02-27T08:10:00+00:00"
 // logische referenz über oid
 * source.identifier.system = "urn:ietf:rfc:3986"
-* source.identifier.value = "urn:oid:1.2.40.0.34.99.4613.4"
+* source.identifier.value = "urn:oid:1.2.40.0.34.99.4613.1"
 * source = Reference(At-Emed-Example-Practitioner-01)
 // * orderedBy = http://terminology.hl7.org/CodeSystem/list-order#user
 

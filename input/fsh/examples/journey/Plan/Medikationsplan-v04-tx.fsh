@@ -16,8 +16,10 @@ Usage: #inline
 
 * date = "2026-03-19T12:10:00+00:00"
 // logische referenz über oid
-* source = Reference(At-Emed-Example-Practitioner-03) "Dr. Krankenhaus"
 // * orderedBy = http://terminology.hl7.org/CodeSystem/list-order#user
+* source.identifier.system = "urn:ietf:rfc:3986"
+* source.identifier.value = "urn:oid:1.2.40.0.34.99.4613.3"
+
 
 // Listeneinträge
 * entry[0].flag.coding = ElgaListEntryFlagCS#changed "Planeintrag geändert"

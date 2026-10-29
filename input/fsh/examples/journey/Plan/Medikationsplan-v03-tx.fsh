@@ -17,7 +17,7 @@ Usage: #inline
 * date = "2026-03-14T13:10:00+00:00"
 // logische referenz über oid
 * source.identifier.system = "urn:ietf:rfc:3986"
-* source.identifier.value = "urn:oid:1.2.40.0.34.99.4613.4"
+* source.identifier.value = "urn:oid:1.2.40.0.34.99.4613.1"
 // * orderedBy = http://terminology.hl7.org/CodeSystem/list-order#user
 
 // Listeneinträge
