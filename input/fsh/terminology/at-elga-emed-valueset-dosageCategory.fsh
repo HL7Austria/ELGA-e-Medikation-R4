@@ -14,7 +14,7 @@ Description: "Zulässige Ausprägungen der Kategorie einer Dosierung in ELGA."
 
 ValueSet: AtElgaEmedValueSetDosageCategory
 Id: at-elga-emed-valueset-dosagecategory-vs
-Title: "ELGA Dosage Category Status ValueSet"
+Title: "At ELGA e-Medikation Dosage Category Status ValueSet"
 Description: "Zulässige Ausprägungen der Kategorie einer Dosierung in ELGA."
 * ^status = #active
 * ^experimental = true

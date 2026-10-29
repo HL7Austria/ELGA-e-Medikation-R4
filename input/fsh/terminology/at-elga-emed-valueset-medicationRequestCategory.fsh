@@ -11,7 +11,7 @@ Description: "Codesystem für zulässige Ausprägungen der MedicationRequest Kat
 
 ValueSet: MedicationRequestCategoryVS
 Id: at-elga-emed-valueset-medicationrequestcategory-vs
-Title: "ELGA e-Med MedicationRequest Kategorie ValueSet"
+Title: "At ELGA e-Medikation MedicationRequest Kategorie ValueSet"
 Description: "ValueSet für zulässige Ausprägungen der MedicationRequest Kategorie. Dient der Unterscheidung von Geplanten Abgaben und Medikationsplaneinträgen"
 * ^experimental = true
 * include codes from system MedicationRequestCategoryCS

@@ -14,7 +14,7 @@ Description: "CodeSystem für zulässige Ausprägungen des Flags eines List.Entr
 
 ValueSet: ElgaListEntryFlagVS
 Id: at-elga-emed-valueset-listentryflag-vs
-Title: "ELGA List.entry.flag ValueSet"
+Title: "At ELGA e-Medikation List.entry.flag ValueSet"
 Description: "ValueSet für zulässige Ausprägungen Ausprägungen des Flags eines List.Entries in ELGA."
 * ^experimental = true
 * include codes from system ElgaListEntryFlagCS

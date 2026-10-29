@@ -10,7 +10,7 @@ Description: "Dieses Codesystem legt die möglichen Fehlercodes im Rahmen der e-
 
 ValueSet: AtElgaEmedOperationOutcomeDetailsVS
 Id: at-elga-emed-valueset-operationoutcome-details-vs
-Title: "ValueSet für AT e-Medikation OperationOutcome Details"
+Title: "At ELGA e-Medikation ValueSet für AT e-Medikation OperationOutcome Details"
 Description: "Value-Set mit den für e-Medikation zulässigen detaillierten Fehlercodes."
 * ^status = #active
 * ^experimental = false
