@@ -20,6 +20,7 @@ Description: "Profil für die Struktur der Patienten Ressource"
 * implicitRules ^short =  "Fachliche Begründung: Die Ressource wird nach den Regeln dieses Implementierungsleitfadens interpretiert. Zusätzliche implizite Verarbeitungsregeln werden nicht verwendet."
 
 * name MS
+* name.use 0..0
 * name.family MS
 * name.given MS
 * name.prefix MS
