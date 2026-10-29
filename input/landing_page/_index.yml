@@ -3,4 +3,4 @@
 - description: ELGA FHIR&reg; R4 Implementation Guide for Medication.
 - last_published: %%date%%
 - branch: %%branch%%
-- type: draft
+- type: official
