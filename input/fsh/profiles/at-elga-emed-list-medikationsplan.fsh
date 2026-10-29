@@ -24,6 +24,7 @@ Description: "Profil für einen Medikationsplan."
 * implicitRules 0..0
 * implicitRules ^short =  "Fachliche Begründung: Die Ressource wird nach den Regeln dieses Implementierungsleitfadens interpretiert. Zusätzliche implizite Verarbeitungsregeln werden nicht verwendet."
 
+* extension MS
 * extension contains AtElgaEmedExtensionPatientModified named PatientModified 0..1 MS
 * extension[PatientModified] ^short = "Boolean der angibt, ob diese Version des Plans durch Aktionen des Patienten verändert wurde (z.B. Einträge entfernt)."
 * extension[PatientModified].valueBoolean MS
@@ -107,6 +108,8 @@ Description: "Profil für einen Medikationsplan."
 // --- Entries ---
 * entry 0..* MS
 * entry ^short = "Medikationsplaneinträge. Die Reihenfolge der Medikationsplaneinträge ist fachlich relevant und wird durch den Ersteller durch die Reihung der Eintries festgelegt."
+* entry.modifierExtension 0..0
+* entry.modifierExtension ^short = "Fachliche Begründung: Für den Medikationsplan sind keine zusätzlichen Erweiterungen vorgesehen, die die Bedeutung der Ressource oder ihrer Elemente verändern."
 
 * entry.flag 1..1 MS
 * entry.flag from ElgaListEntryFlagVS
