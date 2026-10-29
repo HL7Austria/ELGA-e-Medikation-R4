@@ -2,7 +2,7 @@ ValueSet: PlaneintragStatusVS
 Id: at-elga-emed-valueset-planeintragstatus-vs
 Title: "AT ELGA e-Medikation Medikationsplaneintrag Status ValueSet"
 Description: "ValueSet für zulässige Ausprägungen eines Status eines Medikationsplaneintrags (MedicationRequest)."
-* ^experimental = true
+* ^experimental = false
 * ^status = #active
 //* include codes from system MedicationRequestCategoryCS
 

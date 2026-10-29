@@ -8,6 +8,7 @@
 
 
 #Tergmit TX Warnings:
+A definition for CodeSystem 'https://termgit.elga.gv.at/CodeSystem/medikationartanwendung' could not be found, so the code cannot be validated
 A definition for CodeSystem 'https://termgit.elga.gv.at/CodeSystem/hl7-at-religionaustria' could not be found, so the code cannot be validated 
 ValueSet 'https://termgit.elga.gv.at/ValueSet/elga-religiousaffiliation' not found
 A definition for CodeSystem 'https://termgit.elga.gv.at/CodeSystem/iso-3166-1-alpha-3' could not be found, so the code cannot be validated
@@ -28,8 +29,18 @@ Reference to draft CodeSystem http://hl7.org/fhir/CodeSystem/medicationrequest-s
 Reference to draft CodeSystem http://hl7.org/fhir/list-status|4.0.1	
 A definition for CodeSystem 'https://termgit.elga.gv.at/CodeSystem/elga-gtelvogdarollen' could not be found, so the code cannot be validated
 
-#AT Core Warnings
-No definition could be found for URL value 'urn:oid:1.2.40.0.10.1.4.3.1'
+# Errors related to terminologies which cannot be resolved because termgit.elga.gv.at cannot yet provide packages or be used as proper tx
+%https://termgit.elga.gv.at/%
+
+# This OID represents the bereichspezifische Personenkennzeichen (bPK)
 No definition could be found for URL value 'urn:oid:1.2.40.0.10.2.1.1.149'
+
+# This OID represents the social security number (SVNr)
+No definition could be found for URL value 'urn:oid:1.2.40.0.10.1.4.3.1'
+
+# This is a sample OID
 No definition could be found for URL value 'urn:oid:1.2.3.4.5'
+
+# This OID represents the Vertragspartnernummre (VPNr)
+No definition could be found for URL value 'urn:oid:1.2.40.0.10.1.4.3.2'
 

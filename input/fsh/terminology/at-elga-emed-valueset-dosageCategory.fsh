@@ -3,7 +3,7 @@ Id: at-elga-emed-codesystem-dosagecategory-cs
 Title: "AT ELGA e-Medikation Dosage Category Status CodeSystem"
 Description: "Zulässige Ausprägungen der Kategorie einer Dosierung in ELGA."
 * ^status = #active
-* ^experimental = true
+* ^experimental = false
 * ^caseSensitive = false
 * #timed "Timed Administration"
 * #frequency "Frequency Administration"
@@ -17,7 +17,7 @@ Id: at-elga-emed-valueset-dosagecategory-vs
 Title: "AT ELGA e-Medikation Dosage Category Status ValueSet"
 Description: "Zulässige Ausprägungen der Kategorie einer Dosierung in ELGA."
 * ^status = #active
-* ^experimental = true
+* ^experimental = false
 * include codes from system AtElgaEmedCodeSystemDosageCategory
 
 

@@ -3,7 +3,7 @@ Id: at-elga-emed-valueset-medicationdispense-type-vs
 Title: "AT ELGA e-Medikation MedicationDispense Type ValueSet"
 Description: "ValueSet für zulässige Ausprägungen des Elements type einer MedicationDispense."
 * ^status = #active
-* ^experimental = true
+* ^experimental = false
 * $cs-medication-dispense-type#FFC
 * $cs-medication-dispense-type#FFP
 * $cs-medication-dispense-type#RFP

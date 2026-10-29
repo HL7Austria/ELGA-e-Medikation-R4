@@ -3,7 +3,7 @@ Id: at-elga-emed-valueset-geplanteabgabestatus-vs
 Title: "AT ELGA e-Medikation Geplante Abgabe Status ValueSet"
 Description: "ValueSet für zulässige Ausprägungen eines Status einer Geplanten Abgabe (MedicationRequest)."
 * ^status = #active
-* ^experimental = true
+* ^experimental = false
 //* include codes from system $cs-medication-request-status
 
 * $cs-medication-request-status#active              // offen

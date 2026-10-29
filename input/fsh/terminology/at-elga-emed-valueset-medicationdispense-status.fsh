@@ -4,7 +4,7 @@ Title: "AT ELGA e-Medikation MedicationDispense Status ValueSet"
 Description: "Zulässige Ausprägungen des Status einer MedicationDispense-Ressource in ELGA."
 
 * ^status = #active
-* ^experimental = true
+* ^experimental = false
 * http://terminology.hl7.org/CodeSystem/medicationdispense-status#completed
 * http://terminology.hl7.org/CodeSystem/medicationdispense-status#cancelled 
 * http://terminology.hl7.org/CodeSystem/medicationdispense-status#entered-in-error

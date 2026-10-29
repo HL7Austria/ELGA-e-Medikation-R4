@@ -16,7 +16,7 @@ Usage: #example
 * contact.address.line.extension[=].valueString = "8"
 * contact.address.line.extension[+].url = "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-additionalLocator"
 * contact.address.line.extension[=].valueString = "Stiege 2"
-* contact.address.line.extension[+].url = "http://hl7.at/fhir/HL7ATCoreProfiles/4.0.1/StructureDefinition/at-core-ext-address-additionalInformation"
+* contact.address.line.extension[+].url = "https://fhir.hl7.at/core/r4/StructureDefinition/at-core-ext-address-additionalInformation"
 * contact.address.line.extension[=].valueString = "Barrierefreier Zugang"
 * contact.address.city = "St. Wolfgang"
 * contact.address.state = "Salzburg"

@@ -3,7 +3,7 @@ Id: at-elga-emed-codesystem-planeintrag-statusreason-cs
 Title: "AT ELGA e-Medikation MedicationRequest Planeintrag StatusReason CodeSystem"
 Description: "Codesystem für zulässige Ausprägungen des StatusReason eines Medikationsplaneintrags (MedicationRequest)."
 * ^status = #active
-* ^experimental = true
+* ^experimental = false
 * ^caseSensitive = false
 * #other "Anderer Grund: Freitexteingabe"
 * #abgl "Planeintrag Abgelaufen"
@@ -14,7 +14,7 @@ ValueSet: AtElgaEmedValueSetPlaneintragStatusReasonVS
 Id: at-elga-emed-valueset-planeintrag-statusreason-vs
 Title: "AT ELGA e-Medikation Medikationsplaneintrag StatusReason ValueSet"
 Description: "ValueSet für zulässige Ausprägungen des StatusReason eines Medikationsplaneintrags (MedicationRequest)."
-* ^experimental = true
+* ^experimental = false
 * ^status = #active
 
 * $cs-medication-request-status-reason#salg "Allergy" //Allergie
