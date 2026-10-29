@@ -1,5 +1,6 @@
 CodeSystem: AtElgaEmedCodeSystemPlaneintragStatusReasonCS
-Title: "ELGA e-Med MedicationRequest Planeintrag StatusReason CodeSystem"
+Id: at-elga-emed-codesystem-planeintrag-statusreason-cs
+Title: "At ELGA e-Medikation MedicationRequest Planeintrag StatusReason CodeSystem"
 Description: "Codesystem für zulässige Ausprägungen des StatusReason eines Medikationsplaneintrags (MedicationRequest)."
 * ^status = #active
 * ^experimental = true
@@ -10,6 +11,7 @@ Description: "Codesystem für zulässige Ausprägungen des StatusReason eines Me
 * #ka "keine Aussage"
 
 ValueSet: AtElgaEmedValueSetPlaneintragStatusReasonVS
+Id: at-elga-emed-valueset-planeintrag-statusreason-vs
 Title: "ELGA e-Med Medikationsplaneintrag StatusReason ValueSet"
 Description: "ValueSet für zulässige Ausprägungen des StatusReason eines Medikationsplaneintrags (MedicationRequest)."
 * ^experimental = true

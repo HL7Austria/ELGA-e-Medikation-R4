@@ -279,7 +279,7 @@ timing
   extension: DosageCategory
     valueCodeableConcept
       coding
-        system: [canonical]/CodeSystem/at-elga-emed-dosage-category
+        system: [canonical]/CodeSystem/at-elga-emed-codesystem-dosagecategory-cs
         code: standard
   timing
     repeat
@@ -299,7 +299,7 @@ Dosage [1]
   extension: DosageCategory
     valueCodeableConcept
       coding
-        system: [canonical]/CodeSystem/at-elga-emed-dosage-category
+        system: [canonical]/CodeSystem/at-elga-emed-codesystem-dosagecategory-cs
         code: standard
   timing
     repeat
@@ -328,7 +328,7 @@ Dosage [1]
         "valueCodeableConcept": {
           "coding": [
             {
-              "system": "[canonical]/CodeSystem/at-elga-emed-dosage-category",
+              "system": "[canonical]/CodeSystem/at-elga-emed-codesystem-dosagecategory-cs",
               "code": "standard"
             }
           ]
@@ -362,7 +362,7 @@ Dosage [1]
         "valueCodeableConcept": {
           "coding": [
             {
-              "system": "[canonical]/CodeSystem/at-elga-emed-dosage-category",
+              "system": "[canonical]/CodeSystem/at-elga-emed-codesystem-dosagecategory-cs",
               "code": "standard"
             }
           ]

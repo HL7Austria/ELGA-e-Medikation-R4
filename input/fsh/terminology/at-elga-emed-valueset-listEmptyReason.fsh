@@ -1,6 +1,6 @@
 ValueSet: ElgaListEmptyReasonVS
-
-Title: "ELGA List Empty Reason ValueSet"
+Id: at-elga-emed-valueset-listemptyreason-vs
+Title: "At ELGA e-Medikation List Empty Reason ValueSet"
 Description: "ValueSet für zulässige Ausprägungen des Elements emptyReason einer Liste."
 * ^status = #active
 * ^experimental = true

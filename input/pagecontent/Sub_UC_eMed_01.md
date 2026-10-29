@@ -65,7 +65,7 @@ B) **Es existiert ein Medikationsplan mit Planeinträgen**:
   * Planeinträge mit **abgelaufenem Behandlungszeitraum** werden mit *List.entry.flag = removed* gekennzeichnet und werden mit **ausgeliefert**, um dem GDA die Möglichkeit zu geben, das Arzneimittel weiterzuverordnen. Anderenfalls nimmt der GDA zur Kenntnis, dass der Planeintrag mit seinem nächsten Schreibvorgang entfernt wird. 
   * Sind nach der Transformation keine Planeinträge mehr vorhanden, wird *List.emptyReason = nilknown* gesetzt.
 
-C) **Es existiert ein leerer Medikationsplan** (mit einem [List.emptyReason](ValueSet-ElgaListEmptyReasonVS.html)).
+C) **Es existiert ein leerer Medikationsplan** (mit einem [List.emptyReason](ValueSet-at-elga-emed-valueset-listemptyreason-vs.html)).
 * Es erfolgt keine Transformation.
 
 D) Das **Medikationsplan-Bundle** ist zur Auslieferung bereit. Es enthält:
@@ -108,8 +108,8 @@ Die Initialisierung kann sowohl durch ein GDA-System als auch durch den ELGA-Tei
 * **Medikation** (PZN, Arzneimittelname oder Wirkstoff)
 * **Einnahmezeitraum**
 * **Erstellungszeitpunkt**
-* [**Status**](ValueSet-PlaneintragStatusVS.html)
-* [**StatusReason**](ValueSet-AtElgaEmedValueSetPlaneintragStatusReasonVS.html)
+* [**Status**](ValueSet-at-elga-emed-valueset-planeintragstatus-vs.html)
+* [**StatusReason**](ValueSet-at-elga-emed-valueset-planeintrag-statusreason-vs.html)
 <!-- * Erstellender GDA? Todo akl 2.10. -->
 
 <div class="dragon">
@@ -166,7 +166,7 @@ Der Abruf erfolgt mittels POST [$history-search](Sub_UC_eMed_01.html#custom-oper
 * **Einnahmezeitraum** einer Medikation
 * **Planeintragsid ohne Version**: Abrufen aller Medikationsplanversionen, die diesen Planeintrag enthalten
 * **Planeintragsid mit Version**: Abrufen der Medikationsplanversionen, die genau diese Planeintragsversion enthalten.
-* **StatusReason eines im Plan einthaltenen Planeintrags**: Abrufen aller Planversionen, mit Planeinträgen mit bestimmtem [statusReason](ValueSet-AtElgaEmedValueSetPlaneintragStatusReasonVS.html).
+* **StatusReason eines im Plan einthaltenen Planeintrags**: Abrufen aller Planversionen, mit Planeinträgen mit bestimmtem [statusReason](ValueSet-at-elga-emed-valueset-planeintrag-statusreason-vs.html).
 <!-- * Erstellender GDA? Todo akl 2.10. -->
 
 <div class="dragon">
@@ -188,8 +188,8 @@ Der Abruf erfolgt mittels POST [$history-search](Sub_UC_eMed_01.html#custom-oper
 * **Medikation** (PZN, Arzneimittelname oder Wirkstoff)
 * **Einnahmezeitraum**
 * **Erstellungszeitpunkt**
-* [**Status**](ValueSet-PlaneintragStatusVS.html)
-* [**StatusReason**](ValueSet-AtElgaEmedValueSetPlaneintragStatusReasonVS.html)
+* [**Status**](ValueSet-at-elga-emed-valueset-planeintragstatus-vs.html)
+* [**StatusReason**](ValueSet-at-elga-emed-valueset-planeintrag-statusreason-vs.html)
 <!-- * Erstellender GDA? Todo akl 2.10. -->
 
 <div class="dragon">

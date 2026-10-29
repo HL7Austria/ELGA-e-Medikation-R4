@@ -21,9 +21,9 @@ ValueSet 'https://termgit.elga.gv.at/ValueSet/elga-medikationdarreichungsform' n
 A definition for CodeSystem 'https://termgit.elga.gv.at/CodeSystem/medikationdarreichungsform' could not be found, so the code cannot be validated
 A definition for CodeSystem 'https://termgit.elga.gv.at/CodeSystem/atc-deutsch-wido' could not be found, so the code cannot be validated
 # Experimental and draft codesystem Warnings
-Reference to experimental CodeSystem https://fhir.hl7.at/elga/emed/r4/CodeSystem/MedicationRequestCategoryCS|0.1.0
-Reference to experimental CodeSystem https://fhir.hl7.at/elga/emed/r4/CodeSystem/AtElgaEmedCodeSystemDosageCategory|0.1.0
-Reference to experimental CodeSystem https://fhir.hl7.at/elga/emed/r4/CodeSystem/ElgaListEntryFlagCS|0.1.0
+Reference to experimental CodeSystem https://fhir.hl7.at/elga/emed/r4/CodeSystem/at-elga-emed-codesystem-medicationrequestcategory-cs|0.1.0
+Reference to experimental CodeSystem https://fhir.hl7.at/elga/emed/r4/CodeSystem/at-elga-emed-codesystem-dosagecategory-cs|0.1.0
+Reference to experimental CodeSystem https://fhir.hl7.at/elga/emed/r4/CodeSystem/at-elga-emed-codesystem-listentryflag-cs|0.1.0
 Reference to draft CodeSystem http://hl7.org/fhir/CodeSystem/medicationrequest-status|4.0.1
 Reference to draft CodeSystem http://hl7.org/fhir/list-status|4.0.1	
 A definition for CodeSystem 'https://termgit.elga.gv.at/CodeSystem/elga-gtelvogdarollen' could not be found, so the code cannot be validated

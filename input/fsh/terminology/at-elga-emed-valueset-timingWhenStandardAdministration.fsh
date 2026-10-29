@@ -1,6 +1,7 @@
 ValueSet: ElgaTimingWhenStandardAdministrationVS
+Id: at-elga-emed-valueset-timingwhenstandardadministration-vs
 
-Title: "ELGA Dosierung Timing When ValueSet für Tageszeitenschema"
+Title: "At ELGA e-Medikation Dosierung Timing When ValueSet für Tageszeitenschema"
 Description: "ValueSet für zulässige Ausprägungen des Elements when eines Timings für eine Dosierung mit Tageszeitenschema."
 * ^experimental = true
 * ^status = #active

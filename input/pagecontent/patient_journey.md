@@ -94,7 +94,7 @@ Da für Herrn Mustermann noch nie ein Medikationsplan abgerufen wurde, erstellt 
       <div class="request-panel">
         <div class="request-code">
           <span class="request-method-get">GET</span>
-          <code class="request-url">[base]/MedicationRequest?category=https://fhir.hl7.at/elga/emed/r4/CodeSystem/MedicationRequestCategoryCS|GeplAbgabe&amp;status=active</code>
+          <code class="request-url">[base]/MedicationRequest?category=https://fhir.hl7.at/elga/emed/r4/CodeSystem/at-elga-emed-codesystem-medicationrequestcategory-cs|GeplAbgabe&amp;status=active</code>
         </div>
       </div>
     </div>
