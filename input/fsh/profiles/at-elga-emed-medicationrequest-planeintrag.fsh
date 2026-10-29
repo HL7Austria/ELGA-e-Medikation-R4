@@ -14,7 +14,7 @@ Description: "Profil für einen Planeintrag."
 * extension[effectiveDosePeriod].url MS
 
 * extension contains $medicationrequest-rendereddosageinstruction-r5 named renderedDosageInstruction 0..1
-* extension[renderedDosageInstruction] ^short = "Vollständige textuelle Zusammenfassung der Dosierungsanweisungen - wird von der Fachanwendung anhand der definierten Regeln befüllt.." // Todo Link zum Kapitel, sobald vorhanden. akl 21.10.2026
+* extension[renderedDosageInstruction] ^short = "Vollständige textuelle Zusammenfassung der Dosierungsanweisungen - wird von der Fachanwendung anhand der definierten Regeln befüllt." // Todo Link zum Kapitel, sobald vorhanden. akl 21.10.2026
 * extension[renderedDosageInstruction] MS
 * extension[renderedDosageInstruction].valueMarkdown MS
 * extension[renderedDosageInstruction].url MS
@@ -27,7 +27,6 @@ Description: "Profil für einen Planeintrag."
 * status ^short = "Status des Planeintrags. Mögliche Ausprägungen: [active | on-hold | stopped | entered-in-error]. Bedeutung: active: aktuell einzunehmende Medikation | on-hold: pausierte Medikation (aktuell nicht einzunehmen) | stopped: wird nicht weiter verordnet (unabhängig ob vorzeitig abgesetzt, abgeschlossen oder Behandlungszeitraum abgelaufen)   
 | entered-in-error: fehlerhafter Planeintrag storniert"
 
-//ASW 22.09.2026 TODO short einfügen
 * statusReason 0..1 MS   //(ex) https://hl7.org/fhir/R4/valueset-medicationrequest-status-reason.html."
 * statusReason ^short = "Begründung für den Status des Planeintrags."
 * statusReason from AtElgaEmedValueSetPlaneintragStatusReasonVS
@@ -74,7 +73,7 @@ Description: "Profil für einen Planeintrag."
 * medication[x] ^short = "Das Arzneimittel wird in einer contained Medication Ressource oder als Conditional Reference dokumentiert."
 * medicationReference MS
 * medicationReference.reference 1..1 MS
-// ASW TODO 14.10. medication hat keinen identifier - conditional reference im tx bundle - wie einschränken für unterschied zw. schreiben und lesen?
+// ASW TODO 14.10. medication hat keinen identifier - conditional reference im tx bundle - einschränken für unterschied zw. schreiben und lesen
 //* medicationReference.identifier MS
 //* medicationReference.identifier.system MS
 //* medicationReference.identifier.value MS
@@ -153,7 +152,6 @@ Description: "Eine Akutmedikation (courseOfTherapyType = #acute) muss ein Enddat
 * severity = #error
 * expression = "courseOfTherapyType.where(coding.code='acute' and coding.system = 'http://terminology.hl7.org/CodeSystem/medicationrequest-course-of-therapy').exists() implies extension.where(url = 'http://hl7.org/fhir/5.0/StructureDefinition/extension-MedicationRequest.effectiveDosePeriod').value.ofType(Period).end.exists()"
 
-// Todo: ändern: stopped und on-hold brauchen statusReason, entered-in-error nicht, akl 21.10.2026
 Invariant: at-emed-planeintrag-status-reason-beim-absetzen-oder-pausieren
 Description: "Bei Status 'stopped' oder 'on-hold' muss ein statusReason angegeben werden."
 * severity = #error

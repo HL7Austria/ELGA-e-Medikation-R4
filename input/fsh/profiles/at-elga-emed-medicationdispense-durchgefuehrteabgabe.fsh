@@ -13,7 +13,6 @@ Description: "Profil einer Durchgeführten Abgabe eines Arzneimittels."
 * modifierExtension 0..0
 * modifierExtension ^short = "Fachliche Begründung: Für den Medikationsplan sind keine zusätzlichen Erweiterungen vorgesehen, die die Bedeutung der Ressource oder ihrer Elemente verändern."
 
-//ASW 24.09.2026 TODO text 1..1
 * text MS
 * text ^short = "Narrative - wird immer durch die Fachanwendung generiert."
 * text.status ^short = "Siehe Notes - \"Regeln für den Inhalt der narrativen Teile in den Notes\"."  
@@ -30,7 +29,7 @@ Description: "Profil einer Durchgeführten Abgabe eines Arzneimittels."
 
 // Extensions
 * extension contains $medicationdispense-rendereddosageinstruction-r5 named renderedDosageInstruction 0..1
-* extension[renderedDosageInstruction] ^short = "Vollständige textuelle Zusammenfassung der Dosierungsanweisungen - wird von der Fachanwendung anhand der definierten Regeln befüllt.."  // Todo Link zum Kapitel, sobald vorhanden. akl 21.10.2026
+* extension[renderedDosageInstruction] ^short = "Vollständige textuelle Zusammenfassung der Dosierungsanweisungen - wird von der Fachanwendung anhand der definierten Regeln befüllt."  // Todo Link zum Kapitel, sobald vorhanden. akl 21.10.2026
 * extension[renderedDosageInstruction] MS
 * extension[renderedDosageInstruction].url MS
 * extension[renderedDosageInstruction].valueMarkdown MS
@@ -181,6 +180,5 @@ Planeintrag (MedicationRequest), sofern diese existieren."
 * dosageInstruction[freitextDosage] only AtElgaEmedDosageFreeTextAdministration
 * dosageInstruction[standardDosage] only AtElgaEmedDosageStandardAdministration
 
-//TODO Dosage und AtElgaEmedDosageDosierung entfernen sobald Dosierungen fertig sind
 * dosageInstruction 1..* MS
 * dosageInstruction ^short = "Gibt an, wie das abgegebene Arzneimittel vom Patienten einzunehmen ist. Diese kann, sofern ein zugehöriger Planeintrag und eine Geplante Abgabe vorliegen, von der dort angegebenen Dosierung abweichen."

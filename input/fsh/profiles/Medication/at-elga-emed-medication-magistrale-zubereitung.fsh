@@ -49,14 +49,14 @@ Description: "Bildet eine Magistrale Zubereitung in der Medication-Ressource ab.
 * amount.numerator.code from $vs-emed-mengenart (required)
 * amount.numerator.unit MS
 * amount.numerator.comparator 0..0
-* amount.numerator.comparator ^short = "Fachliche Begründung: TODO"
+//* amount.numerator.comparator ^short = "Fachliche Begründung: TODO"
 * amount.denominator 1..1 MS
 * amount.denominator.value 1..1 MS
 * amount.denominator.code MS
 * amount.denominator.code from $vs-emed-mengenart (required)
 * amount.denominator.unit MS
 * amount.denominator.comparator 0..0
-* amount.denominator.comparator ^short = "Fachliche Begründung: TODO"
+//* amount.denominator.comparator ^short = "Fachliche Begründung: TODO"
 
 * amount ^short = "Die Gesamtmenge des Arzneimittels in der Verpackung."
 
@@ -80,7 +80,7 @@ Description: "Bildet eine Magistrale Zubereitung in der Medication-Ressource ab.
 * ingredient[activeIngredient].item[x] only CodeableConcept
 * ingredient[activeIngredient].itemCodeableConcept 1..1 MS 
 * ingredient[activeIngredient].itemCodeableConcept.text 0..0
-* ingredient[activeIngredient].itemCodeableConcept.text ^short = "Fachliche Begründung: TODO"
+//* ingredient[activeIngredient].itemCodeableConcept.text ^short = "Fachliche Begründung: TODO"
 //* ingredient[activeIngredient].itemCodeableConcept.coding.system 
 //ASW 22.09.2026 TODO ATC Code ValueSets & CodeSysteme existieren nur teilweise am Termgit - ATC WIDO bekommt jährlich eine neue oid und kann nicht im binding verwendet werden - Problem muss gelöst werden
 * ingredient[activeIngredient].itemCodeableConcept.coding ^slicing.discriminator.type = #value

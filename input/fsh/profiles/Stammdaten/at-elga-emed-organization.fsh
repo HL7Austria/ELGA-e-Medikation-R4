@@ -24,25 +24,25 @@ Description: "Profil für die Struktur von Organisationen"
 * identifier MS
 * identifier[GDA-OID] 1..1 MS
 * identifier[GDA-OID].use 0..0
-* identifier[GDA-OID].use ^short = "Fachliche Begründung: TODO"
+//* identifier[GDA-OID].use ^short = "Fachliche Begründung: TODO"
 * identifier[GDA-OID].system MS
 * identifier[GDA-OID].value MS
 
 * identifier[VPNR] MS
 * identifier[VPNR].use 0..0
-* identifier[VPNR].use ^short = "Fachliche Begründung: TODO"
+//* identifier[VPNR].use ^short = "Fachliche Begründung: TODO"
 * identifier[VPNR].system MS
 * identifier[VPNR].value MS
 
 * identifier[VKZ] MS
 * identifier[VKZ].use 0..0
-* identifier[VKZ].use ^short = "Fachliche Begründung: TODO"
+//* identifier[VKZ].use ^short = "Fachliche Begründung: TODO"
 * identifier[VKZ].system MS
 * identifier[VKZ].value MS
 
 * identifier[KANR] MS
 * identifier[KANR].use 0..0
-* identifier[KANR].use ^short = "Fachliche Begründung: TODO"
+//* identifier[KANR].use ^short = "Fachliche Begründung: TODO"
 * identifier[KANR].system MS
 * identifier[KANR].value MS
 
@@ -53,7 +53,7 @@ Description: "Profil für die Struktur von Organisationen"
 * type.coding.display MS
 * type.coding.version MS
 * type.text 0..0
-* type.text ^short = "Fachliche Begründung: TODO"
+//* type.text ^short = "Fachliche Begründung: TODO"
 
 * contact MS
 * contact.modifierExtension 0..0

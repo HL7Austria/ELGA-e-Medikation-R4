@@ -16,7 +16,6 @@ Description: "Profil für einen Medikationsplan."
 // ws: meta.version.id = kann für etag verwendet werden
 //* id + meta für etag
 
-//ASW 24.09.2026 TODO text 1..1
 * text MS
 * text.div MS
 * text.status MS
@@ -56,7 +55,7 @@ Description: "Profil für einen Medikationsplan."
 
 * subject 1..1 MS
 * subject ^short = "ELGA-Teilnehmer, für den der Medikationsplan dokumentiert wird."
-* subject only Reference(AtElgaEmedPatient) // TODO ELGA Patient ableiten
+* subject only Reference(AtElgaEmedPatient)
 * subject.reference MS
 * subject.type MS
 * subject.identifier MS

@@ -8,7 +8,7 @@ Usage: #example
 * meta.versionId = $idPlaneintrag02v1
 * meta.lastUpdated = "2026-02-27T08:10:00.360+00:00"
 * text.status = #generated
-* text.div = "<div xmlns=\"http://www.w3.org/1999/xhtml\">TODO</div>"
+* text.div = "<div xmlns=\"http://www.w3.org/1999/xhtml\">Narrative in Arbeit.</div>"
 * contained[+] = contained-medication-magistral-01
 * courseOfTherapyType = $cs-medication-request-courseOfTherapyType#acute
 

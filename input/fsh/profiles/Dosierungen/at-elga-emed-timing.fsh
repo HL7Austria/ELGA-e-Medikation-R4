@@ -29,7 +29,7 @@ Description: "AT ELGA e-Medikation Timing"
 * repeat.boundsDuration.code 1..1 MS
 * repeat.boundsDuration.value 1..1 MS
 * repeat.boundsDuration.comparator 0..0
-* repeat.boundsDuration.comparator ^short = "Fachliche Begründung: TODO"
+//* repeat.boundsDuration.comparator ^short = "Fachliche Begründung: TODO"
 
 * repeat.boundsRange MS
 * repeat.boundsRange.high MS
@@ -38,14 +38,14 @@ Description: "AT ELGA e-Medikation Timing"
 * repeat.boundsRange.high.code 1..1 MS
 * repeat.boundsRange.high.value 1..1 MS
 * repeat.boundsRange.high.comparator 0..0
-* repeat.boundsRange.high.comparator ^short = "Fachliche Begründung: TODO"
+//* repeat.boundsRange.high.comparator ^short = "Fachliche Begründung: TODO"
 * repeat.boundsRange.low MS
 * repeat.boundsRange.low.system 1..1 MS
 * repeat.boundsRange.low.unit 1..1 MS
 * repeat.boundsRange.low.code 1..1 MS
 * repeat.boundsRange.low.value 1..1 MS
 * repeat.boundsRange.low.comparator 0..0
-* repeat.boundsRange.low.comparator ^short = "Fachliche Begründung: TODO"
+//* repeat.boundsRange.low.comparator ^short = "Fachliche Begründung: TODO"
 
 * repeat.dayOfWeek MS
 * repeat.duration MS

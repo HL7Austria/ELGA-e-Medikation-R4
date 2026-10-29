@@ -18,7 +18,7 @@ Description: "Profil einer Geplanten Abgabe eines Arzneimittels aus dem Medikati
 * extension[effectiveDosePeriod].valuePeriod.end MS
 
 * extension contains $medicationrequest-rendereddosageinstruction-r5 named renderedDosageInstruction 0..1
-* extension[renderedDosageInstruction] ^short = "Vollständige textuelle Zusammenfassung der Dosierungsanweisungen - wird von der Fachanwendung anhand der definierten Regeln befüllt.."  // Todo Link zum Kapitel, sobald vorhanden. akl 21.10.2026
+* extension[renderedDosageInstruction] ^short = "Vollständige textuelle Zusammenfassung der Dosierungsanweisungen - wird von der Fachanwendung anhand der definierten Regeln befüllt."  // Todo Link zum Kapitel, sobald vorhanden. akl 21.10.2026
 * extension[renderedDosageInstruction] MS
 * extension[renderedDosageInstruction].url MS
 * extension[renderedDosageInstruction].valueMarkdown MS
@@ -45,7 +45,6 @@ Description: "Profil einer Geplanten Abgabe eines Arzneimittels aus dem Medikati
 * category contains   
     mrcategory 1..1 MS and
     recipetype 1..1 MS
-//TODO ASW BUG in this slicing
 * category[mrcategory] from MedicationRequestCategoryVS (required)
 * category[mrcategory].coding 1..1 MS
 * category[mrcategory].coding.system = Canonical(MedicationRequestCategoryCS)
@@ -67,7 +66,7 @@ Description: "Profil einer Geplanten Abgabe eines Arzneimittels aus dem Medikati
 * category[recipetype].coding.system = "https://termgit.elga.gv.at/CodeSystem/medikationrezeptart"
 * category[recipetype].coding.system 1..1 MS
 * category[recipetype].text 0..0
-* category[recipetype].text ^short = "Fachliche Begründung: TODO"
+//* category[recipetype].text ^short = "Fachliche Begründung: TODO"
 * category[recipetype]  ^short = "Kategorie zur Unterscheidung, ob ein Kassen-, Privat- oder Substitutionsrezept erstellt wurde."
 * category MS
 
@@ -83,7 +82,7 @@ Description: "Profil einer Geplanten Abgabe eines Arzneimittels aus dem Medikati
 * medication[x] ^short = "Das Arzneimittel wird in einer contained Medication Ressource oder als Conditional Reference dokumentiert. Muss bei der Erstellung mit der medication im zugehörigen Planeintrag übereinstimmen."
 * medicationReference MS
 * medicationReference.reference 1..1 MS
-// ASW TODO 14.10. medication hat keinen identifier - conditional reference im tx bundle - wie einschränken für unterschied zw. schreiben und lesen?
+// ASW TODO 14.10. medication hat keinen identifier - conditional reference im tx bundle - einschränken für unterschied zw. schreiben und lesen
 //* medicationReference.identifier MS
 //* medicationReference.identifier.system MS
 //* medicationReference.identifier.value MS
@@ -140,7 +139,6 @@ Description: "Profil einer Geplanten Abgabe eines Arzneimittels aus dem Medikati
 * note ^short = "Zusätzliche Informationen zur Geplanten Abgabe, die nicht die Dosierung betreffen." 
 * note.text MS
 
-//TODO Dosage und AtElgaEmedDosageDosierung entfernen sobald Dosierungen fertig sind
 * dosageInstruction MS
 * dosageInstruction ^short  = "Angabe der Dosierinformationen strukturiert oder als Freitext. Muss bei der Erstellung mit der dosageInstruction im zugehörigen Planeintrag übereinstimmen." //TODO: Inhalte AtElgaEmedDosageDosierung fachlich prüfen.
 

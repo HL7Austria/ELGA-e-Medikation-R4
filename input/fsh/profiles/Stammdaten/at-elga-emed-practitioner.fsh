@@ -22,14 +22,14 @@ Description: "Profil für die Struktur der Practitioner Ressource"
 * identifier MS
 * identifier[GDA-OID] 1..1 MS
 * identifier[GDA-OID].use 0..0
-* identifier[GDA-OID].use ^short = "Fachliche Begründung: TODO"
+//* identifier[GDA-OID].use ^short = "Fachliche Begründung: TODO"
 * identifier[GDA-OID].system MS
 * identifier[GDA-OID].value MS
 
 
 * identifier[VPNR] MS
 * identifier[VPNR].use 0..0
-* identifier[VPNR].use ^short = "Fachliche Begründung: TODO"
+//* identifier[VPNR].use ^short = "Fachliche Begründung: TODO"
 * identifier[VPNR].system MS
 * identifier[VPNR].value MS
 

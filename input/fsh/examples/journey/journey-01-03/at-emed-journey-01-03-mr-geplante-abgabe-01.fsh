@@ -8,7 +8,7 @@ Usage: #example
 * meta.lastUpdated = "2026-02-27T08:15:00.204+00:00"
 * contained[+] = at-emed-journey-medication-ramipril
 * text.status = #generated
-* text.div = "<div xmlns=\"http://www.w3.org/1999/xhtml\">TODO</div>"
+* text.div = "<div xmlns=\"http://www.w3.org/1999/xhtml\">Narrative in Arbeit.</div>"
 // R5 Backports
 * extension[effectiveDosePeriod].valuePeriod.start = "2026-02-27"
 * extension[renderedDosageInstruction].valueMarkdown = "1-0-0-0 | Täglich: 1-0-0-0"

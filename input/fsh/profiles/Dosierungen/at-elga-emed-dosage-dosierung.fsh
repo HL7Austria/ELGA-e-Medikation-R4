@@ -32,7 +32,7 @@ https://hl7.org/fhir/R4/valueset-additional-instruction-codes.html."
 * additionalInstruction.coding.system 1..1
 * additionalInstruction.coding.version MS
 * additionalInstruction.text 0..0
-* additionalInstruction.text ^short = "Fachliche Begründung: TODO"
+//* additionalInstruction.text ^short = "Fachliche Begründung: TODO"
 
 * patientInstruction 0..1 MS
 * patientInstruction ^short = "Freitext Anweisungen für den Patienten, z.B. zur Einnahme oder zur Aufbewahrung des Arzneimittels."
@@ -107,7 +107,7 @@ Um widersprüchliche Anweisungen zu vermeiden, ist entweder Dosage.timing oder D
 
 * doseAndRate.doseQuantity 0..1 MS
 * doseAndRate.doseQuantity from $vs-emed-mengenart (required) // auch Mengenart_alternativ?
-* doseAndRate.doseQuantity ^short = "TODO"
+//* doseAndRate.doseQuantity ^short = "TODO"
 * doseAndRate.doseQuantity.value 1..1 MS
 * doseAndRate.doseQuantity.unit 1..1 MS
 * doseAndRate.doseQuantity.code 1..1 MS
@@ -139,14 +139,14 @@ Um widersprüchliche Anweisungen zu vermeiden, ist entweder Dosage.timing oder D
 * doseAndRate.rateRatio.denominator.code 1..1 MS
 * doseAndRate.rateRatio.denominator.system 1..1 MS
 * doseAndRate.rateRatio.denominator.comparator 0..0
-* doseAndRate.rateRatio.denominator.comparator ^short = "Fachliche Begründung: TODO"
+//* doseAndRate.rateRatio.denominator.comparator ^short = "Fachliche Begründung: TODO"
 * doseAndRate.rateRatio.numerator 1..1 MS
 * doseAndRate.rateRatio.numerator.value 1..1 MS
 * doseAndRate.rateRatio.numerator.unit 1..1 MS
 * doseAndRate.rateRatio.numerator.code 1..1 MS
 * doseAndRate.rateRatio.numerator.system 1..1 MS
 * doseAndRate.rateRatio.numerator.comparator 0..0
-* doseAndRate.rateRatio.numerator.comparator ^short = "Fachliche Begründung: TODO"
+//* doseAndRate.rateRatio.numerator.comparator ^short = "Fachliche Begründung: TODO"
 
 * maxDosePerPeriod 0..1 MS
 * maxDosePerPeriod ^short = "Maximale Menge pro Zeiteinheit"
@@ -156,14 +156,14 @@ Um widersprüchliche Anweisungen zu vermeiden, ist entweder Dosage.timing oder D
 * maxDosePerPeriod.denominator.code 1..1 MS
 * maxDosePerPeriod.denominator.system 1..1 MS
 * maxDosePerPeriod.denominator.comparator 0..0
-* maxDosePerPeriod.denominator.comparator ^short = "Fachliche Begründung: TODO"
+//* maxDosePerPeriod.denominator.comparator ^short = "Fachliche Begründung: TODO"
 * maxDosePerPeriod.numerator 1..1 MS
 * maxDosePerPeriod.numerator.value 1..1 MS
 * maxDosePerPeriod.numerator.unit 1..1 MS
 * maxDosePerPeriod.numerator.code 1..1 MS
 * maxDosePerPeriod.numerator.system 1..1 MS
 * maxDosePerPeriod.numerator.comparator 0..0
-* maxDosePerPeriod.numerator.comparator ^short = "Fachliche Begründung: TODO"
+//* maxDosePerPeriod.numerator.comparator ^short = "Fachliche Begründung: TODO"
 
 
 * maxDosePerAdministration 0..1 MS

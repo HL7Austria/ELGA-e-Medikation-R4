@@ -19,7 +19,6 @@ Description: "Bildet ein Arzneimittel in der \"Medication\"-Ressource ab. Wird g
 * modifierExtension 0..0
 * modifierExtension ^short = "Fachliche Begründung: Für den Medikationsplan sind keine zusätzlichen Erweiterungen vorgesehen, die die Bedeutung der Ressource oder ihrer Elemente verändern."
 
-//ASW 24.09.2026 TODO text 1..1
 * text MS
 * text.status ^short = "Siehe Notes - \"Regeln für den Inhalt der narrativen Teile in den Notes\"."  
 //ASW 22.09.2026 TODO Beschreibung - so visualisiert wie im CDA mit XHTML -> How to fill the Narrative in -notes.html 
@@ -31,7 +30,6 @@ Description: "Bildet ein Arzneimittel in der \"Medication\"-Ressource ab. Wird g
 
 
 
-//ASW 22.09.2026 TODO slice entfernen
 //ASW 22.09.2026 TODO beschreibung von PZN aus CDA
 //* code 1..1 MS
 //* code.coding ^slicing.discriminator.type = #value
@@ -104,7 +102,7 @@ Description: "Bildet ein Arzneimittel in der \"Medication\"-Ressource ab. Wird g
 * ingredient ^short = "Wirkstoffe."
 * ingredient.item[x] only CodeableConcept
 * ingredient.itemCodeableConcept.text 0..0
-* ingredient.itemCodeableConcept.text ^short = "Fachliche Begründung: TODO"
+//* ingredient.itemCodeableConcept.text ^short = "Fachliche Begründung: TODO"
 * ingredient.itemCodeableConcept 1..1 MS 
 * ingredient.itemCodeableConcept obeys at-emed-medication-ingredient-atcwido-oder-wirkstoffeages
 // * ingredient.itemCodeableConcept ^short = "Inhaltsstoff codiert." TODO: prüfen, Einschränkung auf SPOR (EMA). Gemüß CDA v3:

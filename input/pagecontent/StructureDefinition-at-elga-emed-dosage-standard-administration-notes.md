@@ -531,7 +531,7 @@ Dosage [1]
     <code>1-0-0-0 täglich um 07:00</code> oder
     <code>1-0-0-0 täglich um 17:00</code>: Exakte Uhrzeiten dürfen in diesem Schema nicht über
     <code>timeOfDay</code> angegeben werden. Es kann ausschließlich eine
-    zulässige Tageszeit, beispielsweise <code>MORN</code>, ausgedrückt werden. Für genau Uhrzeit muss das Uhrzeiten Dosierungsschema verwendet werden. TODO: Link einfügen.
+    zulässige Tageszeit, beispielsweise <code>MORN</code>, ausgedrückt werden. Für genau Uhrzeit muss das Uhrzeiten Dosierungsschema verwendet werden.
   </li>
   <li>
     <code>1-0-0-1 zweimal täglich alle zwei Tage, montags und freitags</code>:

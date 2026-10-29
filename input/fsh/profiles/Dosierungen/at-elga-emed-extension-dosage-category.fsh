@@ -18,4 +18,4 @@ Context: Dosage
 * valueCodeableConcept.coding.system = Canonical(AtElgaEmedCodeSystemDosageCategory)
 * valueCodeableConcept.coding.version MS
 * valueCodeableConcept.text 0..0
-* valueCodeableConcept.text ^short = "Fachliche Begründung: TODO"
+//* valueCodeableConcept.text ^short = "Fachliche Begründung: TODO"
