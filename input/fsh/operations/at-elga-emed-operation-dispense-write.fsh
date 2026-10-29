@@ -1,6 +1,6 @@
 Instance: AtElgaEmedDispenseWrite
 InstanceOf: OperationDefinition
-Title: "e-Med Operation für $dispense-write"
+Title: "AT ELGA e-Medikation Operation für $dispense-write"
 Description: "Die $dispense-write Operation wird aufgerufen, wenn Durchgeführte Abgaben geschrieben werden sollen."
 Usage: #definition
 * id = "at-elga-emed-operation-dispense-write"

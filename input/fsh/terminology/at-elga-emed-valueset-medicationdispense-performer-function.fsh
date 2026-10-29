@@ -1,6 +1,6 @@
 CodeSystem: AtElgaEmedValueSetMedicationDispensePerformerFunctionCS
 Id: at-elga-emed-codesystem-medicationdispense-performer-function-cs
-Title: "At ELGA e-Medikation MedicationDispense Performer Function CodeSystem"
+Title: "AT ELGA e-Medikation MedicationDispense Performer Function CodeSystem"
 Description: "Codesystem für zulässige Ausprägungen der MedicationDispense Performer Function."
 * ^status = #active
 * ^experimental = true
@@ -10,7 +10,7 @@ Description: "Codesystem für zulässige Ausprägungen der MedicationDispense Pe
 
 ValueSet: AtElgaEmedValueSetMedicationDispensePerformerFunctionVS
 Id: at-elga-emed-valueset-medicationdispense-performer-function-vs
-Title: "At ELGA e-Medikation MedicationDispense Performer Function ValueSet"
+Title: "AT ELGA e-Medikation MedicationDispense Performer Function ValueSet"
 Description: "ValueSet für zulässige Ausprägungen der MedicationDispense Performer Function."
 * ^experimental = true
 * include codes from system AtElgaEmedValueSetMedicationDispensePerformerFunctionCS

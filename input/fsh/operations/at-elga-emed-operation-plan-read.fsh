@@ -1,6 +1,6 @@
 Instance: AtElgaEmedListPlanRead
 InstanceOf: OperationDefinition
-Title: "e-Med Operation für $plan-read"
+Title: "AT ELGA e-Medikation Operation für $plan-read"
 Description: """
 Die $plan-read Operation ruft den aktuellen Medikationsplan eines
 ELGA-Teilnehmers in einem für die Bearbeitung durch den GDA aufbereiteten

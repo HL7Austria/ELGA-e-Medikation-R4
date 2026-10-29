@@ -1,6 +1,6 @@
 Instance: AtElgaEmedReferencePlan
 InstanceOf: OperationDefinition
-Title: "e-Med Operation für $reference-plan"
+Title: "AT ELGA e-Medikation Operation für $reference-plan"
 Description: "Operation für das Verknüpfen von durchgeführten Abgaben und Planeinträgen."
 Usage: #definition
 * id = "at-elga-emed-operation-reference-plan"

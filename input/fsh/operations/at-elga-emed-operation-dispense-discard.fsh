@@ -1,6 +1,6 @@
 Instance: AtElgaEmedDispenseDiscard
 InstanceOf: OperationDefinition
-Title: "e-Med Operation für $dispense-discard"
+Title: "AT ELGA e-Medikation Operation für $dispense-discard"
 Description: "Operation für das Stornieren von Durchgeführten Abgaben"
 Usage: #definition
 * id = "at-elga-emed-operation-dispense-discard"

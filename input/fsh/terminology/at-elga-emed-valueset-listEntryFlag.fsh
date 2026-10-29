@@ -1,6 +1,6 @@
 CodeSystem: ElgaListEntryFlagCS
 Id: at-elga-emed-codesystem-listentryflag-cs
-Title: "At ELGA e-Medikation List.entry.flag CodeSystem"
+Title: "AT ELGA e-Medikation List.entry.flag CodeSystem"
 Description: "CodeSystem für zulässige Ausprägungen des Flags eines List.Entries in ELGA."
 * ^status = #active
 * ^experimental = true
@@ -14,7 +14,7 @@ Description: "CodeSystem für zulässige Ausprägungen des Flags eines List.Entr
 
 ValueSet: ElgaListEntryFlagVS
 Id: at-elga-emed-valueset-listentryflag-vs
-Title: "At ELGA e-Medikation List.entry.flag ValueSet"
+Title: "AT ELGA e-Medikation List.entry.flag ValueSet"
 Description: "ValueSet für zulässige Ausprägungen Ausprägungen des Flags eines List.Entries in ELGA."
 * ^experimental = true
 * include codes from system ElgaListEntryFlagCS

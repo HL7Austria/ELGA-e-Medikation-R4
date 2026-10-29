@@ -1,7 +1,7 @@
 //ohne Kontakt
 Instance: AtElgaEmedGroupIdentifierCreate
 InstanceOf: OperationDefinition
-Title: "e-Med Operation für $groupidentifier-create"
+Title: "AT ELGA e-Medikation Operation für $groupidentifier-create"
 Description: "Die $groupidentifier-create Operation wird aufgerufen, wenn ein neuer GroupIdentifer (ohne Patientenbezug) vom Server angefordert werden soll."
 Usage: #definition
 * id = "at-elga-emed-operation-groupidentifier-create"

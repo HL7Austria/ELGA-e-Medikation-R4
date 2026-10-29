@@ -1,7 +1,7 @@
 //ohne Kontakt nur mit groupIdentifier
 Instance: AtElgaEmedGroupIdentifierSearch
 InstanceOf: OperationDefinition
-Title: "e-Med Operation für $groupidentifier-search"
+Title: "AT ELGA e-Medikation Operation für $groupidentifier-search"
 Description: "Die $groupidentifier-prescription-search Operation wird aufgerufen, wenn ein Zugriff auf Geplante und Durchgeführte Abgaben mittels e-Med GroupIdentifier erfolgen soll."
 Usage: #definition
 * id = "at-elga-emed-operation-groupidentifier-search"

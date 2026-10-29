@@ -1,6 +1,6 @@
 ValueSet: AtElgaEmedValueSetCourseOfTherapyType
 Id: at-elga-emed-valueset-medicationrequest-courseoftherapytype-vs
-Title: "At ELGA e-Medikation MedicationRequest courseOfTherapyType ValueSet"
+Title: "AT ELGA e-Medikation MedicationRequest courseOfTherapyType ValueSet"
 Description: "Zulässige Ausprägungen des Elements courseOfTherapyType in ELGA."
 * ^status = #active
 * ^experimental = true

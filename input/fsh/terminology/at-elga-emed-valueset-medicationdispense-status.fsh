@@ -1,6 +1,6 @@
 ValueSet: AtElgaEmedValueSetMedicationDispenseStatusVS
 Id: at-elga-emed-valueset-medicationdispense-status-vs
-Title: "At ELGA e-Medikation MedicationDispense Status ValueSet"
+Title: "AT ELGA e-Medikation MedicationDispense Status ValueSet"
 Description: "Zulässige Ausprägungen des Status einer MedicationDispense-Ressource in ELGA."
 
 * ^status = #active

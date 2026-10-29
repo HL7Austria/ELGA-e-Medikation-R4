@@ -1,6 +1,6 @@
 ValueSet: AtElgaEmedMedicationDispenseTypeVS
 Id: at-elga-emed-valueset-medicationdispense-type-vs
-Title: "At ELGA e-Medikation MedicationDispense Type ValueSet"
+Title: "AT ELGA e-Medikation MedicationDispense Type ValueSet"
 Description: "ValueSet für zulässige Ausprägungen des Elements type einer MedicationDispense."
 * ^status = #active
 * ^experimental = true

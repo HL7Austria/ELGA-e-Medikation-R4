@@ -1,7 +1,7 @@
 Profile: AtElgaEmedMedicationRequestPlaneintrag
 Parent: AtElgaEmedMedicationRequestBase
 Id: at-elga-emed-medicationrequest-planeintrag
-Title: "At ELGA e-Medikation MedicationRequest Planeintrag"
+Title: "AT ELGA e-Medikation MedicationRequest Planeintrag"
 Description: "Profil für einen Planeintrag." 
 
 // Extensions

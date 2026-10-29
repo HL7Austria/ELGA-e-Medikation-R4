@@ -1,7 +1,7 @@
 Profile: AtElgaEmedMedicationRequestBase
 Parent: MedicationRequest
 Id: at-elga-emed-medicationrequest-base
-Title: "At ELGA e-Medikation MedicationRequest Base"
+Title: "AT ELGA e-Medikation MedicationRequest Base"
 Description: "Die Basis für alle in eMed verwendeten MedicationRequests"
 // ASW 11.10.2026 TODO fehlende shorts ergänzen
 

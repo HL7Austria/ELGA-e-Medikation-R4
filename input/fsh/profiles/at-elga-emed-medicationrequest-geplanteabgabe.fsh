@@ -1,7 +1,7 @@
 Profile: AtElgaEmedMedicationRequestGeplanteAbgabe
 Parent: AtElgaEmedMedicationRequestBase
 Id: at-elga-emed-medicationrequest-geplanteabgabe
-Title: "At ELGA e-Medikation MedicationRequest Geplante Abgabe"
+Title: "AT ELGA e-Medikation MedicationRequest Geplante Abgabe"
 Description: "Profil einer Geplanten Abgabe eines Arzneimittels aus dem Medikationsplan."
 
 * contained only AtElgaEmedMedicationStandardMedikation or AtElgaEmedMedicationMagistraleZubereitung

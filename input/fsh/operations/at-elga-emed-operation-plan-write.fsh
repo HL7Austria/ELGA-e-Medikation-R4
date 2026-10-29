@@ -1,6 +1,6 @@
 Instance: AtElgaEmedListPlanWrite
 InstanceOf: OperationDefinition
-Title: "e-Med Operation für $plan-write"
+Title: "AT ELGA e-Medikation Operation für $plan-write"
 Description: "Die $plan-write Operation wird aufgerufen, wenn ein Medikationsplan geschrieben wird."
 Usage: #definition
 
